@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beast Mastery Hunter — Guía Midnight S1</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0f12;--bg2:#141720;--bg3:#1a1f2e;--bg4:#1f2535;--card:#181c28;
+  --border:#2a3045;--border2:#3a4560;--accent:#4fc3f7;--accent2:#0288d1;
+  --gold:#f4c842;--green:#43a047;--green2:#81c784;--orange:#fb8c00;--orange2:#ffcc80;
+  --red:#e53935;--red2:#ef9a9a;--purple:#ab47bc;--text:#dde3f0;--text2:#9aa5c0;--text3:#6a7590;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.65;min-height:100vh}
+
+/* HEADER */
+.guide-header{
+  background:
+    radial-gradient(circle at 12% 20%, rgba(79,195,247,.10) 0%, transparent 28%),
+    radial-gradient(circle at 85% 55%, rgba(244,200,66,.10) 0%, transparent 30%),
+    radial-gradient(circle at 55% 90%, rgba(251,140,0,.06) 0%, transparent 25%),
+    linear-gradient(135deg,#090c14 0%,#0f1420 40%,#0b1222 100%);
+  border-bottom:2px solid var(--border2);padding:30px 32px 22px;position:relative;overflow:hidden;
+  box-shadow:0 14px 36px rgba(0,0,0,.28)
+}
+.guide-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 80% at 78% 50%, rgba(79,195,247,.06) 0%, transparent 70%);pointer-events:none}
+.header-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:20px}
+.header-icon{width:64px;height:64px;background:radial-gradient(circle,#2a5298 0%,#1a2a4a 100%);border:2px solid var(--accent2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 0 22px rgba(79,195,247,.28);flex-shrink:0}
+.header-text h1{font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold);letter-spacing:2px;text-shadow:0 0 20px rgba(244,200,66,.35)}
+.header-text p{color:var(--text2);font-size:13px;margin-top:3px;letter-spacing:.5px}
+.header-badges{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.hbadge{background:rgba(79,195,247,.10);border:1px solid rgba(79,195,247,.30);color:var(--accent);padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.5px}
+.hbadge.hunter{background:rgba(67,160,71,.12);border-color:rgba(67,160,71,.35);color:var(--green2)}
+.hbadge.dps{background:rgba(229,57,53,.12);border-color:rgba(229,57,53,.35);color:var(--red2)}
+
+/* TABS */
+.tabs-bar{background:rgba(20,23,32,.9);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:4;backdrop-filter:blur(10px);box-shadow:0 8px 18px rgba(0,0,0,.18)}
+.tabs-bar::-webkit-scrollbar{display:none}
+.tabs-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap}
+.tab-btn{background:none;border:none;color:var(--text2);font-family:'Outfit',sans-serif;font-size:12.5px;font-weight:600;padding:14px 18px;cursor:pointer;letter-spacing:.8px;text-transform:uppercase;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* CONTENT */
+.content-area{max-width:1180px;margin:0 auto;padding:30px 20px 60px}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fade .2s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* HEADINGS */
+h2{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h3{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin:22px 0 10px}
+
+/* BADGES */
+.sp,.pr,.bf{display:inline-block;padding:1px 8px;border-radius:4px;font-size:12.5px;font-weight:600;cursor:pointer;line-height:1.5;white-space:nowrap}
+.sp{background:rgba(79,195,247,.15);border:1px solid rgba(79,195,247,.40);color:#81d4fa}
+.pr{background:rgba(251,140,0,.15);border:1px solid rgba(251,140,0,.40);color:#ffcc80}
+.bf{background:rgba(67,160,71,.15);border:1px solid rgba(67,160,71,.40);color:#a5d6a7}
+.bf::after{content:'*';font-size:10px;vertical-align:super}
+
+/* TOOLTIP */
+.tooltip{display:none;position:fixed;background:linear-gradient(180deg,#0d1117,#101927);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;max-width:280px;z-index:9999;box-shadow:0 10px 28px rgba(0,0,0,.62);pointer-events:none}
+.tooltip.visible{display:block}
+.tooltip-name{font-weight:700;font-size:13px;margin-bottom:2px;color:var(--gold);font-family:'Cinzel',serif}
+.tooltip-type{font-size:11px;opacity:.6;margin-bottom:5px;font-style:italic}
+.tooltip-desc{font-size:12px;color:var(--text2);line-height:1.5}
+
+/* BOXES */
+.box{border-left:4px solid;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px;line-height:1.6}
+.box-info{background:rgba(2,136,209,.10);border-color:var(--accent2)}
+.box-warn{background:rgba(251,140,0,.10);border-color:var(--orange)}
+.box-tip{background:rgba(67,160,71,.10);border-color:var(--green)}
+.box-crit{background:rgba(229,57,53,.10);border-color:var(--red)}
+.box-title{font-weight:700;font-size:12px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
+.box-info .box-title{color:var(--accent)}
+.box-warn .box-title{color:var(--orange)}
+.box-tip .box-title{color:var(--green2)}
+.box-crit .box-title{color:var(--red2)}
+
+/* CARDS */
+.card{background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(255,255,255,.005)),var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 10px 26px rgba(0,0,0,.18)}
+.card-header{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--gold);letter-spacing:1px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);text-transform:uppercase}
+
+/* PRIORITY LIST */
+.prio-list{list-style:none}
+.prio-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.prio-item:last-child{border-bottom:none}
+.prio-num{width:26px;height:26px;background:linear-gradient(135deg,var(--accent2),#01579b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px}
+.prio-item p{flex:1;color:var(--text)}
+
+/* CHAIN */
+.chain-wrap{background:#0a0d14;border:1px solid var(--border);border-radius:10px;padding:18px;margin:14px 0;overflow-x:auto}
+.chain{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:max-content}
+.chain-step{background:var(--bg4);border:1px solid var(--border2);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;text-align:center}
+.chain-step small{display:block;font-size:10px;font-weight:400;color:var(--text3);margin-top:2px;letter-spacing:.3px}
+.chain-step.sp-step{border-color:rgba(79,195,247,.5);color:#81d4fa;background:rgba(79,195,247,.08)}
+.chain-step.pr-step{border-color:rgba(251,140,0,.5);color:#ffcc80;background:rgba(251,140,0,.08)}
+.chain-step.bf-step{border-color:rgba(67,160,71,.5);color:#a5d6a7;background:rgba(67,160,71,.08)}
+.chain-step.gold-step{border-color:rgba(244,200,66,.5);color:var(--gold);background:rgba(244,200,66,.08)}
+.chain-arrow{color:var(--accent2);font-size:18px;flex-shrink:0}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+@media(max-width:760px){.two-col{grid-template-columns:1fr}}
+.col-card{background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(255,255,255,.005)),var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.16)}
+.col-header{background:var(--bg3);padding:10px 14px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border)}
+.col-header.blue{color:#81d4fa}
+.col-header.orange{color:var(--orange2)}
+.col-row{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:13.5px}
+.col-row:last-child{border-bottom:none}
+.col-row .prio-num{width:22px;height:22px;font-size:11px}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+@media(max-width:560px){.stats-grid{grid-template-columns:1fr}}
+.stat-card{background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(255,255,255,.005)),var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;box-shadow:0 8px 18px rgba(0,0,0,.15)}
+.stat-name{font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:.8px;color:var(--gold);margin-bottom:6px}
+.stat-bar-bg{background:var(--bg3);border-radius:4px;height:7px;overflow:hidden;margin-bottom:6px}
+.stat-bar{height:100%;border-radius:4px}
+.stat-gold  .stat-bar{background:linear-gradient(90deg,#8a6200,var(--gold))}
+.stat-blue  .stat-bar{background:linear-gradient(90deg,#01579b,var(--accent))}
+.stat-crit  .stat-bar{background:linear-gradient(90deg,#8b0000,#f44336)}
+.stat-grey  .stat-bar{background:linear-gradient(90deg,#37474f,#78909c)}
+.stat-desc{font-size:12px;color:var(--text2)}
+
+/* BIS TABLE */
+.bis-table-wrap{overflow-x:auto;border-radius:12px}
+.bis-table{width:100%;border-collapse:collapse;font-size:13px;min-width:500px}
+.bis-table th{background:var(--bg3);padding:9px 12px;text-align:left;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:.8px;color:var(--gold);border-bottom:1px solid var(--border)}
+.bis-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text2)}
+.bis-table tr:last-child td{border-bottom:none}
+.bis-table tr:hover td{background:rgba(79,195,247,.025)}
+.bis-table td:first-child{color:var(--text);font-weight:500}
+.bis-table td.item-name{color:#81d4fa}
+.source-craft{color:var(--green2)}
+.source-raid{color:#ce93d8}
+.source-dungeon{color:#81d4fa}
+.tier-badge{display:inline-block;background:rgba(244,200,66,.15);border:1px solid rgba(244,200,66,.30);color:var(--gold);font-size:10px;padding:1px 5px;border-radius:3px;font-family:'Outfit',sans-serif;font-weight:700;letter-spacing:.5px;margin-left:4px}
+.craft-badge{display:inline-block;background:rgba(67,160,71,.15);border:1px solid rgba(67,160,71,.35);color:#81c784;font-size:10px;padding:1px 5px;border-radius:3px;font-family:'Outfit',sans-serif;font-weight:700;letter-spacing:.5px;margin-left:4px}
+.raid-row td{
+  background:rgba(171,71,188,.13);
+  border-top:1px solid rgba(171,71,188,.25);
+  border-bottom:1px solid rgba(171,71,188,.25);
+}
+.raid-row:hover td{background:rgba(171,71,188,.22) !important}
+.raid-row td:first-child{color:#ce93d8;font-weight:600}
+.raid-row td.item-name{color:#e0b0f8}
+.raid-row td.source-raid{color:#ce93d8;font-weight:600}
+
+/* ERROR ITEMS */
+.error-item{display:flex;gap:14px;padding:14px;border-radius:10px;margin-bottom:12px;border:1px solid}
+.error-crit{background:rgba(229,57,53,.08);border-color:rgba(229,57,53,.30)}
+.error-warn{background:rgba(251,140,0,.08);border-color:rgba(251,140,0,.30)}
+.error-icon{font-size:22px;flex-shrink:0}
+.error-body h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.error-crit h4{color:var(--red2)}
+.error-warn h4{color:var(--orange2)}
+.error-body p{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:6px}
+.error-body p:last-child{margin-bottom:0}
+
+/* OPENER STEPS */
+.opener-steps{list-style:none}
+.opener-step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;align-items:flex-start}
+.opener-step:last-child{border-bottom:none}
+.ostep-num{width:26px;height:26px;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--gold);flex-shrink:0;margin-top:2px}
+.ostep-pre{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+.toggle-wrap{display:flex;gap:8px;margin-bottom:20px}
+.toggle-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text2);cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;padding:8px 20px;transition:all .18s;letter-spacing:.5px}
+.toggle-btn.active{background:rgba(79,195,247,.12);border-color:rgba(79,195,247,.40);color:var(--accent)}
+
+/* CONSUMIBLES */
+.cons-row{display:grid;grid-template-columns:140px 1fr;border-bottom:1px solid var(--border);padding:9px 14px;gap:14px;font-size:13.5px;align-items:center}
+.cons-row:last-child{border-bottom:none}
+.cons-slot{color:var(--text3);font-size:12px;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.cons-alt{display:block;font-size:12px;color:var(--text3);margin-top:3px}
+
+/* MACROS */
+.macro-card{background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(255,255,255,.005)),var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 8px 20px rgba(0,0,0,.16)}
+.macro-head{background:var(--bg3);padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.macro-title{font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:.8px;color:var(--gold)}
+.macro-cat{margin-left:auto;background:rgba(79,195,247,.10);border:1px solid rgba(79,195,247,.28);color:var(--accent);padding:1px 9px;border-radius:12px;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.macro-cat.aoe{background:rgba(251,140,0,.10);border-color:rgba(251,140,0,.28);color:var(--orange2)}
+.macro-cat.util{background:rgba(67,160,71,.10);border-color:rgba(67,160,71,.28);color:var(--green2)}
+.macro-body{padding:14px 18px}
+.macro-desc{font-size:13.5px;color:var(--text2);margin-bottom:12px;line-height:1.55}
+pre.macro-code{background:#080b12;border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 6px 6px 0;padding:12px 14px;font-family:'Courier New',monospace;font-size:12.5px;color:#c8e890;line-height:1.75;overflow-x:auto;margin-bottom:10px}
+.macro-tip{font-size:12.5px;color:var(--text3);line-height:1.5;padding:8px 11px;background:rgba(79,195,247,.06);border-radius:5px;border-left:2px solid rgba(79,195,247,.25)}
+.macro-tip strong{color:var(--accent)}
+
+/* QUIZ */
+.quiz-progress{display:flex;gap:4px;margin-bottom:20px}
+.quiz-dot{width:28px;height:6px;border-radius:3px;background:var(--border)}
+.quiz-dot.done{background:var(--green)}
+.quiz-dot.current{background:var(--accent)}
+.quiz-dot.wrong{background:var(--red)}
+.quiz-q{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px}
+.quiz-q-text{font-size:15px;font-weight:600;margin-bottom:18px;color:var(--text);line-height:1.5}
+.quiz-options{display:grid;gap:10px}
+.quiz-opt{background:var(--bg3);border:1.5px solid var(--border);border-radius:8px;padding:11px 16px;cursor:pointer;font-size:13.5px;font-family:'Outfit',sans-serif;color:var(--text);transition:all .2s;text-align:left}
+.quiz-opt:hover:not(:disabled){border-color:var(--accent2);background:rgba(79,195,247,.06)}
+.quiz-opt.correct{background:rgba(67,160,71,.15);border-color:var(--green);color:var(--green2)}
+.quiz-opt.wrong{background:rgba(229,57,53,.12);border-color:var(--red);color:var(--red2)}
+.quiz-feedback{display:none;padding:12px 16px;border-radius:8px;font-size:13.5px;margin-top:10px;line-height:1.6}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:rgba(67,160,71,.12);border:1px solid rgba(67,160,71,.30);color:var(--green2)}
+.quiz-feedback.fail{background:rgba(229,57,53,.10);border:1px solid rgba(229,57,53,.30);color:var(--red2)}
+.quiz-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{background:linear-gradient(135deg,var(--accent2),#01579b);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.5px}
+.btn.secondary{background:var(--bg4);border:1px solid var(--border2);color:var(--text2)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.quiz-score{display:none;text-align:center;padding:30px;background:var(--card);border:1px solid var(--border2);border-radius:12px}
+.quiz-score.show{display:block}
+.score-num{font-family:'Cinzel',serif;font-size:52px;font-weight:900;color:var(--gold)}
+.score-label{color:var(--text2);font-size:14px;margin-top:6px}
+.score-msg{font-size:13px;color:var(--text3);margin-top:8px}
+
+/* FOOTER */
+.guide-footer{background:var(--bg2);border-top:1px solid var(--border);padding:16px 32px;text-align:center;font-size:12px;color:var(--text3);line-height:1.7}
+.guide-footer span{color:var(--accent2)}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:22px 0}
+
+/* HOVER MICRO-INTERACTIONS */
+.tab-btn:focus-visible,.quiz-opt:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.card:hover,.col-card:hover,.stat-card:hover,.macro-card:hover{border-color:var(--border2);transform:translateY(-1px);transition:transform .16s ease,border-color .16s ease}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .guide-header{padding:18px 14px 14px}
+  .header-text h1{font-size:21px}
+  .header-badges{display:none}
+  .tab-btn{font-size:11px;padding:11px 10px}
+  .content-area{padding:18px 12px 40px}
+  
+  /* ── BIS MEJORADO ── */
+.bis-progress-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:16px}
+.bis-progress-label{font-family:'Cinzel',serif;font-size:12px;color:var(--gold);white-space:nowrap;font-weight:700}
+.bis-progress-bar-bg{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.bis-progress-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width .4s ease}
+.bis-progress-count{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap;min-width:50px;text-align:right}
+
+.bis-table td.slot-col{color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;width:90px}
+.bis-table td.check-col{width:36px;text-align:center;padding:8px 6px}
+.bis-check{width:17px;height:17px;accent-color:var(--accent);cursor:pointer;vertical-align:middle}
+
+.bis-table tr.collected td{opacity:.45}
+.bis-table tr.collected td.item-name{text-decoration:line-through}
+.bis-table tr.collected td.check-col{opacity:1}
+
+.source-mp{color:#4fc3f7;font-size:12px}
+.source-world{color:#ffcc80;font-size:12px}
+
+</style>
+</head>
+<body>
+
+<!-- TOOLTIP -->
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-name" id="tt-name"></div>
+  <div class="tooltip-type" id="tt-type"></div>
+  <div class="tooltip-desc" id="tt-desc"></div>
+</div>
+
+<!-- HEADER -->
+<div class="guide-header">
+  <div class="header-inner" style="align-items:flex-start">
+    <div class="header-icon" style="overflow:hidden;padding:0">
+      <img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png"
+           width="64" height="64"
+           style="display:block;object-fit:cover;border-radius:50%"
+           alt="Pack Leader">
+    </div>
+    <div class="header-text" style="flex:1">
+      <h1>Beast Mastery Hunter</h1>
+      <p>Guía completa · WoW: Midnight · Temporada 1 · Pack Leader</p>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-top:8px">
+        <div class="header-badges">
+          <span class="hbadge hunter">🏹 Cazador</span>
+          <span class="hbadge dps">⚔️ DPS</span>
+          <span class="hbadge">📦 Pack Leader</span>
+          <span class="hbadge">🌙 Midnight S1</span>
+        </div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:600px;text-align:left;margin-top:2px">
+⚠️ Esta es una guía realizada por Mishuko como recurso de apoyo para facilitar la comprensión de la clase. El contenido puede quedar desactualizado tras cambios de parche — contrástalo siempre con fuentes como Wowhead o Icy Veins o el propio Mishuko. También puedes mirar la parte de abajo para ver cuál es la fecha de actualización de la guía.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('mec',this)">⚙️ Mecánicas</button>
+    <button class="tab-btn" onclick="showTab('opener',this)">🚀 Opener</button>
+    <button class="tab-btn" onclick="showTab('rot',this)">🔄 Rotación</button>
+    <button class="tab-btn" onclick="showTab('tal',this)">📊 Stats</button>
+    <button class="tab-btn" onclick="showTab('err',this)">⚠️ Errores</button>
+    <button class="tab-btn" onclick="showTab('mac',this)">🎮 Macros</button>
+    <button class="tab-btn" onclick="showTab('bis',this)">🗡️ BiS & Consumibles</button>
+	<button class="tab-btn" onclick="showTab('talentos',this)">🌟 Talentos</button>
+	<button class="tab-btn" onclick="showTab('mascotas',this)">🐾 Mascotas</button>
+    <button class="tab-btn" onclick="showTab('qst',this)">📝 Examen ST</button>
+    <button class="tab-btn" onclick="showTab('qaoe',this)">💥 Examen AoE</button>
+  </div>
+</div>
+
+<div class="content-area">
+
+<!-- ══════════════════════════════════════
+     TAB 1: MECÁNICAS
+══════════════════════════════════════ -->
+<div id="tab-mec" class="tab-panel active">
+  <h2>Mecánicas del Beast Mastery Hunter</h2>
+
+  <div class="box box-info">
+    <div class="box-title">📖 Resumen</div>
+    El BM Hunter es un especialista en daño a distancia cuya fuente principal de daño proviene de sus <strong>mascotas</strong>. La mayor parte del daño sale de ellas, no de tus propios disparos, por lo que <strong>gestionar bien a tu mascota es tan importante como tu propia rotación</strong>.
+  </div>
+
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-header">⚡ Recurso Principal</div>
+      <div class="col-row"><p><strong>Enfoque</strong> — Se regenera pasivamente. La <strong>Prisa</strong> acelera su regeneración. El objetivo es no malgastar Enfoque durante la ventana de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="Tu único CD mayor. CD corto pero enormemente impactante. Toda la rotación gira en torno a él.">Cólera de las bestias</span> ni quedarte seco entre ventanas.</p></div>
+      <div class="col-row"><p>La rotación es una <strong>lista de prioridades</strong>: en cada GCD bajas de arriba a abajo y pulsas la primera habilidad que cumpla su condición.</p></div>
+    </div>
+    <div class="col-card">
+      <div class="col-header"><img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="16" height="16" style="vertical-align:middle;border-radius:3px;margin-right:6px">Talento Héroe: Pack Leader</div>
+      <div class="col-row"><p>La rotación de <strong>Pack Leader</strong> pivota sobre <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span>: potencia el siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte de mascota. Prioridad alta con los dos buffs clave.">Matar</span> significativamente.</p></div>
+      <div class="col-row"><p><span class="pr" data-name="¡Estampida!" data-type="Proc de Pack Leader" data-desc="Línea de animales 30 yardas hacia adelante. Sin ajuste de altura. Falla en terreno irregular o en diferente plano que los enemigos.">¡Estampida!</span> — activada por el primer Matar tras <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. <strong style="color:var(--orange2)">Sin ajuste de altura</strong>: falla si no estás al mismo nivel que los enemigos.</p></div>
+    </div>
+  </div>
+
+  <h3>Cooldown Principal</h3>
+  <div class="card">
+    <div class="card-header">🔥 Cólera de las bestias</div>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">🩸 Aplica <span class="bf" data-name="Escabechina" data-type="Debuff de sangrado" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota está atacando activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> al objetivo que ataque tu mascota. <strong>Si la mascota no ataca nada, no habrá sangrado.</strong></div>
+      <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">⚡ En Pack Leader, cada hit individual activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad AoE de mascota" data-desc="AoE instantáneo de mascota. Se activa con Paliza salvaje y con cada hit de Cólera de las bestias.">Tajo de la bestia</span> gracias a <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span>.</div>
+      <div style="padding:10px 0;font-size:14px">🐾 El siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> tras <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura. Falla en terreno irregular.">¡Estampida!</span></div>
+    </div>
+  </div>
+
+  <h3>Procs Clave</h3>
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-header orange">🔶 Aullido de la manada</div>
+      <div class="col-row"><p><span class="pr" data-name="Aullido de la manada" data-type="Proc de buff" data-desc="Cada 30s, tu siguiente Matar invoca una bestia de apoyo aleatoria: Dracoleón (+10% daño tuyo y de mascotas 12s), Jabalí (daño físico en área) u Oso (daño desgarrador en hasta 8 enemigos 10s).">Aullido de la manada</span> — Invoca una mascota adicional de la manada. Usa <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> inmediatamente cuando esté activo.</p></div>
+    </div>
+    <div class="col-card">
+      <div class="col-header">🟢 Aliado de la naturaleza</div>
+      <div class="col-row"><p><span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span> — Potencia el siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> significativamente. Prioriza siempre que esté activo.</p></div>
+    </div>
+  </div>
+
+  <h3>Gestión de Mascota</h3>
+  <div class="card">
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">🎯 Tu mascota debe atacar siempre el <strong>objetivo prioritario</strong> para que <span class="bf" data-name="Escabechina" data-type="Debuff" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota ataca activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> dure toda su duración.</div>
+      <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">🔄 Si la mascota se queda atascada, usa <strong>Seguir / Pasivo</strong> para reposicionarla, luego usa tu macro de ataque.</div>
+      <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">⚙️ <strong>Auto-cast ON:</strong> <span class="sp" data-name="Zarpa" data-type="Auto-cast ON" data-desc="Debe estar siempre en auto-cast.">Zarpa</span>, <span class="sp" data-name="Mordedura" data-type="Auto-cast ON" data-desc="Debe estar siempre en auto-cast.">Mordedura</span>, <span class="sp" data-name="Bofetón" data-type="Auto-cast ON" data-desc="Debe estar siempre en auto-cast.">Bofetón</span></div>
+      <div style="padding:10px 0;font-size:14px">⚙️ <strong>Auto-cast OFF:</strong> <span class="sp" data-name="Carrerilla" data-type="Auto-cast OFF" data-desc="NO auto-cast: controla manualmente.">Carrerilla</span>, <span class="sp" data-name="Camino de espíritu" data-type="Auto-cast OFF" data-desc="NO auto-cast. Hace que la mascota empiece a atacar más lento.">Camino de espíritu</span>, <span class="sp" data-name="Bramido" data-type="Auto-cast OFF" data-desc="NO auto-cast.">Bramido</span></div>
+    </div>
+  </div>
+
+  <h3>Ventana de CD — Combo de Oro</h3>
+  <div class="box box-tip"><div class="box-title">💡 Objetivo</div>Maximiza el daño dentro de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> usando tantos <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> como sea posible, todos potenciados por <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span>.</div>
+  <div class="chain-wrap">
+    <div class="chain">
+      <div class="chain-step gold-step">Poción + Trinkets<small>Antes del hit</small></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-step sp-step">Cólera de las bestias<small>Activa CD</small></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-step sp-step">Matar<small>Con Aliado de la naturaleza</small></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-step pr-step">¡Estampida!<small>Proc automático</small></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-step sp-step">Disparo con púas<small>Recarga NA</small></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-step sp-step">Matar<small>Tantos como puedas</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2: OPENER
+══════════════════════════════════════ -->
+<div id="tab-opener" class="tab-panel">
+  <h2>Secuencia de Opener</h2>
+
+  <div class="box box-info"><div class="box-title">ℹ️ Objetivo del Opener</div>Gastar todas las cargas de <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Tiene 2 cargas. Gástalas todas antes de Cólera de las bestias para posicionar la mascota y cargar Aliado de la naturaleza.">Disparo con púas</span> <strong>antes</strong> de pulsar <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> para que <span class="bf" data-name="Escabechina" data-type="Debuff" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota está atacando activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> se aplique desde el primer momento y Aliado de la naturaleza esté cargado.</div>
+
+  <div class="toggle-wrap">
+    <button class="toggle-btn active" onclick="setOpener('st',this)">🎯 Single-Target</button>
+    <button class="toggle-btn" onclick="setOpener('aoe',this)">💥 AoE / M+</button>
+  </div>
+
+  <!-- ST -->
+  <div id="opener-st">
+    <div class="chain-wrap">
+      <div class="chain">
+        <div class="chain-step bf-step">Marca del cazador<small>Pre-pull</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Redirección<small>Al tanque</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step gold-step">Caja de puzles<small>-2s pull</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Disparo con púas ×2<small>Gastar todas las cargas</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step gold-step">Poción + Raciales<small>Trinkets activos</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Cólera de las bestias<small>¡Mascota atacando!</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Matar<small>→ ¡Estampida!</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Rotación normal</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-header">📋 Pasos Detallados — ST</div>
+      <ol class="opener-steps">
+        <li class="opener-step"><div class="ostep-num">1</div><div><div class="ostep-pre">Pre-pull</div>Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Siempre al objetivo prioritario antes del pull.">Marca del cazador</span> al objetivo prioritario.</div></li>
+        <li class="opener-step"><div class="ostep-num">2</div><div><div class="ostep-pre">Pre-pull</div>Lanza <span class="sp" data-name="Redirección" data-type="Habilidad activa" data-desc="Redirige el agro de tu mascota al tanque. Configura un macro para esto.">Redirección</span> al tanque.</div></li>
+        <li class="opener-step"><div class="ostep-num">3</div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="Trinket con 2 segundos de casteo. Pre-castear 2s antes del pull para que esté activa al inicio del combate.">Caja de puzles de Algeth'ar</span> exactamente 2 segundos antes del pull.</div></li>
+        <li class="opener-step"><div class="ostep-num">4</div><div><div class="ostep-pre">Al hacer pull</div>Gasta <strong>todas las cargas</strong> de <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Tiene 2 cargas. Gástalas todas antes de Cólera de las bestias para posicionar la mascota y cargar Aliado de la naturaleza.">Disparo con púas</span> — son 2 cargas. Esto posiciona la mascota y carga Aliado de la naturaleza antes del CD.</div></li>
+        <li class="opener-step"><div class="ostep-num">5</div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales de stats</strong> y <strong>trinkets</strong> (excepto Caja de puzles). Deben estar activos antes del hit de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div></li>
+        <li class="opener-step"><div class="ostep-num">6</div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. Asegúrate de que la mascota ya ataca.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar atacando el objetivo en este momento!</strong></div></li>
+        <li class="opener-step"><div class="ostep-num">7</div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Activa ¡Estampida! en Pack Leader.">Matar</span> → activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin ajuste de altura.">¡Estampida!</span></div></li>
+        <li class="opener-step"><div class="ostep-num">8</div><div>Continúa con la rotación normal.</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- AoE -->
+  <div id="opener-aoe" style="display:none">
+    <div class="chain-wrap">
+      <div class="chain">
+        <div class="chain-step bf-step">Marca del cazador<small>Pre-pull</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Redirección<small>Al tanque</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step gold-step">Caja de puzles<small>-2s pull</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Disparo con púas<small>Al hacer pull</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step gold-step">Poción + Raciales<small>Trinkets activos</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step pr-step">Paliza salvaje<small>→ Tajo de la bestia</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Cólera de las bestias<small>¡Mascota en pack!</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Matar<small>→ ¡Estampida!</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Rotación AoE</div>
+      </div>
+    </div>
+    <div class="box box-warn" style="margin-top:14px"><div class="box-title">⚠️ Posición crítica en AoE</div>Posiciónate a la <strong>misma altura</strong> que los enemigos antes de entrar en la ventana de CD. <span class="pr" data-name="¡Estampida!" data-type="Proc AoE" data-desc="Sin ajuste de altitud. Falla en terreno irregular.">¡Estampida!</span> no ajusta altura y la mayoría de animales fallarán si hay diferencia de plano.</div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-header">📋 Pasos Detallados — AoE</div>
+      <ol class="opener-steps">
+        <li class="opener-step"><div class="ostep-num">1</div><div><div class="ostep-pre">Pre-pull</div>Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Siempre al objetivo prioritario.">Marca del cazador</span> al objetivo prioritario del pack.</div></li>
+        <li class="opener-step"><div class="ostep-num">2</div><div><div class="ostep-pre">Pre-pull</div>Lanza <span class="sp" data-name="Redirección" data-type="Habilidad activa" data-desc="Redirige el agro de tu mascota al tanque.">Redirección</span> al tanque.</div></li>
+        <li class="opener-step"><div class="ostep-num">3</div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="2s de casteo. Pre-castear 2s antes del pull.">Caja de puzles de Algeth'ar</span> 2 segundos antes del pull.</div></li>
+        <li class="opener-step"><div class="ostep-num">4</div><div><div class="ostep-pre">Al hacer pull</div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Primer cast al hacer pull. Posiciona la mascota en el pack.">Disparo con púas</span> al objetivo central del pack.</div></li>
+        <li class="opener-step"><div class="ostep-num">5</div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
+        <li class="opener-step"><div class="ostep-num">6</div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente que activa Tajo de la bestia.">Paliza salvaje</span> — activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad activa de mascota" data-desc="AoE de mascota activado por Paliza salvaje y por cada hit de Cólera de las bestias.">Tajo de la bestia</span> en tu mascota.</div></li>
+        <li class="opener-step"><div class="ostep-num">7</div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. La mascota debe estar atacando el objetivo central.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar en el centro del pack!</strong></div></li>
+        <li class="opener-step"><div class="ostep-num">8</div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Activa ¡Estampida!.">Matar</span> → activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura.">¡Estampida!</span></div></li>
+        <li class="opener-step"><div class="ostep-num">9</div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario.">Disparo con púas</span> al objetivo prioritario y continúa con rotación AoE.</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <h3>Comprobaciones Pre-Combate</h3>
+  <div class="card">
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">✅ <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Aplicar siempre al objetivo prioritario antes del pull.">Marca del cazador</span> al objetivo prioritario.</div>
+      <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">✅ <span class="sp" data-name="Redirección" data-type="Habilidad activa" data-desc="Redirige agro de mascota al tanque. Configura macros.">Redirección</span> al tanque (ver pestaña 🎮 Macros).</div>
+      <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">✅ Mascota invocada y viva: <span class="sp" data-name="Llamar a mascota" data-type="Habilidad activa" data-desc="Si no tienes mascota invocada.">Llamar a mascota</span> / <span class="sp" data-name="Revivir mascota" data-type="Habilidad activa" data-desc="Si la mascota está muerta.">Revivir mascota</span>.</div>
+      <div style="padding:9px 0;font-size:14px">✅ Verifica auto-casts: <span class="sp" data-name="Zarpa" data-type="Auto ON" data-desc="Auto-cast activo.">Zarpa</span> / <span class="sp" data-name="Mordedura" data-type="Auto ON" data-desc="Auto-cast activo.">Mordedura</span> ON · <span class="sp" data-name="Camino de espíritu" data-type="Auto OFF" data-desc="Auto-cast DESACTIVADO. Hace que la mascota empiece más lento.">Camino de espíritu</span> OFF.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 3: ROTACIÓN
+══════════════════════════════════════ -->
+<div id="tab-rot" class="tab-panel">
+  <h2>Lista de Prioridades</h2>
+
+  <div class="box box-info"><div class="box-title">ℹ️ Cómo leer la lista</div>El BM Hunter usa una <strong>lista de prioridades</strong>. En cada GCD, baja de arriba a abajo y usa la primera habilidad disponible que cumpla su condición. No es una rotación fija.</div>
+
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-header blue">🎯 Single-Target</div>
+      <ul class="prio-list" style="padding:0 14px">
+        <li class="prio-item"><div class="prio-num">1</div><p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Úsalo si Cólera de las bestias saldrá de CD en ≤3 segundos. Hace que la mascota cargue al objetivo.">Disparo con púas</span> si <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> sale de CD en <strong>≤3 segundos</strong>.</p></li>
+        <li class="prio-item"><div class="prio-num">2</div><p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. Úsalo en cuanto esté disponible, sin excusas.">Cólera de las bestias</span> — on cooldown, siempre.</p></li>
+		<li class="prio-item"><div class="prio-num">3</div><p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown siempre. No esperes a que Aliado de la naturaleza esté activo — estará listo en ~8 de cada 10 usos de forma natural si alternas con Disparo con púas y Disparo de cobra.">Matar</span> — on cooldown, siempre. <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar.">Aliado de la naturaleza</span> estará activo de forma natural en ~8 de cada 10 usos si alternas correctamente con Disparo con púas y Disparo de cobra.</p></li>        <li class="prio-item"><div class="prio-num">4</div><p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Relleno principal de la rotación ST.">Disparo con púas</span> — relleno principal.</p></li>
+        <li class="prio-item"><div class="prio-num">5</div><p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno de Enfoque. Solo cuando no hay nada más disponible.">Disparo de cobra</span> — relleno de Enfoque.</p></li>
+      </ul>
+    </div>
+    <div class="col-card">
+      <div class="col-header orange">💥 AoE / M+</div>
+      <ul class="prio-list" style="padding:0 14px">
+        <li class="prio-item"><div class="prio-num">1</div><p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario si Cólera de las bestias va a salir de CD.">Disparo con púas</span> al objetivo prioritario si <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> está por salir de CD.</p></li>
+        <li class="prio-item"><div class="prio-num">2</div><p><span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente. Activa Tajo de la bestia en tu mascota.">Paliza salvaje</span></p></li>
+        <li class="prio-item"><div class="prio-num">3</div><p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span></p></li>
+        <li class="prio-item"><div class="prio-num">4</div><p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Siempre alto en la prioridad AoE también.">Matar</span></p></li>
+        <li class="prio-item"><div class="prio-num">5</div><p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Solo si tienes Zancapuerco activo Y menos de 4 enemigos.">Disparo de cobra</span> si tienes <span class="bf" data-name="Zancapuerco" data-type="Buff AoE" data-desc="Habilita Disparo de cobra en AoE con menos de 4 enemigos.">Zancapuerco</span> y <strong>&lt;4 enemigos</strong>.</p></li>
+        <li class="prio-item"><div class="prio-num">6</div><p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Relleno al objetivo prioritario.">Disparo con púas</span> al objetivo prioritario.</p></li>
+        <li class="prio-item"><div class="prio-num">7</div><p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno final de Enfoque.">Disparo de cobra</span> — relleno final.</p></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box box-crit"><div class="box-title">🚫 NO multi-dotear</div>En AoE, <strong>nunca</strong> intentes aplicar <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="NO multi-dotear en AoE. Siempre al objetivo prioritario, sin excepción.">Disparo con púas</span> a múltiples objetivos. Siempre al objetivo prioritario. Es uno de los errores más comunes y costosos del BM Hunter.</div>
+
+  <h3>Reglas Adicionales</h3>
+  <div class="card">
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">💎 Usa <span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno de Enfoque. Para no quedarte seco entre GCDs.">Disparo de cobra</span> para gastar Enfoque si no tienes nada que hacer y tienes mas de la mitad, pero <strong>NUNCA retrases una habilidad prioritaria por él</strong>.</div>
+      <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">⏱️ <strong>Solo en M+:</strong> Puedes guardar <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> si el pack va a morir antes de rentabilizarlo.</div>
+      <div style="padding:10px 0;font-size:14px">💡 <strong>Truco AoE:</strong> Asegúrate de que <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad de mascota" data-desc="AoE de mascota. Actívalo antes de Cólera de las bestias.">Tajo de la bestia</span> esté activo al pulsar <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> para conseguir una enorme explosión AoE.</div>
+    </div>
+  </div>
+
+  <h3>Ventana de CD — Guía Rápida</h3>
+  <div class="chain-wrap">
+    <div class="chain">
+      <div class="chain-step gold-step">2× Matar disponible<small>Preparación</small></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-step gold-step">Stats activos<small>Poción antes del hit</small></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-step sp-step">Cólera de las bestias<small>On cooldown</small></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-step sp-step">Matar ×CD<small>A cooldown</small></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-step sp-step">Disparo con púas<small>Recarga NA</small></div>
+	  <div class="chain-arrow">→</div>
+      <div class="chain-step sp-step">Disparo de cobra<small>Relleno o gasto de enfoque</small></div>
+    </div>
+  </div>
+
+
+	<h3>Guías vs. Realidad — Lo que dicen los datos</h3>
+		<div class="box box-tip">
+		<div class="box-title">📊 Análisis basado en logs reales</div>
+		Algunas guías, incluyendo las de Icy veins, indican que debes usar Matar <em>solo cuando tienes <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar.">Aliado de la naturaleza</span> activo</em>. Sin embargo, el análisis de los logs de un hunter de <strong>100 percentil en WarcraftLogs</strong> sobre Imperator Averzian Heroico cuenta una historia diferente.
+		</div>
+<div class="card">
+  <div class="card-header">🔬 Qué dicen los datos reales</div>
+  <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">
+    📈 De 98 usos de Matar analizados, <strong>el 79% tenía Aliado de la naturaleza activo</strong> — tanto dentro como fuera de Cólera de las bestias.
+  </div>
+  <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">
+    ⚡ El 21% restante se usó <strong>sin el buff activo</strong>, de forma consistente en todo el combate, sin distinción entre dentro o fuera de Cólera de las bestias.
+  </div>
+  <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">
+    🧠 Conclusión: el buff está activo en la mayoría de Matares de forma <strong>natural</strong>, porque el weave correcto de Disparo con púas y Disparo de cobra lo recarga constantemente. No es una condición que esperar — es un resultado del loop bien ejecutado.
+  </div>
+  <div style="padding:10px 0;font-size:14px">
+    🚫 Lo que <strong>nunca hace</strong> un hunter de alto nivel: retrasar Matar esperando a que Aliado de la naturaleza esté activo. On cooldown gana siempre.
+  </div>
+</div>
+<div class="box box-warn">
+  <div class="box-title">⚠️ Sobre las guías escritas</div>
+  Las guías como Icy Veins o Wowhead describen el <em>ideal teórico</em> — lo que debería ocurrir si la rotación es perfecta. Los logs de combate real muestran que incluso los mejores jugadores del mundo priorizan el cooldown sobre la condición del buff. Cuando hay conflicto entre ambas fuentes, <strong>los datos mandan</strong>.
+</div>
+</div>
+<!-- ══════════════════════════════════════
+
+     TAB 4: STATS
+══════════════════════════════════════ -->
+<div id="tab-tal" class="tab-panel">
+  <h2>Stats</h2>
+
+  <div class="box box-info"><div class="box-title"><img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="20" height="20" style="vertical-align:middle;border-radius:4px;margin-right:6px">Pack Leader</div>Esta guía cubre el árbol héroe <strong>Pack Leader</strong>. La prioridad de stats es casi idéntica para ambos héroes, con ligeros ajustes en AoE.</div>
+
+  <h3>Prioridad de Stats</h3>
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-header blue">🎯 Single-Target</div>
+      <div class="col-row"><div class="prio-num">1</div><p><strong>Daño de Arma</strong> — El stat más impactante. Subir ilvl de arma es siempre prioritario.</p></div>
+      <div class="col-row"><div class="prio-num">2</div><p><strong>Agilidad</strong> — Stat principal. Aumenta Attack Power y daño de habilidades.</p></div>
+      <div class="col-row"><div class="prio-num">3</div><p><strong>Maestría</strong> — Amplifica el daño de todas tus mascotas. También aumenta un 50% el daño de tus disparos.</p></div>
+      <div class="col-row"><div class="prio-num">4</div><p><strong>Prisa</strong> — Regenera Enfoque, reduce CD de Disparo con púas y Matar, agiliza el GCD.</p></div>
+      <div class="col-row"><div class="prio-num">5</div><p><strong>Golpe Crítico</strong> — Doble daño. Sinergia con Colmillos penetrantes y A la yugular.</p></div>
+      <div class="col-row"><div class="prio-num">6</div><p><strong>Versatilidad</strong> — +Daño / -Daño recibido. Más valioso con trinkets de daño directo.</p></div>
+    </div>
+    <div class="col-card">
+      <div class="col-header orange">💥 AoE (Pack Leader)</div>
+      <div class="col-row"><div class="prio-num">1</div><p><strong>Daño de Arma</strong></p></div>
+      <div class="col-row"><div class="prio-num">2</div><p><strong>Agilidad</strong></p></div>
+      <div class="col-row"><div class="prio-num">3</div><p><strong>Maestría</strong></p></div>
+      <div class="col-row"><div class="prio-num">4</div><p><strong>Golpe Crítico</strong> — Sube posiciones en AoE.</p></div>
+      <div class="col-row"><div class="prio-num">5</div><p><strong>Versatilidad</strong> — Ligeramente por delante de Prisa en Pack Leader AoE.</p></div>
+      <div class="col-row"><div class="prio-num">6</div><p><strong>Prisa</strong> — Baja posiciones en AoE.</p></div>
+    </div>
+  </div>
+
+  <h3>Grid de Stats</h3>
+  <div class="stats-grid">
+    <div class="stat-card stat-gold">
+      <div class="stat-name">⚔️ Maestría</div>
+      <div class="stat-bar-bg"><div class="stat-bar" style="width:90%"></div></div>
+      <div class="stat-desc">Amplifica el daño de todas tus mascotas (Tajo de la bestia, Pisotón, Bestia temible) y un 50% de tus disparos. Tu mejor stat secundario en todas las situaciones.</div>
+    </div>
+    <div class="stat-card stat-blue">
+      <div class="stat-name">⚡ Prisa</div>
+      <div class="stat-bar-bg"><div class="stat-bar" style="width:72%"></div></div>
+      <div class="stat-desc">Regeneración de Enfoque, reduce CD de habilidades clave y agiliza el GCD. Prioritario en ST, baja en AoE.</div>
+    </div>
+    <div class="stat-card stat-crit">
+      <div class="stat-name">🎯 Golpe Crítico</div>
+      <div class="stat-bar-bg"><div class="stat-bar" style="width:60%"></div></div>
+      <div class="stat-desc">Mejor en AoE que en ST. Sinergia con varios talentos. Rendimiento decreciente por encima de 1380 rating.</div>
+    </div>
+    <div class="stat-card stat-grey">
+      <div class="stat-name">🛡️ Versatilidad</div>
+      <div class="stat-bar-bg"><div class="stat-bar" style="width:45%"></div></div>
+      <div class="stat-desc">Daño y supervivencia. Más valioso con trinkets de daño directo. Decae por encima de 1620 rating.</div>
+    </div>
+  </div>
+
+  <h3>Rendimientos Decrecientes</h3>
+  <div class="card">
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">🔴 <strong>Golpe Crítico</strong> — Por encima de <strong>1380 rating</strong>, cada punto da un 10% menos de beneficio.</div>
+      <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">🟡 <strong>Prisa</strong> — Por encima de <strong>1320 rating</strong>.</div>
+      <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">🟠 <strong>Maestría</strong> — Por encima de <strong>1380 rating</strong>.</div>
+      <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">🟣 <strong>Versatilidad</strong> — Por encima de <strong>1620 rating</strong>.</div>
+      <div style="padding:9px 0;font-size:14px">💡 Aplica únicamente al rating, no a procs porcentuales como <span class="pr" data-name="Ansia de sangre" data-type="Proc" data-desc="Proc porcentual. No se ve afectado por los DRs de rating.">Ansia de sangre</span>.</div>
+    </div>
+  </div>
+
+  <div class="box box-tip"><div class="box-title">💡 Simula siempre</div>Usa <strong>Raidbots / SimulationCraft</strong> para obtener los valores exactos según tu equipo. Las prioridades aquí son orientativas.</div>
+
+  <h3>Trinkets BIS</h3>
+  <div class="card">
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">🥇 <strong style="color:#ce93d8">Pluma radiante</strong> <span style="color:var(--text3);font-size:12px">— Belo'ren</span> — Trinket de stats. Úsalo junto a <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div>
+      <div style="padding:10px 0;font-size:14px">🥇 <strong style="color:#ce93d8">Caja de puzles de Algeth'ar</strong> <span style="color:var(--text3);font-size:12px">— Algeth'ar Academy</span> — 2s de cast. Pre-castear 2s antes del pull y antes de cada <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 5: ERRORES
+══════════════════════════════════════ -->
+<div id="tab-err" class="tab-panel">
+  <h2>Errores Comunes</h2>
+
+  <h3>Errores Críticos</h3>
+  <div class="error-item error-crit">
+    <div class="error-icon">💀</div>
+    <div class="error-body">
+      <h4>No usar Cólera de las bestias en cooldown</h4>
+      <p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. Su uso constante es fundamental.">Cólera de las bestias</span> es tu único CD mayor y toda la rotación gira en torno a él. <strong>Perder un solo uso equivale a una pérdida de DPS muy significativa.</strong></p>
+      <p>La única excepción válida en M+ es si el pack va a morir antes de que puedas aprovecharlo. En raid, úsala siempre en CD sin excepciones.</p>
+    </div>
+  </div>
+
+  <div class="error-item error-crit">
+    <div class="error-icon">💀</div>
+    <div class="error-body">
+      <h4>La mascota no ataca el objetivo correcto</h4>
+      <p>Si tu mascota no está atacando activamente cuando usas <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>, <strong>no aplicarás <span class="bf" data-name="Escabechina" data-type="Debuff" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota ataca activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span></strong> y perderás todo el daño del sangrado durante la ventana más importante.</p>
+      <p>Configura macros de ataque de mascota y vincúlalos a tus habilidades. Si se queda atascada, usa <strong>Pasivo/Seguir</strong> para reposicionarla.</p>
+    </div>
+  </div>
+
+  <h3>Errores Importantes</h3>
+  <div class="error-item error-warn">
+    <div class="error-icon">⚠️</div>
+    <div class="error-body">
+      <h4>Multi-dotear Disparo con púas en AoE</h4>
+      <p>En AoE, <strong>nunca</strong> intentes aplicar <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="NO multi-dotear en AoE. Siempre al objetivo prioritario.">Disparo con púas</span> a múltiples objetivos. Multi-dotarlo desperdicia GCDs que deberían ir a <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE potente. Prioridad alta en AoE.">Paliza salvaje</span> o <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p>
+    </div>
+  </div>
+
+  <div class="error-item error-warn">
+    <div class="error-icon">⚠️</div>
+    <div class="error-body">
+      <h4>No pre-castear la Caja de puzles de Algeth'ar</h4>
+      <p><span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="2s de casteo. Pre-castear 2s antes del pull.">Caja de puzles de Algeth'ar</span> tiene 2 segundos de casteo. Si esperas al pull para usarla, <strong>perderás el buff cuando más daño haces</strong>. Pre-casteala exactamente 2 segundos antes del pull.</p>
+    </div>
+  </div>
+
+  <div class="error-item error-warn">
+    <div class="error-icon">⚠️</div>
+    <div class="error-body">
+      <h4>Posición incorrecta para ¡Estampida! en AoE</h4>
+      <p><span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales sin ajuste de altura. Falla en terreno irregular.">¡Estampida!</span> lanza una línea de animales <strong>sin ajuste de altitud</strong>. Si estás en diferente plano que los enemigos, la mayoría de animales fallarán y perderás casi todo el daño AoE del proc.</p>
+      <p>Posiciónate siempre a la misma altura que el pack antes de entrar en la ventana de cooldown.</p>
+    </div>
+  </div>
+  <div class="error-item error-warn">
+  <div class="error-icon">⚠️</div>
+  <div class="error-body">
+    <h4>Esperar a Aliado de la naturaleza antes de usar Matar</h4>
+    <p>Algunas guías sugieren usar <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown siempre. No esperes a que Aliado de la naturaleza esté activo.">Matar</span> solo cuando <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar.">Aliado de la naturaleza</span> está activo. El análisis de logs reales de un hunter de 100 percentil demuestra que esto es incorrecto — <strong>Matar va on cooldown siempre</strong>, sin esperar ningún buff.</p>
+    <p>El buff estará activo en ~8 de cada 10 usos de forma natural si alternas correctamente con <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Hace que tu mascota cargue al objetivo. Úsalo ≤3s antes de Cólera de las bestias para que la mascota esté en posición. También recarga Aliado de la naturaleza.">Disparo con púas</span> y <span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno de Enfoque. También recarga Aliado de la naturaleza para el siguiente Matar.">Disparo de cobra</span> entre medias. Retrasar Matar para esperar el buff es perder DPS innecesariamente.</p>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 6: MACROS
+══════════════════════════════════════ -->
+<div id="tab-mac" class="tab-panel">
+  <h2>Macros Recomendadas</h2>
+
+  <div class="box box-info"><div class="box-title">🎮 Cómo crear macros en WoW</div>Abre el menú principal → <strong>Macros</strong> o escribe <code style="background:var(--bg4);padding:1px 6px;border-radius:3px;font-size:12px;color:var(--green2)">/macro</code> en el chat. Crea una macro general o de personaje, asígnale icono y pega el código. Arrastra el icono a tu barra de acción.</div>
+
+  <h3>Macros de Rotación</h3>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span style="font-size:16px">🔥</span>
+      <span class="macro-title">Cólera de las bestias + Poción</span>
+      <span class="macro-cat">CD Principal</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Activa la poción de combate junto al CD principal. La línea <code>/petattack</code> garantiza que la mascota carga antes del cast para que <span class="bf" data-name="Escabechina" data-type="Debuff" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota ataca activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> se aplique correctamente.</div>
+      <pre class="macro-code">#showtooltip Cólera de las bestias
+/petattack
+/use Potencial de luz
+/cast Cólera de las bestias</pre>
+      <div class="macro-tip"><strong>Nota:</strong> La poción solo funciona una vez por combate. Si prefieres controlarla manualmente, elimina la línea <code>/use</code>.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span style="font-size:16px">🐾</span>
+      <span class="macro-title">Matar + Ataque de mascota</span>
+      <span class="macro-cat">Esencial</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Garantiza que tu mascota cargue al objetivo antes de cada Kill Command. Esencial para que <span class="bf" data-name="Escabechina" data-type="Debuff" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota ataca activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> se aplique en cada ventana y para redirigir la mascota al cambiar de target.</div>
+      <pre class="macro-code">#showtooltip Matar
+/petattack
+/cast Matar</pre>
+      <div class="macro-tip"><strong>Consejo:</strong> Usa este macro en todos tus GCDs de Matar. Sirve también para reconducir la mascota al nuevo objetivo al cambiar de target.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span style="font-size:16px">🏹</span>
+      <span class="macro-title">Disparo con púas + Ataque de mascota</span>
+      <span class="macro-cat">Esencial</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Crucial al cambiar de objetivo: garantiza que la mascota cargue hacia el nuevo target inmediatamente, lista para cuando uses <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div>
+      <pre class="macro-code">#showtooltip Disparo con púas
+/petattack
+/cast Disparo con púas</pre>
+      <div class="macro-tip"><strong>Consejo:</strong> Especialmente importante en los ≤3s antes de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> para que la mascota ya esté en posición.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span style="font-size:16px">💥</span>
+      <span class="macro-title">Paliza salvaje + Ataque de mascota (AoE)</span>
+      <span class="macro-cat aoe">AoE</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">En packs de M+, asegura que la mascota esté activa en el centro del grupo antes de ejecutar <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo. Activa Tajo de la bestia.">Paliza salvaje</span> para maximizar los hits de <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad de mascota" data-desc="AoE de mascota.">Tajo de la bestia</span>.</div>
+      <pre class="macro-code">#showtooltip Paliza salvaje
+/petattack
+/cast Paliza salvaje</pre>
+      <div class="macro-tip"><strong>AoE:</strong> Posiciona la mascota en el centro del pack antes de la ventana de CD para maximizar daño en área.</div>
+    </div>
+  </div>
+
+  <h3>Macros de Utilidad</h3>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span style="font-size:16px">🎯</span>
+      <span class="macro-title">Redirección al tanque (por Foco)</span>
+      <span class="macro-cat util">Utilidad</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Redirige el agro de tu mascota al tanque sin cambiar tu objetivo. Establece al tanque como tu objetivo de foco con <code>/focus</code> una sola vez antes del pull.</div>
+      <pre class="macro-code">#showtooltip Redirección
+/cast [@focus,help,nodead] Redirección;
+      [@mouseover,help,nodead] Redirección;
+      Redirección</pre>
+      <div class="macro-tip"><strong>Setup:</strong> Selecciona al tanque → escribe <code>/focus</code> → el macro siempre usará Redirección en él sin perder tu target.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span style="font-size:16px">🏷️</span>
+      <span class="macro-title">Marca del cazador (Mouseover)</span>
+      <span class="macro-cat util">Utilidad</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Aplicar siempre al objetivo prioritario antes del pull.">Marca del cazador</span> al objetivo sobre el que posas el ratón sin cambiar tu target actual. Ideal para el pre-pull.</div>
+      <pre class="macro-code">#showtooltip Marca del cazador
+/cast [@mouseover,harm,nodead] Marca del cazador;
+      [@target,harm,nodead] Marca del cazador</pre>
+      <div class="macro-tip"><strong>Pre-pull:</strong> Pasa el ratón por el objetivo prioritario sin clickarlo. Marca aplicada, target mantenido.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span style="font-size:16px">🔄</span>
+      <span class="macro-title">Reposición de emergencia de mascota</span>
+      <span class="macro-cat util">Utilidad</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Cuando la mascota se atasca o pierde al objetivo, este macro la pone en pasivo y la hace seguirte para reconducirla. Usa a continuación tu macro de Matar o Disparo con púas para que vuelva a cargar.</div>
+      <pre class="macro-code">/petpassive
+/petfollow</pre>
+      <div class="macro-tip"><strong>Flujo:</strong> Pulsa este macro → mascota vuelve a tu lado → usa macro de Matar para que cargue de nuevo al objetivo.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span style="font-size:16px">🧪</span>
+      <span class="macro-title">Cólera de las bestias + Trinket slot</span>
+      <span class="macro-cat">CD Principal</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Activa automáticamente el trinket junto a <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. Útil para trinkets de stat con activación manual. <strong>No sirve para pre-castear la Caja de puzles</strong> — esa siempre manual.</div>
+      <pre class="macro-code">#showtooltip Cólera de las bestias
+/petattack
+/use 13
+/cast Cólera de las bestias</pre>
+      <div class="macro-tip"><strong>Slots:</strong> <code>13</code> = primer trinket · <code>14</code> = segundo trinket. Ajusta según qué trinket quieres activar.</div>
+    </div>
+  </div>
+<h3>Macros de Control</h3>
+
+<div class="macro-card">
+  <div class="macro-head">
+    <span style="font-size:16px">🔇</span>
+    <span class="macro-title">Contradisparo — Por Foco</span>
+    <span class="macro-cat util">Control</span>
+  </div>
+  <div class="macro-body">
+    <div class="macro-desc">Interrumpe el cast del objetivo de foco sin cambiar tu target actual. Ideal para raid o M+ donde necesitas interrumpir a un objetivo secundario mientras sigues dañando al principal.</div>
+    <pre class="macro-code">#showtooltip Contradisparo
+/cast [@focus,harm,nodead] Contradisparo;
+      [@target,harm,nodead] Contradisparo</pre>
+    <div class="macro-tip"><strong>Setup:</strong> Selecciona el objetivo que quieres interrumpir → escribe <code>/focus</code> → el macro usará Contradisparo en él sin perder tu target.</div>
+  </div>
+</div>
+
+<div class="macro-card">
+  <div class="macro-head">
+    <span style="font-size:16px">🔇</span>
+    <span class="macro-title">Contradisparo — Mouseover</span>
+    <span class="macro-cat util">Control</span>
+  </div>
+  <div class="macro-body">
+    <div class="macro-desc">Interrumpe el cast del objetivo sobre el que tienes el ratón. Más reactivo que el de foco — útil en M+ cuando los objetivos a interrumpir cambian constantemente.</div>
+    <pre class="macro-code">#showtooltip Contradisparo
+/cast [@mouseover,harm,nodead] Contradisparo;
+      [@focus,harm,nodead] Contradisparo;
+      [@target,harm,nodead] Contradisparo</pre>
+    <div class="macro-tip"><strong>Prioridad:</strong> primero mouseover → si no hay, foco → si no hay, target actual. Cubre todos los casos sin necesidad de configurar nada.</div>
+  </div>
+</div>
+
+<div class="macro-card">
+  <div class="macro-head">
+    <span style="font-size:16px">🕸️</span>
+    <span class="macro-title">Disparo vinculante — Mouseover</span>
+    <span class="macro-cat util">Control</span>
+  </div>
+  <div class="macro-body">
+    <div class="macro-desc">Aplica Disparo vinculante al objetivo sobre el que tienes el ratón sin cambiar tu target. Imprescindible en M+ para enraizar adds sin interrumpir tu rotación sobre el objetivo principal.</div>
+    <pre class="macro-code">#showtooltip Disparo vinculante
+/cast [@mouseover,harm,nodead] Disparo vinculante;
+      [@target,harm,nodead] Disparo vinculante</pre>
+    <div class="macro-tip"><strong>Consejo:</strong> Pasa el ratón por el add que quieres enraizar y pulsa el macro — tu target principal no cambia y puedes seguir con la rotación inmediatamente.</div>
+  </div>
+</div>
+  <div class="box box-warn"><div class="box-title">⚠️ Cliente en español</div>En el cliente <strong>español</strong> de WoW, los nombres de habilidades en macros deben escribirse exactamente como aparecen en el tooltip in-game, <strong>con tildes y caracteres especiales</strong>. Si un macro no funciona, comprueba que el nombre sea idéntico al tooltip.</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 7: BIS & CONSUMIBLES
+══════════════════════════════════════ -->
+<div id="tab-bis" class="tab-panel">
+  <h2>Best in Slot & Consumibles</h2>
+
+  <h3>Equipo BIS Completo</h3>
+
+<div class="bis-progress-wrap">
+  <span class="bis-progress-label">🗡️ Progreso BiS</span>
+  <div class="bis-progress-bar-bg">
+    <div class="bis-progress-bar-fill" id="bis-bar" style="width:0%"></div>
+  </div>
+  <span class="bis-progress-count" id="bis-count">0 / 15</span>
+</div>
+
+<div class="bis-table-wrap">
+  <table class="bis-table">
+    <thead><tr><th style="width:36px"></th><th>Slot</th><th>Ítem</th><th>Fuente</th></tr></thead>
+    <tbody>
+      <tr data-bis="arma"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Arma</td><td class="item-name">Putriarco de impostor</td><td class="source-raid">Maisara Caverns</td></tr>
+      <tr class="raid-row" data-bis="cabeza"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Cabeza</td><td class="item-name">Fauces de centinela primigenio <span class="tier-badge">TIER</span></td><td class="source-raid">Tier Set — Raid</td></tr>
+      <tr class="raid-row" data-bis="cuello"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Cuello</td><td class="item-name">Amuleto del himno abisal</td><td class="source-raid">Midnight Falls</td></tr>
+      <tr data-bis="hombros"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Hombros</td><td class="item-name">Espaldares del cazador del Vacío</td><td class="source-mp">Seat of the Triumvirate (M+)</td></tr>
+      <tr data-bis="capa"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Capa</td><td class="item-name">Gran capa de escamas rígidas</td><td class="source-mp">Skyreach (M+)</td></tr>
+      <tr class="raid-row" data-bis="pecho"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Pecho</td><td class="item-name">Peto de escamas de centinela primigenio <span class="tier-badge">TIER</span></td><td class="source-raid">Tier Set — Raid</td></tr>
+      <tr data-bis="munecas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Muñecas</td><td class="item-name">Puños de celador del núcleo</td><td class="source-mp">Nexus Point Xenas (M+)</td></tr>
+      <tr class="raid-row" data-bis="guantes"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Guantes</td><td class="item-name">Guardagarras de centinela primigenio <span class="tier-badge">TIER</span></td><td class="source-raid">Tier Set — Raid</td></tr>
+      <tr data-bis="cinturon"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Cinturón</td><td class="item-name">Cinto cortical de cuidador del mundo <span class="craft-badge">CRAFT</span></td><td class="source-craft">✂ Peletería</td></tr>
+      <tr class="raid-row" data-bis="piernas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Piernas</td><td class="item-name">Guardagarras de centinela primigenio <span class="tier-badge">TIER</span></td><td class="source-raid">Tier Set — Raid</td></tr>
+      <tr data-bis="botas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Botas</td><td class="item-name">Zapatillas raigales de cuidador del mundo <span class="craft-badge">CRAFT</span></td><td class="source-craft">✂ Peletería</td></tr>
+      <tr class="raid-row" data-bis="anillo1"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Anillo</td><td class="item-name">Ojo de medianoche</td><td class="source-raid">Midnight Falls</td></tr>
+      <tr class="raid-row" data-bis="anillo2"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Anillo</td><td class="item-name">Vínculo de la Luz</td><td class="source-raid">Lightblinded Vanguard</td></tr>
+      <tr class="raid-row" data-bis="trinket1"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Trinket</td><td class="item-name">Pluma radiante</td><td class="source-raid">Belo'ren</td></tr>
+      <tr data-bis="trinket2"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Trinket</td><td class="item-name">Caja de puzles de Algeth'ar</td><td class="source-mp">Algeth'ar Academy (M+)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+  <h3>Encantamientos</h3>
+  <div class="bis-table-wrap">
+    <table class="bis-table">
+      <thead><tr><th>Slot</th><th>Encantamiento</th></tr></thead>
+      <tbody>
+        <tr><td>Arma</td><td class="item-name">Encantar arma: Agudeza de los ren'dorei</td></tr>
+        <tr><td>Yelmo</td><td class="item-name">Encantar yelmo: Runa de evasión potenciada</td></tr>
+        <tr><td>Hombros</td><td class="item-name">Encantar hombros: Gracia de Amirdrassil</td></tr>
+        <tr><td>Pecho</td><td class="item-name">Encantar torso: Marca del alma-mundo</td></tr>
+        <tr><td>Piernas</td><td class="item-name">Refuerzo para armadura de cazador del bosque</td></tr>
+        <tr><td>Botas</td><td class="item-name">Encantar botas: Destreza de lince</td></tr>
+        <tr><td>Anillos</td><td class="item-name">Encantar anillo: Maestría de Zul'jin</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Gemas</h3>
+  <div class="card">
+    <div style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px">💎 <strong>1×</strong> <span style="color:#81d4fa">Diamante de Canción Eterna indescifrable</span> — Gema especial única (un solo hueco).</div>
+    <div style="padding:10px 0;font-size:14px">💜 <strong>Resto:</strong> Mix de <span style="color:#c090ff">Amatista rápida impecable</span>, <span style="color:#ff8080">Amatista mortal impecable</span> y <span style="color:#80ff90">Peridoto magistral impecable</span>.</div>
+  </div>
+
+  <h3>Consumibles</h3>
+  <div class="card">
+    <div class="cons-row"><div class="cons-slot">Frasco</div><div><strong>Frasco de los Magistri</strong> — Mejor stat en todas las situaciones.</div></div>
+    <div class="cons-row"><div class="cons-slot">Poción combate</div><div><strong>Potencial de luz</strong> — Opción principal.<span class="cons-alt">Alt: Jarabe de abandono rampante (alto riesgo, mejor si puedes moverte constantemente)</span></div></div>
+    <div class="cons-row"><div class="cons-slot">Poción salud</div><div><strong>Poción de sanación de Lunargenta</strong> — Mayor curación disponible.</div></div>
+    <div class="cons-row"><div class="cons-slot">Runa</div><div><strong>Runa de aumento tocada por el Vacío</strong></div></div>
+    <div class="cons-row"><div class="cons-slot">Buff de arma</div><div><strong>Aceite de fénix thalassiano</strong> — En todas las situaciones.</div></div>
+    <div class="cons-row"><div class="cons-slot">Festín</div><div><strong>Mezcla quel'dorei</strong> o <strong>Desfile de Lunargenta</strong></div></div>
+    <div class="cons-row"><div class="cons-slot">Comida personal</div><div><strong>Frenesí de flora</strong> o <strong>Asado real</strong></div></div>
+  </div>
+
+  <div class="box box-tip"><div class="box-title">💡 Sincronización de poción</div>Usa siempre la <strong>poción de combate junto a <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span></strong>. Debe estar activa antes del primer hit para que se beneficie de él. Macrearla con Cólera de las bestias funciona perfectamente.</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     TAB: TALENTOS
+══════════════════════════════════════ -->
+<div id="tab-talentos" class="tab-panel">
+  <h2>Builds de Talentos</h2>
+
+  <div class="box box-info">
+    <div class="box-title">📋 Cómo importar</div>
+    En WoW, abre el árbol de talentos → botón <strong>Cargar</strong> (icono de importar) → pega el string → confirma. O usa el botón <strong>Abrir en Wowhead</strong> para ver el árbol interactivo completo.
+  </div>
+
+  <div class="box box-warn">
+    <div class="box-title">⚠️ Fuente</div>
+    Builds extraídas de <strong>Wowhead</strong>, actualizados a parche <strong>12.0.5 (17 Mar 2026)</strong>. Contrastada y verificada por Mishuko.
+   </div>
+
+  <!-- TOGGLE BUILDS -->
+  <div class="toggle-wrap" style="flex-wrap:wrap;gap:8px;margin-bottom:24px">
+    <button class="toggle-btn active" onclick="setBuild('pl-st',this)">🎯 Pack Leader ST</button>
+    <button class="toggle-btn" onclick="setBuild('pl-lc',this)">⚔️ Pack Leader Light Cleave</button>
+    <button class="toggle-btn" onclick="setBuild('pl-mp',this)">💥 Pack Leader M+ Prio</button>
+    <button class="toggle-btn" onclick="setBuild('pl-aoe',this)">🌊 Pack Leader M+ Full AoE</button>
+  </div>
+
+  <!-- PACK LEADER ST -->
+  <div id="build-pl-st">
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-header">🎯 Pack Leader — Single Target / Raid</div>
+      <p style="font-size:13.5px;color:var(--text2);margin-bottom:14px">Build para maximizar el daño de objetivo único en raid. Úsalo como referencia principal para la mayoría de encuentros, alternándolo con el build de Light Cleave según la pelea.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px">
+        <button onclick="copyTalent(this,'C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYGPw2YmtZGmxMDDzMGzMMzYGzwMzYGzghmBAAAAAMDAAAzMzMAzshwwsA2MA')"
+          style="background:linear-gradient(135deg,var(--accent2),#01579b);border:none;border-radius:7px;color:#fff;cursor:pointer;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;padding:9px 20px;letter-spacing:.5px">
+          📋 Copiar string
+        </button>
+        <a href="https://www.wowhead.com/es/talent-calc/hunter/beast-mastery#C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYGPw2YmtZGmxMDDzMGzMMzYGzwMzYGzghmBAAAAAMDAAAzMzMAzshwwsA2MA"
+          target="_blank"
+          style="background:var(--bg4);border:1px solid var(--border2);border-radius:7px;color:var(--text2);text-decoration:none;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;padding:9px 20px;letter-spacing:.5px">
+          🔗 Abrir en Wowhead
+        </a>
+      </div>
+      <img src="https://i.imgur.com/dSdRVO1.png" alt="Pack Leader Single Target Raid"
+           style="width:100%;border-radius:10px;border:1px solid var(--border);display:block;margin-bottom:14px">
+      <div class="box box-tip" style="margin-top:0">
+        <div class="box-title">💡 Notas del build</div>
+        <ul style="margin:6px 0 0 16px;font-size:13.5px;line-height:1.8;color:var(--text2)">
+          <li>Puedes cambiar <strong>Pellejo de guardián</strong> por <strong>Rugido de sacrificio</strong> y coger <strong>Redirección</strong> y <strong>Sin rencor</strong> sobre <strong>Fingir muerte mejorado</strong> para dar un pequeño externo a alguien a cambio de una reducción de daño personal.</li>
+          <li><strong>Disparo tranquilizante</strong> es recomendable en el encuentro de Midnight Falls en heroico, pero no en otros sitios.</li>
+          <li>Los nodos de elección bajo <strong>Disparo vinculante</strong> e <strong>Intimidación</strong> son opciones si necesitas control adicional para un encuentro específico.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACK LEADER LIGHT CLEAVE -->
+  <div id="build-pl-lc" style="display:none">
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-header">⚔️ Pack Leader — Light Cleave / Raid</div>
+      <p style="font-size:13.5px;color:var(--text2);margin-bottom:14px">Sacrifica un 2% de daño ST para coger <strong>Paliza salvaje</strong>, que es muy eficiente en AoE incluso sin otros talentos que la apoyen. Úsalo cuando hay algunos adds pero no quieres sacrificar todo tu ST.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px">
+        <button onclick="copyTalent(this,'C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYG2GzsNzwMmZYGzMGzMMzYGzwMzYGzghmBAAAAAMDAAAzMmBYmNkNDzCYzA')"
+          style="background:linear-gradient(135deg,var(--accent2),#01579b);border:none;border-radius:7px;color:#fff;cursor:pointer;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;padding:9px 20px;letter-spacing:.5px">
+          📋 Copiar string
+        </button>
+        <a href="https://www.wowhead.com/es/talent-calc/hunter/beast-mastery#C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYG2GzsNzwMmZYGzMGzMMzYGzwMzYGzghmBAAAAAMDAAAzMmBYmNkNDzCYzA"
+          target="_blank"
+          style="background:var(--bg4);border:1px solid var(--border2);border-radius:7px;color:var(--text2);text-decoration:none;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;padding:9px 20px;letter-spacing:.5px">
+          🔗 Abrir en Wowhead
+        </a>
+      </div>
+      <img src="https://i.imgur.com/whwrXMr.png" alt="Pack Leader Light Cleave Raid"
+           style="width:100%;border-radius:10px;border:1px solid var(--border);display:block;margin-bottom:14px">
+      <div class="box box-tip" style="margin-top:0">
+        <div class="box-title">💡 Notas del build</div>
+        <ul style="margin:6px 0 0 16px;font-size:13.5px;line-height:1.8;color:var(--text2)">
+          <li>Puedes cambiar <strong>Pellejo de guardián</strong> por <strong>Rugido de sacrificio</strong> y coger <strong>Redirección</strong> y <strong>Sin rencor</strong> sobre <strong>Fingir muerte mejorado</strong> para dar un pequeño externo.</li>
+          <li><strong>Disparo tranquilizante</strong> es recomendable en Midnight Falls en heroico, pero no en otros sitios.</li>
+          <li>Los nodos bajo <strong>Disparo vinculante</strong> e <strong>Intimidación</strong> son opciones si necesitas control adicional.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACK LEADER M+ PRIO DAMAGE -->
+  <div id="build-pl-mp" style="display:none">
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-header">💥 Pack Leader — M+ Prio Damage</div>
+      <p style="font-size:13.5px;color:var(--text2);margin-bottom:14px">Mix eficiente de ST y AoE para M+. Usa <strong>Pack Leader</strong> y <strong>Frenesí sangriento</strong> para mejor daño en boss y objetivo prioritario a cambio de algo menos de cleave general.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px">
+        <button onclick="copyTalent(this,'C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYmx2MzsYGmZmZYGzMGmhZGzMzYbmZYMDLDNDAAAAAYGAAAmHYMzAmZDBMLgND')"
+          style="background:linear-gradient(135deg,var(--accent2),#01579b);border:none;border-radius:7px;color:#fff;cursor:pointer;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;padding:9px 20px;letter-spacing:.5px">
+          📋 Copiar string
+        </button>
+        <a href="https://www.wowhead.com/es/talent-calc/hunter/beast-mastery#C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYmx2MzsYGmZmZYGzMGmhZGzMzYbmZYMDLDNDAAAAAYGAAAmHYMzAmZDBMLgND"
+          target="_blank"
+          style="background:var(--bg4);border:1px solid var(--border2);border-radius:7px;color:var(--text2);text-decoration:none;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;padding:9px 20px;letter-spacing:.5px">
+          🔗 Abrir en Wowhead
+        </a>
+      </div>
+      <img src="https://i.imgur.com/n1R4kJW.png" alt="Pack Leader M+ Prio Damage"
+           style="width:100%;border-radius:10px;border:1px solid var(--border);display:block;margin-bottom:14px">
+      <div class="box box-tip" style="margin-top:0">
+        <div class="box-title">💡 Notas del build</div>
+        <ul style="margin:6px 0 0 16px;font-size:13.5px;line-height:1.8;color:var(--text2)">
+          <li><strong>Redirección</strong> no es recomendable por sí sola — el 65% de tu daño viene de mascotas, cuyo daño no se redirige.</li>
+          <li><strong>Ungüento de emergencias</strong> es útil principalmente en Maisara Caverns y Windrunner Spire. Fuera de estas dos, puedes quitarlo.</li>
+          <li><strong>Disparo vinculante</strong> no es obligatorio — ya no tienes una forma fácil de activarlo. Libera esos puntos si no lo usas.</li>
+          <li><strong>Tranquilizante para kodos</strong> puede cambiarse por <strong>Tranquilizante para demosaurios</strong> en algunas mazmorras, o quitarse si ninguno es útil.</li>
+          <li><strong>Encontrar camino</strong> puede cambiarse por <strong>Quemasendas</strong> o <strong>Reflejos felinos</strong> según prefieras.</li>
+          <li><strong>Fingir muerte mejorado</strong> es muy bueno esta temporada por la cantidad de casts canalizados. Cógelo si planeas usarlo.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACK LEADER M+ FULL AoE -->
+  <div id="build-pl-aoe" style="display:none">
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-header">🌊 Pack Leader — M+ Full AoE</div>
+      <p style="font-size:13.5px;color:var(--text2);margin-bottom:14px">Build orientado al cleave total. Sacrifica algo de daño en boss y objetivo prioritario por mejor cleave con <strong>Instintos salvajes</strong> y <strong>Cuidador maestro</strong>. Ideal para packs grandes.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px">
+        <button onclick="copyTalent(this,'C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYmxyMzsYGmZmZGzMjxMmhZGzMzYbmZYMDLDNDAAAAAAAAAmHYMzAmZDBMLgND')"
+          style="background:linear-gradient(135deg,var(--accent2),#01579b);border:none;border-radius:7px;color:#fff;cursor:pointer;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;padding:9px 20px;letter-spacing:.5px">
+          📋 Copiar string
+        </button>
+        <a href="https://www.wowhead.com/es/talent-calc/hunter/beast-mastery#C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYmxyMzsYGmZmZGzMjxMmhZGzMzYbmZYMDLDNDAAAAAAAAAmHYMzAmZDBMLgND"
+          target="_blank"
+          style="background:var(--bg4);border:1px solid var(--border2);border-radius:7px;color:var(--text2);text-decoration:none;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;padding:9px 20px;letter-spacing:.5px">
+          🔗 Abrir en Wowhead
+        </a>
+      </div>
+      <img src="https://i.imgur.com/g2b4uRg.png" alt="Pack Leader M+ Full AoE"
+           style="width:100%;border-radius:10px;border:1px solid var(--border);display:block;margin-bottom:14px">
+      <div class="box box-tip" style="margin-top:0">
+        <div class="box-title">💡 Notas del build</div>
+        <ul style="margin:6px 0 0 16px;font-size:13.5px;line-height:1.8;color:var(--text2)">
+          <li><strong>Redirección</strong> no es recomendable por sí sola — el 65% de tu daño viene de mascotas, cuyo daño no se redirige.</li>
+          <li><strong>Ungüento de emergencias</strong> es útil principalmente en Maisara Caverns y Windrunner Spire. Fuera de estas dos, puedes quitarlo.</li>
+          <li><strong>Disparo vinculante</strong> no es obligatorio. Libera esos puntos si no lo usas activamente.</li>
+          <li><strong>Tranquilizante para kodos</strong> puede cambiarse por <strong>Tranquilizante para demosaurios</strong> o quitarse si no es útil en la mazmorra.</li>
+          <li><strong>Encontrar camino</strong> puede cambiarse por <strong>Quemasendas</strong> o <strong>Reflejos felinos</strong>.</li>
+          <li><strong>Fingir muerte mejorado</strong> es muy bueno esta temporada por la cantidad de casts canalizados.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>Talentos Clave — Árbol de Clase</h3>
+  <div class="card">
+    <div class="card-header">⚔️ Nodos ofensivos obligatorios</div>
+    <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">🗡️ <strong>Arsenal especializado</strong> — +10% daño a Matar. Obligatorio siempre.</div>
+    <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">📊 <strong>Experiencia en combate / Golpes precisos / Puntas serradas / Dedo en el gatillo / Vista aguda</strong> — Stats pasivos. Todos obligatorios.</div>
+    <div style="padding:9px 0;font-size:14px">☠️ <strong>Causas inaturales</strong> — Aumenta el daño de tus efectos de daño continuo.</div>
+  </div>
+  <div class="card">
+    <div class="card-header">🛡️ Nodos defensivos obligatorios</div>
+    <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">🛡️ <strong>Evasión del cazador</strong> — 5% de esquiva pasiva.</div>
+    <div style="padding:9px 0;border-bottom:1px solid var(--border);font-size:14px">💚 <strong>Viento rejuvenecedor / Curación natural</strong> — Potencian Exhilaración.</div>
+    <div style="padding:9px 0;font-size:14px">🐢 <strong>Armadura acolchada / Superviviente solitario</strong> — Reducen el CD y potencian Aspecto de la tortuga.</div>
+  </div>
+
+  <div class="box box-tip">
+    <div class="box-title">💡 Utilidad flexible</div>
+    El resto de talentos de utilidad son <strong>intercambiables según el contenido</strong>. No hay nodos de utilidad obligatorios — adáptalos a lo que cada encuentro o dungeon requiera.
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB: MASCOTAS
+══════════════════════════════════════ -->
+<div id="tab-mascotas" class="tab-panel">
+  <h2>Mascotas</h2>
+
+  <div class="box box-info">
+    <div class="box-title">📖 Nota importante</div>
+    Desde el parche 11.1, la especialización de cualquier mascota se puede cambiar libremente en el Establo. Esto significa que puedes usar la mascota que quieras y adaptarla a cada situación. Lo ideal es tener <strong>una Aqiri de cada especialización</strong>. La razón es su habilidad exótica pasiva <em>Caminante de dunas</em>, que otorga un <strong>+30% de velocidad de movimiento</strong> permanente — exclusiva de esta familia. Como necesitas esa ventaja independientemente de la spec que requiera cada situación, lo óptimo es tener tres Aqiris listas, una de cada tipo, para poder cambiar sin ir al Establo.
+  </div>
+
+  <h3>Mascota Recomendada — Aqiri</h3>
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-header blue">⚔️ Raid — Aqiri Tenacidad</div>
+      <div class="col-row"><p>La Aqiri tiene un <strong>+30% de velocidad de movimiento</strong> pasivo gracias a su habilidad exótica <em>Caminante de dunas</em>. Esto hace que persiga mejor a los jefes que se teletransportan o mueven, traduciendo en un pequeño aumento de DPS constante.</p></div>
+      <div class="col-row"><p><strong>Tenacidad</strong> es la especialización por defecto en raid por sus beneficios defensivos. Ten preparada también una de Ferocidad por si se da la rara situación de no tener otro BL/Hero en el grupo de raid.</p></div>
+      <div class="col-row"><p style="color:var(--red2)">⚠️ <strong>Desactiva el auto-cast de Laceración de tendones</strong> ya que puede ralentizar mobs que el tanque está intentando agrupar.</p></div>
+    </div>
+    <div class="col-card">
+      <div class="col-header orange">💥 M+ — Aqiri Ferocidad o Tenacidad</div>
+      <div class="col-row"><p>Si eres el <strong>BL/HERO</strong> de tu grupo, estás obligado a usar <strong>Ferocidad</strong> — su habilidad activa <em>Furia primigenia</em> es el equivalente al Heroísmo.</p></div>
+      <div class="col-row"><p>Si otro miembro del grupo ya tiene Bloodlust, usa <strong>Tenacidad</strong> para los beneficios defensivos.</p></div>
+      <div class="col-row"><p>⚠️ Igual que en raid: <strong>desactiva el auto-cast de Laceración de tendones</strong> en M+.</p></div>
+    </div>
+  </div>
+
+  <h3>Especializaciones de Mascota</h3>
+  <div class="card">
+    <div class="card-header">📋 Las tres especializaciones</div>
+    <div style="display:grid;grid-template-columns:100px 1fr 1fr;gap:0">
+      <div style="padding:9px 12px;background:var(--bg3);font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--gold);border-bottom:1px solid var(--border2)">Spec</div>
+      <div style="padding:9px 12px;background:var(--bg3);font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--gold);border-bottom:1px solid var(--border2)">Pasivo</div>
+      <div style="padding:9px 12px;background:var(--bg3);font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--gold);border-bottom:1px solid var(--border2)">Activo</div>
+
+      <div style="padding:9px 12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--orange2);font-weight:700">Ferocidad</div>
+      <div style="padding:9px 12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2)">4% Leech para ti y tu mascota</div>
+      <div style="padding:9px 12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2)"><strong style="color:var(--orange2)">Furia primigenia</strong> — Bloodlust/Heroísmo (+30% Celeridad 40s)</div>
+
+      <div style="padding:9px 12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--green2);font-weight:700">Tenacidad</div>
+      <div style="padding:9px 12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2)">+5% vida máxima para ti y tu mascota</div>
+      <div style="padding:9px 12px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2)"><strong style="color:var(--green2)">Fortaleza del oso</strong> — +3% de redución de daño pasiva</div>
+
+      <div style="padding:9px 12px;font-size:13px;color:#81d4fa;font-weight:700">Astucia</div>
+      <div style="padding:9px 12px;font-size:13px;color:var(--text2)">+4% velocidad de movimiento para ti y tu mascota</div>
+      <div style="padding:9px 12px;font-size:13px;color:var(--text2)"><strong style="color:#81d4fa;font-weight:700">Llamada del amo</strong> — Elimina efectos de movimiento de ti o un aliado y ortoga inmunidad a estos efectos 4s (CD 45s)</div>
+    </div>
+  </div>
+
+  <h3>Situaciones Especiales en M+</h3>
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-header">🩹 Reducción de curación enemiga</div>
+      <div class="col-row"><p>Si ningún miembro del grupo aplica reducción de curación, usa una mascota que lo haga. Reduce un 25% la curación recibida por el objetivo de forma casi permanente (CD 6s).</p></div>
+      <div class="col-row"><p style="color:var(--text2);font-size:13px"><strong style="color:var(--text)">Familias:</strong> Ave carroñera, Devilsaurio, Cuernodirecto, Hidra, Hiena, Lagarto, Raptor, Devastador, Riverbeast, Roedor, Escórpido, Avispa, Látigo</p></div>
+    </div>
+    <div class="col-card">
+      <div class="col-header">🛡️ Reducción de daño para tankbusters</div>
+      <div class="col-row"><p>Mascotas Tenacidad con <em>Reducción de daño</em> pueden provocar a mobs para absorber golpes duros y aliviar al tanque. Con un 50% de reducción de daño en CD de 1 minuto, pueden aguantar mecánicas pesadas.</p></div>
+      <div class="col-row"><p style="color:var(--text2);font-size:13px"><strong style="color:var(--text)">Familias:</strong> Escarabajo, Jabalí, Carapid, Can del Núcleo, Mecánico, Escalahide, Bestia de Pizarra, Tortuga</p></div>
+    </div>
+  </div>
+
+  <h3>Pterrordax — Utilidad de Movimiento</h3>
+  <div class="box box-tip">
+    <div class="box-title">💡 Caída lenta con Desenganche</div>
+    El Pterrordax tiene <em>Corriente ascendente</em> — caída lenta permanente que además extiende la distancia de tu Desenganche. Útil en encuentros con mucho movimiento vertical. Configura estos dos macros para usarlo sin que quede activo entre Desenganches:
+  </div>
+  <div class="two-col">
+    <div class="macro-card">
+      <div class="macro-head">
+        <span style="font-size:16px">🪂</span>
+        <span class="macro-title">Desenganche + Corriente ascendente</span>
+        <span class="macro-cat util">Movilidad</span>
+      </div>
+      <div class="macro-body">
+        <div class="macro-desc">Sustituye tu botón de Desenganche por este macro para activar la caída lenta automáticamente al usarlo.</div>
+        <pre class="macro-code">/use Desenganche
+/use Corriente ascendente</pre>
+      </div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-head">
+        <span style="font-size:16px">🔄</span>
+        <span class="macro-title">Desactivar Corriente ascendente</span>
+        <span class="macro-cat util">Movilidad</span>
+      </div>
+      <div class="macro-body">
+        <div class="macro-desc">Añade esta línea a otras habilidades que uses frecuentemente para desactivar la caída lenta automáticamente entre Desenganches.</div>
+        <pre class="macro-code">/cancelaura Corriente ascendente</pre>
+        <div class="macro-tip"><strong>Consejo:</strong> Añádela a tu macro de Matar o Cólera de las bestias para que se desactive sola al volver a la rotación.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-warn">
+    <div class="box-title">⚠️ Resumen de qué llevar siempre</div>
+    Idealmente deberías tener en tus establos: <strong>3 Aqiris</strong> (una de cada spec), <strong>1 mascota con reducción de curación</strong> para M+, <strong>1 mascota con reducción de daño</strong> para tankbusters, y <strong>1 Pterrordax</strong> para movilidad. No necesitas cambiar de mascota en cada pull — es para estar preparado cuando el grupo lo necesite.
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 8: EXAMEN ST
+══════════════════════════════════════ -->
+<div id="tab-qst" class="tab-panel">
+  <h2>Examen Single-Target</h2>
+  <div class="box box-info"><div class="box-title">📝 Instrucciones</div>Pon a prueba tus conocimientos sobre la rotación ST del BM Hunter. 5 preguntas. Lee el feedback de cada respuesta antes de pasar a la siguiente.</div>
+  <div id="quiz-st"></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 9: EXAMEN AoE
+══════════════════════════════════════ -->
+<div id="tab-qaoe" class="tab-panel">
+  <h2>Examen AoE / M+</h2>
+  <div class="box box-info"><div class="box-title">📝 Instrucciones</div>Pon a prueba tus conocimientos sobre la rotación AoE y M+ del BM Hunter. 5 preguntas con feedback explicado.</div>
+  <div id="quiz-aoe"></div>
+</div>
+
+</div><!-- /content-area -->
+
+<!-- FOOTER -->
+<div class="guide-footer">
+  ⚠️ Guía en construcción — se actualizará con cada parche. · Creada por <span>Mishuko</span> · <span id="footer-date"></span>
+  <br>
+</div>
+
+<script>
+// ─── FECHA ───
+document.getElementById('footer-date').textContent =
+  new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+
+// ─── TABS ───
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── OPENER TOGGLE ───
+function setOpener(mode,btn){
+  document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('opener-st').style.display  = mode==='st'  ? '' : 'none';
+  document.getElementById('opener-aoe').style.display = mode==='aoe' ? '' : 'none';
+}
+
+// ─── TOOLTIP ───
+const tt=document.getElementById('tooltip');
+const ttN=document.getElementById('tt-name');
+const ttT=document.getElementById('tt-type');
+const ttD=document.getElementById('tt-desc');
+document.addEventListener('mouseover',e=>{
+  const el=e.target.closest('[data-name]');
+  if(!el){tt.classList.remove('visible');return;}
+  ttN.textContent=el.dataset.name||'';
+  ttT.textContent=el.dataset.type||'';
+  ttD.textContent=el.dataset.desc||'';
+  tt.classList.add('visible');
+  postt(e);
+});
+document.addEventListener('mousemove',e=>{if(e.target.closest('[data-name]'))postt(e);});
+document.addEventListener('mouseout',e=>{if(!e.relatedTarget||!e.relatedTarget.closest('[data-name]'))tt.classList.remove('visible');});
+function postt(e){
+  const w=280,m=10;let x=e.clientX+14,y=e.clientY-10;
+  if(x+w>window.innerWidth-m)x=e.clientX-w-14;
+  if(x<m)x=m;
+  const h=tt.offsetHeight||90;
+  if(y+h>window.innerHeight-m)y=e.clientY-h-10;
+  if(y<m)y=m;
+  tt.style.left=x+'px';tt.style.top=y+'px';
+}
+
+// ─── QUIZ ENGINE ───
+const quizInstances={};
+window.quizAnswer=(cid,idx)=>quizInstances[cid]&&quizInstances[cid].answer(idx);
+window.quizNext=cid=>quizInstances[cid]&&quizInstances[cid].next();
+window.quizReset=cid=>quizInstances[cid]&&quizInstances[cid].reset();
+
+function buildQuiz(containerId,questions){
+  const container=document.getElementById(containerId);
+  let current=0,score=0;
+  const results=new Array(questions.length).fill(null);
+
+  function renderProgress(){
+    return`<div class="quiz-progress">${questions.map((_,i)=>{
+      let cls='quiz-dot';
+      if(results[i]===true)cls+=' done';
+      else if(results[i]===false)cls+=' wrong';
+      else if(i===current)cls+=' current';
+      return`<div class="${cls}"></div>`;
+    }).join('')}</div>`;
+  }
+
+  function renderQuestion(){
+    const q=questions[current],answered=results[current]!==null,selected=q.selected;
+    const optsHTML=q.opts.map((opt,idx)=>{
+      let cls='quiz-opt';
+      if(answered&&idx===q.correct)cls+=' correct';
+      else if(answered&&idx===selected&&idx!==q.correct)cls+=' wrong';
+      return`<button class="${cls}" ${answered?'disabled':''} onclick="quizAnswer('${containerId}',${idx})">${opt}</button>`;
+    }).join('');
+    let fbHTML='';
+    if(answered){
+      const ok=selected===q.correct;
+      fbHTML=`<div class="quiz-feedback ${ok?'ok':'fail'} show">${q.explanation}</div>`;
+    }
+    const atEnd=current===questions.length-1;
+    return`${renderProgress()}
+    <div class="quiz-q">
+      <div class="quiz-q-text">${current+1}. ${q.q}</div>
+      <div class="quiz-options">${optsHTML}</div>
+      ${fbHTML}
+    </div>
+    <div class="quiz-nav">
+      <button class="btn secondary" onclick="quizReset('${containerId}')">Reiniciar</button>
+      <button class="btn" onclick="quizNext('${containerId}')" ${!answered?'disabled':''}>${atEnd?'Ver resultado':'Siguiente →'}</button>
+    </div>`;
+  }
+
+  function renderScore(){
+    const s=score;
+    const msg=s===5?'¡Perfecto! Dominas la rotación del BM Hunter.':
+              s>=4?'¡Muy bien! Casi perfecto, repasa los fallos.':
+              s>=3?'Bien, pero hay margen de mejora. Revisa la guía.':
+              'Necesitas repasar la guía. ¡Dale otra vuelta!';
+    container.innerHTML=`${renderProgress()}
+    <div class="quiz-score show">
+      <div class="score-num">${s}/${questions.length}</div>
+      <div class="score-label">respuestas correctas</div>
+      <div class="score-msg">${msg}</div>
+      <br>
+      <button class="btn" onclick="quizReset('${containerId}')">Reiniciar examen</button>
+    </div>`;
+  }
+
+  const api={
+    answer(idx){
+      const q=questions[current];
+      if(results[current]!==null)return;
+      q.selected=idx;
+      const ok=idx===q.correct;
+      results[current]=ok;
+      if(ok)score++;
+      container.innerHTML=renderQuestion();
+    },
+    next(){
+      if(results[current]===null)return;
+      if(current===questions.length-1)renderScore();
+      else{current++;container.innerHTML=renderQuestion();}
+    },
+    reset(){
+      current=0;score=0;
+      questions.forEach(q=>delete q.selected);
+      results.fill(null);
+      container.innerHTML=renderQuestion();
+    }
+  };
+  quizInstances[containerId]=api;
+  api.reset();
+}
+
+// ─── PREGUNTAS ST ───
+const stQuestions=[
+  {
+    q:'¿Cuándo sube Disparo con púas a prioridad #1 en la lista ST?',
+    opts:['Siempre que esté disponible','Cuando Cólera de las bestias saldrá de CD en ≤3 segundos','Solo durante la ventana de Cólera de las bestias','Cuando tienes Aliado de la naturaleza activo'],
+    correct:1,
+    explanation:'✅ El objetivo es que tu mascota cargue al objetivo justo antes de Cólera de las bestias para que esté en posición. Si no usas Disparo con púas antes, la mascota puede llegar tarde y perderte el sangrado inicial.'
+  },
+  {
+    q:'¿Cuándo tiene alta prioridad Matar en ST?',
+    opts:['Siempre que esté disponible, es prioridad #2','Solo cuando tienes Aullido de la manada activo','Cuando tienes Aullido de la manada O Aliado de la naturaleza activo','Solo durante Cólera de las bestias'],
+    correct:2,
+    explanation:'✅ Matar sube a prioridad #3 si tienes cualquiera de los dos buffs activos. Ambas condiciones lo potencian significativamente. Fuera de ellas, baja en la lista.'
+  },
+  {
+    q:'¿Qué activa ¡Estampida! en Pack Leader?',
+    opts:['Usar Cólera de las bestias directamente','El primer Matar después de usar Cólera de las bestias','Usar Disparo con púas durante Cólera de las bestias','Tener Aliado de la naturaleza activo al mismo tiempo que Cólera de las bestias'],
+    correct:1,
+    explanation:'✅ En Pack Leader, es el primer Matar posterior a Cólera de las bestias el que activa ¡Estampida!. Por eso Matar tiene tanta prioridad durante esa ventana de CD.'
+  },
+  {
+    q:'¿Qué pasa si tu mascota no ataca cuando usas Cólera de las bestias?',
+    opts:['Cólera de las bestias hace que la mascota empiece a atacar automáticamente','Pierdes el efecto de Aliado de la naturaleza','No aplicas el sangrado de Escabechina al objetivo','¡Estampida! no se activa'],
+    correct:2,
+    explanation:'✅ Escabechina solo se aplica al objetivo que ataca tu mascota. Sin mascota activa, no hay sangrado y pierdes DPS significativo durante toda la ventana. Por eso los macros de petattack son imprescindibles.'
+  },
+  {
+    q:'¿Cuándo es válido retrasar Cólera de las bestias?',
+    opts:['Cuando no tienes Enfoque máximo','Cuando no tienes Aliado de la naturaleza activo','En M+ cuando el pack va a morir antes de que puedas aprovechar el CD','Nunca, siempre hay que usarla en cuanto esté disponible'],
+    correct:2,
+    explanation:'✅ La única excepción válida es en M+ cuando el pack morirá antes de que rentabilices el CD. En raid y ST, úsala siempre en cuanto esté disponible sin excepciones.'
+  }
+];
+
+// ─── PREGUNTAS AoE ───
+const aoeQuestions=[
+  {
+    q:'¿Qué habilidad se añade como segunda prioridad en AoE que no existe en ST?',
+    opts:['Disparo de cobra adicional','Paliza salvaje','Flecha de veneno','Trampa explosiva'],
+    correct:1,
+    explanation:'✅ Paliza salvaje es el principal añadido en AoE. Es instantánea, potente, y activa Tajo de la bestia en tu mascota, convirtiéndola en la segunda prioridad del loop AoE.'
+  },
+  {
+    q:'¿Cuándo tiene prioridad Disparo de cobra gracias al buff de Zancapuerco?',
+    opts:['Siempre que Zancapuerco esté activo','Cuando Zancapuerco está activo Y hay menos de 4 enemigos','Solo si no tienes Cólera de las bestias disponible','Cuando hay más de 4 enemigos y Zancapuerco activo'],
+    correct:1,
+    explanation:'✅ La condición es doble: buff de Zancapuerco activo Y menos de 4 enemigos. Con 4 o más enemigos otras habilidades tienen más valor relativo que Disparo de cobra.'
+  },
+  {
+    q:'¿Cómo debes usar Disparo con púas en AoE?',
+    opts:['Multi-dotear todos los objetivos para maximizar el daño','Solo al objetivo prioritario, nunca multi-dot','Alternar entre dos objetivos para mantener el debuff','No usarlo en AoE, es solo para ST'],
+    correct:1,
+    explanation:'✅ NUNCA hagas multi-dot de Disparo con púas en AoE. Siempre al objetivo prioritario. Multi-dotear es uno de los errores más comunes y costosos del BM Hunter.'
+  },
+  {
+    q:'¿Por qué es crítico el posicionamiento en la ventana de CD en AoE M+?',
+    opts:['Para que Paliza salvaje golpee a más enemigos','Para que tu mascota llegue más rápido al pack','¡Estampida! no tiene ajuste de altura y falla si no estás al mismo nivel que los enemigos','Para maximizar el rango de Tajo de la bestia'],
+    correct:2,
+    explanation:'✅ ¡Estampida! no ajusta la altura del terreno. Si estás elevado respecto a los enemigos, los animales pasan por debajo y casi todo el daño AoE del proc falla.'
+  },
+  {
+    q:'¿Dónde debe estar tu mascota en AoE para maximizar el daño?',
+    opts:['En la parte delantera del pack, atacando al primer enemigo','Lo más lejos posible del pack','En el centro del pack para maximizar hits de Tajo de la bestia y Paliza salvaje','Atacando al mismo objetivo que tú siempre'],
+    correct:2,
+    explanation:'✅ Tu mascota debe estar en el CENTRO del pack para que Tajo de la bestia y Paliza salvaje golpeen al máximo de enemigos posible. Posicionar la mascota bien en AoE es tan importante como la propia rotación.'
+  }
+];
+
+buildQuiz('quiz-st',stQuestions);
+buildQuiz('quiz-aoe',aoeQuestions);
+
+// ── BIS TRACKER ──
+const BIS_TOTAL = 15;
+function bisCheck(cb){
+  const row = cb.closest('tr');
+  row.classList.toggle('collected', cb.checked);
+  const checked = document.querySelectorAll('.bis-check:checked').length;
+  document.getElementById('bis-count').textContent = checked + ' / ' + BIS_TOTAL;
+  document.getElementById('bis-bar').style.width = (checked/BIS_TOTAL*100) + '%';
+  // guardar estado
+  const state = {};
+  document.querySelectorAll('tr[data-bis]').forEach(r=>{
+    state[r.dataset.bis] = r.querySelector('.bis-check').checked;
+  });
+  try{ localStorage.setItem('bm_bis', JSON.stringify(state)); }catch(e){}
+}
+// restaurar al cargar
+(function(){
+  let state = {};
+  try{ state = JSON.parse(localStorage.getItem('bm_bis')||'{}'); }catch(e){}
+  document.querySelectorAll('tr[data-bis]').forEach(r=>{
+    const cb = r.querySelector('.bis-check');
+    if(state[r.dataset.bis]){ cb.checked=true; r.classList.add('collected'); }
+  });
+  const checked = document.querySelectorAll('.bis-check:checked').length;
+  document.getElementById('bis-count').textContent = checked + ' / ' + BIS_TOTAL;
+  document.getElementById('bis-bar').style.width = (checked/BIS_TOTAL*100) + '%';
+})();
+
+// ── BUILD TOGGLE ──
+function setBuild(id, btn) {
+  document.querySelectorAll('[id^="build-"]').forEach(d => d.style.display = 'none');
+  document.querySelectorAll('#tab-talentos .toggle-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('build-' + id).style.display = '';
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
