@@ -782,7 +782,7 @@
       border-bottom: 1px solid var(--border);
       padding: 9px 14px;
       gap: 14px;
-      font-size: 15.5px;
+      font-size: 17px;
       align-items: center;
     }
 
@@ -1069,11 +1069,155 @@
     /* ─── RESPONSIVE ─────────────────────────────────────────────── */
 
     @media (max-width: 600px) {
-      .guide-header    { padding: 18px 14px 14px; }
-      .header-text h1  { font-size: 21px; }
-      .header-badges   { display: none; }
-      .tab-btn         { font-size: 17px; padding: 11px 10px; }
-      .content-area    { padding: 18px 12px 40px; }
+
+      /* Base font */
+      body { font-size: 16px; }
+
+      /* Header */
+      .guide-header   { padding: 14px 12px 12px; }
+      .header-text h1 { font-size: 19px; letter-spacing: 1px; }
+      .header-text p  { font-size: 13px; }
+      .header-badges  { display: none; }
+      .header-disclaimer { font-size: 12px; }
+      .header-icon    { width: 48px; height: 48px; font-size: 24px; }
+
+      /* ── NAV: single scrollable row, no wrap ── */
+      .tabs-bar { overflow-x: auto; }
+      .tabs-inner {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding: 0 4px;
+      }
+      /* Fade-out right edge to hint scrollability */
+      .tabs-bar::after {
+        content: '';
+        position: absolute;
+        right: 0; top: 0; bottom: 0;
+        width: 40px;
+        background: linear-gradient(to right, transparent, rgba(20,23,32,.95));
+        pointer-events: none;
+      }
+      .tab-btn {
+        font-size: 11px;
+        padding: 12px 11px;
+        letter-spacing: .5px;
+        flex-shrink: 0;
+      }
+
+      /* Content area */
+      .content-area { padding: 16px 10px 40px; }
+
+      /* Cards & boxes */
+      .card   { padding: 14px 12px; }
+      .box    { font-size: 14px; padding: 10px 12px; }
+      .box-title { font-size: 13px; }
+
+      /* Chain (rotación) */
+      .chain-wrap { padding: 12px 10px; }
+      .chain-step { font-size: 14px; padding: 6px 10px; }
+      .chain-step small { font-size: 9px; }
+
+      /* Priority list */
+      .prio-item  { font-size: 14px; }
+      .col-row    { font-size: 14px; }
+
+      /* Opener steps */
+      .opener-step { font-size: 14px; }
+
+      /* Toggle buttons */
+      .toggle-btn { font-size: 13px; padding: 7px 13px; }
+
+      /* ── BIS TABLE: card layout on mobile ── */
+      .bis-table, .bis-table thead, .bis-table tbody,
+      .bis-table th, .bis-table td, .bis-table tr {
+        display: block;
+      }
+      .bis-table thead { display: none; }   /* hide column headers */
+      .bis-table tr {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        margin-bottom: 8px;
+        overflow: hidden;
+        background: var(--card);
+      }
+      .bis-table tr.raid-row {
+        border-color: rgba(171,71,188,.40);
+      }
+      .bis-table td {
+        padding: 5px 12px;
+        border-bottom: none;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      /* Show label before each cell */
+      .bis-table td.check-col  { padding: 8px 12px 4px; justify-content: flex-start; }
+      .bis-table td.slot-col   {
+        font-size: 11px;
+        letter-spacing: .8px;
+        padding-top: 8px;
+        color: var(--text3);
+      }
+      .bis-table td.item-name  { font-size: 15px; font-weight: 600; padding: 2px 12px 4px; }
+      /* Source becomes small line */
+      .bis-table td:last-child { font-size: 12px; color: var(--text3); padding-bottom: 8px; }
+      /* Put check + slot on same row */
+      .bis-table td.check-col  { display: inline-flex; width: auto; padding-right: 0; }
+      .bis-table td.slot-col   { display: inline-flex; width: auto; padding-left: 6px; }
+      /* Wrap check+slot together */
+      .bis-table tr { position: relative; }
+
+      /* ── Encantamientos & Gemas tables ── */
+      .bis-table-wrap { border-radius: 8px; }
+
+      /* Macro cards */
+      .macro-body { padding: 12px 12px; }
+      pre.macro-code { font-size: 12.5px; padding: 10px 11px; }
+      .macro-desc { font-size: 13px; }
+      .macro-tip  { font-size: 12.5px; }
+
+      /* Error items */
+      .error-item { padding: 11px 11px; gap: 10px; }
+      .error-body h4 { font-size: 14px; }
+      .error-body p  { font-size: 14px; }
+
+      /* Build/talent section */
+      .build-actions { gap: 8px; }
+      .build-btn     { font-size: 13px; padding: 8px 14px; }
+      .build-desc    { font-size: 13px; }
+      .build-notes ul { font-size: 13px; }
+      .toggle-btn.meta::after { font-size: 8px; padding: 1px 5px; }
+
+      /* Consumibles */
+      .cons-row       { grid-template-columns: 110px 1fr; font-size: 14px; padding: 8px 10px; }
+      .cons-slot      { font-size: 13px; }
+      .cons-alt       { font-size: 12px; }
+
+      /* Stats grid */
+      .stat-card  { padding: 11px 12px; }
+      .stat-name  { font-size: 14px; }
+      .stat-desc  { font-size: 13px; }
+
+      /* Spec table (mascotas) */
+      .spec-table { grid-template-columns: 80px 1fr 1fr; }
+      .spec-th, .spec-td { font-size: 13px; padding: 7px 8px; }
+
+      /* Quiz */
+      .quiz-q-text { font-size: 15px; }
+      .quiz-opt    { font-size: 13px; padding: 9px 13px; }
+      .quiz-feedback { font-size: 13px; }
+      .score-num   { font-size: 38px; }
+
+      /* Headings */
+      h2 { font-size: 13px; }
+      h3 { font-size: 14px; }
+
+      /* Badges en header del opener/rotación */
+      .hbadge { font-size: 12px; padding: 2px 8px; }
+
+      /* data-rows */
+      .data-row { font-size: 14px; }
     }
 
     /* ─── BIS TRACKER ────────────────────────────────────────────── */
@@ -1153,25 +1297,28 @@
     .source-world { color: #ffcc80; font-size: 16px; }
 
 
-    /* ─── LINKS DE ITEMS ─────────────────────────────────────── */
+    /* ─── LINKS (GLOBAL) ─────────────────────────────────────── */
 
-    .item-name a {
+    a {
       color: #ce93d8;
       text-decoration: none;
       transition: color .2s;
     }
 
-    .item-name a:hover {
+    a:hover {
       color: #e1bee7;
-    }
-    .card a {
-      text-decoration: none;
-      color: #ce93d8;
-      transition: color .2s;
+      text-decoration: underline;
     }
 
-    .card a:hover {
-      color: #e1bee7;
+    /* Botones-link de builds: conservar aspecto de botón */
+    .build-btn-link,
+    .build-btn-link:hover {
+      color: var(--text2);
+      text-decoration: none;
+    }
+
+    .build-btn-link:hover {
+      color: var(--text);
     }
     
     /* ─── CARD ROWS UTILITY ─────────────────────────────────── */
@@ -1831,6 +1978,11 @@
         </div>
 
         <div class="box box-warn">
+          <div class="box-title">⚠️ Sobre las guías escritas</div>
+          Las guías como Icy Veins o Wowhead describen el <em>ideal teórico</em> — lo que debería ocurrir si la rotación es perfecta. Los logs de combate real muestran que incluso los mejores jugadores del mundo priorizan el cooldown sobre la condición del buff. Cuando hay conflicto entre ambas fuentes, <strong>los datos mandan</strong>.
+        </div>
+
+        <div class="box box-warn">
           <div class="box-title">⚠️ Estado actual del AoE — Midnight S1</div>
           El AoE del BM Hunter tiene <strong>problemas conocidos</strong> en esta temporada que afectan al rendimiento real independientemente de tu ejecución:<br><br>
           <strong>🐛 Bug activo:</strong> Un bug introducido recientemente reduce el daño AoE en aproximadamente un <strong>-6%</strong>. Aún sin fix confirmado.<br>
@@ -1981,10 +2133,6 @@
         <div class="data-row">🧠 Conclusión: el buff está activo en la mayoría de Matares de forma <strong>natural</strong>, porque el weave correcto de Disparo con púas y Disparo de cobra lo recarga constantemente. No es una condición que esperar — es un resultado del loop bien ejecutado.</div>
         <div class="data-row">🚫 Lo que <strong>nunca hace</strong> un hunter de alto nivel: retrasar Matar esperando a que Aliado de la naturaleza esté activo. On cooldown gana siempre.</div>
       </div>
-      <div class="box box-warn">
-        <div class="box-title">⚠️ Sobre las guías escritas</div>
-        Las guías como Icy Veins o Wowhead describen el <em>ideal teórico</em> — lo que debería ocurrir si la rotación es perfecta. Los logs de combate real muestran que incluso los mejores jugadores del mundo priorizan el cooldown sobre la condición del buff. Cuando hay conflicto entre ambas fuentes, <strong>los datos mandan</strong>.
-      </div>
     </div>
 
     <!-- ══════════════════════════════════════════════════════════════
@@ -2020,6 +2168,11 @@
         </div>
       </div>
 
+      <div class="box box-tip">
+        <div class="box-title">💡 Simula siempre</div>
+        Usa <a href="https://www.raidbots.com" target="_blank"><strong>Raidbots</strong></a> / <a href="https://www.simulationcraft.org" target="_blank"><strong>SimulationCraft</strong></a> para obtener los valores exactos según tu equipo. Las prioridades aquí son orientativas.
+      </div>
+
       <h3>Grid de Stats</h3>
       <div class="stats-grid">
         <div class="stat-card stat-gold">
@@ -2053,11 +2206,6 @@
           <div class="data-row compact">🟣 <strong>Versatilidad</strong> — Por encima de <strong>1620 rating</strong>.</div>
           <div class="data-row compact">💡 Aplica únicamente al rating, no a procs porcentuales como <span class="pr" data-name="Ansia de sangre" data-type="Proc" data-desc="Proc porcentual. No se ve afectado por los DRs de rating.">Ansia de sangre</span>.</div>
         </div>
-      </div>
-
-      <div class="box box-tip">
-        <div class="box-title">💡 Simula siempre</div>
-        Usa <a href="https://www.raidbots.com" target="_blank"><strong>Raidbots</strong></a> / <a href="https://www.simulationcraft.org" target="_blank"><strong>SimulationCraft</strong></a> para obtener los valores exactos según tu equipo. Las prioridades aquí son orientativas.
       </div>
     </div>
 
@@ -2131,6 +2279,11 @@
       <div class="box box-info">
         <div class="box-title">🎮 Cómo crear macros en WoW</div>
         Abre el menú principal → <strong>Macros</strong> o escribe <code class="inline-code">/macro</code> en el chat. Crea una macro general o de personaje, asígnale icono y pega el código. Arrastra el icono a tu barra de acción.
+      </div>
+
+      <div class="box box-warn">
+        <div class="box-title">⚠️ Cliente en español</div>
+        En el cliente <strong>español</strong> de WoW, los nombres de habilidades en macros deben escribirse exactamente como aparecen en el tooltip in-game, <strong>con tildes y caracteres especiales</strong>. Si un macro no funciona, comprueba que el nombre sea idéntico al tooltip.
       </div>
 
       <h3>Macros de Rotación</h3>
@@ -2307,10 +2460,6 @@
         </div>
       </div>
 
-      <div class="box box-warn">
-        <div class="box-title">⚠️ Cliente en español</div>
-        En el cliente <strong>español</strong> de WoW, los nombres de habilidades en macros deben escribirse exactamente como aparecen en el tooltip in-game, <strong>con tildes y caracteres especiales</strong>. Si un macro no funciona, comprueba que el nombre sea idéntico al tooltip.
-      </div>
     </div>
 
     <!-- ══════════════════════════════════════════════════════════════
@@ -2397,7 +2546,8 @@
       <tr class="raid-row" data-bis="piernas">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Piernas</td>
-        <td class="item-name"><!-- TODO: verificar ítem de piernas, URL actual = guantes --><a href="https://www.wowhead.com/es/item=249989/guardagarras-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Guardagarras de centinela primigenio <span class="tier-badge">TIER</span></a></td>
+        <td class="item-name"><a href="https://www.wowhead.com/es/item=249987/musleras-de-centinela-primigenio?bonus=12806" target="_blank" rel="noopener noreferrer">Musleras de centinela primigenio
+ <span class="tier-badge">TIER</span></a></td>
         <td class="source-raid">Tier Set — Raid</td>
       </tr>
       <tr data-bis="botas">
@@ -2458,6 +2608,11 @@
         <div class="data-row">💜 <strong>Resto:</strong> Mix de <a href="https://www.wowhead.com/es/item=240900/amatista-r%C3%A1pida-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#c090ff">Amatista rápida impecable</span></a>, <a href="https://www.wowhead.com/es/item=240898/amatista-mortal-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#ff8080">Amatista mortal impecable</span></a> y <a href="https://www.wowhead.com/es/item=240892/peridoto-magistral-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#80ff90">Peridoto magistral impecable</span></a>.        </div>
       </div>
 
+      <div class="box box-tip">
+        <div class="box-title">💡 Sincronización de poción</div>
+        Usa siempre la <strong>poción de combate junto a <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span></strong>. Debe estar activa antes del primer hit para que se beneficie de él. Macrearla con Cólera de las bestias funciona perfectamente.
+      </div>
+
       <h3>Consumibles</h3>
       <div class="card">
         <div class="cons-row">
@@ -2493,10 +2648,6 @@
   </div>
 </div>
 
-      <div class="box box-tip">
-        <div class="box-title">💡 Sincronización de poción</div>
-        Usa siempre la <strong>poción de combate junto a <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span></strong>. Debe estar activa antes del primer hit para que se beneficie de él. Macrearla con Cólera de las bestias funciona perfectamente.
-      </div>
     </div>
 
     <!-- ══════════════════════════════════════════════════════════════
@@ -2600,7 +2751,7 @@
         🔗 Abrir en Wowhead
       </a>
     </div>
-    <img src="https://i.imgur.com/9zaR9p7.png" data-todo="Dark Ranger M+" alt="Dark Ranger M+" alt="Dark Ranger M+"
+    <img src="https://i.imgur.com/9zaR9p7.png" alt="Dark Ranger M+"
          class="build-img">
     <div class="box box-tip build-notes">
             <div class="box-title">💡 Notas del build</div>
@@ -2646,7 +2797,10 @@
         </div>
       </div>
 
-     
+      <div class="box box-tip">
+        <div class="box-title">💡 Utilidad flexible</div>
+        El resto de talentos de utilidad son <strong>intercambiables según el contenido</strong>. No hay nodos de utilidad obligatorios — adáptalos a lo que cada encuentro o dungeon requiera.
+      </div>
 
       <h3>Talentos Clave — Árbol de Clase</h3>
       <div class="card">
@@ -2660,11 +2814,6 @@
         <div class="data-row compact">🛡️ <strong>Evasión del cazador</strong> — 5% de esquiva pasiva.</div>
         <div class="data-row compact">💚 <strong>Viento rejuvenecedor / Curación natural</strong> — Potencian Exhilaración.</div>
         <div class="data-row compact">🐢 <strong>Armadura acolchada / Superviviente solitario</strong> — Reducen el CD y potencian Aspecto de la tortuga.</div>
-      </div>
-
-      <div class="box box-tip">
-        <div class="box-title">💡 Utilidad flexible</div>
-        El resto de talentos de utilidad son <strong>intercambiables según el contenido</strong>. No hay nodos de utilidad obligatorios — adáptalos a lo que cada encuentro o dungeon requiera.
       </div>
     </div>
 
@@ -2812,6 +2961,8 @@
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('tab-' + id).classList.add('active');
       btn.classList.add('active');
+      // Scroll active tab button into view on mobile
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
 
     // ─── TOGGLE HELPERS ───────────────────────────────────────────────
@@ -2827,7 +2978,7 @@
       });
     }
 
-    // ─── TOOLTIP ──────────────────────────────────────────────────────
+    // ─── TOOLTIP (mouse + touch) ───────────────────────────────────────
     const tooltip  = document.getElementById('tooltip');
     const ttName   = document.getElementById('tt-name');
     const ttType   = document.getElementById('tt-type');
@@ -2855,6 +3006,26 @@
         tooltip.classList.remove('visible');
       }
     });
+
+    // Touch support for tooltips on mobile
+    document.addEventListener('touchstart', e => {
+      const el = e.target.closest('[data-name]');
+      if (!el) { tooltip.classList.remove('visible'); return; }
+      ttName.textContent = el.dataset.name || '';
+      ttType.textContent = el.dataset.type || '';
+      ttDesc.textContent = el.dataset.desc || '';
+      const rect = el.getBoundingClientRect();
+      const width = 260;
+      let x = rect.left;
+      let y = rect.bottom + 8;
+      if (x + width > window.innerWidth - 8) x = window.innerWidth - width - 8;
+      if (x < 8) x = 8;
+      if (y + 120 > window.innerHeight) y = rect.top - 120;
+      tooltip.style.left = x + 'px';
+      tooltip.style.top  = y + 'px';
+      tooltip.classList.add('visible');
+      e.preventDefault();
+    }, { passive: false });
 
     function positionTooltip(e) {
       const width  = 280;
