@@ -143,7 +143,7 @@
 
     .hbadge.dps {
       background: rgba(229, 57, 53, .12);
-      border-color: rgba(229, 57, 53, .35);
+      border-color: rgba(8, 3, 3, 0.35);
       color: var(--red2);
     }
     
@@ -411,7 +411,25 @@
       flex: 1;
       color: var(--text);
     }
+	
+	.prio-icon {
+	  width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+	}
 
+	.prio-icon img {
+	  width: 32px;
+	  height: 32px;
+	  display: block;
+	}
+	
     /* ─── CHAIN ──────────────────────────────────────────────────── */
 
     .chain-wrap {
@@ -439,8 +457,36 @@
       font-size: 17px;
       font-weight: 600;
       color: var(--text);
-      white-space: nowrap;
+      white-space: normal;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-width: 60px;
+    }
+
+    .chain-step .chain-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chain-step .chain-icon img {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+
+    .chain-step-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .chain-step small {
@@ -746,6 +792,24 @@
       margin-bottom: 2px;
     }
 
+    .step-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .step-icon img {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+
     /* ─── TOGGLE ─────────────────────────────────────────────────── */
 
     .toggle-wrap {
@@ -803,6 +867,23 @@
       font-size: 16px;
       color: var(--text3);
       margin-top: 3px;
+    }
+
+    /* ─── ICONOS AGRANDADOS ──────────────────────────── */
+    .bis-table .item-name img,
+    .bis-table .item-name a img {
+      width: 32px !important;
+      height: 32px !important;
+      margin-right: 4px !important;
+      vertical-align: middle !important;
+    }
+
+    .cons-row img,
+    .cons-row a img {
+      width: 32px !important;
+      height: 32px !important;
+      margin-right: 4px !important;
+      vertical-align: middle !important;
     }
 
     /* ─── MACROS ─────────────────────────────────────────────────── */
@@ -1186,7 +1267,7 @@
       .build-actions { gap: 8px; }
       .build-btn     { font-size: 13px; padding: 8px 14px; }
       .build-desc    { font-size: 13px; }
-      .build-notes ul { font-size: 13px; }
+      .build-notes { font-size: 13px; }
       .toggle-btn.meta::after { font-size: 8px; padding: 1px 5px; }
 
       /* Consumibles */
@@ -1391,11 +1472,16 @@
       margin-bottom: 14px;
     }
 
-    .build-notes ul {
-      margin: 6px 0 0 16px;
+    .build-notes {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
       font-size: 15px;
       line-height: 1.8;
       color: var(--text2);
+    }
+
+    .build-notes li {
+      padding-left: 2px;
     }
 
     /* ─── MACRO EMOJI ────────────────────────────────────────── */
@@ -1624,7 +1710,85 @@
   line-height: 1.45;
 }
 
+/* ─── BOSS SELECTOR ─────────────────────────────────────────── */
+
+.boss-sel-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  transition: border-color .18s, transform .15s;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.boss-sel-btn:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+
+.boss-sel-btn.active {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent2);
+}
+
+.boss-sel-ph {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.boss-sel-label {
+  padding: 5px 4px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text2);
+  letter-spacing: .3px;
+  line-height: 1.3;
+  border-top: 1px solid var(--border);
+}
+
+.boss-sel-btn.active .boss-sel-label {
+  color: var(--accent);
+}
     
+.boss-sel-btn.soon {
+  opacity: .5;
+  cursor: default;
+  pointer-events: none;
+  position: relative;
+}
+
+.boss-sel-soon-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 12, 18, .62);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+.boss-sel-soon-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text3);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(13, 15, 18, .7);
+}	
+	
   </style>
 </head>
 
@@ -1803,34 +1967,58 @@
       <div id="opener-st">
         <div class="chain-wrap">
           <div class="chain">
-            <div class="chain-step bf-step">Marca del cazador<small>Pre-pull</small></div>
+            <div class="chain-step bf-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div>
+              <div class="chain-step-text">Marca del cazador<small>Pre-pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Redirección<small>Al tanque</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_misdirection.jpg" alt="Redirección"></div>
+              <div class="chain-step-text">Redirección<small>Al tanque</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Caja de puzles<small>-2s pull</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div>
+              <div class="chain-step-text">Caja de puzles<small>-2s pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Disparo con púas ×2<small>Gastar todas las cargas</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+              <div class="chain-step-text">Disparo con púas ×2<small>Gastar todas las cargas</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Poción + Raciales<small>Trinkets activos</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div>
+              <div class="chain-step-text">Poción + Raciales<small>Trinkets activos</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Cólera de las bestias<small>¡Mascota atacando!</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
+              <div class="chain-step-text">Cólera de las bestias<small>¡Mascota atacando!</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Matar<small>→ ¡Estampida!</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
+              <div class="chain-step-text">Matar<small>→ ¡Estampida!</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Rotación normal</div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Rotación"></div>
+              <div class="chain-step-text">Rotación normal</div>
+            </div>
           </div>
         </div>
         <div class="card card-mt">
           <div class="card-header">📋 Pasos Detallados — ST</div>
           <ol class="opener-steps">
-            <li class="opener-step"><div class="ostep-num">1</div><div><div class="ostep-pre">Pre-pull</div>Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Siempre al objetivo prioritario antes del pull.">Marca del cazador</span> al objetivo prioritario.</div></li>
-            <li class="opener-step"><div class="ostep-num">2</div><div><div class="ostep-pre">Pre-pull</div>Lanza <span class="sp" data-name="Redirección" data-type="Habilidad activa" data-desc="Redirige el agro de tu mascota al tanque. Configura un macro para esto.">Redirección</span> al tanque.</div></li>
-            <li class="opener-step"><div class="ostep-num">3</div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="Trinket con 2 segundos de casteo. Pre-castear 2s antes del pull para que esté activa al inicio del combate.">Caja de puzles de Algeth'ar</span> exactamente 2 segundos antes del pull.</div></li>
-            <li class="opener-step"><div class="ostep-num">4</div><div><div class="ostep-pre">Al hacer pull</div>Gasta <strong>todas las cargas</strong> de <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Tiene 2 cargas. Gástalas todas antes de Cólera de las bestias para posicionar la mascota y cargar Aliado de la naturaleza.">Disparo con púas</span> — son 2 cargas. Esto posiciona la mascota y carga Aliado de la naturaleza antes del CD.</div></li>
-            <li class="opener-step"><div class="ostep-num">5</div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales de stats</strong> y <strong>trinkets</strong> (excepto Caja de puzles). Deben estar activos antes del hit de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div></li>
-            <li class="opener-step"><div class="ostep-num">6</div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. Asegúrate de que la mascota ya ataca.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar atacando el objetivo en este momento!</strong></div></li>
-            <li class="opener-step"><div class="ostep-num">7</div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Activa ¡Estampida! en Pack Leader.">Matar</span> → activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin ajuste de altura.">¡Estampida!</span></div></li>
-            <li class="opener-step"><div class="ostep-num">8</div><div>Continúa con la rotación normal.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div><div><div class="ostep-pre">Pre-pull</div>Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Siempre al objetivo prioritario antes del pull.">Marca del cazador</span> al objetivo prioritario.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_misdirection.jpg" alt="Redirección"></div><div><div class="ostep-pre">Pre-pull</div>Lanza <span class="sp" data-name="Redirección" data-type="Habilidad activa" data-desc="Redirige el agro de tu mascota al tanque. Configura un macro para esto.">Redirección</span> al tanque.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="Trinket con 2 segundos de casteo. Pre-castear 2s antes del pull para que esté activa al inicio del combate.">Caja de puzles de Algeth'ar</span> exactamente 2 segundos antes del pull.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div><div class="ostep-pre">Al hacer pull</div>Gasta <strong>todas las cargas</strong> de <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Tiene 2 cargas. Gástalas todas antes de Cólera de las bestias para posicionar la mascota y cargar Aliado de la naturaleza.">Disparo con púas</span> — son 2 cargas. Esto posiciona la mascota y carga Aliado de la naturaleza antes del CD.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales de stats</strong> y <strong>trinkets</strong> (excepto Caja de puzles). Deben estar activos antes del hit de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. Asegúrate de que la mascota ya ataca.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar atacando el objetivo en este momento!</strong></div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Activa ¡Estampida! en Pack Leader.">Matar</span> → activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin ajuste de altura.">¡Estampida!</span></div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Rotación"></div><div>Continúa con la rotación normal.</div></li>
           </ol>
         </div>
       </div>
@@ -1839,23 +2027,50 @@
       <div id="opener-aoe" style="display:none">
         <div class="chain-wrap">
           <div class="chain">
-            <div class="chain-step bf-step">Marca del cazador<small>Pre-pull</small></div>
+            <div class="chain-step bf-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div>
+              <div class="chain-step-text">Marca del cazador<small>Pre-pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Redirección<small>Al tanque</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_misdirection.jpg" alt="Redirección"></div>
+              <div class="chain-step-text">Redirección<small>Al tanque</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Caja de puzles<small>-2s pull</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div>
+              <div class="chain-step-text">Caja de puzles<small>-2s pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Disparo con púas<small>Al hacer pull</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+              <div class="chain-step-text">Disparo con púas<small>Al hacer pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Poción + Raciales<small>Trinkets activos</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div>
+              <div class="chain-step-text">Poción + Raciales<small>Trinkets activos</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step pr-step">Paliza salvaje<small>→ Tajo de la bestia</small></div>
+            <div class="chain-step pr-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div>
+              <div class="chain-step-text">Paliza salvaje<small>→ Tajo de la bestia</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Cólera de las bestias<small>¡Mascota en pack!</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
+              <div class="chain-step-text">Cólera de las bestias<small>¡Mascota en pack!</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Matar<small>→ ¡Estampida!</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
+              <div class="chain-step-text">Matar<small>→ ¡Estampida!</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Rotación AoE</div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Rotación AoE"></div>
+              <div class="chain-step-text">Rotación AoE</div>
+            </div>
           </div>
         </div>
         <div class="box box-warn box-mt">
@@ -1865,15 +2080,15 @@
         <div class="card card-mt">
           <div class="card-header">📋 Pasos Detallados — AoE</div>
           <ol class="opener-steps">
-            <li class="opener-step"><div class="ostep-num">1</div><div><div class="ostep-pre">Pre-pull</div>Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Siempre al objetivo prioritario.">Marca del cazador</span> al objetivo prioritario del pack.</div></li>
-            <li class="opener-step"><div class="ostep-num">2</div><div><div class="ostep-pre">Pre-pull</div>Lanza <span class="sp" data-name="Redirección" data-type="Habilidad activa" data-desc="Redirige el agro de tu mascota al tanque.">Redirección</span> al tanque.</div></li>
-            <li class="opener-step"><div class="ostep-num">3</div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="2s de casteo. Pre-castear 2s antes del pull.">Caja de puzles de Algeth'ar</span> 2 segundos antes del pull.</div></li>
-            <li class="opener-step"><div class="ostep-num">4</div><div><div class="ostep-pre">Al hacer pull</div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Primer cast al hacer pull. Posiciona la mascota en el pack.">Disparo con púas</span> al objetivo central del pack.</div></li>
-            <li class="opener-step"><div class="ostep-num">5</div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
-            <li class="opener-step"><div class="ostep-num">6</div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente que activa Tajo de la bestia.">Paliza salvaje</span> — activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad activa de mascota" data-desc="AoE de mascota activado por Paliza salvaje y por cada hit de Cólera de las bestias.">Tajo de la bestia</span> en tu mascota.</div></li>
-            <li class="opener-step"><div class="ostep-num">7</div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. La mascota debe estar atacando el objetivo central.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar en el centro del pack!</strong></div></li>
-            <li class="opener-step"><div class="ostep-num">8</div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Activa ¡Estampida!.">Matar</span> → activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura.">¡Estampida!</span></div></li>
-            <li class="opener-step"><div class="ostep-num">9</div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario.">Disparo con púas</span> al objetivo prioritario y continúa con rotación AoE.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div><div><div class="ostep-pre">Pre-pull</div>Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Siempre al objetivo prioritario.">Marca del cazador</span> al objetivo prioritario del pack.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_misdirection.jpg" alt="Redirección"></div><div><div class="ostep-pre">Pre-pull</div>Lanza <span class="sp" data-name="Redirección" data-type="Habilidad activa" data-desc="Redirige el agro de tu mascota al tanque.">Redirección</span> al tanque.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="2s de casteo. Pre-castear 2s antes del pull.">Caja de puzles de Algeth'ar</span> 2 segundos antes del pull.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div><div class="ostep-pre">Al hacer pull</div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Primer cast al hacer pull. Posiciona la mascota en el pack.">Disparo con púas</span> al objetivo central del pack.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente que activa Tajo de la bestia.">Paliza salvaje</span> — activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad activa de mascota" data-desc="AoE de mascota activado por Paliza salvaje y por cada hit de Cólera de las bestias.">Tajo de la bestia</span> en tu mascota.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. La mascota debe estar atacando el objetivo central.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar en el centro del pack!</strong></div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Activa ¡Estampida!.">Matar</span> → activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura.">¡Estampida!</span></div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario.">Disparo con púas</span> al objetivo prioritario y continúa con rotación AoE.</div></li>
           </ol>
         </div>
       </div>
@@ -1883,42 +2098,81 @@
       <div id="opener-dr-st" style="display:none">
         <div class="chain-wrap">
           <div class="chain">
-            <div class="chain-step bf-step">Marca del cazador<small>Pre-pull</small></div>
+            <div class="chain-step bf-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div>
+              <div class="chain-step-text">Marca del cazador<small>Pre-pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Caja de puzles<small>-2s pull</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div>
+              <div class="chain-step-text">Caja de puzles<small>-2s pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Flecha negra<small>Pre-pull</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div>
+              <div class="chain-step-text">Flecha negra<small>Pre-pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step pr-step">Paliza salvaje<small>Activa Tajo de la bestia</small></div>
+            <div class="chain-step pr-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div>
+              <div class="chain-step-text">Paliza salvaje<small>Activa Tajo de la bestia</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Cólera de las bestias<small>Activa CD</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div>
+              <div class="chain-step-text">Poción + Raciales<small>Trinkets activos</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Matar<small>Con Aliado de la naturaleza</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
+              <div class="chain-step-text">Cólera de las bestias<small>Activa CD</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Flecha negra<small>Segunda Flecha negra</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
+              <div class="chain-step-text">Matar<small>Con Aliado de la naturaleza</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Matar<small>Con Aliado de la naturaleza</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div>
+              <div class="chain-step-text">Flecha negra<small>Segunda Flecha negra</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Disparo con púas<small>Objetivo prioritario</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
+              <div class="chain-step-text">Matar<small>Con Aliado de la naturaleza</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Flecha lastimera<small>Sin Disparo con púas / Matar</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+              <div class="chain-step-text">Disparo con púas<small>Objetivo prioritario</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Rotación AoE normal</div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div>
+              <div class="chain-step-text">Flecha lastimera<small>Sin Disparo con púas / Matar</small></div>
+            </div>
+            <div class="chain-arrow">→</div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Rotación"></div>
+              <div class="chain-step-text">Rotación normal</div>
+            </div>
           </div>
         </div>
         <div class="card card-mt">
           <div class="card-header">📋 Pasos Detallados — Dark Ranger ST</div>
           <ol class="opener-steps">
-            <li class="opener-step"><div class="ostep-num">Pre</div><div>Asegúrate de que <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Debe estar activa en el objetivo prioritario del pack.">Marca del cazador</span> está activa en el objetivo prioritario.</div></li>
-            <li class="opener-step"><div class="ostep-num">Pre</div><div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="2s de casteo. Pre-castear exactamente 2 segundos antes del pull.">Caja de puzles de Algeth'ar</span> exactamente <strong>2 segundos antes del pull</strong>.</div></li>
-            <li class="opener-step"><div class="ostep-num">1</div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Posiciona la mascota en el objetivo y carga Aliado de la naturaleza.">Disparo con púas</span> para posicionar la mascota y cargar <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar.">Aliado de la naturaleza</span>.</div></li>
-            <li class="opener-step"><div class="ostep-num">2</div><div>Activa <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar atacando!</strong></div></li>
-            <li class="opener-step"><div class="ostep-num">3</div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Activa la ventana de Fuego devastador (10s).">Flecha negra</span> para activar <span class="bf" data-name="Fuego devastador" data-type="Buff Dark Ranger" data-desc="Ventana de 10s dentro de Cólera de las bestias.">Fuego devastador</span>.</div></li>
-            <li class="opener-step"><div class="ostep-num">4</div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Con Aliado de la naturaleza activo.">Matar</span> con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño.">Aliado de la naturaleza</span> activo.</div></li>
-            <li class="opener-step"><div class="ostep-num">5</div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Recarga Aliado de la naturaleza para el siguiente Matar.">Disparo con púas</span> para recargar <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar.">Aliado de la naturaleza</span>.</div></li>
-            <li class="opener-step"><div class="ostep-num">6</div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Segundo Matar del opener.">Matar</span> de nuevo.</div></li>
-            <li class="opener-step"><div class="ostep-num">7</div><div>Cuando queden <strong>7 segundos</strong> en <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>, lanza <span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Cae dentro de la ventana de Fuego devastador. Hace proc de Flecha negra — síguela con una.">Flecha lastimera</span> para que caiga dentro de la ventana de <span class="bf" data-name="Fuego devastador" data-type="Buff Dark Ranger" data-desc="10s de los 15s de Cólera de las bestias.">Fuego devastador</span>. Síguela con <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Proc de Flecha lastimera.">Flecha negra</span> (proc automático).</div></li>
-            <li class="opener-step"><div class="ostep-num">8</div><div>Continúa con la rotación ST normal.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div><div>Asegúrate de que <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Debe estar activa en el objetivo prioritario del pack.">Marca del cazador</span> está activa en el objetivo prioritario.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div><div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="2s de casteo. Pre-castear exactamente 2 segundos antes del pull.">Caja de puzles de Algeth'ar</span> exactamente <strong>2 segundos antes del pull</strong>.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Posiciona la mascota en el objetivo y carga Aliado de la naturaleza.">Disparo con púas</span> para posicionar la mascota y cargar <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar.">Aliado de la naturaleza</span>.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Activa <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar atacando!</strong></div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Activa la ventana de Fuego devastador (10s).">Flecha negra</span> para activar <span class="bf" data-name="Fuego devastador" data-type="Buff Dark Ranger" data-desc="Ventana de 10s dentro de Cólera de las bestias.">Fuego devastador</span>.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Con Aliado de la naturaleza activo.">Matar</span> con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño.">Aliado de la naturaleza</span> activo.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Recarga Aliado de la naturaleza para el siguiente Matar.">Disparo con púas</span> para recargar <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar.">Aliado de la naturaleza</span>.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Segundo Matar del opener.">Matar</span> de nuevo.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div><div>Cuando queden <strong>7 segundos</strong> en <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>, lanza <span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Cae dentro de la ventana de Fuego devastador. Hace proc de Flecha negra — síguela con una.">Flecha lastimera</span> para que caiga dentro de la ventana de <span class="bf" data-name="Fuego devastador" data-type="Buff Dark Ranger" data-desc="10s de los 15s de Cólera de las bestias.">Fuego devastador</span>. Síguela con <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Proc de Flecha lastimera.">Flecha negra</span> (proc automático).</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Rotación"></div><div>Continúa con la rotación ST normal.</div></li>
           </ol>
         </div>
       </div>
@@ -1928,40 +2182,76 @@
       <div id="opener-dr-aoe" style="display:none">
         <div class="chain-wrap">
           <div class="chain">
-            <div class="chain-step bf-step">Marca del cazador<small>Pre-pull</small></div>
+            <div class="chain-step bf-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div>
+              <div class="chain-step-text">Marca del cazador<small>Pre-pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Flecha negra<small>Pre-pull</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div>
+              <div class="chain-step-text">Flecha negra<small>Pre-pull</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step pr-step">Paliza salvaje<small>Activa Embestida bestial</small></div>
+            <div class="chain-step pr-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div>
+              <div class="chain-step-text">Paliza salvaje<small>Activa Embestida bestial</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Cólera de las bestias<small>Activa CD</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div>
+              <div class="chain-step-text">Poción + Raciales<small>Trinkets activos</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Matar<small>Con Aliado de la naturaleza</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
+              <div class="chain-step-text">Cólera de las bestias<small>Activa CD</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Flecha negra<small>Segunda Flecha negra</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
+              <div class="chain-step-text">Matar<small>Con Aliado de la naturaleza</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Matar<small>Con Aliado de la naturaleza</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div>
+              <div class="chain-step-text">Flecha negra<small>Segunda Flecha negra</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Disparo con púas<small>Objetivo prioritario</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
+              <div class="chain-step-text">Matar<small>Con Aliado de la naturaleza</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Flecha lastimera<small>Sin Disparo con púas / Matar</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+              <div class="chain-step-text">Disparo con púas<small>Objetivo prioritario</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Rotación AoE normal</div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div>
+              <div class="chain-step-text">Flecha lastimera<small>Sin Disparo con púas / Matar</small></div>
+            </div>
+            <div class="chain-arrow">→</div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Rotación AoE"></div>
+              <div class="chain-step-text">Rotación AoE normal</div>
+            </div>
           </div>
         </div>
         <div class="card card-mt">
           <div class="card-header">📋 Pasos Detallados — Dark Ranger AoE/M+</div>
           <ol class="opener-steps">
-            <li class="opener-step"><div class="ostep-num">Pre</div><div>Asegúrate de que <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Debe estar activa en el objetivo prioritario del pack.">Marca del cazador</span> está activa en el objetivo prioritario.</div></li>
-            <li class="opener-step"><div class="ostep-num">1</div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Primera Flecha negra antes del pull para activar Fuego devastador desde el inicio.">Flecha negra</span> como primera habilidad.</div></li>
-            <li class="opener-step"><div class="ostep-num">2</div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="Activa Embestida bestial en la mascota para el cleave AoE.">Paliza salvaje</span> para activar <span class="bf" data-name="Embestida bestial" data-type="Buff AoE" data-desc="AoE de mascota. Mantenlo activo durante todo el pull.">Embestida bestial</span>.</div></li>
-            <li class="opener-step"><div class="ostep-num">3</div><div>Activa <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡Mascota en el centro del pack!</strong></div></li>
-            <li class="opener-step"><div class="ostep-num">4</div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Con Aliado de la naturaleza activo.">Matar</span> con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño.">Aliado de la naturaleza</span> activo.</div></li>
-            <li class="opener-step"><div class="ostep-num">5</div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Segunda Flecha negra dentro de Cólera de las bestias.">Flecha negra</span> de nuevo.</div></li>
-            <li class="opener-step"><div class="ostep-num">6</div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Segundo Matar del opener.">Matar</span>.</div></li>
-            <li class="opener-step"><div class="ostep-num">7</div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario, nunca multi-dot.">Disparo con púas</span> al objetivo prioritario.</div></li>
-            <li class="opener-step"><div class="ostep-num">8</div><div>Cuando no tengas <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario.">Disparo con púas</span> ni <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown.">Matar</span> disponibles, lanza <span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Relleno AoE potente.">Flecha lastimera</span>.</div></li>
-            <li class="opener-step"><div class="ostep-num">9</div><div>Continúa con la rotación AoE normal.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div><div>Asegúrate de que <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Debe estar activa en el objetivo prioritario del pack.">Marca del cazador</span> está activa en el objetivo prioritario.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Primera Flecha negra antes del pull para activar Fuego devastador desde el inicio.">Flecha negra</span> como primera habilidad.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="Activa Embestida bestial en la mascota para el cleave AoE.">Paliza salvaje</span> para activar <span class="bf" data-name="Embestida bestial" data-type="Buff AoE" data-desc="AoE de mascota. Mantenlo activo durante todo el pull.">Embestida bestial</span>.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Activa <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡Mascota en el centro del pack!</strong></div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Con Aliado de la naturaleza activo.">Matar</span> con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño.">Aliado de la naturaleza</span> activo.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Segunda Flecha negra dentro de Cólera de las bestias.">Flecha negra</span> de nuevo.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Segundo Matar del opener.">Matar</span>.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario, nunca multi-dot.">Disparo con púas</span> al objetivo prioritario.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div><div>Cuando no tengas <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario.">Disparo con púas</span> ni <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown.">Matar</span> disponibles, lanza <span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Relleno AoE potente.">Flecha lastimera</span>.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Rotación"></div><div>Continúa con la rotación AoE normal.</div></li>
           </ol>
         </div>
       </div>
@@ -1999,31 +2289,31 @@
         <button class="toggle-btn active" onclick="setRot('pl', this)">🎯 Pack Leader — Raid</button>
         <button class="toggle-btn" onclick="setRot('dr', this)">🖤 Dark Ranger — M+</button>
       </div>
-
-      <!-- PACK LEADER -->
+	  
+	<!-- PACK LEADER -->
       <div id="rot-pl">
         <div class="two-col">
           <div class="col-card">
             <div class="col-header blue">🎯 Pack Leader — ST (Raid)</div>
             <ul class="prio-list">
               <li class="prio-item">
-                <div class="prio-num">1</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
                 <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Úsalo si Cólera de las bestias saldrá de CD en ≤3 segundos. Hace que la mascota cargue al objetivo.">Disparo con púas</span> si <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> sale de CD en <strong>≤3 segundos</strong>.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">2</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
                 <p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. Úsalo en cuanto esté disponible, sin excusas.">Cólera de las bestias</span> — on cooldown, siempre.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">3</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
                 <p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown siempre. No esperes a que Aliado de la naturaleza esté activo — estará listo en ~8 de cada 10 usos de forma natural si alternas con Disparo con púas y Disparo de cobra.">Matar</span> — on cooldown, siempre. <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar.">Aliado de la naturaleza</span> estará activo de forma natural en ~8 de cada 10 usos si alternas correctamente.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">4</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
                 <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Relleno principal de la rotación ST.">Disparo con púas</span> — relleno principal.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">5</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div>
                 <p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno de Enfoque. Solo cuando no hay nada más disponible.">Disparo de cobra</span> — relleno de Enfoque.</p>
               </li>
             </ul>
@@ -2032,31 +2322,31 @@
             <div class="col-header orange">💥 Pack Leader — AoE/M+</div>
             <ul class="prio-list">
               <li class="prio-item">
-                <div class="prio-num">1</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
                 <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario si Cólera de las bestias va a salir de CD.">Disparo con púas</span> al objetivo prioritario si <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> está por salir de CD.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">2</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div>
                 <p><span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente. Activa Tajo de la bestia en tu mascota.">Paliza salvaje</span></p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">3</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
                 <p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span></p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">4</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
                 <p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Siempre alto en la prioridad AoE también.">Matar</span></p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">5</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div>
                 <p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Solo si tienes Zancapuerco activo Y menos de 4 enemigos.">Disparo de cobra</span> si tienes <span class="bf" data-name="Zancapuerco" data-type="Buff AoE" data-desc="Habilita Disparo de cobra en AoE con menos de 4 enemigos.">Zancapuerco</span> y <strong>&lt;4 enemigos</strong>.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">6</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
                 <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Relleno al objetivo prioritario.">Disparo con púas</span> al objetivo prioritario.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">7</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div>
                 <p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno final de Enfoque.">Disparo de cobra</span> — relleno final.</p>
               </li>
             </ul>
@@ -2120,35 +2410,35 @@
             <div class="col-header blue">🖤 Dark Ranger — ST</div>
             <ul class="prio-list">
               <li class="prio-item">
-                <div class="prio-num">1</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_18.jpg" alt="Trinkets"></div>
                 <p>Trinkets stat antes de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">2</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
                 <p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. On cooldown siempre.">Cólera de las bestias</span> — on cooldown.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">3</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
                 <p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown con Aliado de la naturaleza activo. NUNCA dos veces seguidas.">Matar</span> on cooldown con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar.">Aliado de la naturaleza</span> activo.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">4</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div>
                 <p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Activa Fuego devastador. Úsala durante Cólera de las bestias.">Flecha negra</span> durante <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">5</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div>
                 <p><span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Úsala con 7s restantes en Cólera de las bestias para que caiga dentro de la ventana de Fuego devastador. Hace proc de Flecha negra — síguela con una.">Flecha lastimera</span> cuando queden <strong>7s</strong> en <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">6</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
                 <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Relleno principal. Recarga Aliado de la naturaleza.">Disparo con púas</span> — relleno principal.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">7</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div>
                 <p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Fuera de Cólera de las bestias como relleno secundario.">Flecha negra</span> — relleno secundario.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">8</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div>
                 <p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno final de Enfoque.">Disparo de cobra</span> — relleno final.</p>
               </li>
             </ul>
@@ -2157,47 +2447,47 @@
             <div class="col-header orange">🖤 Dark Ranger — AoE/M+</div>
             <ul class="prio-list">
               <li class="prio-item">
-                <div class="prio-num">1</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_18.jpg" alt="Trinkets"></div>
                 <p>Trinkets stat antes de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">2</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div>
                 <p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Úsala si Tajo de la bestia está a punto de expirar.">Flecha negra</span> si <span class="bf" data-name="Tajo de la bestia" data-type="Buff AoE" data-desc="AoE de mascota. Mantenlo activo con Flecha negra si está a punto de expirar.">Tajo de la bestia</span> está a punto de expirar.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">3</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
                 <p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. On cooldown siempre.">Cólera de las bestias</span> — on cooldown.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">4</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div>
                 <p><span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Úsala si Cólera de las bestias está a punto de terminar.">Flecha lastimera</span> si <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> está a punto de terminar.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">5</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div>
                 <p><span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo. Activa Tajo de la bestia. On cooldown siempre en AoE.">Paliza salvaje</span> — on cooldown.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">6</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
                 <p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown con Aliado de la naturaleza activo. NUNCA dos veces seguidas.">Matar</span> on cooldown con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar.">Aliado de la naturaleza</span> activo.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">7</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div>
                 <p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Durante los primeros 10s de Cólera de las bestias (ventana de Fuego devastador).">Flecha negra</span> durante los primeros <strong>10s</strong> de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">8</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
                 <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario. Nunca multi-dot.">Disparo con púas</span> — on cooldown, siempre al objetivo prioritario.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">9</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div>
                 <p><span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Relleno secundario fuera de Cólera de las bestias.">Flecha lastimera</span> — relleno.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">10</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div>
                 <p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Relleno secundario.">Flecha negra</span> — relleno.</p>
               </li>
               <li class="prio-item">
-                <div class="prio-num">11</div>
+                <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div>
                 <p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno final de Enfoque.">Disparo de cobra</span> — relleno final.</p>
               </li>
             </ul>
@@ -2219,7 +2509,7 @@
         <div class="data-row">🧠 Conclusión: el buff está activo en la mayoría de Matares de forma <strong>natural</strong>, porque el weave correcto de Disparo con púas y Disparo de cobra lo recarga constantemente. No es una condición que esperar — es un resultado del loop bien ejecutado.</div>
         <div class="data-row">🚫 Lo que <strong>nunca hace</strong> un hunter de alto nivel: retrasar Matar esperando a que Aliado de la naturaleza esté activo. On cooldown gana siempre.</div>
       </div>
-    </div>
+	 </div>
 
     <!-- ══════════════════════════════════════════════════════════════
          TAB 4: STATS
@@ -2554,8 +2844,12 @@
     <div id="tab-bis" class="tab-panel">
       <h2>Best in Slot & Consumibles</h2>
 
-      <h3>Equipo BIS Completo</h3>
-
+      <h3>Equipo BIS Completo optimizado para contenido de raid</h3>
+      <div class="box box-warn">
+      <div class="box-title">⚠️ Fuente</div>
+      Items y consumibles extraídos de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Última revisión por Mishuko el <strong id="build-date">29 de marzo de 2026</strong>. Contrastadas y verificadas.
+  
+    </div>
       <div class="bis-progress-wrap">
         <span class="bis-progress-label">🗡️ Progreso BiS</span>
         <div class="bis-progress-bar-bg">
@@ -2575,53 +2869,53 @@
             </tr>
           </thead>
           <tbody>
-      <tr data-bis="arma">
+      <tr class="raid-row" data-bis="arma">
     <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Arma</td>
-        <td class="item-name"><a href="https://www.wowhead.com/es/item=251174/putriarco-de-impostor" target="_blank" rel="noopener noreferrer">Putriarco de impostor</a></td>
-        <td class="source-mp">Maisara Caverns (M+)</td>
+        <td class="item-name"><a href="https://www.wowhead.com/es/item=249279/rifle-de-golpe-solar?bonus=12806" target="_blank" rel="noopener noreferrer">Rifle de Golpe Solar</a></td>
+        <td class="source-raid">Averzian</td>
       </tr>
       <tr class="raid-row" data-bis="yelmo">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Yelmo</td>
         <td class="item-name"><a href="https://www.wowhead.com/es/item=249988/fauces-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Fauces de centinela primigenio</a></td>
-        <td class="source-raid">Midnight Falls</td>
+        <td class="source-raid">Tier Set — Vanguardia de la luz</td>
       </tr>
       <tr class="raid-row" data-bis="cuello">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Cuello</td>
         <td class="item-name"><a href="https://www.wowhead.com/es/item=250247/amuleto-del-himno-abisal" target="_blank" rel="noopener noreferrer">Amuleto del himno abisal</a></td>
-        <td class="source-raid">Midnight Falls</td>
+        <td class="source-raid">Marcha de Quel'danas</td>
       </tr>
       <tr data-bis="hombros">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Hombros</td>
         <td class="item-name"><a href="https://www.wowhead.com/es/item=151323/espaldares-del-cazador-del-vac%C3%ADo" target="_blank" rel="noopener noreferrer">Espaldares del cazador del Vacío</a></td>
-        <td class="source-mp">Seat of the Triumvirate (M+)</td>
+        <td class="source-mp">Trono del Triunvirato (M+)</td>
       </tr>
-      <tr data-bis="capa">
+      <tr class="raid-row"data-bis="capa">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Capa</td>
-        <td class="item-name"><a href="https://www.wowhead.com/es/item=258575/gran-capa-de-escamas-r%C3%ADgidas" target="_blank" rel="noopener noreferrer">Gran capa de escamas rígidas</a></td>
-        <td class="source-mp">Skyreach (M+)</td>
+        <td class="item-name"><a href="https://www.wowhead.com/es/item=249335/estandarte-del-imperador?bonus=12806 target="_blank" rel="noopener noreferrer">Estandarte del imperador</a></td>
+        <td class="source-raid">Averzian</td>
       </tr>
       <tr class="raid-row" data-bis="pecho">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Pecho</td>
         <td class="item-name"><a href="https://www.wowhead.com/es/item=249991/peto-de-escamas-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Peto de escamas de centinela primigenio <span class="tier-badge">TIER</span></a></td>
-        <td class="source-raid">Tier Set — Raid</td>
+        <td class="source-raid">Tier Set — Chimaerus</td>
       </tr>
-      <tr data-bis="munecas">
+      <tr class="raid-row" data-bis="munecas">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Muñecas</td>
-        <td class="item-name"><a href="https://www.wowhead.com/es/item=251209/pu%C3%B1os-de-celador-del-n%C3%BAcleo" target="_blank" rel="noopener noreferrer">Puños de celador del núcleo</a></td>
-        <td class="source-mp">Nexus Point Xenas (M+)</td>
+        <td class="item-name"><a href="https://www.wowhead.com/es/item=249304/pu%C3%B1os-del-rey-ca%C3%ADdo?bonus=12806" target="_blank" rel="noopener noreferrer">Puños del Rey Caído</a></td>
+        <td class="source-raid">Rey Nexo Salhadaar</td>
       </tr>
       <tr class="raid-row" data-bis="guantes">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Guantes</td>
         <td class="item-name"><a href="https://www.wowhead.com/es/item=249989/guardagarras-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Guardagarras de centinela primigenio <span class="tier-badge">TIER</span></a></td>
-        <td class="source-raid">Tier Set — Raid</td>
+        <td class="source-raid">Tier Set — Vorasius</td>
       </tr>
       <tr data-bis="cinturon">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
@@ -2634,7 +2928,7 @@
         <td class="slot-col">Piernas</td>
         <td class="item-name"><a href="https://www.wowhead.com/es/item=249987/musleras-de-centinela-primigenio?bonus=12806" target="_blank" rel="noopener noreferrer">Musleras de centinela primigenio
  <span class="tier-badge">TIER</span></a></td>
-        <td class="source-raid">Tier Set — Raid</td>
+        <td class="source-raid">Tier Set — Vaelgor & Ezzorak</td>
       </tr>
       <tr data-bis="botas">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
@@ -2646,13 +2940,13 @@
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Anillo</td>
         <td class="item-name"><a href="https://www.wowhead.com/es/item=249920/ojo-de-medianoche" target="_blank" rel="noopener noreferrer">Ojo de medianoche</a></td>
-        <td class="source-raid">Midnight Falls</td>
+        <td class="source-raid">Marcha de Quel'danas</td>
       </tr>
       <tr class="raid-row" data-bis="anillo2">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Anillo</td>
         <td class="item-name"><a href="https://www.wowhead.com/es/item=249369/v%C3%ADnculo-de-la-luz?bonus=13668" target="_blank" rel="noopener noreferrer">Vínculo de la Luz</a></td>
-        <td class="source-raid">Lightblinded Vanguard</td>
+        <td class="source-raid">Vanguardia de la luz</td>
       </tr>
       <tr class="raid-row" data-bis="trinket1">
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
@@ -2664,7 +2958,7 @@
         <td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td>
         <td class="slot-col">Trinket</td>
         <td class="item-name"><a href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar" target="_blank" rel="noopener noreferrer">Caja de puzles de Algeth'ar</a></td>
-        <td class="source-mp">Algeth'ar Academy (M+)</td>
+        <td class="source-mp">Academia Algeth'ar(M+)</td>
       </tr>
     </tbody>
   </table>
@@ -2735,8 +3029,8 @@
       </div>
 
     <!-- ══════════════════════════════════════════════════════════════
-     TAB 8: TALENTOS
-══════════════════════════════════════════════════════════════ -->
+         TAB 8: TALENTOS
+    ══════════════════════════════════════════════════════════════ -->
 <div id="tab-talentos" class="tab-panel">
   <h2>Builds de Talentos</h2>
 
@@ -2747,203 +3041,73 @@
 
   <div class="box box-warn">
     <div class="box-title">⚠️ Fuente</div>
-    Builds extraídas de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Última revisión por Mishuko el <strong id="build-date">26 de marzo de 2026</strong>. Contrastadas y verificadas en juego.
+    Builds extraídas de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Última revisión por Mishuko el <strong id="build-date">29 de marzo de 2026</strong>. Contrastadas y verificadas en juego.
   </div>
 
-  <div class="toggle-wrap" style="flex-wrap:wrap;gap:8px;margin-bottom:24px;padding-top:12px">
-    <button class="toggle-btn meta active" onclick="setBuild('pl-raid', this)">🎯 Pack Leader Raid</button>
-    <button class="toggle-btn meta" onclick="setBuild('dr-raid', this)">🖤 Dark Ranger Raid AoE</button>
-    <button class="toggle-btn meta" onclick="setBuild('dr-mp', this)">🖤 Dark Ranger M+</button>
-    <button class="toggle-btn" onclick="setBuild('pl-mp', this)">⚔️ Pack Leader M+</button>
-  </div>
+  <!-- Botones de toggle — se generan automáticamente desde buildsData -->
+  <div id="builds-toggle-wrap" class="toggle-wrap" style="flex-wrap:wrap;gap:8px;margin-bottom:24px;padding-top:12px"></div>
 
-  <!-- ── PACK LEADER RAID ST ─────────────────────────────────── -->
-  <div id="build-pl-raid">
-    <div class="card">
-      <div class="card-header">🎯 Pack Leader — Single Target / Raid</div>
-      <p class="build-desc">Build principal para raid y referencia estándar para la mayoría de encuentros de Midnight. Maximiza el daño de objetivo único. Mas adelante traeremos talentos para cada boss en Heroico y Mitico</p>
-      <div class="build-actions">
-        <button onclick="copyTalent(this, 'C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYG2GzsNzwMmZYYmxYmxMzYGzwMzYGzgx0MAAAAAgZAAAYMzMDYmNwGMLgND')" class="build-btn build-btn-copy">📋 Copiar string</button>
-        <a href="https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFRFQKQUBUOVVRRUBlBVoEUFNBFFFVVVUBR" target="_blank" class="build-btn build-btn-link">🔗 Abrir en Wowhead</a>
-      </div>
+  <!-- Contenido de los builds — se genera automáticamente desde buildsData -->
+  <div id="builds-container"></div>
 
-      <div class="talent-showcase">
-        <div class="ts-header">
-          <span class="ts-title">🔧 Talentos Flexibles</span>
-          <span class="ts-sub">Ajusta estos puntos según el encuentro — en orden de prioridad para quitar:</span>
-        </div>
-        <div class="ts-flexible">
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">1</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=34477">Redirección</a>
-              <span class="ts-flex-note">Util solo en algunos enfrentamientos como Vanguardia de la Luz.</span>
-            </div>
-          </div>
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">2</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=109248">Disparo vinculante</a>
-              <span class="ts-flex-note">Opcional. Los nodos bajo Disparo vinculante e Intimidación son opciones si necesitas control adicional para un encuentro específico.</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="divider"></div>
 
-      <div class="box box-tip" style="margin-top:0">
-        <div class="box-title">💡 Notas del build</div>
-        <ul class="build-notes"><ul>
-          <li><a href="https://www.wowhead.com/es/spell=19801">Disparo tranquilizante</a> es recomendable en el encuentro de Midnight Falls, pero no en otros sitios.</li>
-          <li>Los nodos de elección bajo <a href="https://www.wowhead.com/es/spell=109248">Disparo vinculante</a> e Intimidación son opciones si necesitas control adicional para un encuentro específico.</li>
-        </ul>
-      </div>
+  <!-- === SECCIÓN TALENTOS POR BOSS === -->
+  <div class="card" style="margin-bottom: 30px;">
+    <div class="card-header">Talentos por Boss — Raid Midnight</div>
+
+    <div class="box box-info" style="margin-bottom: 18px;">
+      <div class="box-title">ℹ️ Cómo usar esta sección</div>
+      Selecciona un boss para ver los ajustes de talentos recomendados respecto al build base y las notas clave del encuentro.
     </div>
-  </div>
 
-  <!-- ── DARK RANGER RAID AoE ────────────────────────────────── -->
-  <div id="build-dr-raid" style="display:none">
-    <div class="card">
-      <div class="card-header">🖤 Dark Ranger — Raid AoE</div>
-      <p class="build-desc">Mejor build Dark Ranger para AoE en Raid. Optimizado para maximizar el daño en ráfaga AoE y daño a objetivos prioritarios con una pérdida de DPS single-target modesta.</p>
-      <div class="build-actions">
-        <button onclick="copyTalent(this, 'C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZYZmZWMDzYmhZMzMDzYmZMjZYmZMjZwYaGAAAAAwMAAAMmZmhZGgsBzCYzA')" class="build-btn build-btn-copy">📋 Copiar string</button>
-        <a href="https://www.wowhead.com/talent-calc/hunter/beast-mastery/dark-ranger/EAPRlFFlRCIFRFQKQUBUOVVVVVBFBRoEUFNBAFFVVVUBV" target="_blank" class="build-btn build-btn-link">🔗 Abrir en Wowhead</a>
-      </div>
+    <!-- BOSS SELECTOR -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:16px 0" id="bossGrid">
 
-      <div class="talent-showcase">
-        <div class="ts-header">
-          <span class="ts-title">🔧 Talentos Flexibles</span>
-          <span class="ts-sub">Ajusta estos puntos según el encuentro — en orden de prioridad para quitar:</span>
-        </div>
-        <div class="ts-flexible">
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">1</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=34477">Redirección</a>
-              <span class="ts-flex-note">Util solo en algunos enfrentamientos como Vanguardia de la Luz.</span>
-            </div>
-          </div>
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">2</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=109248">Disparo vinculante</a>
-              <span class="ts-flex-note">Opcional. Los nodos bajo Disparo vinculante e Intimidación son opciones si necesitas control adicional para un encuentro específico.</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button class="boss-sel-btn active" onclick="selectBoss(0,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Chimaerus.png" alt="Chimaerus">
+        <div class="boss-sel-label">Chimaerus</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(1,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Imperator-Averzian.png" alt="Imperador Averzian">
+        <div class="boss-sel-label">Imperador Averzian</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(2,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Vorasius.png" alt="Vorasius">
+        <div class="boss-sel-label">Vorasius</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(3,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Gefallener-Koenig-Salhadaar-768x432.png" alt="Rey caído Salhadaar">
+        <div class="boss-sel-label">Rey caído Salhadaar</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(4,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Vaelgor-und-Ezzorak.png" alt="Vaelgor y Ezzorak">
+        <div class="boss-sel-label">Vaelgor y Ezzorak</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(5,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Lichtblinde-Vorhut-768x432.png" alt="Vanguardia de la Luz">
+        <div class="boss-sel-label">Vanguardia de la Luz</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(6,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Krone-des-Kosmos-768x432.png" alt="Corona del Cosmos">
+        <div class="boss-sel-label">Corona del Cosmos</div>
+      </button>
+      <button class="boss-sel-btn soon">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Beloren-768x432.png" alt="Belo'ren">
+        <div class="boss-sel-soon-overlay"><span class="boss-sel-soon-label">Próximamente</span></div>
+        <div class="boss-sel-label">Belo'ren</div>
+      </button>
+      <button class="boss-sel-btn soon">
+        <img class="boss-sel-ph" src="https://static.wikia.nocookie.net/diealdor/images/3/3b/L%27ura.jpg/revision/latest?cb=20170919092714" alt="L'ura">
+        <div class="boss-sel-soon-overlay"><span class="boss-sel-soon-label">Próximamente</span></div>
+        <div class="boss-sel-label">L'ura</div>
+      </button>
 
-      <div class="box box-tip" style="margin-top:0">
-        <div class="box-title">💡 Notas del build</div>
-        <ul class="build-notes"><ul>
-          <li><a href="https://www.wowhead.com/es/spell=19801">Disparo tranquilizante</a> es recomendable en el encuentro de Midnight Falls en heroico, pero no en otros sitios.</li>
-          <li>Los nodos de elección bajo <a href="https://www.wowhead.com/es/spell=109248">Disparo vinculante</a> e Intimidación son opciones si necesitas control adicional para un encuentro específico.</li>
-        </ul>
-      </div>
     </div>
-  </div>
 
-  <!-- ── DARK RANGER M+ ─────────────────────────────────────── -->
-  <div id="build-dr-mp" style="display:none">
-    <div class="card">
-      <div class="card-header">🖤 Dark Ranger — M+ (Prio & AoE)</div>
-      <p class="build-desc">Build óptimo Dark Ranger para Míticas+, basado en simulaciones y análisis extensivo en una gran variedad de escenarios. Tiene una mezcla óptima de single-target y AoE — hay builds que hacen más AoE pero pierden más ST de lo que ganan, y viceversa.</p>
-      <div class="build-actions">
-        <button onclick="copyTalent(this, 'C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZGLzMDzwMzMYGzMzwMmZGzMzYbmZMjZYZMNDAAAAAYGAAAYMGmZACDzCYzA')" class="build-btn build-btn-copy">📋 Copiar string</button>
-        <a href="https://www.wowhead.com/talent-calc/hunter/beast-mastery/dark-ranger/EAPRlFFlRSIFFEAaBUBFOVVVVVRFFAoEUFNBAFFVVVUBV" target="_blank" class="build-btn build-btn-link">🔗 Abrir en Wowhead</a>
-      </div>
+    <!-- BOSS PANELS -->
+    <div id="boss-panels" style="margin-top: 20px;"></div>
 
-      <div class="talent-showcase">
-        <div class="ts-header">
-          <span class="ts-title">🔧 Talentos Flexibles</span>
-          <span class="ts-sub">Ajusta estos puntos según la mazmorra — en orden de prioridad para quitar:</span>
-        </div>
-        <div class="ts-flexible">
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">1</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=34477">Redirección</a>
-              <span class="ts-flex-note">Mas util que en las build de M+ de Pack Leader ya que esta vez nosotros generamos mas daño que nuestras mascotas.</span>
-            </div>
-          </div>
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">2</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=459983">Tranquilizante para kodos</a>
-              <span class="ts-flex-note">Puede cambiarse por <a href="https://www.wowhead.com/es/spell=459991">Tranquilizante para demosaurios</a> en algunas mazmorras, o quitarse si ninguno es útil.</span>
-            </div>
-          </div>
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">3</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=459517">Ungüento de emergencias</a>
-              <span class="ts-flex-note">Útil principalmente en Maisara Caverns y Windrunner Spire. Fuera de estas dos, puedes quitarlo.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="box box-tip" style="margin-top:0">
-        <div class="box-title">💡 Notas del build</div>
-        <ul class="build-notes"><ul>
-          <li><a href="https://www.wowhead.com/es/spell=109248">Disparo vinculante</a> no es obligatorio — ya no tienes una forma fácil de activarlo. Libera esos puntos si no lo usas.</li>
-          <li>Encontrar camino puede cambiarse por <a href="https://www.wowhead.com/es/spell=199921">Quemasendas</a> o <a href="https://www.wowhead.com/es/spell=1258404">Reflejos felinos</a> según prefieras.</li>
-          <li><a href="https://www.wowhead.com/es/spell=1258486">Fingir muerte mejorado</a> es muy bueno esta temporada por la cantidad de casts canalizados. Cógelo si planeas usarlo.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── PACK LEADER M+ ─────────────────────────────────────── -->
-  <div id="build-pl-mp" style="display:none">
-    <div class="card">
-      <div class="card-header">⚔️ Pack Leader — M+</div>
-      <p class="build-desc">Funciona bien pero requiere un mejor pocisionamiento general y basandome en simulaciones y pruebas propias es inferior la build de Dark Ranger, al menos por ahora.</p>
-      <div class="build-actions">
-        <button onclick="copyTalent(this, 'C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYmxyMzwMMzMDmxMzMMjZmxMzM2mZGzYGWGTzAAAAAAmBAAAGjBMzGghZBsZA')" class="build-btn build-btn-copy">📋 Copiar string</button>
-        <a href="https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRSIFFEAaBUBFOVVVVVRFFAoEUFNBAFFVVVUBB" target="_blank" class="build-btn build-btn-link">🔗 Abrir en Wowhead</a>
-      </div>
-
-      <div class="talent-showcase">
-        <div class="ts-header">
-          <span class="ts-title">🔧 Talentos Flexibles</span>
-          <span class="ts-sub">Ajusta estos puntos según la mazmorra — en orden de prioridad para quitar:</span>
-        </div>
-        <div class="ts-flexible">
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">1</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=34477">Redirección</a>
-              <span class="ts-flex-note">Aunque no esta mal llevarlo, en las builds de Pack Leader no es tan efectivo ya que la mayoria de nuestro daño proviene de nuestras mascotas..</span>
-            </div>
-          </div>
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">2</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=459983">Tranquilizante para kodos</a>
-              <span class="ts-flex-note">Puede cambiarse por <a href="https://www.wowhead.com/es/spell=459991">Tranquilizante para demosaurios</a> en algunas mazmorras, o quitarse si ninguno es útil.</span>
-            </div>
-          </div>
-          <div class="ts-flex-item">
-            <span class="ts-flex-num">3</span>
-            <div class="ts-flex-content">
-              <a href="https://www.wowhead.com/es/spell=459517">Ungüento de emergencias</a>
-              <span class="ts-flex-note">Útil principalmente en Maisara Caverns y Windrunner Spire. Fuera de estas dos, puedes quitarlo.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="box box-tip" style="margin-top:0">
-        <div class="box-title">💡 Notas del build</div>
-        <ul class="build-notes"><ul>
-          <li><a href="https://www.wowhead.com/es/spell=109248">Disparo vinculante</a> no es obligatorio — ya no tienes una forma fácil de activarlo. Libera esos puntos si no lo usas.</li>
-          <li><a href="https://www.wowhead.com/es/spell=459983">Tranquilizante para kodos</a> puede cambiarse por <a href="https://www.wowhead.com/es/spell=459991">Tranquilizante para demosaurios</a> en algunas mazmorras, o quitarse si ninguno es útil.</li>
-          <li>Encontrar camino puede cambiarse por <a href="https://www.wowhead.com/es/spell=199921">Quemasendas</a> o <a href="https://www.wowhead.com/es/spell=1258404">Reflejos felinos</a> según prefieras.</li>
-          <li><a href="https://www.wowhead.com/es/spell=1258486">Fingir muerte mejorado</a> es muy bueno esta temporada por la cantidad de casts canalizados. Cógelo si planeas usarlo.</li>
-        </ul>
-      </div>
-    </div>
   </div>
 
 </div><!-- /tab-talentos -->
@@ -3467,6 +3631,909 @@
       });
     }
 
+
+// ─── BOSS DATA ────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+// SPELL REGISTRY
+// ═══════════════════════════════════════════════════════════════════════════
+const SPELL_REGISTRY = {
+  // ── Habilidades activas ──────────────────────────────────────────────
+  "Cólera de las bestias":           19574,
+  "Matar":                           34026,
+  "Disparo con púas":                217200,
+  "Disparo de cobra":                193455,
+  "Paliza salvaje":                  1264359,
+  "Tajo de la bestia":               268877,
+  "Carcaj de piel de serpiente":     468695,
+  "Marca del cazador":               257284,
+  "¡Estampida!":                     201430,
+  "Disparo tranquilizante":          19801,
+  "Intimidación":                    19577,
+  "Separación":                      781,
+  "Fingir muerte":                   5384,
+  "Aspecto de la tortuga":          186265,
+  "Excitación":                      109304,
+  "Supervivencia del más fuerte":    264735,
+  "Contradisparo":                   147362,
+  // ── Talentos de clase ────────────────────────────────────────────────
+  "Redirección":                     34477,
+  "Disparo vinculante":              109248,
+  "Encontrar camino":                378002,
+  "Tranquilizante para kodos":       459983,
+  "Tranquilizante para demosaurios": 459991,
+  "Ungüento de emergencias":         459517,
+  "Quemasendas":                     199921,
+  "Reflejos felinos":                1258404,
+  "Fingir muerte mejorado":          1258486,
+  "Instintos salvajes":              378442,
+  "Frenesí sangriento":              407412,
+  "Bestia temible":                  120679,
+  // ── Buffs / Debuffs ──────────────────────────────────────────────────
+  "Aliado de la naturaleza":         1273145,
+  "Escabechina":                     1272099,
+  "Fuego devastador":                466990,
+  "Zancapuerco":                     472639,
+  "Flecha negra":                    466930,
+  "Flecha lastimera":                392060,
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// AUTO-TOOLTIP ENGINE
+// Convierte nombres de habilidades en links de Wowhead automáticamente.
+// Solo se aplica a textos DENTRO del boss panel — no toca el resto de la guía.
+// ═══════════════════════════════════════════════════════════════════════════
+function autoLink(text) {
+  // Ordenar por longitud descendente para evitar matches parciales
+  const entries = Object.entries(SPELL_REGISTRY).sort((a, b) => b[0].length - a[0].length);
+  let result = text;
+
+  // Trabajamos con un placeholder para no re-procesar links ya generados
+  const placeholders = [];
+
+  entries.forEach(([name, id]) => {
+    // Escapar caracteres especiales del nombre para la regex
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/¡/g, '¡');
+    const regex = new RegExp(`(?<!href=[^>]*>)(${escaped})(?![^<]*<\/a>)`, 'g');
+    result = result.replace(regex, (match) => {
+      const ph = `\x00SPELL${placeholders.length}\x00`;
+      placeholders.push(`<a href="https://www.wowhead.com/es/spell=${id}" target="_blank">${match}</a>`);
+      return ph;
+    });
+  });
+
+  // Restaurar placeholders
+  placeholders.forEach((link, i) => {
+    result = result.replace(`\x00SPELL${i}\x00`, link);
+  });
+
+  return result;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BUILDS DATA — Datos de la pestaña "Talentos".
+// Edita aquí. Escribe texto plano; los nombres del SPELL_REGISTRY se
+// convierten en tooltips de Wowhead automáticamente.
+//
+// Estructura de cada build:
+// {
+//   id:       "pl-raid",          // identificador del div toggle (sin "build-")
+//   label:    "🎯 Pack Leader Raid", // texto del botón toggle
+//   meta:     true,               // true = borde dorado "★ Meta"
+//   header:   "🎯 Pack Leader — Single Target / Raid",
+//   desc:     "Descripción del build.",
+//   copyStr:  "STRING_DE_TALENTOS",
+//   whUrl:    "https://www.wowhead.com/...",
+//   flexibles: [
+//     { name: "Nombre del talento", note: "Explicación de cuándo quitarlo." },
+//   ],
+//   notes: [
+//     "Texto de nota. Los hechizos se auto-linkean.",
+//   ],
+// }
+// ═══════════════════════════════════════════════════════════════════════════
+
+const buildsData = [
+
+  // ──────────────────────────────────────────────────────────────────────
+  // BUILD 1: PACK LEADER RAID
+  // ──────────────────────────────────────────────────────────────────────
+  {
+    id:      "pl-raid",
+    label:   "🎯 Pack Leader Raid",
+    meta:    true,
+    header:  "🎯 Pack Leader — Single Target / Raid",
+    desc:    "Build principal para raid y referencia estándar para la mayoría de encuentros de Midnight. Maximiza el daño de objetivo único. Mas adelante traeremos talentos para cada boss en Heroico y Mítico.",
+    copyStr: "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYG2GzsNzwMmZYYmxYmxMzYGzwMzYGzgx0MAAAAAgZAAAYMzMDYmNwGMLgND",
+    whUrl:   "https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFRFQKQUBUOVVRRUBlBVoEUFNBFFFVVVUBR",
+    flexibles: [
+      {
+        name: "Redirección",
+        note: "Útil solo en algunos enfrentamientos como Vanguardia de la Luz.",
+      },
+      {
+        name: "Disparo vinculante",
+        note: "Opcional. Los nodos bajo Disparo vinculante e Intimidación son opciones si necesitas control adicional para un encuentro específico.",
+      },
+    ],
+    notes: [
+      "Disparo tranquilizante es recomendable en el encuentro de Midnight Falls, pero no en otros sitios.",
+      "Los nodos de elección bajo Disparo vinculante e Intimidación son opciones si necesitas control adicional para un encuentro específico.",
+    ],
+  },
+
+  // ──────────────────────────────────────────────────────────────────────
+  // BUILD 2: DARK RANGER RAID AoE
+  // ──────────────────────────────────────────────────────────────────────
+  {
+    id:      "dr-raid",
+    label:   "🖤 Dark Ranger Raid AoE",
+    meta:    true,
+    header:  "🖤 Dark Ranger — Raid AoE",
+    desc:    "Mejor build Dark Ranger para AoE en Raid. Optimizado para maximizar el daño en ráfaga AoE y daño a objetivos prioritarios con una pérdida de DPS single-target modesta.",
+    copyStr: "C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZYZmZWMDzYmhZMzMDzYmZMjZYmZMjZwYaGAAAAAwMAAAMmZmhZGgsBzCYzA",
+    whUrl:   "https://www.wowhead.com/talent-calc/hunter/beast-mastery/dark-ranger/EAPRlFFlRCIFRFQKQUBUOVVVVVBFBRoEUFNBAFFVVVUBV",
+    flexibles: [
+      {
+        name: "Redirección",
+        note: "Útil solo en algunos enfrentamientos como Vanguardia de la Luz.",
+      },
+      {
+        name: "Disparo vinculante",
+        note: "Opcional. Los nodos bajo Disparo vinculante e Intimidación son opciones si necesitas control adicional para un encuentro específico.",
+      },
+    ],
+    notes: [
+      "Disparo tranquilizante es recomendable en el encuentro de Midnight Falls en heroico, pero no en otros sitios.",
+      "Los nodos de elección bajo Disparo vinculante e Intimidación son opciones si necesitas control adicional para un encuentro específico.",
+    ],
+  },
+
+  // ──────────────────────────────────────────────────────────────────────
+  // BUILD 3: DARK RANGER M+
+  // ──────────────────────────────────────────────────────────────────────
+  {
+    id:      "dr-mp",
+    label:   "🖤 Dark Ranger M+",
+    meta:    true,
+    header:  "🖤 Dark Ranger — M+ (Prio & AoE)",
+    desc:    "Build óptimo Dark Ranger para Míticas+, basado en simulaciones y análisis extensivo en una gran variedad de escenarios. Tiene una mezcla óptima de single-target y AoE — hay builds que hacen más AoE pero pierden más ST de lo que ganan, y viceversa.",
+    copyStr: "C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZGLzMDzwMzMYGzMzwMmZGzMzYbmZMjZYZMNDAAAAAYGAAAYMGmZACDzCYzA",
+    whUrl:   "https://www.wowhead.com/talent-calc/hunter/beast-mastery/dark-ranger/EAPRlFFlRSIFFEAaBUBFOVVVVVRFFAoEUFNBAFFVVVUBV",
+    flexibles: [
+      {
+        name: "Redirección",
+        note: "Más útil que en las builds de M+ de Pack Leader ya que esta vez nosotros generamos más daño que nuestras mascotas.",
+      },
+      {
+        name: "Tranquilizante para kodos",
+        note: "Puede cambiarse por Tranquilizante para demosaurios en algunas mazmorras, o quitarse si ninguno es útil.",
+      },
+      {
+        name: "Ungüento de emergencias",
+        note: "Útil principalmente en Maisara Caverns y Windrunner Spire. Fuera de estas dos, puedes quitarlo.",
+      },
+    ],
+    notes: [
+      "Disparo vinculante no es obligatorio — ya no tienes una forma fácil de activarlo. Libera esos puntos si no lo usas.",
+      "Encontrar camino puede cambiarse por Quemasendas o Reflejos felinos según prefieras.",
+      "Fingir muerte mejorado es muy bueno esta temporada por la cantidad de casts canalizados. Cógelo si planeas usarlo.",
+    ],
+  },
+
+  // ──────────────────────────────────────────────────────────────────────
+  // BUILD 4: PACK LEADER M+
+  // ──────────────────────────────────────────────────────────────────────
+  {
+    id:      "pl-mp",
+    label:   "⚔️ Pack Leader M+",
+    meta:    false,
+    header:  "⚔️ Pack Leader — M+",
+    desc:    "Funciona bien pero requiere un mejor posicionamiento general y basándome en simulaciones y pruebas propias es inferior a la build de Dark Ranger, al menos por ahora.",
+    copyStr: "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYmxyMzwMMzMDmxMzMMjZmxMzM2mZGzYGWGTzAAAAAAmBAAAGjBMzGghZBsZA",
+    whUrl:   "https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRSIFFEAaBUBFOVVVVVRFFAoEUFNBAFFVVVUBB",
+    flexibles: [
+      {
+        name: "Redirección",
+        note: "Aunque no está mal llevarlo, en las builds de Pack Leader no es tan efectivo ya que la mayoría de nuestro daño proviene de nuestras mascotas.",
+      },
+      {
+        name: "Tranquilizante para kodos",
+        note: "Puede cambiarse por Tranquilizante para demosaurios en algunas mazmorras, o quitarse si ninguno es útil.",
+      },
+      {
+        name: "Ungüento de emergencias",
+        note: "Útil principalmente en Maisara Caverns y Windrunner Spire. Fuera de estas dos, puedes quitarlo.",
+      },
+    ],
+    notes: [
+      "Disparo vinculante no es obligatorio — ya no tienes una forma fácil de activarlo. Libera esos puntos si no lo usas.",
+      "Tranquilizante para kodos puede cambiarse por Tranquilizante para demosaurios en algunas mazmorras, o quitarse si ninguno es útil.",
+      "Encontrar camino puede cambiarse por Quemasendas o Reflejos felinos según prefieras.",
+      "Fingir muerte mejorado es muy bueno esta temporada por la cantidad de casts canalizados. Cógelo si planeas usarlo.",
+    ],
+  },
+
+];
+
+// ─── BUILDS RENDERER ──────────────────────────────────────────────────────
+// Renderiza dinámicamente los builds en la pestaña de Talentos.
+// No toques esta función — edita buildsData arriba.
+function renderBuilds() {
+  const toggleWrap = document.getElementById('builds-toggle-wrap');
+  const buildsContainer = document.getElementById('builds-container');
+  if (!toggleWrap || !buildsContainer) return;
+
+  // Botones de toggle
+  toggleWrap.innerHTML = buildsData.map((b, i) => `
+    <button class="toggle-btn${b.meta ? ' meta' : ''}${i === 0 ? ' active' : ''}"
+      onclick="setBuild('${b.id}', this)">
+      ${b.label}
+    </button>`).join('');
+
+  // Contenido de cada build
+  buildsContainer.innerHTML = buildsData.map((b, i) => {
+    const flexiblesHtml = b.flexibles.map((f, j) => `
+      <div class="ts-flex-item">
+        <span class="ts-flex-num">${j + 1}</span>
+        <div class="ts-flex-content">
+          <strong>${autoLink(f.name)}</strong>
+          <span class="ts-flex-note">${autoLink(f.note)}</span>
+        </div>
+      </div>`).join('');
+
+    const notesHtml = b.notes.map(n => `<li>${autoLink(n)}</li>`).join('');
+
+    const copyBtnId = `copybtn-${b.id}`;
+
+    return `
+      <div id="build-${b.id}" ${i !== 0 ? 'style="display:none"' : ''}>
+        <div class="card">
+          <div class="card-header">${b.header}</div>
+          <p class="build-desc">${b.desc}</p>
+          <div class="build-actions">
+            <button id="${copyBtnId}" onclick="copyTalent(document.getElementById('${copyBtnId}'), '${b.copyStr}')" class="build-btn build-btn-copy">📋 Copiar string</button>
+            <a href="${b.whUrl}" target="_blank" class="build-btn build-btn-link">🔗 Abrir en Wowhead</a>
+          </div>
+
+          <div class="talent-showcase">
+            <div class="ts-header">
+              <span class="ts-title">🔧 Talentos Flexibles</span>
+              <span class="ts-sub">Ajusta estos puntos según el encuentro — en orden de prioridad para quitar:</span>
+            </div>
+            <div class="ts-flexible">${flexiblesHtml}</div>
+          </div>
+
+          <div class="box box-tip" style="margin-top:0">
+            <div class="box-title">💡 Notas del build</div>
+            <ul class="build-notes">${notesHtml}</ul>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BOSS DATA — Edita aquí. Solo texto plano, sin HTML para los links.
+// Los nombres de habilidades del SPELL_REGISTRY se convierten en tooltips
+// automáticamente. Para negritas usa <strong>...</strong>.
+//
+// Estructura de cada boss:
+// {
+//   name:    "Nombre del boss",
+//   imgUrl:  "URL de la imagen del selector",
+//   diff:    "h" (heroico) | "m" (mítico),
+//   summary: "Descripción del encuentro. Los nombres de habilidades se auto-linkean.",
+//   builds: [
+//     {
+//       id:         "rec",             // identificador único
+//       label:      "Recomendado",     // texto del botón toggle
+//       rec:        true,              // ¿es el build por defecto?
+//       heroTalent: "Pack Leader",     // "Pack Leader" o "Dark Ranger"
+//       string:     "PASTE_STRING",    // string de importación de talentos
+//       whUrl:      "https://...",     // URL de Wowhead
+//       swaps: [
+//         { type: "add"|"remove", icon: "nombre_icono_zamimg", name: "Nombre del talento", badge: "AÑADIR"|"QUITAR", desc: "Descripción." },
+//       ],
+//       notes: [
+//         { type: "crit"|"warn"|"tip"|"info", text: "Texto de la nota. Los hechizos se auto-linkean." },
+//       ]
+//     }
+//   ]
+// }
+// ═══════════════════════════════════════════════════════════════════════════
+
+const bossData = [
+
+  // ────────────────────────────────────────────────────────────────────────
+  // BOSS 1: CHIMAERUS
+  // ────────────────────────────────────────────────────────────────────────
+  {
+    name:    "Chimaerus",
+    imgUrl:  "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Chimaerus.png",
+    diff:    "h",
+    summary: "En este encuentro combinamos un fuerte enfoque en single target con bursts de AoE durante las oleadas de adds y la interfase. La clave está en mantener un buen daño sostenido sobre Chimaerus mientras controlamos y eliminamos rápidamente los adds que se dirigen hacia él.",
+    builds: [
+      {
+        id:         "rec",
+        label:      "Recomendado",
+        rec:        true,
+        heroTalent: "Pack Leader",
+        string:     "C0PAo4YcvOcqUdzB9zV+NhSAcAMmxwGsAzwQDbAAYGzyMzwMMzMzMmZYmZMDzMmxM2mZGzYGMmmBAAAAAAAAAjxMDYmNEsYWALGA",
+        whUrl:      "https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFREUaAUBEOVRVVVZFAQKAURdBAFFVVVUBF",
+        swaps: [
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Paliza salvaje",
+            badge: "AÑADIR",
+            desc:  "Mejora significativamente el daño en AoE durante las oleadas de adds y la interfase.",
+          },
+          {
+            type:  "remove",
+            icon:  "ability_hunter_snakeskin",
+            name:  "Carcaj de piel de serpiente",
+            badge: "QUITAR",
+            desc:  "Carcaj de piel de serpiente no aporta mucho en este encuentro y es mejor invertir ese talento en Paliza salvaje para mejorar nuestro daño en AoE durante las fases con adds.",
+          },
+        ],
+        notes: [
+          {
+            type: "crit",
+            text: "<strong>Nunca guardes Cólera de las bestias. Úsala siempre en cooldown, excepto en la interfase si el add principal va a morir en pocos segundos.</strong>",
+          },
+          {
+            type: "warn",
+            text: "<strong>Asegúrate de aplicar Marca del cazador al add grande que se acerca a Chimaerus. Si hay más cazadores en el grupo, coordina con ellos quién la aplica.</strong>",
+          },
+          {
+            type: "tip",
+            text: "<strong>Usa Paliza salvaje</strong> en el primer add que aparezca para activar Tajo de la bestia lo antes posible y potenciar el daño en área de tus Matar.<br> También puedes usar Aspecto de la tortuga para evitar el daño y evitar ser levantado por Chimaerus cuando cae desde el cielo después de la interfase",
+          },
+          {
+            type: "info",
+            text: "<strong>Intenta posicionarte</strong> de manera que ¡Estampida! impacte tanto a los adds como a Chimaerus simultáneamente.",
+          },
+        ],
+      },
+    ],
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // BOSS 2: IMPERADOR AVERZIAN
+  // ────────────────────────────────────────────────────────────────────────
+  {
+    name:    "Imperador Averzian",
+    imgUrl:  "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Imperator-Averzian.png",
+    diff:    "h",
+    summary: "Averzian es muy similar a Chimaerus en cuanto a ritmo de combate, combinando ST con momentos de adds. <br> Sin embargo los pequeños caen muy rápido y en mítico, uno de ellos tiene bastante más vida, así que nuestra única fuente de AoE será Paliza salvaje y ¡Estampida!.",
+    builds: [
+      {
+        id:         "rec",
+        label:      "Recomendado",
+        rec:        true,
+        heroTalent: "Pack Leader",
+        string:     "C0PAAAAAAAAAAAAAAAAAAAAAAYzYGzMDLwGmZ2M0M2AAwMsNzMLmhZMzwMmZMmZMzMmZmhZmxMmBjpZAAAAAAzAAAwYMzwMzMbIMMLgND",
+        whUrl:      "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFVEQKBUBQOVVVVUBFBVoEUFNBBFFVVVUBR",
+        swaps: [
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Frenesí sangriento",
+            badge: "AÑADIR",
+            desc:  "Mejora significativamente el daño en ST al amplificar el sangrado de Disparo con púas durante Cólera de las bestias.",
+          },
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Paliza salvaje",
+            badge: "AÑADIR",
+            desc:  "Los adds pequeños del encuentro caen muy rapido en Normal y Heroico, sin embargo en Mitico son bastante mas resistentes por lo que necesitaremos esta fuente de AoE.",
+          },
+        ],
+        notes: [
+          {
+            type: "crit",
+            text: "<strong>Nunca guardes Cólera de las bestias.</strong> Al menos al principio hasta que seas capaz de timear mejor el combate y puedas usarla para los adds",
+          },
+          {
+            type: "warn",
+            text: "<strong>Asegúrate de aplicar Marca del cazador</strong> en el add grande que aparece. Si hay más cazadores en el grupo, coordina con ellos quién la aplica.",
+          },
+          {
+            type: "tip",
+            text: "<strong>Utiliza rapidamente Disparo con púas al add que aparece para posicionar bien tus pets antes de usar ¡Estampida!</strong>",
+          },
+          {
+            type: "info",
+            text: "<strong>Intenta posicionarte</strong> de manera que ¡Estampida! golpee tanto a los adds como a Averzian cuando sea posible.",
+          },
+        ],
+      },
+    ],
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // BOSS 3: VORASIUS
+  // ────────────────────────────────────────────────────────────────────────
+  {
+    name:    "Vorasius",
+    imgUrl:  "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Vorasius.png",
+    diff:    "h",
+    summary: "Para nosotros, Vorasius es un encuentro de puro single target. Aunque, como en la mayoría de combates de la Aguja del Vacío, aparecen adds, no merece la pena invertir en talentos de AoE, así que nos centraremos completamente en daño a un solo objetivo.",
+    builds: [
+      {
+        id:         "rec",
+        label:      "Recomendado",
+        rec:        true,
+        heroTalent: "Pack Leader",
+        string:     "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYG2GzsNzwMmZYYmxYmxMzYmZGmxYGzgx0MAAAAAgZAAAYMzAYmNEmlZWAbGA",
+        whUrl:      "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFhRCJFUFEKBUBEOVVRRUBlBVoEUFNBFFFVVVUBB",
+        swaps: [
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Frenesí sangriento",
+            badge: "AÑADIR",
+            desc:  "Mejora significativamente el daño en ST al amplificar el sangrado de Disparo con púas durante Cólera de las bestias.",
+          },
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Bestia temible",
+            badge: "AÑADIR",
+            desc:  "No se usa en muchas builds porque es un talento de nicho, pero en este encuentro puede ser útil para amplificar tu daño especialmente combinado con Frenesí sangriento.",
+          },
+          {
+            type:  "remove",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Paliza salvaje",
+            badge: "QUITAR",
+            desc:  "Los adds pequeños del encuentro caen muy rapido porque no necesitamos una fuente de AoE más allá de ¡Estampida!.",
+          },
+        ],
+        notes: [
+          {
+            type: "crit",
+            text: "<strong>Nunca guardes Cólera de las bestias.</strong>",
+          },
+          {
+            type: "warn",
+           text: "<strong>Si tu tanque muere y no tenéis resurrección en combate disponible puede que necesiten que entres en algún soak de tanque. Puedes hacerlo con Aspecto de la tortuga.</strong>",
+          },
+          {
+            type: "tip",
+            text: "<strong>Usa siempre tu defensivo principal Supervivencia del más fuerte y si lo necesitas Excitación cuando Vorasius comience a poner charcos en el suelo antes de invocar a los adds. Es el unico momento del combate en el necesitas usarlo. </strong>",
+          },
+          {
+            type: "info",
+            text: "<strong>Aunque nunca guardes Cólera de las bestias, si te coincide puedes trazar una linea hacia Vorasius para golpear a los adds siempre que esten cerca del muro.</strong>",
+          },
+        ],
+      },
+    ],
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // BOSS 4: REY CAÍDO SALHADAAR
+  // ────────────────────────────────────────────────────────────────────────
+  {
+    name:    "Rey caído Salhadaar",
+    imgUrl:  "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Gefallener-Koenig-Salhadaar-768x432.png",
+    diff:    "h",
+    summary: "En Heroico y normal podemos usar los mismos talentos que en Vorasius pero en Mitico es recomendable hacer algunos cambios para mejorar nuestro daño en AoE durante la fase de los orbes y los adds que aparecen durante el combate.",
+    builds: [
+      {
+        id:         "rec",
+        label:      "Recomendado",
+        rec:        true,
+        heroTalent: "Pack Leader",
+        string:     "C0PAAAAAAAAAAAAAAAAAAAAAAYzYGzMDLwGmZ2M0M2AAwMsNzMLmhZMzwMmZMmZMzMmZmhZmxMmBjpZAAAAAAzAAAwYMzwMzMbIMMLgND",
+        whUrl:      "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFVEQKBUBQOVVVVUBFBVoEUFNBBFFVVVUBR",
+        swaps: [
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Paliza salvaje",
+            badge: "AÑADIR",
+            desc:  "En Mitico aparecen unos pequeños adds aparte de los 2 orbes y los que hay que cortar por lo que paliza salvaje puede ser útil para mejorar el daño en AoE durante este momento.",
+          },
+          
+        ],
+        notes: [
+          {
+            type: "crit",
+            text: "<strong>Nunca guardes Cólera de las bestias a no ser que queden pocos segundos para la fase de aumento de daño.</strong>",
+          },
+          {
+            type: "warn",
+           text: "<strong>Si eres el unico hunter asegurate de ir aplicando Marca del cazador a los orbes que esteis priorizando.</strong>",
+          },
+          {
+            type: "tip",
+            text: "<strong>Cuando aparezcan los adds a los que puedes cortar con Contradisparo ya que tenemos uno de los cortes de más distancia.</strong>",
+          },
+          {
+            type: "info",
+            text: "<strong>Si ¡Estampida! te coincide con los orbes puedes trazar una linea que atraviese al boss y los orbes.</strong>",
+          },
+        ],
+      },
+    ],
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // BOSS 5: VAELGOR Y EZZORAK
+  // ────────────────────────────────────────────────────────────────────────
+  {
+    name:    "Vaelgor y Ezzorak",
+    imgUrl:  "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Vaelgor-und-Ezzorak.png",
+    diff:    "h",
+    summary: "Vaelgor y Ezzorak es un encuentro de puro single target. Aunque, como en la mayoría de combates de la Aguja del Vacío, aparecen adds, pero caen tan rapido que no merece la pena invertir en talentos o habilidades de AoE, mas allá de Paliza salvaje.",
+    builds: [
+      {
+        id:         "rec",
+        label:      "Recomendado",
+        rec:        true,
+        heroTalent: "Pack Leader",
+        string:     "C0PAAAAAAAAAAAAAAAAAAAAAAYzYGzMDLwGmZ2M0M2AAwMsNzMLmhZMzwMmZMmZMzMmZmhZmxMmBjpZAAAAAAzAAAwYMzwMzMbIMMLgND",
+        whUrl:      "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFVEQKBUBQOVVVVUBFBVoEUFNBBFFVVVUBR",
+        swaps: [
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Paliza salvaje",
+            badge: "AÑADIR",
+            desc:  "La usamos únicamente en el momento en el que aparecen los pequeños orbes.",
+          },
+          
+        ],
+        notes: [
+          {
+            type: "crit",
+            text: "<strong>Nunca guardes Cólera de las bestias.</strong>",
+          },
+          {
+            type: "warn",
+           text: "<strong>Si eres el unico hunter asegurate de aplicar Marca del cazador en el dragón que necesite mas daño para igualarse con el otro. Ademas, si eres el unico Hunter debes aplicar tambien la marca al Add que aparece en interfase.</strong>",
+          },
+          {
+            type: "tip",
+            text: "<strong>Normalmente los orbes suelen caer muy rapido pero el uso de Paliza salvaje depende totalmente de ello. Si los adds caen muy rapido usala nada mas aparezcan los orbes. Si caen muy lento usalo cuando se junten para maximizar el daño AoE lo máximo posible.</strong>",
+          },
+          {
+            type: "info",
+            text: "<strong>Puedes usar Aspecto de la tortuga cuando eres afectado por el aliento del dragon para reducir su daño. Y tu defensivo Supervivencia del más fuerte en los momentos de orbes.</strong>",
+          },
+        ],
+      },
+    ],
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // BOSS 6: VANGUARDIA DE LA LUZ
+  // ────────────────────────────────────────────────────────────────────────
+  {
+    name:    "Vanguardia de la Luz",
+    imgUrl:  "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Lichtblinde-Vorhut-768x432.png",
+    diff:    "h",
+    summary: "Este es el unico encuentro en el que cambiaremos a Dark Ranger ya que tendremos 3 targets en todo el combate y con este arbol de talentos maximizamos el daño en AoE sin perder mucho daño en ST.",
+    builds: [
+      {
+        id:         "rec",
+        label:      "Recomendado",
+        rec:        true,
+        heroTalent: "Dark Ranger",
+        string:     "C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsBMWAAwMjlZmhZYmZGMjZmZYGzMjZmZYmZYMDLjpZAAAAAAzAAAAzMGmZACjZWAbGA",
+        whUrl:      "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/dark-ranger/EAPRlFFkRSJFFFAKBUBEOVVVVVRFFAoEUFNBAFFVVVUBV",
+        swaps: [
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Paliza salvaje",
+            badge: "AÑADIR",
+            desc:  "Realmente aqui añadimos practicamente toda la rama izquierda del arbol de BM ya que enfocamos todos nuestros talentos a mejorar el daño de AoE.",
+          },
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Instintos Salvajes",
+            badge: "AÑADIR",
+            desc:  "Siempre vamos a aplicar Disparo con púas a un objetivo prioritario por que queremos que este talento coloque cargas de nuestro sangrado en los otros 2 objetivos siempre que sea posible.",
+          },
+          {
+            type:  "remove",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Caracaj de piel de serpiente",
+            badge: "QUITAR",
+            desc:  "Simplemente lo quitamos para poder añadir toda la rama de Paliza salvaje.",
+          },
+        ],
+        notes: [
+          {
+            type: "crit",
+            text: "<strong>Nunca guardes Cólera de las bestias y menos en este encuentro ya que no tenemos ¡estampida! por lo que no dependemos de apuntar ninguna habilidad.</strong>",
+          },
+          {
+            type: "warn",
+           text: "<strong>Intenta realizar el Soak siempre con Supervivencia del más fuerte para minimizar el daño y en caso de tocar uno de los martillos podemos sobrevivir.</strong>",
+          },
+          {
+            type: "tip",
+            text: "<strong>Usa Flecha lastimera cuando se acabe tu Fuego devastador.</strong>",
+          },
+          {
+            type: "info",
+            text: "<strong>Si eres el unico hunter asegurate de aplicar Marca del cazador al objetivo prioritario o en su defecto al comandante Senn para quitarle el escudo lo antes posible.</strong>",
+          },
+        ],
+      },
+    ],
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // BOSS 7: CORONA DEL COSMOS
+  // ────────────────────────────────────────────────────────────────────────
+  {
+    name:    "Corona del Cosmos",
+    imgUrl:  "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Krone-des-Kosmos-768x432.png",
+    diff:    "m",
+    summary: "En estos momentos no existen logs de este encuentro en Mitico por lo que estos talentos estan enfocados unicamente en su enfrentamiento en modo Normal y Heroico donde es recomendable usar una build de puro Single Target.",
+    builds: [
+      {
+        id:         "rec",
+        label:      "Recomendado",
+        rec:        true,
+        heroTalent: "Pack Leader",
+        string:     "[STRING_TALENTOS]",
+        whUrl:      "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery",
+        swaps: [
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Frenesí sangriento",
+            badge: "AÑADIR",
+            desc:  "La ultima fase de este boss se resume en una intensa carrera de DPS a un solo target por lo que elegimos este talento sobre el Instintos salvajes para priorizar nuestro daño ST",
+          },
+          {
+            type:  "add",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Bestia temible",
+            badge: "AÑADIR",
+            desc:  "La usamos por el mismo motivo que Frenesí sangriento, para amplificar nuestro daño en ST durante la ultima fase del combate.",
+          },
+          {
+            type:  "remove",
+            icon:  "ability_hunter_catlikeleaps",
+            name:  "Paliza salvaje",
+            badge: "QUITAR",
+            desc:  "Es solo util en la primera fase del enfrentamiento y en modo Normal y Heroico esto supone un parte demasiado corta asi que prescindimos de ella para buildear al maximo nuestro Single Target.",
+          },
+        ],
+        notes: [
+          {
+            type: "crit",
+            text: "<strong>Nunca guardes Cólera de las bestias exceptuando 2 casos. Que uno de los centinelas de fase 1 esté por morir o que sepamos que Alleria tiene que ser movida por los tanques en fase 3.</strong>",
+          },
+          {
+            type: "warn",
+           text: "<strong>Los saltos en fase 3 pueden ser peligrosos por lo que debemos tener Separación a mano por si la necesitamos.</strong>",
+          },
+          {
+            type: "tip",
+            text: "<strong>Puedes intentar alinear ¡Estampida! para golpear a Alleria y su Simulacro cuando la ocasión te lo permita.</strong>",
+          },
+          {
+            type: "info",
+            text: "<strong>Guarda siempre tus defensivo Supervivencia del más fuerte y Excitación para el daño resultante de cuando los orbes de fase 2 tocan el suelo y para cuando tengamos la mecánica de salir de los anillos. </strong>",
+          },
+        ],
+      },
+    ],
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // BOSS 8: BELO'REN
+  // ────────────────────────────────────────────────────────────────────────
+  {
+    name:    "Belo'ren",
+    imgUrl:  "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Beloren-768x432.png",
+    diff:    "m",
+    summary: "[DESCRIPCION_BOSS] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    builds: [
+      {
+        id:         "rec",
+        label:      "Recomendado",
+        rec:        true,
+        heroTalent: "Pack Leader",
+        string:     "[STRING_TALENTOS]",
+        whUrl:      "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery",
+        swaps: [
+          { type: "add",    icon: "ability_hunter_silencingshot", name: "[NOMBRE_TALENTO]", badge: "AÑADIR", desc: "[DESC_TALENTO] Lorem ipsum dolor sit amet consectetur." },
+          { type: "remove", icon: "ability_hunter_misdirection",  name: "[NOMBRE_TALENTO]", badge: "QUITAR", desc: "[DESC_TALENTO] Lorem ipsum dolor sit amet consectetur." },
+        ],
+        notes: [
+          { type: "crit", text: "<strong>[NOTA_CRITICA]</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+          { type: "warn", text: "<strong>[NOTA_AVISO]</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+          { type: "tip",  text: "<strong>[NOTA_CONSEJO]</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+          { type: "info", text: "<strong>[NOTA_INFO]</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+        ],
+      },
+    ],
+  },
+
+];
+
+// ─── BOSS PANEL RENDERER ──────────────────────────────────────
+const activeBossBuilds = {};
+const iconUrl = n => `https://wow.zamimg.com/images/wow/icons/medium/${n}.jpg`;
+
+function selectBoss(i, btn) {
+  document.querySelectorAll('.boss-sel-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeBossBuilds['current'] = i;
+  if (activeBossBuilds[i] === undefined) {
+    activeBossBuilds[i] = bossData[i].builds.findIndex(b => b.rec);
+    if (activeBossBuilds[i] < 0) activeBossBuilds[i] = 0;
+  }
+  renderBossPanel(i);
+}
+
+function selectBossBuild(bossIdx, buildIdx) {
+  activeBossBuilds[bossIdx] = buildIdx;
+  renderBossPanel(bossIdx);
+}
+
+// ─── RENDER BOSS PANEL ────────────────────────────────────────────────────
+function renderBossPanel(i) {
+  const b = bossData[i];
+  if (!b) return;
+
+  const bi = activeBossBuilds[i] || 0;
+  const build = b.builds[bi];
+
+  // Hero Talent
+  const heroTalent = build.heroTalent || "Pack Leader";
+  const heroIcon = heroTalent === "Dark Ranger"
+    ? "https://assets.rpglogs.com/img/warcraft/talents/hero/44_full.png"
+    : "https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png";
+
+  const togglesHtml = b.builds.length > 1 ? `
+    <div class="toggle-wrap" style="margin: 18px 0 20px;">
+      ${b.builds.map((bld, j) => `
+        <button class="toggle-btn${bld.rec ? ' meta' : ''}${j === bi ? ' active' : ''}"
+          onclick="selectBossBuild(${i}, ${j})">${bld.label}</button>
+      `).join('')}
+    </div>` : '';
+
+  // Swaps — auto-linkear nombre y descripción
+  const swapsHtml = build.swaps.map(s => {
+    const nameLinked = autoLink(s.name);
+    const descLinked = autoLink(s.desc);
+    const isAdd    = s.type === 'add';
+    const isRemove = s.type === 'remove';
+    const accentColor = isAdd ? 'var(--green2)' : isRemove ? 'var(--red2)' : 'var(--accent)';
+    const bgColor     = isAdd ? 'rgba(67,160,71,.18)' : isRemove ? 'rgba(229,57,53,.15)' : 'rgba(79,195,247,.14)';
+    const borderClass = isAdd ? 'error-tip' : isRemove ? 'error-warn' : 'error-info';
+    return `
+      <div class="error-item ${borderClass}">
+        <div class="error-body">
+          <h4 style="color:${accentColor}">
+            <span class="hbadge" style="background:${bgColor};color:${accentColor};">${s.badge}</span>
+            ${nameLinked}
+          </h4>
+          <p>${descLinked}</p>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Notes — auto-linkear texto
+  const noteTypes  = { crit: 'box-crit', warn: 'box-warn', tip: 'box-tip', info: 'box-info' };
+  const noteTitles = { crit: '🚨 Crítico', warn: '⚠️ Atención', tip: '💡 Consejo', info: 'ℹ️ Nota' };
+  const notesHtml = build.notes.map(n => `
+    <div class="box ${noteTypes[n.type]}" style="margin:8px 0">
+      <div class="box-title">${noteTitles[n.type]}</div>
+      ${autoLink(n.text)}
+    </div>`).join('');
+
+  const copyId = `bosscp-${i}-${bi}`;
+
+  document.getElementById('boss-panels').innerHTML = `
+    <div class="card" style="animation:fade .2s ease">
+      <div style="display:flex; gap:22px; align-items:flex-start; margin-bottom:24px;">
+
+        <!-- HERO TALENT (izquierda) -->
+        <div style="flex-shrink:0; text-align:center;">
+          <img src="${heroIcon}" width="78" height="78"
+               style="border:3px solid var(--accent2); border-radius:50%; box-shadow:0 0 20px rgba(79,195,247,0.45);"
+               alt="${heroTalent}">
+          <div style="margin-top:10px; font-size:14.5px; font-weight:700; color:var(--accent);">
+            ${heroTalent}
+          </div>
+        </div>
+
+        <!-- Nombre del Boss -->
+        <div style="flex:1; padding-top:8px;">
+          <div style="font-family:'Cinzel',serif; font-size:24px; font-weight:700; color:var(--gold); letter-spacing:1px;">
+            ${b.name}
+          </div>
+          <div style="color:var(--text2); font-size:16px; margin-top:4px;">
+            Esta guia de talentos está optimizada para el encuentro contra <strong>${b.name}</strong> en dificultad <strong>${b.diff === 'h' ? 'Mítico' : 'Heroico'}</strong> y será actualizada conforme se amplien los datos de Warcraft Logs.
+          </div>
+        </div>
+      </div>
+
+      <div class="box box-info" style="margin-bottom:22px;">
+        <div class="box-title">📖 Resumen</div>
+        ${autoLink(b.summary)}
+      </div>
+
+      ${togglesHtml}
+
+      <div class="build-actions" style="margin-bottom:20px;">
+        <button id="${copyId}" onclick="copyBossStr('${copyId}','${build.string}')" class="build-btn build-btn-copy">📋 Copiar string de talentos</button>
+        <a href="${build.whUrl}" target="_blank" class="build-btn build-btn-link">🔗 Abrir en Wowhead</a>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3 style="margin-top:0; color:var(--gold);">Ajustes de Talentos</h3>
+          ${swapsHtml}
+        </div>
+        <div>
+          <h3 style="margin-top:0; color:var(--gold);">Notas del Encuentro</h3>
+          ${notesHtml}
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Re-inicializar tooltips de Wowhead para el contenido recién renderizado
+  if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
+    window.$WowheadPower.refreshLinks();
+  }
+}
+
+function copyBossStr(id, str) {
+  const btn = document.getElementById(id);
+  const orig = btn.textContent;
+  navigator.clipboard.writeText(str).then(() => {
+    btn.textContent = '✅ ¡Copiado!';
+    btn.style.opacity = '.7';
+    setTimeout(() => { btn.textContent = orig; btn.style.opacity = '1'; }, 2000);
+  }).catch(() => { btn.textContent = '❌ Error'; setTimeout(() => { btn.textContent = orig; }, 2000); });
+}
+
+// Init
+(function () {
+  renderBuilds();
+  activeBossBuilds[0] = bossData[0].builds.findIndex(b => b.rec);
+  renderBossPanel(0);
+})();
+
+
+
+
+  </script>
+
+  <!-- Tooltips con iconos para BIS y Consumibles -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ocultar iconos de Wowhead en BIS y consumibles, agregar title con icono
+      document.querySelectorAll('.bis-table a[href*="wowhead.com/es/item="], .cons-row a[href*="wowhead.com/es/item="]').forEach(link => {
+        const match = link.href.match(/\/item=(\d+)/);
+        if (match) {
+          const itemId = match[1];
+          // Ocultar cualquier icono que Wowhead haya agregado
+          link.querySelectorAll('.whicon, img').forEach(el => {
+            if (el.classList && el.classList.contains('whicon')) {
+              el.style.display = 'none';
+            }
+          });
+          // Agregar atributo title con imagen (funciona en navegadores modernos)
+          link.title = `Item ${itemId}`;
+        }
+      });
+    });
   </script>
   
   <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
