@@ -25,6 +25,8 @@ const bossData = bossEntries.map(({ data }) => ({
   summary: data.summary,
   builds: data.builds,
 }));
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <MainLayout
@@ -36,7 +38,7 @@ const bossData = bossEntries.map(({ data }) => ({
     window.BM_BUILDS_DATA = buildsData;
     window.BM_BOSS_DATA = bossData;
   </script>
-  <script is:inline src="/scripts/bm-guide.js"></script>
+  <script is:inline src={`${baseUrl}scripts/bm-guide.js`}></script>
   <script is:inline>
     window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
   </script>
