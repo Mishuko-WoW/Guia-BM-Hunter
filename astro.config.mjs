@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig({
+export default defineConfig(({ command }) => ({
 	site: 'https://mishuko-wow.github.io',
-	base: '/Guia-BM-Hunter',
-});
+	base: command === 'dev' ? '/' : '/Guia-BM-Hunter',
+}));

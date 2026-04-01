@@ -1,3 +1,14 @@
+---
+import { getSectionReviewDate } from '../lib/sectionDates';
+import ReviewSourceBox from './ReviewSourceBox.astro';
+
+const reviewDate = getSectionReviewDate([
+  'src/components/SeccionTalentos.astro',
+  'src/content/builds',
+  'src/content/Bosses',
+]);
+---
+
 <div id="tab-talentos" class="tab-panel">
   <h2>Builds de Talentos</h2>
 
@@ -6,10 +17,9 @@
     En WoW, abre el árbol de talentos → botón <strong>Cargar</strong> (icono de importar) → pega el string → confirma. O usa el botón <strong>Abrir en Wowhead</strong> para ver el árbol interactivo completo.
   </div>
 
-  <div class="box box-warn">
-    <div class="box-title">⚠️ Fuente</div>
-    Builds extraídas de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Última revisión por Mishuko el <strong id="build-date">29 de marzo de 2026</strong>. Contrastadas y verificadas en juego.
-  </div>
+  <ReviewSourceBox reviewDate={reviewDate}>
+    Builds extraídas de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Contrastadas y verificadas en juego.
+  </ReviewSourceBox>
 
   <div id="builds-toggle-wrap" class="toggle-wrap" style="flex-wrap:wrap;gap:8px;margin-bottom:24px;padding-top:12px"></div>
   <div id="builds-container"></div>

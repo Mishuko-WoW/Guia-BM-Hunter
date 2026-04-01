@@ -2,6 +2,45 @@
     document.getElementById('footer-date').textContent =
       new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
 
+    const tabButtons = Array.from(document.querySelectorAll('.tab-btn[data-tab]'));
+    const validTabIds = new Set(tabButtons.map(btn => btn.dataset.tab));
+    const tabAliases = {
+      mec: 'mecanicas',
+      tal: 'estadisticas',
+      rot: 'rotacion',
+      mac: 'macros',
+      err: 'errores',
+      qst: 'examen-st',
+      qaoe: 'examen-aoe',
+    };
+
+    function getActiveTabId() {
+      const activePanel = document.querySelector('.tab-panel.active');
+      return activePanel ? activePanel.id.replace(/^tab-/, '') : 'mecanicas';
+    }
+
+    function getScrollStorageKey(tabId) {
+      return `bm-guide:scroll:${tabId}`;
+    }
+
+    function restoreScrollPosition(tabId) {
+      const savedScroll = sessionStorage.getItem(getScrollStorageKey(tabId));
+      if (!savedScroll) return;
+
+      const scrollY = Number(savedScroll);
+      if (!Number.isFinite(scrollY)) return;
+
+      requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: 'auto' }));
+    }
+
+    function syncTabFromHash() {
+      const hashTab = decodeURIComponent(window.location.hash.replace(/^#/, ''));
+      const normalizedTab = tabAliases[hashTab] || hashTab;
+      const tabId = validTabIds.has(normalizedTab) ? normalizedTab : 'mecanicas';
+      const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      if (btn) showTab(tabId, btn, { updateHash: false, preserveScroll: true });
+    }
+
     function refreshWowheadTooltips() {
       if (window.$WowheadPower && typeof window.$WowheadPower.refreshLinks === 'function') {
         window.$WowheadPower.refreshLinks();
@@ -9,16 +48,37 @@
     }
 
     // ─── TABS ─────────────────────────────────────────────────────────
-    function showTab(id, btn) {
+    function showTab(id, btn, options = {}) {
+      const { updateHash = true, preserveScroll = false } = options;
+      const targetBtn = btn || document.querySelector(`.tab-btn[data-tab="${id}"]`);
+      if (!targetBtn || !validTabIds.has(id)) return;
+
       document.querySelectorAll('.tab-panel').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('tab-' + id).classList.add('active');
-      btn.classList.add('active');
+      targetBtn.classList.add('active');
+
+      if (updateHash && window.location.hash !== `#${id}`) {
+        history.replaceState(null, '', `#${id}`);
+      }
+
       // Scroll active tab button into view on mobile
-      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      targetBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+      if (preserveScroll) {
+        restoreScrollPosition(id);
+      }
+
       // Rehidrata tooltips de Wowhead cuando cambia contenido visible.
       setTimeout(refreshWowheadTooltips, 0);
     }
+
+    window.addEventListener('hashchange', syncTabFromHash);
+    window.addEventListener('beforeunload', () => {
+      sessionStorage.setItem(getScrollStorageKey(getActiveTabId()), String(window.scrollY));
+    });
+
+    syncTabFromHash();
 
     // ─── TOGGLE HELPERS ───────────────────────────────────────────────
     function activateToggle(scope, btn) {
@@ -363,7 +423,7 @@
 
     // ─── BUILD TOGGLE ─────────────────────────────────────────────────
     function setRot(mode, btn) {
-      activateToggle('#tab-rot', btn);
+      activateToggle('#tab-rotacion', btn);
       ['pl', 'dr'].forEach(k => {
         document.getElementById('rot-' + k).style.display = mode === k ? '' : 'none';
       });

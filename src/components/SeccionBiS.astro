@@ -1,11 +1,17 @@
+---
+import { getSectionReviewDate } from '../lib/sectionDates';
+import ReviewSourceBox from './ReviewSourceBox.astro';
+
+const reviewDate = getSectionReviewDate(['src/components/SeccionBiS.astro', 'src/content/data/bis.json']);
+---
+
 <div id="tab-bis" class="tab-panel">
   <h2>Best in Slot & Consumibles</h2>
 
   <h3>Equipo BIS Completo optimizado para contenido de raid</h3>
-  <div class="box box-warn">
-    <div class="box-title">⚠️ Fuente</div>
-    Items y consumibles extraídos de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Última revisión por Mishuko el <strong id="build-date">29 de marzo de 2026</strong>. Contrastadas y verificadas.
-  </div>
+  <ReviewSourceBox reviewDate={reviewDate}>
+    Items y consumibles extraídos de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Contrastadas y verificadas.
+  </ReviewSourceBox>
 
   <div class="bis-progress-wrap">
     <span class="bis-progress-label">🗡️ Progreso BiS</span>

@@ -9,16 +9,20 @@ if (!entry) {
 ---
 
 <div id={entry.data.panelId} style={entry.data.hidden ? 'display:none' : undefined}>
-  <div class="skill-path">
+  <div class="chain-wrap">
+    <div class="chain">
     {entry.data.chainSteps.map((item, index) => (
       <>
-        <div class={getChainClass(item.tone)}>
-          <span>{item.text}</span>
-          {item.sub && <small>{item.sub}</small>}
+        <div class={`chain-step ${getChainClass(item.tone)}`}>
+          <div class="chain-step-text">
+            <span>{item.text}</span>
+            {item.sub && <small>{item.sub}</small>}
+          </div>
         </div>
-        {index < entry.data.chainSteps.length - 1 && <span class="sp-arrow">→</span>}
+        {index < entry.data.chainSteps.length - 1 && <div class="chain-arrow">→</div>}
       </>
     ))}
+    </div>
   </div>
 
   {entry.data.warning && (

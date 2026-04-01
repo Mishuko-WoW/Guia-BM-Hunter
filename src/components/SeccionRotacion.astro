@@ -1,9 +1,4 @@
----
-import RotacionPackLeader from './rotacion/RotacionPackLeader.astro';
-import RotacionDarkRanger from './rotacion/RotacionDarkRanger.astro';
----
-
-<div id="tab-rot" class="tab-panel">
+<div id="tab-rotacion" class="tab-panel">
   <h2>Lista de Prioridades</h2>
 
   <div class="box box-info">
@@ -21,14 +16,166 @@ import RotacionDarkRanger from './rotacion/RotacionDarkRanger.astro';
     <button class="toggle-btn" onclick="setRot('dr', this)">🖤 Dark Ranger — M+</button>
   </div>
 
-  <RotacionPackLeader />
+  <!-- PACK LEADER -->
+  <div id="rot-pl">
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-header blue">🎯 Pack Leader — ST (Raid)</div>
+        <ul class="prio-list">
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+            <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Úsalo si Cólera de las bestias saldrá de CD en ≤3 segundos. Hace que la mascota cargue al objetivo.">Disparo con púas</span> si <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> sale de CD en <strong>≤3 segundos</strong>.</p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
+            <p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. Úsalo en cuanto esté disponible, sin excusas.">Cólera de las bestias</span> — on cooldown, siempre.</p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
+            <p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown siempre. No esperes a que Aliado de la naturaleza esté activo — estará listo en ~8 de cada 10 usos de forma natural si alternas con Disparo con púas y Disparo de cobra.">Matar</span> — on cooldown, siempre. <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar.">Aliado de la naturaleza</span> estará activo de forma natural en ~8 de cada 10 usos si alternas correctamente.</p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+            <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Relleno principal de la rotación ST.">Disparo con púas</span> — relleno principal.</p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div>
+            <p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno de Enfoque. Solo cuando no hay nada más disponible.">Disparo de cobra</span> — relleno de Enfoque.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-header orange">💥 Pack Leader — AoE/M+</div>
+        <ul class="prio-list">
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+            <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario si Cólera de las bestias va a salir de CD.">Disparo con púas</span> al objetivo prioritario si <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> está por salir de CD.</p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div>
+            <p><span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente. Activa Tajo de la bestia en tu mascota.">Paliza salvaje</span></p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
+            <p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span></p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div>
+            <p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Siempre alto en la prioridad AoE también.">Matar</span></p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div>
+            <p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Solo si tienes Zancapuerco activo Y menos de 4 enemigos.">Disparo de cobra</span> si tienes <span class="bf" data-name="Zancapuerco" data-type="Buff AoE" data-desc="Habilita Disparo de cobra en AoE con menos de 4 enemigos.">Zancapuerco</span> y <strong>&lt;4 enemigos</strong>.</p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+            <p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Relleno al objetivo prioritario.">Disparo con púas</span> al objetivo prioritario.</p>
+          </li>
+          <li class="prio-item">
+            <div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div>
+            <p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno final de Enfoque.">Disparo de cobra</span> — relleno final.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-  <RotacionDarkRanger />
+    <div class="box box-warn">
+      <div class="box-title">⚠️ Sobre las guías escritas</div>
+      Las guías como Icy Veins o Wowhead describen el <em>ideal teórico</em> — lo que debería ocurrir si la rotación es perfecta. Los logs de combate real muestran que incluso los mejores jugadores del mundo priorizan el cooldown sobre la condición del buff. Cuando hay conflicto entre ambas fuentes, <strong>los datos mandan</strong>.
+    </div>
+
+    <div class="box box-warn">
+      <div class="box-title">⚠️ Estado actual del AoE — Midnight S1</div>
+      El AoE del BM Hunter tiene <strong>problemas conocidos</strong> en esta temporada que afectan al rendimiento real independientemente de tu ejecución:<br /><br />
+      <strong>🐛 Bug activo:</strong> Un bug introducido recientemente reduce el daño AoE en aproximadamente un <strong>-6%</strong>. Aún sin fix confirmado.<br />
+      <strong>📉 Scaling:</strong> La Celeridad rinde muy poco en AoE esta temporada, lo que limita el escalado con más gear.<br /><br />
+      Si ves menos daño AoE del esperado, <strong>no es error tuyo</strong> — es el estado del spec. La rotación y prioridad de stats no cambian por estos bugs.
+    </div>
+
+    <div class="box box-crit">
+      <div class="box-title">🚫 NO multi-dotear</div>
+      En AoE, <strong>nunca</strong> intentes aplicar <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="NO multi-dotear en AoE. Siempre al objetivo prioritario, sin excepción.">Disparo con púas</span> a múltiples objetivos. Siempre al objetivo prioritario. Es uno de los errores más comunes y costosos del BM Hunter.
+    </div>
+
+    <h3>Reglas Adicionales</h3>
+    <div class="card">
+      <div class="card-rows">
+        <div class="data-row">💎 Usa <span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno de Enfoque. Para no quedarte seco entre GCDs.">Disparo de cobra</span> para gastar Enfoque si no tienes nada que hacer y tienes más de la mitad, pero <strong>NUNCA retrases una habilidad prioritaria por él</strong>.</div>
+        <div class="data-row">⏱️ <strong>Solo en M+:</strong> Puedes guardar <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> si el pack va a morir antes de rentabilizarlo.</div>
+        <div class="data-row">💡 <strong>Truco AoE:</strong> Asegúrate de que <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad de mascota" data-desc="AoE de mascota. Actívalo antes de Cólera de las bestias.">Tajo de la bestia</span> esté activo al pulsar <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> para conseguir una enorme explosión AoE.</div>
+      </div>
+    </div>
+
+    <h3>Ventana de CD — Guía Rápida</h3>
+    <div class="chain-wrap">
+      <div class="chain">
+        <div class="chain-step gold-step">2× Matar disponible<small>Preparación</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step gold-step">Stats activos<small>Poción antes del hit</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Cólera de las bestias<small>On cooldown</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Matar ×CD<small>A cooldown</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Disparo con púas<small>Recarga NA</small></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step sp-step">Disparo de cobra<small>Relleno o gasto de enfoque</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DARK RANGER -->
+  <div id="rot-dr" style="display:none">
+    <div class="box box-info">
+      <div class="box-title">🖤 Dark Ranger — M+</div>
+      La clave es gestionar la ventana de <span class="bf" data-name="Fuego devastador" data-type="Buff Dark Ranger" data-desc="10s de los 15s de Cólera de las bestias. Maximiza Flecha negra y Flecha lastimera dentro de ella.">Fuego devastador</span> y <strong>nunca lanzar <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Nunca dos veces seguidas — siempre intercala otra habilidad.">Matar</span> dos veces seguidas</strong> — siempre intercala otra habilidad para que <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar tras usar otras habilidades.">Aliado de la naturaleza</span> esté activo.
+    </div>
+
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-header blue">🖤 Dark Ranger — ST</div>
+        <ul class="prio-list">
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_18.jpg" alt="Trinkets"></div><p>Trinkets stat antes de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. On cooldown siempre.">Cólera de las bestias</span> — on cooldown.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown con Aliado de la naturaleza activo. NUNCA dos veces seguidas.">Matar</span> on cooldown con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar.">Aliado de la naturaleza</span> activo.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Activa Fuego devastador. Úsala durante Cólera de las bestias.">Flecha negra</span> durante <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div><p><span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Úsala con 7s restantes en Cólera de las bestias para que caiga dentro de la ventana de Fuego devastador. Hace proc de Flecha negra — síguela con una.">Flecha lastimera</span> cuando queden <strong>7s</strong> en <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Relleno principal. Recarga Aliado de la naturaleza.">Disparo con púas</span> — relleno principal.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Fuera de Cólera de las bestias como relleno secundario.">Flecha negra</span> — relleno secundario.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div><p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno final de Enfoque.">Disparo de cobra</span> — relleno final.</p></li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-header orange">🖤 Dark Ranger — AoE/M+</div>
+        <ul class="prio-list">
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_18.jpg" alt="Trinkets"></div><p>Trinkets stat antes de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Úsala si Tajo de la bestia está a punto de expirar.">Flecha negra</span> si <span class="bf" data-name="Tajo de la bestia" data-type="Buff AoE" data-desc="AoE de mascota. Mantenlo activo con Flecha negra si está a punto de expirar.">Tajo de la bestia</span> está a punto de expirar.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><p><span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. On cooldown siempre.">Cólera de las bestias</span> — on cooldown.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div><p><span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Úsala si Cólera de las bestias está a punto de terminar.">Flecha lastimera</span> si <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> está a punto de terminar.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><p><span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo. Activa Tajo de la bestia. On cooldown siempre en AoE.">Paliza salvaje</span> — on cooldown.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><p><span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="On cooldown con Aliado de la naturaleza activo. NUNCA dos veces seguidas.">Matar</span> on cooldown con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar.">Aliado de la naturaleza</span> activo.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Durante los primeros 10s de Cólera de las bestias (ventana de Fuego devastador).">Flecha negra</span> durante los primeros <strong>10s</strong> de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><p><span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario. Nunca multi-dot.">Disparo con púas</span> — on cooldown, siempre al objetivo prioritario.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg" alt="Flecha lastimera"></div><p><span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Relleno secundario fuera de Cólera de las bestias.">Flecha lastimera</span> — relleno.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Relleno secundario.">Flecha negra</span> — relleno.</p></li>
+          <li class="prio-item"><div class="prio-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div><p><span class="sp" data-name="Disparo de cobra" data-type="Habilidad activa" data-desc="Relleno final de Enfoque.">Disparo de cobra</span> — relleno final.</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <div class="divider"></div>
   <h3>Guías vs. Realidad — Lo que dicen los datos</h3>
   <div class="box box-tip">
     <div class="box-title">📊 Análisis basado en logs reales</div>
-    Algunas guías, incluyendo las de Icy Veins, indican que debes usar Matar <em>solo cuando tienes <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar.">Aliado de la naturaleza</span> activo</em>. Sin embargo, el análisis de logs de alto nivel demuestra que <strong>Matar se usa on cooldown</strong> y el buff llega de forma natural.
+    Algunas guías, incluyendo las de Icy Veins, indican que debes usar Matar <em>solo cuando tienes <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar.">Aliado de la naturaleza</span> activo</em>. Sin embargo, el análisis de los logs de un hunter de <strong>100 percentil en WarcraftLogs</strong> sobre Imperator Averzian Heroico cuenta una historia diferente.
+  </div>
+
+  <div class="card">
+    <div class="card-header">🔬 Qué dicen los datos reales</div>
+    <div class="data-row">📈 De 98 usos de Matar analizados, <strong>el 79% tenía Aliado de la naturaleza activo</strong> — tanto dentro como fuera de Cólera de las bestias.</div>
+    <div class="data-row">⚡ El 21% restante se usó <strong>sin el buff activo</strong>, de forma consistente en todo el combate, sin distinción entre dentro o fuera de Cólera de las bestias.</div>
+    <div class="data-row">🧠 Conclusión: el buff está activo en la mayoría de Matares de forma <strong>natural</strong>, porque el weave correcto de Disparo con púas y Disparo de cobra lo recarga constantemente. No es una condición que esperar — es un resultado del loop bien ejecutado.</div>
+    <div class="data-row">🚫 Lo que <strong>nunca hace</strong> un hunter de alto nivel: retrasar Matar esperando a que Aliado de la naturaleza esté activo. On cooldown gana siempre.</div>
   </div>
 </div>

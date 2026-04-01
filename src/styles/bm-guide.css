@@ -876,6 +876,34 @@
       vertical-align: middle !important;
     }
 
+    .bis-table .item-name a.iconmedium,
+    .bis-table .item-name a.iconsmall,
+    .bis-table .item-name a.icontiny,
+    .cons-row a.iconmedium,
+    .cons-row a.iconsmall,
+    .cons-row a.icontiny {
+      padding-left: 38px !important;
+      background-size: 32px 32px !important;
+      background-repeat: no-repeat !important;
+      background-position: left center !important;
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    #tab-rotacion a.iconmedium,
+    #tab-rotacion a.iconsmall,
+    #tab-rotacion a.icontiny,
+    #tab-opener a.iconmedium,
+    #tab-opener a.iconsmall,
+    #tab-opener a.icontiny {
+      padding-left: 22px !important;
+      background-size: 16px 16px !important;
+      min-height: 16px;
+      display: inline-block;
+      line-height: inherit;
+    }
+
     /* ─── MACROS ─────────────────────────────────────────────────── */
 
     .macro-card {
