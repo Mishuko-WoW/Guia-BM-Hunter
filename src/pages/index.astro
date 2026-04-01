@@ -27,6 +27,7 @@ const bossData = bossEntries.map(({ data }) => ({
 }));
 
 const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
 ---
 
 <MainLayout
@@ -38,7 +39,7 @@ const baseUrl = import.meta.env.BASE_URL;
     window.BM_BUILDS_DATA = buildsData;
     window.BM_BOSS_DATA = bossData;
   </script>
-  <script is:inline src={`${baseUrl}scripts/bm-guide.js`}></script>
+  <script is:inline src={withBase('scripts/bm-guide.js')}></script>
   <script is:inline>
     window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
   </script>
