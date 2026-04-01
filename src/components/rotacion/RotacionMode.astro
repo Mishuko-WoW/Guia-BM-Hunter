@@ -27,12 +27,8 @@ if (!entry) {
             const alt = item.alt ?? item.spell ?? 'Icono';
             const badgeClass = getBadgeClass(spell?.badge);
             return (
-              <li class="prio-item">
-                {icon && (
-                  <span class="prio-icon">
-                    <img src={icon} alt={alt} />
-                  </span>
-                )}
+              <li>
+                {icon && <img src={icon} alt={alt} />}
                 <span>
                   {item.spell && (
                     <span class={badgeClass} data-name={item.spell} data-type={spell?.type ?? ''} data-desc={spell?.desc ?? ''}>
@@ -58,12 +54,8 @@ if (!entry) {
             const alt = item.alt ?? item.spell ?? 'Icono';
             const badgeClass = getBadgeClass(spell?.badge);
             return (
-              <li class="prio-item">
-                {icon && (
-                  <span class="prio-icon">
-                    <img src={icon} alt={alt} />
-                  </span>
-                )}
+              <li>
+                {icon && <img src={icon} alt={alt} />}
                 <span>
                   {item.spell && (
                     <span class={badgeClass} data-name={item.spell} data-type={spell?.type ?? ''} data-desc={spell?.desc ?? ''}>

@@ -9,31 +9,16 @@ if (!entry) {
 ---
 
 <div id={entry.data.panelId} style={entry.data.hidden ? 'display:none' : undefined}>
-  <div class="chain-wrap">
-    <div class="chain">
-      {entry.data.chainSteps.map((item, index) => (
-        <>
-          {(() => {
-            const spell = getSpell(item.text);
-            const badgeClass = getChainClass(item.tone);
-            return (
-              <div class={badgeClass}>
-                {spell?.icon && (
-                  <div class="chain-icon">
-                    <img src={spell.icon} alt={item.text} />
-                  </div>
-                )}
-                <div class="chain-step-text">
-                  <span>{item.text}</span>
-                  {item.sub && <small>{item.sub}</small>}
-                </div>
-              </div>
-            );
-          })()}
-          {index < entry.data.chainSteps.length - 1 && <div class="chain-arrow">→</div>}
-        </>
-      ))}
-    </div>
+  <div class="skill-path">
+    {entry.data.chainSteps.map((item, index) => (
+      <>
+        <div class={getChainClass(item.tone)}>
+          <span>{item.text}</span>
+          {item.sub && <small>{item.sub}</small>}
+        </div>
+        {index < entry.data.chainSteps.length - 1 && <span class="sp-arrow">→</span>}
+      </>
+    ))}
   </div>
 
   {entry.data.warning && (
@@ -42,37 +27,34 @@ if (!entry) {
     </div>
   )}
 
-  <div class="card card-mt">
-    <div class="card-header">📋 {entry.data.detailTitle}</div>
-    <ol class="opener-steps">
-      {entry.data.steps.map((step) => (
-        <li class="opener-step">
-          {(() => {
-            const spell = getSpell(step.spell);
-            const icon = step.icon ?? spell?.icon;
-            const alt = step.alt ?? step.spell ?? 'Icono';
-            const badgeClass = getBadgeClass(spell?.badge);
-            return (
-              <>
-                {icon && (
-                  <div class="step-icon">
-                    <img src={icon} alt={alt} />
-                  </div>
+  <div class="step-grid">
+    {entry.data.steps.map((step) => (
+      <div class="step-row">
+        {(() => {
+          const spell = getSpell(step.spell);
+          const icon = step.icon ?? spell?.icon;
+          const alt = step.alt ?? step.spell ?? 'Icono';
+          const badgeClass = getBadgeClass(spell?.badge);
+          return (
+            <>
+              {step.pre && <div class="step-pre">{step.pre}</div>}
+              {icon && <img src={icon} alt={alt} />}
+              <div>
+                {step.spell && (
+                  <span class={badgeClass} data-name={step.spell} data-type={spell?.type ?? ''} data-desc={spell?.desc ?? ''}>
+                    {step.spell}
+                  </span>
                 )}
-                <div>
-                  {step.pre && <div class="ostep-pre">{step.pre}</div>}
-                  {step.spell && (
-                    <span class={badgeClass} data-name={step.spell} data-type={spell?.type ?? ''} data-desc={spell?.desc ?? ''}>
-                      {step.spell}
-                    </span>
-                  )}
-                  {step.spell ? <span>{` ${step.text}`}</span> : <span>{step.text}</span>}
-                </div>
-              </>
-            );
-          })()}
-        </li>
-      ))}
-    </ol>
+                {step.spell ? <span>{` ${step.text}`}</span> : <span>{step.text}</span>}
+              </div>
+            </>
+          );
+        })()}
+      </div>
+    ))}
+  </div>
+
+  <div class="alert-note" style="margin-top:16px;">
+    <strong>Detalle:</strong> {entry.data.detailTitle}
   </div>
 </div>
