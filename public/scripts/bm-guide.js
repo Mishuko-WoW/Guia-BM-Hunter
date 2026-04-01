@@ -47,6 +47,47 @@
       }
     }
 
+    function enhanceMacroCopyButtons() {
+      document.querySelectorAll('.macro-card').forEach((card) => {
+        const block = card.querySelector('pre.macro-code');
+        const head = card.querySelector('.macro-head');
+        const title = head ? head.querySelector('.macro-title') : null;
+        if (!block || !head || !title) return;
+        if (head.querySelector('.macro-copy-btn-head')) return;
+
+        const titleGroup = document.createElement('div');
+        titleGroup.className = 'macro-title-group';
+        title.parentNode.insertBefore(titleGroup, title);
+        titleGroup.appendChild(title);
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'macro-copy-btn macro-copy-btn-head';
+        btn.textContent = '📋 Copiar';
+
+        btn.addEventListener('click', () => {
+          const original = btn.textContent;
+          const text = (block.textContent || '').trim();
+
+          navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = '✅ Copiado';
+            btn.disabled = true;
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.disabled = false;
+            }, 1400);
+          }).catch(() => {
+            btn.textContent = '❌ Error';
+            setTimeout(() => {
+              btn.textContent = original;
+            }, 1400);
+          });
+        });
+
+        titleGroup.appendChild(btn);
+      });
+    }
+
     // ─── TABS ─────────────────────────────────────────────────────────
     function showTab(id, btn, options = {}) {
       const { updateHash = true, preserveScroll = false } = options;
@@ -78,6 +119,7 @@
       sessionStorage.setItem(getScrollStorageKey(getActiveTabId()), String(window.scrollY));
     });
 
+    enhanceMacroCopyButtons();
     syncTabFromHash();
 
     // ─── TOGGLE HELPERS ───────────────────────────────────────────────
