@@ -729,6 +729,7 @@
     }
 
     .error-crit { background: rgba(229, 57, 53, .08); border-color: rgba(229, 57, 53, .30); }
+    .error-tip  { background: rgba(67, 160, 71, .10); border-color: rgba(67, 160, 71, .34); }
     .error-warn { background: rgba(251, 140, 0, .08); border-color: rgba(251, 140, 0, .30); }
 
     .error-icon {
@@ -743,6 +744,7 @@
     }
 
     .error-crit h4 { color: var(--red2); }
+    .error-tip h4  { color: var(--green2); }
     .error-warn h4 { color: var(--orange2); }
 
     .error-body p {
