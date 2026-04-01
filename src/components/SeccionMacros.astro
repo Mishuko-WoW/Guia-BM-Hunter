@@ -1,0 +1,187 @@
+<div id="tab-mac" class="tab-panel">
+  <h2>Macros Recomendadas</h2>
+
+  <div class="box box-info">
+    <div class="box-title">🎮 Cómo crear macros en WoW</div>
+    Abre el menú principal → <strong>Macros</strong> o escribe <code class="inline-code">/macro</code> en el chat. Crea una macro general o de personaje, asígnale icono y pega el código. Arrastra el icono a tu barra de acción.
+  </div>
+
+  <div class="box box-warn">
+    <div class="box-title">⚠️ Cliente en español</div>
+    En el cliente <strong>español</strong> de WoW, los nombres de habilidades en macros deben escribirse exactamente como aparecen en el tooltip in-game, <strong>con tildes y caracteres especiales</strong>. Si un macro no funciona, comprueba que el nombre sea idéntico al tooltip.
+  </div>
+
+  <h3>Macros de Rotación</h3>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🔥</span>
+      <span class="macro-title">Cólera de las bestias + Poción</span>
+      <span class="macro-cat">CD Principal</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Activa la poción de combate junto al CD principal. La línea <code>/petattack</code> garantiza que la mascota carga antes del cast para que <span class="bf" data-name="Escabechina" data-type="Debuff" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota ataca activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> se aplique correctamente.</div>
+      <pre class="macro-code">#showtooltip Cólera de las bestias
+/petattack
+/use Potencial de luz
+/cast Cólera de las bestias</pre>
+      <div class="macro-tip"><strong>Nota:</strong> La poción es un recurso importante en el combate. Si prefieres controlarla manualmente, elimina la línea <code>/use</code>.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🐾</span>
+      <span class="macro-title">Matar + Ataque de mascota</span>
+      <span class="macro-cat">Esencial</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Garantiza que tu mascota cargue al objetivo antes de cada Kill Command. Esencial para que <span class="bf" data-name="Escabechina" data-type="Debuff" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota ataca activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> se aplique en cada ventana y para redirigir la mascota al cambiar de target.</div>
+      <pre class="macro-code">#showtooltip Matar
+/petattack
+/cast Matar</pre>
+      <div class="macro-tip"><strong>Consejo:</strong> Usa este macro en todos tus GCDs de Matar. Sirve también para reconducir la mascota al nuevo objetivo al cambiar de target.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🏹</span>
+      <span class="macro-title">Disparo con púas + Ataque de mascota</span>
+      <span class="macro-cat">Esencial</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Crucial al cambiar de objetivo: garantiza que la mascota cargue hacia el nuevo target inmediatamente, lista para cuando uses <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div>
+      <pre class="macro-code">#showtooltip Disparo con púas
+/petattack
+/cast Disparo con púas</pre>
+      <div class="macro-tip"><strong>Consejo:</strong> Especialmente importante en los ≤3s antes de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> para que la mascota ya esté en posición.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">💥</span>
+      <span class="macro-title">Paliza salvaje + Ataque de mascota (AoE)</span>
+      <span class="macro-cat aoe">AoE</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">En packs de M+, asegura que la mascota esté activa en el centro del grupo antes de ejecutar <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo. Activa Tajo de la bestia.">Paliza salvaje</span> para maximizar los hits de <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad de mascota" data-desc="AoE de mascota.">Tajo de la bestia</span>.</div>
+      <pre class="macro-code">#showtooltip Paliza salvaje
+/petattack
+/cast Paliza salvaje</pre>
+      <div class="macro-tip"><strong>AoE:</strong> Posiciona la mascota en el centro del pack antes de la ventana de CD para maximizar daño en área.</div>
+    </div>
+  </div>
+
+  <h3>Macros de Utilidad</h3>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🎯</span>
+      <span class="macro-title">Redirección al tanque (por Foco)</span>
+      <span class="macro-cat util">Utilidad</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Redirige el agro de tu mascota al tanque sin cambiar tu objetivo. Establece al tanque como tu objetivo de foco con <code>/focus</code> una sola vez antes del pull.</div>
+      <pre class="macro-code">#showtooltip Redirección
+/cast [@focus,help,nodead] Redirección;
+      [@mouseover,help,nodead] Redirección;
+      Redirección</pre>
+      <div class="macro-tip"><strong>Setup:</strong> Selecciona al tanque → escribe <code>/focus</code> → el macro siempre usará Redirección en él sin perder tu target.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🏷️</span>
+      <span class="macro-title">Marca del cazador (Mouseover)</span>
+      <span class="macro-cat util">Utilidad</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Aplicar siempre al objetivo prioritario antes del pull.">Marca del cazador</span> al objetivo sobre el que posas el ratón sin cambiar tu target actual. Ideal para el pre-pull.</div>
+      <pre class="macro-code">#showtooltip Marca del cazador
+/cast [@mouseover,harm,nodead] Marca del cazador;
+      [@target,harm,nodead] Marca del cazador</pre>
+      <div class="macro-tip"><strong>Pre-pull:</strong> Pasa el ratón por el objetivo prioritario sin clickarlo. Marca aplicada, target mantenido.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🔄</span>
+      <span class="macro-title">Reposición de emergencia de mascota</span>
+      <span class="macro-cat util">Utilidad</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Cuando la mascota se atasca o pierde al objetivo, este macro la pone en pasivo y la hace seguirte para reconducirla. Usa a continuación tu macro de Matar o Disparo con púas para que vuelva a cargar.</div>
+      <pre class="macro-code">/petpassive
+/petfollow</pre>
+      <div class="macro-tip"><strong>Flujo:</strong> Pulsa este macro → mascota vuelve a tu lado → usa macro de Matar para que cargue de nuevo al objetivo.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🧪</span>
+      <span class="macro-title">Cólera de las bestias + Trinket slot</span>
+      <span class="macro-cat">CD Principal</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Activa automáticamente el trinket junto a <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. Útil para trinkets de stat con activación manual. <strong>No sirve para pre-castear la Caja de puzles</strong> — esa siempre manual.</div>
+      <pre class="macro-code">#showtooltip Cólera de las bestias
+/petattack
+/use 13
+/cast Cólera de las bestias</pre>
+      <div class="macro-tip"><strong>Slots:</strong> <code>13</code> = primer trinket · <code>14</code> = segundo trinket. Ajusta según qué trinket quieres activar.</div>
+    </div>
+  </div>
+
+  <h3>Macros de Control</h3>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🔇</span>
+      <span class="macro-title">Contradisparo — Por Foco</span>
+      <span class="macro-cat util">Control</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Interrumpe el cast del objetivo de foco sin cambiar tu target actual. Ideal para raid o M+ donde necesitas interrumpir a un objetivo secundario mientras sigues dañando al principal.</div>
+      <pre class="macro-code">#showtooltip Contradisparo
+/cast [@focus,harm,nodead] Contradisparo;
+      [@target,harm,nodead] Contradisparo</pre>
+      <div class="macro-tip"><strong>Setup:</strong> Selecciona el objetivo que quieres interrumpir → escribe <code>/focus</code> → el macro usará Contradisparo en él sin perder tu target.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🔇</span>
+      <span class="macro-title">Contradisparo — Mouseover</span>
+      <span class="macro-cat util">Control</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Interrumpe el cast del objetivo sobre el que tienes el ratón. Más reactivo que el de foco — útil en M+ cuando los objetivos a interrumpir cambian constantemente.</div>
+      <pre class="macro-code">#showtooltip Contradisparo
+/cast [@mouseover,harm,nodead] Contradisparo;
+      [@focus,harm,nodead] Contradisparo;
+      [@target,harm,nodead] Contradisparo</pre>
+      <div class="macro-tip"><strong>Prioridad:</strong> primero mouseover → si no hay, foco → si no hay, target actual. Cubre todos los casos sin necesidad de configurar nada.</div>
+    </div>
+  </div>
+
+  <div class="macro-card">
+    <div class="macro-head">
+      <span class="macro-emoji">🕸️</span>
+      <span class="macro-title">Disparo vinculante — Mouseover</span>
+      <span class="macro-cat util">Control</span>
+    </div>
+    <div class="macro-body">
+      <div class="macro-desc">Aplica Disparo vinculante al objetivo sobre el que tienes el ratón sin cambiar tu target. Imprescindible en M+ para enraizar adds sin interrumpir tu rotación sobre el objetivo principal.</div>
+      <pre class="macro-code">#showtooltip Disparo vinculante
+/cast [@mouseover,harm,nodead] Disparo vinculante;
+      [@target,harm,nodead] Disparo vinculante</pre>
+      <div class="macro-tip"><strong>Consejo:</strong> Pasa el ratón por el add que quieres enraizar y pulsa el macro — tu target principal no cambia y puedes seguir con la rotación inmediatamente.</div>
+    </div>
+  </div>
+</div>

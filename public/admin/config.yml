@@ -1,0 +1,145 @@
+backend:
+  name: git-gateway
+  branch: master
+
+local_backend:
+  url: http://localhost:8081/api/v1
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "builds"
+    label: "Builds"
+    folder: "src/content/builds"
+    create: false
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden" }
+      - { label: "Titulo", name: "title", widget: "string" }
+      - { label: "Hero Talent", name: "heroTalent", widget: "select", options: ["Pack Leader", "Dark Ranger"] }
+      - { label: "Meta", name: "meta", widget: "boolean", default: false }
+      - { label: "Header", name: "header", widget: "string" }
+      - { label: "Descripcion", name: "description", widget: "text" }
+      - { label: "Copy String", name: "copyString", widget: "text" }
+      - { label: "Wowhead URL", name: "wowheadUrl", widget: "string" }
+      - label: "Talentos flexibles"
+        name: "flexibleTalents"
+        widget: "list"
+        fields:
+          - { label: "Nombre", name: "name", widget: "string" }
+          - { label: "Nota", name: "note", widget: "text" }
+      - { label: "Notas", name: "notes", widget: "list", field: { label: "Nota", name: "note", widget: "text" } }
+      - { label: "Orden", name: "order", widget: "number", value_type: "int" }
+
+  - name: "openers"
+    label: "Openers"
+    folder: "src/content/openers-ui"
+    create: false
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden" }
+      - { label: "Panel ID", name: "panelId", widget: "hidden" }
+      - { label: "Oculto", name: "hidden", widget: "boolean", default: false }
+      - label: "Cadena"
+        name: "chainSteps"
+        widget: "list"
+        fields:
+          - { label: "Texto", name: "text", widget: "string" }
+          - { label: "Subtexto", name: "sub", widget: "string", required: false }
+          - { label: "Tono", name: "tone", widget: "select", options: ["sp", "pr", "bf", "gold"], default: "sp" }
+      - { label: "Titulo detalle", name: "detailTitle", widget: "string" }
+      - label: "Pasos"
+        name: "steps"
+        widget: "list"
+        fields:
+          - { label: "Pre", name: "pre", widget: "string", required: false }
+          - { label: "Habilidad", name: "spell", widget: "select", required: false, options: ["Marca del cazador", "Redireccion", "Caja de puzles de Algeth'ar", "Disparo con puas", "Colera de las bestias", "Matar", "Estampida", "Paliza salvaje", "Tajo de la bestia", "Disparo de cobra", "Flecha negra", "Flecha lastimera", "Aliado de la naturaleza", "Fuego devastador", "Zancapuerco", "Pocion"] }
+          - { label: "Texto", name: "text", widget: "text" }
+      - { label: "Orden", name: "order", widget: "number", value_type: "int" }
+
+  - name: "rotaciones"
+    label: "Rotaciones"
+    folder: "src/content/rotaciones-ui"
+    create: false
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - { label: "ID", name: "id", widget: "hidden" }
+      - { label: "Panel ID", name: "panelId", widget: "hidden" }
+      - { label: "Oculto", name: "hidden", widget: "boolean", default: false }
+      - { label: "Hero Box Titulo", name: "heroBoxTitle", widget: "string", required: false }
+      - { label: "Hero Box Texto", name: "heroBoxText", widget: "text", required: false }
+      - { label: "Titulo ST", name: "stTitle", widget: "string" }
+      - label: "Items ST"
+        name: "stItems"
+        widget: "list"
+        fields:
+          - { label: "Habilidad", name: "spell", widget: "select", required: false, options: ["Marca del cazador", "Redireccion", "Caja de puzles de Algeth'ar", "Disparo con puas", "Colera de las bestias", "Matar", "Estampida", "Paliza salvaje", "Tajo de la bestia", "Disparo de cobra", "Flecha negra", "Flecha lastimera", "Aliado de la naturaleza", "Fuego devastador", "Zancapuerco", "Pocion"] }
+          - { label: "Texto", name: "text", widget: "text" }
+      - { label: "Titulo AoE", name: "aoeTitle", widget: "string" }
+      - label: "Items AoE"
+        name: "aoeItems"
+        widget: "list"
+        fields:
+          - { label: "Habilidad", name: "spell", widget: "select", required: false, options: ["Marca del cazador", "Redireccion", "Caja de puzles de Algeth'ar", "Disparo con puas", "Colera de las bestias", "Matar", "Estampida", "Paliza salvaje", "Tajo de la bestia", "Disparo de cobra", "Flecha negra", "Flecha lastimera", "Aliado de la naturaleza", "Fuego devastador", "Zancapuerco", "Pocion"] }
+          - { label: "Texto", name: "text", widget: "text" }
+      - label: "Cajas extra"
+        name: "extraBoxes"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Clase", name: "className", widget: "string" }
+          - { label: "Titulo", name: "title", widget: "string" }
+          - { label: "Texto", name: "text", widget: "text" }
+      - { label: "Orden", name: "order", widget: "number", value_type: "int" }
+
+  - name: "bosses"
+    label: "Bosses"
+    folder: "src/content/Bosses"
+    create: false
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Imagen", name: "image", widget: "string" }
+      - { label: "Resumen", name: "summary", widget: "text" }
+      - label: "Builds del encuentro"
+        name: "builds"
+        widget: "list"
+        summary: "{{fields.label}} · {{fields.heroTalent}}"
+        fields:
+          - { label: "ID", name: "id", widget: "hidden" }
+          - { label: "Etiqueta", name: "label", widget: "string" }
+          - { label: "Recomendado", name: "rec", widget: "boolean", default: false }
+          - { label: "Hero Talent", name: "heroTalent", widget: "select", options: ["Pack Leader", "Dark Ranger"] }
+          - { label: "String de talentos", name: "string", widget: "text" }
+          - { label: "Abrir en Wowhead (URL)", name: "whUrl", widget: "string" }
+          - label: "Ajustes de talentos"
+            name: "swaps"
+            widget: "list"
+            required: false
+            summary: "{{fields.badge}} · {{fields.name}}"
+            fields:
+              - { label: "Tipo", name: "type", widget: "select", options: ["add", "remove"] }
+              - { label: "Icono (nombre interno)", name: "icon", widget: "string" }
+              - { label: "Nombre talento", name: "name", widget: "string" }
+              - { label: "Badge", name: "badge", widget: "select", options: ["AÑADIR", "QUITAR"] }
+              - { label: "Descripcion", name: "desc", widget: "text" }
+          - label: "Notas del encuentro"
+            name: "notes"
+            widget: "list"
+            required: false
+            summary: "{{fields.type}}"
+            fields:
+              - { label: "Tipo", name: "type", widget: "select", options: ["crit", "warn", "tip", "info"] }
+              - { label: "Texto", name: "text", widget: "text" }
+      - { label: "Slug", name: "slug", widget: "hidden" }
+      - { label: "⚙ Dificultad (avanzado)", name: "difficulty", widget: "select", options: ["heroico", "mitico"], hint: "No cambiar salvo necesidad." }
+      - { label: "⚙ Orden (avanzado)", name: "order", widget: "number", value_type: "int", hint: "Controla el orden en la UI." }

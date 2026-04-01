@@ -1,0 +1,44 @@
+---
+import GuideContent from '../components/guide/GuideContent.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+
+const buildEntries = (await getCollection('builds')).sort((a, b) => a.data.order - b.data.order);
+const bossEntries = (await getCollection('jefes')).sort((a, b) => a.data.order - b.data.order);
+
+const buildsData = buildEntries.map(({ data }) => ({
+  id: data.id,
+  label: data.title,
+  meta: data.meta,
+  header: data.header,
+  desc: data.description,
+  copyStr: data.copyString,
+  whUrl: data.wowheadUrl,
+  flexibles: data.flexibleTalents,
+  notes: data.notes,
+}));
+
+const bossData = bossEntries.map(({ data }) => ({
+  name: data.name,
+  imgUrl: data.image,
+  diff: data.difficulty === 'mitico' ? 'm' : 'h',
+  summary: data.summary,
+  builds: data.builds,
+}));
+---
+
+<MainLayout
+  title="Beast Mastery Hunter - Guia Midnight S1"
+  description="Guia completa de Beast Mastery Hunter para WoW Midnight S1 con tabs, quizzes, BIS tracker y tooltips."
+>
+  <GuideContent />
+  <script is:inline define:vars={{ buildsData, bossData }}>
+    window.BM_BUILDS_DATA = buildsData;
+    window.BM_BOSS_DATA = bossData;
+  </script>
+  <script is:inline src="/scripts/bm-guide.js"></script>
+  <script is:inline>
+    window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+  </script>
+  <script is:inline src="https://wow.zamimg.com/widgets/power.js"></script>
+</MainLayout>

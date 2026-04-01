@@ -1,0 +1,70 @@
+<div id="tab-talentos" class="tab-panel">
+  <h2>Builds de Talentos</h2>
+
+  <div class="box box-info">
+    <div class="box-title">📋 Cómo importar</div>
+    En WoW, abre el árbol de talentos → botón <strong>Cargar</strong> (icono de importar) → pega el string → confirma. O usa el botón <strong>Abrir en Wowhead</strong> para ver el árbol interactivo completo.
+  </div>
+
+  <div class="box box-warn">
+    <div class="box-title">⚠️ Fuente</div>
+    Builds extraídas de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Última revisión por Mishuko el <strong id="build-date">29 de marzo de 2026</strong>. Contrastadas y verificadas en juego.
+  </div>
+
+  <div id="builds-toggle-wrap" class="toggle-wrap" style="flex-wrap:wrap;gap:8px;margin-bottom:24px;padding-top:12px"></div>
+  <div id="builds-container"></div>
+
+  <div class="divider"></div>
+
+  <div class="card" style="margin-bottom: 30px;">
+    <div class="card-header">Talentos por Boss — Raid Midnight</div>
+
+    <div class="box box-info" style="margin-bottom: 18px;">
+      <div class="box-title">ℹ️ Cómo usar esta sección</div>
+      Selecciona un boss para ver los ajustes de talentos recomendados respecto al build base y las notas clave del encuentro.
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:16px 0" id="bossGrid">
+      <button class="boss-sel-btn active" onclick="selectBoss(0,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Chimaerus.png" alt="Chiamerus">
+        <div class="boss-sel-label">Chiamerus</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(1,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Imperator-Averzian.png" alt="Imperador Averzian">
+        <div class="boss-sel-label">Imperador Averzian</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(2,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Vorasius.png" alt="Vorasius">
+        <div class="boss-sel-label">Vorasius</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(3,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Gefallener-Koenig-Salhadaar-768x432.png" alt="Rey caído Salhadaar">
+        <div class="boss-sel-label">Rey caído Salhadaar</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(4,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Vaelgor-und-Ezzorak.png" alt="Vaelgor y Ezzorak">
+        <div class="boss-sel-label">Vaelgor y Ezzorak</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(5,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Lichtblinde-Vorhut-768x432.png" alt="Vanguardia de la Luz">
+        <div class="boss-sel-label">Vanguardia de la Luz</div>
+      </button>
+      <button class="boss-sel-btn" onclick="selectBoss(6,this)">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Krone-des-Kosmos-768x432.png" alt="Corona del Cosmos">
+        <div class="boss-sel-label">Corona del Cosmos</div>
+      </button>
+      <button class="boss-sel-btn soon">
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Beloren-768x432.png" alt="Belo'ren">
+        <div class="boss-sel-soon-overlay"><span class="boss-sel-soon-label">Próximamente</span></div>
+        <div class="boss-sel-label">Belo'ren</div>
+      </button>
+      <button class="boss-sel-btn soon">
+        <img class="boss-sel-ph" src="https://static.wikia.nocookie.net/diealdor/images/3/3b/L%27ura.jpg/revision/latest?cb=20170919092714" alt="L'ura">
+        <div class="boss-sel-soon-overlay"><span class="boss-sel-soon-label">Próximamente</span></div>
+        <div class="boss-sel-label">L'ura</div>
+      </button>
+    </div>
+
+    <div id="boss-panels" style="margin-top: 20px;"></div>
+  </div>
+</div>

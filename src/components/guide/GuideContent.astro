@@ -1,0 +1,34 @@
+---
+import Header from '../Header.astro';
+import TabBar from '../TabBar.astro';
+import SeccionMecanicas from '../SeccionMecanicas.astro';
+import SeccionTalentos from '../SeccionTalentos.astro';
+import SeccionStats from '../SeccionStats.astro';
+import SeccionRotacion from '../SeccionRotacion.astro';
+import SeccionOpener from '../SeccionOpener.astro';
+import SeccionBiS from '../SeccionBiS.astro';
+import SeccionMacros from '../SeccionMacros.astro';
+import SeccionMascotas from '../SeccionMascotas.astro';
+import SeccionErrores from '../SeccionErrores.astro';
+import SeccionExamenes from '../SeccionExamenes.astro';
+---
+
+<Header />
+<TabBar />
+
+<div class="content-area">
+  <SeccionMecanicas />
+  <SeccionTalentos />
+  <SeccionStats />
+  <SeccionRotacion />
+  <SeccionOpener />
+  <SeccionBiS />
+  <SeccionMacros />
+  <SeccionMascotas />
+  <SeccionErrores />
+  <SeccionExamenes />
+</div>
+
+<div class="guide-footer">
+  ⚠️ Guía en construcción — se actualizará con cada parche. · Creada por <span>Mishuko</span> · <span id="footer-date"></span>
+</div>

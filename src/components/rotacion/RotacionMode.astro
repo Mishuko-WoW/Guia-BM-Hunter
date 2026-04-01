@@ -1,0 +1,81 @@
+---
+import { getBadgeClass, getSpell } from '../../lib/spells';
+
+const { entry } = Astro.props;
+
+if (!entry) {
+  throw new Error('RotacionMode requiere una entrada valida.');
+}
+---
+
+<div id={entry.data.panelId} style={entry.data.hidden ? 'display:none' : undefined}>
+  {entry.data.heroBoxTitle && entry.data.heroBoxText && (
+    <div class="alert-note" style="margin-bottom:14px;">
+      <strong>{entry.data.heroBoxTitle}</strong>
+      <span>{` ${entry.data.heroBoxText}`}</span>
+    </div>
+  )}
+
+  <div class="cols two-cols">
+    <div class="col-card">
+      <div class="col-head">{entry.data.stTitle}</div>
+      <ul class="prio-list">
+        {entry.data.stItems.map((item) => (
+          (() => {
+            const spell = getSpell(item.spell);
+            const icon = item.icon ?? spell?.icon;
+            const alt = item.alt ?? item.spell ?? 'Icono';
+            const badgeClass = getBadgeClass(spell?.badge);
+            return (
+              <li>
+                {icon && <img src={icon} alt={alt} />}
+                <span>
+                  {item.spell && (
+                    <span class={badgeClass} data-name={item.spell} data-type={spell?.type ?? ''} data-desc={spell?.desc ?? ''}>
+                      {item.spell}
+                    </span>
+                  )}
+                  {item.spell ? <span>{` ${item.text}`}</span> : <span>{item.text}</span>}
+                </span>
+              </li>
+            );
+          })()
+        ))}
+      </ul>
+    </div>
+
+    <div class="col-card">
+      <div class="col-head">{entry.data.aoeTitle}</div>
+      <ul class="prio-list">
+        {entry.data.aoeItems.map((item) => (
+          (() => {
+            const spell = getSpell(item.spell);
+            const icon = item.icon ?? spell?.icon;
+            const alt = item.alt ?? item.spell ?? 'Icono';
+            const badgeClass = getBadgeClass(spell?.badge);
+            return (
+              <li>
+                {icon && <img src={icon} alt={alt} />}
+                <span>
+                  {item.spell && (
+                    <span class={badgeClass} data-name={item.spell} data-type={spell?.type ?? ''} data-desc={spell?.desc ?? ''}>
+                      {item.spell}
+                    </span>
+                  )}
+                  {item.spell ? <span>{` ${item.text}`}</span> : <span>{item.text}</span>}
+                </span>
+              </li>
+            );
+          })()
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  {entry.data.extraBoxes.map((box) => (
+    <div class={box.className}>
+      <strong>{box.title}</strong>
+      <span>{` ${box.text}`}</span>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,21 @@
+{
+  "total": 2,
+  "items": [
+    {
+      "id": "arma",
+      "slot": "Arma",
+      "name": "Rifle de Golpe Solar",
+      "source": "Averzian",
+      "href": "https://www.wowhead.com/es/item=249279/rifle-de-golpe-solar?bonus=12806",
+      "variant": "raid"
+    },
+    {
+      "id": "yelmo",
+      "slot": "Yelmo",
+      "name": "Fauces de centinela primigenio",
+      "source": "Tier Set - Vanguardia de la luz",
+      "href": "https://www.wowhead.com/es/item=249988/fauces-de-centinela-primigenio",
+      "variant": "raid"
+    }
+  ]
+}

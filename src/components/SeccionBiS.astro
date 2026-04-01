@@ -1,0 +1,85 @@
+<div id="tab-bis" class="tab-panel">
+  <h2>Best in Slot & Consumibles</h2>
+
+  <h3>Equipo BIS Completo optimizado para contenido de raid</h3>
+  <div class="box box-warn">
+    <div class="box-title">⚠️ Fuente</div>
+    Items y consumibles extraídos de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Última revisión por Mishuko el <strong id="build-date">29 de marzo de 2026</strong>. Contrastadas y verificadas.
+  </div>
+
+  <div class="bis-progress-wrap">
+    <span class="bis-progress-label">🗡️ Progreso BiS</span>
+    <div class="bis-progress-bar-bg">
+      <div class="bis-progress-bar-fill" id="bis-bar" style="width:0%"></div>
+    </div>
+    <span class="bis-progress-count" id="bis-count">0 / 15</span>
+  </div>
+
+  <div class="bis-table-wrap">
+    <table class="bis-table">
+      <thead>
+        <tr>
+          <th style="width:36px"></th>
+          <th>Slot</th>
+          <th>Ítem</th>
+          <th>Fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="raid-row" data-bis="arma"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Arma</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249279/rifle-de-golpe-solar?bonus=12806" target="_blank" rel="noopener noreferrer">Rifle de Golpe Solar</a></td><td class="source-raid">Averzian</td></tr>
+        <tr class="raid-row" data-bis="yelmo"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Yelmo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249988/fauces-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Fauces de centinela primigenio</a></td><td class="source-raid">Tier Set — Vanguardia de la luz</td></tr>
+        <tr class="raid-row" data-bis="cuello"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Cuello</td><td class="item-name"><a href="https://www.wowhead.com/es/item=250247/amuleto-del-himno-abisal" target="_blank" rel="noopener noreferrer">Amuleto del himno abisal</a></td><td class="source-raid">Marcha de Quel'danas</td></tr>
+        <tr data-bis="hombros"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Hombros</td><td class="item-name"><a href="https://www.wowhead.com/es/item=151323/espaldares-del-cazador-del-vac%C3%ADo" target="_blank" rel="noopener noreferrer">Espaldares del cazador del Vacío</a></td><td class="source-mp">Trono del Triunvirato (M+)</td></tr>
+        <tr class="raid-row" data-bis="capa"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Capa</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249335/estandarte-del-imperador?bonus=12806" target="_blank" rel="noopener noreferrer">Estandarte del imperador</a></td><td class="source-raid">Averzian</td></tr>
+        <tr class="raid-row" data-bis="pecho"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Pecho</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249991/peto-de-escamas-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Peto de escamas de centinela primigenio <span class="tier-badge">TIER</span></a></td><td class="source-raid">Tier Set — Chiamerus</td></tr>
+        <tr class="raid-row" data-bis="munecas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Muñecas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249304/pu%C3%B1os-del-rey-ca%C3%ADdo?bonus=12806" target="_blank" rel="noopener noreferrer">Puños del Rey Caído</a></td><td class="source-raid">Rey Nexo Salhadaar</td></tr>
+        <tr class="raid-row" data-bis="guantes"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Guantes</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249989/guardagarras-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Guardagarras de centinela primigenio <span class="tier-badge">TIER</span></a></td><td class="source-raid">Tier Set — Vorasius</td></tr>
+        <tr data-bis="cinturon"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Cinturón</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244611/cinto-cortical-de-cuidador-del-mundo" target="_blank" rel="noopener noreferrer">Cinto cortical de cuidador del mundo <span class="craft-badge">CRAFT</span></a></td><td class="source-craft">✂ Peletería</td></tr>
+        <tr class="raid-row" data-bis="piernas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Piernas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249987/musleras-de-centinela-primigenio?bonus=12806" target="_blank" rel="noopener noreferrer">Musleras de centinela primigenio <span class="tier-badge">TIER</span></a></td><td class="source-raid">Tier Set — Vaelgor & Ezzorak</td></tr>
+        <tr data-bis="botas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Botas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244610/zapatillas-raigales-de-cuidador-del-mundo" target="_blank" rel="noopener noreferrer">Zapatillas raigales de cuidador del mundo <span class="craft-badge">CRAFT</span></a></td><td class="source-craft">✂ Peletería</td></tr>
+        <tr class="raid-row" data-bis="anillo1"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Anillo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249920/ojo-de-medianoche" target="_blank" rel="noopener noreferrer">Ojo de medianoche</a></td><td class="source-raid">Marcha de Quel'danas</td></tr>
+        <tr class="raid-row" data-bis="anillo2"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Anillo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249369/v%C3%ADnculo-de-la-luz?bonus=13668" target="_blank" rel="noopener noreferrer">Vínculo de la Luz</a></td><td class="source-raid">Vanguardia de la luz</td></tr>
+        <tr class="raid-row" data-bis="trinket1"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Trinket</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249806/pluma-radiante" target="_blank" rel="noopener noreferrer">Pluma radiante</a></td><td class="source-raid">Belo'ren</td></tr>
+        <tr data-bis="trinket2"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Trinket</td><td class="item-name"><a href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar" target="_blank" rel="noopener noreferrer">Caja de puzles de Algeth'ar</a></td><td class="source-mp">Academia Algeth'ar (M+)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Encantamientos</h3>
+  <div class="bis-table-wrap">
+    <table class="bis-table">
+      <thead><tr><th>Slot</th><th>Encantamiento</th></tr></thead>
+      <tbody>
+        <tr><td>Arma</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244029/encantar-arma-agudeza-de-los-rendorei" target="_blank" rel="noopener noreferrer">Encantar arma: Agudeza de los ren'dorei</a></td></tr>
+        <tr><td>Yelmo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244007/encantar-yelmo-runa-de-evasi%C3%B3n-potenciada" target="_blank" rel="noopener noreferrer">Encantar yelmo: Runa de evasión potenciada</a></td></tr>
+        <tr><td>Hombros</td><td class="item-name"><a href="https://www.wowhead.com/es/item=243991/encantar-hombros-gracia-de-amirdrassil" target="_blank" rel="noopener noreferrer">Encantar hombros: Gracia de Amirdrassil</a></td></tr>
+        <tr><td>Pecho</td><td class="item-name"><a href="https://www.wowhead.com/es/item=243977/encantar-torso-marca-del-alma-mundo" target="_blank" rel="noopener noreferrer">Encantar torso: Marca del alma-mundo</a></td></tr>
+        <tr><td>Piernas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244641/refuerzo-para-armadura-de-cazador-del-bosque" target="_blank" rel="noopener noreferrer">Refuerzo para armadura de cazador del bosque</a></td></tr>
+        <tr><td>Botas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=243953/encantar-botas-destreza-de-lince" target="_blank" rel="noopener noreferrer">Encantar botas: Destreza de lince</a></td></tr>
+        <tr><td>Anillos</td><td class="item-name"><a href="https://www.wowhead.com/es/item=243959/encantar-anillo-maestr%C3%ADa-de-zuljin" target="_blank" rel="noopener noreferrer">Encantar anillo: Maestría de Zul'jin</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Gemas</h3>
+  <div class="card">
+    <div class="data-row">💎 <strong>1×</strong> <a href="https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable" target="_blank" rel="noopener noreferrer"><span style="color:#81d4fa">Diamante de Canción Eterna indescifrable</span></a> — Gema especial única (un solo hueco).</div>
+    <div class="data-row">💜 <strong>Resto:</strong> Mix de <a href="https://www.wowhead.com/es/item=240900/amatista-r%C3%A1pida-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#c090ff">Amatista rápida impecable</span></a>, <a href="https://www.wowhead.com/es/item=240898/amatista-mortal-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#ff8080">Amatista mortal impecable</span></a> y <a href="https://www.wowhead.com/es/item=240892/peridoto-magistral-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#80ff90">Peridoto magistral impecable</span></a>.</div>
+  </div>
+
+  <div class="box box-tip">
+    <div class="box-title">💡 Sincronización de poción</div>
+    Usa siempre la <strong>poción de combate junto a <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span></strong>. Debe estar activa antes del primer hit para que se beneficie de él.
+  </div>
+
+  <h3>Consumibles</h3>
+  <div class="card">
+    <div class="cons-row"><div class="cons-slot">Frasco</div><div><a href="https://www.wowhead.com/es/item=241322/frasco-de-los-magistri" target="_blank" rel="noopener noreferrer"><strong>Frasco de los Magistri</strong></a> — Mejor stat en todas las situaciones.</div></div>
+    <div class="cons-row"><div class="cons-slot">Poción combate</div><div><a href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer"><strong>Potencial de luz</strong></a> — Opción principal.<span class="cons-alt">Alt: <a href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer">Jarabe de abandono rampante</a></span></div></div>
+    <div class="cons-row"><div class="cons-slot">Poción salud</div><div><a href="https://www.wowhead.com/es/item=241305/poci%C3%B3n-de-sanaci%C3%B3n-de-lunargenta" target="_blank" rel="noopener noreferrer"><strong>Poción de sanación de Lunargenta</strong></a></div></div>
+    <div class="cons-row"><div class="cons-slot">Runa</div><div><a href="https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo" target="_blank" rel="noopener noreferrer"><strong>Runa de aumento tocada por el Vacío</strong></a></div></div>
+    <div class="cons-row"><div class="cons-slot">Buff de arma</div><div><a href="https://www.wowhead.com/es/item=243734/aceite-de-f%C3%A9nix-thalassiano" target="_blank" rel="noopener noreferrer"><strong>Aceite de fénix thalassiano</strong></a></div></div>
+    <div class="cons-row"><div class="cons-slot">Festín</div><div><a href="https://www.wowhead.com/es/item=242272/mezcla-queldorei" target="_blank" rel="noopener noreferrer"><strong>Mezcla quel'dorei</strong></a> o <a href="https://www.wowhead.com/es/item=255845/desfile-de-lunargenta" target="_blank" rel="noopener noreferrer"><strong>Desfile de Lunargenta</strong></a></div></div>
+    <div class="cons-row"><div class="cons-slot">Comida personal</div><div><a href="https://www.wowhead.com/es/item=255848/frenes%C3%AD-de-flora" target="_blank" rel="noopener noreferrer"><strong>Frenesí de flora</strong></a> o <a href="https://www.wowhead.com/es/item=242275/asado-real" target="_blank" rel="noopener noreferrer"><strong>Asado real</strong></a></div></div>
+  </div>
+</div>

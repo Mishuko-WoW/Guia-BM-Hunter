@@ -1,0 +1,60 @@
+---
+import { getBadgeClass, getChainClass, getSpell } from '../../lib/spells';
+
+const { entry } = Astro.props;
+
+if (!entry) {
+  throw new Error('OpenerMode requiere una entrada valida.');
+}
+---
+
+<div id={entry.data.panelId} style={entry.data.hidden ? 'display:none' : undefined}>
+  <div class="skill-path">
+    {entry.data.chainSteps.map((item, index) => (
+      <>
+        <div class={getChainClass(item.tone)}>
+          <span>{item.text}</span>
+          {item.sub && <small>{item.sub}</small>}
+        </div>
+        {index < entry.data.chainSteps.length - 1 && <span class="sp-arrow">→</span>}
+      </>
+    ))}
+  </div>
+
+  {entry.data.warning && (
+    <div class="alert-note" style="margin-bottom:16px;">
+      <strong>{entry.data.warning.title}</strong> {entry.data.warning.text}
+    </div>
+  )}
+
+  <div class="step-grid">
+    {entry.data.steps.map((step) => (
+      <div class="step-row">
+        {(() => {
+          const spell = getSpell(step.spell);
+          const icon = step.icon ?? spell?.icon;
+          const alt = step.alt ?? step.spell ?? 'Icono';
+          const badgeClass = getBadgeClass(spell?.badge);
+          return (
+            <>
+              {step.pre && <div class="step-pre">{step.pre}</div>}
+              {icon && <img src={icon} alt={alt} />}
+              <div>
+                {step.spell && (
+                  <span class={badgeClass} data-name={step.spell} data-type={spell?.type ?? ''} data-desc={spell?.desc ?? ''}>
+                    {step.spell}
+                  </span>
+                )}
+                {step.spell ? <span>{` ${step.text}`}</span> : <span>{step.text}</span>}
+              </div>
+            </>
+          );
+        })()}
+      </div>
+    ))}
+  </div>
+
+  <div class="alert-note" style="margin-top:16px;">
+    <strong>Detalle:</strong> {entry.data.detailTitle}
+  </div>
+</div>

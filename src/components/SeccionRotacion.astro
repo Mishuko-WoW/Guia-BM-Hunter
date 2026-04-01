@@ -1,0 +1,34 @@
+---
+import RotacionPackLeader from './rotacion/RotacionPackLeader.astro';
+import RotacionDarkRanger from './rotacion/RotacionDarkRanger.astro';
+---
+
+<div id="tab-rot" class="tab-panel">
+  <h2>Lista de Prioridades</h2>
+
+  <div class="box box-info">
+    <div class="box-title">ℹ️ Cómo leer la lista</div>
+    El BM Hunter usa una <strong>lista de prioridades</strong>. En cada GCD, baja de arriba a abajo y usa la primera habilidad disponible que cumpla su condición. No es una rotación fija.
+  </div>
+
+  <div class="box box-warn">
+    <div class="box-title">📋 Cambio de meta — M+</div>
+    Anteriormente <strong>Pack Leader</strong> era el talento héroe recomendado tanto para raid como para Míticas+. Tras recientes cambios de parche y análisis de la comunidad, las guías recomiendan ahora <strong>Dark Ranger para M+</strong>. Pack Leader sigue siendo el estándar para raid.
+  </div>
+
+  <div class="toggle-wrap">
+    <button class="toggle-btn active" onclick="setRot('pl', this)">🎯 Pack Leader — Raid</button>
+    <button class="toggle-btn" onclick="setRot('dr', this)">🖤 Dark Ranger — M+</button>
+  </div>
+
+  <RotacionPackLeader />
+
+  <RotacionDarkRanger />
+
+  <div class="divider"></div>
+  <h3>Guías vs. Realidad — Lo que dicen los datos</h3>
+  <div class="box box-tip">
+    <div class="box-title">📊 Análisis basado en logs reales</div>
+    Algunas guías, incluyendo las de Icy Veins, indican que debes usar Matar <em>solo cuando tienes <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar.">Aliado de la naturaleza</span> activo</em>. Sin embargo, el análisis de logs de alto nivel demuestra que <strong>Matar se usa on cooldown</strong> y el buff llega de forma natural.
+  </div>
+</div>
