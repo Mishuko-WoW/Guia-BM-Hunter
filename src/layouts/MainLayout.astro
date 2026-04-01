@@ -12,13 +12,14 @@ const {
 } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
+const headerIconUrl = 'https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png';
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
-    <link rel="icon" href={withBase('favicon.ico')} />
+    <link rel="icon" type="image/png" href={headerIconUrl} />
+    <link rel="icon" href={headerIconUrl} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />

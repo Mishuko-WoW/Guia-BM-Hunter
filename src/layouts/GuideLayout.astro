@@ -6,13 +6,14 @@ interface Props {
 }
 
 const { title = 'Beast Mastery Hunter — Guía Midnight S1' } = Astro.props;
+const headerIconUrl = 'https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png';
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href={headerIconUrl} />
+    <link rel="icon" href={headerIconUrl} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

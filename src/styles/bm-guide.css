@@ -67,13 +67,13 @@
       max-width: 1440px;
       margin: 0 auto;
       display: flex;
-      align-items: flex-start;
-      gap: 20px;
+      align-items: center;
+      gap: 24px;
     }
 
     .header-icon {
-      width: 64px;
-      height: 64px;
+      width: 108px;
+      height: 108px;
       background: radial-gradient(circle, #2a5298 0%, #1a2a4a 100%);
       border: 2px solid var(--accent2);
       border-radius: 50%;
@@ -87,24 +87,42 @@
       padding: 0;
     }
 
+    .header-icon-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
     .header-text {
       flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: 10px;
+    }
+
+    .header-main-copy {
+      min-width: 280px;
+      max-width: 620px;
     }
 
     .header-text h1 {
       font-family: 'Cinzel', serif;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
       color: var(--gold);
-      letter-spacing: 2px;
+      letter-spacing: 1.2px;
       text-shadow: 0 0 20px rgba(244, 200, 66, .35);
+      line-height: 1.15;
     }
 
     .header-text p {
       color: var(--text2);
-      font-size: 17px;
-      margin-top: 3px;
-      letter-spacing: .5px;
+      font-size: 15px;
+      margin-top: 5px;
+      letter-spacing: .25px;
     }
 
     .header-badges {
@@ -1135,6 +1153,15 @@
       line-height: 1.7;
     }
 
+    .guide-footer-note {
+      max-width: 980px;
+      margin: 0 auto 10px;
+    }
+
+    .guide-footer-meta {
+      color: var(--text3);
+    }
+
     .guide-footer span {
       color: var(--accent2);
     }
@@ -1178,7 +1205,18 @@
       .header-text p  { font-size: 13px; }
       .header-badges  { display: none; }
       .header-disclaimer { font-size: 12px; }
-      .header-icon    { width: 48px; height: 48px; font-size: 24px; }
+      .header-icon    { width: 74px; height: 74px; font-size: 24px; }
+      .header-text {
+        display: block;
+        padding-top: 0;
+      }
+      .header-main-copy {
+        max-width: none;
+      }
+      .header-action-row {
+        margin-top: 10px;
+        justify-content: flex-start;
+      }
 
       /* ── NAV: single scrollable row, no wrap ── */
       .tabs-bar { overflow-x: auto; }
@@ -1205,7 +1243,6 @@
 
       /* Content area */
       .content-area { padding: 16px 10px 40px; }
-
       /* Cards & boxes */
       .card   { padding: 14px 12px; }
       .box    { font-size: 14px; padding: 10px 12px; }
@@ -1512,18 +1549,36 @@
 
     .header-action-row {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: flex-start;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 8px;
+      gap: 16px;
+      flex-wrap: nowrap;
+      margin-top: 0;
     }
 
     .header-disclaimer {
       font-size: 15px;
       color: var(--text2);
       line-height: 1.6;
-      max-width: 600px;
+      max-width: 720px;
+    }
+
+    .header-disclaimer-box {
+      background: linear-gradient(180deg, rgba(79, 195, 247, .08), rgba(79, 195, 247, .04));
+      border: 1px solid rgba(79, 195, 247, .18);
+      border-left: 3px solid rgba(79, 195, 247, .45);
+      border-radius: 10px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    }
+
+    .header-disclaimer-title {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
     }
 
     /* ─── BUFF BANNER ────────────────────────────────────────── */
