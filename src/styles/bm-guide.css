@@ -1362,7 +1362,11 @@
       .build-actions { gap: 8px; }
       .build-btn     { font-size: 13px; padding: 8px 14px; }
       .build-desc    { font-size: 13px; }
-      .build-notes { font-size: 13px; }
+      .build-notes { font-size: 14px; }
+      .ts-title { font-size: 14.5px; }
+      .ts-sub { font-size: 13.5px; }
+      .ts-flex-content { font-size: 15px; }
+      .ts-flex-note { font-size: 13px; }
       .toggle-btn.meta::after { font-size: 8px; padding: 1px 5px; }
 
       /* Consumibles */
@@ -1570,9 +1574,9 @@
     .build-notes {
       margin: 6px 0 0 0;
       padding-left: 18px;
-      font-size: 15px;
+      font-size: 16.5px;
       line-height: 1.8;
-      color: var(--text2);
+      color: var(--text);
     }
 
     .build-notes li {
@@ -1761,7 +1765,7 @@
 
 .ts-title {
   font-family: 'Cinzel', serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--gold);
   letter-spacing: .8px;
@@ -1769,8 +1773,8 @@
 }
 
 .ts-sub {
-  font-size: 13px;
-  color: var(--text3);
+  font-size: 14.5px;
+  color: var(--text2);
   font-style: italic;
 }
 
@@ -1808,19 +1812,63 @@
 .ts-flex-content {
   flex: 1;
   min-width: 0;
-  font-size: 15px;
+  font-size: 16.5px;
+  color: var(--text);
+}
+
+#tab-talentos .ts-flex-content {
+  color: var(--text) !important;
 }
 
 .ts-flex-content a {
-  font-weight: 600;
+  font-size: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#tab-talentos .ts-flex-content a,
+#tab-talentos .ts-flex-content a.iconmedium,
+#tab-talentos .ts-flex-content a.iconsmall,
+#tab-talentos .ts-flex-content a.icontiny {
+  font-size: inherit !important;
+  font-weight: 700 !important;
+  line-height: inherit !important;
+}
+
+.ts-flex-content a:hover {
+  text-decoration: underline;
 }
 
 .ts-flex-note {
   display: block;
-  font-size: 12.5px;
-  color: var(--text3);
+  font-size: 16px;
+  color: var(--text);
   margin-top: 3px;
   line-height: 1.45;
+}
+
+#tab-talentos .ts-flex-note {
+  color: var(--text) !important;
+}
+
+.ts-flex-note a {
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(185, 227, 255, .55);
+}
+
+#tab-talentos .ts-flex-note a,
+#tab-talentos .ts-flex-note a.iconmedium,
+#tab-talentos .ts-flex-note a.iconsmall,
+#tab-talentos .ts-flex-note a.icontiny {
+  font-size: inherit !important;
+  font-weight: 600 !important;
+  line-height: inherit !important;
+}
+
+.ts-flex-note a:hover {
+  text-decoration-color: rgba(239, 248, 255, .75);
 }
 
 /* ─── BOSS SELECTOR ─────────────────────────────────────────── */

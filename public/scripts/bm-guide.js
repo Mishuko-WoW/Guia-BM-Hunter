@@ -604,6 +604,26 @@ function renderBuilds() {
   const buildsContainer = document.getElementById('builds-container');
   if (!toggleWrap || !buildsContainer) return;
 
+  function forceTalentFlexibleStyles(scopeEl) {
+    scopeEl.querySelectorAll('.ts-flex-content').forEach((el) => {
+      el.style.setProperty('font-size', '16.5px', 'important');
+      el.style.setProperty('color', 'var(--text)', 'important');
+    });
+
+    scopeEl.querySelectorAll('.ts-flex-note').forEach((el) => {
+      el.style.setProperty('font-size', '16px', 'important');
+      el.style.setProperty('color', 'var(--text)', 'important');
+    });
+
+    scopeEl.querySelectorAll('.ts-flex-content a, .ts-flex-content strong, .ts-flex-content strong a').forEach((el) => {
+      el.style.setProperty('font-size', 'inherit', 'important');
+    });
+
+    scopeEl.querySelectorAll('.ts-flex-note a').forEach((el) => {
+      el.style.setProperty('font-size', 'inherit', 'important');
+    });
+  }
+
   // Botones de toggle
   toggleWrap.innerHTML = buildsData.map((b, i) => `
     <button class="toggle-btn${b.meta ? ' meta' : ''}${i === 0 ? ' active' : ''}"
@@ -651,6 +671,8 @@ function renderBuilds() {
         </div>
       </div>`;
   }).join('');
+
+  forceTalentFlexibleStyles(buildsContainer);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
