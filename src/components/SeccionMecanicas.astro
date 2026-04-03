@@ -1,23 +1,27 @@
+---
+import { Image } from 'astro:assets';
+---
+
 <div id="tab-mecanicas" class="tab-panel active">
   <h2>Mecánicas del Beast Mastery Hunter</h2>
 
   <div class="box box-info">
     <div class="box-title">📖 Resumen</div>
-    El BM Hunter es un especialista en daño a distancia cuya fuente principal de daño proviene de sus <strong>mascotas</strong>. La mayor parte del daño sale de ellas, no de tus propios disparos, por lo que <strong>gestionar bien a tu mascota es tan importante como tu propia rotación</strong>.
+    El BM Hunter es un especialista en daño a distancia cuya fuente principal de daño proviene de sus <strong>mascotas y disparos</strong>. En <Image src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" alt="Pack Leader" width={20} height={20} style="border-radius:50%;vertical-align:middle;margin:0 6px 0 2px;" /> <strong>Pack Leader</strong>, la mayor parte del daño sale de tus mascotas, no de tus propios disparos, por lo que <strong>gestionarlas bien es tan importante como tu propia rotación.</strong> En <Image src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp" alt="Dark Ranger" width={20} height={20} style="border-radius:50%;vertical-align:middle;margin:0 6px 0 2px;" /> <strong>Dark Ranger</strong>, los disparos tienen mucho más protagonismo.
   </div>
 
-  <div class="two-col">
-    <div class="col-card">
-      <div class="col-header">⚡ Recurso Principal</div>
-      <div class="col-row">
-        <p><strong>Enfoque</strong> — Se regenera pasivamente. La <strong>Celeridad</strong> acelera su regeneración. El objetivo es no malgastar Enfoque durante la ventana de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="Tu único CD mayor. CD corto pero enormemente impactante. Toda la rotación gira en torno a él.">Cólera de las bestias</span> ni quedarte seco entre ventanas.</p>
-      </div>
-      <div class="col-row">
-        <p>La rotación es una <strong>lista de prioridades</strong>: en cada GCD bajas de arriba a abajo y pulsas la primera habilidad que cumpla su condición.</p>
-      </div>
+  <div class="card">
+    <div class="card-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_focusfire.jpg" alt="Recurso Principal" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Recurso Principal</div>
+    <div class="card-rows">
+      <div class="data-row"><strong>Enfoque</strong> — Se regenera pasivamente. La <strong>Celeridad</strong> acelera su regeneración. El objetivo es no malgastar Enfoque durante la ventana de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="Tu único CD mayor. CD corto pero enormemente impactante. Toda la rotación gira en torno a él.">Cólera de las bestias</span> ni quedarte seco entre ventanas.</div>
+      <div class="data-row">La rotación es una <strong>lista de prioridades</strong>: en cada GCD bajas de arriba a abajo y pulsas la primera habilidad que cumpla su condición.</div>
+      <div class="data-row">Habilidades como Disparo con púas generan enfoque y otras como Disparo de cobra lo consumen.</div>
     </div>
+  </div>
+
+  <div class="two-col card-mt">
     <div class="col-card">
-      <div class="col-header"><img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="16" height="16" class="inline-icon">Talento Héroe: Pack Leader</div>
+      <div class="col-header"><Image src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width={36} height={36} class="inline-icon" alt="Pack Leader" style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Talento Héroe: Pack Leader</div>
       <div class="col-row">
         <p>La rotación de <strong>Pack Leader</strong> pivota sobre <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span>: potencia el siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte de mascota. Prioridad alta con los dos buffs clave.">Matar</span> significativamente.</p>
       </div>
@@ -25,30 +29,70 @@
         <p><span class="pr" data-name="¡Estampida!" data-type="Proc de Pack Leader" data-desc="Línea de animales 30 yardas hacia adelante. Sin ajuste de altura. Falla en terreno irregular o en diferente plano que los enemigos.">¡Estampida!</span> — activada por el primer Matar tras <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. <strong style="color:var(--orange2)">Sin ajuste de altura</strong>: falla si no estás al mismo nivel que los enemigos.</p>
       </div>
     </div>
+    <div class="col-card">
+      <div class="col-header"><Image src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp" alt="Dark Ranger" width={36} height={36} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Talento Héroe: Dark Ranger</div>
+      <div class="col-row">
+        <p>La rotación de <strong>Dark Ranger</strong> pivota sobre <span class="bf" data-name="Fuego Devastador" data-type="Buff Dark Ranger" data-desc="Al lanzar Flecha Negra, disparas 2 Flechas Negras más contra objetivos cercanos, que tienen un 50% de efectividad y priorizan a enemigos que no están afectados por el efecto de daño en el tiempo de Flecha Negra.">Fuego Devastador</span>, que se obtiene durante <span class="sp" data-name="Cólera de las Bestias" data-type="Habilidad Activa" data-desc="CD principal. Activa tu ventana fuerte de daño y habilita Flecha Lastimera en Dark Ranger.">Cólera de las Bestias</span>. Durante su ventana, prioriza Flecha Negra.</p>
+      </div>
+      <div class="col-row">
+        <p><span class="sp" data-name="Flecha Negra" data-type="Habilidad Activa" data-desc="Intentas rematar a un objetivo herido, infligiendo daño de las Sombras y aplicando un efecto de daño en el tiempo durante 8 s.">Flecha Negra</span> es tu habilidad principal de daño y aplica efectos de daño en el tiempo, Tajo de las Bestias en builds AoE y también activa <span class="bf" data-name="Aliado de la Naturaleza" data-type="Buff Activo" data-desc="Potencia tus habilidades de disparo y aumenta el valor de tu siguiente Matar.">Aliado de la Naturaleza</span> para potenciar tu <span class="sp" data-name="Matar" data-type="Habilidad Activa" data-desc="Golpe fuerte de mascota. Prioridad alta cuando está potenciado.">Matar</span>.</p>
+      </div>
+      <div class="col-row">
+        <p>Al usar Cólera de las Bestias con Dark Ranger, durante su duración esta habilidad es sustituida por <span class="sp" data-name="Flecha Lastimera" data-type="Habilidad Activa" data-desc="Dispara una flecha encantada que inflige daño de las Sombras a tu objetivo y daño adicional en área a enemigos cercanos. Flecha Lastimera interrumpe el lanzamiento de hechizos y silencia brevemente a los objetivos alcanzados.">Flecha Lastimera</span>. Es el único casteo que tendremos como Hunter BM y se usará cuando no tengamos nada más en rotación o Cólera de las Bestias esté a punto de terminar.</p>
+      </div>
+    </div>
   </div>
 
   <h3>Cooldown Principal</h3>
   <div class="card">
-    <div class="card-header">🔥 Cólera de las bestias</div>
+    <div class="card-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Cólera de las bestias</div>
     <div class="card-rows">
-      <div class="data-row">🩸 Aplica <span class="bf" data-name="Escabechina" data-type="Debuff de sangrado" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota está atacando activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> al objetivo que ataque tu mascota. <strong>Si la mascota no ataca nada, no habrá sangrado.</strong></div>
-      <div class="data-row">⚡ En Pack Leader, cada hit individual activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad AoE de mascota" data-desc="AoE instantáneo de mascota. Se activa con Paliza salvaje y con cada hit de Cólera de las bestias.">Tajo de la bestia</span> gracias a <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span>.</div>
-      <div class="data-row">🐾 El siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> tras <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura. Falla en terreno irregular.">¡Estampida!</span></div>
+      <div class="data-row"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_primaltenacity.jpg" alt="Escabechina" width={28} height={28} style="vertical-align:middle;margin-right:10px;border-radius:50%;" /> Aplica <span class="bf" data-name="Escabechina" data-type="Debuff de sangrado" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota está atacando activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> al objetivo que ataque tu mascota. <strong>Si la mascota no ataca nada, no habrá sangrado.</strong></div>
+      <div class="data-row"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias" width={28} height={28} style="vertical-align:middle;margin-right:10px;border-radius:50%;" /> Al activarse tus mascotas y tú aumentáis todo el daño que infligís en un 20% durante 15 segundos.</div>
+      <div class="data-row"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_bestialdiscipline.jpg" alt="¡Estampida!" width={28} height={28} style="vertical-align:middle;margin-right:10px;border-radius:50%;" /> <strong>En Pack Leader:</strong> El siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> tras <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura. Falla en terreno irregular.">¡Estampida!</span>.</div>
+      <div class="data-row"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_theblackarrow.jpg" alt="Flecha Lastimera" width={28} height={28} style="vertical-align:middle;margin-right:10px;border-radius:50%;" /> <strong>En Dark Ranger:</strong> Durante <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>, se habilita <span class="sp" data-name="Flecha Lastimera" data-type="Habilidad Activa" data-desc="Dispara una flecha encantada que inflige daño de las Sombras a tu objetivo y daño adicional en área a enemigos cercanos. Flecha Lastimera interrumpe el lanzamiento de hechizos y silencia brevemente a los objetivos alcanzados.">Flecha Lastimera</span> como casteo situacional para cerrar la ventana de daño.</div>
     </div>
   </div>
 
   <h3>Procs Clave</h3>
-  <div class="two-col">
+  <div class="two-col procs-grid">
     <div class="col-card">
-      <div class="col-header orange">🔶 Aullido de la manada</div>
+      <div class="col-header orange"><Image src="https://wow.zamimg.com/images/wow/icons/large/inv_ability_packleaderhunter_vicioushunt.jpg" alt="Aullido de la manada" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Aullido de la manada</div>
       <div class="col-row">
         <p><span class="pr" data-name="Aullido de la manada" data-type="Proc de buff" data-desc="Cada 30s, tu siguiente Matar invoca una bestia de apoyo aleatoria: Dracoleón (+10% daño tuyo y de mascotas 12s), Jabalí (daño físico en área) u Oso (daño desgarrador en hasta 8 enemigos 10s).">Aullido de la manada</span> — Invoca una mascota adicional de la manada. Usa <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> inmediatamente cuando esté activo.</p>
       </div>
     </div>
     <div class="col-card">
-      <div class="col-header">🟢 Aliado de la naturaleza</div>
+      <div class="col-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_goforthethroat.jpg" alt="Aliado de la naturaleza" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Aliado de la naturaleza</div>
       <div class="col-row">
         <p><span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span> — Potencia el siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> significativamente. Prioriza siempre que esté activo.</p>
+      </div>
+    </div>
+    <div class="col-card">
+      <div class="col-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_painspike.jpg" alt="Fuego Devastador" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Fuego Devastador</div>
+      <div class="col-row">
+        <p><span class="bf" data-name="Fuego Devastador" data-type="Buff Dark Ranger" data-desc="Al lanzar Flecha Negra, disparas 2 Flechas Negras más contra objetivos cercanos, que tienen un 50% de efectividad y priorizan a enemigos que no están afectados por el efecto de daño en el tiempo de Flecha Negra.">Fuego Devastador</span> — <strong>En Dark Ranger:</strong> define tu ventana de daño; durante esta ventana prioriza <span class="sp" data-name="Flecha Negra" data-type="Habilidad Activa" data-desc="Intentas rematar a un objetivo herido, infligiendo daño de las Sombras y aplicando un efecto de daño en el tiempo durante 8 s.">Flecha Negra</span>.</p>
+      </div>
+    </div>
+    <div class="col-card">
+      <div class="col-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/inv_darkhoundmount_draka_blue.jpg" alt="Can Oscuro" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Can Oscuro</div>
+      <div class="col-row">
+        <p><span class="bf" data-name="Can Oscuro" data-type="Invocación" data-desc="Cuando invocas una bestia temible, tienes un 10% de probabilidades de invocar un can oscuro en su lugar que inflige mucho más daño.">Can Oscuro</span> — <strong>En Dark Ranger:</strong> es una invocación de alto impacto durante la ventana de <span class="sp" data-name="Cólera de las Bestias" data-type="Habilidad Activa" data-desc="CD principal. Activa tu ventana fuerte de daño y habilita Flecha Lastimera en Dark Ranger.">Cólera de las Bestias</span>.</p>
+      </div>
+      <div class="col-row">
+        <p>Cada <span class="sp" data-name="Matar" data-type="Habilidad Activa" data-desc="Golpe fuerte de mascota. Prioridad alta cuando está potenciado.">Matar</span> hace que lance <span class="bf" data-name="Vapuleo de las Sombras" data-type="Efecto" data-desc="Golpe en área del Can Oscuro que impacta hasta a 8 enemigos cercanos.">Vapuleo de las Sombras</span>, por eso su valor sube mucho en packs.</p>
+      </div>
+    </div>
+    <div class="col-card">
+      <div class="col-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Tajo de la Bestia" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Tajo de las Bestias</div>
+      <div class="col-row">
+        <p><span class="bf" data-name="Tajo de la Bestia" data-type="Daño en área" data-desc="Tus mascotas infligen daño adicional en área alrededor del objetivo principal durante tu ventana activa.">Tajo de las Bestias</span> — <strong>En builds AoE</strong> es absolutamente prioritario mantenerlo usando Paliza Salvaje y, según talentos, Flecha Negra.</p>
+      </div>
+    </div>
+    <div class="col-card">
+      <div class="col-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del Cazador" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Marca del Cazador</div>
+      <div class="col-row">
+        <p><span class="bf" data-name="Marca del Cazador" data-type="Debuff" data-desc="Aumenta un 3% el daño recibido por el objetivo. Solo se puede marcar a un objetivo a la vez.">Marca del Cazador</span> — Desde el lanzamiento de Midnight se ha convertido en una herramienta esencial para maximizar el daño en objetivos prioritarios ya que ahora aumenta el daño en un 3% durante <strong>todo el combate</strong></p>
       </div>
     </div>
   </div>
@@ -70,17 +114,35 @@
   </div>
   <div class="chain-wrap">
     <div class="chain">
-      <div class="chain-step gold-step">Poción + Trinkets<small>Antes del hit</small></div>
+      <div class="chain-step gold-step">
+        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción" width={24} height={24} /></div>
+        <div class="chain-step-text">Poción + Trinkets<small>Antes del hit</small></div>
+      </div>
       <div class="chain-arrow">→</div>
-      <div class="chain-step sp-step">Cólera de las bestias<small>Activa CD</small></div>
+      <div class="chain-step sp-step">
+        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias" width={24} height={24} /></div>
+        <div class="chain-step-text">Cólera de las bestias<small>Activa CD</small></div>
+      </div>
       <div class="chain-arrow">→</div>
-      <div class="chain-step sp-step">Matar<small>Con Aliado de la naturaleza</small></div>
+      <div class="chain-step sp-step">
+        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_killcommand.jpg" alt="Matar" width={24} height={24} /></div>
+        <div class="chain-step-text">Matar<small>Con Aliado de la naturaleza</small></div>
+      </div>
       <div class="chain-arrow">→</div>
-      <div class="chain-step pr-step">¡Estampida!<small>Proc automático</small></div>
+      <div class="chain-step pr-step">
+        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_bestialdiscipline.jpg" alt="¡Estampida!" width={24} height={24} /></div>
+        <div class="chain-step-text">¡Estampida!<small>Proc automático</small></div>
+      </div>
       <div class="chain-arrow">→</div>
-      <div class="chain-step sp-step">Disparo con púas<small>Recarga NA</small></div>
+      <div class="chain-step sp-step">
+        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas" width={24} height={24} /></div>
+        <div class="chain-step-text">Disparo con púas<small>Recarga NA</small></div>
+      </div>
       <div class="chain-arrow">→</div>
-      <div class="chain-step sp-step">Matar<small>Tantos como puedas</small></div>
+      <div class="chain-step sp-step">
+        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_killcommand.jpg" alt="Matar" width={24} height={24} /></div>
+        <div class="chain-step-text">Matar<small>Tantos como puedas</small></div>
+      </div>
     </div>
   </div>
 </div>

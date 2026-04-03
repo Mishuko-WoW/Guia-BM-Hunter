@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -1842,14 +1842,12 @@
   <button class="tab-btn active" onclick="showTab('mec', this)">⚙️ Mecánicas</button>
   <button class="tab-btn" onclick="showTab('talentos', this)">🌟 Talentos</button>
   <button class="tab-btn" onclick="showTab('tal', this)">📊 Stats</button>
-  <button class="tab-btn" onclick="showTab('rot', this)">🔄 Rotación</button>
+  <button class="tab-btn" onclick="showTab('rot', this)">⚔️ Rotación y Opener</button>
   <button class="tab-btn" onclick="showTab('opener', this)">🚀 Opener</button>
   <button class="tab-btn" onclick="showTab('bis', this)">🗡️ BiS & Consumibles</button>
-  <button class="tab-btn" onclick="showTab('mac', this)">🎮 Macros</button>
   <button class="tab-btn" onclick="showTab('mascotas', this)">🐾 Mascotas</button>
+  <button class="tab-btn" onclick="showTab('mac', this)">🎮 Macros</button>
   <button class="tab-btn" onclick="showTab('err', this)">⚠️ Errores</button>
-  <button class="tab-btn" onclick="showTab('qst', this)">📝 Examen ST</button>
-  <button class="tab-btn" onclick="showTab('qaoe', this)">💥 Examen AoE</button>
 </div>
   </div>
 
@@ -1866,18 +1864,17 @@
         El BM Hunter es un especialista en daño a distancia cuya fuente principal de daño proviene de sus <strong>mascotas</strong>. La mayor parte del daño sale de ellas, no de tus propios disparos, por lo que <strong>gestionar bien a tu mascota es tan importante como tu propia rotación</strong>.
       </div>
 
-      <div class="two-col">
-        <div class="col-card">
-          <div class="col-header">⚡ Recurso Principal</div>
-          <div class="col-row">
-            <p><strong>Enfoque</strong> — Se regenera pasivamente. La <strong>Celeridad</strong> acelera su regeneración. El objetivo es no malgastar Enfoque durante la ventana de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="Tu único CD mayor. CD corto pero enormemente impactante. Toda la rotación gira en torno a él.">Cólera de las bestias</span> ni quedarte seco entre ventanas.</p>
-          </div>
-          <div class="col-row">
-            <p>La rotación es una <strong>lista de prioridades</strong>: en cada GCD bajas de arriba a abajo y pulsas la primera habilidad que cumpla su condición.</p>
-          </div>
+      <div class="card">
+        <div class="card-header"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_focusfire.jpg" alt="Recurso Principal" style="width:28px;height:28px;border-radius:50%;vertical-align:middle;margin-right:10px;">Recurso Principal</div>
+        <div class="card-rows">
+          <div class="data-row"><strong>Enfoque</strong> — Se regenera pasivamente. La <strong>Celeridad</strong> acelera su regeneración. El objetivo es no malgastar Enfoque durante la ventana de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="Tu único CD mayor. CD corto pero enormemente impactante. Toda la rotación gira en torno a él.">Cólera de las bestias</span> ni quedarte seco entre ventanas.</div>
+          <div class="data-row">La rotación es una <strong>lista de prioridades</strong>: en cada GCD bajas de arriba a abajo y pulsas la primera habilidad que cumpla su condición.</div>
         </div>
+      </div>
+
+      <div class="two-col card-mt">
         <div class="col-card">
-          <div class="col-header"><img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="16" height="16" class="inline-icon">Talento Héroe: Pack Leader</div>
+          <div class="col-header"><img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="28" height="28" class="inline-icon" style="border-radius:50%;vertical-align:middle;margin-right:10px;">Talento Héroe: Pack Leader</div>
           <div class="col-row">
             <p>La rotación de <strong>Pack Leader</strong> pivota sobre <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span>: potencia el siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte de mascota. Prioridad alta con los dos buffs clave.">Matar</span> significativamente.</p>
           </div>
@@ -1885,28 +1882,40 @@
             <p><span class="pr" data-name="¡Estampida!" data-type="Proc de Pack Leader" data-desc="Línea de animales 30 yardas hacia adelante. Sin ajuste de altura. Falla en terreno irregular o en diferente plano que los enemigos.">¡Estampida!</span> — activada por el primer Matar tras <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. <strong style="color:var(--orange2)">Sin ajuste de altura</strong>: falla si no estás al mismo nivel que los enemigos.</p>
           </div>
         </div>
+        <div class="col-card">
+          <div class="col-header"><img src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp" alt="Dark Ranger" style="width:28px;height:28px;border-radius:50%;vertical-align:middle;margin-right:10px;">Talento Héroe: Dark Ranger</div>
+          <div class="col-row">
+            <p>La rotación de <strong>Dark Ranger</strong> pivota sobre <span class="bf" data-name="Fuego devastador" data-type="Buff Dark Ranger" data-desc="Ventana de daño para Dark Ranger.">Fuego devastador</span>: durante su ventana, prioriza habilidades de disparo para maximizar el daño directo.</p>
+          </div>
+          <div class="col-row">
+            <p><span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Abre ventana de Dark Ranger.">Flecha negra</span> abre la ventana del héroe y <span class="sp" data-name="Flecha lastimera" data-type="Habilidad activa" data-desc="Habilidad de ventana en Dark Ranger.">Flecha lastimera</span> gana mucho peso como relleno en AoE.</p>
+          </div>
+          <div class="col-row">
+            <p>Regla clave: no encadenes <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> dos veces seguidas; intercala otra habilidad para mantener mejor flujo de daño y prioridades.</p>
+          </div>
+        </div>
       </div>
 
       <h3>Cooldown Principal</h3>
       <div class="card">
-        <div class="card-header">🔥 Cólera de las bestias</div>
+        <div class="card-header"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias" style="width:28px;height:28px;border-radius:50%;vertical-align:middle;margin-right:10px;">Cólera de las bestias</div>
         <div class="card-rows">
-          <div class="data-row">🩸 Aplica <span class="bf" data-name="Escabechina" data-type="Debuff de sangrado" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota está atacando activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> al objetivo que ataque tu mascota. <strong>Si la mascota no ataca nada, no habrá sangrado.</strong></div>
-          <div class="data-row">⚡ En Pack Leader, cada hit individual activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad AoE de mascota" data-desc="AoE instantáneo de mascota. Se activa con Paliza salvaje y con cada hit de Cólera de las bestias.">Tajo de la bestia</span> gracias a <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span>.</div>
-          <div class="data-row">🐾 El siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> tras <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura. Falla en terreno irregular.">¡Estampida!</span></div>
+          <div class="data-row"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_primaltenacity.jpg" alt="Escabechina" style="width:28px;height:28px;vertical-align:middle;margin-right:10px;border-radius:50%;"> Aplica <span class="bf" data-name="Escabechina" data-type="Debuff de sangrado" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota está atacando activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> al objetivo que ataque tu mascota. <strong>Si la mascota no ataca nada, no habrá sangrado.</strong></div>
+          <div class="data-row"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias" style="width:28px;height:28px;vertical-align:middle;margin-right:10px;border-radius:50%;"> Al activarse tus mascotas y tú aumentáis todo el daño que infligís en un 20% durante 15 segundos.</div>
+          <div class="data-row"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_bestialdiscipline.jpg" alt="¡Estampida!" style="width:28px;height:28px;vertical-align:middle;margin-right:10px;border-radius:50%;"> El siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> tras <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura. Falla en terreno irregular.">¡Estampida!</span></div>
         </div>
       </div>
 
       <h3>Procs Clave</h3>
       <div class="two-col">
         <div class="col-card">
-          <div class="col-header orange">🔶 Aullido de la manada</div>
+          <div class="col-header orange"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_ability_packleaderhunter_vicioushunt.jpg" alt="Aullido de la manada" style="width:28px;height:28px;border-radius:50%;vertical-align:middle;margin-right:10px;">Aullido de la manada</div>
           <div class="col-row">
             <p><span class="pr" data-name="Aullido de la manada" data-type="Proc de buff" data-desc="Cada 30s, tu siguiente Matar invoca una bestia de apoyo aleatoria: Dracoleón (+10% daño tuyo y de mascotas 12s), Jabalí (daño físico en área) u Oso (daño desgarrador en hasta 8 enemigos 10s).">Aullido de la manada</span> — Invoca una mascota adicional de la manada. Usa <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> inmediatamente cuando esté activo.</p>
           </div>
         </div>
         <div class="col-card">
-          <div class="col-header">🟢 Aliado de la naturaleza</div>
+          <div class="col-header"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_goforthethroat.jpg" alt="Aliado de la naturaleza" style="width:28px;height:28px;border-radius:50%;vertical-align:middle;margin-right:10px;">Aliado de la naturaleza</div>
           <div class="col-row">
             <p><span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span> — Potencia el siguiente <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> significativamente. Prioriza siempre que esté activo.</p>
           </div>
@@ -1930,17 +1939,35 @@
       </div>
       <div class="chain-wrap">
         <div class="chain">
-          <div class="chain-step gold-step">Poción + Trinkets<small>Antes del hit</small></div>
+          <div class="chain-step gold-step">
+            <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div>
+            <div class="chain-step-text">Poción + Trinkets<small>Antes del hit</small></div>
+          </div>
           <div class="chain-arrow">→</div>
-          <div class="chain-step sp-step">Cólera de las bestias<small>Activa CD</small></div>
+          <div class="chain-step sp-step">
+            <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
+            <div class="chain-step-text">Cólera de las bestias<small>Activa CD</small></div>
+          </div>
           <div class="chain-arrow">→</div>
-          <div class="chain-step sp-step">Matar<small>Con Aliado de la naturaleza</small></div>
+          <div class="chain-step sp-step">
+            <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_killcommand.jpg" alt="Matar"></div>
+            <div class="chain-step-text">Matar<small>Con Aliado de la naturaleza</small></div>
+          </div>
           <div class="chain-arrow">→</div>
-          <div class="chain-step pr-step">¡Estampida!<small>Proc automático</small></div>
+          <div class="chain-step pr-step">
+            <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_bestialdiscipline.jpg" alt="¡Estampida!"></div>
+            <div class="chain-step-text">¡Estampida!<small>Proc automático</small></div>
+          </div>
           <div class="chain-arrow">→</div>
-          <div class="chain-step sp-step">Disparo con púas<small>Recarga NA</small></div>
+          <div class="chain-step sp-step">
+            <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+            <div class="chain-step-text">Disparo con púas<small>Recarga NA</small></div>
+          </div>
           <div class="chain-arrow">→</div>
-          <div class="chain-step sp-step">Matar<small>Tantos como puedas</small></div>
+          <div class="chain-step sp-step">
+            <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_killcommand.jpg" alt="Matar"></div>
+            <div class="chain-step-text">Matar<small>Tantos como puedas</small></div>
+          </div>
         </div>
       </div>
     </div>
@@ -2085,8 +2112,8 @@
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="2s de casteo. Pre-castear 2s antes del pull.">Caja de puzles de Algeth'ar</span> 2 segundos antes del pull.</div></li>
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div><div class="ostep-pre">Al hacer pull</div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Primer cast al hacer pull. Posiciona la mascota en el pack.">Disparo con púas</span> al objetivo central del pack.</div></li>
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
-            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente que activa Tajo de la bestia.">Paliza salvaje</span> — activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad activa de mascota" data-desc="AoE de mascota activado por Paliza salvaje y por cada hit de Cólera de las bestias.">Tajo de la bestia</span> en tu mascota.</div></li>
-            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. La mascota debe estar atacando el objetivo central.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar en el centro del pack!</strong></div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente que activa Tajo de la bestia.">Paliza salvaje</span> — activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad activa de mascota" data-desc="AoE de mascota activado por Paliza salvaje y por cada hit de Cólera de las bestias.">Tajo de la bestia</span> en tu mascota. <strong style="color:var(--red2)">¡La mascota debe estar en el centro del pack!</strong></div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. La mascota debe estar atacando el objetivo central.">Cólera de las bestias</span>.</div></li>
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Activa ¡Estampida!.">Matar</span> → activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura.">¡Estampida!</span></div></li>
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario.">Disparo con púas</span> al objetivo prioritario y continúa con rotación AoE.</div></li>
           </ol>
@@ -2194,7 +2221,7 @@
             <div class="chain-arrow">→</div>
             <div class="chain-step pr-step">
               <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div>
-              <div class="chain-step-text">Paliza salvaje<small>Activa Embestida bestial</small></div>
+              <div class="chain-step-text">Paliza salvaje<small>Activa Tajo de la bestia</small></div>
             </div>
             <div class="chain-arrow">→</div>
             <div class="chain-step gold-step">
@@ -2243,9 +2270,9 @@
           <ol class="opener-steps">
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div><div>Asegúrate de que <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Debe estar activa en el objetivo prioritario del pack.">Marca del cazador</span> está activa en el objetivo prioritario.</div></li>
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Primera Flecha negra antes del pull para activar Fuego devastador desde el inicio.">Flecha negra</span> como primera habilidad.</div></li>
-            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="Activa Embestida bestial en la mascota para el cleave AoE.">Paliza salvaje</span> para activar <span class="bf" data-name="Embestida bestial" data-type="Buff AoE" data-desc="AoE de mascota. Mantenlo activo durante todo el pull.">Embestida bestial</span>.</div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="Activa Tajo de la bestia en la mascota para el cleave AoE.">Paliza salvaje</span> para activar <span class="bf" data-name="Tajo de la bestia" data-type="Buff AoE" data-desc="AoE de mascota. Mantenlo activo durante todo el pull.">Tajo de la bestia</span>. <strong style="color:var(--red2)">¡Mascota en el centro del pack!</strong></div></li>
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
-            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Activa <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡Mascota en el centro del pack!</strong></div></li>
+            <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Activa <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div></li>
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Con Aliado de la naturaleza activo.">Matar</span> con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño.">Aliado de la naturaleza</span> activo.</div></li>
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Segunda Flecha negra dentro de Cólera de las bestias.">Flecha negra</span> de nuevo.</div></li>
             <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Segundo Matar del opener.">Matar</span>.</div></li>
@@ -2383,17 +2410,35 @@
         <h3>Ventana de CD — Guía Rápida</h3>
         <div class="chain-wrap">
           <div class="chain">
-            <div class="chain-step gold-step">2× Matar disponible<small>Preparación</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_killcommand.jpg" alt="Matar"></div>
+              <div class="chain-step-text">2× Matar disponible<small>Preparación</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step gold-step">Stats activos<small>Poción antes del hit</small></div>
+            <div class="chain-step gold-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div>
+              <div class="chain-step-text">Stats activos<small>Poción antes del hit</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Cólera de las bestias<small>On cooldown</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div>
+              <div class="chain-step-text">Cólera de las bestias<small>On cooldown</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Matar ×CD<small>A cooldown</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_killcommand.jpg" alt="Matar"></div>
+              <div class="chain-step-text">Matar ×CD<small>A cooldown</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Disparo con púas<small>Recarga NA</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
+              <div class="chain-step-text">Disparo con púas<small>Recarga NA</small></div>
+            </div>
             <div class="chain-arrow">→</div>
-            <div class="chain-step sp-step">Disparo de cobra<small>Relleno o gasto de enfoque</small></div>
+            <div class="chain-step sp-step">
+              <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_cobrashot.jpg" alt="Disparo de cobra"></div>
+              <div class="chain-step-text">Disparo de cobra<small>Relleno o gasto de enfoque</small></div>
+            </div>
           </div>
         </div>
       </div>
@@ -2518,7 +2563,7 @@
       <h2>Stats</h2>
 
       <div class="box box-info">
-        <div class="box-title"><img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="20" height="20" class="icon-sm"> Pack Leader</div>
+        <div class="box-title"><img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="32" height="32" class="icon-sm" style="margin-right: 0.6rem; vertical-align: middle;"> Pack Leader</div>
         Esta guía cubre el árbol héroe <strong>Pack Leader</strong>. La prioridad de stats es casi idéntica para <strong>Dark Ranger</strong>, con ligeros ajustes en AoE.
       </div>
 
@@ -3241,7 +3286,7 @@
 
   <!-- ── FOOTER ────────────────────────────────────────────────────── -->
   <div class="guide-footer">
-    ⚠️ Guía en construcción — se actualizará con cada parche. · Creada por <span>Mishuko</span> · <span id="footer-date"></span>
+    ⚠️ Guía en constante escritura — se actualizará con cada parche. · Creada por <span>Mishuko</span> · <span id="footer-date"></span>
   </div>
 
   <script>
@@ -3252,12 +3297,18 @@
 
     // ─── TABS ─────────────────────────────────────────────────────────
     function showTab(id, btn) {
+      const targetBtn = btn || document.querySelector(`.tab-btn[onclick*="showTab('${id}'"]`);
+      if (!targetBtn) return;
+
+      const highlightedId = id === 'opener' ? 'rot' : id;
+      const highlightedBtn = document.querySelector(`.tab-btn[onclick*="showTab('${highlightedId}'"]`) || targetBtn;
+
       document.querySelectorAll('.tab-panel').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('tab-' + id).classList.add('active');
-      btn.classList.add('active');
+      highlightedBtn.classList.add('active');
       // Scroll active tab button into view on mobile
-      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      highlightedBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
 
     // ─── TOGGLE HELPERS ───────────────────────────────────────────────
@@ -4541,3 +4592,6 @@ function copyBossStr(id, str) {
   
 </body>
 </html>
+
+
+

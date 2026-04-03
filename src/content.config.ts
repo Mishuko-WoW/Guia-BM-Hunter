@@ -11,7 +11,7 @@ const builds = defineCollection({
     header: z.string(),
     description: z.string(),
     copyString: z.string(),
-    wowheadUrl: z.string().url(),
+    wowheadUrl: z.string().url().optional(),
     flexibleTalents: z.array(
       z.object({
         name: z.string(),
@@ -38,7 +38,7 @@ const jefes = defineCollection({
         rec: z.boolean(),
         heroTalent: z.enum(['Pack Leader', 'Dark Ranger']),
         string: z.string(),
-        whUrl: z.string().url(),
+        whUrl: z.string().url().optional(),
         swaps: z.array(
           z.object({
             type: z.enum(['add', 'remove']),

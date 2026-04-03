@@ -1,6 +1,9 @@
 // ─── FECHA ────────────────────────────────────────────────────────
-    document.getElementById('footer-date').textContent =
-      new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
+    const footerDateEl = document.getElementById('footer-date');
+    if (footerDateEl) {
+      footerDateEl.textContent =
+        new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
+    }
 
     const tabButtons = Array.from(document.querySelectorAll('.tab-btn[data-tab]'));
     const validTabIds = new Set(tabButtons.map(btn => btn.dataset.tab));
@@ -93,11 +96,18 @@
       const { updateHash = true, preserveScroll = false } = options;
       const targetBtn = btn || document.querySelector(`.tab-btn[data-tab="${id}"]`);
       if (!targetBtn || !validTabIds.has(id)) return;
+      const targetPanel = document.getElementById('tab-' + id);
+      if (!targetPanel) return;
+
+      // Opener comparte item de menu con Rotacion: al navegar a Opener,
+      // mantenemos resaltado visual en Rotacion para no perder contexto.
+      const highlightedTabId = id === 'opener' ? 'rotacion' : id;
+      const highlightedBtn = document.querySelector(`.tab-btn[data-tab="${highlightedTabId}"]`);
 
       document.querySelectorAll('.tab-panel').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('tab-' + id).classList.add('active');
-      targetBtn.classList.add('active');
+      targetPanel.classList.add('active');
+      (highlightedBtn || targetBtn).classList.add('active');
 
       if (updateHash && window.location.hash !== `#${id}`) {
         history.replaceState(null, '', `#${id}`);
@@ -528,6 +538,7 @@ const SPELL_REGISTRY = {
   "Reflejos felinos":                1258404,
   "Fingir muerte mejorado":          1258486,
   "Instintos salvajes":              378442,
+  "Instintos Salvajes":              378442,
   "Frenesí sangriento":              407412,
   "Bestia temible":                  120679,
   // ── Buffs / Debuffs ──────────────────────────────────────────────────
@@ -584,7 +595,6 @@ function autoLink(text) {
 //   header:   "🎯 Pack Leader — Single Target / Raid",
 //   desc:     "Descripción del build.",
 //   copyStr:  "STRING_DE_TALENTOS",
-//   whUrl:    "https://www.wowhead.com/...",
 //   flexibles: [
 //     { name: "Nombre del talento", note: "Explicación de cuándo quitarlo." },
 //   ],
@@ -595,6 +605,26 @@ function autoLink(text) {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const buildsData = Array.isArray(window.BM_BUILDS_DATA) ? window.BM_BUILDS_DATA : [];
+
+const HERO_TALENT_ICON_BY_NAME = {
+  'Pack Leader': 'https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png',
+  'Dark Ranger': 'https://assets.rpglogs.com/img/warcraft/talents/hero/44_full.png',
+};
+
+function replaceHeroEmojiWithIcon(text) {
+  if (typeof text !== 'string') return text;
+
+  const match = text.match(/^\s*(?:[^\p{L}\p{N}]\s*)*(Pack Leader|Dark Ranger)\b/u);
+  if (!match) return text;
+
+  const heroName = match[1];
+  const iconUrl = HERO_TALENT_ICON_BY_NAME[heroName];
+  if (!iconUrl) return text;
+
+  const heroIndex = text.indexOf(heroName);
+  const rest = heroIndex >= 0 ? text.slice(heroIndex + heroName.length) : '';
+  return `<img class="hero-inline-icon" src="${iconUrl}" alt="${heroName}" loading="lazy" decoding="async">${heroName}${rest}`;
+}
 
 // ─── BUILDS RENDERER ──────────────────────────────────────────────────────
 // Renderiza dinámicamente los builds en la pestaña de Talentos.
@@ -628,7 +658,7 @@ function renderBuilds() {
   toggleWrap.innerHTML = buildsData.map((b, i) => `
     <button class="toggle-btn${b.meta ? ' meta' : ''}${i === 0 ? ' active' : ''}"
       onclick="setBuild('${b.id}', this)">
-      ${b.label}
+      ${replaceHeroEmojiWithIcon(b.label)}
     </button>`).join('');
 
   // Contenido de cada build
@@ -649,11 +679,10 @@ function renderBuilds() {
     return `
       <div id="build-${b.id}" ${i !== 0 ? 'style="display:none"' : ''}>
         <div class="card">
-          <div class="card-header">${b.header}</div>
+          <div class="card-header">${replaceHeroEmojiWithIcon(b.header)}</div>
           <p class="build-desc">${b.desc}</p>
           <div class="build-actions">
             <button id="${copyBtnId}" onclick="copyTalent(document.getElementById('${copyBtnId}'), '${b.copyStr}')" class="build-btn build-btn-copy">📋 Copiar string</button>
-            <a href="${b.whUrl}" target="_blank" class="build-btn build-btn-link">🔗 Abrir en Wowhead</a>
           </div>
 
           <div class="talent-showcase">
@@ -815,7 +844,6 @@ function renderBossPanel(i) {
 
       <div class="build-actions" style="margin-bottom:20px;">
         <button id="${copyId}" onclick="copyBossStr('${copyId}','${build.string}')" class="build-btn build-btn-copy">📋 Copiar string de talentos</button>
-        <a href="${build.whUrl}" target="_blank" class="build-btn build-btn-link">🔗 Abrir en Wowhead</a>
       </div>
 
       <div class="two-col">

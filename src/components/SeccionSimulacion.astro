@@ -1,0 +1,989 @@
+﻿<div id="tab-simulacion" class="tab-panel">
+  <main class="container">
+
+    <header class="header">
+      <h1 style="font-size:26px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:0.5rem">Aprende a simular a tu personaje con Raidbots</h1>
+      <p style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">Sabrás usar cada herramienta para tomar decisiones basadas en datos, no en sensaciones.</p>
+    </header>
+
+    <div class="hero-img">
+      <img src="https://i.imgur.com/oJNtkAL.png" alt="Raidbots - herramienta central para simular al Hunter BM" />
+    </div>
+
+    <section class="card card-accent-blue">
+      <div class="tag blue">Guía Práctica</div>
+      <h2 style="color: var(--accent-cyan); font-size: 1.5rem;">¿Por qué deberías simular?</h2>
+
+      <div class="layout-grid even" style="align-items: center;">
+        <div>
+          <p>Si hay una herramienta clave para mejorar tu rendimiento en WoW, es <strong>Raidbots</strong>.</p>
+          <p>El ilvl o las "stats que parecen mejores" engañan constantemente. Una pieza inesperada o una combinación concreta puede rendir mucho más de lo que parece a simple vista.</p>
+          <p>La única forma fiable de saber qué es mejor para tu personaje es <strong>simular</strong>. Raidbots corre SimulationCraft en la nube, gratis y en la mayoría de ocasiones, en segundos. Solo necesitas el addon <a href="https://www.curseforge.com/wow/addons/simulationcraft" target="_blank" rel="noopener noreferrer">SimulationCraft</a> y leer esta guía.</p>
+        </div>
+
+        <div class="features-grid-2x2">
+          <button type="button" class="feature-box feature-link" onclick="document.getElementById('simulacion-quick-sim')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
+            <div class="icon">⚡</div>
+            <div>
+              <h4>Quick Sim</h4>
+              <p>Referencia rápida del DPS actual.</p>
+            </div>
+          </button>
+          <button type="button" class="feature-box feature-link" onclick="document.getElementById('simulacion-top-gear')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
+            <div class="icon">🏆</div>
+            <div>
+              <h4>Top Gear</h4>
+              <p>Encuentra la mejor combinación de equipo posible.</p>
+            </div>
+          </button>
+          <button type="button" class="feature-box feature-link" onclick="document.getElementById('simulacion-droptimizer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
+            <div class="icon">🎲</div>
+            <div>
+              <h4>Droptimizer</h4>
+              <p>Analiza qué drops te mejoran.</p>
+            </div>
+          </button>
+          <button type="button" class="feature-box feature-link" onclick="document.getElementById('simulacion-stat-weights')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
+            <div class="icon">📊</div>
+            <div>
+              <h4>Stat Weights</h4>
+              <p>Consulta valores con contexto.</p>
+            </div>
+          </button>
+          <button type="button" class="feature-box feature-link feature-box-wide" onclick="document.getElementById('simulacion-weekly-vault')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
+            <div class="icon">🗝️</div>
+            <div>
+              <h4>Gran Cámara</h4>
+              <p>Simula antes de elegir recompensa.</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulacion-quick-sim" class="card card-accent-gold">
+      <div class="tag gold">Referencia Rápida</div>
+      <h2>Quick Sim - Tu punto de partida</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 2rem;">¿Cuánto debería ser el DPS de tu personaje actual en menos de un minuto?</p>
+
+      <div class="layout-grid even quicksim-first-row">
+        <div>
+          <h3>¿Qué es?</h3>
+          <p>Quick Sim calcula el <strong>DPS estimado de tu personaje actual</strong>. No compara objetos ni builds; solo responde una pregunta: <em>¿cómo rindo ahora mismo?</em></p>
+
+          <h3>Cómo usarlo</h3>
+          <ol class="step-list accent-gold">
+            <li>Dentro del juego, abre el addon o escribe <strong>/simc</strong> en el chat.</li>
+            <li>En la ventana que se abre, copia el texto generado por el addon.</li>
+            <li>Entra en Raidbots y selecciona <strong>Quick Sim</strong>.</li>
+            <li>Pega el texto que tenías copiado en el cuadro.</li>
+            <li>Confirma que tu personaje aparece cargado correctamente.</li>
+            <li>Elige las opciones de simulación que desees. (Talentos, buffs, consumibles, etc.)</li>
+            <li>Ejecuta la simulación.</li>
+          </ol>
+
+          <div class="callout warning">
+            <span class="callout-icon">⚠️</span>
+            <div>
+              <strong>No uses Quick Sim</strong> para decidir entre piezas de equipo. Para eso está Top Gear.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="img-showcase quicksim-first-shot">
+            <img data-sim-lightbox="true" src="https://i.imgur.com/dHHL8Uv.png" alt="Quick Sim: importar personaje con el addon SimulationCraft" />
+            <div class="img-caption">Quick Sim - importar personaje con el addon <a href="https://www.curseforge.com/wow/addons/simulationcraft" target="_blank" rel="noopener noreferrer">SimulationCraft</a></div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <h3 style="text-align: center; margin-bottom: 1.5rem;">Resultado - ¿Cómo leo esta simulación?</h3>
+
+      <div class="quicksim-result-copy" style="width: min(100%, 1000px); margin: 0 auto 2rem auto;">
+        <p>
+          El número que verás debajo de tu nombre representa tu daño máximo teórico (DPS)
+          bajo las condiciones que hayas configurado previamente en la simulación.
+        </p>
+
+        <p>
+          <strong>Margin of Error:</strong> como indica su nombre, es el margen de error de la simulación.
+          Cuanto más bajo sea este valor, más fiable será el resultado obtenido. Un margen alto puede indicar
+          que necesitas aumentar el número de iteraciones para obtener datos más precisos.
+        </p>
+
+        <p>
+          <strong>Damage Breakdown:</strong> aquí encontrarás el desglose de tus habilidades, mostrando cuánto
+          daño ha aportado cada una durante la simulación. Es especialmente útil para identificar qué habilidades
+          tienen mayor impacto en tu rendimiento y detectar posibles áreas de mejora en tu rotación.
+        </p>
+
+        <div class="callout info" style="margin: 1rem 0 0 0;">
+          <span class="callout-icon">💡</span>
+          <div>
+            <strong>Pro Tip:</strong> en Raidbots, no te quedes solo con el DPS total. Comparar el
+            <strong>Damage Breakdown</strong> entre diferentes simulaciones (por ejemplo, cambiando talentos,
+            equipo o estadísticas) te permitirá entender por qué una configuración es mejor que otra, no solo
+            cuál hace más daño. Esto es clave para optimizar y entender tu personaje.
+          </div>
+        </div>
+      </div>
+
+      <div class="img-showcase img-large">
+        <img src="https://i.imgur.com/jWAGYJP.png" alt="Resultado del Quick Sim" />
+        <div class="img-caption">Resultado principal - DPS media y breakdown por habilidad</div>
+      </div>
+
+      <div class="img-showcase img-large">
+        <img src="https://i.imgur.com/rhS2DeB.png" alt="Sample Ability Log" />
+        <div class="img-caption">Sample Ability Log - secuencia de habilidades de una iteración</div>
+      </div>
+
+
+    </section>
+
+    <section id="simulacion-top-gear" class="card card-accent-orange">
+      <div class="tag orange">Prioridad Alta</div>
+      <h2 style="color: #f97316">Top Gear - La herramienta principal</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 2.5rem;">Compara múltiples piezas y encuentra automáticamente la mejor combinación posible</p>
+
+      <div class="layout-grid aside-left">
+        <div>
+          <h3>¿Qué es?</h3>
+          <p>Top Gear compara <strong>múltiples piezas de equipo a la vez</strong> y encuentra automáticamente la mejor combinación. Es, con diferencia, <strong>la herramienta más importante de Raidbots</strong>.</p>
+          <p>Tiene en cuenta efectos de set, gemas, encantamientos y la sinergia entre stats para cada combinación posible.</p>
+
+          <h3>Cómo usarlo</h3>
+          <ol class="step-list accent-orange">
+            <li>Entra en <strong>Top Gear</strong> e importa tu personaje.</li>
+            <li>Selecciona el slot de equipo que quieres comparar.</li>
+            <li>Marca los objetos candidatos (puedes añadir upgrades con el botón <strong>+</strong>).</li>
+            <li>Ejecuta la simulación.</li>
+          </ol>
+        </div>
+
+        <div>
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+            <span style="font-weight:600; font-size: 18px;">GIF / Video - Top Gear</span>
+            <span style="font-size:13px; text-align:center; padding:0 2rem;">Reemplaza este espacio con el GIF o video<br/>mostrando la interfaz completa</span>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);text-align:center;font-style:italic">Imagen 5 - barrido completo de la interfaz de Top Gear</p>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="layout-grid even">
+        <div>
+          <h3>Seleccionar y configurar piezas</h3>
+          <p>Al hacer clic en el <strong>símbolo +</strong> junto a cada objeto puedes elegir entre varias opciones antes de añadirlo a la comparativa:</p>
+          <ul class="bullet-list">
+            <li>Añadirlo tal como está en tu inventario.</li>
+            <li><strong>Upgrade</strong> a un nivel superior (ej. 276 o 272 con crestones).</li>
+            <li><strong>Convertir a ítem de Catalizador</strong> para obtener el set bonus.</li>
+            <li>Añadir socket si el objeto lo permite.</li>
+          </ul>
+          <div class="callout warning">
+            <span class="callout-icon">💡</span>
+            <div>
+              Simula <strong>siempre con el upgrade real</strong> que puedes aplicar, no con el ilvl base. La diferencia puede cambiar el ganador.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="img-showcase img-large" style="margin-top: 1.5rem;">
+            <img src="https://i.imgur.com/Rb23dJj.png" alt="Top Gear opciones" />
+            <div class="img-caption">Top Gear - opciones al expandir una pieza (upgrade, catalizador, socket)</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <h3 style="text-align: center; margin-bottom: 1.5rem;">Cómo interpretar el resultado</h3>
+      <div style="width: min(100%, 1000px); margin: 0 auto 1rem auto;">
+        <h4 style="color:var(--text-primary); font-weight:700; margin-bottom: 10px;">Configuración ganadora</h4>
+        <p>Las piezas resaltadas muestran la combinación óptima de equipo según la simulación. Si hay bonificaciones de conjunto (set bonus), Top Gear las tiene en cuenta automáticamente al calcular el mejor resultado posible.</p>
+      </div>
+      <br>
+      <div class="img-showcase img-large">
+        <img src="https://i.imgur.com/RiIUouc.png" alt="Configuración ganadora" />
+        <div class="img-caption">Top Gear - configuración ganadora con ítems resaltados</div>
+      </div>
+      <br>
+      <div style="width: min(100%, 1000px); margin: 0 auto 1rem auto;">
+        <h4 style="color:var(--text-primary); font-weight:700; margin-bottom: 10px;">Ranking de DPS</h4>
+        <p>La configuración ganadora aparece en la primera posición con el DPS más alto. La diferencia respecto a tu equipo actual indica exactamente cuánto ganarías al cambiar a esa configuración.
+        Si la diferencia es inferior al 0,3%, considera otros factores adicionales como comodidad de juego, consistencia, o situaciones reales de combate.</p>
+      </div>
+      <br>
+
+      <div class="img-showcase img-large">
+        <img src="https://i.imgur.com/33zw3eE.png" alt="Ranking de DPS" />
+        <div class="img-caption">Top Gear - ranking de DPS con diferencias exactas</div>
+      </div>
+      
+      <div class="callout info" style="width: min(100%, 1000px); margin: 1rem auto 0 auto;">
+        <span class="callout-icon">💡</span>
+        <div>
+          <strong>Pro Tip:</strong> Cuando las diferencias son muy pequeñas, no siempre merece la pena cambiar de equipo. En Raidbots, una mejora mínima puede no notarse en combate real debido a errores humanos, movimiento o mecánicas del jefe. Prioriza configuraciones más consistentes en lugar de ganancias teóricas muy ajustadas.
+        </div>
+      </div>
+    </section>
+
+    <section id="simulacion-droptimizer" class="card card-accent-green">
+      <div class="tag green">Análisis de Drops</div>
+      <h2 style="color: var(--accent-green)">Droptimizer</h2>
+
+
+      <div class="layout-grid aside-right">
+        <div>
+          <h3>¿Qué es?</h3>
+          <p>Analiza una raid o mazmorra y te indica qué objetos suponen una mejora para tu personaje, mostrando la ganancia estimada de DPS por jefe o contenido.</p>
+
+          <h3>Cómo usarlo</h3>
+          <ol class="step-list accent-green">
+            <li>Entra en Droptimizer.</li>
+            <li>Selecciona el contenido (raid, mazmorra, objetos crafteados, etc.).</li>
+            <li>Elige la dificultad o el nivel de Mythic+.</li>
+            <li>Ejecuta la simulación.</li>
+          </ol>
+        </div>
+
+        <div>
+          <div class="img-showcase">
+            <img data-sim-lightbox="true" src="https://i.imgur.com/htnrlth.png" alt="Selector de Droptimizer" />
+            <div class="img-caption">Selector de Droptimizer - Selección de contenido y nivel de dificultad</div>
+          </div>
+          <div class="callout info" style="margin-top: 1rem;">
+            <span class="callout-icon">💡</span>
+            <div><strong>Tip:</strong> Si seleccionas objetos crafteados, también puedes elegir el nivel de mejora (upgrade) para simular su nivel de objeto (ilvl) exacto.</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <h3 style="text-align: center; margin-bottom: 1.5rem;">Resultado - Mythic+10 (todas las mazmorras)</h3>
+      <div class="layout-grid even" style="align-items: start; margin-bottom: 2rem;">
+        <div>
+          <div class="img-showcase">
+            <img data-sim-lightbox="true" src="https://i.imgur.com/GdEGbPD.png" alt="Resultados Droptimizer" />
+            <div class="img-caption">Resultados de Droptimizer</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="color:var(--text-primary); font-weight:700; margin-bottom: 8px;">Lista de jefes y objetos</h4>
+          <p>Cada jefe o dungeon muestra los objetos que pueden caer y que suponen una mejora para tu personaje. Solo verás piezas relevantes según tu simulación.</p>
+
+          <h4 style="color:var(--text-primary); font-weight:700; margin: 1.5rem 0 8px 0;">Mejora estimada (DPS Gain)</h4>
+          <p>Cada objeto incluye la mejora estimada de DPS respecto a tu equipo actual. Esto te permite identificar rápidamente qué piezas tienen mayor impacto.</p>
+
+          <h4 style="color:var(--text-primary); font-weight:700; margin: 1.5rem 0 8px 0;">Prioridad de farmeo</h4>
+          <p>Los objetos con mayor ganancia de DPS son los más recomendados para farmear. Puedes usar esta información para decidir qué jefes o mazmorras priorizar.</p>
+
+          <h4 style="color:var(--text-primary); font-weight:700; margin: 1.5rem 0 8px 0;">Filtro por contenido</h4>
+          <p>Los resultados están organizados según el contenido seleccionado (raid, Mythic+, etc.), lo que facilita planificar tu progreso semanal.</p>
+
+          <div class="callout warning" style="margin-top: 1.25rem;">
+            <span class="callout-icon">⚠️</span>
+            <div>
+              <strong>Nota:</strong> En la versión gratuita de Raidbots, es necesario realizar el Droptimizer por mazmorras o jefes específicos en lugar de simular todo el contenido a la vez.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout info" style="width: min(100%, 1000px); margin: 1rem auto 0 auto;">
+        <span class="callout-icon">💡</span>
+        <div>
+          <strong>Pro Tip:</strong> En Raidbots, usa Droptimizer junto con Top Gear: primero identifica qué objetos necesitas, y luego comprueba cómo encajan en tu mejor configuración final. Esto te da una visión mucho más completa de tu progreso en World of Warcraft.
+        </div>
+      </div>
+    </section>
+
+    <section id="simulacion-weekly-vault" class="card card-accent-red" style="border-color: rgba(239, 68, 68, 0.3);">
+      <div class="card-header">
+        <div>
+          <div class="section-label label-red">Decisión crítica</div>
+          <h2 class="card-h2" style="color: var(--accent-red);">Simular la Gran Cámara</h2>
+          <p class="card-subtitle">Elegir mal aquí puede suponer una pérdida notable de rendimiento</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="sub-label" style="margin-top: 0;">Funciona igual que Top Gear</div>
+          <p class="body">La Gran Cámara, o como la conocemos comúnmente, la <strong>Vault</strong>, usa exactamente la misma herramienta. La diferencia clave está en <strong>cómo exportas tu personaje</strong>:</p>
+          <ol class="steps accent-red">
+            <li><span class="step-num">1</span>Abre la interfaz de la <strong>Vault</strong> en el juego.</li>
+            <li><span class="step-num">2</span>Abre el addon SimulationCraft <strong>sin seleccionar ningún ítem todavía</strong>.</li>
+            <li><span class="step-num">3</span>Copia el string generado, incluirá los ítems de la vault automáticamente.</li>
+            <li><span class="step-num">4</span>Ve a Top Gear, importa el string y añade cada opción de vault.</li>
+            <li><span class="step-num">5</span>Ejecuta la sim y elige el ganador.</li>
+          </ol>
+          <div class="callout callout-info">
+            <span class="callout-icon">📋</span>
+            <span class="callout-text">Si la diferencia entre dos opciones es <strong>menor al 0.3%</strong>, considera efectos secundarios como on-use, bonus de set o utilidad adicional.</span>
+          </div>
+
+          <div class="sub-label" style="color: var(--accent-red);">Error habitual</div>
+          <ul class="bullets">
+            <li>Elegir la pieza con más ilvl directamente.</li>
+            <li>Tomar la decisión por preferencia de stats concretas.</li>
+            <li>Coger el primer día sin valorar que puedes lootear aún.</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="sub-label" style="margin-top: 0;">Antes de elegir, pregúntate</div>
+
+          <div class="vault-tip">
+            <strong>¿Puedo lootear algo esta semana que cambie mi decisión?</strong><br />
+            <span>Si tienes raid o mythics pendientes que podrían darte una pieza mejor para ese slot, puede no tener sentido coger el ítem de vault el primer día.</span>
+          </div>
+
+          <div class="vault-tip cyan">
+            <strong class="cyan">No siempre conviene elegir el primer día</strong><br />
+            <span>Espera a tener toda la información de la semana antes de decidir. La vault no desaparece hasta el siguiente reset.</span>
+          </div>
+
+          <div class="vault-tip amber">
+            <strong>Simula con el contexto completo</strong><br />
+            <span>Añade en Top Gear tanto los ítems de vault como los posibles drops de la semana. El resultado te dará la foto completa antes de comprometerte.</span>
+          </div>
+
+          <div class="callout callout-warn" style="margin-top: 1rem;">
+            <span class="callout-icon">⏰</span>
+            <span class="callout-text">La vault expira al reset semanal. <strong>No esperes demasiado</strong> o perderás las opciones sin elegir nada.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulacion-stat-weights" class="card card-accent-critical" style="border-color: rgba(248, 113, 113, 0.15);">
+      <div class="tag critical">Precaución</div>
+      <h2 style="color: #f87171;">Stat Weights</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 2rem;">Úsalos con cabeza - no son universales</p>
+
+      <div class="layout-grid even">
+        <div>
+          <h3>¿Qué es?</h3>
+          <p>Calcula el valor relativo de cada estadística para tu personaje <strong>en su estado actual</strong>. Un número como "Agilidad = 1.00" indica que es la stat más valiosa, y el resto se expresan en relación a ella.</p>
+
+          <div class="code-block">
+            Agilidad&nbsp;&nbsp; = 1.00<br/>
+            Maestría&nbsp;&nbsp; = 0.85<br/>
+            Celeridad&nbsp; = 0.78<br/>
+            Vers.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0.74<br/>
+            Crítico&nbsp;&nbsp;&nbsp; = 0.71
+          </div>
+
+          <h3>Importante</h3>
+          <ul class="bullet-list">
+            <li>Estos valores <strong>cambian según tu equipo</strong>.</li>
+            <li>Dependen de tu build, tus trinkets y tu nivel de gear.</li>
+            <li><span style="color:#f87171; font-weight:700;">No son universales.</span> Los de otro jugador no sirven para ti.</li>
+          </ul>
+
+          <div class="callout danger">
+            <span class="callout-icon">🚫</span>
+            <div>
+              <strong>Recomendación:</strong> evita usar stat weights para decisiones de equipo importantes. Utiliza siempre Top Gear - es mucho más fiable.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="margin-top: 0;">Ejemplo Visual de Escala</h3>
+          <div class="stat-container">
+            <div class="stat-row">
+              <span class="stat-label">Agility</span>
+              <div class="stat-bar"><div class="stat-fill" style="width:100%; background:var(--accent-gold)"></div></div>
+              <span class="stat-value">37.36</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Mastery</span>
+              <div class="stat-bar"><div class="stat-fill" style="width:49.7%; background:var(--accent-cyan)"></div></div>
+              <span class="stat-value">18.56</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Haste</span>
+              <div class="stat-bar"><div class="stat-fill" style="width:47.6%; background:var(--accent-cyan)"></div></div>
+              <span class="stat-value">17.81</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Versatility</span>
+              <div class="stat-bar"><div class="stat-fill" style="width:42.1%; background:var(--text-muted)"></div></div>
+              <span class="stat-value">15.73</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Crit Strike</span>
+              <div class="stat-bar"><div class="stat-fill" style="width:41.0%; background:var(--text-muted)"></div></div>
+              <span class="stat-value">15.33</span>
+            </div>
+          </div>
+          <p style="font-size: 13px; font-style: italic;">* Valores de ejemplo. Los tuyos variarán drásticamente según tu equipo y talentos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card card-accent-gold">
+      <div class="tag gold">Cuenta Raidbots</div>
+      <h2>Cuenta gratis vs Premium</h2>
+      <p style="font-size: 1.05rem; margin-bottom: 2rem;">El modo gratuito cubre perfectamente un uso normal. Premium acelera el flujo cuando simulas muchas veces al día.</p>
+
+      <div class="final-grid">
+        <article class="final-card">
+          <h3 class="final-card-title">Cuenta gratuita</h3>
+          <p class="final-card-subtitle">Suficiente para la mayoría de jugadores</p>
+          <ul class="check-list">
+            <li><span class="check ok">✓</span><span>Acceso a todas las herramientas principales.</span></li>
+            <li><span class="check ok">✓</span><span>Sin límite de simulaciones totales.</span></li>
+            <li><span class="check bad">✗</span><span>Cola de simulación más lenta.</span></li>
+            <li><span class="check bad">✗</span><span>Limitaciones en uso simultáneo.</span></li>
+            <li><span class="check bad">✗</span><span>Cantidad de interacciones limitadas.</span></li>
+          </ul>
+        </article>
+
+        <article class="final-card premium">
+          <h3 class="final-card-title premium">Cuenta Premium</h3>
+          <p class="final-card-subtitle">Recomendada si simulas frecuentemente</p>
+          <ul class="check-list">
+            <li><span class="check ok">✓</span><span>Simulaciones significativamente más rápidas.</span></li>
+            <li><span class="check ok">✓</span><span>Prioridad en cola, con menos esperas.</span></li>
+            <li><span class="check ok">✓</span><span>Cantidad de interacciones mucho mayor</span></li>
+            <li><span class="check ok">✓</span><span>Apoyas el desarrollo de la plataforma.</span></li>
+          </ul>
+
+          <div class="callout callout-gold" style="margin-top: 1rem;">
+            <span class="callout-icon">💡</span>
+            <span class="callout-text">La versión <strong>gratuita es suficiente</strong> para un uso normal. El premium se nota si simulas varias veces al día o necesitas una cantidad de interacciones superior.</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-bar" aria-label="Resumen de recomendaciones">
+      <div class="cta-bar-text">
+        <h3>Resumen de recomendaciones</h3>
+        <p>No tomes decisiones importantes sin simular. Prioriza Top Gear y repite las sims tras cambios relevantes de equipo.</p>
+      </div>
+      <a href="https://raidbots.com" target="_blank" rel="noopener noreferrer" class="btn-primary">Abrir Raidbots ↗</a>
+    </section>
+
+  </main>
+
+  <div id="simLightbox" class="sim-lightbox" aria-hidden="true">
+    <button id="simLightboxClose" class="sim-lightbox-close" type="button" aria-label="Cerrar imagen">x</button>
+    <img id="simLightboxImage" class="sim-lightbox-image" alt="Vista ampliada" data-lightbox-ignore="true" />
+  </div>
+</div>
+
+<style>
+  #tab-simulacion {
+    --bg-base: #070a13;
+    --bg-surface: #101623;
+    --bg-surface-hover: #161e30;
+    --bg-surface-raised: #1a2335;
+
+    --border-light: rgba(255, 255, 255, 0.08);
+    --border-highlight: rgba(255, 255, 255, 0.15);
+
+    --accent-gold: #f59e0b;
+    --accent-gold-dim: rgba(245, 158, 11, 0.15);
+    --accent-cyan: #06b6d4;
+    --accent-cyan-dim: rgba(6, 182, 212, 0.15);
+    --accent-red: #ef4444;
+    --accent-red-dim: rgba(239, 68, 68, 0.15);
+    --accent-green: #10b981;
+
+    --gold: var(--accent-gold);
+    --cyan: var(--accent-cyan);
+    --amber: #f59e0b;
+    --bg-card-2: var(--bg-surface-hover);
+
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #8492a6;
+
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.5);
+
+    background: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .container { max-width: none; width: 100%; margin: 0; padding: 0; }
+
+  .header { text-align: center; margin: 0 0 2rem 0; padding: 0 0.75rem; }
+  .header h1 { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2; }
+  .header h1 span { color: var(--accent-cyan); }
+  .header p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+  .hero-img { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-light); margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
+  .hero-img img { width: 100%; height: auto; display: block; }
+
+  .card { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm); }
+  .card-stacked { display: flex; flex-direction: column; gap: 2.5rem; }
+
+  .card-accent-blue { border-color: rgba(6, 182, 212, 0.2); }
+  .card-accent-green { border-color: rgba(16, 185, 129, 0.24); }
+  .card-accent-gold { border-color: rgba(245, 158, 11, 0.22); }
+  .card-accent-orange { border-color: rgba(249, 115, 22, 0.24); }
+  .card-accent-red { border-color: rgba(239, 68, 68, 0.28); }
+  .card-accent-critical { border-color: rgba(248, 113, 113, 0.2); }
+
+  .card-accent-blue h3,
+  .card-accent-blue h4 { color: var(--accent-cyan); }
+  .card-accent-green h3,
+  .card-accent-green h4 { color: var(--accent-green); }
+  .card-accent-gold h3,
+  .card-accent-gold h4 { color: var(--accent-gold); }
+  .card-accent-orange h3,
+  .card-accent-orange h4 { color: #f97316; }
+  .card-accent-red h3,
+  .card-accent-red h4,
+  .card-accent-critical h3,
+  .card-accent-critical h4 { color: #f87171; }
+
+  .layout-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
+  @media (min-width: 900px) {
+    .layout-grid.aside-right { grid-template-columns: 1fr 1.3fr; }
+    .layout-grid.aside-left { grid-template-columns: 1.3fr 1fr; }
+    .layout-grid.even { grid-template-columns: 1fr 1fr; }
+  }
+
+  .features-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  @media (max-width: 600px) { .features-grid-2x2 { grid-template-columns: 1fr; } }
+
+  .feature-link,
+  .feature-link:hover,
+  .feature-link:focus,
+  .feature-link:active,
+  .feature-link:visited {
+    text-decoration: none !important;
+    color: inherit;
+  }
+  .feature-link {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+  }
+  .feature-link * { text-decoration: none !important; }
+  .feature-link:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+  }
+
+  .feature-box-wide {
+    grid-column: 1 / -1;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+  }
+
+  .feature-box-wide > div {
+    text-align: left;
+  }
+
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+
+  .feature-box { background: var(--bg-base); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem; transition: all 0.2s ease; display: flex; align-items: flex-start; gap: 12px; }
+  .feature-box:hover { border-color: var(--accent-gold); background: var(--bg-surface-hover); }
+  .feature-box .icon { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-gold-dim); border: 1px solid rgba(245, 158, 11, 0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .feature-box h4 { font-size: 14px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .feature-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.4; }
+
+  .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+  .tag.blue { background: var(--accent-cyan-dim); color: var(--accent-cyan); border: 1px solid rgba(6, 182, 212, 0.2); }
+  .tag.green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.25); }
+  .tag.gold { background: var(--accent-gold-dim); color: var(--accent-gold); border: 1px solid rgba(245, 158, 11, 0.2); }
+  .tag.red { background: var(--accent-red-dim); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.2); }
+  .tag.critical { background: rgba(248, 113, 113, 0.14); color: #fda4af; border: 1px solid rgba(248, 113, 113, 0.35); }
+  .tag.orange { background: rgba(249, 115, 22, 0.15); color: #f97316; border: 1px solid rgba(249, 115, 22, 0.25); }
+
+  h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  h3 { font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan); margin: 1.5rem 0 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  h3:first-child { margin-top: 0; }
+  p { margin-bottom: 1rem; color: var(--text-secondary); }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--text-primary); font-weight: 600; }
+
+  hr.divider { border: 0; border-top: 1px solid var(--border-light); margin: 2.5rem 0; }
+
+  .img-showcase { background: var(--bg-base); border: 1px solid var(--border-light); border-radius: var(--radius-md); overflow: hidden; margin-bottom: 1rem; transition: transform 0.3s ease, border-color 0.3s ease; }
+  .img-showcase:hover { transform: translateY(-4px); border-color: var(--border-highlight); box-shadow: var(--shadow-lg); }
+  .img-showcase img { width: 100%; height: auto; display: block; object-fit: contain; }
+  .img-showcase img[data-sim-lightbox="true"] { cursor: zoom-in; }
+
+  .quicksim-first-row {
+    align-items: center;
+  }
+
+  .quicksim-first-shot {
+    margin-bottom: 0;
+  }
+
+  .quicksim-first-shot img {
+    width: 100%;
+    max-width: none;
+  }
+
+  @media (min-width: 900px) {
+    .quicksim-first-row {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2.75rem;
+      align-items: center;
+    }
+
+    .quicksim-first-shot {
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .img-large { width: 80%; max-width: none; margin: 0 auto 1.5rem auto; }
+
+  @media (max-width: 900px) {
+    .img-large { width: 100%; }
+  }
+
+  .img-caption { font-size: 13px; color: var(--text-muted); text-align: center; padding: 0.75rem 1rem; border-top: 1px solid var(--border-light); background: var(--bg-surface-hover); font-style: italic; }
+
+  .step-list { list-style: none; counter-reset: steps; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .step-list li { position: relative; padding-left: 2.5rem; color: var(--text-secondary); font-size: 15px; }
+  .step-list li::before { counter-increment: steps; content: counter(steps); position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%; background: var(--accent-cyan-dim); color: var(--accent-cyan); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(6, 182, 212, 0.3); }
+  .step-list li:last-child::before { color: var(--accent-gold); background: var(--accent-gold-dim); border-color: rgba(245, 158, 11, 0.35); }
+
+  .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .bullet-list li { position: relative; padding-left: 1.5rem; color: var(--text-secondary); font-size: 15px; }
+  .bullet-list li::before { content: "•"; position: absolute; left: 0; top: 0; color: var(--accent-cyan); font-weight: bold; font-size: 1.2rem; line-height: 1.5; }
+
+  .status-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .status-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--text-secondary); }
+  .status-list li.ok .icon { color: var(--accent-green); font-weight: bold; }
+  .status-list li.bad .icon { color: var(--accent-red); font-weight: bold; }
+
+  .callout { padding: 1rem 1.25rem; border-radius: var(--radius-md); display: flex; gap: 1rem; align-items: flex-start; margin: 1.5rem 0; font-size: 14.5px; }
+  .callout.warning { background: var(--accent-gold-dim); border: 1px solid rgba(245, 158, 11, 0.3); }
+  .callout.danger { background: var(--accent-red-dim); border: 1px solid rgba(239, 68, 68, 0.3); }
+  .callout.info { background: var(--accent-cyan-dim); border: 1px solid rgba(6, 182, 212, 0.3); }
+  .callout-icon { font-size: 1.25rem; flex-shrink: 0; }
+
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; }
+  .section-label { display: inline-flex; padding: 0.3rem 0.7rem; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.8rem; }
+  .label-critical { color: #fda4af; background: rgba(248, 113, 113, 0.14); border: 1px solid rgba(248, 113, 113, 0.35); }
+  .label-red { color: var(--accent-red); background: var(--accent-red-dim); border: 1px solid rgba(239, 68, 68, 0.35); }
+  .card-h2 { margin-bottom: 0.35rem; }
+  .card-subtitle { color: var(--text-muted); margin-bottom: 0; font-size: 1rem; line-height: 1.6; }
+
+  .two-col { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+  @media (min-width: 960px) {
+    .two-col { grid-template-columns: 1fr 1fr; }
+  }
+
+  .sub-label { margin: 1.25rem 0 0.65rem; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-gold); }
+  .body { font-size: 1rem; line-height: 1.65; color: var(--text-secondary); }
+  .steps { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin: 0 0 1.25rem; }
+  .steps li { color: var(--text-secondary); font-size: 15px; line-height: 1.6; display: flex; align-items: flex-start; gap: 0.65rem; }
+  .step-num { width: 24px; height: 24px; border-radius: 50%; flex: 0 0 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--accent-cyan); background: var(--accent-cyan-dim); border: 1px solid rgba(6, 182, 212, 0.35); margin-top: 1px; }
+  .steps li:last-child .step-num { color: var(--accent-gold); background: var(--accent-gold-dim); border-color: rgba(245, 158, 11, 0.35); }
+  .bullets { list-style: none; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .bullets li { position: relative; padding-left: 1.1rem; color: var(--text-secondary); font-size: 15px; line-height: 1.6; }
+  .bullets li::before { content: "•"; position: absolute; left: 0; top: 0; color: var(--accent-red); font-weight: 700; }
+
+  .vault-tip { background: var(--bg-card-2); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; padding: 0.85rem 1rem; margin-top: 0.75rem; font-size: 14.5px; line-height: 1.6; color: var(--text-secondary); }
+  .vault-tip strong { color: var(--gold); }
+  .vault-tip span { font-size: inherit; line-height: inherit; }
+  .vault-tip.cyan { border-left-color: var(--cyan); }
+  .vault-tip.cyan strong { color: var(--cyan); }
+  .vault-tip.amber { border-left-color: var(--amber); }
+  .vault-tip.amber strong { color: var(--amber); }
+
+  .callout.callout-info { background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.35); }
+  .callout.callout-warn { background: rgba(245, 158, 11, 0.13); border: 1px solid rgba(245, 158, 11, 0.35); }
+  .callout.callout-gold { background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.35); }
+  .callout-text { color: var(--text-secondary); line-height: 1.5; }
+
+  .video-placeholder { background: var(--bg-base); border: 2px dashed var(--border-highlight); border-radius: var(--radius-md); height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: var(--text-muted); transition: border-color 0.3s; margin-bottom: 1rem; width: 100%; }
+  .video-placeholder:hover { border-color: var(--accent-gold); }
+  .video-placeholder .play-icon { width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--border-highlight); background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+  .video-placeholder:hover .play-icon { border-color: var(--accent-gold); background: var(--accent-gold-dim); color: var(--accent-gold); transform: scale(1.05); }
+
+  .stat-container { background: var(--bg-base); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin: 1.5rem 0; }
+  .stat-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+  .stat-row:last-child { margin-bottom: 0; }
+  .stat-label { width: 90px; font-size: 13px; color: var(--text-secondary); }
+  .stat-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
+  .stat-fill { height: 100%; border-radius: 3px; }
+  .stat-value { width: 45px; text-align: right; font-family: var(--font-mono); font-size: 13px; color: var(--text-primary); font-weight: 600; }
+
+  .code-block { background: #090d16; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 1rem; font-family: var(--font-mono); font-size: 14px; color: #6aaa7d; line-height: 1.8; margin: 1rem 0; }
+
+  .final-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 700px) {
+    .final-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .final-card {
+    background: rgba(245, 158, 11, 0.04);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: var(--radius-md);
+    padding: 1.3rem 1.2rem;
+  }
+
+  .final-card.premium {
+    border-color: rgba(245, 158, 11, 0.28);
+    background: rgba(245, 158, 11, 0.04);
+  }
+
+  .final-card .final-card-title {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+
+  .final-card.premium .final-card-title {
+    color: var(--accent-gold);
+  }
+
+  .final-card-subtitle {
+    margin: 0.3rem 0 0.9rem;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .check-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 0;
+  }
+
+  .check-list li {
+    display: flex;
+    gap: 0.55rem;
+    align-items: flex-start;
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+
+  .check {
+    width: 18px;
+    text-align: center;
+    font-weight: 700;
+    flex: 0 0 18px;
+    margin-top: 1px;
+  }
+
+  .check.ok { color: var(--accent-green); }
+  .check.bad { color: #f87171; }
+
+  .cta-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(245, 158, 11, 0.08));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.2rem;
+    margin: 0 0 0.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .cta-bar {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.35rem 1.4rem;
+    }
+  }
+
+  .cta-bar-text h3 {
+    margin: 0 0 0.3rem;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .cta-bar-text p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    color: #08111f;
+    background: var(--accent-gold);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    border-radius: 999px;
+    padding: 0.62rem 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px -10px rgba(245, 158, 11, 0.9);
+    filter: brightness(1.05);
+  }
+
+  .sim-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 12, 0.9);
+    --sim-open-img-width: 640px;
+    --sim-open-img-height: 360px;
+    --sim-lightbox-scale: 1.6;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .sim-lightbox.is-open {
+    display: flex;
+  }
+
+  .sim-lightbox-image {
+    width: min(95vw, max(70vw, calc(var(--sim-open-img-width) * var(--sim-lightbox-scale))));
+    height: min(88vh, max(70vh, calc(var(--sim-open-img-height) * var(--sim-lightbox-scale))));
+    object-fit: contain;
+    border-radius: 0;
+    border: 0;
+    box-shadow: none;
+    cursor: zoom-out;
+  }
+
+  .sim-lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+    color: #f8fafc;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0.15rem 0.35rem;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const simRoot = document.getElementById('tab-simulacion');
+  const simLightbox = document.getElementById('simLightbox');
+  const simLightboxImage = document.getElementById('simLightboxImage') as HTMLImageElement | null;
+  const simLightboxClose = document.getElementById('simLightboxClose');
+
+  const openSimLightbox = (image: HTMLImageElement) => {
+    if (!simLightbox || !simLightboxImage) return;
+    const rect = image.getBoundingClientRect();
+    simLightbox.style.setProperty('--sim-open-img-width', `${Math.max(rect.width, 1)}px`);
+    simLightbox.style.setProperty('--sim-open-img-height', `${Math.max(rect.height, 1)}px`);
+    simLightboxImage.src = image.src;
+    simLightboxImage.alt = image.alt || 'Vista ampliada';
+    simLightbox.classList.add('is-open');
+    simLightbox.setAttribute('aria-hidden', 'false');
+  };
+
+  const closeSimLightbox = () => {
+    if (!simLightbox) return;
+    simLightbox.classList.remove('is-open');
+    simLightbox.setAttribute('aria-hidden', 'true');
+  };
+
+  if (simRoot) {
+    const images = simRoot.querySelectorAll<HTMLImageElement>('img[data-sim-lightbox="true"]');
+    images.forEach((image) => {
+      image.setAttribute('role', 'button');
+      image.setAttribute('tabindex', '0');
+      image.setAttribute('aria-label', `Abrir imagen en grande: ${image.alt || 'imagen'}`);
+      image.addEventListener('click', () => openSimLightbox(image));
+      image.addEventListener('keydown', (event: KeyboardEvent) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openSimLightbox(image);
+        }
+      });
+    });
+  }
+
+  if (simLightboxClose) {
+    simLightboxClose.addEventListener('click', (event: MouseEvent) => {
+      event.stopPropagation();
+      closeSimLightbox();
+    });
+  }
+
+  if (simLightboxImage) {
+    simLightboxImage.addEventListener('click', closeSimLightbox);
+  }
+
+  if (simLightbox) {
+    simLightbox.addEventListener('click', (event: MouseEvent) => {
+      if (event.target === simLightbox) {
+        closeSimLightbox();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (event: KeyboardEvent) => {
+    if (event.key === 'Escape' && simLightbox && simLightbox.classList.contains('is-open')) {
+      closeSimLightbox();
+    }
+  });
+</script>

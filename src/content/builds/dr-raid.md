@@ -6,7 +6,7 @@ meta: true
 header: "🖤 Dark Ranger — Raid AoE"
 description: "Mejor build Dark Ranger para AoE en Raid. Optimizado para maximizar el daño en ráfaga AoE y daño a objetivos prioritarios con una pérdida de DPS single-target modesta."
 copyString: "C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZYZmZWMDzYmhZMzMDzYmZMjZYmZMjZwYaGAAAAAwMAAAMmZmhZGgsBzCYzA"
-wowheadUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/dark-ranger/EAPRlFFlRCIFRFQKQUBUOVVVVVBFBRoEUFNBAFFVVVUBV"
+wowheadUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/dark-ranger#C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZYZmZWMDzYmhZMzMDzYmZMjZYmZMjZwYaGAAAAAwMAAAMmZmhZGgsBzCYzA"
 flexibleTalents:
   - name: "Redirección"
     note: "Útil solo en algunos enfrentamientos como Vanguardia de la Luz."

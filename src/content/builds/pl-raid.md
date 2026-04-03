@@ -4,9 +4,9 @@ title: "🎯 Pack Leader Raid"
 heroTalent: "Pack Leader"
 meta: true
 header: "🎯 Pack Leader — Single Target / Raid"
-description: "Build principal para raid y referencia estándar para la mayoría de encuentros de Midnight. Maximiza el daño de objetivo único. Mas adelante traeremos talentos para cada boss en Heroico y Mítico."
+description: "Build principal para raid y referencia estándar para la mayoría de encuentros de Midnight. Maximiza el daño de objetivo único. Consulta la sección de talentos por Boss mas abajo."
 copyString: "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYG2GzsNzwMmZYYmxYmxMzYGzwMzYGzgx0MAAAAAgZAAAYMzMDYmNwGMLgND"
-wowheadUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFRFQKQUBUOVVRRUBlBVoEUFNBFFFVVVUBR"
+wowheadUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader#C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYG2GzsNzwMmZYYmxYmxMzYGzwMzYGzgx0MAAAAAgZAAAYMzMDYmNwGMLgND"
 flexibleTalents:
   - name: "Redirección"
     note: "Útil solo en algunos enfrentamientos como Vanguardia de la Luz."

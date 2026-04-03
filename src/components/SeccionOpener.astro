@@ -1,4 +1,9 @@
-<div id="tab-opener" class="tab-panel">
+﻿<div id="tab-opener" class="tab-panel">
+  <div class="toggle-wrap combat-switch">
+    <button class="toggle-btn" type="button" onclick="showTab('rotacion')">🔄 Rotación</button>
+    <button class="toggle-btn active" type="button" onclick="showTab('opener')">🚀 Opener</button>
+  </div>
+
   <h2>Secuencia de Opener</h2>
 
   <div class="box box-info">
@@ -135,8 +140,8 @@
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="2s de casteo. Pre-castear 2s antes del pull.">Caja de puzles de Algeth'ar</span> 2 segundos antes del pull.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div><div class="ostep-pre">Al hacer pull</div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Primer cast al hacer pull. Posiciona la mascota en el pack.">Disparo con púas</span> al objetivo central del pack.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
-        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente que activa Tajo de la bestia.">Paliza salvaje</span> — activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad activa de mascota" data-desc="AoE de mascota activado por Paliza salvaje y por cada hit de Cólera de las bestias.">Tajo de la bestia</span> en tu mascota.</div></li>
-        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. La mascota debe estar atacando el objetivo central.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡La mascota debe estar en el centro del pack!</strong></div></li>
+        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente que activa Tajo de la bestia.">Paliza salvaje</span> — activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad activa de mascota" data-desc="AoE de mascota activado por Paliza salvaje y por cada hit de Cólera de las bestias.">Tajo de la bestia</span> en tu mascota. <strong style="color:var(--red2)">¡La mascota debe estar en el centro del pack!</strong></div></li>
+        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. La mascota debe estar atacando el objetivo central.">Cólera de las bestias</span>.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Activa ¡Estampida!.">Matar</span> → activa <span class="pr" data-name="¡Estampida!" data-type="Proc Pack Leader" data-desc="Línea de animales. Sin altura.">¡Estampida!</span></div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Al objetivo prioritario.">Disparo con púas</span> al objetivo prioritario y continúa con rotación AoE.</div></li>
       </ol>
@@ -242,7 +247,7 @@
         <div class="chain-arrow">→</div>
         <div class="chain-step pr-step">
           <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div>
-          <div class="chain-step-text">Paliza salvaje<small>Activa Embestida bestial</small></div>
+          <div class="chain-step-text">Paliza salvaje<small>Activa Tajo de la bestia</small></div>
         </div>
         <div class="chain-arrow">→</div>
         <div class="chain-step gold-step">
@@ -291,9 +296,9 @@
       <ol class="opener-steps">
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div><div>Asegúrate de que <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Debe estar activa en el objetivo prioritario del pack.">Marca del cazador</span> está activa en el objetivo prioritario.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Primera Flecha negra antes del pull para activar Fuego devastador desde el inicio.">Flecha negra</span> como primera habilidad.</div></li>
-        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="Activa Embestida bestial en la mascota para el cleave AoE.">Paliza salvaje</span> para activar <span class="bf" data-name="Embestida bestial" data-type="Buff AoE" data-desc="AoE de mascota. Mantenlo activo durante todo el pull.">Embestida bestial</span>.</div></li>
+        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="Activa Tajo de la bestia en la mascota para el cleave AoE.">Paliza salvaje</span> para activar <span class="bf" data-name="Tajo de la bestia" data-type="Buff AoE" data-desc="AoE de mascota. Mantenlo activo durante todo el pull.">Tajo de la bestia</span>. <strong style="color:var(--red2)">¡Mascota en el centro del pack!</strong></div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
-        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Activa <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>. <strong style="color:var(--red2)">¡Mascota en el centro del pack!</strong></div></li>
+        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Activa <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Con Aliado de la naturaleza activo.">Matar</span> con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño.">Aliado de la naturaleza</span> activo.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg" alt="Flecha negra"></div><div>Lanza <span class="sp" data-name="Flecha negra" data-type="Habilidad activa" data-desc="Segunda Flecha negra dentro de Cólera de las bestias.">Flecha negra</span> de nuevo.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg" alt="Matar"></div><div>Lanza <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Segundo Matar del opener.">Matar</span>.</div></li>
@@ -315,3 +320,6 @@
     </div>
   </div>
 </div>
+
+
+

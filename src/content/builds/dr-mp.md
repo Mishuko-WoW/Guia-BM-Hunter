@@ -6,7 +6,7 @@ meta: true
 header: "🖤 Dark Ranger — M+ (Prio & AoE)"
 description: "Build óptimo Dark Ranger para Míticas+, basado en simulaciones y análisis extensivo en una gran variedad de escenarios. Tiene una mezcla óptima de single-target y AoE — hay builds que hacen más AoE pero pierden más ST de lo que ganan, y viceversa."
 copyString: "C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZGLzMDzwMzMYGzMzwMmZGzMzYbmZMjZYZMNDAAAAAYGAAAYMGmZACDzCYzA"
-wowheadUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/dark-ranger/EAPRlFFlRSIFFEAaBUBFOVVVVVRFFAoEUFNBAFFVVVUBV"
+wowheadUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/dark-ranger#C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZGLzMDzwMzMYGzMzwMmZGzMzYbmZMjZYZMNDAAAAAYGAAAYMGmZACDzCYzA"
 flexibleTalents:
   - name: "Redirección"
     note: "Más útil que en las builds de M+ de Pack Leader ya que esta vez nosotros generamos más daño que nuestras mascotas."

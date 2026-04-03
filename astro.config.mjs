@@ -7,4 +7,7 @@ const isDev = process.argv.includes('dev');
 export default defineConfig({
 	site: 'https://mishuko-wow.github.io',
 	base: isDev ? '/' : '/Guia-BM-Hunter',
+	image: {
+		domains: ['wow.zamimg.com', 'assets.rpglogs.com'],
+	},
 });
