@@ -39,6 +39,8 @@ const jefes = defineCollection({
         heroTalent: z.enum(['Pack Leader', 'Dark Ranger']),
         string: z.string(),
         whUrl: z.string().url().optional(),
+        wclUrl: z.string().url().optional(),
+        lorrgsUrl: z.string().url().optional(),
         swaps: z.array(
           z.object({
             type: z.enum(['add', 'remove']),

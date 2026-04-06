@@ -842,8 +842,15 @@ function renderBossPanel(i) {
 
       ${togglesHtml}
 
-      <div class="build-actions" style="margin-bottom:20px;">
-        <button id="${copyId}" onclick="copyBossStr('${copyId}','${build.string}')" class="build-btn build-btn-copy">📋 Copiar string de talentos</button>
+
+      <div class="build-actions" style="margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;">
+        <style>
+          .build-btn {text-decoration:none;transition:transform .15s,box-shadow .15s;}
+          .build-btn:hover {transform:scale(1.06);box-shadow:0 4px 16px #0003;}
+        </style>
+        <button id="${copyId}" onclick="copyBossStr('${copyId}','${build.string}')" class="build-btn build-btn-copy" style="text-decoration:none;">📋 Copiar string de talentos</button>
+        <a href="${build.wclUrl || '#'}" target="_blank" class="build-btn build-btn-wcl" style="background:#232e4a;color:#fff;border:2px solid #3faaff;padding:8px 18px;border-radius:7px;font-weight:600;box-shadow:0 2px 8px #0002;transition:background .2s;text-decoration:none;">🔗 Warcraft Logs</a>
+        <a href="${build.lorrgsUrl || '#'}" target="_blank" class="build-btn build-btn-lorrgs" style="background:#3a2323;color:#fff;border:2px solid #ff6a3f;padding:8px 18px;border-radius:7px;font-weight:600;box-shadow:0 2px 8px #0002;transition:background .2s;text-decoration:none;">🔗 Lorrgs</a>
       </div>
 
       <div class="two-col">

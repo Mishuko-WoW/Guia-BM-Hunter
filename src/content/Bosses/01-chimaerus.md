@@ -1,6 +1,6 @@
 ---
-name: "Chiamerus"
-slug: "chiamerus"
+name: "Chimaerus"
+slug: "chimaerus"
 difficulty: "heroico"
 image: "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Chimaerus.png"
 summary: "En este encuentro combinamos un fuerte enfoque en single target con bursts de AoE durante las oleadas de adds y la interfase. La clave está en mantener un buen daño sostenido sobre Chiamerus mientras controlamos y eliminamos rápidamente los adds que se dirigen hacia él."
@@ -11,6 +11,8 @@ builds:
     heroTalent: "Pack Leader"
     string: "C0PAo4YcvOcqUdzB9zV+NhSAcAMmxwGsAzwQDbAAYGzyMzwMMzMzMmZYmZMDzMmxM2mZGzYGMmmBAAAAAAAAAjxMDYmNEsYWALGA"
     whUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFREUaAUBEOVRVVVZFAQKAURdBAFFVVVUBF"
+    wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3306&class=Hunter&spec=BeastMastery"
+    lorrgsUrl: "https://lorrgs.io/spec_ranking/hunter-beastmastery/chimaerus-the-undreamt-god"
     swaps:
       - type: "add"
         icon: "ability_hunter_catlikeleaps"

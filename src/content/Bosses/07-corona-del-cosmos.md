@@ -9,8 +9,10 @@ builds:
     label: "Recomendado"
     rec: true
     heroTalent: "Pack Leader"
-    string: "[STRING_TALENTOS]"
+    string: "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYG2GzsNzwMmZYYmxYmxMzYmZGmxYGzgx0MAAAAAgZAAAYMzAYmNEmlZWAbGA"
     whUrl: "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery"
+    wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3181&class=Hunter&spec=BeastMastery&difficulty=4"
+    lorrgsUrl: "https://lorrgs.io/spec_ranking/hunter-beastmastery/crown-of-the-cosmos?difficulty=heroic"
     swaps:
       - type: "add"
         icon: "ability_hunter_catlikeleaps"

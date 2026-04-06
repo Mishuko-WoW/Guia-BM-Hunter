@@ -36,8 +36,8 @@ const reviewDate = getSectionReviewDate([
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:16px 0" id="bossGrid">
       <button class="boss-sel-btn active" onclick="selectBoss(0,this)">
-        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Chimaerus.png" alt="Chiamerus">
-        <div class="boss-sel-label">Chiamerus</div>
+        <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Chimaerus.png" alt="Chimaerus">
+        <div class="boss-sel-label">Chimaerus</div>
       </button>
       <button class="boss-sel-btn" onclick="selectBoss(1,this)">
         <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Imperator-Averzian.png" alt="Imperador Averzian">
@@ -63,14 +63,12 @@ const reviewDate = getSectionReviewDate([
         <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Krone-des-Kosmos-768x432.png" alt="Corona del Cosmos">
         <div class="boss-sel-label">Corona del Cosmos</div>
       </button>
-      <button class="boss-sel-btn soon">
+      <button class="boss-sel-btn" onclick="selectBoss(7,this)">
         <img class="boss-sel-ph" src="https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Beloren-768x432.png" alt="Belo'ren">
-        <div class="boss-sel-soon-overlay"><span class="boss-sel-soon-label">Próximamente</span></div>
         <div class="boss-sel-label">Belo'ren</div>
       </button>
-      <button class="boss-sel-btn soon">
+      <button class="boss-sel-btn" onclick="selectBoss(8,this)">
         <img class="boss-sel-ph" src="https://static.wikia.nocookie.net/diealdor/images/3/3b/L%27ura.jpg/revision/latest?cb=20170919092714" alt="L'ura">
-        <div class="boss-sel-soon-overlay"><span class="boss-sel-soon-label">Próximamente</span></div>
         <div class="boss-sel-label">L'ura</div>
       </button>
     </div>

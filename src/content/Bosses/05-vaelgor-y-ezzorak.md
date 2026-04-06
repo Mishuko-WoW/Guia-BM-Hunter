@@ -11,6 +11,8 @@ builds:
     heroTalent: "Pack Leader"
     string: "C0PAAAAAAAAAAAAAAAAAAAAAAYzYGzMDLwGmZ2M0M2AAwMsNzMLmhZMzwMmZMmZMzMmZmhZmxMmBjpZAAAAAAzAAAwYMzwMzMbIMMLgND"
     whUrl: "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFVEQKBUBQOVVVVUBFBVoEUFNBBFFVVVUBR"
+    wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3178&class=Hunter&spec=BeastMastery"
+    lorrgsUrl: "https://lorrgs.io/spec_ranking/hunter-beastmastery/vaelgor-&-ezzorak"
     swaps:
       - type: "add"
         icon: "ability_hunter_catlikeleaps"

@@ -5,8 +5,8 @@ heroTalent: "Pack Leader"
 meta: false
 header: "⚔️ Pack Leader — M+"
 description: "Funciona bien pero requiere un mejor posicionamiento general y basándome en simulaciones y pruebas propias es inferior a la build de Dark Ranger, al menos por ahora."
-copyString: "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYmxyMzwMMzMDmxMzMMjZmxMzM2mZGzYGWGTzAAAAAAmBAAAGjBMzGghZBsZA"
-wowheadUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader#C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYmxyMzwMMzMDmxMzMMjZmxMzM2mZGzYGWGTzAAAAAAmBAAAGjBMzGghZBsZA"
+copyString: "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYGPwyMzsYGmZmZGzMMzMmhZGzMzYbmZMjZYZMNDAAAAAAAAAYMGwMbAGmFwmB"
+wowheadUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader#C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYGPwyMzsYGmZmZGzMMzMmhZGzMzYbmZMjZYZMNDAAAAAAAAAYMGwMbAGmFwmB"
 flexibleTalents:
   - name: "Redirección"
     note: "Aunque no está mal llevarlo, en las builds de Pack Leader no es tan efectivo ya que la mayoría de nuestro daño proviene de nuestras mascotas."
