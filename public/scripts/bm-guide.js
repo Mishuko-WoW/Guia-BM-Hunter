@@ -111,9 +111,9 @@
 
       if (updateHash && window.location.hash !== `#${id}`) {
         history.replaceState(null, '', `#${id}`);
-        // Si el cambio viene de un hash (enlace changelog), hacer scroll al inicio del tab
+        // Si el cambio viene de un hash (enlace changelog), hacer scroll al top absoluto de la página
         setTimeout(() => {
-          targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 0);
       }
 
