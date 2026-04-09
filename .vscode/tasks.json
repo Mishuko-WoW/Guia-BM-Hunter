@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Generar fecha de último commit git",
+			"type": "shell",
+			"command": "node scripts/generate-git-date.js",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Generar fecha de último commit git (mjs)",
+			"type": "shell",
+			"command": "node scripts/generate-git-date.mjs",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
