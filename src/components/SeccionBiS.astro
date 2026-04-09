@@ -45,14 +45,55 @@ const reviewDate = getSectionReviewDate(['src/components/SeccionBiS.astro', 'src
         <tr data-bis="botas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Botas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244610/zapatillas-raigales-de-cuidador-del-mundo" target="_blank" rel="noopener noreferrer">Zapatillas raigales de cuidador del mundo <span class="craft-badge">CRAFT</span></a></td><td class="source-craft">✂ Peletería</td></tr>
         <tr class="raid-row" data-bis="anillo1"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Anillo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249920/ojo-de-medianoche" target="_blank" rel="noopener noreferrer">Ojo de medianoche</a></td><td class="source-raid">Marcha de Quel'danas</td></tr>
         <tr class="raid-row" data-bis="anillo2"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Anillo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249369/v%C3%ADnculo-de-la-luz?bonus=13668" target="_blank" rel="noopener noreferrer">Vínculo de la Luz</a></td><td class="source-raid">Vanguardia de la luz</td></tr>
-        <tr class="raid-row" data-bis="trinket1"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Trinket</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249806/pluma-radiante" target="_blank" rel="noopener noreferrer">Pluma radiante</a></td><td class="source-raid">Belo'ren</td></tr>
+        <tr class="raid-row" data-bis="trinket1"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Trinket</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente" target="_blank" rel="noopener noreferrer">Mirada del Alnvidente</a></td><td class="source-raid">Chimaerus</td></tr>
         <tr data-bis="trinket2"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Trinket</td><td class="item-name"><a href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar" target="_blank" rel="noopener noreferrer">Caja de puzles de Algeth'ar</a></td><td class="source-mp">Academia Algeth'ar (M+)</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h3>Encantamientos</h3>
-  <div class="bis-table-wrap">
+  <div class="bis-table-wrap" style="margin-top:32px;">
+    <div class="bis-table-title">Mejores trinkets</div>
+    <div class="bis-trinket-ranking">
+    <table>
+      <thead>
+        <tr><th>Ranking</th><th>Trinkets</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong class="tier-s">S Tier</strong></td><td>
+          <a href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar" target="_blank" rel="noopener noreferrer">Caja de puzles de Algeth'ar</a> — Uso activo<br>
+          <a href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente" target="_blank" rel="noopener noreferrer">Mirada del Alnvidente</a>
+        </td></tr>
+        <tr><td><strong class="tier-a">A Tier</strong></td><td>
+          <a href="https://www.wowhead.com/es/item=249806/pluma-radiante" target="_blank" rel="noopener noreferrer">Pluma radiante</a> — Mismo abalorio que Umbría, pero con Maestría.<br>
+          <a href="https://www.wowhead.com/es/item=250144/pluma-de-alascuas" target="_blank" rel="noopener noreferrer">Pluma de alascuas</a> — Uso activo
+        </td></tr>
+        <tr><td><strong class="tier-b">B Tier</strong></td><td>
+          <a href="https://www.wowhead.com/es/item=260235/pluma-umbr%C3%ADa" target="_blank" rel="noopener noreferrer">Pluma umbría</a> — Mismo abalorio que Radiante, pero con Golpe Crítico.<br>
+          <a href="https://www.wowhead.com/es/item=249345/insignia-iridiscente-de-capit%C3%A1n-forestal" target="_blank" rel="noopener noreferrer">Insignia iridiscente de capitán forestal</a><br>
+          <a href="https://www.wowhead.com/es/item=252420/prisma-de-llamarada-solar" target="_blank" rel="noopener noreferrer">Prisma de llamarada solar</a><br>
+          <a href="https://www.wowhead.com/es/item=250258/recept%C3%A1culo-de-almas-torturadas" target="_blank" rel="noopener noreferrer">Receptáculo de almas torturadas</a>
+        </td></tr>
+        <tr><td><strong class="tier-c">C Tier</strong></td><td>
+          <a href="https://www.wowhead.com/es/item=250256/coraz%C3%B3n-de-viento" target="_blank" rel="noopener noreferrer">Corazón de viento</a><br>
+          <a href="https://www.wowhead.com/es/item=151307/contrato-de-acechador-del-vac%C3%ADo" target="_blank" rel="noopener noreferrer">Contrato de acechador del Vacío</a><br>
+          <a href="https://www.wowhead.com/es/item=250257/ojo-del-vac%C3%ADo-ahogado" target="_blank" rel="noopener noreferrer">Ojo del Vacío ahogado</a>
+        </td></tr>
+        <tr><td><strong class="tier-d">D Tier</strong></td><td>
+          <a href="https://www.wowhead.com/es/item=249344/guion-de-la-compa%C3%B1%C3%ADa-de-la-luz" target="_blank" rel="noopener noreferrer">Guion de la Compañía de la Luz</a> — Uso activo<br>
+          <a href="https://www.wowhead.com/es/item=250226/garfio-torcido-de-tranc%C3%B3n" target="_blank" rel="noopener noreferrer">Garfio torcido de Trancón</a><br>
+          <a href="https://www.wowhead.com/es/item=249805/vestigio-rezumante-del-dios-inconcebible" target="_blank" rel="noopener noreferrer">Vestigio rezumante del Dios Inconcebible</a>
+        </td></tr>
+      </tbody>
+    </table>
+    <div class="box box-tip">
+      <div class="box-title">⚠️ Aviso importante</div>
+      Los rankings de esta lista son orientativos y están basados en simulaciones de alto nivel. Asegúrate de <a href="https://www.raidbots.com/simbot" target="_blank" rel="noopener noreferrer">simularte siempre en Raidbots</a> antes de tomar decisiones.<br>
+      Si eres nuevo simulando o usando Raidbots, puedes ir a la <a href="https://mishuko-wow.github.io/Guia-BM-Hunter/#coaching" target="_self">sección de Coaching</a>.
+    </div>
+  </div>
+
+  <div class="bis-table-wrap" style="margin-top:32px;">
+    <div class="bis-table-title">Encantamientos</div>
     <table class="bis-table">
       <thead><tr><th>Slot</th><th>Encantamiento</th></tr></thead>
       <tbody>
@@ -67,10 +108,16 @@ const reviewDate = getSectionReviewDate(['src/components/SeccionBiS.astro', 'src
     </table>
   </div>
 
-  <h3>Gemas</h3>
-  <div class="card">
-    <div class="data-row">💎 <strong>1×</strong> <a href="https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable" target="_blank" rel="noopener noreferrer"><span style="color:#81d4fa">Diamante de Canción Eterna indescifrable</span></a> — Gema especial única (un solo hueco).</div>
-    <div class="data-row">💜 <strong>Resto:</strong> Mix de <a href="https://www.wowhead.com/es/item=240900/amatista-r%C3%A1pida-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#c090ff">Amatista rápida impecable</span></a>, <a href="https://www.wowhead.com/es/item=240898/amatista-mortal-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#ff8080">Amatista mortal impecable</span></a> y <a href="https://www.wowhead.com/es/item=240892/peridoto-magistral-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#80ff90">Peridoto magistral impecable</span></a>.</div>
+  <div class="bis-table-wrap" style="margin-top:32px;">
+    <div class="bis-table-title">Gemas</div>
+    <div class="bis-trinket-ranking" style="padding-top:18px;">
+      <div style="background:var(--bg3);padding:8px 12px;border-radius:6px 6px 0 0;font-size:15px;">
+        💎 <strong>1×</strong> <a href="https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable" target="_blank" rel="noopener noreferrer"><span style="color:#81d4fa">Diamante de Canción Eterna indescifrable</span></a> — Gema especial única (un solo hueco).
+      </div>
+      <div style="background:var(--bg4);padding:8px 12px;border-radius:0 0 6px 6px;font-size:15px;">
+        💜 <strong>Resto:</strong> Mix de <a href="https://www.wowhead.com/es/item=240900/amatista-r%C3%A1pida-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#c090ff">Amatista rápida impecable</span></a>, <a href="https://www.wowhead.com/es/item=240898/amatista-mortal-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#ff8080">Amatista mortal impecable</span></a> y <a href="https://www.wowhead.com/es/item=240892/peridoto-magistral-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#80ff90">Peridoto magistral impecable</span></a>.
+      </div>
+    </div>
   </div>
 
   <div class="box box-tip">
@@ -78,14 +125,30 @@ const reviewDate = getSectionReviewDate(['src/components/SeccionBiS.astro', 'src
     Usa siempre la <strong>poción de combate junto a <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span></strong>. Debe estar activa antes del primer hit para que se beneficie de él.
   </div>
 
-  <h3>Consumibles</h3>
-  <div class="card">
-    <div class="cons-row"><div class="cons-slot">Frasco</div><div><a href="https://www.wowhead.com/es/item=241322/frasco-de-los-magistri" target="_blank" rel="noopener noreferrer"><strong>Frasco de los Magistri</strong></a> — Mejor stat en todas las situaciones.</div></div>
-    <div class="cons-row"><div class="cons-slot">Poción combate</div><div><a href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer"><strong>Potencial de luz</strong></a> — Opción principal.<span class="cons-alt">Alt: <a href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer">Jarabe de abandono rampante</a></span></div></div>
-    <div class="cons-row"><div class="cons-slot">Poción salud</div><div><a href="https://www.wowhead.com/es/item=241305/poci%C3%B3n-de-sanaci%C3%B3n-de-lunargenta" target="_blank" rel="noopener noreferrer"><strong>Poción de sanación de Lunargenta</strong></a></div></div>
-    <div class="cons-row"><div class="cons-slot">Runa</div><div><a href="https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo" target="_blank" rel="noopener noreferrer"><strong>Runa de aumento tocada por el Vacío</strong></a></div></div>
-    <div class="cons-row"><div class="cons-slot">Buff de arma</div><div><a href="https://www.wowhead.com/es/item=243734/aceite-de-f%C3%A9nix-thalassiano" target="_blank" rel="noopener noreferrer"><strong>Aceite de fénix thalassiano</strong></a></div></div>
-    <div class="cons-row"><div class="cons-slot">Festín</div><div><a href="https://www.wowhead.com/es/item=242272/mezcla-queldorei" target="_blank" rel="noopener noreferrer"><strong>Mezcla quel'dorei</strong></a> o <a href="https://www.wowhead.com/es/item=255845/desfile-de-lunargenta" target="_blank" rel="noopener noreferrer"><strong>Desfile de Lunargenta</strong></a></div></div>
-    <div class="cons-row"><div class="cons-slot">Comida personal</div><div><a href="https://www.wowhead.com/es/item=255848/frenes%C3%AD-de-flora" target="_blank" rel="noopener noreferrer"><strong>Frenesí de flora</strong></a> o <a href="https://www.wowhead.com/es/item=242275/asado-real" target="_blank" rel="noopener noreferrer"><strong>Asado real</strong></a></div></div>
+  <div class="bis-table-wrap" style="margin-top:32px;">
+    <div class="bis-table-title">Consumibles</div>
+    <div class="bis-trinket-ranking" style="padding-top:18px;">
+      <div style="background:var(--bg3);padding:8px 12px 8px 12px;font-size:15px;border-radius:6px 6px 0 0;">
+        <div class="cons-row"><div class="cons-slot">Frasco</div><div><a href="https://www.wowhead.com/es/item=241322/frasco-de-los-magistri" target="_blank" rel="noopener noreferrer"><strong>Frasco de los Magistri</strong></a> — Mejor stat en todas las situaciones.</div></div>
+      </div>
+      <div style="background:var(--bg4);padding:8px 12px 8px 12px;font-size:15px;">
+        <div class="cons-row"><div class="cons-slot">Poción combate</div><div><a href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer"><strong>Potencial de luz</strong></a> — Opción principal.<span class="cons-alt">Alt: <a href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer">Jarabe de abandono rampante</a></span></div></div>
+      </div>
+      <div style="background:var(--bg3);padding:8px 12px 8px 12px;font-size:15px;">
+        <div class="cons-row"><div class="cons-slot">Poción salud</div><div><a href="https://www.wowhead.com/es/item=241305/poci%C3%B3n-de-sanaci%C3%B3n-de-lunargenta" target="_blank" rel="noopener noreferrer"><strong>Poción de sanación de Lunargenta</strong></a></div></div>
+      </div>
+      <div style="background:var(--bg4);padding:8px 12px 8px 12px;font-size:15px;">
+        <div class="cons-row"><div class="cons-slot">Runa</div><div><a href="https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo" target="_blank" rel="noopener noreferrer"><strong>Runa de aumento tocada por el Vacío</strong></a></div></div>
+      </div>
+      <div style="background:var(--bg3);padding:8px 12px 8px 12px;font-size:15px;">
+        <div class="cons-row"><div class="cons-slot">Buff de arma</div><div><a href="https://www.wowhead.com/es/item=243734/aceite-de-fénix-thalassiano" target="_blank" rel="noopener noreferrer"><strong>Aceite de fénix thalassiano</strong></a></div></div>
+      </div>
+      <div style="background:var(--bg4);padding:8px 12px 8px 12px;font-size:15px;">
+        <div class="cons-row"><div class="cons-slot">Festín</div><div><a href="https://www.wowhead.com/es/item=242272/mezcla-queldorei" target="_blank" rel="noopener noreferrer"><strong>Mezcla quel'dorei</strong></a> o <a href="https://www.wowhead.com/es/item=255845/desfile-de-lunargenta" target="_blank" rel="noopener noreferrer"><strong>Desfile de Lunargenta</strong></a></div></div>
+      </div>
+      <div style="background:var(--bg3);padding:8px 12px 8px 12px;font-size:15px;border-radius:0 0 6px 6px;">
+        <div class="cons-row"><div class="cons-slot">Comida personal</div><div><a href="https://www.wowhead.com/es/item=255848/frenes%C3%AD-de-flora" target="_blank" rel="noopener noreferrer"><strong>Frenesí de flora</strong></a> o <a href="https://www.wowhead.com/es/item=242275/asado-real" target="_blank" rel="noopener noreferrer"><strong>Asado real</strong></a></div></div>
+      </div>
+    </div>
   </div>
 </div>
