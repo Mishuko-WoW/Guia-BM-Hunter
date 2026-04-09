@@ -111,9 +111,13 @@
 
       if (updateHash && window.location.hash !== `#${id}`) {
         history.replaceState(null, '', `#${id}`);
+        // Si el cambio viene de un hash (enlace changelog), hacer scroll al inicio del tab
+        setTimeout(() => {
+          targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 0);
       }
 
-      // Scroll active tab button into view on mobile
+      // Scroll active tab button into view en móvil
       targetBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
       if (preserveScroll) {
