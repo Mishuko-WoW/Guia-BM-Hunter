@@ -16,10 +16,27 @@
     Anteriormente <strong>Pack Leader</strong> era el talento héroe recomendado tanto para raid como para Míticas+. Tras recientes cambios de parche y análisis de la comunidad, las guías recomiendan ahora <strong>Dark Ranger para M+</strong>. Pack Leader sigue siendo el estándar para raid.
   </div>
 
-  <div class="toggle-wrap">
-    <button class="toggle-btn active" onclick="setRot('pl', this)">🎯 Pack Leader — Raid</button>
-    <button class="toggle-btn" onclick="setRot('dr', this)">🖤 Dark Ranger — M+</button>
-  </div>
+  
+<div class="toggle-wrap combat-switch" style="justify-content: flex-start; margin-left: 0;">
+  <button class="toggle-btn active" onclick="setRot('pl', this)">
+    <img
+      src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png"
+      alt="Pack Leader"
+      class="toggle-icon"
+    />
+    Pack Leader — Raid
+  </button>
+
+  <button class="toggle-btn" onclick="setRot('dr', this)">
+    <img
+      src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp"
+      alt="Dark Ranger"
+      class="toggle-icon"
+    />
+    Dark Ranger — M+
+  </button>
+</div>
+
 
   <!-- PACK LEADER -->
   <div id="rot-pl">
@@ -150,7 +167,13 @@
   <!-- DARK RANGER -->
   <div id="rot-dr" style="display:none">
     <div class="box box-info">
-      <div class="box-title">🖤 Dark Ranger — M+</div>
+      <div class="box-title">
+  <img
+    src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp"
+    alt="Dark Ranger"
+    class="box-title-icon"
+  />
+ Dark Ranger — M+</div>
       La clave es gestionar la ventana de <span class="bf" data-name="Fuego devastador" data-type="Buff Dark Ranger" data-desc="10s de los 15s de Cólera de las bestias. Maximiza Flecha negra y Flecha lastimera dentro de ella.">Fuego devastador</span> y <strong>nunca lanzar <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Nunca dos veces seguidas — siempre intercala otra habilidad.">Matar</span> dos veces seguidas</strong> — siempre intercala otra habilidad para que <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff activo" data-desc="+30% daño al siguiente Matar tras usar otras habilidades.">Aliado de la naturaleza</span> esté activo.
     </div>
 

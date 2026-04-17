@@ -11,12 +11,47 @@
     Gastar todas las cargas de <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Tiene 2 cargas. Gástalas todas antes de Cólera de las bestias para posicionar la mascota y cargar Aliado de la naturaleza.">Disparo con púas</span> <strong>antes</strong> de pulsar <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> para que <span class="bf" data-name="Escabechina" data-type="Debuff" data-desc="Aplicado por Cólera de las bestias. Tus mascotas infligen sangrado al objetivo durante 12s. Solo se aplica si la mascota está atacando activamente — si no ataca, no hay sangrado y pierdes todo el DPS del efecto.">Escabechina</span> se aplique desde el primer momento y Aliado de la naturaleza esté cargado.
   </div>
 
-  <div class="toggle-wrap">
-    <button class="toggle-btn active" onclick="setOpener('st', this)">🎯 Pack Leader — ST</button>
-    <button class="toggle-btn" onclick="setOpener('aoe', this)">💥 Pack Leader — AoE/M+</button>
-    <button class="toggle-btn" onclick="setOpener('dr-st', this)">🖤 Dark Ranger — ST</button>
-    <button class="toggle-btn" onclick="setOpener('dr-aoe', this)">🖤 Dark Ranger — AoE/M+</button>
-  </div>
+ <div
+  class="toggle-wrap combat-switch"
+  style="justify-content: flex-start; margin-left: 0;"
+>
+  <button class="toggle-btn active" onclick="setOpener('st', this)">
+    <img
+      src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png"
+      alt="Pack Leader"
+      class="toggle-icon"
+    />
+    Pack Leader — ST
+  </button>
+
+  <button class="toggle-btn" onclick="setOpener('aoe', this)">
+    <img
+      src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png"
+      alt="Pack Leader"
+      class="toggle-icon"
+    />
+    Pack Leader — AoE / M+
+  </button>
+
+  <button class="toggle-btn" onclick="setOpener('dr-st', this)">
+    <img
+      src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp"
+      alt="Dark Ranger"
+      class="toggle-icon"
+    />
+    Dark Ranger — ST
+  </button>
+
+  <button class="toggle-btn" onclick="setOpener('dr-aoe', this)">
+    <img
+      src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp"
+      alt="Dark Ranger"
+      class="toggle-icon"
+    />
+    Dark Ranger — AoE / M+
+  </button>
+</div>
+
 
   <!-- ST -->
   <div id="opener-st">
@@ -25,11 +60,6 @@
         <div class="chain-step bf-step">
           <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div>
           <div class="chain-step-text">Marca del cazador<small>Pre-pull</small></div>
-        </div>
-        <div class="chain-arrow">→</div>
-        <div class="chain-step sp-step">
-          <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_misdirection.jpg" alt="Redirección"></div>
-          <div class="chain-step-text">Redirección<small>Al tanque</small></div>
         </div>
         <div class="chain-arrow">→</div>
         <div class="chain-step gold-step">
@@ -67,7 +97,6 @@
       <div class="card-header">📋 Pasos Detallados — ST</div>
       <ol class="opener-steps">
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div><div><div class="ostep-pre">Pre-pull</div>Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Siempre al objetivo prioritario antes del pull.">Marca del cazador</span> al objetivo prioritario.</div></li>
-        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_misdirection.jpg" alt="Redirección"></div><div><div class="ostep-pre">Pre-pull</div>Lanza <span class="sp" data-name="Redirección" data-type="Habilidad activa" data-desc="Redirige el agro de tu mascota al tanque. Configura un macro para esto.">Redirección</span> al tanque.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="Trinket con 2 segundos de casteo. Pre-castear 2s antes del pull para que esté activa al inicio del combate.">Caja de puzles de Algeth'ar</span> exactamente 2 segundos antes del pull.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div><div class="ostep-pre">Al hacer pull</div>Gasta <strong>todas las cargas</strong> de <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Tiene 2 cargas. Gástalas todas antes de Cólera de las bestias para posicionar la mascota y cargar Aliado de la naturaleza.">Disparo con púas</span> — son 2 cargas. Esto posiciona la mascota y carga Aliado de la naturaleza antes del CD.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales de stats</strong> y <strong>trinkets</strong> (excepto Caja de puzles). Deben estar activos antes del hit de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span>.</div></li>
@@ -99,7 +128,7 @@
         <div class="chain-arrow">→</div>
         <div class="chain-step sp-step">
           <div class="chain-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div>
-          <div class="chain-step-text">Disparo con púas<small>Al hacer pull</small></div>
+          <div class="chain-step-text">Disparo con púas ×2<small>Gastar todas las cargas</small></div>
         </div>
         <div class="chain-arrow">→</div>
         <div class="chain-step gold-step">
@@ -138,7 +167,7 @@
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg" alt="Marca del cazador"></div><div><div class="ostep-pre">Pre-pull</div>Aplica <span class="bf" data-name="Marca del cazador" data-type="Debuff" data-desc="Siempre al objetivo prioritario.">Marca del cazador</span> al objetivo prioritario del pack.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_misdirection.jpg" alt="Redirección"></div><div><div class="ostep-pre">Pre-pull</div>Lanza <span class="sp" data-name="Redirección" data-type="Habilidad activa" data-desc="Redirige el agro de tu mascota al tanque.">Redirección</span> al tanque.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg" alt="Caja de puzles"></div><div><div class="ostep-pre">Pre-pull (-2s)</div>Pre-castea <span class="sp" data-name="Caja de puzles de Algeth'ar" data-type="Trinket (2s cast)" data-desc="2s de casteo. Pre-castear 2s antes del pull.">Caja de puzles de Algeth'ar</span> 2 segundos antes del pull.</div></li>
-        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div><div class="ostep-pre">Al hacer pull</div>Lanza <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Primer cast al hacer pull. Posiciona la mascota en el pack.">Disparo con púas</span> al objetivo central del pack.</div></li>
+        <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas"></div><div><div class="ostep-pre">Al hacer pull</div>Gasta <strong>todas las cargas</strong> de <span class="sp" data-name="Disparo con púas" data-type="Habilidad activa" data-desc="Tiene 2 cargas. Gástalas todas antes de Cólera de las bestias para posicionar la mascota y cargar Aliado de la naturaleza.">Disparo con púas</span> — son 2 cargas. Esto posiciona la mascota y carga Aliado de la naturaleza antes del CD.</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción"></div><div>Activa <strong style="color:#ce93d8">poción</strong>, <strong>raciales</strong> y <strong>trinkets</strong> (excepto Caja de puzles).</div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg" alt="Paliza salvaje"></div><div>Lanza <span class="pr" data-name="Paliza salvaje" data-type="Habilidad AoE" data-desc="AoE instantáneo potente que activa Tajo de la bestia.">Paliza salvaje</span> — activa <span class="sp" data-name="Tajo de la bestia" data-type="Habilidad activa de mascota" data-desc="AoE de mascota activado por Paliza salvaje y por cada hit de Cólera de las bestias.">Tajo de la bestia</span> en tu mascota. <strong style="color:var(--red2)">¡La mascota debe estar en el centro del pack!</strong></div></li>
         <li class="opener-step"><div class="step-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias"></div><div>Lanza <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal. La mascota debe estar atacando el objetivo central.">Cólera de las bestias</span>.</div></li>

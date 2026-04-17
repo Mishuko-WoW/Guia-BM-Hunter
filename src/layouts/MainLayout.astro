@@ -10,24 +10,51 @@ const {
   title = 'Beast Mastery Hunter - Guia Midnight S1',
   description = 'Guia completa de Beast Mastery Hunter para WoW Midnight S1.',
 } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL;
-const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
-const headerIconUrl = 'https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png';
+
+const headerIconUrl =
+  'https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png';
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href={headerIconUrl} />
-    <link rel="icon" href={headerIconUrl} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
     <meta name="description" content={description} />
+
+    <link rel="icon" type="image/png" href={headerIconUrl} />
+    <link rel="icon" href={headerIconUrl} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <title>{title}</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ✅ Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Guía Hunter BM: Talentos, Rotación y Builds PvE",
+      "description": "Guía completa de Beast Mastery Hunter para PvE en World of Warcraft: Midnight. Incluye mecánicas, rotación, talentos héroe, procs clave, BiS y gestión de mascotas.",
+      "inLanguage": "es",
+      "author": {
+        "@type": "Organization",
+        "name": "Guía Hunter BM"
+      },
+      "about": [
+        "Beast Mastery Hunter",
+        "Hunter BM PvE",
+        "World of Warcraft Midnight"
+      ]
+    }
+    </script>
   </head>
+
   <body>
     <slot />
   </body>

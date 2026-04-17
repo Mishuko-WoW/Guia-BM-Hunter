@@ -6,9 +6,23 @@ import { Image } from 'astro:assets';
   <h2>Mecánicas del Beast Mastery Hunter</h2>
 
   <div class="box box-info">
-    <div class="box-title">📖 Resumen</div>
-    El BM Hunter es un especialista en daño a distancia cuya fuente principal de daño proviene de sus <strong>mascotas y disparos</strong>. En <Image src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" alt="Pack Leader" width={20} height={20} style="border-radius:50%;vertical-align:middle;margin:0 6px 0 2px;" /> <strong>Pack Leader</strong>, la mayor parte del daño sale de tus mascotas, no de tus propios disparos, por lo que <strong>gestionarlas bien es tan importante como tu propia rotación.</strong> En <Image src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp" alt="Dark Ranger" width={20} height={20} style="border-radius:50%;vertical-align:middle;margin:0 6px 0 2px;" /> <strong>Dark Ranger</strong>, los disparos tienen mucho más protagonismo.
-  </div>
+  <div class="box-title">📖 Resumen</div>
+
+  <p>
+    En esta sección se explican las mecánicas básicas del Beast Mastery Hunter en PvE:
+    cómo funciona su rotación, la gestión del enfoque, la importancia de las mascotas
+    y las diferencias clave entre Pack Leader y Dark Ranger.
+  </p>
+
+  <p>
+    El BM Hunter es un especialista en daño a distancia cuya fuente principal de daño
+    proviene de sus <strong>mascotas y disparos</strong>.
+    En <Image src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" alt="Pack Leader" width={20} height={20} style="border-radius:50%;vertical-align:middle;margin:0 6px 0 2px;" /> <strong>Pack Leader</strong>, la mayor parte del daño
+    sale de tus mascotas, no de tus propios disparos, por lo que
+    <strong>gestionarlas bien es tan importante como tu rotación</strong>.
+    En <Image src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp" alt="Dark Ranger" width={20} height={20} style="border-radius:50%;vertical-align:middle;margin:0 6px 0 2px;" /> <strong>Dark Ranger</strong>, los disparos tienen mucho más protagonismo.
+  </p>
+</div>
 
   <div class="card">
     <div class="card-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_focusfire.jpg" alt="Recurso Principal" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Recurso Principal</div>
@@ -111,38 +125,5 @@ import { Image } from 'astro:assets';
   <div class="box box-tip">
     <div class="box-title">💡 Objetivo</div>
     Maximiza el daño dentro de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span> usando tantos <span class="sp" data-name="Matar" data-type="Habilidad activa" data-desc="Golpe fuerte.">Matar</span> como sea posible, intentando potenciarlos con <span class="bf" data-name="Aliado de la naturaleza" data-type="Buff" data-desc="Pasivo. +15% daño de Disparo con púas y Disparo de cobra. Cada uso de ambos aumenta un 30% el daño de tu siguiente Matar. Por eso Matar tiene tanta prioridad cuando está activo.">Aliado de la naturaleza</span>.
-  </div>
-  <div class="chain-wrap">
-    <div class="chain">
-      <div class="chain-step gold-step">
-        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Poción" width={24} height={24} /></div>
-        <div class="chain-step-text">Poción + Trinkets<small>Antes del hit</small></div>
-      </div>
-      <div class="chain-arrow">→</div>
-      <div class="chain-step sp-step">
-        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg" alt="Cólera de las bestias" width={24} height={24} /></div>
-        <div class="chain-step-text">Cólera de las bestias<small>Activa CD</small></div>
-      </div>
-      <div class="chain-arrow">→</div>
-      <div class="chain-step sp-step">
-        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_killcommand.jpg" alt="Matar" width={24} height={24} /></div>
-        <div class="chain-step-text">Matar<small>Con Aliado de la naturaleza</small></div>
-      </div>
-      <div class="chain-arrow">→</div>
-      <div class="chain-step pr-step">
-        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_bestialdiscipline.jpg" alt="¡Estampida!" width={24} height={24} /></div>
-        <div class="chain-step-text">¡Estampida!<small>Proc automático</small></div>
-      </div>
-      <div class="chain-arrow">→</div>
-      <div class="chain-step sp-step">
-        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg" alt="Disparo con púas" width={24} height={24} /></div>
-        <div class="chain-step-text">Disparo con púas<small>Recarga NA</small></div>
-      </div>
-      <div class="chain-arrow">→</div>
-      <div class="chain-step sp-step">
-        <div class="chain-icon"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_killcommand.jpg" alt="Matar" width={24} height={24} /></div>
-        <div class="chain-step-text">Matar<small>Tantos como puedas</small></div>
-      </div>
-    </div>
   </div>
 </div>
