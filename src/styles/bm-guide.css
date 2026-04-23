@@ -1270,7 +1270,6 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border-light);
-  background: black; /* evita flash blanco */
 }
 
 .video-embed iframe {
@@ -1278,13 +1277,12 @@
   height: 100%;
 }
 
-
+/* 🔥 Bloquea interacción SIN romper autoplay */
 .video-overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
   background: transparent;
-  cursor: default;
 }
 
 .combat-switch .toggle-btn.active {
