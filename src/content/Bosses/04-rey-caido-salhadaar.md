@@ -9,7 +9,7 @@ builds:
     label: "Recomendado"
     rec: true
     heroTalent: "Pack Leader"
-    string: "C0PAAAAAAAAAAAAAAAAAAAAAAYzYGzMDLwGmZ2M0M2AAwMsNzMLmhZMzwMmZMmZMzMmZmhZmxMmBjpZAAAAAAzAAAwYMzwMzMbIMMLgND"
+    string: "C0PApei1JmYNvFfEFaN5bWuGKAMmxwCsAzwQDbAAYG2GzsNzwMmZYYmxYmxMzYmZGmxYGzgx0MAAAAAmBAAgxYGgZ2QYWmZBsNA"
     whUrl: "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFVEQKBUBQOVVVVUBFBVoEUFNBBFFVVVUBR"
     wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3179&class=Hunter&spec=BeastMastery"
     lorrgsUrl: "https://lorrgs.io/spec_ranking/hunter-beastmastery/fallenking-salhadaar"
