@@ -9,7 +9,7 @@ builds:
     label: "Recomendado"
     rec: true
     heroTalent: "Pack Leader"
-    string: "C0PAo4YcvOcqUdzB9zV+NhSAcAMmxwGsAzwQDbAAYGzyMzwMMzMzMmZYmZMDzMmxM2mZGzYGMmmBAAAAAAAAAjxMDYmNEsYWALGA"
+    string: "C0PApei1JmYNvFfEFaN5bWuGKAMmxwCsAzwQDbAAYGPwyMzsYGmZmZGzMMzMmhZGzYGbzMjZMDGTzAAAAAAAAAGjZGwMbIYxsA2GA"
     whUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFREUaAUBEOVRVVVZFAQKAURdBAFFVVVUBF"
     wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3306&class=Hunter&spec=BeastMastery"
     lorrgsUrl: "https://lorrgs.io/spec_ranking/hunter-beastmastery/chimaerus-the-undreamt-god"
