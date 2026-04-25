@@ -9,7 +9,7 @@ builds:
     label: "Recomendado"
     rec: true
     heroTalent: "Pack Leader"
-    string: "C0PAo4YcvOcqUdzB9zV+NhSAcYzYGzMDLwGmZ2M0M2AAwMmlZmhZYmZmZMzwYGzYmZMzMDzMjZMDGTzAAAAAAAAAgxYmhZmZ2QYYWAbGA"
+    string: "C0PApei1JmYNvFfEFaN5bWuGKYzYGzMDLwCmZ2M0M2AAwMeglZmZxMMzMzMmZYmZMDzMmZmhZmxMmBjpZAAAAAAAAAjxMDzMzshwwsA2GA"
     whUrl: "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/pack-leader/EAPRlFFlRCIFVEQKBUBQOVVVVUBFBVoEUFNBBFFVVVUBR"
     wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3176&class=Hunter&spec=BeastMastery"
     lorrgsUrl: "https://lorrgs.io/spec_ranking/hunter-beastmastery/imperator-averzian"
