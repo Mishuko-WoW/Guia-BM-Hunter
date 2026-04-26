@@ -3,7 +3,7 @@ name: "Rey caído Salhadaar"
 slug: "rey-caido-salhadaar"
 difficulty: "heroico"
 image: "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Gefallener-Koenig-Salhadaar-768x432.png"
-summary: "En Heroico y normal podemos usar los mismos talentos que en Vorasius pero en Mitico es recomendable hacer algunos cambios para mejorar nuestro daño en AoE durante la fase de los orbes y los adds que aparecen durante el combate."
+summary: "Rey Nexo para nosotros es un boss totalmente ST a pesar de lo que muchos piensan. En la medida de los posible debemos intentar no cambiar de target ya que perdemos daño de nuestros sangrados pero siempre debes estar atentos a los calls de tu RL por si necesitais daño en Orbes"
 builds:
   - id: "rec"
     label: "Recomendado"
@@ -16,9 +16,9 @@ builds:
     swaps:
       - type: "add"
         icon: "ability_hunter_catlikeleaps"
-        name: "Paliza salvaje"
+        name: "Frenesí sangriento"
         badge: "AÑADIR"
-        desc: "En Mitico aparecen unos pequeños adds aparte de los 2 orbes y los que hay que cortar por lo que paliza salvaje puede ser útil para mejorar el daño en AoE durante este momento."
+        desc: "Mejora significativamente el daño en ST al amplificar el sangrado de Disparo con púas durante Cólera de las bestias."
     notes:
       - type: "crit"
         text: "<strong>Nunca guardes Cólera de las bestias a no ser que queden pocos segundos para la fase de aumento de daño.</strong>"
