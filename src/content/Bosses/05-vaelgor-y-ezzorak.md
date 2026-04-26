@@ -3,7 +3,7 @@ name: "Vaelgor y Ezzorak"
 slug: "vaelgor-y-ezzorak"
 difficulty: "heroico"
 image: "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Vaelgor-und-Ezzorak.png"
-summary: "Vaelgor y Ezzorak es un encuentro de puro single target. Aunque, como en la mayoría de combates de la Aguja del Vacío, aparecen adds, pero caen tan rapido que no merece la pena invertir en talentos o habilidades de AoE, mas allá de Paliza salvaje."
+summary: "Vaelgor y Ezzorak es uno de nuestro peores encuentros aunque en Mitico no es tan malo. Aqui tenemos 2 opciones. Build de AoE para limpiar muy rapido a los adds sacrificando Single target o build de Singlet Target para controlar la vida de los dragones. Aqui recomendamos la build AoE pero si quieres la de ST puedes copiar la de Rey Nexo."
 builds:
   - id: "rec"
     label: "Recomendado"
@@ -21,7 +21,7 @@ builds:
         desc: "La usamos únicamente en el momento en el que aparecen los pequeños orbes."
     notes:
       - type: "crit"
-        text: "<strong>Nunca guardes Cólera de las bestias.</strong>"
+        text: "<strong>Guardaremos Cólera de las bestias para cuando se junten los Adds y tambien para el Add de interfase.</strong>"
       - type: "warn"
         text: "<strong>Si eres el unico hunter asegurate de aplicar Marca del cazador en el dragón que necesite mas daño para igualarse con el otro. Ademas, si eres el unico Hunter debes aplicar tambien la marca al Add que aparece en interfase.</strong>"
       - type: "tip"
