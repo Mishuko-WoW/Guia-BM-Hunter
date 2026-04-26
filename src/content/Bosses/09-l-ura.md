@@ -9,7 +9,7 @@ builds:
     label: "Recomendado"
     rec: true
     heroTalent: "Pack Leader"
-    string: "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYG2GzsNzwMmZYYmxYmxMzYmZGmxYGzgx0MAAAAAgZAAAYMzAYmNEmlZWAbGA"
+    string: "C0PApei1JmYNvFfEFaN5bWuGKAMmxwCsAzwQDbAAYG2GzsNzwMmZYYmxYmxMzYmZGmxYGzgx0MAAAAAmBAAgxYGgZ2QYWmZBsNA"
     whUrl: "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery"
     wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3183&class=Hunter&spec=BeastMastery&difficulty=4"
     lorrgsUrl: "https://lorrgs.io/spec_ranking/hunter-beastmastery/lura?difficulty=heroic"
@@ -31,13 +31,13 @@ builds:
         desc: "Los adds del encuentro caen muy rapido porque no necesitamos una fuente de AoE más allá de ¡Estampida!."
     notes:
       - type: "crit"
-        text: "<strong>Nunca guardes Cólera de las bestias, aunque se acerque el momento de adds.</strong>"
+        text: "<strong>Guarda Cólera de las bestias cuando se acerque la mecanica de los escudos ya que es inmune aqui.</strong>"
       - type: "warn"
-        text: "<strong>Tu movilidad es casi perfecta ya que no tienes que castear nada nunca, así que asegúrate de esquivar las habilidades de daño y realizar los soaks correctamente. No hay excusa.</strong>"
+        text: "<strong>Prepara tu ¡Estampida! para intentar golpear a L'ura y a los adds despues del escudo</strong>"
       - type: "tip"
         text: "<strong>Podemos y debemos usar el Disparo vinculante en los escudos danzantes.</strong>"
       - type: "info"
-        text: "<strong>En el caso de que Cólera de las bestias coincida con el momento en el que llegan los adds, intenta apuntar ¡Estampida! para golpear al mayor número de ellos.</strong>"
+        text: "<strong>Como somos una clase con muchisima movilidad y sin casteos, intenta ofrecerte para coger cristal. Tus compañeros te lo agradecerán</strong>"
 order: 9
 ---
 

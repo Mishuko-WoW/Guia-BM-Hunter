@@ -1,7 +1,7 @@
 ---
 name: "Belo'ren"
 slug: "belo-ren"
-difficulty: "mitico"
+difficulty: "heroico"
 image: "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Beloren-768x432.png"
 summary: "En este enfrentamiento, nuestro enfoque es puramente de un solo objetivo (Single Target). Aunque el encuentro incluye algunos adds, no merece la pena invertir puntos en talentos de área (AoE)."
 builds:
@@ -9,7 +9,7 @@ builds:
     label: "Recomendado"
     rec: true
     heroTalent: "Pack Leader"
-    string: "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYG2GzsNzwMmZYYmxYmxMzYmZGmxYGzgx0MAAAAAgZAAAYMzAYmNEmlZWAbGA"
+    string: "C0PApei1JmYNvFfEFaN5bWuGKAMmxwCsAzwQDbAAYG2GzsNzwMmZYYmxYmxMzYmZGmxYGzgx0MAAAAAmBAAgxYGgZ2QYWmZBsNA"
     whUrl: "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery"
     wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3182&class=Hunter&spec=BeastMastery&difficulty=4"
     lorrgsUrl: "https://lorrgs.io/spec_ranking/hunter-beastmastery/beloren-child-of-alar?difficulty=heroic"
