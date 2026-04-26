@@ -11,7 +11,7 @@ builds:
     heroTalent: "Pack Leader"
     string: "C0PApei1JmYNvFfEFaN5bWuGKAMmxwCsAzwQDbAAYGPwyMzsYGmZmZGzMMzMmhZGzMzgxYGzgx0MAAAAAAAAgZmZAMzGCziZBsNA"
     whUrl: "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/dark-ranger/EAPRlFFkRSJFFFAKBUBEOVVVVVRFFAoEUFNBAFFVVVUBV"
-    wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3180&class=Hunter&spec=BeastMastery&difficulty=4"
+    wclUrl: "https://www.warcraftlogs.com/zone/rankings/46?boss=3180&class=Hunter&spec=BeastMastery"
     lorrgsUrl: "https://lorrgs.io/spec_ranking/hunter-beastmastery/lightblinded-vanguard"
     swaps:
       - type: "add"
