@@ -19,6 +19,12 @@ builds:
         name: "Frenesí sangriento"
         badge: "AÑADIR"
         desc: "Mejora significativamente el daño en ST al amplificar el sangrado de Disparo con púas durante Cólera de las bestias."
+
+      - type: "remove"
+        icon: "ability_hunter_catlikeleaps"
+        name: "Paliza salvaje"
+        badge: "QUITAR"
+        desc: "Los adds pequeños del encuentro son cosas de otras clases y los orbes grandes no se acercan al boss lo suficiente por lo que no necesitamos una fuente de AoE más allá de ¡Estampida!."
     notes:
       - type: "crit"
         text: "<strong>Nunca guardes Cólera de las bestias a no ser que queden pocos segundos para la fase de aumento de daño.</strong>"

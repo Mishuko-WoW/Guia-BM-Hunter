@@ -19,6 +19,11 @@ builds:
         name: "Paliza salvaje"
         badge: "AÑADIR"
         desc: "La usamos únicamente en el momento en el que aparecen los pequeños orbes."
+      - type: "add"
+        icon: "ability_hunter_catlikeleaps"
+        name: "Instintos salvajes"
+        badge: "AÑADIR"
+        desc: "En dificiltad Mitico, los dragones estan juntos por lo que aunque no hagamos mucho daño a boss es conveniente tener el Disparo con puas en ambos objetivos"
     notes:
       - type: "crit"
         text: "<strong>Guardaremos Cólera de las bestias para cuando se junten los Adds y tambien para el Add de interfase.</strong>"
