@@ -1,7 +1,7 @@
 ---
 name: "Corona del Cosmos"
 slug: "corona-del-cosmos"
-difficulty: "mitico"
+difficulty: "heroico"
 image: "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Krone-des-Kosmos-768x432.png"
 summary: "Como en otros tantos bosses, a pesar de tener una primera fase con adds y tenerlos tambien en fase 2 usaremos una build enfocada al 100% en potenciar nuestro Single Target"
 builds:
