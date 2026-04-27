@@ -840,11 +840,12 @@ function renderBossPanel(i) {
       </div>
 
       <div class="box box-info" style="margin-bottom:22px;">
-        <div class="box-title">📖 Resumen</div>
-        ${autoLink(b.summary)}
-      </div>
+  <div class="box-title">📖 Resumen</div>
+  ${autoLink(b.summary)}
+</div>
 
-      ${togglesHtml}
+${togglesHtml}
+
 
 
       <div class="build-actions" style="margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;">
@@ -867,6 +868,38 @@ function renderBossPanel(i) {
           ${notesHtml}
         </div>
       </div>
+
+      ${b.video ? `
+  <div style="margin-top:32px; text-align:center;">
+    <div style="
+      position:relative;
+      width:100%;
+      max-width:1100px;
+      margin-inline:auto;
+      padding-bottom:45%;
+      height:0;
+      overflow:hidden;
+      border-radius:12px;
+      box-shadow:0 0 18px rgba(0,0,0,0.45);
+    ">
+      <iframe
+        src="${b.video}"
+        frameborder="0"
+        allowfullscreen
+        style="
+          position:absolute;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          border-radius:12px;
+        "
+      ></iframe>
+    </div>
+  </div>
+` : ''}
+
+
     </div>
   `;
 

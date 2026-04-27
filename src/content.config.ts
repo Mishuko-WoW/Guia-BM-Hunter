@@ -31,6 +31,7 @@ const jefes = defineCollection({
     difficulty: z.enum(['heroico', 'mitico']),
     image: z.string().url(),
     summary: z.string(),
+    video: z.string().url().optional(),
     builds: z.array(
       z.object({
         id: z.string(),

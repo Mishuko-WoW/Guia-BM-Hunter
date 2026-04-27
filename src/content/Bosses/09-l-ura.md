@@ -1,7 +1,8 @@
 ---
 name: "L'ura"
-slug: "l-ura"
+slug: "l-ura"  
 difficulty: "mitico"
+video: "https://www.youtube.com/embed/8QXmfKwtBAY"
 image: "https://static.wikia.nocookie.net/diealdor/images/3/3b/L%27ura.jpg/revision/latest?cb=20170919092714"
 summary: "L'ura es un encuentro principalmente de un solo objetivo (Single Target). Aunque hay momentos puntuales con adds, no suele merecer la pena invertir en talentos de área. Sin embargo, dependiendo de la dificultad o de las necesidades de tu grupo, puedes considerar Paliza salvaje si se requiere más daño en área."
 builds:
