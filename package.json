@@ -16,6 +16,7 @@
     "cms:proxy": "decap-server"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "astro": "^6.1.2"
   },
   "devDependencies": {
