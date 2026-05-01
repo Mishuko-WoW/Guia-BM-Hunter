@@ -2,6 +2,7 @@
 name: "Chimaerus"
 slug: "chimaerus"
 difficulty: "heroico"
+video: "https://www.youtube.com/embed/SvhJcDlCpi8"
 image: "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Chimaerus.png"
 summary: "En este encuentro combinamos un fuerte enfoque en single target con bursts de AoE durante las oleadas de adds y la interfase. La clave está en mantener un buen daño sostenido sobre Chiamerus mientras controlamos y eliminamos rápidamente los adds que se dirigen hacia él."
 builds:
