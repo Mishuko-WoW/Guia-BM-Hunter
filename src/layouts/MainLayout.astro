@@ -8,7 +8,7 @@ interface Props {
 
 const {
   title = 'Beast Mastery Hunter - Guia Midnight S1',
-  description = 'Guia completa de Beast Mastery Hunter para WoW Midnight S1.',
+  description = 'Mejores talentos, rotación y equipo BiS para Hunter BM en Midnight Season 1. ¡Guía PvE 100% actualizada!.',
 } = Astro.props;
 
 const headerIconUrl =
@@ -24,8 +24,8 @@ const headerIconUrl =
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <link rel="icon" type="image/png" href={headerIconUrl} />
-    <link rel="icon" href={headerIconUrl} />
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
