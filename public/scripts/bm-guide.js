@@ -855,7 +855,10 @@ function renderBossPanel(i) {
         <button id="${copyId}" onclick="copyBossStr('${copyId}','${build.string}')" class="build-btn build-btn-copy" style="text-decoration:none;">📋 Copiar string de talentos</button>
         <a href="${build.wclUrl || '#'}" target="_blank" class="build-btn build-btn-wcl" style="background:#232e4a;color:#fff;border:2px solid #3faaff;padding:8px 18px;border-radius:7px;font-weight:600;box-shadow:0 2px 8px #0002;transition:background .2s;text-decoration:none;">🔗 Warcraft Logs</a>
         <a href="${build.lorrgsUrl || '#'}" target="_blank" class="build-btn build-btn-lorrgs" style="background:#3a2323;color:#fff;border:2px solid #ff6a3f;padding:8px 18px;border-radius:7px;font-weight:600;box-shadow:0 2px 8px #0002;transition:background .2s;text-decoration:none;">🔗 Lorrgs</a>
-      </div>
+         <button onclick="openReportModal(${i}, ${bi})" class="build-btn build-btn-report"
+        style="background:#3a2f10;color:#fff;border:2px solid #f7b955;padding:8px 18px;border-radius:7px;font-weight:600;box-shadow:0 2px 8px #0002;transition:background .2s;text-decoration:none;">
+        🪲 Reportar un error</button>
+        </div>
 
       <div class="two-col">
         <div>
@@ -875,6 +878,147 @@ function renderBossPanel(i) {
     window.$WowheadPower.refreshLinks();
   }
 }
+
+
+
+// ──────────────────────────────────────────────────────────────
+// REPORTAR ERROR -> DISCORD WEBHOOK (MODAL + ENVÍO)
+// ──────────────────────────────────────────────────────────────
+
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1499580702944137318/ab-F0IxfjRvNd9ZxTvxfZIgnXy9BJ8vv4G2lGLgFtUSEtRDSQoWfn3ceTi0lT91i7Vqe";
+
+function ensureReportModalExists() {
+  if (document.getElementById("report-modal")) return;
+
+  const modal = document.createElement("div");
+  modal.id = "report-modal";
+  modal.style.cssText = "display:none;position:fixed;inset:0;background:#0008;z-index:9999;";
+
+  modal.innerHTML = `
+    <div style="background:#1e1e1e;color:#fff;max-width:520px;margin:10vh auto;padding:20px;border-radius:10px;">
+      <h3 style="margin-top:0;">🪲 Reportar un error</h3>
+
+      <label for="report-type">¿Qué ha fallado?</label>
+      <select id="report-type" style="width:100%;margin:8px 0;padding:8px;border-radius:6px;">
+        <option value="string">📋 String de talentos</option>
+        <option value="wcl">🔗 Botón Warcraft Logs</option>
+        <option value="lorrgs">🔗 Botón Lorrgs</option>
+        <option value="otro">📝 Otro</option>
+      </select>
+
+      <textarea
+        id="report-text"
+        placeholder="Describe brevemente el problema (opcional)"
+        rows="4"
+        style="width:100%;margin-top:8px;padding:10px;border-radius:8px;resize:vertical;"></textarea>
+
+      <input
+        id="report-contact"
+        placeholder="Tu Discord o TikTok (opcional, para avisarte)"
+        type="text"
+        style="width:100%;margin-top:10px;padding:10px;border-radius:8px;" />
+
+      <div style="margin-top:14px;display:flex;gap:10px;justify-content:flex-end;">
+        <button id="report-cancel" type="button" style="padding:8px 12px;border-radius:8px;">Cancelar</button>
+        <button id="report-send" type="button"
+          style="padding:8px 12px;border-radius:8px;background:#f7b955;border:none;font-weight:700;">
+          Enviar
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Cerrar al clicar fuera del cuadro
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) window.closeReportModal();
+  });
+
+  document.getElementById("report-cancel").addEventListener("click", () => window.closeReportModal());
+  document.getElementById("report-send").addEventListener("click", () => window.sendReport());
+}
+
+let reportData = null;
+
+// Para que onclick="openReportModal(...)" funcione, tiene que estar en window
+window.openReportModal = function (bossIdx, buildIdx) {
+  ensureReportModalExists();
+
+  const boss = bossData[bossIdx];
+  const build = boss?.builds?.[buildIdx];
+
+  reportData = {
+    bossName: boss?.name || "Desconocido",
+    difficulty: boss?.diff === "m" ? "Mítico" : "Heroico",
+    // ✅ Esto es lo que copia el botón de talentos:
+    talentString: build?.string || "",
+    pageUrl: window.location.href
+  };
+
+  document.getElementById("report-modal").style.display = "block";
+};
+
+window.closeReportModal = function () {
+  const modal = document.getElementById("report-modal");
+  if (modal) modal.style.display = "none";
+
+  const t = document.getElementById("report-text");
+  if (t) t.value = "";
+
+  const c = document.getElementById("report-contact");
+  if (c) c.value = "";
+};
+
+window.sendReport = async function () {
+  const typeVal = document.getElementById("report-type")?.value || "otro";
+  const text = document.getElementById("report-text")?.value?.trim() || "Sin descripción";
+  const contact = document.getElementById("report-contact")?.value?.trim() || "No facilitado";
+
+  const typeLabel =
+    typeVal === "string" ? "📋 String de talentos" :
+    typeVal === "wcl" ? "🔗 Botón Warcraft Logs" :
+    typeVal === "lorrgs" ? "🔗 Botón Lorrgs" :
+    "📝 Otro";
+
+  if (!WEBHOOK_URL) {
+    alert("⚠️ Falta pegar el WEBHOOK_URL en bm-guide.js");
+    return;
+  }
+
+  const buildStringSafe = (reportData?.talentString || "?").slice(0, 1000);
+
+  const payload = {
+    embeds: [
+      {
+        title: "🪲 Nuevo reporte desde la web",
+        color: 0xf7b955,
+        fields: [
+          { name: "Boss", value: reportData?.bossName || "?", inline: true },
+          { name: "Build (string)", value: buildStringSafe, inline: false },
+          { name: "Tipo de error", value: typeLabel, inline: false },
+          { name: "Descripción", value: text, inline: false },
+          { name: "Contacto", value: contact, inline: false },
+          { name: "URL", value: reportData?.pageUrl || "", inline: false }
+        ]
+      }
+    ]
+  };
+
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    window.closeReportModal();
+    alert("✅ Gracias, el error se ha enviado");
+  } catch (e) {
+    alert("❌ No se pudo enviar el reporte (revisa consola / webhook)");
+  }
+};
+``
 
 function copyBossStr(id, str) {
   const btn = document.getElementById(id);

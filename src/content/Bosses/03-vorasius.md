@@ -41,6 +41,17 @@ builds:
 order: 3
 ---
 
+<div class="boss-video-embed">
+  <iframe
+    src="https://www.youtube.com/embed/rlTDAZiXrH8"
+    title="Video guía Vorasius"
+    frameborder="0"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    loading="lazy">
+  </iframe>
+</div>
+
 ## Resumen Editable
 
 Escribe aqui el contexto general del encuentro en lenguaje natural.
