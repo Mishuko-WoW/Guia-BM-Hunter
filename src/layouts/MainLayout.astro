@@ -53,6 +53,35 @@ const headerIconUrl =
       ]
     }
     </script>
+
+    <!-- ✅ Google Analytics (ORDEN CORREGIDO) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJY55YHE6Q"></script>
+
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EJY55YHE6Q');
+    </script>
+    <script is:inline>
+  function trackHashChange() {
+    const hash = window.location.hash || '#inicio';
+
+    gtag('event', 'page_view', {
+      page_path: '/' + hash,
+      page_location: window.location.href,
+      page_title: document.title
+    });
+  }
+
+  // Ejecutar al cargar
+  window.addEventListener('load', trackHashChange);
+
+  // Ejecutar cuando cambia el hash (#)
+  window.addEventListener('hashchange', trackHashChange);
+</script>
+
+
   </head>
 
   <body>

@@ -2,6 +2,8 @@
 name: "Vorasius"
 slug: "vorasius"
 difficulty: "heroico"
+video: "https://www.youtube.com/embed/rlTDAZiXrH8"
+
 image: "https://erenion-gaming.de/wp-content/uploads/2025/11/Bannerbild-Vorasius.png"
 summary: "Para nosotros, Vorasius es un encuentro de puro single target. Aunque, como en la mayoría de combates de la Aguja del Vacío, aparecen adds, no merece la pena invertir en talentos de AoE, así que nos centraremos completamente en daño a un solo objetivo."
 builds:

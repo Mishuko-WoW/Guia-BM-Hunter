@@ -24,6 +24,7 @@ const bossData = bossEntries.map(({ data }) => ({
   diff: data.difficulty === 'mitico' ? 'm' : 'h',
   summary: data.summary,
   builds: data.builds,
+  video: data.video,
 }));
 
 const baseUrl = import.meta.env.BASE_URL;
