@@ -8,7 +8,217 @@ const reviewDate = getSectionReviewDate([
 ]);
 ---
 
-<div class="tab-panel" id="tab-bis" style="opacity: 0; animation: fadeIn 0.2s forwards;">
+<!-- CSS CRÍTICO INLINE - Carga estructura básica PRIMERO -->
+<style>
+  .bis-slots-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto;
+    gap: 24px;
+    margin: 32px 0;
+    max-width: 100%;
+    align-items: stretch;
+  }
+
+  .bis-slots-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    min-width: 280px;
+  }
+
+  .bis-slot-item {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+  }
+
+  .bis-slot-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px 10px 16px;
+  }
+
+  .bis-slot-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 1.5px solid var(--border2);
+    border-radius: 6px;
+  }
+
+  .bis-slot-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .bis-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 320px;
+    max-width: 360px;
+  }
+
+  .bis-sidebar-section {
+    overflow: hidden;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+  }
+
+  .bis-sidebar-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .bis-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    background: var(--bg4);
+    border-radius: 6px;
+  }
+
+  .bis-sidebar-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+  }
+
+  .bis-slots-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0;
+    min-width: 280px;
+    align-self: stretch;
+  }
+
+  .bis-spec-artwork {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 300px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .bis-weapon-slot {
+    width: 100%;
+  }
+
+  .bis-progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0 24px;
+    padding: 12px 16px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+  }
+
+  .bis-progress-bar-bg {
+    flex: 1;
+    height: 12px;
+    overflow: hidden;
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .bis-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border-radius: 6px;
+    transition: width 0.4s ease;
+  }
+
+  .bis-trinket-ranking {
+    padding: 18px 24px 14px 24px;
+    background: var(--card);
+    border: 1.5px solid var(--bg4);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .bis-trinket-ranking table {
+    width: 100%;
+    margin-bottom: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .bis-slot-icon-link {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    line-height: 0;
+  }
+
+  .bis-sidebar-icon-link {
+    display: block;
+    flex-shrink: 0;
+    line-height: 0;
+  }
+
+  @media (max-width: 1400px) {
+    .bis-slots-container {
+      grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: auto auto;
+    }
+
+    .bis-sidebar {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .bis-slots-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .bis-slots-center {
+      order: -1;
+    }
+
+    .bis-sidebar {
+      grid-template-columns: 1fr;
+    }
+
+    .bis-spec-artwork {
+      display: none;
+    }
+  }
+</style>
+
+<div class="tab-panel" id="tab-bis">
   <h2>Best in Slot &amp; Consumibles</h2>
 
   <h3>Equipo BIS Completo optimizado para contenido de raid</h3>
@@ -493,737 +703,442 @@ const reviewDate = getSectionReviewDate([
       </div>
     </div>
   </div>
-
-
-  <script is:inline>
-  // Asegurar que los estilos se apliquen antes de mostrar el contenido
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      document.body.style.visibility = 'visible';
-    });
-  }
-</script>
-
-
-  <style is:global>
-    /* Tabla de trinkets */
-    .bis-trinket-ranking {
-      padding: 18px 24px 14px 24px;
-      background: var(--card);
-      border: 1.5px solid var(--bg4);
-      border-top: none;
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
-    }
-
-    .bis-trinket-ranking table {
-      width: 100%;
-      margin-bottom: 12px;
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-
-    .bis-trinket-ranking th,
-    .bis-trinket-ranking td {
-      padding: 8px 10px;
-      text-align: left;
-      font-size: 18px;
-    }
-
-    .bis-trinket-ranking td a {
-      font-size: 18px;
-    }
-
-    .bis-trinket-ranking th {
-      background: none;
-      color: var(--gold);
-      font-size: 22px;
-      border-bottom: 2px solid var(--border2);
-    }
-
-    .bis-trinket-ranking tr td:first-child {
-      width: 90px;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .bis-trinket-ranking tr:nth-child(even) td {
-      background: var(--bg3);
-    }
-
-    .bis-trinket-ranking tr:nth-child(odd) td {
-      background: var(--bg4);
-    }
-
-    .bis-trinket-ranking td {
-      border-radius: 6px;
-    }
-
-    .bis-trinket-sim-tip {
-      margin-top: 10px;
-      padding: 10px 14px;
-      background: var(--bg4);
-      border-left: 4px solid var(--accent);
-      border-radius: 6px;
-      color: var(--text2);
-      font-size: 14px;
-    }
-
-    /* Layout principal */
-    .bis-slots-container {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto;
-      gap: 24px;
-      margin: 32px 0;
-      max-width: 100%;
-      align-items: start;
-    }
-
-    /* Columnas de slots */
-    .bis-slots-column {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* Slot individual */
-    .bis-slot-item {
-      position: relative;
-      overflow: hidden;
-      background: var(--bg3);
-      border: 1px solid var(--border2);
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-
-    .bis-slot-item:hover {
-      border-color: var(--accent);
-      box-shadow: 0 4px 12px rgba(79, 195, 247, 0.15);
-      transform: translateY(-1px);
-    }
-
-    /* Barra lateral de calidad */
-    .bis-slot-bar {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 4px;
-    }
-
-    .bis-slot-item[data-quality="tier"] .bis-slot-bar {
-      background: linear-gradient(180deg, #ff9800, #f57c00);
-    }
-
-    .bis-slot-item[data-quality="mplus"] .bis-slot-bar {
-      background: linear-gradient(180deg, #ab47bc, #8e24aa);
-    }
-
-    .bis-slot-item[data-quality="craft"] .bis-slot-bar {
-      background: linear-gradient(180deg, #43a047, #2e7d32);
-    }
-
-    .bis-slot-item[data-quality="raid"] .bis-slot-bar {
-      background: linear-gradient(180deg, #4fc3f7, #0288d1);
-    }
-
-    /* Contenido del slot */
-    .bis-slot-content {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px 10px 16px;
-    }
-
-    /* Checkbox */
-    .bis-slot-content .bis-check {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      cursor: pointer;
-      accent-color: var(--accent);
-    }
-
-    /* Icono del item */
-    .bis-slot-icon {
-      position: relative;
-      width: 42px;
-      height: 42px;
-      flex-shrink: 0;
-      object-fit: cover;
-      cursor: pointer;
-      background: none;
-      border: 1.5px solid var(--border2);
-      border-radius: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .bis-slot-icon:hover {
-      border-color: var(--accent);
-      transform: scale(1.05);
-    }
-
-    /* Info del item */
-    .bis-slot-info {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 0;
-    }
-
-    .bis-slot-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text3);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .bis-item-link {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--purple);
-      line-height: 1.3;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .bis-item-link:hover {
-      color: var(--gold);
-      text-decoration: underline;
-    }
-
-    .bis-item-source {
-      font-size: 12px;
-      color: var(--text2);
-      line-height: 1.2;
-    }
-
-    /* Columna central: especialización + arma */
-    .bis-slots-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 0 16px;
-      min-width: 280px;
-      align-self: stretch;
-    }
-
-    .bis-spec-name {
-      font-family: 'Cinzel', serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 1.2px;
-      text-shadow: 0 0 16px rgba(244, 200, 66, 0.4);
-    }
-
-    /* Arma principal (central) */
-    .bis-weapon-slot {
-      width: 100%;
-    }
-
-    .bis-weapon-slot .bis-slot-item {
-      background: linear-gradient(135deg, var(--bg3), var(--bg4));
-      border: 2px solid var(--gold);
-      box-shadow: 0 4px 16px rgba(244, 200, 66, 0.2);
-    }
-
-    .bis-weapon-slot .bis-slot-item:hover {
-      border-color: var(--accent);
-      box-shadow: 0 6px 20px rgba(79, 195, 247, 0.3);
-    }
-
-    .bis-weapon-slot .bis-slot-content {
-      padding: 14px;
-    }
-
-    .bis-weapon-slot .bis-slot-icon {
-      width: 52px;
-      height: 52px;
-    }
-
-    .bis-weapon-slot .bis-slot-name {
-      font-size: 14px;
-      color: var(--gold);
-    }
-
-    .bis-weapon-slot .bis-item-link {
-      font-size: 16px;
-    }
-
-    /* Sidebar */
-    .bis-sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      min-width: 320px;
-      max-width: 360px;
-    }
-
-    .bis-sidebar-section {
-      overflow: hidden;
-      background: var(--bg3);
-      border: 1px solid var(--border2);
-      border-radius: 8px;
-    }
-
-    .bis-sidebar-title {
-      padding: 10px 14px;
-      background: linear-gradient(135deg, var(--bg4), var(--bg3));
-      border-bottom: 1px solid var(--border2);
-      color: var(--gold);
-      font-family: 'Cinzel', serif;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-    }
-
-    .bis-sidebar-items {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: 12px;
-    }
-
-    .bis-sidebar-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 8px;
-      background: var(--bg4);
-      border-radius: 6px;
-      transition: background 0.2s ease;
-    }
-
-    .bis-sidebar-item:hover {
-      background: var(--card);
-    }
-
-    .bis-sidebar-icon {
-      width: 32px;
-      height: 32px;
-      flex-shrink: 0;
-      object-fit: cover;
-      cursor: pointer;
-      border: 1px solid var(--border2);
-      border-radius: 4px;
-      transition: all 0.2s ease;
-    }
-
-    .bis-sidebar-icon:hover {
-      border-color: var(--accent);
-      transform: scale(1.05);
-    }
-
-    .bis-sidebar-slot {
-      min-width: 70px;
-      flex-shrink: 0;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text3);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .bis-enchant-link {
-      flex: 1;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-      line-height: 1.3;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .bis-enchant-link:hover {
-      color: var(--gold);
-      text-decoration: underline;
-    }
-
-    .bis-consumable-link {
-      flex: 1;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-      line-height: 1.3;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .bis-consumable-link:hover {
-      color: var(--gold);
-      text-decoration: underline;
-    }
-
-    /* Tooltips */
-    .bis-tooltip {
-      position: absolute;
-      z-index: 9999;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.15s ease;
-    }
-
-    .bis-tooltip.show {
-      opacity: 1;
-    }
-
-    .bis-tooltip-inner {
-      padding: 8px;
-      background: linear-gradient(135deg, rgba(20, 23, 32, 0.98), rgba(13, 15, 18, 0.98));
-      border: 2px solid var(--accent2);
-      border-radius: 8px;
-      box-shadow:
-        0 0 20px rgba(79, 195, 247, 0.4),
-        0 8px 32px rgba(0, 0, 0, 0.6);
-    }
-
-    .bis-tooltip-img {
-      display: block;
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .bis-slot-item[data-quality="cosmetic"] .bis-slot-bar {
-      background: linear-gradient(180deg, #9e9e9e, #616161);
-    }
-
-    .bis-item-cosmetic {
-      color: var(--text2);
-      font-style: italic;
-    }
-
-    .bis-item-cosmetic-label {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text2);
-      font-style: italic;
-    }
-
-    /* Responsive */
-    @media (max-width: 1400px) {
-      .bis-slots-container {
-        grid-template-columns: 1fr auto 1fr;
-        grid-template-rows: auto auto;
-      }
-
-      .bis-sidebar {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 16px;
-        max-width: 100%;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .bis-slots-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .bis-slots-center {
-        order: -1;
-      }
-
-      .bis-sidebar {
-        grid-template-columns: 1fr;
-      }
-
-      .bis-spec-icon {
-        width: 140px;
-        height: 140px;
-      }
-
-      .bis-spec-name {
-        font-size: 20px;
-      }
-    }
-
-    /* Progreso BiS */
-    .bis-progress-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 20px 0 24px;
-      padding: 12px 16px;
-      background: var(--bg3);
-      border: 1px solid var(--border2);
-      border-radius: 8px;
-    }
-
-    .bis-progress-label {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-    }
-
-    .bis-progress-bar-bg {
-      flex: 1;
-      height: 12px;
-      overflow: hidden;
-      background: var(--bg4);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-    }
-
-    .bis-progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
-      border-radius: 6px;
-      transition: width 0.4s ease;
-    }
-
-    .bis-progress-count {
-      min-width: 60px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gold);
-      text-align: right;
-    }
-
-    /* Wowhead: normalización de envoltorios de iconos */
-    .bis-slot-icon-link {
-      position: relative;
-      display: block;
-      flex-shrink: 0;
-      line-height: 0;
-    }
-
-    .bis-slot-icon-link > img:not(.bis-slot-icon),
-    .bis-slot-icon-link .iconmedium,
-    .bis-slot-icon-link .iconsmall,
-    .bis-slot-icon-link .icontiny {
-      display: none !important;
-    }
-
-    .bis-slot-icon-link {
-      padding: 0 !important;
-      margin: 0 !important;
-      background: none !important;
-      border: none !important;
-      text-decoration: none !important;
-    }
-
-    .bis-sidebar-icon-link {
-      display: block;
-      flex-shrink: 0;
-      line-height: 0;
-    }
-
-    .bis-sidebar-icon-link > img:not(.bis-sidebar-icon),
-    .bis-sidebar-icon-link .iconmedium,
-    .bis-sidebar-icon-link .iconsmall,
-    .bis-sidebar-icon-link .icontiny {
-      display: none !important;
-    }
-
-    .bis-sidebar-icon-link {
-      padding: 0 !important;
-      margin: 0 !important;
-      background: none !important;
-      border: none !important;
-      text-decoration: none !important;
-    }
-
-    .bis-slots-container {
-      align-items: stretch;
-    }
-
-    .bis-slots-column {
-      justify-content: space-between;
-    }
-
-    .bis-slots-left,
-    .bis-slots-right {
-      min-width: 280px;
-    }
-
-    .bis-slots-center {
-      align-self: stretch;
-    }
-
-    .bis-slots-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0;
-      padding: 0;
-      min-width: 280px;
-      align-self: stretch;
-    }
-
-    .bis-spec-artwork {
-      position: relative;
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      width: 100%;
-      min-height: 300px;
-      padding-bottom: 20px;
-      overflow: hidden;
-      border-radius: 8px;
-    }
-
-    .bis-spec-bg-wrap {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      border-radius: 8px;
-    }
-
-    .bis-spec-bg-wrap img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      opacity: 0.6;
-    }
-
-    .bis-spec-crest {
-      position: relative;
-      z-index: 1;
-      width: 350px;
-      height: auto;
-      flex: 1;
-      margin-top: 20px;
-      object-fit: contain;
-    }
-
-    .bis-spec-name {
-      position: relative;
-      z-index: 1;
-      font-family: 'Cinzel', serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 1.2px;
-      text-shadow: 0 0 16px rgba(244, 200, 66, 0.4);
-    }
-
-    .bis-weapon-slot {
-      width: 100%;
-    }
-
-    .bis-spec-name {
-      position: relative;
-      z-index: 1;
-      margin-top: auto;
-      padding-top: 8px;
-    }
-
-    .bis-sidebar-item-info {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      gap: 3px;
-      min-width: 0;
-    }
-
-    .bis-badge {
-      display: inline-block;
-      width: fit-content;
-      padding: 2px 6px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      border-radius: 4px;
-    }
-
-    .bis-badge-recommended {
-      background: rgba(67, 160, 71, 0.2);
-      color: #66bb6a;
-      border: 1px solid rgba(67, 160, 71, 0.4);
-    }
-
-    .bis-badge-situational {
-      background: rgba(255, 152, 0, 0.15);
-      color: #ffa726;
-      border: 1px solid rgba(255, 152, 0, 0.3);
-    }
-
-    .bis-item-enchant {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .bis-item-enchant a {
-      display: inline-block;
-      min-height: 18px;
-      padding-top: 5px !important;
-      padding-left: 22px !important;
-      font-size: 14px;
-      color: var(--gold);
-      line-height: 18px;
-      text-decoration: none;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      opacity: 0.8;
-      background-size: 18px 18px !important;
-      transition: color 0.2s;
-    }
-
-    .bis-item-enchant a:hover {
-      color: var(--accent);
-      opacity: 1;
-      text-decoration: underline;
-    }
-
-    .bis-sidebar-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .bis-badge-sim {
-      padding: 2px 7px;
-      background: rgba(244, 200, 66, 0.15);
-      border: 1px solid rgba(244, 200, 66, 0.4);
-      border-radius: 4px;
-      color: var(--gold);
-      font-family: 'Outfit', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      text-transform: none;
-    }
-
-    @media (max-width: 900px) {
-      .bis-spec-artwork {
-        display: none;
-      }
-    }
-
-    @keyframes fadeIn {
-    to { opacity: 1; }
-    }
-  </style>
-
-  <script>
-    (window as any).whTooltips = {
-      colorLinks: false,
-      iconizeLinks: true,
-      renameLinks: false
-    };
-  </script>
-  <script src="https://wow.zamimg.com/js/tooltips.js">
-  </script>
 </div>
+
+<!-- CSS COMPLETO GLOBAL - Estilos decorativos -->
+<style is:global>
+  /* Transiciones y efectos hover */
+  .bis-slot-item {
+    transition: all 0.2s ease;
+  }
+
+  .bis-slot-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(79, 195, 247, 0.15);
+    transform: translateY(-1px);
+  }
+
+  /* Barras de calidad laterales */
+  .bis-slot-bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+  }
+
+  .bis-slot-item[data-quality="tier"] .bis-slot-bar {
+    background: linear-gradient(180deg, #ff9800, #f57c00);
+  }
+
+  .bis-slot-item[data-quality="mplus"] .bis-slot-bar {
+    background: linear-gradient(180deg, #ab47bc, #8e24aa);
+  }
+
+  .bis-slot-item[data-quality="craft"] .bis-slot-bar {
+    background: linear-gradient(180deg, #43a047, #2e7d32);
+  }
+
+  .bis-slot-item[data-quality="raid"] .bis-slot-bar {
+    background: linear-gradient(180deg, #4fc3f7, #0288d1);
+  }
+
+  .bis-slot-item[data-quality="cosmetic"] .bis-slot-bar {
+    background: linear-gradient(180deg, #9e9e9e, #616161);
+  }
+
+  /* Checkbox */
+  .bis-slot-content .bis-check {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--accent);
+  }
+
+  /* Iconos con hover */
+  .bis-slot-icon {
+    cursor: pointer;
+    background: none;
+    transition: all 0.2s ease;
+  }
+
+  .bis-slot-icon:hover {
+    border-color: var(--accent);
+    transform: scale(1.05);
+  }
+
+  .bis-sidebar-icon {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .bis-sidebar-icon:hover {
+    border-color: var(--accent);
+    transform: scale(1.05);
+  }
+
+  /* Tipografía y enlaces */
+  .bis-slot-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .bis-item-link {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--purple);
+    line-height: 1.3;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .bis-item-link:hover {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+
+  .bis-item-source {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.2;
+  }
+
+  .bis-item-cosmetic {
+    color: var(--text2);
+    font-style: italic;
+  }
+
+  .bis-item-cosmetic-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text2);
+    font-style: italic;
+  }
+
+  /* Especialización central */
+  .bis-spec-bg-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .bis-spec-bg-wrap img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.6;
+  }
+
+  .bis-spec-crest {
+    position: relative;
+    z-index: 1;
+    width: 350px;
+    height: auto;
+    flex: 1;
+    margin-top: 20px;
+    object-fit: contain;
+  }
+
+  .bis-spec-name {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+
+  /* Arma destacada */
+  .bis-weapon-slot .bis-slot-item {
+    background: linear-gradient(135deg, var(--bg3), var(--bg4));
+    border: 2px solid var(--gold);
+    box-shadow: 0 4px 16px rgba(244, 200, 66, 0.2);
+  }
+
+  .bis-weapon-slot .bis-slot-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 6px 20px rgba(79, 195, 247, 0.3);
+  }
+
+  .bis-weapon-slot .bis-slot-content {
+    padding: 14px;
+  }
+
+  .bis-weapon-slot .bis-slot-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .bis-weapon-slot .bis-slot-name {
+    font-size: 14px;
+    color: var(--gold);
+  }
+
+  .bis-weapon-slot .bis-item-link {
+    font-size: 16px;
+  }
+
+  /* Sidebar */
+  .bis-sidebar-section {
+    overflow: hidden;
+  }
+
+  .bis-sidebar-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, var(--bg4), var(--bg3));
+    border-bottom: 1px solid var(--border2);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+  }
+
+  .bis-sidebar-item {
+    transition: background 0.2s ease;
+  }
+
+  .bis-sidebar-item:hover {
+    background: var(--card);
+  }
+
+  .bis-sidebar-slot {
+    min-width: 70px;
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .bis-enchant-link,
+  .bis-consumable-link {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.3;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .bis-enchant-link:hover,
+  .bis-consumable-link:hover {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+
+  /* Progreso */
+  .bis-progress-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .bis-progress-count {
+    min-width: 60px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    text-align: right;
+  }
+
+  /* Badges */
+  .bis-badge {
+    display: inline-block;
+    width: fit-content;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
+
+  .bis-badge-recommended {
+    background: rgba(67, 160, 71, 0.2);
+    color: #66bb6a;
+    border: 1px solid rgba(67, 160, 71, 0.4);
+  }
+
+  .bis-badge-situational {
+    background: rgba(255, 152, 0, 0.15);
+    color: #ffa726;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+  }
+
+  .bis-badge-sim {
+    padding: 2px 7px;
+    background: rgba(244, 200, 66, 0.15);
+    border: 1px solid rgba(244, 200, 66, 0.4);
+    border-radius: 4px;
+    color: var(--gold);
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: none;
+  }
+
+  /* Encantos */
+  .bis-item-enchant {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .bis-item-enchant a {
+    display: inline-block;
+    min-height: 18px;
+    padding-top: 5px !important;
+    padding-left: 22px !important;
+    font-size: 14px;
+    color: var(--gold);
+    line-height: 18px;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.8;
+    background-size: 18px 18px !important;
+    transition: color 0.2s;
+  }
+
+  .bis-item-enchant a:hover {
+    color: var(--accent);
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  /* Tabla de trinkets - estilos decorativos */
+  .bis-trinket-ranking {
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+  }
+
+  .bis-trinket-ranking th,
+  .bis-trinket-ranking td {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .bis-trinket-ranking td a {
+    font-size: 18px;
+  }
+
+  .bis-trinket-ranking th {
+    background: none;
+    color: var(--gold);
+    font-size: 22px;
+    border-bottom: 2px solid var(--border2);
+  }
+
+  .bis-trinket-ranking tr td:first-child {
+    width: 90px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .bis-trinket-ranking tr:nth-child(even) td {
+    background: var(--bg3);
+  }
+
+  .bis-trinket-ranking tr:nth-child(odd) td {
+    background: var(--bg4);
+  }
+
+  .bis-trinket-ranking td {
+    border-radius: 6px;
+  }
+
+  /* Tooltips */
+  .bis-tooltip {
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .bis-tooltip.show {
+    opacity: 1;
+  }
+
+  .bis-tooltip-inner {
+    padding: 8px;
+    background: linear-gradient(135deg, rgba(20, 23, 32, 0.98), rgba(13, 15, 18, 0.98));
+    border: 2px solid var(--accent2);
+    border-radius: 8px;
+    box-shadow:
+      0 0 20px rgba(79, 195, 247, 0.4),
+      0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+
+  .bis-tooltip-img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  /* Normalización Wowhead */
+  .bis-slot-icon-link > img:not(.bis-slot-icon),
+  .bis-slot-icon-link .iconmedium,
+  .bis-slot-icon-link .iconsmall,
+  .bis-slot-icon-link .icontiny {
+    display: none !important;
+  }
+
+  .bis-slot-icon-link {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: none !important;
+    border: none !important;
+    text-decoration: none !important;
+  }
+
+  .bis-sidebar-icon-link > img:not(.bis-sidebar-icon),
+  .bis-sidebar-icon-link .iconmedium,
+  .bis-sidebar-icon-link .iconsmall,
+  .bis-sidebar-icon-link .icontiny {
+    display: none !important;
+  }
+
+  .bis-sidebar-icon-link {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: none !important;
+    border: none !important;
+    text-decoration: none !important;
+  }
+</style>
+
+<script>
+  declare global {
+    interface Window {
+      whTooltips: any;
+    }
+  }
+
+  window.whTooltips = {
+    colorLinks: false,
+    iconizeLinks: true,
+    renameLinks: false
+  };
+</script>
+<script src="https://wow.zamimg.com/js/tooltips.js"></script>
