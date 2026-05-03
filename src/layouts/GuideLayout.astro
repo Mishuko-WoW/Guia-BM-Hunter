@@ -6,22 +6,28 @@ interface Props {
   description?: string;
 }
 
-const { title = 'Guía Hunter BM — Midnight S1' , description = 'Mejores talentos, rotación y equipo BiS para Hunter BM en Midnight Season 1. ¡Guía PvE 100% actualizada!' } = Astro.props;
-const headerIconUrl = 'https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png';
-
+const { 
+  title = 'Guía Hunter BM — Midnight S1', 
+  description = 'Mejores talentos, rotación y equipo BiS para Hunter BM en Midnight Season 1. ¡Guía PvE 100% actualizada!' 
+} = Astro.props;
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <title>{title}</title>
   </head>
   <body>
     <slot />

@@ -10,9 +10,6 @@ const {
   title = 'Guía Hunter BM — Midnight S1',
   description = 'Mejores talentos, rotación y equipo BiS para Hunter BM en Midnight Season 1. ¡Guía PvE 100% actualizada!.',
 } = Astro.props;
-
-const headerIconUrl =
-  'https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png';
 ---
 
 <html lang="es">
@@ -25,6 +22,7 @@ const headerIconUrl =
     <meta name="description" content={description} />
 
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,7 +32,6 @@ const headerIconUrl =
       rel="stylesheet"
     />
 
-    <!-- ✅ Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -54,7 +51,6 @@ const headerIconUrl =
     }
     </script>
 
-    <!-- ✅ Google Analytics (ORDEN CORREGIDO) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJY55YHE6Q"></script>
 
     <script is:inline>
@@ -63,25 +59,21 @@ const headerIconUrl =
       gtag('js', new Date());
       gtag('config', 'G-EJY55YHE6Q');
     </script>
+    
     <script is:inline>
-  function trackHashChange() {
-    const hash = window.location.hash || '#inicio';
+      function trackHashChange() {
+        const hash = window.location.hash || '#inicio';
 
-    gtag('event', 'page_view', {
-      page_path: '/' + hash,
-      page_location: window.location.href,
-      page_title: document.title
-    });
-  }
+        gtag('event', 'page_view', {
+          page_path: '/' + hash,
+          page_location: window.location.href,
+          page_title: document.title
+        });
+      }
 
-  // Ejecutar al cargar
-  window.addEventListener('load', trackHashChange);
-
-  // Ejecutar cuando cambia el hash (#)
-  window.addEventListener('hashchange', trackHashChange);
-</script>
-
-
+      window.addEventListener('load', trackHashChange);
+      window.addEventListener('hashchange', trackHashChange);
+    </script>
   </head>
 
   <body>
