@@ -442,40 +442,36 @@
     buildQuiz('quiz-aoe', aoeQuestions);
 
     // ─── BIS TRACKER ──────────────────────────────────────────────────
-    const BIS_TOTAL = 15;
+const BIS_TOTAL = 15;
 
-    function bisCheck(cb) {
-      const row = cb.closest('tr');
-      row.classList.toggle('collected', cb.checked);
+function bisCheck(cb) {
+  const checked = document.querySelectorAll('.bis-check:checked').length;
+  document.getElementById('bis-count').textContent = checked + ' / ' + BIS_TOTAL;
+  document.getElementById('bis-bar').style.width = (checked / BIS_TOTAL * 100) + '%';
 
-      const checked = document.querySelectorAll('.bis-check:checked').length;
-      document.getElementById('bis-count').textContent = checked + ' / ' + BIS_TOTAL;
-      document.getElementById('bis-bar').style.width   = (checked / BIS_TOTAL * 100) + '%';
+  const state = {};
+  document.querySelectorAll('[data-bis]').forEach(el => {
+    state[el.dataset.bis] = el.querySelector('.bis-check').checked;
+  });
+  try { localStorage.setItem('bm_bis', JSON.stringify(state)); } catch (e) {}
+}
 
-      const state = {};
-      document.querySelectorAll('tr[data-bis]').forEach(r => {
-        state[r.dataset.bis] = r.querySelector('.bis-check').checked;
-      });
-      try { localStorage.setItem('bm_bis', JSON.stringify(state)); } catch (e) {}
+// Restaurar estado al cargar
+(function () {
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem('bm_bis') || '{}'); } catch (e) {}
+
+  document.querySelectorAll('[data-bis]').forEach(el => {
+    const cb = el.querySelector('.bis-check');
+    if (cb && state[el.dataset.bis]) {
+      cb.checked = true;
     }
+  });
 
-    // Restaurar estado al cargar
-    (function () {
-      let state = {};
-      try { state = JSON.parse(localStorage.getItem('bm_bis') || '{}'); } catch (e) {}
-
-      document.querySelectorAll('tr[data-bis]').forEach(r => {
-        const cb = r.querySelector('.bis-check');
-        if (state[r.dataset.bis]) {
-          cb.checked = true;
-          r.classList.add('collected');
-        }
-      });
-
-      const checked = document.querySelectorAll('.bis-check:checked').length;
-      document.getElementById('bis-count').textContent = checked + ' / ' + BIS_TOTAL;
-      document.getElementById('bis-bar').style.width   = (checked / BIS_TOTAL * 100) + '%';
-    })();
+  const checked = document.querySelectorAll('.bis-check:checked').length;
+  document.getElementById('bis-count').textContent = checked + ' / ' + BIS_TOTAL;
+  document.getElementById('bis-bar').style.width = (checked / BIS_TOTAL * 100) + '%';
+})();
 
     // ─── BUILD TOGGLE ─────────────────────────────────────────────────
     function setRot(mode, btn) {

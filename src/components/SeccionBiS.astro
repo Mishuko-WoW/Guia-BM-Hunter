@@ -2,15 +2,22 @@
 import { getSectionReviewDate } from '../lib/sectionDates';
 import ReviewSourceBox from './ReviewSourceBox.astro';
 
-const reviewDate = getSectionReviewDate(['src/components/SeccionBiS.astro', 'src/content/data/bis.json']);
+const reviewDate = getSectionReviewDate([
+  'src/components/SeccionBiS.astro',
+  'src/content/data/bis.json'
+]);
 ---
 
-<div id="tab-bis" class="tab-panel">
-  <h2>Best in Slot & Consumibles</h2>
+<div class="tab-panel" id="tab-bis">
+  <h2>Best in Slot &amp; Consumibles</h2>
 
   <h3>Equipo BIS Completo optimizado para contenido de raid</h3>
   <ReviewSourceBox reviewDate={reviewDate}>
-    Items y consumibles extraídos de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.0.5</strong>. Contrastadas y verificadas.
+    Items y consumibles extraídos de
+    <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a>
+    y
+    <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>
+    , actualizadas a parche <strong>12.0.5</strong>. Contrastadas y verificadas.
   </ReviewSourceBox>
 
   <div class="bis-progress-wrap">
@@ -21,134 +28,1187 @@ const reviewDate = getSectionReviewDate(['src/components/SeccionBiS.astro', 'src
     <span class="bis-progress-count" id="bis-count">0 / 15</span>
   </div>
 
-  <div class="bis-table-wrap">
-    <table class="bis-table">
-      <thead>
-        <tr>
-          <th style="width:36px"></th>
-          <th>Slot</th>
-          <th>Ítem</th>
-          <th>Fuente</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="raid-row" data-bis="arma"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Arma</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249279/rifle-de-golpe-solar?bonus=12806" target="_blank" rel="noopener noreferrer">Rifle de Golpe Solar</a></td><td class="source-raid">Averzian</td></tr>
-        <tr class="raid-row" data-bis="yelmo"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Yelmo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249988/fauces-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Fauces de centinela primigenio</a></td><td class="source-raid">Tier Set — Vanguardia de la luz</td></tr>
-        <tr class="raid-row" data-bis="cuello"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Cuello</td><td class="item-name"><a href="https://www.wowhead.com/es/item=250247/amuleto-del-himno-abisal" target="_blank" rel="noopener noreferrer">Amuleto del himno abisal</a></td><td class="source-raid">Marcha de Quel'danas</td></tr>
-        <tr data-bis="hombros"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Hombros</td><td class="item-name"><a href="https://www.wowhead.com/es/item=151323/espaldares-del-cazador-del-vac%C3%ADo" target="_blank" rel="noopener noreferrer">Espaldares del cazador del Vacío</a></td><td class="source-mp">Trono del Triunvirato (M+)</td></tr>
-        <tr class="raid-row" data-bis="capa"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Capa</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249335/estandarte-del-imperador?bonus=12806" target="_blank" rel="noopener noreferrer">Estandarte del imperador</a></td><td class="source-raid">Averzian</td></tr>
-        <tr class="raid-row" data-bis="pecho"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Pecho</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249991/peto-de-escamas-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Peto de escamas de centinela primigenio <span class="tier-badge">TIER</span></a></td><td class="source-raid">Tier Set — Chiamerus</td></tr>
-        <tr class="raid-row" data-bis="munecas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Muñecas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249304/pu%C3%B1os-del-rey-ca%C3%ADdo?bonus=12806" target="_blank" rel="noopener noreferrer">Puños del Rey Caído</a></td><td class="source-raid">Rey Nexo Salhadaar</td></tr>
-        <tr class="raid-row" data-bis="guantes"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Guantes</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249989/guardagarras-de-centinela-primigenio" target="_blank" rel="noopener noreferrer">Guardagarras de centinela primigenio <span class="tier-badge">TIER</span></a></td><td class="source-raid">Tier Set — Vorasius</td></tr>
-        <tr data-bis="cinturon"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Cinturón</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244611/cinto-cortical-de-cuidador-del-mundo" target="_blank" rel="noopener noreferrer">Cinto cortical de cuidador del mundo <span class="craft-badge">CRAFT</span></a></td><td class="source-craft">✂ Peletería</td></tr>
-        <tr class="raid-row" data-bis="piernas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Piernas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249987/musleras-de-centinela-primigenio?bonus=12806" target="_blank" rel="noopener noreferrer">Musleras de centinela primigenio <span class="tier-badge">TIER</span></a></td><td class="source-raid">Tier Set — Vaelgor & Ezzorak</td></tr>
-        <tr data-bis="botas"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Botas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244610/zapatillas-raigales-de-cuidador-del-mundo" target="_blank" rel="noopener noreferrer">Zapatillas raigales de cuidador del mundo <span class="craft-badge">CRAFT</span></a></td><td class="source-craft">✂ Peletería</td></tr>
-        <tr class="raid-row" data-bis="anillo1"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Anillo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249920/ojo-de-medianoche" target="_blank" rel="noopener noreferrer">Ojo de medianoche</a></td><td class="source-raid">Marcha de Quel'danas</td></tr>
-        <tr class="raid-row" data-bis="anillo2"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Anillo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249369/v%C3%ADnculo-de-la-luz?bonus=13668" target="_blank" rel="noopener noreferrer">Vínculo de la Luz</a></td><td class="source-raid">Vanguardia de la luz</td></tr>
-        <tr class="raid-row" data-bis="trinket1"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Trinket</td><td class="item-name"><a href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente" target="_blank" rel="noopener noreferrer">Mirada del Alnvidente</a></td><td class="source-raid">Chimaerus</td></tr>
-        <tr data-bis="trinket2"><td class="check-col"><input class="bis-check" type="checkbox" onchange="bisCheck(this)"></td><td class="slot-col">Trinket</td><td class="item-name"><a href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar" target="_blank" rel="noopener noreferrer">Caja de puzles de Algeth'ar</a></td><td class="source-mp">Academia Algeth'ar (M+)</td></tr>
-      </tbody>
-    </table>
+  <div class="bis-slots-container">
+    <div class="bis-slots-column bis-slots-left">
+      <div class="bis-slot-item" data-quality="tier">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="yelmo">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249988/fauces-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidhuntermidnight_d_01.jpg" alt="Cabeza">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249988/fauces-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-disable-wowhead-tooltip="true">Fauces de centinela primigenio</a>
+            <div class="bis-item-source">Tier Set — Vanguardia de la luz</div>
+            <div class="bis-item-enchant">
+              <a href="https://www.wowhead.com/es/item=244007/encantar-yelmo-runa-de-evasi%C3%B3n-potenciada" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Runa de evasión potenciada</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="raid">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="cuello">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=250247/amuleto-del-himno-abisal?bonus=12806" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_jewelry_devouringhost_necklace_bronze2.jpg" alt="Cuello">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=250247/amuleto-del-himno-abisal" target="_blank" rel="noopener noreferrer" data-disable-wowhead-tooltip="true">Amuleto del himno abisal</a>
+            <div class="bis-item-source">L'ura</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="mplus">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="hombros">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=151323/espaldares-del-cazador-del-vac%C3%ADo?bonus=12806" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_mail_legiondungeon_c_03.jpg" alt="Hombros">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=151323/espaldares-del-cazador-del-vac%C3%ADo?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Espaldares del cazador del Vacío</a>
+            <div class="bis-item-source">Trono del Triunvirato (M+)</div>
+            <div class="bis-item-enchant">
+              <a href="https://www.wowhead.com/es/item=243991/encantar-hombros-gracia-de-amirdrassil" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Gracia de amirdrassil</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="raid">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="capa">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249335/estandarte-del-imperador?bonus=12806" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_plate_raiddeathknightmidnight_d_01_cape.jpg" alt="Capa">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249335/estandarte-del-imperador?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Estandarte del imperador</a>
+            <div class="bis-item-source">Averzian</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="tier">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="pecho">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249991/peto-de-escamas-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_chest_mail_raidhuntermidnight_d_01.jpg" alt="Pecho">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249991/peto-de-escamas-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Peto de escamas de centinela primigenio</a>
+            <div class="bis-item-source">Tier Set — Chiamerus</div>
+            <div class="bis-item-enchant">
+              <a href="https://www.wowhead.com/es/item=243977/encantar-torso-marca-del-alma-mundo" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Marca del alma-mundo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="cosmetic">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/items/armor/shirts" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://i.imgur.com/m1gu7dS.png" alt="Camisa">
+          </a>
+          <div class="bis-slot-info">
+            <span class="bis-item-cosmetic-label">Estético</span>
+            <div class="bis-item-source">Usa la que más te guste</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="cosmetic">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/items/armor/tabards" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://i.imgur.com/l4TFKLM.png" alt="Tabardo">
+          </a>
+          <div class="bis-slot-info">
+            <span class="bis-item-cosmetic-label">Utilidad</span>
+            <div class="bis-item-source">Usa el que quieras</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="raid">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="munecas">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249304/pu%C3%B1os-del-rey-ca%C3%ADdo?bonus=12806" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_bracer_mail_raidshamanmidnight_d_01.jpg" alt="Muñecas">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249304/pu%C3%B1os-del-rey-ca%C3%ADdo?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Puños del Rey Caído</a>
+            <div class="bis-item-source">Rey Nexo Salhadaar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bis-slots-center">
+      <div class="bis-spec-artwork">
+        <div class="bis-spec-bg-wrap">
+          <img src="https://i.imgur.com/4riJkRj.png" alt="">
+        </div>
+        <img class="bis-spec-crest" src="https://i.imgur.com/hQNAYmV.png" alt="Beast Mastery">
+        <div class="bis-spec-name">Cazador Maestro de Bestias</div>
+      </div>
+
+      <!-- Slot de arma: centrado bajo el artwork de especialización -->
+      <div class="bis-weapon-slot">
+        <div class="bis-slot-item" data-quality="raid">
+          <div class="bis-slot-bar"></div>
+          <div class="bis-slot-content">
+            <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="arma">
+            <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249279/rifle-de-golpe-solar?bonus=12806" target="_blank" rel="noopener noreferrer">
+              <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_firearm_2h_raidmidnight_d_01.jpg" alt="Arma">
+            </a>
+            <div class="bis-slot-info">
+              <a class="bis-item-link" href="https://www.wowhead.com/es/item=249279/rifle-de-golpe-solar?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Rifle de Golpe Solar</a>
+              <div class="bis-item-source">Averzian</div>
+              <div class="bis-item-enchant">
+                <a href="https://www.wowhead.com/es/item=244029/encantar-arma-agudeza-de-los-rendorei" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Agudeza de los Rendorei</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bis-slots-column bis-slots-right">
+      <div class="bis-slot-item" data-quality="tier">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="guantes">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249989/guardagarras-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_glove_mail_raidhuntermidnight_d_01.jpg" alt="Manos">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249989/guardagarras-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Guardagarras de centinela primigenio</a>
+            <div class="bis-item-source">Tier Set — Vorasius</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="craft">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="cinturon">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=244611/cinto-cortical-de-cuidador-del-mundo?bonus=12805" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_belt_mail_questbloodelf_b_01.jpg" alt="Cinturón">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=244611/cinto-cortical-de-cuidador-del-mundo?bonus=12805" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Cinto cortical de cuidador del mundo</a>
+            <div class="bis-item-source">✂ Peletería</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="tier">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="piernas">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249987/musleras-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_pant_mail_raidhuntermidnight_d_01.jpg" alt="Piernas">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249987/musleras-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Musleras de centinela primigenio</a>
+            <div class="bis-item-source">Tier Set — Vaelgor &amp; Ezzorak</div>
+            <div class="bis-item-enchant">
+              <a href="https://www.wowhead.com/es/item=244641/refuerzo-para-armadura-de-cazador-del-bosque" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Refuerzo para armadura de cazador del bosque</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="craft">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="botas">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=244610/zapatillas-raigales-de-cuidador-del-mundo?bonus=12805" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_boot_mail_questbloodelf_b_01.jpg" alt="Botas">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=244610/zapatillas-raigales-de-cuidador-del-mundo?bonus=12805" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Zapatillas raigales de cuidador del mundo</a>
+            <div class="bis-item-source">✂ Peletería</div>
+            <div class="bis-item-enchant">
+              <a href="https://www.wowhead.com/es/item=243953/encantar-botas-destreza-de-lince" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Destreza de lince</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="raid">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="anillo1">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249920/ojo-de-medianoche?bonus=12806" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_jewelry_devouringhost_ring_bronze.jpg" alt="Anillo">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249920/ojo-de-medianoche?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Ojo de medianoche</a>
+            <div class="bis-item-source">L'ura</div>
+            <div class="bis-item-enchant">
+              <a href="https://www.wowhead.com/es/item=243957/encantar-anillo-ojos-del-%C3%A1guila" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Ojos del águila</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="raid">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="anillo2">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249369/v%C3%ADnculo-de-la-luz?bonus=12806:13534" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_jewelry_silvermoonelf_ring_blue1.jpg" alt="Anillo">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249369/v%C3%ADnculo-de-la-luz?bonus=12806:13534" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Vínculo de la Luz</a>
+            <div class="bis-item-source">Vanguardia de la luz</div>
+            <div class="bis-item-enchant">
+              <a href="https://www.wowhead.com/es/item=243957/encantar-anillo-ojos-del-%C3%A1guila" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Ojos del águila</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="raid">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="trinket1">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente?bonus=12806" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_trinket_raid_dreamrift_gazeofthealnseer.jpg" alt="Reliquia">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Mirada del Alnvidente</a>
+            <div class="bis-item-source">Chimaerus</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-slot-item" data-quality="mplus">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="trinket2">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar?bonus=12806" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_18.jpg" alt="Reliquia">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Caja de puzles de Algeth'ar</a>
+            <div class="bis-item-source">Academia Algeth'ar (M+)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bis-sidebar">
+      <div class="bis-sidebar-section">
+        <div class="bis-sidebar-title">Consumibles</div>
+        <div class="bis-sidebar-items">
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241322/frasco-de-los-magistri" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_flask_sindoreipotion_black.jpg" alt="Flask">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241322/frasco-de-los-magistri" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Frasco de los Magistri</a>
+            <span class="bis-badge bis-badge-recommended">Recomendado</span>
+          </div>
+
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/spell=1230878/frasco-del-sol-devastado" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_flask_sindoreipotion_red--.jpg" alt="Flask">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/spell=1230878/frasco-del-sol-devastado" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Frasco del Sol Devastado</a>
+            <span class="bis-badge bis-badge-situational">Según tu simulación</span>
+          </div>
+
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Potion">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Potencial de Luz</a>
+            <span class="bis-badge bis-badge-recommended">Recomendado</span>
+          </div>
+
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_voidpotion_purple.jpg" alt="Potion">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Jarabe de Abandono Rampante</a>
+            <span class="bis-badge bis-badge-situational">Más arriesgado</span>
+          </div>
+
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=243733/aceite-de-f%C3%A9nix-thalassiano" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_enchanting_manaoil_red.jpg" alt="Oil">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=243733/aceite-de-f%C3%A9nix-thalassiano" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Aceite de Fénix Thalassiano</a>
+          </div>
+
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_10_enchanting_crystal_color2.jpg" alt="Rune">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Runa de Aumento Tocada por el Vacío</a>
+          </div>
+
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=255846/celebraci%C3%B3n-de-harandar" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_1h_soup_b_01_misc_1h_soup_b_01.jpg" alt="food">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=255846/celebraci%C3%B3n-de-harandar" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Celebración de Harandar</a>
+          </div>
+
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=242747/asado-real-copioso" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_cooking_100_roastduck.jpg" alt="food">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=242747/asado-real-copioso" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Asado Real copioso</a>
+          </div>
+
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241305/poci%C3%B3n-de-sanaci%C3%B3n-de-lunargenta" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_orange.jpg" alt="life-potion">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241305/poci%C3%B3n-de-sanaci%C3%B3n-de-lunargenta" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Poción de Sanación de Lunargenta</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bis-sidebar-section">
+        <div class="bis-sidebar-title">
+          Gemas
+          <span class="bis-badge bis-badge-sim">Importante Simular</span>
+        </div>
+
+        <div class="bis-sidebar-items">
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_jewelcrafting_epic_gem_cut_green.jpg" alt="Gem">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Diamante de Canción Eterna Indescifrable</a>
+          </div>
+
+          <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=240898/amatista-mortal-impecable" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_jewelcrafting_rare_gem_cut_fire_purple.jpg" alt="Gem">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=240898/amatista-mortal-impecable" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Amatista Mortal Impecable</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="bis-table-wrap" style="margin-top:32px;">
-    <div class="bis-table-title">Mejores trinkets</div>
+    <div class="tab-panel" id="tab-bis"></div>
+    <h2>MEJORES TRINKETS</h2>
     <div class="bis-trinket-ranking">
-    <table>
-      <thead>
-        <tr><th>Ranking</th><th>Trinkets</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong class="tier-s">S Tier</strong></td><td>
-          <a href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar" target="_blank" rel="noopener noreferrer">Caja de puzles de Algeth'ar</a> — Uso activo<br>
-          <a href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente" target="_blank" rel="noopener noreferrer">Mirada del Alnvidente</a>
-        </td></tr>
-        <tr><td><strong class="tier-a">A Tier</strong></td><td>
-          <a href="https://www.wowhead.com/es/item=249806/pluma-radiante" target="_blank" rel="noopener noreferrer">Pluma radiante</a> — Mismo abalorio que Umbría, pero con Maestría.<br>
-          <a href="https://www.wowhead.com/es/item=250144/pluma-de-alascuas" target="_blank" rel="noopener noreferrer">Pluma de alascuas</a> — Uso activo
-        </td></tr>
-        <tr><td><strong class="tier-b">B Tier</strong></td><td>
-          <a href="https://www.wowhead.com/es/item=260235/pluma-umbr%C3%ADa" target="_blank" rel="noopener noreferrer">Pluma umbría</a> — Mismo abalorio que Radiante, pero con Golpe Crítico.<br>
-          <a href="https://www.wowhead.com/es/item=249345/insignia-iridiscente-de-capit%C3%A1n-forestal" target="_blank" rel="noopener noreferrer">Insignia iridiscente de capitán forestal</a><br>
-          <a href="https://www.wowhead.com/es/item=252420/prisma-de-llamarada-solar" target="_blank" rel="noopener noreferrer">Prisma de llamarada solar</a><br>
-          <a href="https://www.wowhead.com/es/item=250258/recept%C3%A1culo-de-almas-torturadas" target="_blank" rel="noopener noreferrer">Receptáculo de almas torturadas</a>
-        </td></tr>
-        <tr><td><strong class="tier-c">C Tier</strong></td><td>
-          <a href="https://www.wowhead.com/es/item=250256/coraz%C3%B3n-de-viento" target="_blank" rel="noopener noreferrer">Corazón de viento</a><br>
-          <a href="https://www.wowhead.com/es/item=151307/contrato-de-acechador-del-vac%C3%ADo" target="_blank" rel="noopener noreferrer">Contrato de acechador del Vacío</a><br>
-          <a href="https://www.wowhead.com/es/item=250257/ojo-del-vac%C3%ADo-ahogado" target="_blank" rel="noopener noreferrer">Ojo del Vacío ahogado</a>
-        </td></tr>
-        <tr><td><strong class="tier-d">D Tier</strong></td><td>
-          <a href="https://www.wowhead.com/es/item=249344/guion-de-la-compa%C3%B1%C3%ADa-de-la-luz" target="_blank" rel="noopener noreferrer">Guion de la Compañía de la Luz</a> — Uso activo<br>
-          <a href="https://www.wowhead.com/es/item=250226/garfio-torcido-de-tranc%C3%B3n" target="_blank" rel="noopener noreferrer">Garfio torcido de Trancón</a><br>
-          <a href="https://www.wowhead.com/es/item=249805/vestigio-rezumante-del-dios-inconcebible" target="_blank" rel="noopener noreferrer">Vestigio rezumante del Dios Inconcebible</a>
-        </td></tr>
-      </tbody>
-    </table>
-    <div class="box box-tip">
-      <div class="box-title">⚠️ Aviso importante</div>
-      Los rankings de esta lista son orientativos y están basados en simulaciones de alto nivel. Asegúrate de <a href="https://www.raidbots.com/simbot" target="_blank" rel="noopener noreferrer">simularte siempre en Raidbots</a> antes de tomar decisiones.<br>
-      Si eres nuevo simulando o usando Raidbots, puedes ir a la <a href="https://mishuko-wow.github.io/Guia-BM-Hunter/#coaching" target="_self">sección de Coaching</a>.
+      <table>
+        <thead>
+          <tr>
+            <th>Ranking</th>
+            <th>Trinkets</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong class="tier-s">S Tier</strong>
+            </td>
+            <td>
+              <a href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar" target="_blank" rel="noopener noreferrer">Caja de puzles de Algeth'ar</a>
+              — Uso activo
+              <br>
+              <a href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente" target="_blank" rel="noopener noreferrer">Mirada del Alnvidente</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong class="tier-a">A Tier</strong>
+            </td>
+            <td>
+              <a href="https://www.wowhead.com/es/item=249806/pluma-radiante" target="_blank" rel="noopener noreferrer">Pluma radiante</a>
+              — Mismo abalorio que Umbría, pero con Maestría.
+              <br>
+              <a href="https://www.wowhead.com/es/item=250144/pluma-de-alascuas" target="_blank" rel="noopener noreferrer">Pluma de alascuas</a>
+              — Uso activo
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong class="tier-b">B Tier</strong>
+            </td>
+            <td>
+              <a href="https://www.wowhead.com/es/item=260235/pluma-umbr%C3%ADa" target="_blank" rel="noopener noreferrer">Pluma umbría</a>
+              — Mismo abalorio que Radiante, pero con Golpe Crítico.
+              <br>
+              <a href="https://www.wowhead.com/es/item=249345/insignia-iridiscente-de-capit%C3%A1n-forestal" target="_blank" rel="noopener noreferrer">Insignia iridiscente de capitán forestal</a>
+              <br>
+              <a href="https://www.wowhead.com/es/item=252420/prisma-de-llamarada-solar" target="_blank" rel="noopener noreferrer">Prisma de llamarada solar</a>
+              <br>
+              <a href="https://www.wowhead.com/es/item=250258/recept%C3%A1culo-de-almas-torturadas" target="_blank" rel="noopener noreferrer">Receptáculo de almas torturadas</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong class="tier-c">C Tier</strong>
+            </td>
+            <td>
+              <a href="https://www.wowhead.com/es/item=250256/coraz%C3%B3n-de-viento" target="_blank" rel="noopener noreferrer">Corazón de viento</a>
+              <br>
+              <a href="https://www.wowhead.com/es/item=151307/contrato-de-acechador-del-vac%C3%ADo" target="_blank" rel="noopener noreferrer">Contrato de acechador del Vacío</a>
+              <br>
+              <a href="https://www.wowhead.com/es/item=250257/ojo-del-vac%C3%ADo-ahogado" target="_blank" rel="noopener noreferrer">Ojo del Vacío ahogado</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong class="tier-d">D Tier</strong>
+            </td>
+            <td>
+              <a href="https://www.wowhead.com/es/item=249344/guion-de-la-compa%C3%B1%C3%ADa-de-la-luz" target="_blank" rel="noopener noreferrer">Guion de la Compañía de la Luz</a>
+              — Uso activo
+              <br>
+              <a href="https://www.wowhead.com/es/item=250226/garfio-torcido-de-tranc%C3%B3n" target="_blank" rel="noopener noreferrer">Garfio torcido de Trancón</a>
+              <br>
+              <a href="https://www.wowhead.com/es/item=249805/vestigio-rezumante-del-dios-inconcebible" target="_blank" rel="noopener noreferrer">Vestigio rezumante del Dios Inconcebible</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box box-tip">
+        <div class="box-title">⚠️ Aviso importante</div>
+        Los rankings de esta lista son orientativos y están basados en simulaciones de alto nivel. Asegúrate de
+        <a href="https://www.raidbots.com/simbot" target="_blank" rel="noopener noreferrer">simularte siempre en Raidbots</a>
+        antes de tomar decisiones.
+        <br>
+        Si eres nuevo simulando o usando Raidbots, puedes ir a la
+        <a href="https://guiahunterbm.com/#coaching" target="_self">sección de Coaching</a>.
+      </div>
     </div>
   </div>
 
-  <div class="bis-table-wrap" style="margin-top:32px;">
-    <div class="bis-table-title">Encantamientos</div>
-    <table class="bis-table">
-      <thead><tr><th>Slot</th><th>Encantamiento</th></tr></thead>
-      <tbody>
-        <tr><td>Arma</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244029/encantar-arma-agudeza-de-los-rendorei" target="_blank" rel="noopener noreferrer">Encantar arma: Agudeza de los ren'dorei</a></td></tr>
-        <tr><td>Yelmo</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244007/encantar-yelmo-runa-de-evasi%C3%B3n-potenciada" target="_blank" rel="noopener noreferrer">Encantar yelmo: Runa de evasión potenciada</a></td></tr>
-        <tr><td>Hombros</td><td class="item-name"><a href="https://www.wowhead.com/es/item=243991/encantar-hombros-gracia-de-amirdrassil" target="_blank" rel="noopener noreferrer">Encantar hombros: Gracia de Amirdrassil</a></td></tr>
-        <tr><td>Pecho</td><td class="item-name"><a href="https://www.wowhead.com/es/item=243977/encantar-torso-marca-del-alma-mundo" target="_blank" rel="noopener noreferrer">Encantar torso: Marca del alma-mundo</a></td></tr>
-        <tr><td>Piernas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=244641/refuerzo-para-armadura-de-cazador-del-bosque" target="_blank" rel="noopener noreferrer">Refuerzo para armadura de cazador del bosque</a></td></tr>
-        <tr><td>Botas</td><td class="item-name"><a href="https://www.wowhead.com/es/item=243953/encantar-botas-destreza-de-lince" target="_blank" rel="noopener noreferrer">Encantar botas: Destreza de lince</a></td></tr>
-        <tr><td>Anillos</td><td class="item-name"><a href="https://www.wowhead.com/es/item=243957/encantar-anillo-ojos-del-%C3%A1guila" target="_blank" rel="noopener noreferrer">Encantar anillo: Ojos del águila</a><span class="badge-new">New</span></td></tr>
-      </tbody>
-    </table>
-  </div>
+  <style>
+    /* Tabla de trinkets */
+    .bis-trinket-ranking {
+      padding: 18px 24px 14px 24px;
+      background: var(--card);
+      border: 1.5px solid var(--bg4);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+    }
 
-  <div class="bis-table-wrap" style="margin-top:32px;">
-    <div class="bis-table-title">Gemas</div>
-    <div class="bis-trinket-ranking" style="padding-top:18px;">
-      <div style="background:var(--bg3);padding:8px 12px;border-radius:6px 6px 0 0;font-size:18px;">
-        💎 <strong>1×</strong> <a href="https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable" target="_blank" rel="noopener noreferrer"><span style="color:#81d4fa">Diamante de Canción Eterna indescifrable</span></a> — Gema especial única (un solo hueco).
-      </div>
-      <div style="background:var(--bg4);padding:8px 12px;border-radius:0 0 6px 6px;font-size:18px;">
-        💜 <strong>Resto:</strong> Mix de <a href="https://www.wowhead.com/es/item=240900/amatista-r%C3%A1pida-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#c090ff">Amatista rápida impecable</span></a>, <a href="https://www.wowhead.com/es/item=240898/amatista-mortal-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#ff8080">Amatista mortal impecable</span></a> y <a href="https://www.wowhead.com/es/item=240892/peridoto-magistral-impecable" target="_blank" rel="noopener noreferrer"><span style="color:#80ff90">Peridoto magistral impecable</span></a>.
-      </div>
-    </div>
-  </div>
+    .bis-trinket-ranking table {
+      width: 100%;
+      margin-bottom: 12px;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
 
-  <div class="box box-tip">
-    <div class="box-title">💡 Sincronización de poción</div>
-    Usa siempre la <strong>poción de combate junto a <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="CD principal.">Cólera de las bestias</span></strong>. Debe estar activa antes del primer hit para que se beneficie de él.
-  </div>
+    .bis-trinket-ranking th,
+    .bis-trinket-ranking td {
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 18px;
+    }
 
-  <div class="bis-table-wrap" style="margin-top:32px;">
-    <div class="bis-table-title">Consumibles</div>
-    <div class="bis-trinket-ranking" style="padding-top:18px;">
-      <div style="background:var(--bg3);padding:8px 12px 8px 12px;font-size:15px;border-radius:6px 6px 0 0;">
-        <div class="cons-row"><div class="cons-slot">Frasco</div><div><a href="https://www.wowhead.com/es/item=241322/frasco-de-los-magistri" target="_blank" rel="noopener noreferrer"><strong>Frasco de los Magistri</strong></a> — Mejor stat en CASI todas las situaciones.</div></div>
-      </div>
-      <div style="background:var(--bg4);padding:8px 12px 8px 12px;font-size:15px;">
-        <div class="cons-row"><div class="cons-slot">Poción combate</div><div><a href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer"><strong>Potencial de luz</strong></a> — Opción principal.<span class="cons-alt">Alt: <a href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer">Jarabe de abandono rampante</a></span></div></div>
-      </div>
-      <div style="background:var(--bg3);padding:8px 12px 8px 12px;font-size:15px;">
-        <div class="cons-row"><div class="cons-slot">Poción salud</div><div><a href="https://www.wowhead.com/es/item=241305/poci%C3%B3n-de-sanaci%C3%B3n-de-lunargenta" target="_blank" rel="noopener noreferrer"><strong>Poción de sanación de Lunargenta</strong></a></div></div>
-      </div>
-      <div style="background:var(--bg4);padding:8px 12px 8px 12px;font-size:15px;">
-        <div class="cons-row"><div class="cons-slot">Runa</div><div><a href="https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo" target="_blank" rel="noopener noreferrer"><strong>Runa de aumento tocada por el Vacío</strong></a></div></div>
-      </div>
-      <div style="background:var(--bg3);padding:8px 12px 8px 12px;font-size:15px;">
-        <div class="cons-row"><div class="cons-slot">Buff de arma</div><div><a href="https://www.wowhead.com/es/item=243734/aceite-de-fénix-thalassiano" target="_blank" rel="noopener noreferrer"><strong>Aceite de fénix thalassiano</strong></a></div></div>
-      </div>
-      <div style="background:var(--bg4);padding:8px 12px 8px 12px;font-size:15px;">
-        <div class="cons-row"><div class="cons-slot">Festín</div><div><a href="https://www.wowhead.com/es/item=242272/mezcla-queldorei" target="_blank" rel="noopener noreferrer"><strong>Mezcla quel'dorei</strong></a> o <a href="https://www.wowhead.com/es/item=255845/desfile-de-lunargenta" target="_blank" rel="noopener noreferrer"><strong>Desfile de Lunargenta</strong></a></div></div>
-      </div>
-      <div style="background:var(--bg3);padding:8px 12px 8px 12px;font-size:15px;border-radius:0 0 6px 6px;">
-        <div class="cons-row"><div class="cons-slot">Comida personal</div><div><a href="https://www.wowhead.com/es/item=255848/frenes%C3%AD-de-flora" target="_blank" rel="noopener noreferrer"><strong>Frenesí de flora</strong></a> o <a href="https://www.wowhead.com/es/item=242275/asado-real" target="_blank" rel="noopener noreferrer"><strong>Asado real</strong></a></div></div>
-      </div>
-    </div>
-  </div>
+    .bis-trinket-ranking td a {
+      font-size: 18px;
+    }
+
+    .bis-trinket-ranking th {
+      background: none;
+      color: var(--gold);
+      font-size: 22px;
+      border-bottom: 2px solid var(--border2);
+    }
+
+    .bis-trinket-ranking tr td:first-child {
+      width: 90px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .bis-trinket-ranking tr:nth-child(even) td {
+      background: var(--bg3);
+    }
+
+    .bis-trinket-ranking tr:nth-child(odd) td {
+      background: var(--bg4);
+    }
+
+    .bis-trinket-ranking td {
+      border-radius: 6px;
+    }
+
+    .bis-trinket-sim-tip {
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: var(--bg4);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      color: var(--text2);
+      font-size: 14px;
+    }
+
+    /* Layout principal */
+    .bis-slots-container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto;
+      gap: 24px;
+      margin: 32px 0;
+      max-width: 100%;
+      align-items: start;
+    }
+
+    /* Columnas de slots */
+    .bis-slots-column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Slot individual */
+    .bis-slot-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .bis-slot-item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(79, 195, 247, 0.15);
+      transform: translateY(-1px);
+    }
+
+    /* Barra lateral de calidad */
+    .bis-slot-bar {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 4px;
+    }
+
+    .bis-slot-item[data-quality="tier"] .bis-slot-bar {
+      background: linear-gradient(180deg, #ff9800, #f57c00);
+    }
+
+    .bis-slot-item[data-quality="mplus"] .bis-slot-bar {
+      background: linear-gradient(180deg, #ab47bc, #8e24aa);
+    }
+
+    .bis-slot-item[data-quality="craft"] .bis-slot-bar {
+      background: linear-gradient(180deg, #43a047, #2e7d32);
+    }
+
+    .bis-slot-item[data-quality="raid"] .bis-slot-bar {
+      background: linear-gradient(180deg, #4fc3f7, #0288d1);
+    }
+
+    /* Contenido del slot */
+    .bis-slot-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px 10px 16px;
+    }
+
+    /* Checkbox */
+    .bis-slot-content .bis-check {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      cursor: pointer;
+      accent-color: var(--accent);
+    }
+
+    /* Icono del item */
+    .bis-slot-icon {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      object-fit: cover;
+      cursor: pointer;
+      background: none;
+      border: 1.5px solid var(--border2);
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .bis-slot-icon:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    /* Info del item */
+    .bis-slot-info {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .bis-slot-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .bis-item-link {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--purple);
+      line-height: 1.3;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .bis-item-link:hover {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    .bis-item-source {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.2;
+    }
+
+    /* Columna central: especialización + arma */
+    .bis-slots-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 0 16px;
+      min-width: 280px;
+      align-self: stretch;
+    }
+
+    .bis-spec-name {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1.2px;
+      text-shadow: 0 0 16px rgba(244, 200, 66, 0.4);
+    }
+
+    /* Arma principal (central) */
+    .bis-weapon-slot {
+      width: 100%;
+    }
+
+    .bis-weapon-slot .bis-slot-item {
+      background: linear-gradient(135deg, var(--bg3), var(--bg4));
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 16px rgba(244, 200, 66, 0.2);
+    }
+
+    .bis-weapon-slot .bis-slot-item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 20px rgba(79, 195, 247, 0.3);
+    }
+
+    .bis-weapon-slot .bis-slot-content {
+      padding: 14px;
+    }
+
+    .bis-weapon-slot .bis-slot-icon {
+      width: 52px;
+      height: 52px;
+    }
+
+    .bis-weapon-slot .bis-slot-name {
+      font-size: 14px;
+      color: var(--gold);
+    }
+
+    .bis-weapon-slot .bis-item-link {
+      font-size: 16px;
+    }
+
+    /* Sidebar */
+    .bis-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 320px;
+      max-width: 360px;
+    }
+
+    .bis-sidebar-section {
+      overflow: hidden;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+    }
+
+    .bis-sidebar-title {
+      padding: 10px 14px;
+      background: linear-gradient(135deg, var(--bg4), var(--bg3));
+      border-bottom: 1px solid var(--border2);
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+
+    .bis-sidebar-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .bis-sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 8px;
+      background: var(--bg4);
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .bis-sidebar-item:hover {
+      background: var(--card);
+    }
+
+    .bis-sidebar-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      object-fit: cover;
+      cursor: pointer;
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .bis-sidebar-icon:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .bis-sidebar-slot {
+      min-width: 70px;
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .bis-enchant-link {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1.3;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .bis-enchant-link:hover {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    .bis-consumable-link {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1.3;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .bis-consumable-link:hover {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    /* Tooltips */
+    .bis-tooltip {
+      position: absolute;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .bis-tooltip.show {
+      opacity: 1;
+    }
+
+    .bis-tooltip-inner {
+      padding: 8px;
+      background: linear-gradient(135deg, rgba(20, 23, 32, 0.98), rgba(13, 15, 18, 0.98));
+      border: 2px solid var(--accent2);
+      border-radius: 8px;
+      box-shadow:
+        0 0 20px rgba(79, 195, 247, 0.4),
+        0 8px 32px rgba(0, 0, 0, 0.6);
+    }
+
+    .bis-tooltip-img {
+      display: block;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .bis-slot-item[data-quality="cosmetic"] .bis-slot-bar {
+      background: linear-gradient(180deg, #9e9e9e, #616161);
+    }
+
+    .bis-item-cosmetic {
+      color: var(--text2);
+      font-style: italic;
+    }
+
+    .bis-item-cosmetic-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text2);
+      font-style: italic;
+    }
+
+    /* Responsive */
+    @media (max-width: 1400px) {
+      .bis-slots-container {
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      .bis-sidebar {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 16px;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .bis-slots-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .bis-slots-center {
+        order: -1;
+      }
+
+      .bis-sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .bis-spec-icon {
+        width: 140px;
+        height: 140px;
+      }
+
+      .bis-spec-name {
+        font-size: 20px;
+      }
+    }
+
+    /* Progreso BiS */
+    .bis-progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0 24px;
+      padding: 12px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+    }
+
+    .bis-progress-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .bis-progress-bar-bg {
+      flex: 1;
+      height: 12px;
+      overflow: hidden;
+      background: var(--bg4);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .bis-progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 6px;
+      transition: width 0.4s ease;
+    }
+
+    .bis-progress-count {
+      min-width: 60px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: right;
+    }
+
+    /* Wowhead: normalización de envoltorios de iconos */
+    .bis-slot-icon-link {
+      position: relative;
+      display: block;
+      flex-shrink: 0;
+      line-height: 0;
+    }
+
+    .bis-slot-icon-link > img:not(.bis-slot-icon),
+    .bis-slot-icon-link .iconmedium,
+    .bis-slot-icon-link .iconsmall,
+    .bis-slot-icon-link .icontiny {
+      display: none !important;
+    }
+
+    .bis-slot-icon-link {
+      padding: 0 !important;
+      margin: 0 !important;
+      background: none !important;
+      border: none !important;
+      text-decoration: none !important;
+    }
+
+    .bis-sidebar-icon-link {
+      display: block;
+      flex-shrink: 0;
+      line-height: 0;
+    }
+
+    .bis-sidebar-icon-link > img:not(.bis-sidebar-icon),
+    .bis-sidebar-icon-link .iconmedium,
+    .bis-sidebar-icon-link .iconsmall,
+    .bis-sidebar-icon-link .icontiny {
+      display: none !important;
+    }
+
+    .bis-sidebar-icon-link {
+      padding: 0 !important;
+      margin: 0 !important;
+      background: none !important;
+      border: none !important;
+      text-decoration: none !important;
+    }
+
+    .bis-slots-container {
+      align-items: stretch;
+    }
+
+    .bis-slots-column {
+      justify-content: space-between;
+    }
+
+    .bis-slots-left,
+    .bis-slots-right {
+      min-width: 280px;
+    }
+
+    .bis-slots-center {
+      align-self: stretch;
+    }
+
+    .bis-slots-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0;
+      padding: 0;
+      min-width: 280px;
+      align-self: stretch;
+    }
+
+    .bis-spec-artwork {
+      position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+      min-height: 300px;
+      padding-bottom: 20px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .bis-spec-bg-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .bis-spec-bg-wrap img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.6;
+    }
+
+    .bis-spec-crest {
+      position: relative;
+      z-index: 1;
+      width: 350px;
+      height: auto;
+      flex: 1;
+      margin-top: 20px;
+      object-fit: contain;
+    }
+
+    .bis-spec-name {
+      position: relative;
+      z-index: 1;
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1.2px;
+      text-shadow: 0 0 16px rgba(244, 200, 66, 0.4);
+    }
+
+    .bis-weapon-slot {
+      width: 100%;
+    }
+
+    .bis-spec-name {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .bis-sidebar-item-info {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .bis-badge {
+      display: inline-block;
+      width: fit-content;
+      padding: 2px 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+
+    .bis-badge-recommended {
+      background: rgba(67, 160, 71, 0.2);
+      color: #66bb6a;
+      border: 1px solid rgba(67, 160, 71, 0.4);
+    }
+
+    .bis-badge-situational {
+      background: rgba(255, 152, 0, 0.15);
+      color: #ffa726;
+      border: 1px solid rgba(255, 152, 0, 0.3);
+    }
+
+    .bis-item-enchant {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .bis-item-enchant a {
+      display: inline-block;
+      min-height: 18px;
+      padding-top: 5px !important;
+      padding-left: 22px !important;
+      font-size: 14px;
+      color: var(--gold);
+      line-height: 18px;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      opacity: 0.8;
+      background-size: 18px 18px !important;
+      transition: color 0.2s;
+    }
+
+    .bis-item-enchant a:hover {
+      color: var(--accent);
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .bis-sidebar-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .bis-badge-sim {
+      padding: 2px 7px;
+      background: rgba(244, 200, 66, 0.15);
+      border: 1px solid rgba(244, 200, 66, 0.4);
+      border-radius: 4px;
+      color: var(--gold);
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: none;
+    }
+
+    @media (max-width: 900px) {
+      .bis-spec-artwork {
+        display: none;
+      }
+    }
+  </style>
+
+  <script>
+    window.whTooltips = {
+      colorLinks: false,
+      iconizeLinks: true,
+      renameLinks: false
+    };
+  </script>
+  <script src="https://wow.zamimg.com/js/tooltips.js">
+  </script>
 </div>
