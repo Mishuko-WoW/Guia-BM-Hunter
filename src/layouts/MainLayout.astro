@@ -57,13 +57,15 @@ const {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-EJY55YHE6Q');
-    </script>
-    
-    <script is:inline>
-      function trackHashChange() {
-        const hash = window.location.hash || '#inicio';
+      gtag('config', 'G-EJY55YHE6Q', {
+        'send_page_view': false // Desactivamos el page view automático inicial para controlarlo con el hash
+      });
 
+      // Función para enviar vistas de página virtuales
+      function trackHashChange() {
+        // Configuramos para que tome #mecanicas por defecto en lugar de #inicio
+        const hash = window.location.hash || '#mecanicas';
+        
         gtag('event', 'page_view', {
           page_path: '/' + hash,
           page_location: window.location.href,
@@ -71,7 +73,10 @@ const {
         });
       }
 
+      // Ejecutar al cargar la página
       window.addEventListener('load', trackHashChange);
+
+      // Ejecutar cuando cambia el hash (#)
       window.addEventListener('hashchange', trackHashChange);
     </script>
   </head>
