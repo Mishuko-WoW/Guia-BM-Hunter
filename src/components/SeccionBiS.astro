@@ -8,7 +8,7 @@ const reviewDate = getSectionReviewDate([
 ]);
 ---
 
-<div class="tab-panel" id="tab-bis">
+<div class="tab-panel" id="tab-bis" style="opacity: 0; animation: fadeIn 0.2s forwards;">
   <h2>Best in Slot &amp; Consumibles</h2>
 
   <h3>Equipo BIS Completo optimizado para contenido de raid</h3>
@@ -494,7 +494,18 @@ const reviewDate = getSectionReviewDate([
     </div>
   </div>
 
-  <style>
+
+  <script is:inline>
+  // Asegurar que los estilos se apliquen antes de mostrar el contenido
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.style.visibility = 'visible';
+    });
+  }
+</script>
+
+
+  <style is:global>
     /* Tabla de trinkets */
     .bis-trinket-ranking {
       padding: 18px 24px 14px 24px;
@@ -1200,10 +1211,14 @@ const reviewDate = getSectionReviewDate([
         display: none;
       }
     }
+
+    @keyframes fadeIn {
+    to { opacity: 1; }
+    }
   </style>
 
   <script>
-    window.whTooltips = {
+    (window as any).whTooltips = {
       colorLinks: false,
       iconizeLinks: true,
       renameLinks: false

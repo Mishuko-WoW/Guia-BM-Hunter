@@ -53,32 +53,32 @@ const {
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJY55YHE6Q"></script>
 
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-EJY55YHE6Q', {
-        'send_page_view': false // Desactivamos el page view automático inicial para controlarlo con el hash
-      });
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EJY55YHE6Q', {
+    send_page_view: false
+  });
 
-      // Función para enviar vistas de página virtuales
-      function trackHashChange() {
-        // Configuramos para que tome #mecanicas por defecto en lugar de #inicio
-        const hash = window.location.hash || '#mecanicas';
-        
-        gtag('event', 'page_view', {
-          page_path: '/' + hash,
-          page_location: window.location.href,
-          page_title: document.title
-        });
-      }
+  function trackHashChange() {
+    const hash = window.location.hash || '#mecanicas';
+    // Limpiamos el # para que sea una ruta normal
+    const pagePath = hash.replace('#', '/');
+    
+    gtag('event', 'page_view', {
+      page_path: pagePath,
+      page_location: window.location.href,
+      page_title: document.title + ' - ' + hash.replace('#', '')
+    });
+    
+    // Debug: puedes eliminar esto después de verificar que funciona
+    console.log('📊 Analytics tracking:', pagePath);
+  }
 
-      // Ejecutar al cargar la página
-      window.addEventListener('load', trackHashChange);
-
-      // Ejecutar cuando cambia el hash (#)
-      window.addEventListener('hashchange', trackHashChange);
-    </script>
+  window.addEventListener('load', trackHashChange);
+  window.addEventListener('hashchange', trackHashChange);
+</script>
   </head>
 
   <body>
