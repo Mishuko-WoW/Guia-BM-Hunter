@@ -227,8 +227,25 @@ const reviewDate = getSectionReviewDate([
     <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a>
     y
     <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>
-    , actualizadas a parche <strong>12.0.5</strong>. Contrastadas y verificadas.
+    , actualizadas a parche <strong>12.1</strong>. Contrastadas y verificadas.
   </ReviewSourceBox>
+
+  <div class="card box-info" style="margin-top: 16px; margin-bottom: 24px; font-size: 16px;">
+  <div class="box-title" style="color: #38bdf8;">💡 Nota sobre la lista BiS (Temporada 2)</div>
+  
+  <p style="font-size: inherit; margin-bottom: 10px;">
+    Esta lista reúne el mejor equipamiento para cada casilla durante la <strong style="color: #38bdf8;">Season 2</strong> considerando todas las fuentes del juego (Banda y Míticas+).
+  </p>
+  
+  <!-- 🟢 NUEVO AVISO SOBRE EL CATALIZADOR CON RESALTADO CIAN -->
+  <p style="font-size: inherit; margin-bottom: 10px;">
+    🔄 <strong style="color: #00e5ff;">Novedad del Catalizador:</strong> A partir de esta temporada, al transformar cualquier objeto en el Catalizador, el resultado <strong style="color: #00e5ff;">conserva las estadísticas secundarias</strong> (Crítico, Celeridad, Maestría, Versatilidad) de la pieza base en lugar de reemplazarlas por las predeterminadas del conjunto de tier.
+  </p>
+
+  <p style="font-size: inherit; margin-bottom: 0;">
+    ⚠️ <strong style="color: #ef4444;">Importante:</strong> Esta lista no sustituye simular a tu propio personaje. Dependiendo de tu equipo actual y de lo que vayas obteniendo en la Gran Cámara, tu equipamiento óptimo personal (BiS real) puede diferir ligeramente en algunas casillas.
+  </p>
+</div>
 
   <div class="bis-progress-wrap">
     <span class="bis-progress-label">🗡️ Progreso BiS</span>
@@ -238,35 +255,72 @@ const reviewDate = getSectionReviewDate([
     <span class="bis-progress-count" id="bis-count">0 / 15</span>
   </div>
 
+
   <div class="bis-slots-container">
     <div class="bis-slots-column bis-slots-left">
+
+      
       <div class="bis-slot-item" data-quality="tier">
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="yelmo">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249988/fauces-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidhuntermidnight_d_01.jpg" alt="Cabeza">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271492/colmillos-supurantes-de-v%C3%ADbora-merodeadora?bonus=12854&class=3&original-item=251220&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidhunterulatek_d_01.jpg" alt="Cabeza">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249988/fauces-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-disable-wowhead-tooltip="true">Fauces de centinela primigenio</a>
-            <div class="bis-item-source">Tier Set — Vanguardia de la luz</div>
-            <div class="bis-item-enchant">
-              <a href="https://www.wowhead.com/es/item=244007/encantar-yelmo-runa-de-evasi%C3%B3n-potenciada" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Runa de evasión potenciada</a>
-            </div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=271492/colmillos-supurantes-de-v%C3%ADbora-merodeadora?bonus=12854&class=3&original-item=251220&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-disable-wowhead-tooltip="true">Colmillos supurantes de víbora merodeadora</a>
+            
+            <!-- LÍNEA 1: CATALIZADOR -->
+          <div class="bis-item-catalyst">
+          <span class="bis-catalyst-label">Catalizar</span>
+          <a href="https://www.wowhead.com/es/item=251220/corona-marcada-por-el-vac%C3%ADo?bonus=13440:12806" target="_blank" rel="noopener noreferrer">
+          Corona cicatrizada por el Vacío</a>
+         </div>
+
+          <!-- LÍNEA 2: ENCANTAMIENTO -->
+          <div class="bis-item-enchant">
+          <a href="https://www.wowhead.com/es/item=244007/encantar-yelmo-runa-de-evasion-potenciada" target="_blank" rel="noopener noreferrer">
+          Runa de evasión potenciada</a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+      <div class="bis-slot-item" data-quality="mplus">
+        <div class="bis-slot-bar"></div>
+        <div class="bis-slot-content">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="cuello">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268265/relicario-de-azote-aqir?bonus=13708:13335:13668:12854" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_121_jewelry_neck03_green.jpg" alt="Cuello">
+          </a>
+          <div class="bis-slot-info">
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=268265/relicario-de-azote-aqir?bonus=13708:13335:13668:12854" target="_blank" rel="noopener noreferrer" data-disable-wowhead-tooltip="true">Relicario de azote aqir</a>
+            <div class="bis-item-source">Ula'tek</div>
           </div>
         </div>
       </div>
 
-      <div class="bis-slot-item" data-quality="raid">
+      <div class="bis-slot-item" data-quality="tier">
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
-          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="cuello">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=250247/amuleto-del-himno-abisal?bonus=12806" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_jewelry_devouringhost_necklace_bronze2.jpg" alt="Cuello">
+          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="hombros">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271490/mand%C3%ADbulas-de-la-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=268231&spec=253&spellModifier=137015:137015" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_mail_raidhunterulatek_d_01.jpg" alt="Hombros">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=250247/amuleto-del-himno-abisal" target="_blank" rel="noopener noreferrer" data-disable-wowhead-tooltip="true">Amuleto del himno abisal</a>
-            <div class="bis-item-source">L'ura</div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=271490/mand%C3%ADbulas-de-la-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=268231&spec=253&spellModifier=137015:137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Mandíbulas de la víbora merodeadora</a>
+           <!-- LÍNEA 1: CATALIZADOR -->
+          <div class="bis-item-catalyst">
+          <span class="bis-catalyst-label">Catalizar</span>
+          <a href="https://www.wowhead.com/es/item=268231/bufas-de-reptaalmas?bonus=13335:12854" target="_blank" rel="noopener noreferrer">
+          Bufas de reptaalmas</a>
+         </div>
+
+          <!-- LÍNEA 2: ENCANTAMIENTO -->
+          <div class="bis-item-enchant">
+          <a href="https://www.wowhead.com/es/item=243990/encantar-hombros-gracia-de-amirdrassil" target="_blank" rel="noopener noreferrer">
+          Gracia de Amirdrassil</a>
+          </div>
           </div>
         </div>
       </div>
@@ -274,30 +328,13 @@ const reviewDate = getSectionReviewDate([
       <div class="bis-slot-item" data-quality="mplus">
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
-          <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="hombros">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=151323/espaldares-del-cazador-del-vac%C3%ADo?bonus=12806" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_mail_legiondungeon_c_03.jpg" alt="Hombros">
-          </a>
-          <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=151323/espaldares-del-cazador-del-vac%C3%ADo?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Espaldares del cazador del Vacío</a>
-            <div class="bis-item-source">Trono del Triunvirato (M+)</div>
-            <div class="bis-item-enchant">
-              <a href="https://www.wowhead.com/es/item=243991/encantar-hombros-gracia-de-amirdrassil" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Gracia de amirdrassil</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="bis-slot-item" data-quality="raid">
-        <div class="bis-slot-bar"></div>
-        <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="capa">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249335/estandarte-del-imperador?bonus=12806" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_plate_raiddeathknightmidnight_d_01_cape.jpg" alt="Capa">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268253/mant%C3%B3n-vud%C3%BA-sedoso?bonus=13848" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_cape_leather_raidrogueulatek_d_01.jpg" alt="Capa">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249335/estandarte-del-imperador?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Estandarte del imperador</a>
-            <div class="bis-item-source">Averzian</div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=268253/mant%C3%B3n-vud%C3%BA-sedoso?bonus=13848" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Mantón Vudú sedoso</a>
+            <div class="bis-item-source">Zul'jan</div>
           </div>
         </div>
       </div>
@@ -306,15 +343,24 @@ const reviewDate = getSectionReviewDate([
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="pecho">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249991/peto-de-escamas-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_chest_mail_raidhuntermidnight_d_01.jpg" alt="Pecho">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271495/placa-d%C3%A9rmica-de-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=271876&spec=253&spellModifier=137015:137015" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_chest_mail_raidhunterulatek_d_01.jpg" alt="Pecho">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249991/peto-de-escamas-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Peto de escamas de centinela primigenio</a>
-            <div class="bis-item-source">Tier Set — Chiamerus</div>
-            <div class="bis-item-enchant">
-              <a href="https://www.wowhead.com/es/item=243977/encantar-torso-marca-del-alma-mundo" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Marca del alma-mundo</a>
-            </div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=271495/placa-d%C3%A9rmica-de-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=271876&spec=253&spellModifier=137015:137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Placa dérmica de víbora merodeadora</a>
+           
+            <!-- LÍNEA 1: CATALIZADOR -->
+          <div class="bis-item-catalyst">
+          <span class="bis-catalyst-label">Catalizar</span>
+          <a href="https://www.wowhead.com/es/item=271876/loriga-de-colminferno-despierto?bonus=13335:13708:12854" target="_blank" rel="noopener noreferrer">
+          Loriga de colminferno despierto</a>
+         </div>
+
+          <!-- LÍNEA 2: ENCANTAMIENTO -->
+          <div class="bis-item-enchant">
+          <a href="https://www.wowhead.com/es/item=243977/encantar-torso-marca-del-alma-mundo" target="_blank" rel="noopener noreferrer">
+          Marca del alma-mundo</a>
+          </div>
           </div>
         </div>
       </div>
@@ -345,16 +391,16 @@ const reviewDate = getSectionReviewDate([
         </div>
       </div>
 
-      <div class="bis-slot-item" data-quality="raid">
+      <div class="bis-slot-item" data-quality="craft">
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="munecas">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249304/pu%C3%B1os-del-rey-ca%C3%ADdo?bonus=12806" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_bracer_mail_raidshamanmidnight_d_01.jpg" alt="Muñecas">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=244584/brazales-de-placas-de-errante?bonus=13751:12497:13836:12384:8791:8960:1808" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_bracer_mail_questbloodelf_b_01.jpg" alt="Muñecas">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249304/pu%C3%B1os-del-rey-ca%C3%ADdo?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Puños del Rey Caído</a>
-            <div class="bis-item-source">Rey Nexo Salhadaar</div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=244584/brazales-de-placas-de-errante?bonus=13751:12497:13836:12384:8791:8960:1808" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Brazales de Placas de Errante</a>
+            <div class="bis-item-source">✂ Peletería</div>
           </div>
         </div>
       </div>
@@ -371,18 +417,18 @@ const reviewDate = getSectionReviewDate([
 
       <!-- Slot de arma: centrado bajo el artwork de especialización -->
       <div class="bis-weapon-slot">
-        <div class="bis-slot-item" data-quality="raid">
+        <div class="bis-slot-item" data-quality="mplus">
           <div class="bis-slot-bar"></div>
           <div class="bis-slot-content">
             <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="arma">
-            <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249279/rifle-de-golpe-solar?bonus=12806" target="_blank" rel="noopener noreferrer">
-              <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_firearm_2h_raidmidnight_d_01.jpg" alt="Arma">
+            <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268207/gran-arco-de-reposo-c%C3%A1ustico?bonus=13848:13708" target="_blank" rel="noopener noreferrer">
+              <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_bow_1h_ulatek_d_01.jpg" alt="Arma">
             </a>
             <div class="bis-slot-info">
-              <a class="bis-item-link" href="https://www.wowhead.com/es/item=249279/rifle-de-golpe-solar?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Rifle de Golpe Solar</a>
-              <div class="bis-item-source">Averzian</div>
+              <a class="bis-item-link" href="https://www.wowhead.com/es/item=268207/gran-arco-de-reposo-c%C3%A1ustico?bonus=13848:13708" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Gran Arco de Reposo Cáustico</a>
+              <div class="bis-item-source">Ula'tek</div>
               <div class="bis-item-enchant">
-                <a href="https://www.wowhead.com/es/item=244029/encantar-arma-agudeza-de-los-rendorei" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Agudeza de los Rendorei</a>
+                <a href="https://www.wowhead.com/es/item=244031/encantar-arma-maestr%C3%ADa-arcana" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Maestría Arcana</a>
               </div>
             </div>
           </div>
@@ -395,12 +441,17 @@ const reviewDate = getSectionReviewDate([
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="guantes">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249989/guardagarras-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_glove_mail_raidhuntermidnight_d_01.jpg" alt="Manos">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271493/perforapellejos-de-v%C3%ADbora-merodeadora?bonus=12854&original-item=160213" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_glove_mail_raidhunterulatek_d_01.jpg" alt="Manos">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249989/guardagarras-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Guardagarras de centinela primigenio</a>
-            <div class="bis-item-source">Tier Set — Vorasius</div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=271493/perforapellejos-de-v%C3%ADbora-merodeadora?bonus=12854&original-item=160213" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Perforapellejos de vía bora merodeadora</a>
+            <!-- LÍNEA 1: CATALIZADOR -->
+          <div class="bis-item-catalyst">
+          <span class="bis-catalyst-label">Catalizar</span>
+          <a href="https://www.wowhead.com/es/item=160213/guantes-de-ensamblaje-sepulcral?bonus=9024" target="_blank" rel="noopener noreferrer">
+          Guantes de ensamblaje sepulcral</a>
+         </div>
           </div>
         </div>
       </div>
@@ -409,11 +460,11 @@ const reviewDate = getSectionReviewDate([
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="cinturon">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=244611/cinto-cortical-de-cuidador-del-mundo?bonus=12805" target="_blank" rel="noopener noreferrer">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=244581/cintur%C3%B3n-de-trofeos-de-errante?bonus=13751:12497:13836:12384:8791:8960:1808" target="_blank" rel="noopener noreferrer">
             <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_belt_mail_questbloodelf_b_01.jpg" alt="Cinturón">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=244611/cinto-cortical-de-cuidador-del-mundo?bonus=12805" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Cinto cortical de cuidador del mundo</a>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=244581/cintur%C3%B3n-de-trofeos-de-errante?bonus=13751:12497:13836:12384:8791:8960:1808" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Cinturón de trofeos de errante</a>
             <div class="bis-item-source">✂ Peletería</div>
           </div>
         </div>
@@ -423,32 +474,42 @@ const reviewDate = getSectionReviewDate([
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="piernas">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249987/musleras-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_pant_mail_raidhuntermidnight_d_01.jpg" alt="Piernas">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271491/perneras-en-espiral-de-v%C3%ADbora-merodeadora?bonus=12854:13335&class=3&original-item=268237&spec=253&spellModifier=137015:137015:137015" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_pant_mail_raidhunterulatek_d_01.jpg" alt="Piernas">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249987/musleras-de-centinela-primigenio?bonus=12806&class=3&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Musleras de centinela primigenio</a>
-            <div class="bis-item-source">Tier Set — Vaelgor &amp; Ezzorak</div>
-            <div class="bis-item-enchant">
-              <a href="https://www.wowhead.com/es/item=244641/refuerzo-para-armadura-de-cazador-del-bosque" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Refuerzo para armadura de cazador del bosque</a>
-            </div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=271491/perneras-en-espiral-de-v%C3%ADbora-merodeadora?bonus=12854:13335&class=3&original-item=268237&spec=253&spellModifier=137015:137015:137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Perneras en espiral de vía merodeadora</a>
+              <!-- LÍNEA 1: CATALIZADOR -->
+          <div class="bis-item-catalyst">
+          <span class="bis-catalyst-label">Catalizar</span>
+          <a href="https://www.wowhead.com/es/item=268237/quijotes-de-la-uni%C3%B3n-involutada?bonus=13335:12854" target="_blank" rel="noopener noreferrer">
+          Quijotes de la unión involutada</a>
+         </div>
+
+          <!-- LÍNEA 2: ENCANTAMIENTO -->
+          <div class="bis-item-enchant">
+          <a href="https://www.wowhead.com/es/item=244640/refuerzo-para-armadura-de-cazador-del-bosque" target="_blank" rel="noopener noreferrer">
+          Refuerzo para armadura de cazador del bosque</a>
+          </div>
           </div>
         </div>
       </div>
 
-      <div class="bis-slot-item" data-quality="craft">
+      <div class="bis-slot-item" data-quality="mplus">
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="botas">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=244610/zapatillas-raigales-de-cuidador-del-mundo?bonus=12805" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_boot_mail_questbloodelf_b_01.jpg" alt="Botas">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268233/botas-de-escamas-feroces?bonus=12854" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_boot_mail_raidhunterulatek_d_01.jpg" alt="Botas">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=244610/zapatillas-raigales-de-cuidador-del-mundo?bonus=12805" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Zapatillas raigales de cuidador del mundo</a>
-            <div class="bis-item-source">✂ Peletería</div>
-            <div class="bis-item-enchant">
-              <a href="https://www.wowhead.com/es/item=243953/encantar-botas-destreza-de-lince" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Destreza de lince</a>
-            </div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=268233/botas-de-escamas-feroces?bonus=12854" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Botas de escamas feroces</a>
+            <div class="bis-item-source">Sszorak</div>
+            <!-- LÍNEA 2: ENCANTAMIENTO -->
+          <div class="bis-item-enchant">
+          <a href="https://www.wowhead.com/es/item=243952/encantar-botas-destreza-de-lince" target="_blank" rel="noopener noreferrer">
+          Destreza de lince</a>
+          </div>
           </div>
         </div>
       </div>
@@ -457,12 +518,12 @@ const reviewDate = getSectionReviewDate([
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="anillo1">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249920/ojo-de-medianoche?bonus=12806" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_jewelry_devouringhost_ring_bronze.jpg" alt="Anillo">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=252258/sello-enfermizo-de-atroxus?bonus=12854" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_jewelry_devouringhost_ring_bronze2.jpg" alt="Anillo">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249920/ojo-de-medianoche?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Ojo de medianoche</a>
-            <div class="bis-item-source">L'ura</div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=252258/sello-enfermizo-de-atroxus?bonus=12854" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Sello enfermizo de Atroxus</a>
+            <div class="bis-item-source">Voidscar Arena</div>
             <div class="bis-item-enchant">
               <a href="https://www.wowhead.com/es/item=243957/encantar-anillo-ojos-del-%C3%A1guila" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Ojos del águila</a>
             </div>
@@ -470,16 +531,16 @@ const reviewDate = getSectionReviewDate([
         </div>
       </div>
 
-      <div class="bis-slot-item" data-quality="raid">
+      <div class="bis-slot-item" data-quality="mplus">
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="anillo2">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249369/v%C3%ADnculo-de-la-luz?bonus=12806:13534" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_jewelry_silvermoonelf_ring_blue1.jpg" alt="Anillo">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268249/sortija-de-alquimista-vil?bonus=12854" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_121_jewelry_ring01_purple.jpg" alt="Anillo">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249369/v%C3%ADnculo-de-la-luz?bonus=12806:13534" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Vínculo de la Luz</a>
-            <div class="bis-item-source">Vanguardia de la luz</div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=268249/sortija-de-alquimista-vil?bonus=12854" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Sortija de alquimista vil</a>
+            <div class="bis-item-source">Vashnik</div>
             <div class="bis-item-enchant">
               <a href="https://www.wowhead.com/es/item=243957/encantar-anillo-ojos-del-%C3%A1guila" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false">Ojos del águila</a>
             </div>
@@ -487,16 +548,16 @@ const reviewDate = getSectionReviewDate([
         </div>
       </div>
 
-      <div class="bis-slot-item" data-quality="raid">
+      <div class="bis-slot-item" data-quality="mplus">
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="trinket1">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente?bonus=12806" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_trinket_raid_dreamrift_gazeofthealnseer.jpg" alt="Reliquia">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=270164/bolsa-sin-fondo-de-gebbo?bonus=12854" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_10_tailoring_bag1_color2.jpg" alt="Reliquia">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Mirada del Alnvidente</a>
-            <div class="bis-item-source">Chimaerus</div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=270164/bolsa-sin-fondo-de-gebbo?bonus=12854" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Bolsa sin fondo de Gebbo</a>
+            <div class="bis-item-source">Exploradores Perdidos</div>
           </div>
         </div>
       </div>
@@ -505,12 +566,12 @@ const reviewDate = getSectionReviewDate([
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="trinket2">
-          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar?bonus=12806" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_18.jpg" alt="Reliquia">
+          <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=270173/t%C3%A9cnica-de-guillotina-de-zuljin?bonus=13848" target="_blank" rel="noopener noreferrer">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_121_trinket_raid_ulatek_trolltablet.jpg" alt="Reliquia">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar?bonus=12806" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Caja de puzles de Algeth'ar</a>
-            <div class="bis-item-source">Academia Algeth'ar (M+)</div>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=270173/t%C3%A9cnica-de-guillotina-de-zuljin?bonus=13848" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Técnica de guillotina de Zul'jin</a>
+            <div class="bis-item-source">Zul'jan</div>
           </div>
         </div>
       </div>
@@ -536,20 +597,21 @@ const reviewDate = getSectionReviewDate([
             <span class="bis-badge bis-badge-situational">Según tu simulación</span>
           </div>
 
+           <div class="bis-sidebar-item">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_voidpotion_red.jpg" alt="Potion">
+            </a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241288/poci%C3%B3n-de-temeridad" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Poción de Temeridad</a>
+            <span class="bis-badge bis-badge-recommended">Recomendado</span>
+          </div>
+
+
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer">
               <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Potion">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Potencial de Luz</a>
-            <span class="bis-badge bis-badge-recommended">Recomendado</span>
-          </div>
-
-          <div class="bis-sidebar-item">
-            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_voidpotion_purple.jpg" alt="Potion">
-            </a>
-            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Jarabe de Abandono Rampante</a>
-            <span class="bis-badge bis-badge-situational">Más arriesgado</span>
+            <span class="bis-badge bis-badge-situational">Aceptable</span>
           </div>
 
           <div class="bis-sidebar-item">
@@ -581,10 +643,10 @@ const reviewDate = getSectionReviewDate([
           </div>
 
           <div class="bis-sidebar-item">
-            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241305/poci%C3%B3n-de-sanaci%C3%B3n-de-lunargenta" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_orange.jpg" alt="life-potion">
+            <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=271883/poci%C3%B3n-de-sanaci%C3%B3n-concentrada-de-lunargenta" target="_blank" rel="noopener noreferrer">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_purple.jpg" alt="life-potion">
             </a>
-            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241305/poci%C3%B3n-de-sanaci%C3%B3n-de-lunargenta" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Poción de Sanación de Lunargenta</a>
+            <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=271883/poci%C3%B3n-de-sanaci%C3%B3n-concentrada-de-lunargenta" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Poción de Sanación Concentrada de Lunargenta</a>
           </div>
         </div>
       </div>
@@ -631,10 +693,14 @@ const reviewDate = getSectionReviewDate([
               <strong class="tier-s">S Tier</strong>
             </td>
             <td>
-              <a href="https://www.wowhead.com/es/item=193701/caja-de-puzles-de-algethar" target="_blank" rel="noopener noreferrer">Caja de puzles de Algeth'ar</a>
+              <a href="https://www.wowhead.com/es/item=270164/bolsa-sin-fondo-de-gebbo?bonus=13335:12854" target="_blank" rel="noopener noreferrer">Bolsa sin fondo de Gebbo</a>
+              <br>
+              <a href="https://www.wowhead.com/es/item=270175/coraz%C3%B3n-voraz-de-ulatek?bonus=13335:12854" target="_blank" rel="noopener noreferrer">Corazón voraz de Ula'tek</a>
               — Uso activo
               <br>
-              <a href="https://www.wowhead.com/es/item=249343/mirada-del-alnvidente" target="_blank" rel="noopener noreferrer">Mirada del Alnvidente</a>
+              <a href="https://www.wowhead.com/es/item=270173/t%C3%A9cnica-de-guillotina-de-zuljin?bonus=13335:12854" target="_blank" rel="noopener noreferrer">Técnica de guillotina de Zul'jin</a>
+              <br>
+              <a href="https://www.wowhead.com/es/item=270165/n%C3%BAcleo-hirviente-de-guardi%C3%A1n?bonus=13335:12854" target="_blank" rel="noopener noreferrer">Núcleo hirviente de guardián</a>
             </td>
           </tr>
           <tr>
@@ -642,11 +708,16 @@ const reviewDate = getSectionReviewDate([
               <strong class="tier-a">A Tier</strong>
             </td>
             <td>
-              <a href="https://www.wowhead.com/es/item=249806/pluma-radiante" target="_blank" rel="noopener noreferrer">Pluma radiante</a>
-              — Mismo abalorio que Umbría, pero con Maestría.
-              <br>
-              <a href="https://www.wowhead.com/es/item=250144/pluma-de-alascuas" target="_blank" rel="noopener noreferrer">Pluma de alascuas</a>
+              <a href="https://www.wowhead.com/es/item=159617/plumaje-dorado-lustroso?bonus=9024" target="_blank" rel="noopener noreferrer">Plumaje dorado lustroso</a>
               — Uso activo
+              <br>
+              <a href="https://www.wowhead.com/es/item=273796/vial-abyecto-de-veneno-vol%C3%A1til?bonus=13440:12854" target="_blank" rel="noopener noreferrer">Vial abyecto de veneno volátil</a>
+              — Uso activo
+              <br>
+              <a href="https://www.wowhead.com/es/item=250215/frasco-de-corredor-de-fletes?bonus=13440:12806" target="_blank" rel="noopener noreferrer">Frasco de corredor de fletes</a>
+              — Uso activo
+              <br>
+              <a href="https://www.wowhead.com/es/item=250214/n%C3%BAcleo-de-aguja-de-luz?bonus=13440:12806" target="_blank" rel="noopener noreferrer">Núcleo de aguja de luz</a>
             </td>
           </tr>
           <tr>
@@ -654,14 +725,15 @@ const reviewDate = getSectionReviewDate([
               <strong class="tier-b">B Tier</strong>
             </td>
             <td>
-              <a href="https://www.wowhead.com/es/item=260235/pluma-umbr%C3%ADa" target="_blank" rel="noopener noreferrer">Pluma umbría</a>
-              — Mismo abalorio que Radiante, pero con Golpe Crítico.
+              <a href="https://www.wowhead.com/es/item=250225/mandato-de-ejecuci%C3%B3n-del-vac%C3%ADo?bonus=13440:12806" target="_blank" rel="noopener noreferrer">Mandato de ejecución del Vacío</a>
+              — Uso activo
               <br>
-              <a href="https://www.wowhead.com/es/item=249345/insignia-iridiscente-de-capit%C3%A1n-forestal" target="_blank" rel="noopener noreferrer">Insignia iridiscente de capitán forestal</a>
+              <a href="https://www.wowhead.com/es/item=273797/estandarte-de-guerra-amani-ajado?bonus=13440:12854" target="_blank" rel="noopener noreferrer">Estandarte de guerra Amani ajado</a>
+              — Uso activo
               <br>
-              <a href="https://www.wowhead.com/es/item=252420/prisma-de-llamarada-solar" target="_blank" rel="noopener noreferrer">Prisma de llamarada solar</a>
+              <a href="https://www.wowhead.com/es/item=193757/caparaz%C3%B3n-de-v%C3%A1stago-rub%C3%AD?bonus=657:10358:5871:7981" target="_blank" rel="noopener noreferrer">Caparazón de vástago rubí</a>
               <br>
-              <a href="https://www.wowhead.com/es/item=250258/recept%C3%A1culo-de-almas-torturadas" target="_blank" rel="noopener noreferrer">Receptáculo de almas torturadas</a>
+              <a href="https://www.wowhead.com/es/item=250228/piedrabramido-resonante?bonus=13440:12806" target="_blank" rel="noopener noreferrer">Piedrabramido resonante</a>
             </td>
           </tr>
           <tr>
@@ -669,11 +741,11 @@ const reviewDate = getSectionReviewDate([
               <strong class="tier-c">C Tier</strong>
             </td>
             <td>
-              <a href="https://www.wowhead.com/es/item=250256/coraz%C3%B3n-de-viento" target="_blank" rel="noopener noreferrer">Corazón de viento</a>
+              <a href="https://www.wowhead.com/es/item=270166/rencor-sanguino-de-vashnik?bonus=13335:12854" target="_blank" rel="noopener noreferrer">Rencor sanguino de Vashnik</a>
               <br>
-              <a href="https://www.wowhead.com/es/item=151307/contrato-de-acechador-del-vac%C3%ADo" target="_blank" rel="noopener noreferrer">Contrato de acechador del Vacío</a>
+              <a href="https://www.wowhead.com/es/item=158374/electromental-diminuto-en-un-tarro" target="_blank" rel="noopener noreferrer">Electromental diminuto en un tarro</a>
               <br>
-              <a href="https://www.wowhead.com/es/item=250257/ojo-del-vac%C3%ADo-ahogado" target="_blank" rel="noopener noreferrer">Ojo del Vacío ahogado</a>
+              <a href="https://www.wowhead.com/es/item=250259/pimpollo-del-albarra%C3%ADz?bonus=13440:12806" target="_blank" rel="noopener noreferrer">Pimpollo del albarraíz</a>
             </td>
           </tr>
           <tr>
@@ -681,32 +753,453 @@ const reviewDate = getSectionReviewDate([
               <strong class="tier-d">D Tier</strong>
             </td>
             <td>
-              <a href="https://www.wowhead.com/es/item=249344/guion-de-la-compa%C3%B1%C3%ADa-de-la-luz" target="_blank" rel="noopener noreferrer">Guion de la Compañía de la Luz</a>
+              <a href="https://www.wowhead.com/es/item=270168/fuente-de-ira-venenosa?bonus=13335:12854" target="_blank" rel="noopener noreferrer">Fuente de ira venenosa</a>
               — Uso activo
-              <br>
-              <a href="https://www.wowhead.com/es/item=250226/garfio-torcido-de-tranc%C3%B3n" target="_blank" rel="noopener noreferrer">Garfio torcido de Trancón</a>
-              <br>
-              <a href="https://www.wowhead.com/es/item=249805/vestigio-rezumante-del-dios-inconcebible" target="_blank" rel="noopener noreferrer">Vestigio rezumante del Dios Inconcebible</a>
             </td>
           </tr>
         </tbody>
       </table>
-
+    </div>
+</div>
       <div class="box box-tip">
-        <div class="box-title">⚠️ Aviso importante</div>
-        Los rankings de esta lista son orientativos y están basados en simulaciones de alto nivel. Asegúrate de
-        <a href="https://www.raidbots.com/simbot" target="_blank" rel="noopener noreferrer">simularte siempre en Raidbots</a>
-        antes de tomar decisiones.
-        <br>
-        Si eres nuevo simulando o usando Raidbots, puedes ir a la
-        <a href="https://guiahunterbm.com/#coaching" target="_self">sección de Coaching</a>.
+  <div class="box-title">⚠️ Aviso importante</div>
+  Los rankings de esta lista son orientativos y están basados en simulaciones de alto nivel. Asegúrate de
+  <a href="https://www.raidbots.com/simbot" target="_blank" rel="noopener noreferrer">simularte siempre en Raidbots</a>
+  antes de tomar decisiones.
+  <br>
+  Si eres nuevo simulando o usando Raidbots, puedes ir a la
+  <a href="https://guiahunterbm.com/#coaching" target="_self">sección de Coaching</a>.
+</div>
+
+<!-- SECCIÓN GUÍA DE MEJORAS Y PRIORIDADES -->
+<div class="bis-guide-container">
+
+  <!-- 1. Núcleos del Vacío -->
+  <div class="bis-guide-section">
+    <div class="bis-guide-title">
+      <span>NÚCLEOS DEL VACÍO NEBULOSOS (TIRADAS EXTRA)</span>
+      <span class="bis-badge bis-badge-recommended">MONEDA Y BOTÍN</span>
+    </div>
+    <div class="bis-guide-content">
+      <p class="bis-guide-text">
+        El <a href="https://www.wowhead.com/es/currency=3418/n%C3%BAcleo-de-vac%C3%ADo-nebuloso" target="_blank" rel="noopener noreferrer" class="bis-item-link">
+          <img src="https://wow.zamimg.com/images/wow/icons/large/inv_1205_voidforge_fluctuatingvoidcores_green.jpg" alt="" class="bis-sidebar-icon" style="width:18px; height:18px; vertical-align:middle; display:inline-block;" /> Núcleo del Vacío Nebuloso
+        </a> es una nueva moneda que permite realizar una "Tirada de Bonificación" en ciertas mazmorras y jefes. Usarlo te <strong>garantiza un botín</strong>. Además, cuenta con protección contra duplicados: tras varias tiradas en la misma fuente, te <strong>garantizará el objeto deseado</strong>.
+      </p>
+      
+      <!-- SUBCAJA DE AVISO / CAMBIO TEMPORADA 2 -->
+      <div class="bis-alert-box bis-alert-danger">
+        <div class="bis-alert-header">
+          <span class="bis-alert-icon">⚠️</span>
+          <strong>CAMBIO IMPORTANTE PARA LA TEMPORADA 2:</strong>
+        </div>
+        <div class="bis-alert-text">
+          Ahora todas las tiradas extra consumen únicamente <strong>1 moneda</strong>, tanto en Mazmorras Míticas+ como en Bandas (Raid). <em>(Anteriormente en Raid se requerían 2 monedas).</em>
+        </div>
+      </div>
+
+      <!-- CAJA DE PRIORIDAD CON TÍTULO EN BORDER FLOTANTE -->
+      <div class="bis-custom-fieldset">
+        <div class="bis-fieldset-label">
+          <img src="https://wow.zamimg.com/images/wow/icons/large/inv_1205_voidforge_fluctuatingvoidcores_green.jpg" class="bis-fieldset-icon" alt="" />
+          <span>PRIORIDAD DE TIRADAS EXTRA (CAZADOR BESTIAS)</span>
+        </div>
+
+        <ol class="bis-priority-list">
+          <li>
+            <strong>Exploradores Perdidos Mítico</strong> &rarr; 
+            <a href="https://www.wowhead.com/es/item=268200/pistola-de-repuesto-de-gebbo?bonus=13335:13848" target="_blank" class="bis-item-link">Pistola de repuesto de Gebbo</a> y 
+            <a href="https://www.wowhead.com/es/item=270164/bolsa-sin-fondo-de-gebbo?bonus=13335:13848" target="_blank" class="bis-item-link">Bolsa sin Fondo de Gebbo</a>
+          </li>
+          <li>
+            <strong>Ula'tek</strong> &rarr; 
+            <a href="https://www.wowhead.com/es/item=268265/relicario-de-azote-aqir?bonus=13335:13708:13848" target="_blank" class="bis-item-link">Relicario de Azote Aqir</a> y 
+            <a href="https://www.wowhead.com/es/item=268207/gran-arco-de-reposo-c%C3%A1ustico?bonus=13335:13848" target="_blank" class="bis-item-link">Gran Arco de Reposo Cáustico</a>
+          </li>
+          <li>Restantes objetos de la Lista BiS</li>
+        </ol>
       </div>
     </div>
   </div>
-</div>
 
+  <!-- 2. Objetos Fabricados -->
+  <div class="bis-guide-section">
+    <div class="bis-guide-title">
+      <span>MEJORES OBJETOS FABRICADOS</span>
+      <span class="bis-badge bis-badge-sim">CRAFTING</span>
+    </div>
+    <div class="bis-guide-content">
+      <p class="bis-guide-text">
+        Puedes equipar hasta <strong>2 adornos</strong>. A continuación se muestran las mejores piezas y mejoras a fabricar:
+      </p>
+
+      <div class="bis-guide-box">
+        <ol class="bis-priority-list" style="margin: 0;">
+          <li>
+            <a href="https://www.wowhead.com/es/item=244584/brazales-de-placas-de-errante?bonus=13335:13848" target="_blank" class="bis-item-link">Brazales de Placas de Errante</a> y 
+            <a href="https://www.wowhead.com/es/item=244581/cintur%C3%B3n-de-trofeos-de-errante?bonus=13335:13848" target="_blank" class="bis-item-link">Cinturón de Trofeos de Errante</a>, ambos con 
+            <a href="https://www.wowhead.com/es/item=240167/forro-de-tejido-arcano?bonus=13335:13848" target="_blank" class="bis-enchant-link">Forro de Tejido Arcano</a> y 
+            <a href="https://www.wowhead.com/es/item=245789/misiva-thalassiana-del-incomparable?bonus=13335:13848" target="_blank" class="bis-enchant-link">Misiva Thalassiana del Incomparable</a> (Crítico / Maestría).
+          </li>
+        </ol>
+      </div>
+
+      <!-- CAJA FLOTANTE TIPO FIELDSET CON ICONO DE FABRICACIÓN (CRAFTING) -->
+      <div class="bis-custom-fieldset">
+        <div class="bis-fieldset-label">
+          <img src="https://wow.zamimg.com/images/wow/icons/large/ui_profession_jewelcrafting.jpg" class="bis-fieldset-icon" alt="" />
+          <span>PRIORIDAD DE CASILLAS DE FABRICACIÓN</span>
+        </div>
+
+        <div class="bis-flow-steps">
+          <span class="bis-flow-step">Arma</span>
+          <span class="bis-flow-arrow">&rarr;</span>
+          <span class="bis-flow-step">Cuello / Anillos</span>
+          <span class="bis-flow-arrow">&rarr;</span>
+          <span class="bis-flow-step">Resto de Casillas</span>
+          <span class="bis-flow-arrow">&rarr;</span>
+          <span class="bis-flow-step">Capa / Muñecas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Uso de Blasones -->
+  <div class="bis-guide-section">
+    <div class="bis-guide-title">
+      <span>MEJORA CON BLASONES (CRESTS)</span>
+      <span class="bis-badge bis-badge-situational">RECURSO LIMITADO</span>
+    </div>
+    <div class="bis-guide-content">
+      <p class="bis-guide-text">
+        Mejora tus piezas mediante Blasones como el 
+        <a href="https://www.wowhead.com/es/currency=3446/blas%C3%B3n-de-bruma-de-mito" target="_blank" class="bis-item-link">
+          <img src="https://wow.zamimg.com/images/wow/icons/large/inv_121_crest_myth.jpg" class="bis-sidebar-icon" style="width:22px; height:22px; vertical-align:middle; display:inline-block; border-radius:3px;" /> 
+          Blasón de bruma de mito
+        </a>. Piensa en <strong>mejorar casillas, no objetos individuales</strong> (al mejorar una casilla, el resto de piezas obtenidas para dicho hueco no gastarán Blasones adicionales hasta ese nivel).
+      </p>
+
+      <!-- CAJA FLOTANTE TIPO FIELDSET CON ICONO DE CRESTS -->
+      <div class="bis-custom-fieldset">
+        <div class="bis-fieldset-label">
+          <img src="https://wow.zamimg.com/images/wow/icons/large/inv_121_crest_myth.jpg" class="bis-fieldset-icon" alt="" />
+          <span>PRIORIDAD DE MEJORA CON BLASONES</span>
+        </div>
+
+        <div class="bis-flow-steps">
+          <span class="bis-flow-step">Arma</span>
+          <span class="bis-flow-arrow">&rarr;</span>
+          <span class="bis-flow-step">Abalorios</span>
+          <span class="bis-flow-arrow">&rarr;</span>
+          <span class="bis-flow-step">Cabeza / Pecho / Piernas</span>
+          <span class="bis-flow-arrow">&rarr;</span>
+          <span class="bis-flow-step">Hombros / Guantes / Cinturón / Botas</span>
+          <span class="bis-flow-arrow">&rarr;</span>
+          <span class="bis-flow-step">Anillos / Cuello</span>
+          <span class="bis-flow-arrow">&rarr;</span>
+          <span class="bis-flow-step">Capa / Muñecas</span>
+        </div>
+      </div>
+
+      <p class="bis-item-source"><em>* Nota: Algunos objetos especiales con escalados superiores pueden alterar ligeramente este orden.</em></p>
+    </div>
+  </div>
+
+  <!-- 4. Evaluación de Mejoras -->
+  <div class="bis-guide-section">
+    <div class="bis-guide-title">
+      <span>EVALUACIÓN DE MEJORAS</span>
+    </div>
+    <div class="bis-guide-content">
+      <p class="bis-guide-text">
+        Recuerda simular siempre a tu personaje en <strong>Raidbots</strong>. Cada personaje cuenta con estadísticas únicas y las recomendaciones generales no sustituyen la simulación directa de tu equipo actual.
+      </p>
+    </div>
+  </div>
+
+</div>
 <!-- CSS COMPLETO GLOBAL - Estilos decorativos -->
 <style is:global>
+/* ==========================================================================
+   ESTILOS DE GUÍAS DE MEJORAS (TEXTOS Y ENLACES A 18PX)
+   ========================================================================== */
+/* ==========================================================================
+   SUBCAJA DE ALERTAS / AVISOS
+   ========================================================================== */
+/* Pasos de flujo dentro del Fieldset personalizado */
+.bis-custom-fieldset .bis-flow-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.bis-custom-fieldset .bis-flow-step {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 16px !important;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.bis-custom-fieldset .bis-flow-arrow {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 18px !important;
+}
+
+.bis-item-source {
+  font-size: 14px;
+  color: var(--text2);
+  margin: 0;
+}
+.bis-alert-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 6px 0;
+}
+
+/* Variante Roja / Peligro / Cambio Importante */
+.bis-alert-danger {
+  background: rgba(220, 38, 38, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-left: 4px solid #ef4444;
+}
+
+.bis-alert-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fca5a5;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.bis-alert-icon {
+  font-size: 16px;
+}
+
+.bis-alert-text {
+  font-size: 16px !important;
+  color: #fecdd3;
+  line-height: 1.5;
+}
+
+.bis-alert-text strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.bis-alert-text em {
+  color: #f87171;
+  font-style: italic;
+}
+/* ==========================================================================
+   CAJAS DE PRIORIDAD (DISEÑO PERSONALIZADO TIPO FIELDSET)
+   ========================================================================== */
+
+.bis-custom-fieldset {
+  position: relative;
+  margin: 20px 0 10px 0;
+  padding: 22px 20px 16px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1.5px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(79, 195, 247, 0.12), inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Título incrustado en la parte superior del borde */
+.bis-fieldset-label {
+  position: absolute;
+  top: -14px;
+  left: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 12px;
+  background: var(--bg3);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--gold);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.bis-fieldset-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+/* Forzar fuentes a 18px exactos */
+.bis-custom-fieldset .bis-priority-list,
+.bis-custom-fieldset .bis-priority-list li,
+.bis-custom-fieldset .bis-priority-list li strong,
+.bis-custom-fieldset .bis-item-link {
+  font-size: 18px !important;
+  line-height: 1.6;
+}
+
+/* Lista interna */
+.bis-priority-list {
+  margin: 0;
+  padding-left: 24px;
+  color: var(--text2);
+}
+
+.bis-priority-list li {
+  margin-bottom: 8px;
+}
+
+.bis-priority-list li:last-child {
+  margin-bottom: 0;
+}
+
+.bis-priority-list li strong {
+  color: var(--text);
+}
+
+.bis-guide-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 32px;
+  width: 100%;
+}
+
+.bis-guide-section {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Cabecera principal */
+.bis-guide-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, var(--bg4), var(--bg3));
+  border-bottom: 1px solid var(--border2);
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+/* Contenido interno */
+.bis-guide-content {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Texto del párrafo */
+.bis-guide-text {
+  font-size: 18px !important;
+  color: var(--text2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bis-guide-text strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Enlaces dentro de la guía a 18px */
+.bis-guide-container .bis-item-link,
+.bis-guide-container .bis-enchant-link,
+.bis-guide-container .bis-consumable-link {
+  font-size: 18px !important;
+  line-height: 1.4;
+}
+
+/* Caja de prioridad interna */
+.bis-guide-box,
+.bis-priority-card {
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Subtítulo de la caja */
+.bis-priority-header {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-bottom: 1px solid var(--border2);
+  padding-bottom: 6px;
+}
+
+/* Lista numerada a 18px */
+.bis-priority-list {
+  margin: 0;
+  padding-left: 24px;
+  color: var(--text2);
+  font-size: 18px !important;
+  line-height: 1.6;
+}
+
+.bis-priority-list li {
+  margin-bottom: 6px;
+  font-size: 18px !important;
+}
+
+.bis-priority-list li:last-child {
+  margin-bottom: 0;
+}
+
+.bis-priority-list li strong {
+  color: var(--text);
+  font-size: 18px !important;
+}
+
+/* Pasos de flujo con flechas */
+.bis-flow-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.bis-flow-step {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.bis-flow-arrow {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 18px;
+}
+    
   /* Transiciones y efectos hover */
   .bis-slot-item {
     transition: all 0.2s ease;
@@ -1126,6 +1619,79 @@ const reviewDate = getSectionReviewDate([
     border: none !important;
     text-decoration: none !important;
   }
+
+  /* Catalizador (Mismo diseño que encantos, diferente color) */
+.bis-item-catalyst {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bis-item-catalyst a {
+  display: inline-block;
+  min-height: 18px;
+  padding-top: 5px !important;
+  padding-left: 22px !important;
+  font-size: 14px;
+  color: #00e5ff; /* Color cian fluorescente para el Catalizador */
+  line-height: 18px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.85;
+  background-size: 18px 18px !important;
+  transition: color 0.2s, opacity 0.2s;
+}
+/* Contenedor de la fila de Catalizador */
+.bis-item-catalyst {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+/* Texto "Catalizador" en cian */
+.bis-catalyst-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #00e5ff; /* Color cian brillante */
+  flex-shrink: 0;
+}
+
+/* Enlace al item base (Wowhead colocará el icono aquí) */
+.bis-item-catalyst a {
+  display: inline-block;
+  min-height: 18px;
+  padding-top: 2px !important;
+  padding-left: 22px !important; /* Reservado para el icono de Wowhead */
+  font-size: 13px;
+  font-weight: 500;
+  color: #7dd3fc; /* Azul celeste para el nombre de la pieza base */
+  line-height: 18px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-size: 18px 18px !important;
+  transition: color 0.2s;
+}
+
+.bis-item-catalyst a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.bis-item-catalyst a:hover {
+  color: #80d8ff;
+  opacity: 1;
+  text-decoration: underline;
+}
 </style>
 
 <script>

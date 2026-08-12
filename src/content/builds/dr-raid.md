@@ -2,20 +2,20 @@
 id: "dr-raid"
 title: "🖤 Dark Ranger Raid AoE"
 heroTalent: "Dark Ranger"
-meta: true
+meta: false
 header: "🖤 Dark Ranger — Raid AoE"
-description: "Mejor build Dark Ranger para AoE en Raid. Optimizado para maximizar el daño en ráfaga AoE y daño a objetivos prioritarios con una pérdida de DPS single-target modesta."
-copyString: "C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZGLzMDzwMzMYGzMzwMmZGzMDbmZMjZYZMNDAAAAgZAAAwMzYYmBIgZBsNA"
-wowheadUrl: "https://www.wowhead.com/talent-calc/hunter/beast-mastery/dark-ranger#C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsFYsAAgZYZmZWMDzYmhZMzMDzYmZMjZYmZMjZwYaGAAAAAwMAAAMmZmhZGgsBzCYzA"
+description: "Mejor build Dark Ranger para ST en Raid. Es inferior a Pack Leader pero tiene sus defensores."
+copyString: "C0PAAAAAAAAAAAAAAAAAAAAAAYzsMwAGwMsFYsAAgZ8AjZWegZYGzMmhZGDzYmZMjZW2mZGzYG8AmmBAAAAMDAAAjZmBzMgwwsA2GAG"
+wowheadUrl: "https://www.wowhead.com/es/talent-calc/hunter/beast-mastery/dark-ranger/EAPRlFFhRCYFVFQWAUBFOVVRRUFVBRoFUFNBAFFVVVUBR"
 flexibleTalents:
   - name: "Redirección"
-    note: "Útil solo en algunos enfrentamientos como Vanguardia de la Luz."
+    note: "Útil solo en algunos enfrentamientos."
   - name: "Disparo vinculante"
     note: "Opcional. Los nodos bajo Disparo vinculante e Intimidación son opciones si necesitas control adicional para un encuentro específico."
 notes:
-  - "Disparo tranquilizante es recomendable en el encuentro de Midnight Falls en heroico, pero no en otros sitios."
+  - "Disparo tranquilizante es recomendable en algunos encuentros. Mas información en la guia de talentos por bosses."
   - "Los nodos de elección bajo Disparo vinculante e Intimidación son opciones si necesitas control adicional para un encuentro específico."
-order: 2
+order: 3
 ---
 
 ## Resumen Editable
