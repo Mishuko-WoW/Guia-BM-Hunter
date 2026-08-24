@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import OpenerMode from './OpenerMode.astro';
+
+const entries = await getCollection('openersUi');
+const entry = entries.find((e) => e.data.id === 'dark-ranger-aoe');
+---
+
+{entry ? <OpenerMode entry={entry} /> : <p>Contenido no disponible.</p>}
