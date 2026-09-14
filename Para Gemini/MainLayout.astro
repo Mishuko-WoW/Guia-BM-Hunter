@@ -1,0 +1,87 @@
+---
+import '../styles/bm-guide.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Guía Hunter BM — Midnight S1',
+  description = 'Mejores talentos, rotación y equipo BiS para Hunter BM en Midnight Season 1. ¡Guía PvE 100% actualizada!.',
+} = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Guía Hunter BM: Talentos, Rotación y Builds PvE",
+      "description": "Guía completa de Beast Mastery Hunter para PvE en World of Warcraft: Midnight. Incluye mecánicas, rotación, talentos héroe, procs clave, BiS y gestión de mascotas.",
+      "inLanguage": "es",
+      "author": {
+        "@type": "Organization",
+        "name": "Guía Hunter BM"
+      },
+      "about": [
+        "Beast Mastery Hunter",
+        "Hunter BM PvE",
+        "World of Warcraft Midnight"
+      ]
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJY55YHE6Q"></script>
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EJY55YHE6Q', {
+    send_page_view: false
+  });
+
+  function trackHashChange() {
+    const hash = window.location.hash || '#mecanicas';
+    // Limpiamos el # para que sea una ruta normal
+    const pagePath = hash.replace('#', '/');
+    
+    gtag('event', 'page_view', {
+      page_path: pagePath,
+      page_location: window.location.href,
+      page_title: document.title + ' - ' + hash.replace('#', '')
+    });
+    
+    // Debug: puedes eliminar esto después de verificar que funciona
+    console.log('📊 Analytics tracking:', pagePath);
+  }
+
+  window.addEventListener('load', trackHashChange);
+  window.addEventListener('hashchange', trackHashChange);
+</script>
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>

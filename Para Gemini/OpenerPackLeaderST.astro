@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import OpenerMode from './OpenerMode.astro';
+
+const entries = await getCollection('openersUi');
+const entry = entries.find((e) => e.data.id === 'pack-leader-st');
+---
+
+{entry ? <OpenerMode entry={entry} /> : <p>Contenido no disponible.</p>}

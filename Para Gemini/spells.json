@@ -1,0 +1,98 @@
+{
+  "Marca del cazador": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedfordeath.jpg",
+    "badge": "bf",
+    "type": "Debuff",
+    "desc": "Mantener en objetivo prioritario."
+  },
+  "Redireccion": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_misdirection.jpg",
+    "badge": "sp",
+    "type": "Habilidad activa",
+    "desc": "Redirige amenaza al tanque."
+  },
+  "Caja de puzles de Algeth'ar": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/inv_misc_enggizmos_18.jpg",
+    "badge": "sp",
+    "type": "Trinket",
+    "desc": "Pre-castear 2 segundos antes del pull."
+  },
+  "Disparo con puas": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_barbedshot.jpg",
+    "badge": "sp",
+    "type": "Habilidad activa",
+    "desc": "Generador clave de la rotacion."
+  },
+  "Colera de las bestias": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/large/ability_druid_ferociousbite.jpg",
+    "badge": "sp",
+    "type": "Habilidad activa",
+    "desc": "Cooldown principal del BM Hunter."
+  },
+  "Matar": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_killcommand.jpg",
+    "badge": "sp",
+    "type": "Habilidad activa",
+    "desc": "Prioridad alta en ST y AoE."
+  },
+  "Estampida": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_beastcall.jpg",
+    "badge": "pr",
+    "type": "Proc Pack Leader",
+    "desc": "Proc principal del arbol Pack Leader."
+  },
+  "Paliza salvaje": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_sickem.jpg",
+    "badge": "pr",
+    "type": "Habilidad AoE",
+    "desc": "Habilidad central para cleave y AoE."
+  },
+  "Tajo de la bestia": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_beastcleave.jpg",
+    "badge": "sp",
+    "type": "Habilidad de mascota",
+    "desc": "Cleave principal de mascota."
+  },
+  "Disparo de cobra": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_cobrashot.jpg",
+    "badge": "sp",
+    "type": "Habilidad activa",
+    "desc": "Relleno de enfoque."
+  },
+  "Flecha negra": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/inv_ability_darkrangerhunter_blackarrow.jpg",
+    "badge": "sp",
+    "type": "Habilidad activa",
+    "desc": "Abre ventana de Dark Ranger."
+  },
+  "Flecha lastimera": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/ability_theblackarrow.jpg",
+    "badge": "sp",
+    "type": "Habilidad activa",
+    "desc": "Habilidad de ventana en Dark Ranger."
+  },
+  "Aliado de la naturaleza": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_onewithnature.jpg",
+    "badge": "bf",
+    "type": "Buff",
+    "desc": "Potencia el siguiente Matar."
+  },
+  "Fuego devastador": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_blackice.jpg",
+    "badge": "bf",
+    "type": "Buff Dark Ranger",
+    "desc": "Ventana de dano para Dark Ranger."
+  },
+  "Zancapuerco": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/medium/inv_pet_boar.jpg",
+    "badge": "bf",
+    "type": "Buff",
+    "desc": "Condicion para usar Disparo de cobra en AoE."
+  },
+  "Pocion": {
+    "icon": "https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg",
+    "badge": "gold",
+    "type": "Consumible",
+    "desc": "Consumible de burst en ventana de CD."
+  }
+}

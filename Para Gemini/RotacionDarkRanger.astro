@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import RotacionMode from './RotacionMode.astro';
+
+const entries = await getCollection('rotacionesUi');
+const entry = entries.find((e) => e.data.id === 'dark-ranger');
+---
+
+{entry ? <RotacionMode entry={entry} /> : <p>Contenido no disponible.</p>}
