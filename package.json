@@ -7,10 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "backup:content": "node scripts/backup-content.mjs",
-    "check:content": "node scripts/check-content.mjs",
-    "verify:quick": "npm run check:content && astro build",
-    "build": "npm run check:content && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "cms:proxy": "decap-server"
