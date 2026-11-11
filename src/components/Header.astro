@@ -1,3 +1,11 @@
+---
+import { changelog, formatShort } from '../lib/changelog';
+
+// Entradas visibles en la cabecera (el historial completo queda en changelog.json)
+const CHANGELOG_VISIBLE = 2;
+const recentChanges = changelog.slice(0, CHANGELOG_VISIBLE);
+---
+
 <!-- ── TOOLTIP ──────────────────────────────────────────────────── -->
 <div class="tooltip" id="tooltip">
   <div class="tooltip-name" id="tt-name"></div>
@@ -35,14 +43,12 @@
         <div class="changelog-box">
           <div class="changelog-title">📝 Lista de cambios</div>
           <ul class="changelog-list">
+            {recentChanges.map((c) => (
               <li>
-              <span class="changelog-date">14 Oct. 2026:</span>
-              Actualización completa de <a href="#bis">BIS & Consumibles</a>
-            </li>
-             <li>
-              <span class="changelog-date">14 Oct. 2026:</span>
-              Actualización parcial de <a href="#talentos">Strings de Talentos.</a>
-            </li>
+                <span class="changelog-date">{formatShort(c.fecha)}:</span>
+                {c.texto} <a href={`#${c.pestana}`}>{c.enlace}</a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

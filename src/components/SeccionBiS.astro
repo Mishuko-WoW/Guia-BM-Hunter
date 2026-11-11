@@ -2,10 +2,7 @@
 import { getSectionReviewDate } from '../lib/sectionDates';
 import ReviewSourceBox from './ReviewSourceBox.astro';
 
-const reviewDate = getSectionReviewDate([
-  'src/components/SeccionBiS.astro',
-  'src/content/data/bis.json'
-]);
+const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro']);
 ---
 
 <!-- CSS CRÍTICO INLINE - Carga estructura básica PRIMERO -->

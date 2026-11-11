@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run dev)",
+      "Bash(npm run check:content)",
+      "Bash(npm run verify:quick)",
+      "Bash(npm run backup:content)",
+      "Bash(npx astro preview:*)",
+      "Bash(node scripts/check-content.mjs)",
+      "Bash(node --check:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git fetch:*)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" run list:*)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" run view:*)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" issue list:*)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" issue view:*)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" pr list:*)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" pr view:*)"
+    ],
+    "deny": [
+      "Read(./proyecto_completo.txt)",
+      "Read(./node_modules/**)",
+      "Read(./dist/**)",
+      "Read(./.astro/**)",
+      "Read(./backups/**)",
+      "Read(./logs/**)",
+      "Read(./package-lock.json)"
+    ]
+  }
+}

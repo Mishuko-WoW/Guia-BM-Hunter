@@ -13,6 +13,10 @@ import SeccionMascotas from '../SeccionMascotas.astro';
 import SeccionErrores from '../SeccionErrores.astro';
 import SeccionExamenes from '../SeccionExamenes.astro';
 import SeccionCoaching from '../SeccionCoaching.astro';
+import { formatLong, latestChangeDate } from '../../lib/changelog';
+
+// Fecha del footer = último cambio anotado en changelog.json
+const lastUpdate = latestChangeDate();
 ---
 
 <Header />
@@ -38,6 +42,6 @@ import SeccionCoaching from '../SeccionCoaching.astro';
     ⚠️ Esta guía está pensada como recurso de apoyo para facilitar la comprensión de la clase. El contenido siempre estará actualizado teniendo en cuenta fuentes como Wowhead, Icy Veins y mi experiencia personal.
   </div>
   <div class="guide-footer-meta">
-    Guía en constante actualización. · Creada y actualizada por <span>Mishuko · 14 de octubre de 2026</span> 
+    Guía en constante actualización. · Creada y actualizada por <span>Mishuko{lastUpdate && ` · ${formatLong(lastUpdate)}`}</span> 
   </div>
 </div>

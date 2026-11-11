@@ -2,11 +2,7 @@
 import { getSectionReviewDate } from '../lib/sectionDates';
 import ReviewSourceBox from './ReviewSourceBox.astro';
 
-const reviewDate = getSectionReviewDate([
-  'src/components/SeccionTalentos.astro',
-  'src/content/builds',
-  'src/content/Bosses',
-]);
+const reviewDate = getSectionReviewDate('talentos', ['src/content/builds']);
 ---
 
 <div id="tab-talentos" class="tab-panel">

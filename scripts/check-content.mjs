@@ -74,9 +74,51 @@ function validateRotaciones(errors) {
   }
 }
 
+// Pestañas válidas = data-tab de los botones de TabBar.astro
+function getValidTabs() {
+  const tabBar = fs.readFileSync(path.join(root, 'src', 'components', 'TabBar.astro'), 'utf8');
+  return new Set([...tabBar.matchAll(/data-tab="([^"]+)"/g)].map((m) => m[1]));
+}
+
+function validateChangelog(errors) {
+  const file = path.join(root, 'src', 'content', 'data', 'changelog.json');
+  let entries;
+  try {
+    entries = JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch (exc) {
+    errors.push(`${file}: JSON no válido (${exc.message})`);
+    return;
+  }
+  if (!Array.isArray(entries) || entries.length === 0) {
+    errors.push(`${file}: debe ser una lista con al menos una entrada`);
+    return;
+  }
+  const tabs = getValidTabs();
+  entries.forEach((e, i) => {
+    const where = `${file}: entrada ${i + 1}`;
+    const fecha = e?.fecha;
+    const d = new Date(`${fecha}T12:00:00Z`);
+    const valid =
+      typeof fecha === 'string' &&
+      /^\d{4}-\d{2}-\d{2}$/.test(fecha) &&
+      !Number.isNaN(d.getTime()) &&
+      d.toISOString().startsWith(fecha);
+    if (!valid) errors.push(`${where}: fecha debe ser AAAA-MM-DD real (tiene "${fecha}")`);
+    if (!tabs.has(e?.pestana)) {
+      errors.push(`${where}: pestana "${e?.pestana}" no existe. Válidas: ${[...tabs].join(', ')}`);
+    }
+    for (const campo of ['texto', 'enlace']) {
+      if (typeof e?.[campo] !== 'string' || !e[campo].trim()) {
+        errors.push(`${where}: falta "${campo}"`);
+      }
+    }
+  });
+}
+
 const errors = [];
 validateOpeners(errors);
 validateRotaciones(errors);
+validateChangelog(errors);
 
 if (errors.length > 0) {
   console.error('Validacion de contenido fallida:');
