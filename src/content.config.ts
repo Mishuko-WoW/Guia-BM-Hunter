@@ -63,74 +63,57 @@ const jefes = defineCollection({
   }),
 });
 
-const rotacionesUi = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/rotaciones-ui' }),
-  schema: z.object({
-    id: z.string(),
-    panelId: z.string(),
-    hidden: z.boolean().default(false),
-    heroBoxTitle: z.string().optional(),
-    heroBoxText: z.string().optional(),
-    stTitle: z.string(),
-    stItems: z.array(
+// ─── Rotación y Opener: paneles formados por bloques ─────────────
+// Texto con mini-formato: ver src/lib/markup.ts ([[Hechizo]], **negrita**…)
+const texto = z.string();
+const icono = z.string().optional(); // nombre de icono Wowhead o URL; si falta, el del primer [[hechizo]]
+
+const bloque = z.union([
+  z.object({ caja: z.enum(['info', 'warn', 'tip', 'crit']), titulo: texto.optional(), texto }),
+  z.object({
+    columnas: z.array(
       z.object({
-        spell: z.string().optional(),
-        icon: z.string().url().optional(),
-        alt: z.string().optional(),
-        text: z.string(),
+        titulo: texto,
+        color: z.string().optional(),
+        pasos: z.array(z.object({ icono, texto })),
       }),
-    ).default([]),
-    aoeTitle: z.string(),
-    aoeItems: z.array(
-      z.object({
-        spell: z.string().optional(),
-        icon: z.string().url().optional(),
-        alt: z.string().optional(),
-        text: z.string(),
-      }),
-    ).default([]),
-    extraBoxes: z.array(
-      z.object({
-        className: z.string(),
-        title: z.string(),
-        text: z.string(),
-      }),
-    ).default([]),
-    order: z.number().default(0),
+    ),
   }),
+  z.object({
+    cadena: z.array(
+      z.object({ icono, texto, nota: texto.optional(), tono: z.enum(['sp', 'pr', 'bf', 'gold']).default('sp') }),
+    ),
+  }),
+  z.object({
+    pasos: z.object({
+      titulo: texto,
+      lista: z.array(z.object({ icono, pre: z.string().optional(), texto })),
+    }),
+  }),
+  z.object({ filas: z.array(texto), compacto: z.boolean().optional() }),
+  z.object({ subtitulo: texto }),
+  z.object({ separador: z.literal(true) }),
+]);
+
+export type Bloque = z.infer<typeof bloque>;
+
+const panel = z.object({
+  id: z.string(),
+  orden: z.number(),
+  boton: z.string(),
+  heroe: z.enum(['pack-leader', 'dark-ranger']),
+  oculto: z.boolean().default(false), // true = botón visible, contenido "en desarrollo"
+  bloques: z.array(bloque),
 });
 
-const openersUi = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/openers-ui' }),
-  schema: z.object({
-    id: z.string(),
-    panelId: z.string(),
-    hidden: z.boolean().default(false),
-    chainSteps: z.array(
-      z.object({
-        text: z.string(),
-        sub: z.string().optional(),
-        tone: z.enum(['sp', 'pr', 'bf', 'gold']).default('sp'),
-      }),
-    ).default([]),
-    warning: z
-      .object({
-        title: z.string(),
-        text: z.string(),
-      })
-      .optional(),
-    detailTitle: z.string(),
-    steps: z.array(
-      z.object({
-        pre: z.string().optional(),
-        spell: z.string().optional(),
-        icon: z.string().url().optional(),
-        alt: z.string().optional(),
-        text: z.string(),
-      }),
-    ).default([]),
-    order: z.number().default(0),
-  }),
+const rotacion = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/rotacion' }),
+  schema: panel,
 });
 
-export const collections = { builds, jefes, rotacionesUi, openersUi };
+const opener = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/opener' }),
+  schema: panel,
+});
+
+export const collections = { builds, jefes, rotacion, opener };

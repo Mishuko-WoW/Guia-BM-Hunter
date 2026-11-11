@@ -1,10 +1,3 @@
-// ─── FECHA ────────────────────────────────────────────────────────
-    const footerDateEl = document.getElementById('footer-date');
-    if (footerDateEl) {
-      footerDateEl.textContent =
-        new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
-    }
-
     const tabButtons = Array.from(document.querySelectorAll('.tab-btn[data-tab]'));
     const validTabIds = new Set(tabButtons.map(btn => btn.dataset.tab));
     const tabAliases = {
@@ -142,12 +135,6 @@
       btn.classList.add('active');
     }
 
-    function setOpener(mode, btn) {
-      activateToggle('#tab-opener', btn);
-      ['st', 'aoe', 'dr-st', 'dr-aoe'].forEach(k => {
-        document.getElementById('opener-' + k).style.display = mode === k ? '' : 'none';
-      });
-    }
 
     // ─── TOOLTIP (mouse + touch) ───────────────────────────────────────
     const tooltip  = document.getElementById('tooltip');
@@ -474,11 +461,15 @@ function bisCheck(cb) {
 })();
 
     // ─── BUILD TOGGLE ─────────────────────────────────────────────────
-    function setRot(mode, btn) {
-      activateToggle('#tab-rotacion', btn);
-      ['pl', 'dr'].forEach(k => {
-        document.getElementById('rot-' + k).style.display = mode === k ? '' : 'none';
+    // Selector de build de Rotación/Opener (PanelesHeroe.astro)
+    function setPanel(btn) {
+      const group = btn.closest('[data-paneles]');
+      if (!group) return;
+      group.querySelectorAll('[data-panel]').forEach(b => b.classList.toggle('active', b === btn));
+      group.querySelectorAll('[data-panel-id]').forEach(p => {
+        p.hidden = p.dataset.panelId !== btn.dataset.panel;
       });
+      setTimeout(refreshWowheadTooltips, 0);
     }
 
     function setBuild(id, btn) {

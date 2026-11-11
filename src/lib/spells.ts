@@ -1,6 +1,6 @@
 import spells from '../content/data/spells.json';
 
-type BadgeType = 'sp' | 'pr' | 'bf' | 'gold';
+export type BadgeType = 'sp' | 'pr' | 'bf' | 'gold';
 
 type SpellData = {
   icon: string;
@@ -12,23 +12,17 @@ type SpellData = {
 const catalog = spells as Record<string, SpellData>;
 
 export function getSpell(name?: string): SpellData | undefined {
-  if (!name) return undefined;
-  return catalog[name];
+  return name ? catalog[name] : undefined;
 }
 
-export function getBadgeClass(badge?: BadgeType): string {
-  if (badge === 'pr') return 'pr';
-  if (badge === 'bf') return 'bf';
-  return 'sp';
+// Acepta nombre de icono de Wowhead ("ability_hunter_barbedshot") o URL completa
+export function iconUrl(icon?: string): string | undefined {
+  if (!icon) return undefined;
+  return icon.startsWith('http') ? icon : `https://wow.zamimg.com/images/wow/icons/large/${icon}.jpg`;
 }
 
-export function getChainClass(tone?: BadgeType): string {
-  if (tone === 'pr') return 'pr-step';
-  if (tone === 'bf') return 'bf-step';
-  if (tone === 'gold') return 'gold-step';
-  return 'sp-step';
-}
-
-export function getSpellNames(): string[] {
-  return Object.keys(catalog);
+// Icono explícito o, si no hay, el del primer [[hechizo]] del texto
+export function resolveIcon(icon: string | undefined, text = ''): string | undefined {
+  const first = text.match(/\[\[([^\]|>]+)/)?.[1]?.trim();
+  return iconUrl(icon ?? getSpell(first)?.icon);
 }

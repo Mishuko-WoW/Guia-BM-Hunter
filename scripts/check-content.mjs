@@ -28,46 +28,27 @@ function readFrontmatter(filePath) {
   return yaml.load(match[1]);
 }
 
-function validateSpell(name, filePath, field, errors) {
-  if (!name) return;
-  if (!spellNames.has(name)) {
-    errors.push(`${filePath}: campo ${field} usa habilidad desconocida: ${name}`);
-  }
+// Todos los textos de un valor YAML (recursivo)
+function strings(v, out = []) {
+  if (typeof v === 'string') out.push(v);
+  else if (Array.isArray(v)) v.forEach((x) => strings(x, out));
+  else if (v && typeof v === 'object') Object.values(v).forEach((x) => strings(x, out));
+  return out;
 }
 
-function validateOpeners(errors) {
-  const dir = path.join(root, 'src', 'content', 'openers-ui');
-  for (const filePath of walk(dir)) {
-    const data = readFrontmatter(filePath);
-    if (!data) continue;
-    if (!Array.isArray(data.steps)) {
-      errors.push(`${filePath}: falta steps[]`);
-      continue;
-    }
-    for (const step of data.steps) {
-      validateSpell(step.spell, filePath, 'steps[].spell', errors);
-      if (!step.text || typeof step.text !== 'string') {
-        errors.push(`${filePath}: cada step necesita text`);
-      }
-    }
-  }
-}
-
-function validateRotaciones(errors) {
-  const dir = path.join(root, 'src', 'content', 'rotaciones-ui');
-  for (const filePath of walk(dir)) {
-    const data = readFrontmatter(filePath);
-    if (!data) continue;
-    for (const section of ['stItems', 'aoeItems']) {
-      const arr = data[section];
-      if (!Array.isArray(arr)) {
-        errors.push(`${filePath}: falta ${section}[]`);
-        continue;
-      }
-      for (const item of arr) {
-        validateSpell(item.spell, filePath, `${section}[].spell`, errors);
-        if (!item.text || typeof item.text !== 'string') {
-          errors.push(`${filePath}: cada item en ${section} necesita text`);
+// Rotación y Opener: cada [[Hechizo]] debe existir en spells.json
+function validatePaneles(errors) {
+  for (const dir of ['rotacion', 'opener']) {
+    for (const filePath of walk(path.join(root, 'src', 'content', dir))) {
+      const data = readFrontmatter(filePath);
+      if (!data) continue;
+      if (!Array.isArray(data.bloques)) errors.push(`${filePath}: falta bloques[]`);
+      for (const text of strings(data.bloques)) {
+        for (const m of text.matchAll(/\[\[([^\]|>]+)/g)) {
+          const name = m[1].trim();
+          if (!spellNames.has(name)) {
+            errors.push(`${filePath}: hechizo desconocido [[${name}]] (añádelo a spells.json)`);
+          }
         }
       }
     }
@@ -116,8 +97,7 @@ function validateChangelog(errors) {
 }
 
 const errors = [];
-validateOpeners(errors);
-validateRotaciones(errors);
+validatePaneles(errors);
 validateChangelog(errors);
 
 if (errors.length > 0) {

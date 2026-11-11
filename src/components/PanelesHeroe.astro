@@ -1,0 +1,42 @@
+---
+// Selector de build (botones) + un panel por entrada de src/content/<coleccion>/*.md
+import { getCollection } from 'astro:content';
+import Bloques from './Bloques.astro';
+
+interface Props {
+  coleccion: 'rotacion' | 'opener';
+}
+
+const { coleccion } = Astro.props;
+const entries = (await getCollection(coleccion)).sort((a, b) => a.data.orden - b.data.orden);
+
+const HERO_ICON = {
+  'pack-leader': 'https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png',
+  'dark-ranger': 'https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp',
+};
+const HERO_NAME = { 'pack-leader': 'Pack Leader', 'dark-ranger': 'Dark Ranger' };
+---
+
+<div data-paneles={coleccion}>
+  <div class="toggle-wrap combat-switch toggle-start">
+    {entries.map(({ data }, i) => (
+      <button type="button" class={i === 0 ? 'toggle-btn active' : 'toggle-btn'} data-panel={data.id} onclick="setPanel(this)">
+        <img src={HERO_ICON[data.heroe]} alt={HERO_NAME[data.heroe]} class="toggle-icon" />
+        {data.boton}
+      </button>
+    ))}
+  </div>
+
+  {entries.map(({ data }, i) => (
+    <div data-panel-id={data.id} hidden={i !== 0}>
+      {data.oculto ? (
+        <div class="box box-info">
+          <div class="box-title">🛠️ {data.boton} en desarrollo</div>
+          Estoy probando y optimizando esta parte en combate. Estará disponible en cuanto tenga los datos validados.
+        </div>
+      ) : (
+        <Bloques bloques={data.bloques} />
+      )}
+    </div>
+  ))}
+</div>

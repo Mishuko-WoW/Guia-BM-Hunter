@@ -3088,3 +3088,6 @@ figure.sim-shot.has-image .sim-shot-img {
   text-align: right;
 }
 }
+/* ─── TEXTO DE ALERTA (!!texto!! en el contenido) ─── */
+.txt-alert { color: var(--red2); }
+.toggle-start { justify-content: flex-start; margin-left: 0; }

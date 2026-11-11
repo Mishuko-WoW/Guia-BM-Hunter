@@ -36,18 +36,22 @@ Guía en español de Beast Mastery Hunter (WoW Midnight S2). Autor: Mishuko. Res
 | `<head>`, SEO, Analytics (GA4 con page_view por hash) | `src/layouts/MainLayout.astro` |
 | Pestaña X | `src/components/Seccion<X>.astro` (`<div id="tab-<id>" class="tab-panel">`) |
 | Builds de talentos (strings, notas) | `src/content/builds/*.md` → renderizado en JS (`renderBuilds`) |
-| Opener / rotación | `src/content/openers-ui/*.md`, `src/content/rotaciones-ui/*.md` → `src/components/opener|rotacion/*Mode.astro` |
-| Catálogo de habilidades (icono, badge, desc) | `src/content/data/spells.json` (helpers en `src/lib/spells.ts`) |
+| Opener / rotación (un `.md` por build) | `src/content/opener/*.md`, `src/content/rotacion/*.md` → `PanelesHeroe.astro` + `Bloques.astro`. Intro y textos fijos de la pestaña en `SeccionOpener/Rotacion.astro` |
+| Catálogo de hechizos (icono, clase sp/pr/bf, tipo, tooltip) | `src/content/data/spells.json` (helpers en `src/lib/spells.ts`) |
 | Jefes de raid | `src/content/Bosses/*.md` (sección **oculta**: comentada en `SeccionTalentos.astro`) |
 | BiS y consumibles | **HTML a mano** en `SeccionBiS.astro` (1700 líneas, estilos propios dentro). `bis.json` NO se usa (datos viejos) |
 | Esquemas de contenido (zod) | `src/content.config.ts` |
-| CMS visual | `public/admin/config.yml` (Decap; `npm run cms:proxy` en local) |
 
 Pestañas válidas (`data-tab`): mecanicas, talentos, estadisticas, rotacion, opener (oculta, va con rotacion), bis, mascotas, macros, simulacion, coaching, errores, examen-st, examen-aoe.
 
+## Formato de Rotación y Opener
+Cada `.md` = un botón del selector: `id`, `orden`, `boton`, `heroe` (pack-leader | dark-ranger), `oculto` (true = muestra "en desarrollo") y `bloques`, en orden:
+`caja` (info|warn|tip|crit + titulo + texto) · `columnas` (titulo, color, pasos[{icono?, texto}]) · `cadena` (pasos del opener con tono sp|pr|bf|gold y nota) · `pasos` (titulo + lista[{icono?, pre?, texto}]) · `filas` (+ compacto) · `subtitulo` · `separador`. Esquema zod en `src/content.config.ts`.
+Mini-formato de texto (`src/lib/markup.ts`): `[[Hechizo]]` (tooltip/clase del catálogo), `[[Hechizo|tooltip propio]]`, `[[Hechizo|tooltip|tipo|clase]]`, `[[Hechizo>Texto]]`, `**negrita**`, `*cursiva*`, `!!alerta roja!!`. `icono` = nombre de icono Wowhead (`ability_hunter_barbedshot`) o URL; si falta se usa el del primer `[[hechizo]]`. Todo `[[hechizo]]` debe existir en `spells.json` (lo valida el build).
+
 ## JavaScript (`public/scripts/bm-guide.js`, ~1090 líneas, sin bundler)
 Script clásico global (funciones llamadas desde `onclick` en el HTML). Secciones, buscar con `grep -n "// ───"`:
-FECHA · TABS (`showTab`, `syncTabFromHash`) · TOGGLE (`setOpener`, `setRot`, `setBuild`) · TOOLTIP · QUIZ ENGINE + PREGUNTAS ST/AoE · BIS TRACKER (`bisCheck`, `BIS_TOTAL`) · TALENT COPY · BOSS DATA (`SPELL_REGISTRY`, `autoLink`) · BUILDS RENDERER · BOSS PANEL · REPORT MODAL (webhook Discord).
+TABS (`showTab`, `syncTabFromHash`) · TOGGLE (`setPanel` para Rotación/Opener, `setBuild` para Talentos) · TOOLTIP · QUIZ ENGINE + PREGUNTAS ST/AoE · BIS TRACKER (`bisCheck`, `BIS_TOTAL`) · TALENT COPY · BOSS DATA (`SPELL_REGISTRY`, `autoLink`) · BUILDS RENDERER · BOSS PANEL · REPORT MODAL (webhook Discord).
 - Datos de Astro llegan vía `window.BM_BUILDS_DATA` / `window.BM_BOSS_DATA` (inyectados en `src/pages/index.astro`).
 - Si un elemento puede no existir (secciones ocultas), proteger con `if (el)`: un error corta el resto del script.
 - Navegación: `#<tab>` en la URL abre la pestaña (los enlaces internos deben ser `href="#bis"`, nunca URL absoluta).
@@ -58,7 +62,7 @@ Variables en `:root` (~línea 80: `--bg`, `--card`, `--accent`, `--gold`…). Bl
 ## Reglas para ahorrar contexto
 - **No leer enteros** `SeccionBiS.astro`, `SeccionSimulacion.astro`, `bm-guide.css`, `bm-guide.js`: usar `grep -n` y leer con offset/limit.
 - Ignorar: `node_modules/`, `dist/`, `.astro/`, `backups/`, `logs/`, `proyecto_completo.txt`, `package-lock.json`, `talent_strings.json`.
-- Para cambiar contenido (textos, builds, opener) editar el `.md`/`.json`, no los componentes.
+- Para cambiar contenido (textos, builds, opener, rotación) editar el `.md`/`.json`, no los componentes.
 
 ## Gotchas
 - "Última revisión" (BiS, Talentos) sale del changelog (`src/lib/sectionDates.ts`); solo si la pestaña no tiene entradas usa el último commit (por eso `fetch-depth: 0` en el workflow).

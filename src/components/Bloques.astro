@@ -1,0 +1,96 @@
+---
+// Dibuja la lista de bloques de un panel (src/content/rotacion|opener/*.md)
+import { md } from '../lib/markup';
+import { resolveIcon } from '../lib/spells';
+import type { Bloque } from '../content.config';
+
+interface Props {
+  bloques: Bloque[];
+}
+
+const { bloques } = Astro.props;
+---
+
+{bloques.map((b) => {
+  if ('caja' in b) return (
+    <div class={`box box-${b.caja}`}>
+      {b.titulo && <div class="box-title" set:html={md(b.titulo)} />}
+      <Fragment set:html={md(b.texto)} />
+    </div>
+  );
+
+  if ('columnas' in b) return (
+    <div class="two-col">
+      {b.columnas.map((col) => (
+        <div class="col-card">
+          <div class={`col-header ${col.color ?? ''}`} set:html={md(col.titulo)} />
+          <ul class="prio-list">
+            {col.pasos.map((p) => {
+              const icon = resolveIcon(p.icono, p.texto);
+              return (
+                <li class="prio-item">
+                  {icon && <div class="prio-icon"><img src={icon} alt="" loading="lazy" /></div>}
+                  <p set:html={md(p.texto)} />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+
+  if ('cadena' in b) return (
+    <div class="chain-wrap">
+      <div class="chain">
+        {b.cadena.map((s, i) => {
+          const icon = resolveIcon(s.icono, s.texto);
+          return (
+            <>
+              {i > 0 && <div class="chain-arrow">→</div>}
+              <div class={`chain-step ${s.tono}-step`}>
+                {icon && <div class="chain-icon"><img src={icon} alt="" loading="lazy" /></div>}
+                <div class="chain-step-text">
+                  <Fragment set:html={md(s.texto)} />
+                  {s.nota && <small set:html={md(s.nota)} />}
+                </div>
+              </div>
+            </>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  if ('pasos' in b) return (
+    <div class="card card-mt">
+      <div class="card-header" set:html={md(b.pasos.titulo)} />
+      <ol class="opener-steps">
+        {b.pasos.lista.map((p) => {
+          const icon = resolveIcon(p.icono, p.texto);
+          return (
+            <li class="opener-step">
+              {icon && <div class="step-icon"><img src={icon} alt="" loading="lazy" /></div>}
+              <div>
+                {p.pre && <div class="ostep-pre">{p.pre}</div>}
+                <Fragment set:html={md(p.texto)} />
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+
+  if ('filas' in b) return (
+    <div class="card">
+      <div class="card-rows">
+        {b.filas.map((f) => <div class={b.compacto ? 'data-row compact' : 'data-row'} set:html={md(f)} />)}
+      </div>
+    </div>
+  );
+
+  if ('subtitulo' in b) return <h3 set:html={md(b.subtitulo)} />;
+  if ('separador' in b) return <div class="divider" />;
+  return null;
+})}
