@@ -6,7 +6,7 @@ heroe: pack-leader
 oculto: false
 bloques:
   - columnas:
-      - titulo: 🎯 Pack Leader — ST (Raid)
+      - titulo: Pack Leader — ST (Raid)
         color: blue
         pasos:
           - texto: "[[Disparo con púas]] si [[Cólera de las bestias]] sale de CD en **≤3 segundos**."
@@ -16,7 +16,7 @@ bloques:
           - texto: "[[Disparo de cobra]] — si tienes 3 o mas stacks de [[Colmillo de cobra]]"
           - texto: "[[Disparo con púas]] — a cooldown."
           - texto: "[[Disparo de cobra]] — relleno de Enfoque."
-      - titulo: 💥 Pack Leader — AoE/M+
+      - titulo: Pack Leader — AoE/M+
         color: orange
         pasos:
           - texto: "[[Disparo con púas]] al objetivo prioritario si vas a alcanzar las 2 cargas."
@@ -27,10 +27,10 @@ bloques:
           - texto: "[[Disparo con púas]] a cooldown."
           - texto: "[[Disparo de cobra]] — como relleno de Enfoque si ninguna habilidad prioritaria está disponible."
   - caja: warn
-    titulo: ⚠️ Sobre las guías escritas
+    titulo: Sobre las guías escritas
     texto: Las guías como Icy Veins o Wowhead describen el *ideal teórico* — lo que debería ocurrir si la rotación es perfecta. Los logs de combate real muestran que incluso los mejores jugadores del mundo priorizan el cooldown sobre la condición del buff. Cuando hay conflicto entre ambas fuentes, **los datos mandan**.
   - caja: crit
-    titulo: 🚫 NO multi-dotear
+    titulo: NO multi-dotear
     texto: En Packs de enemigos de M+ **nunca** intentes aplicar [[Disparo con púas|NO multi-dotear en AoE. Siempre al objetivo prioritario, sin excepción.]] a múltiples objetivos. Siempre al objetivo prioritario. Es uno de los errores más comunes y costosos del BM Hunter. Solo podemos hacerlo en situaciones de 2 o 3 bosses juntos y el resultado tampoco es que merezca del todo la pena.
   - subtitulo: Reglas Adicionales
   - filas:

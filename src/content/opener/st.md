@@ -30,7 +30,7 @@ bloques:
         texto: Rotación normal
         tono: sp
   - pasos:
-      titulo: 📋 Pasos Detallados — ST
+      titulo: Pasos Detallados — ST
       lista:
         - pre: Pre-pull
           texto: Aplica [[Marca del cazador|Siempre al objetivo prioritario antes del pull.]] al objetivo prioritario.

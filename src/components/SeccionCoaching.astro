@@ -86,7 +86,7 @@
           <h3>🎯 Sesión Individual</h3>
           <p class="tier-subtitle">Revisión profunda personalizada de tu personaje</p>
           <p class="price cyan">Consulta el precio conmigo en Discord</p>
-          <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 1rem;">1 hora aprox · 1:1 privado</p>
+          <p style="font-size: 13px; color: var(--text2); margin-bottom: 1rem;">1 hora aprox · 1:1 privado</p>
           <ul class="coach-check-list">
             <li><span class="ok">✓</span> Sims premium (Quick Sim + Top Gear + Optimizer)</li>
             <li><span class="ok">✓</span> Revisión previa completa de logs</li>
@@ -104,7 +104,7 @@
           <h3>⚡ Coaching Pro</h3>
           <p class="tier-subtitle">Seguimiento con mejora consistente</p>
           <p class="price cyan">Consulta el precio conmigo en Discord</p>
-          <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 1rem;">4 semanas · 4 sesiones incluidas</p>
+          <p style="font-size: 13px; color: var(--text2); margin-bottom: 1rem;">4 semanas · 4 sesiones incluidas</p>
           <ul class="coach-check-list">
             <li><span class="ok">✓</span> Sesión privada cada semana (1 hora aprox)</li>
             <li><span class="ok">✓</span> Análisis completo de logs semanales</li>
@@ -128,7 +128,7 @@
         <a href="https://discordapp.com/users/604762837092532233" target="_blank" rel="noopener noreferrer" class="coach-btn primary large">
           📩 Hablar por Discord
         </a>
-        <p style="color: #8492a6; font-size: 14px; margin: 1rem 0;">O elige tu opción arriba en "Opciones de Coaching y Apoyo"</p>
+        <p style="color: var(--text3); font-size: 14px; margin: 1rem 0;">O elige tu opción arriba en "Opciones de Coaching y Apoyo"</p>
       </div>
     </section>
 
@@ -144,9 +144,9 @@
 
 <style>
   #tab-coaching {
-    --accent-gold: #f59e0b;
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
+    --accent-gold: var(--pl);
+    --text-primary: var(--text);
+    --text-secondary: var(--text2);
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
       --coach-showcase-img-width: 100%;
       --coach-showcase-img-max-width: 100%;
@@ -168,15 +168,15 @@
 
   .coach-two-column { display: grid; gap: 1.8rem; margin-bottom: 2rem; grid-template-columns: 1fr; }
   .coach-card.accent-gold { 
-    border-color: rgba(245, 158, 11, 0.35);
-    background: linear-gradient(135deg, #161e30 0%, rgba(245, 158, 11, 0.03) 100%);
-    border-left: 6px solid #f59e0b;
+    border-color: color-mix(in srgb, var(--pl) 35%, transparent);
+    background: linear-gradient(135deg, var(--bg3) 0%, color-mix(in srgb, var(--pl) 3%, transparent) 100%);
+    border-left: 6px solid var(--pl);
   }
-  .coach-card.accent-cyan { border-color: rgba(6, 182, 212, 0.25); }
+  .coach-card.accent-cyan { border-color: color-mix(in srgb, var(--accent) 25%, transparent); }
   .coach-card.center { text-align: center; }
 
   .coach-card {
-    background: #101623;
+    background: var(--bg2);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 1.7rem;
@@ -193,12 +193,12 @@
     border-radius: 20px;
     margin-bottom: 1rem;
   }
-  .coach-tag.gold { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.22); }
+  .coach-tag.gold { background: color-mix(in srgb, var(--pl) 15%, transparent); color: var(--pl); border: 1px solid color-mix(in srgb, var(--pl) 22%, transparent); }
 
-  .coach-card h2 { font-size: 1.62rem; margin-bottom: 0.65rem; color: #f8fafc; }
+  .coach-card h2 { font-size: 1.62rem; margin-bottom: 0.65rem; color: var(--text); }
   .coach-card h3 { font-size: 1.14rem; margin-bottom: 0.45rem; }
-  .coach-card p { color: #cbd5e1; line-height: 1.66; font-size: 15.8px; }
-  .coach-card strong { color: #f8fafc; }
+  .coach-card p { color: var(--text2); line-height: 1.66; font-size: 15.8px; }
+  .coach-card strong { color: var(--text); }
 
   .coach-grid { display: grid; gap: 1.75rem; margin-top: 1.5rem; }
   .coach-grid.even { grid-template-columns: 1fr; }
@@ -209,8 +209,8 @@
   }
 
   .coach-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin: 0; padding: 0; }
-  .coach-bullets li { position: relative; padding-left: 1.2rem; color: #cbd5e1; font-size: 15.8px; }
-  .coach-bullets li::before { content: "•"; position: absolute; left: 0; color: #06b6d4; font-weight: 700; }
+  .coach-bullets li { position: relative; padding-left: 1.2rem; color: var(--text2); font-size: 15.8px; }
+  .coach-bullets li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
 
   .coach-showcase { border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden; width: 100%; max-width: 100%; transform: none; }
   .coach-showcase-image {
@@ -222,12 +222,12 @@
     margin: 0;
     cursor: zoom-in;
   }
-  .coach-caption { font-size: 13px; color: #8492a6; text-align: center; padding: 0.7rem 0.9rem; background: #161e30; }
+  .coach-caption { font-size: 13px; color: var(--text3); text-align: center; padding: 0.7rem 0.9rem; background: var(--bg3); }
 
   .coach-lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(2, 6, 12, 0.9);
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
     z-index: 9999;
     display: none;
     align-items: center;
@@ -253,7 +253,7 @@
     border-radius: 0;
     border: 0;
     background: transparent;
-    color: #f8fafc;
+    color: var(--text);
     font-size: 28px;
     font-weight: 700;
     line-height: 1;
@@ -267,7 +267,7 @@
   }
 
   .coach-tier {
-    background: #161e30;
+    background: var(--bg3);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 1.8rem;
@@ -283,17 +283,17 @@
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
   }
   
-  .coach-tier.support { border-color: rgba(245, 158, 11, 0.2); }
-  .coach-tier.support:hover { border-color: rgba(245, 158, 11, 0.35); }
+  .coach-tier.support { border-color: color-mix(in srgb, var(--pl) 20%, transparent); }
+  .coach-tier.support:hover { border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
   
   .coach-tier.premium { 
-    border: 2px solid rgba(6, 182, 212, 0.5); 
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(11, 165, 203, 0.06) 50%, rgba(245, 158, 11, 0.02) 100%);
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.15), inset 0 0 20px rgba(6, 182, 212, 0.02);
+    border: 2px solid color-mix(in srgb, var(--accent) 50%, transparent); 
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, transparent) 0%, color-mix(in srgb, var(--accent) 6%, transparent) 50%, color-mix(in srgb, var(--pl) 2%, transparent) 100%);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 15%, transparent), inset 0 0 20px color-mix(in srgb, var(--accent) 2%, transparent);
   }
   .coach-tier.premium:hover { 
-    border-color: rgba(6, 182, 212, 0.7);
-    box-shadow: 0 0 30px rgba(6, 182, 212, 0.25), inset 0 0 20px rgba(6, 182, 212, 0.03);
+    border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+    box-shadow: 0 0 30px color-mix(in srgb, var(--accent) 25%, transparent), inset 0 0 20px color-mix(in srgb, var(--accent) 3%, transparent);
     transform: translateY(-6px);
   }
   
@@ -307,12 +307,12 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #06b6d4, #0891b2);
-    color: #f8fafc;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: var(--text);
   }
   
-  .coach-tier h3 { margin: 0 0 0.5rem; color: #f8fafc; font-size: 1.35rem; }
-  .tier-subtitle { margin: 0 0 1rem; font-size: 13px; color: #8492a6; text-transform: uppercase; letter-spacing: 0.05em; }
+  .coach-tier h3 { margin: 0 0 0.5rem; color: var(--text); font-size: 1.35rem; }
+  .tier-subtitle { margin: 0 0 1rem; font-size: 13px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
   
   .price { 
     margin: 1rem 0 0.5rem; 
@@ -325,20 +325,20 @@
     letter-spacing: 0.02em;
   }
   .price.cyan { 
-    color: #06b6d4; 
-    background: rgba(6, 182, 212, 0.12);
-    border-color: rgba(6, 182, 212, 0.3);
+    color: var(--accent); 
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
   }
   .price.amber { 
-    color: #f59e0b; 
-    background: rgba(245, 158, 11, 0.12);
-    border-color: rgba(245, 158, 11, 0.3);
+    color: var(--pl); 
+    background: color-mix(in srgb, var(--pl) 12%, transparent);
+    border-color: color-mix(in srgb, var(--pl) 30%, transparent);
   }
 
   .coach-check-list { list-style: none; margin: 1.5rem 0; padding: 0; display: flex; flex-direction: column; gap: 0.65rem; flex-grow: 1; }
-  .coach-check-list li { color: #cbd5e1; font-size: 14px; display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
-  .coach-check-list .ok { color: #10b981; font-weight: 700; flex-shrink: 0; }
-  .small-note { margin-top: 1.5rem; margin-bottom: 1rem; font-size: 12px; color: #8492a6; }
+  .coach-check-list li { color: var(--text2); font-size: 14px; display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+  .coach-check-list .ok { color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .small-note { margin-top: 1.5rem; margin-bottom: 1rem; font-size: 12px; color: var(--text3); }
   
   .coach-btn {
     display: inline-flex;
@@ -346,9 +346,9 @@
     justify-content: center;
     text-decoration: none;
     font-weight: 700;
-    color: #08111f;
-    background: #f59e0b;
-    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--bg);
+    background: var(--pl);
+    border: 1px solid color-mix(in srgb, var(--pl) 40%, transparent);
     border-radius: 999px;
     font-size: 14px;
     padding: 0.75rem 1.5rem;
@@ -358,7 +358,7 @@
   
   .coach-btn:hover {
     background: #fbbf24;
-    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--pl) 30%, transparent);
     transform: translateY(-2px);
   }
   
@@ -368,14 +368,14 @@
   }
   
   .coach-btn.primary {
-    background: linear-gradient(135deg, #06b6d4, #0891b2);
-    color: #f8fafc;
-    border-color: rgba(6, 182, 212, 0.4);
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
   }
   
   .coach-btn.primary:hover {
-    background: linear-gradient(135deg, #0891b2, #06b6d4);
-    box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 30%, transparent);
   }
 
   .coach-btn.large {
@@ -391,9 +391,9 @@
     justify-content: center;
     text-decoration: none;
     font-weight: 700;
-    color: #08111f;
-    background: #f59e0b;
-    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--bg);
+    background: var(--pl);
+    border: 1px solid color-mix(in srgb, var(--pl) 40%, transparent);
     border-radius: 999px;
     font-size: 14.9px;
     padding: 0.82rem 1.52rem;
@@ -406,13 +406,13 @@
     gap: 1rem;
     align-items: flex-start;
     justify-content: space-between;
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(245, 158, 11, 0.12));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, transparent), color-mix(in srgb, var(--pl) 12%, transparent));
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
     padding: 2rem 1.8rem;
   }
-  .coach-bottom-cta h3 { margin: 0 0 0.5rem; color: #f8fafc; font-size: 1.3rem; font-weight: 700; }
-  .coach-bottom-cta p { margin: 0; color: #cbd5e1; font-size: 15px; line-height: 1.6; }
+  .coach-bottom-cta h3 { margin: 0 0 0.5rem; color: var(--text); font-size: 1.3rem; font-weight: 700; }
+  .coach-bottom-cta p { margin: 0; color: var(--text2); font-size: 15px; line-height: 1.6; }
   @media (min-width: 900px) {
     .coach-bottom-cta { flex-direction: row; align-items: center; justify-content: space-between; }
   }

@@ -58,7 +58,7 @@ bloques:
         texto: Rotación AoE normal
         tono: sp
   - pasos:
-      titulo: 📋 Pasos Detallados — Dark Ranger AoE/M+
+      titulo: Pasos Detallados — Dark Ranger AoE/M+
       lista:
         - texto: Asegúrate de que [[Marca del cazador|Debe estar activa en el objetivo prioritario del pack.]] está activa en el objetivo prioritario.
         - texto: Pre-castea [[Caja de puzles de Algeth'ar|2s de casteo. Pre-castear exactamente 2 segundos antes del pull.]] exactamente **2 segundos antes del pull**.

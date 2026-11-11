@@ -29,9 +29,9 @@ Guía en español de Beast Mastery Hunter (WoW Midnight S2). Autor: Mishuko. Res
 ## Dónde está cada cosa
 | Quiero cambiar… | Archivo |
 |---|---|
-| Título, banner de parche | `src/components/Header.astro` |
+| Cabecera, aviso de parche (`PARCHE`) | `src/components/Header.astro` |
 | Lista de cambios, fechas de revisión y del footer | `src/content/data/changelog.json` (lógica en `src/lib/changelog.ts`) |
-| Botones de pestañas | `src/components/TabBar.astro` |
+| Pestañas (lista `TABS`) | `src/components/TabBar.astro` |
 | Orden de secciones, footer | `src/components/guide/GuideContent.astro` |
 | `<head>`, SEO, Analytics (GA4 con page_view por hash) | `src/layouts/MainLayout.astro` |
 | Pestaña X | `src/components/Seccion<X>.astro` (`<div id="tab-<id>" class="tab-panel">`) |
@@ -56,11 +56,17 @@ TABS (`showTab`, `syncTabFromHash`) · TOGGLE (`setPanel` para Rotación/Opener,
 - Si un elemento puede no existir (secciones ocultas), proteger con `if (el)`: un error corta el resto del script.
 - Navegación: `#<tab>` en la URL abre la pestaña (los enlaces internos deben ser `href="#bis"`, nunca URL absoluta).
 
-## CSS (`src/styles/bm-guide.css`, ~3100 líneas)
-Variables en `:root` (~línea 80: `--bg`, `--card`, `--accent`, `--gold`…). Bloques marcados `/* ─── NOMBRE ─── */`; localizar con `grep -n "/\* ───" src/styles/bm-guide.css` y leer solo ese rango. Reutilizar clases existentes: `.box .box-warn/.box-tip/.box-crit/.box-info`, `.card`, `.prio-list`, `.badge`, `.two-col`.
+## Estilos (marca Mishuko)
+Orden de carga en `MainLayout.astro`: `tokens.css` → `bm-guide.css` (heredado) → `marca.css` (manda).
+- `src/styles/tokens.css`: **única fuente** de colores, fuentes, esquinas cortadas (`--clip-card`, `--clip-btn`) y movimiento. Marca `--brand` #c4d70b (verde del logo), `--pl` ámbar (Pack Leader), `--dr` violeta (Dark Ranger). Los nombres antiguos (`--accent`, `--orange`…) son alias.
+- `src/styles/marca.css`: cabecera (`.mk-header`), pestañas (`.mk-tabs`/`.mk-tab`), títulos, cajas, tarjetas, listas, selectores, hechizos, tooltip, footer, animaciones y móvil. Estilos nuevos van aquí.
+- `src/styles/bm-guide.css` (~2.2k líneas): estilos heredados por sección; localizar con `grep -n "/\* ───"` y leer solo ese rango. No añadir colores fijos: usar variables.
+- Nunca colores hex sueltos ni emojis en títulos (`.box-title`, `.card-header`, `.col-header`): las cajas ya llevan icono por tipo (`box-info|warn|tip|crit`).
+- Logo y derivados en `public/brand/` (favicon, apple-touch, `og-image.png` 1200×630 para Discord/redes).
+- Respetar `prefers-reduced-motion` (ya resuelto en tokens.css).
 
 ## Reglas para ahorrar contexto
-- **No leer enteros** `SeccionBiS.astro`, `SeccionSimulacion.astro`, `bm-guide.css`, `bm-guide.js`: usar `grep -n` y leer con offset/limit.
+- **No leer enteros** `SeccionBiS.astro`, `SeccionSimulacion.astro`, `bm-guide.css`, `marca.css`, `bm-guide.js`: usar `grep -n` y leer con offset/limit.
 - Ignorar: `node_modules/`, `dist/`, `.astro/`, `backups/`, `logs/`, `proyecto_completo.txt`, `package-lock.json`, `talent_strings.json`.
 - Para cambiar contenido (textos, builds, opener, rotación) editar el `.md`/`.json`, no los componentes.
 

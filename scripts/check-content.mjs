@@ -55,10 +55,10 @@ function validatePaneles(errors) {
   }
 }
 
-// Pestañas válidas = data-tab de los botones de TabBar.astro
+// Pestañas válidas = ids de la lista TABS de TabBar.astro
 function getValidTabs() {
   const tabBar = fs.readFileSync(path.join(root, 'src', 'components', 'TabBar.astro'), 'utf8');
-  return new Set([...tabBar.matchAll(/data-tab="([^"]+)"/g)].map((m) => m[1]));
+  return new Set([...tabBar.matchAll(/\{\s*id:\s*'([^']+)'/g)].map((m) => m[1]));
 }
 
 function validateChangelog(errors) {

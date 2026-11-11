@@ -1,4 +1,4 @@
-    const tabButtons = Array.from(document.querySelectorAll('.tab-btn[data-tab]'));
+    const tabButtons = Array.from(document.querySelectorAll('.mk-tab[data-tab]'));
     const validTabIds = new Set(tabButtons.map(btn => btn.dataset.tab));
     const tabAliases = {
       mec: 'mecanicas',
@@ -33,7 +33,7 @@
       const hashTab = decodeURIComponent(window.location.hash.replace(/^#/, ''));
       const normalizedTab = tabAliases[hashTab] || hashTab;
       const tabId = validTabIds.has(normalizedTab) ? normalizedTab : 'mecanicas';
-      const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      const btn = document.querySelector(`.mk-tab[data-tab="${tabId}"]`);
       if (btn) showTab(tabId, btn, { updateHash: false, preserveScroll: true });
     }
 
@@ -87,7 +87,7 @@
     // ─── TABS ─────────────────────────────────────────────────────────
     function showTab(id, btn, options = {}) {
       const { updateHash = true, preserveScroll = false } = options;
-      const targetBtn = btn || document.querySelector(`.tab-btn[data-tab="${id}"]`);
+      const targetBtn = btn || document.querySelector(`.mk-tab[data-tab="${id}"]`);
       if (!targetBtn || !validTabIds.has(id)) return;
       const targetPanel = document.getElementById('tab-' + id);
       if (!targetPanel) return;
@@ -95,10 +95,10 @@
       // Opener comparte item de menu con Rotacion: al navegar a Opener,
       // mantenemos resaltado visual en Rotacion para no perder contexto.
       const highlightedTabId = id === 'opener' ? 'rotacion' : id;
-      const highlightedBtn = document.querySelector(`.tab-btn[data-tab="${highlightedTabId}"]`);
+      const highlightedBtn = document.querySelector(`.mk-tab[data-tab="${highlightedTabId}"]`);
 
       document.querySelectorAll('.tab-panel').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.mk-tab').forEach(b => b.classList.remove('active'));
       targetPanel.classList.add('active');
       (highlightedBtn || targetBtn).classList.add('active');
 
@@ -685,7 +685,7 @@ function renderBuilds() {
           </div>
 
           <div class="box box-tip" style="margin-top:0">
-            <div class="box-title">💡 Notas del build</div>
+            <div class="box-title">Notas del build</div>
             <ul class="build-notes">${notesHtml}</ul>
           </div>
         </div>
@@ -776,7 +776,7 @@ function renderBossPanel(i) {
     const isAdd    = s.type === 'add';
     const isRemove = s.type === 'remove';
     const accentColor = isAdd ? 'var(--green2)' : isRemove ? 'var(--red2)' : 'var(--accent)';
-    const bgColor     = isAdd ? 'rgba(67,160,71,.18)' : isRemove ? 'rgba(229,57,53,.15)' : 'rgba(79,195,247,.14)';
+    const bgColor     = isAdd ? 'color-mix(in srgb, var(--green) 18%, transparent)' : isRemove ? 'color-mix(in srgb, var(--red) 15%, transparent)' : 'color-mix(in srgb, var(--accent) 14%, transparent)';
     const borderClass = isAdd ? 'error-tip' : isRemove ? 'error-warn' : 'error-info';
     return `
       <div class="error-item ${borderClass}">
@@ -792,7 +792,7 @@ function renderBossPanel(i) {
 
   // Notes — auto-linkear texto
   const noteTypes  = { crit: 'box-crit', warn: 'box-warn', tip: 'box-tip', info: 'box-info' };
-  const noteTitles = { crit: '🚨 Crítico', warn: '⚠️ Atención', tip: '💡 Consejo', info: 'ℹ️ Nota' };
+  const noteTitles = { crit: 'Crítico', warn: 'Atención', tip: 'Consejo', info: 'Nota' };
   const notesHtml = build.notes.map(n => `
     <div class="box ${noteTypes[n.type]}" style="margin:8px 0">
       <div class="box-title">${noteTitles[n.type]}</div>
@@ -808,7 +808,7 @@ function renderBossPanel(i) {
         <!-- HERO TALENT (izquierda) -->
         <div style="flex-shrink:0; text-align:center;">
           <img src="${heroIcon}" width="78" height="78"
-               style="border:3px solid var(--accent2); border-radius:50%; box-shadow:0 0 20px rgba(79,195,247,0.45);"
+               style="border:3px solid var(--accent2); border-radius:50%; box-shadow:0 0 20px color-mix(in srgb, var(--accent) 45%, transparent);"
                alt="${heroTalent}">
           <div style="margin-top:10px; font-size:14.5px; font-weight:700; color:var(--accent);">
             ${heroTalent}
@@ -817,7 +817,7 @@ function renderBossPanel(i) {
 
         <!-- Nombre del Boss -->
         <div style="flex:1; padding-top:8px;">
-          <div style="font-family:'Cinzel',serif; font-size:24px; font-weight:700; color:var(--gold); letter-spacing:1px;">
+          <div style="font-family:var(--font-display); font-size:24px; font-weight:700; color:var(--gold); letter-spacing:1px;">
             ${b.name}
           </div>
           <div style="color:var(--text2); font-size:16px; margin-top:4px;">
@@ -827,7 +827,7 @@ function renderBossPanel(i) {
       </div>
 
       <div class="box box-info" style="margin-bottom:22px;">
-  <div class="box-title">📖 Resumen</div>
+  <div class="box-title">Resumen</div>
   ${autoLink(b.summary)}
 </div>
 

@@ -9,7 +9,7 @@ bloques:
     titulo: <img src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp" alt="Dark Ranger" class="box-title-icon"> Dark Ranger — M+
     texto: La clave es gestionar la ventana de [[Fuego devastador|10s de los 15s de Cólera de las bestias. Maximiza Flecha negra y Flecha lastimera dentro de ella.]] y **nunca lanzar [[Matar|Nunca dos veces seguidas — siempre intercala otra habilidad.]] dos veces seguidas** — siempre intercala otra habilidad para que [[Aliado de la naturaleza|+30% daño al siguiente Matar tras usar otras habilidades.]] esté activo.
   - columnas:
-      - titulo: 🖤 Dark Ranger — ST
+      - titulo: Dark Ranger — ST
         color: blue
         pasos:
           - icono: inv_misc_enggizmos_18
@@ -21,7 +21,7 @@ bloques:
           - texto: "[[Disparo con púas|Relleno principal. Recarga Aliado de la naturaleza.]] — relleno principal."
           - texto: "[[Flecha negra|Fuera de Cólera de las bestias como relleno secundario.]] — relleno secundario."
           - texto: "[[Disparo de cobra|Relleno final de Enfoque.]] — relleno final."
-      - titulo: 🖤 Dark Ranger — AoE/M+
+      - titulo: Dark Ranger — AoE/M+
         color: orange
         pasos:
           - icono: inv_misc_enggizmos_18

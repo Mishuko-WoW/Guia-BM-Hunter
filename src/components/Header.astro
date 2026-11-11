@@ -4,62 +4,65 @@ import { changelog, formatShort } from '../lib/changelog';
 // Entradas visibles en la cabecera (el historial completo queda en changelog.json)
 const CHANGELOG_VISIBLE = 2;
 const recentChanges = changelog.slice(0, CHANGELOG_VISIBLE);
+
+// Aviso de parche (franja bajo la cabecera). Vaciar `texto` para ocultarla.
+const PARCHE = { titulo: 'Parche — 14 de octubre', texto: "Nueva raid Kith'ix con objetos importantes" };
 ---
 
-<!-- ── TOOLTIP ──────────────────────────────────────────────────── -->
-<div class="tooltip" id="tooltip">
+<!-- Tooltip de hechizos (lo posiciona bm-guide.js) -->
+<div class="tooltip" id="tooltip" role="tooltip">
   <div class="tooltip-name" id="tt-name"></div>
   <div class="tooltip-type" id="tt-type"></div>
   <div class="tooltip-desc" id="tt-desc"></div>
 </div>
 
-<!-- ── HEADER ───────────────────────────────────────────────────── -->
-<div class="guide-header">
-  <div class="header-inner">
-    <div class="header-icon" aria-label="Pack Leader y Dark Ranger" role="img">
-      <img
-        src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png"
-        width="108"
-        height="108"
-        class="header-icon-layer base"
-        alt="Pack Leader"
-      />
-      <img
-        src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp"
-        width="108"
-        height="108"
-        class="header-icon-layer wipe"
-        alt="Dark Ranger"
-      />
-      <span class="header-icon-sweep" aria-hidden="true"></span>
-    </div>
-    <div class="header-text">
-      <div class="header-main-copy">
-        <h1>Guía Hunter BM Midnight S2<br> Talentos, Rotación y Builds PvE</h1>
-        <p>Talentos, rotación, opener y BiS de Hunter BM para PVE</p>
-        <div class="header-hero-note">Hero Talents: Pack Leader y Dark Ranger</div>
-      </div>
-      <div class="header-action-row">
-        <div class="changelog-box">
-          <div class="changelog-title">📝 Lista de cambios</div>
-          <ul class="changelog-list">
-            {recentChanges.map((c) => (
-              <li>
-                <span class="changelog-date">{formatShort(c.fecha)}:</span>
-                {c.texto} <a href={`#${c.pestana}`}>{c.enlace}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
+<header class="mk-header">
+  <div class="mk-header__bg" aria-hidden="true">
+    <svg class="mk-claws" viewBox="0 0 400 300" preserveAspectRatio="xMaxYMid slice">
+      <path d="M250 -20 L190 320" /><path d="M300 -20 L240 320" /><path d="M350 -20 L290 320" />
+    </svg>
   </div>
-</div>
 
-<!-- ── BUFF BANNER ─────────────────────────────────────────────── -->
-<div class="buff-banner">
-  <span class="buff-banner-icon">🔥</span>
-  <span class="buff-banner-title">PARCHE — 14 de octubre:</span>
-  <span class="buff-banner-text">📈 Nueva raid Kith'ix con objetos importantes</span>
-  <span class="buff-banner-icon"></span>
-</div>
+  <div class="mk-header__inner">
+    <a class="mk-brand" href="#mecanicas" aria-label="Inicio de la guía">
+      <img src="/brand/mishuko-logo.webp" width="128" height="128" alt="Logo de Mishuko" fetchpriority="high" />
+    </a>
+
+    <div class="mk-title">
+      <p class="mk-eyebrow">World of Warcraft <i>·</i> Midnight <i>·</i> Temporada 2</p>
+      <h1>
+        <span class="mk-h1-main">Guía Hunter <em>BM</em></span>
+        <span class="mk-h1-sub">Talentos, Rotación y Builds PvE</span>
+      </h1>
+      <div class="mk-heroes">
+        <span class="mk-chip mk-chip--pl">
+          <img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="22" height="22" alt="" />
+          Pack Leader
+        </span>
+        <span class="mk-chip mk-chip--dr">
+          <img src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp" width="22" height="22" alt="" />
+          Dark Ranger
+        </span>
+      </div>
+    </div>
+
+    <aside class="mk-changelog" aria-label="Últimos cambios">
+      <div class="mk-changelog__title">Últimos cambios</div>
+      <ul class="mk-changelog__list">
+        {recentChanges.map((c) => (
+          <li>
+            <time datetime={c.fecha}>{formatShort(c.fecha)}</time>
+            <span>{c.texto} <a href={`#${c.pestana}`}>{c.enlace}</a></span>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </div>
+
+  {PARCHE.texto && (
+    <div class="mk-patch">
+      <span class="mk-patch__tag">{PARCHE.titulo}</span>
+      <span class="mk-patch__text">{PARCHE.texto}</span>
+    </div>
+  )}
+</header>

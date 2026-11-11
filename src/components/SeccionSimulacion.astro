@@ -146,7 +146,7 @@
 
     <section id="simulacion-top-gear" class="card card-accent-orange">
       <div class="tag orange">Prioridad Alta</div>
-      <h2 style="color: #f97316">Top Gear - La herramienta principal</h2>
+      <h2 style="color: var(--pl)">Top Gear - La herramienta principal</h2>
       <p style="font-size: 1.1rem; margin-bottom: 2.5rem;">Compara múltiples piezas y encuentra automáticamente la mejor combinación posible</p>
 
       <div class="layout-grid aside-left">
@@ -310,7 +310,7 @@
       </div>
     </section>
 
-    <section id="simulacion-weekly-vault" class="card card-accent-red" style="border-color: rgba(239, 68, 68, 0.3);">
+    <section id="simulacion-weekly-vault" class="card card-accent-red" style="border-color: color-mix(in srgb, var(--red) 30%, transparent);">
       <div class="card-header">
         <div>
           <div class="section-label label-red">Decisión crítica</div>
@@ -369,9 +369,9 @@
       </div>
     </section>
 
-    <section id="simulacion-stat-weights" class="card card-accent-critical" style="border-color: rgba(248, 113, 113, 0.15);">
+    <section id="simulacion-stat-weights" class="card card-accent-critical" style="border-color: color-mix(in srgb, var(--red2) 15%, transparent);">
       <div class="tag critical">Precaución</div>
-      <h2 style="color: #f87171;">Stat Weights</h2>
+      <h2 style="color: var(--red2);">Stat Weights</h2>
       <p style="font-size: 1.1rem; margin-bottom: 2rem;">Úsalos con cabeza - no son universales</p>
 
       <div class="layout-grid even">
@@ -391,7 +391,7 @@
           <ul class="bullet-list">
             <li>Estos valores <strong>cambian según tu equipo</strong>.</li>
             <li>Dependen de tu build, tus trinkets y tu nivel de gear.</li>
-            <li><span style="color:#f87171; font-weight:700;">No son universales.</span> Los de otro jugador no sirven para ti.</li>
+            <li><span style="color:var(--red2); font-weight:700;">No son universales.</span> Los de otro jugador no sirven para ti.</li>
           </ul>
 
           <div class="callout danger">
@@ -491,29 +491,29 @@
 <style>
   #tab-simulacion {
     --bg-base: #070a13;
-    --bg-surface: #101623;
-    --bg-surface-hover: #161e30;
+    --bg-surface: var(--bg2);
+    --bg-surface-hover: var(--bg3);
     --bg-surface-raised: #1a2335;
 
     --border-light: rgba(255, 255, 255, 0.08);
     --border-highlight: rgba(255, 255, 255, 0.15);
 
-    --accent-gold: #f59e0b;
-    --accent-gold-dim: rgba(245, 158, 11, 0.15);
-    --accent-cyan: #06b6d4;
-    --accent-cyan-dim: rgba(6, 182, 212, 0.15);
-    --accent-red: #ef4444;
-    --accent-red-dim: rgba(239, 68, 68, 0.15);
-    --accent-green: #10b981;
+    --accent-gold: var(--pl);
+    --accent-gold-dim: color-mix(in srgb, var(--pl) 15%, transparent);
+    --accent-cyan: var(--accent);
+    --accent-cyan-dim: color-mix(in srgb, var(--accent) 15%, transparent);
+    --accent-red: var(--red);
+    --accent-red-dim: color-mix(in srgb, var(--red) 15%, transparent);
+    --accent-green: var(--green);
 
     --gold: var(--accent-gold);
     --cyan: var(--accent-cyan);
-    --amber: #f59e0b;
+    --amber: var(--pl);
     --bg-card-2: var(--bg-surface-hover);
 
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-muted: #8492a6;
+    --text-primary: var(--text);
+    --text-secondary: var(--text2);
+    --text-muted: var(--text3);
 
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
@@ -548,12 +548,12 @@
   .card { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm); }
   .card-stacked { display: flex; flex-direction: column; gap: 2.5rem; }
 
-  .card-accent-blue { border-color: rgba(6, 182, 212, 0.2); }
-  .card-accent-green { border-color: rgba(16, 185, 129, 0.24); }
-  .card-accent-gold { border-color: rgba(245, 158, 11, 0.22); }
-  .card-accent-orange { border-color: rgba(249, 115, 22, 0.24); }
-  .card-accent-red { border-color: rgba(239, 68, 68, 0.28); }
-  .card-accent-critical { border-color: rgba(248, 113, 113, 0.2); }
+  .card-accent-blue { border-color: color-mix(in srgb, var(--accent) 20%, transparent); }
+  .card-accent-green { border-color: color-mix(in srgb, var(--green) 24%, transparent); }
+  .card-accent-gold { border-color: color-mix(in srgb, var(--pl) 22%, transparent); }
+  .card-accent-orange { border-color: color-mix(in srgb, var(--pl) 24%, transparent); }
+  .card-accent-red { border-color: color-mix(in srgb, var(--red) 28%, transparent); }
+  .card-accent-critical { border-color: color-mix(in srgb, var(--red2) 20%, transparent); }
 
   .card-accent-blue h3,
   .card-accent-blue h4 { color: var(--accent-cyan); }
@@ -562,11 +562,11 @@
   .card-accent-gold h3,
   .card-accent-gold h4 { color: var(--accent-gold); }
   .card-accent-orange h3,
-  .card-accent-orange h4 { color: #f97316; }
+  .card-accent-orange h4 { color: var(--pl); }
   .card-accent-red h3,
   .card-accent-red h4,
   .card-accent-critical h3,
-  .card-accent-critical h4 { color: #f87171; }
+  .card-accent-critical h4 { color: var(--red2); }
 
   .layout-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
   @media (min-width: 900px) {
@@ -617,17 +617,17 @@
 
   .feature-box { background: var(--bg-base); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem; transition: all 0.2s ease; display: flex; align-items: flex-start; gap: 12px; }
   .feature-box:hover { border-color: var(--accent-gold); background: var(--bg-surface-hover); }
-  .feature-box .icon { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-gold-dim); border: 1px solid rgba(245, 158, 11, 0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .feature-box .icon { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-gold-dim); border: 1px solid color-mix(in srgb, var(--pl) 30%, transparent); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
   .feature-box h4 { font-size: 14px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.05em; }
   .feature-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.4; }
 
   .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
-  .tag.blue { background: var(--accent-cyan-dim); color: var(--accent-cyan); border: 1px solid rgba(6, 182, 212, 0.2); }
-  .tag.green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.25); }
-  .tag.gold { background: var(--accent-gold-dim); color: var(--accent-gold); border: 1px solid rgba(245, 158, 11, 0.2); }
-  .tag.red { background: var(--accent-red-dim); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.2); }
-  .tag.critical { background: rgba(248, 113, 113, 0.14); color: #fda4af; border: 1px solid rgba(248, 113, 113, 0.35); }
-  .tag.orange { background: rgba(249, 115, 22, 0.15); color: #f97316; border: 1px solid rgba(249, 115, 22, 0.25); }
+  .tag.blue { background: var(--accent-cyan-dim); color: var(--accent-cyan); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); }
+  .tag.green { background: color-mix(in srgb, var(--green) 15%, transparent); color: var(--accent-green); border: 1px solid color-mix(in srgb, var(--green) 25%, transparent); }
+  .tag.gold { background: var(--accent-gold-dim); color: var(--accent-gold); border: 1px solid color-mix(in srgb, var(--pl) 20%, transparent); }
+  .tag.red { background: var(--accent-red-dim); color: var(--accent-red); border: 1px solid color-mix(in srgb, var(--red) 20%, transparent); }
+  .tag.critical { background: color-mix(in srgb, var(--red2) 14%, transparent); color: #fda4af; border: 1px solid color-mix(in srgb, var(--red2) 35%, transparent); }
+  .tag.orange { background: color-mix(in srgb, var(--pl) 15%, transparent); color: var(--pl); border: 1px solid color-mix(in srgb, var(--pl) 25%, transparent); }
 
   h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
   h3 { font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan); margin: 1.5rem 0 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -680,8 +680,8 @@
 
   .step-list { list-style: none; counter-reset: steps; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
   .step-list li { position: relative; padding-left: 2.5rem; color: var(--text-secondary); font-size: 15px; }
-  .step-list li::before { counter-increment: steps; content: counter(steps); position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%; background: var(--accent-cyan-dim); color: var(--accent-cyan); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(6, 182, 212, 0.3); }
-  .step-list li:last-child::before { color: var(--accent-gold); background: var(--accent-gold-dim); border-color: rgba(245, 158, 11, 0.35); }
+  .step-list li::before { counter-increment: steps; content: counter(steps); position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%; background: var(--accent-cyan-dim); color: var(--accent-cyan); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+  .step-list li:last-child::before { color: var(--accent-gold); background: var(--accent-gold-dim); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
 
   .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
   .bullet-list li { position: relative; padding-left: 1.5rem; color: var(--text-secondary); font-size: 15px; }
@@ -693,15 +693,15 @@
   .status-list li.bad .icon { color: var(--accent-red); font-weight: bold; }
 
   .callout { padding: 1rem 1.25rem; border-radius: var(--radius-md); display: flex; gap: 1rem; align-items: flex-start; margin: 1.5rem 0; font-size: 14.5px; }
-  .callout.warning { background: var(--accent-gold-dim); border: 1px solid rgba(245, 158, 11, 0.3); }
-  .callout.danger { background: var(--accent-red-dim); border: 1px solid rgba(239, 68, 68, 0.3); }
-  .callout.info { background: var(--accent-cyan-dim); border: 1px solid rgba(6, 182, 212, 0.3); }
+  .callout.warning { background: var(--accent-gold-dim); border: 1px solid color-mix(in srgb, var(--pl) 30%, transparent); }
+  .callout.danger { background: var(--accent-red-dim); border: 1px solid color-mix(in srgb, var(--red) 30%, transparent); }
+  .callout.info { background: var(--accent-cyan-dim); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
   .callout-icon { font-size: 1.25rem; flex-shrink: 0; }
 
   .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; }
   .section-label { display: inline-flex; padding: 0.3rem 0.7rem; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.8rem; }
-  .label-critical { color: #fda4af; background: rgba(248, 113, 113, 0.14); border: 1px solid rgba(248, 113, 113, 0.35); }
-  .label-red { color: var(--accent-red); background: var(--accent-red-dim); border: 1px solid rgba(239, 68, 68, 0.35); }
+  .label-critical { color: #fda4af; background: color-mix(in srgb, var(--red2) 14%, transparent); border: 1px solid color-mix(in srgb, var(--red2) 35%, transparent); }
+  .label-red { color: var(--accent-red); background: var(--accent-red-dim); border: 1px solid color-mix(in srgb, var(--red) 35%, transparent); }
   .card-h2 { margin-bottom: 0.35rem; }
   .card-subtitle { color: var(--text-muted); margin-bottom: 0; font-size: 1rem; line-height: 1.6; }
 
@@ -714,8 +714,8 @@
   .body { font-size: 1rem; line-height: 1.65; color: var(--text-secondary); }
   .steps { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin: 0 0 1.25rem; }
   .steps li { color: var(--text-secondary); font-size: 15px; line-height: 1.6; display: flex; align-items: flex-start; gap: 0.65rem; }
-  .step-num { width: 24px; height: 24px; border-radius: 50%; flex: 0 0 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--accent-cyan); background: var(--accent-cyan-dim); border: 1px solid rgba(6, 182, 212, 0.35); margin-top: 1px; }
-  .steps li:last-child .step-num { color: var(--accent-gold); background: var(--accent-gold-dim); border-color: rgba(245, 158, 11, 0.35); }
+  .step-num { width: 24px; height: 24px; border-radius: 50%; flex: 0 0 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--accent-cyan); background: var(--accent-cyan-dim); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); margin-top: 1px; }
+  .steps li:last-child .step-num { color: var(--accent-gold); background: var(--accent-gold-dim); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
   .bullets { list-style: none; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
   .bullets li { position: relative; padding-left: 1.1rem; color: var(--text-secondary); font-size: 15px; line-height: 1.6; }
   .bullets li::before { content: "•"; position: absolute; left: 0; top: 0; color: var(--accent-red); font-weight: 700; }
@@ -728,9 +728,9 @@
   .vault-tip.amber { border-left-color: var(--amber); }
   .vault-tip.amber strong { color: var(--amber); }
 
-  .callout.callout-info { background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.35); }
-  .callout.callout-warn { background: rgba(245, 158, 11, 0.13); border: 1px solid rgba(245, 158, 11, 0.35); }
-  .callout.callout-gold { background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.35); }
+  .callout.callout-info { background: color-mix(in srgb, var(--accent) 12%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+  .callout.callout-warn { background: color-mix(in srgb, var(--pl) 13%, transparent); border: 1px solid color-mix(in srgb, var(--pl) 35%, transparent); }
+  .callout.callout-gold { background: color-mix(in srgb, var(--pl) 14%, transparent); border: 1px solid color-mix(in srgb, var(--pl) 35%, transparent); }
   .callout-text { color: var(--text-secondary); line-height: 1.5; }
 
   .video-placeholder { background: var(--bg-base); border: 2px dashed var(--border-highlight); border-radius: var(--radius-md); height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: var(--text-muted); transition: border-color 0.3s; margin-bottom: 1rem; width: 100%; }
@@ -762,15 +762,15 @@
   }
 
   .final-card {
-    background: rgba(245, 158, 11, 0.04);
-    border: 1px solid rgba(148, 163, 184, 0.24);
+    background: color-mix(in srgb, var(--pl) 4%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text2) 24%, transparent);
     border-radius: var(--radius-md);
     padding: 1.3rem 1.2rem;
   }
 
   .final-card.premium {
-    border-color: rgba(245, 158, 11, 0.28);
-    background: rgba(245, 158, 11, 0.04);
+    border-color: color-mix(in srgb, var(--pl) 28%, transparent);
+    background: color-mix(in srgb, var(--pl) 4%, transparent);
   }
 
   .final-card .final-card-title {
@@ -817,7 +817,7 @@
   }
 
   .check.ok { color: var(--accent-green); }
-  .check.bad { color: #f87171; }
+  .check.bad { color: var(--red2); }
 
   .cta-bar {
     display: flex;
@@ -825,7 +825,7 @@
     gap: 1rem;
     align-items: flex-start;
     justify-content: space-between;
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(245, 158, 11, 0.08));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, transparent), color-mix(in srgb, var(--pl) 8%, transparent));
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-lg);
     padding: 1.25rem 1.2rem;
@@ -863,9 +863,9 @@
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 0.01em;
-    color: #08111f;
+    color: var(--bg);
     background: var(--accent-gold);
-    border: 1px solid rgba(245, 158, 11, 0.4);
+    border: 1px solid color-mix(in srgb, var(--pl) 40%, transparent);
     border-radius: 999px;
     padding: 0.62rem 1rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
@@ -874,14 +874,14 @@
 
   .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px -10px rgba(245, 158, 11, 0.9);
+    box-shadow: 0 8px 20px -10px color-mix(in srgb, var(--pl) 90%, transparent);
     filter: brightness(1.05);
   }
 
   .sim-lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(2, 6, 12, 0.9);
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
     --sim-open-img-width: 640px;
     --sim-open-img-height: 360px;
     --sim-lightbox-scale: 1.6;
@@ -915,7 +915,7 @@
     border-radius: 0;
     border: 0;
     background: transparent;
-    color: #f8fafc;
+    color: var(--text);
     font-size: 28px;
     font-weight: 700;
     line-height: 1;

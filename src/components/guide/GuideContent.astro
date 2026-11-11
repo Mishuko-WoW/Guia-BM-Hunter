@@ -37,11 +37,16 @@ const lastUpdate = latestChangeDate();
   <SeccionCoaching />
 </div>
 
-<div class="guide-footer">
-  <div class="guide-footer-note">
-    ⚠️ Esta guía está pensada como recurso de apoyo para facilitar la comprensión de la clase. El contenido siempre estará actualizado teniendo en cuenta fuentes como Wowhead, Icy Veins y mi experiencia personal.
+<footer class="mk-footer">
+  <div class="mk-footer__inner">
+    <img src="/brand/mishuko-logo.webp" width="64" height="64" alt="" loading="lazy" />
+    <div>
+      <p class="mk-footer__meta">
+        Creada y actualizada por <strong>Mishuko</strong>{lastUpdate && <> · <time datetime={lastUpdate}>{formatLong(lastUpdate)}</time></>}
+      </p>
+      <p class="mk-footer__note">
+        Recurso de apoyo para entender la clase. Basado en Wowhead, Icy Veins, WarcraftLogs y mi experiencia personal.
+      </p>
+    </div>
   </div>
-  <div class="guide-footer-meta">
-    Guía en constante actualización. · Creada y actualizada por <span>Mishuko{lastUpdate && ` · ${formatLong(lastUpdate)}`}</span> 
-  </div>
-</div>
+</footer>

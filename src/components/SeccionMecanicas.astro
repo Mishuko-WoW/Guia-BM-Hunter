@@ -6,11 +6,11 @@ import { Image } from 'astro:assets';
   <h2>Visión General del Beast Mastery Hunter</h2>
 
   <div class="box box-info">
-    <div class="box-title">📖 Resumen</div>
+    <div class="box-title">Resumen</div>
 
     <p>
-      En esta sección se explican las mecánicas básicas del Beast Mastery Hunter en PvE para la <strong style="color: #ffb100; font-weight: 700;">Season 2 (Parche 12.1)</strong>:
-      cómo funciona su rotación, la gestión del enfoque, la importancia de las mascotas, el impacto del nuevo <strong>Tier Set S2</strong> y las diferencias clave entre <strong style="color: #ffb100; font-weight: 700;">Pack Leader</strong> y <strong style="color: #ffb100; font-weight: 700;">Dark Ranger</strong>.
+      En esta sección se explican las mecánicas básicas del Beast Mastery Hunter en PvE para la <strong style="color: var(--pl); font-weight: 700;">Season 2 (Parche 12.1)</strong>:
+      cómo funciona su rotación, la gestión del enfoque, la importancia de las mascotas, el impacto del nuevo <strong>Tier Set S2</strong> y las diferencias clave entre <strong style="color: var(--pl); font-weight: 700;">Pack Leader</strong> y <strong style="color: var(--pl); font-weight: 700;">Dark Ranger</strong>.
     </p>
     <br>
     <p>
@@ -58,7 +58,7 @@ import { Image } from 'astro:assets';
 <h3>Cambios de la Clase — Season 2 (Parche 12.1)</h3>
 
 <div class="card box-info" style="margin-bottom: 20px; font-size: 18px;">
-  <div class="box-title">🔄 Resumen General de Cambios</div>
+  <div class="box-title">Resumen General de Cambios</div>
   <p style="font-size: inherit;">
     El Cazador Bestias se mantiene prácticamente igual en la Season 2. Se ha <strong>reducido su daño de burst</strong>, pero a cambio se ha <strong>aumentado su daño sostenido base</strong>.
   </p>
@@ -70,18 +70,18 @@ import { Image } from 'astro:assets';
 
 
 <!-- TARJETA TIER SET S2 (NUEVA) -->
-<div class="card" style="border: 1px solid var(--purple, #8b5cf6); margin-bottom: 20px;">
+<div class="card" style="border: 1px solid var(--purple, var(--dr)); margin-bottom: 20px;">
   <div class="card-header">
     
     <Image src="https://wow.zamimg.com/images/wow/icons/large/inv_121_crest_myth.jpg" alt="Tier Set Season 2" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />
-    Bonus de Tier Set — <strong style="color: #ffb100;">Season 2 (Parche 12.1)</strong>
+    Bonus de Tier Set — <strong style="color: var(--pl);">Season 2 (Parche 12.1)</strong>
   </div>
   <div class="card-rows">
     <div class="data-row">
-      <strong style="color: #8b5cf6;">(2-Set):</strong> <span class="sp" data-name="Disparo con púas" data-type="Habilidad Activa" data-desc="Sangrado a distancia. Otorga Frenesí a la mascota, genera enfoque y reduce el CD de Cólera de las bestias.">Disparo con púas</span> hace que tus mascotas lancen 1 <span class="sp" data-name="Pisotón" data-type="Talento" data-desc="Tu mascota pisotea el suelo e inflige daño físico en área a los enemigos cercanos.">Pisotón</span> adicional al 50% de efectividad.
+      <strong style="color: var(--dr);">(2-Set):</strong> <span class="sp" data-name="Disparo con púas" data-type="Habilidad Activa" data-desc="Sangrado a distancia. Otorga Frenesí a la mascota, genera enfoque y reduce el CD de Cólera de las bestias.">Disparo con púas</span> hace que tus mascotas lancen 1 <span class="sp" data-name="Pisotón" data-type="Talento" data-desc="Tu mascota pisotea el suelo e inflige daño físico en área a los enemigos cercanos.">Pisotón</span> adicional al 50% de efectividad.
     </div>
     <div class="data-row">
-      <strong style="color: #ffb100;">(4-Set):</strong> Cada <span class="sp" data-name="Pisotón" data-type="Talento" data-desc="Tu mascota pisotea el suelo e inflige daño físico en área.">Pisotón</span> acumula 1 carga de <span class="bf" data-name="Colmillos de Cobra" data-type="Buff de Tier Set S2" data-desc="Aumenta el daño del siguiente Disparo de cobra un 15% (máx 4 cargas). En AoE, hace que Disparo de cobra se beneficie de Tajo de la bestia al 20%.">Colmillos de Cobra</span> (hasta 4 cargas máx).
+      <strong style="color: var(--pl);">(4-Set):</strong> Cada <span class="sp" data-name="Pisotón" data-type="Talento" data-desc="Tu mascota pisotea el suelo e inflige daño físico en área.">Pisotón</span> acumula 1 carga de <span class="bf" data-name="Colmillos de Cobra" data-type="Buff de Tier Set S2" data-desc="Aumenta el daño del siguiente Disparo de cobra un 15% (máx 4 cargas). En AoE, hace que Disparo de cobra se beneficie de Tajo de la bestia al 20%.">Colmillos de Cobra</span> (hasta 4 cargas máx).
     </div>
     <div class="data-row">
       💡 <strong>Impacto en Rotación:</strong> En Single-Target, consume las cargas con <span class="sp" data-name="Disparo de cobra" data-type="Habilidad Activa" data-desc="Ataque de relleno que reduce 1s el CD de Matar.">Disparo de cobra</span> al llegar a 3-4 cargas. En AoE, úsalo solo cuando tengas cargas Y <span class="bf" data-name="Tajo de la bestia" data-type="Buff de Área" data-desc="Tus mascotas dañan en área tras usar Paliza salvaje.">Tajo de la bestia</span> activo.
@@ -188,11 +188,11 @@ import { Image } from 'astro:assets';
   margin-top: 20px;
   padding: 18px 20px;
   border-radius: 10px;
-  border: 1px solid rgba(180, 120, 255, 0.35);
+  border: 1px solid color-mix(in srgb, var(--dr) 35%, transparent);
   background: linear-gradient(
     180deg,
-    rgba(25, 20, 40, 0.9),
-    rgba(15, 12, 25, 0.9)
+    color-mix(in srgb, var(--bg3) 90%, transparent),
+    color-mix(in srgb, var(--bg2) 90%, transparent)
   );
 
   display: flex;

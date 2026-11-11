@@ -38,10 +38,10 @@ bloques:
         texto: Rotación AoE
         tono: sp
   - caja: warn
-    titulo: ⚠️ Posición crítica en AoE
+    titulo: Posición crítica en AoE
     texto: Posiciónate a la **misma altura** que los enemigos antes de entrar en la ventana de CD. [[¡Estampida!|Sin ajuste de altitud. Falla en terreno irregular.|Proc AoE]] no ajusta altura y la mayoría de animales fallarán si hay diferencia de plano.
   - pasos:
-      titulo: 📋 Pasos Detallados — AoE
+      titulo: Pasos Detallados — AoE
       lista:
         - pre: Pre-pull
           texto: Aplica [[Marca del cazador|Siempre al objetivo prioritario.]] al objetivo prioritario del pack.
