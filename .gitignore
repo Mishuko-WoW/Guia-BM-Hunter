@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# copias locales y logs (no se suben)
+backups/
+logs/
+proyecto_completo.txt

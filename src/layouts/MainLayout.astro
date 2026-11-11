@@ -10,16 +10,35 @@ const {
   title = 'Guía Hunter BM — Midnight S2',
   description = 'Mejores talentos, rotación y equipo BiS para Hunter BM en Midnight Season 2. ¡Guía PvE 100% actualizada!.',
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/favicon.png', Astro.site).href;
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Vista previa al compartir (Discord, redes sociales) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Guía Hunter BM" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#0d0f12" />
 
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
@@ -71,9 +90,6 @@ const {
       page_location: window.location.href,
       page_title: document.title + ' - ' + hash.replace('#', '')
     });
-    
-    // Debug: puedes eliminar esto después de verificar que funciona
-    console.log('📊 Analytics tracking:', pagePath);
   }
 
   window.addEventListener('load', trackHashChange);

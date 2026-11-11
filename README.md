@@ -1,6 +1,6 @@
-# 🏹 Beast Mastery Hunter — Guía Midnight S1
+# 🏹 Beast Mastery Hunter — Guía Midnight S2
 
-Guía completa para jugar Beast Mastery Hunter en **World of Warcraft: Midnight, Temporada 1**.
+Guía completa para jugar Beast Mastery Hunter en **World of Warcraft: Midnight, Temporada 2**.
 Cubre mecánicas, rotación, stats, talentos, BiS, macros, mascotas y más.
 
 Creada y mantenida por **Mishuko#2340** como proyecto personal para la comunidad hispanohablante de WoW.
@@ -28,7 +28,7 @@ Creada y mantenida por **Mishuko#2340** como proyecto personal para la comunidad
 
 La guía está disponible online en:
 
-**[https://mishuko-wow.github.io/Guia-BM-Hunter/](https://mishuko-wow.github.io/Guia-BM-Hunter/)**
+**[https://guiahunterbm.com](https://guiahunterbm.com)**
 
 No necesitas instalar nada ni descargar ningún archivo.
 

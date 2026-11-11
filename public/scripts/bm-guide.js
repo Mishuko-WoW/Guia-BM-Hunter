@@ -1047,7 +1047,6 @@ window.sendReport = async function () {
     alert("❌ No se pudo enviar el reporte (revisa consola / webhook)");
   }
 };
-``
 
 function copyBossStr(id, str) {
   const btn = document.getElementById(id);
@@ -1062,8 +1061,11 @@ function copyBossStr(id, str) {
 // Init
 (function () {
   renderBuilds();
-  activeBossBuilds[0] = bossData[0].builds.findIndex(b => b.rec);
-  renderBossPanel(0);
+  // La sección de jefes puede estar oculta (comentada en SeccionTalentos.astro)
+  if (document.getElementById('boss-panels') && bossData.length) {
+    activeBossBuilds[0] = bossData[0].builds.findIndex(b => b.rec);
+    renderBossPanel(0);
+  }
 })();
 
 document.addEventListener('DOMContentLoaded', function() {

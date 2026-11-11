@@ -19,8 +19,12 @@ function walk(dir) {
 
 function readFrontmatter(filePath) {
   const raw = fs.readFileSync(filePath, 'utf8');
-  const match = raw.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return null;
+  // \r? para aceptar saltos de línea de Windows (CRLF)
+  const match = raw.match(/^﻿?---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match) {
+    console.warn(`Aviso: ${filePath} no tiene frontmatter, se omite`);
+    return null;
+  }
   return yaml.load(match[1]);
 }
 

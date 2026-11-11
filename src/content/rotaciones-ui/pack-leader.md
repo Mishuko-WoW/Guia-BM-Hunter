@@ -35,7 +35,7 @@ extraBoxes:
     title: Sobre las guias escritas
     text: Las guias son ideal teorico; si hay conflicto, mandan los datos reales.
   - className: box box-warn
-    title: Estado AoE Midnight S1
+    title: Estado AoE Midnight S2
     text: Hay bug activo de dano AoE y poco scaling con celeridad esta temporada.
   - className: box box-crit
     title: No multi-dotear
