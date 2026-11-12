@@ -1,0 +1,30 @@
+---
+// Barra superior para cambiar entre Midnight y Forever (y volver a la portada)
+import { REALMS, type RealmId } from '../lib/realms';
+
+interface Props {
+  actual: RealmId;
+}
+const { actual } = Astro.props;
+---
+
+<div class="mk-realmbar">
+  <div class="mk-realmbar__inner">
+    <a class="mk-realmbar__home" href="/" aria-label="Volver a la portada">
+      <img src="/brand/mishuko-logo.webp" width="26" height="26" alt="" />
+      <span>Mishuko</span>
+    </a>
+    <nav class="mk-realm-switch" aria-label="Versión del juego">
+      {REALMS.map((r) => (
+        <a
+          href={r.href}
+          class:list={['mk-realm-switch__opt', `is-${r.id}`, { active: r.id === actual }]}
+          aria-current={r.id === actual ? 'page' : undefined}
+        >
+          {r.nombre}
+          {r.etiqueta && r.id !== actual && <span class="mk-realm-switch__tag">{r.etiqueta}</span>}
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>

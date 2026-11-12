@@ -7,18 +7,24 @@ import '../styles/marca.css';
 interface Props {
   title?: string;
   description?: string;
+  /** Versión de la web: cambia el tema (data-realm) y el grupo de contenido de Analytics */
+  realm?: 'portada' | 'midnight' | 'forever';
+  /** Pestaña por defecto (para Analytics cuando la URL no lleva #) */
+  defaultTab?: string;
 }
 
 const {
   title = 'Guía Hunter BM — Midnight S2',
   description = 'Mejores talentos, rotación y equipo BiS para Hunter BM en Midnight Season 2. ¡Guía PvE 100% actualizada!.',
+  realm = 'midnight',
+  defaultTab = '',
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/brand/og-image.png', Astro.site).href;
 ---
 
-<html lang="es">
+<html lang="es" data-realm={realm} data-default-tab={defaultTab}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,20 +93,23 @@ const ogImage = new URL('/brand/og-image.png', Astro.site).href;
     send_page_view: false
   });
 
-  function trackHashChange() {
-    const hash = window.location.hash || '#mecanicas';
-    // Limpiamos el # para que sea una ruta normal
-    const pagePath = hash.replace('#', '/');
-    
+  // GA4 ignora el #: convertimos /midnight/#bis en la ruta limpia /midnight/bis
+  // y agrupamos por versión (content_group: portada | midnight | forever)
+  function trackPageView() {
+    const root = document.documentElement;
+    const base = location.pathname.replace(/\/+$/, '');
+    const tab = location.hash.slice(1) || root.dataset.defaultTab || '';
+    const pagePath = (base + (tab ? '/' + tab : '')) || '/';
     gtag('event', 'page_view', {
       page_path: pagePath,
-      page_location: window.location.href,
-      page_title: document.title + ' - ' + hash.replace('#', '')
+      page_location: location.origin + pagePath,
+      page_title: document.title + (tab ? ' - ' + tab : ''),
+      content_group: root.dataset.realm,
     });
   }
 
-  window.addEventListener('load', trackHashChange);
-  window.addEventListener('hashchange', trackHashChange);
+  window.addEventListener('load', trackPageView);
+  window.addEventListener('hashchange', trackPageView);
 </script>
   </head>
 

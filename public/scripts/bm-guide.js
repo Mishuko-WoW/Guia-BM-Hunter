@@ -438,7 +438,9 @@ function bisCheck(cb) {
 
   const state = {};
   document.querySelectorAll('[data-bis]').forEach(el => {
-    state[el.dataset.bis] = el.querySelector('.bis-check').checked;
+    // data-bis está en la propia casilla (o en su contenedor, según el slot)
+    const cb = el.matches('.bis-check') ? el : el.querySelector('.bis-check');
+    if (cb) state[el.dataset.bis] = cb.checked;
   });
   try { localStorage.setItem('bm_bis', JSON.stringify(state)); } catch (e) {}
 }
@@ -449,7 +451,7 @@ function bisCheck(cb) {
   try { state = JSON.parse(localStorage.getItem('bm_bis') || '{}'); } catch (e) {}
 
   document.querySelectorAll('[data-bis]').forEach(el => {
-    const cb = el.querySelector('.bis-check');
+    const cb = el.matches('.bis-check') ? el : el.querySelector('.bis-check');
     if (cb && state[el.dataset.bis]) {
       cb.checked = true;
     }

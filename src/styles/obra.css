@@ -1,0 +1,114 @@
+/* ═══════════════════════════════════════════════════════════════
+   PÁGINA "EN CONSTRUCCIÓN" (WoW Forever) — usa el tema [data-realm="forever"]
+   ═══════════════════════════════════════════════════════════════ */
+.ob {
+  position: relative;
+  min-height: calc(100dvh - 48px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 40px 20px 28px;
+  text-align: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+.ob-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.ob-frost {
+  position: absolute; left: 50%; top: 30%;
+  width: 90vmax; height: 90vmax;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand) 16%, transparent), transparent 55%);
+  animation: mk-breathe 8s var(--ease) infinite alternate;
+}
+.ob-flake {
+  position: absolute; top: -10px;
+  left: calc(2% + var(--i) * 4.5%);
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--brand-hi);
+  opacity: 0;
+  animation: ob-fall calc(10s + var(--i) * 0.4s) linear infinite;
+  animation-delay: calc(var(--i) * -0.8s);
+}
+
+.ob-realm { width: min(300px, 70vw); height: auto; filter: drop-shadow(0 12px 32px rgb(0 0 0 / 0.65)); animation: mk-drop-in 0.9s var(--ease-spring) both; }
+.ob-eyebrow b { color: var(--gold); }
+.ob-logo { width: 120px; height: auto; filter: drop-shadow(0 0 20px color-mix(in srgb, var(--brand) 25%, transparent)); animation: mk-drop-in 0.9s var(--ease-spring) both; }
+.ob-eyebrow {
+  margin: 14px 0 2px;
+  font: 700 14px/1 var(--font-display); letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--text2);
+  animation: mk-rise 0.6s var(--ease) 0.1s both;
+}
+.ob-eyebrow i { font-style: normal; color: var(--brand); padding: 0 4px; }
+.ob-title {
+  margin: 0 0 26px;
+  font: 800 clamp(44px, 7vw, 76px)/0.95 var(--font-display); text-transform: uppercase;
+  color: var(--text);
+  animation: mk-rise 0.6s var(--ease) 0.2s both;
+}
+.ob-title em { font-style: italic; color: var(--brand); }
+
+.ob-card {
+  width: min(620px, 100%);
+  padding: 30px 30px 28px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 8%, var(--bg3)), var(--card));
+  clip-path: var(--clip-card);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 24%, transparent);
+  animation: mk-rise 0.7s var(--ease) 0.3s both;
+}
+.ob-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px;
+  font: 800 12.5px/1 var(--font-display); letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--brand-ink); background: var(--brand-fill);
+  clip-path: var(--clip-btn);
+}
+.ob-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand-ink); animation: mk-pulse 1.6s infinite; }
+.ob-card h2 {
+  margin: 16px 0 8px;
+  font: 800 clamp(24px, 3.2vw, 32px)/1.1 var(--font-display); text-transform: uppercase;
+  color: var(--text);
+}
+.ob-card p { margin: 0 auto; max-width: 480px; color: var(--text2); }
+
+.ob-progress {
+  position: relative; height: 6px; margin: 24px 0 20px;
+  background: var(--bg); overflow: hidden;
+  clip-path: polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%);
+}
+.ob-progress span {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 38%;
+  background: linear-gradient(90deg, transparent, var(--brand), transparent);
+  animation: ob-scan 1.8s var(--ease) infinite;
+}
+
+.ob-list { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.ob-list li {
+  padding: 6px 12px;
+  font: 700 13px/1 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text2);
+  background: var(--bg2);
+  box-shadow: inset 0 0 0 1px var(--border2);
+  clip-path: var(--clip-btn);
+  animation: mk-rise 0.5s var(--ease) both;
+  animation-delay: calc(0.5s + var(--i) * 0.06s);
+}
+
+.ob-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 20px;
+  font: 800 14.5px/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text); text-decoration: none;
+  box-shadow: inset 0 0 0 1px var(--border2);
+  clip-path: var(--clip-btn);
+  transition: gap var(--t) var(--ease), background var(--t-fast), color var(--t-fast);
+}
+.ob-cta:hover { gap: 16px; color: var(--text); background: color-mix(in srgb, var(--realm-midnight) 14%, transparent); }
+
+.ob-foot { margin-top: 28px; font: 600 13px/1 var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text3); }
+.ob-foot strong { color: var(--text2); }
+
+@keyframes ob-scan { from { transform: translateX(-100%); } to { transform: translateX(270%); } }
+@keyframes ob-fall {
+  0% { opacity: 0; transform: translate(0, 0); }
+  10% { opacity: 0.7; }
+  100% { opacity: 0; transform: translate(calc((var(--i) - 11) * 5px), 105vh); }
+}

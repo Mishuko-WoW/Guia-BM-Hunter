@@ -23,6 +23,11 @@
   --brand-fill:  #a7b620;   /* fondos sólidos (botón activo, CTA) */
   --brand-fill-hi: #b9c832;
 
+  /* Versiones (portada y selector) */
+  --realm-midnight: #8f7bff;   /* violeta del logo de Midnight */
+  --realm-forever:  #4fc4cf;   /* turquesa del logo de Forever */
+  --realm-forever-bronze: #d6a868;
+
   /* Hero Talents */
   --pl:      #e8a33d;       /* Pack Leader — ámbar */
   --pl-soft: #f5cd8c;
@@ -71,6 +76,32 @@
   --t-fast: 140ms;
   --t: 260ms;
   --t-slow: 520ms;
+}
+
+/* ─── TEMA FOREVER: solo cambian las variables; todo el diseño se adapta ─── */
+:root[data-realm="forever"] {
+  /* Paleta del logo de Forever: turquesa, bronce y crema */
+  --bg:      #061012;
+  --bg2:     #0a171a;
+  --bg3:     #0f2125;
+  --bg4:     #142b30;
+  --card:    #0c1c1f;
+  --border:  #1b3237;
+  --border2: #2a464c;
+
+  --brand:       #4fc4cf;
+  --brand-hi:    #8fe3ea;
+  --brand-deep:  #1f7d87;
+  --brand-ink:   #051012;
+  --brand-text:  #a3d6da;
+  --brand-fill:  #3aa6b1;
+  --brand-fill-hi: #52bcc6;
+
+  --gold: #d6a868;           /* bronce del marco del logo */
+
+  --text:  #efe7da;          /* crema de las letras */
+  --text2: #b2aa9a;
+  --text3: #7b7567;
 }
 
 @media (prefers-reduced-motion: reduce) {

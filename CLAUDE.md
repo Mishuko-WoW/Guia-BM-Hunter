@@ -1,6 +1,6 @@
 # Guía Hunter BM — guiahunterbm.com
 
-Guía en español de Beast Mastery Hunter (WoW Midnight S2). Autor: Mishuko. Responder siempre en español.
+Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor: Mishuko. Responder siempre en español.
 
 ## Stack y comandos
 - Astro 6, sitio estático de **una sola página** con pestañas. Node ≥ 22.
@@ -10,10 +10,20 @@ Guía en español de Beast Mastery Hunter (WoW Midnight S2). Autor: Mishuko. Res
   Ver estado: `"/c/Program Files/GitHub CLI/gh.exe" run list -L 1` (gh no está en el PATH de bash).
 - Se trabaja directamente en `main` salvo que el usuario pida rama.
 
+## Páginas y versiones
+- `/` → portada de elección (`src/pages/index.astro` + `src/styles/portada.css`). Redirige enlaces antiguos `/#tab` a `/midnight/#tab`.
+- `/midnight/` → guía de Midnight (`src/pages/midnight/index.astro`, todo lo que sigue en este documento).
+- `/forever/` → WoW Forever, ahora "en construcción" (`src/pages/forever/index.astro` + `src/styles/obra.css`).
+- Datos de cada versión (nombre, enlace, logo, etiqueta, `disponible`) en `src/lib/realms.ts`; selector superior en `RealmSwitch.astro`.
+- Logos oficiales de Midnight y Forever (Blizzard Press Center, blizzard.gamespress.com) reducidos a WebP en `public/brand/realms/`. Colores de versión: `--realm-midnight` violeta, `--realm-forever` turquesa (`tokens.css`).
+- Cuando Forever esté lista: `disponible: true` en `realms.ts` y sustituir `src/pages/forever/index.astro` por la guía.
+- Tema por versión: `MainLayout` pone `<html data-realm="portada|midnight|forever">`; el tema Forever solo redefine variables en `tokens.css` (`:root[data-realm="forever"]`).
+- Analytics (GA4 G-EJY55YHE6Q): `page_view` con ruta limpia (`/midnight/bis`, `/forever`, `/`) y `content_group` = versión. Al crear una página nueva pasar `realm` y `defaultTab` a `MainLayout`.
+
 ## Flujo obligatorio antes de publicar (push)
 1. `npm run build` sin errores.
 2. Levantar la web en local (`npx astro preview --port 4321`, en segundo plano) y comprobarla en el navegador: la pestaña afectada se ve bien y no hay errores de consola nuevos (ignorar el CORS de Wowhead).
-3. Dar al usuario el enlace **http://localhost:<puerto>/#<pestaña>** (usar el puerto que imprime astro; si 4321 está ocupado usa 4322…) para que la revise él mismo.
+3. Dar al usuario el enlace **http://localhost:<puerto>/midnight/#<pestaña>** (o `/`, `/forever/`) (usar el puerto que imprime astro; si 4321 está ocupado usa 4322…) para que la revise él mismo.
 4. Hacer push **solo** cuando el usuario lo apruebe. Después, confirmar que el deploy termina en `success`.
 
 ## Lista de cambios (changelog) — en cada actualización de contenido
@@ -43,6 +53,7 @@ Guía en español de Beast Mastery Hunter (WoW Midnight S2). Autor: Mishuko. Res
 | Esquemas de contenido (zod) | `src/content.config.ts` |
 
 Pestañas válidas (`data-tab`): mecanicas, talentos, estadisticas, rotacion, opener (oculta, va con rotacion), bis, mascotas, macros, simulacion, coaching, errores, examen-st, examen-aoe.
+**Ocultas a propósito (sin botón):** `errores`, `examen-st`, `examen-aoe` — reservadas a quien compra el coaching. No añadirles botón. Ojo: hoy tampoco abren con `#enlace` (showTab solo acepta pestañas con botón).
 
 ## Formato de Rotación y Opener
 Cada `.md` = un botón del selector: `id`, `orden`, `boton`, `heroe` (pack-leader | dark-ranger), `oculto` (true = muestra "en desarrollo") y `bloques`, en orden:

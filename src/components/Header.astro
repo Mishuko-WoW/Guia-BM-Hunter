@@ -1,5 +1,6 @@
 ---
 import { changelog, formatShort } from '../lib/changelog';
+import RealmSwitch from './RealmSwitch.astro';
 
 // Entradas visibles en la cabecera (el historial completo queda en changelog.json)
 const CHANGELOG_VISIBLE = 2;
@@ -16,6 +17,8 @@ const PARCHE = { titulo: 'Parche — 14 de octubre', texto: "Nueva raid Kith'ix 
   <div class="tooltip-desc" id="tt-desc"></div>
 </div>
 
+<RealmSwitch actual="midnight" />
+
 <header class="mk-header">
   <div class="mk-header__bg" aria-hidden="true">
     <svg class="mk-claws" viewBox="0 0 400 300" preserveAspectRatio="xMaxYMid slice">
@@ -24,7 +27,7 @@ const PARCHE = { titulo: 'Parche — 14 de octubre', texto: "Nueva raid Kith'ix 
   </div>
 
   <div class="mk-header__inner">
-    <a class="mk-brand" href="#mecanicas" aria-label="Inicio de la guía">
+    <a class="mk-brand" href="/" aria-label="Volver a la portada">
       <img src="/brand/mishuko-logo.webp" width="128" height="128" alt="Logo de Mishuko" fetchpriority="high" />
     </a>
 

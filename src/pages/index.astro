@@ -1,48 +1,83 @@
 ---
-import GuideContent from '../components/guide/GuideContent.astro';
+// Portada: elección entre Midnight y Forever
 import MainLayout from '../layouts/MainLayout.astro';
-import { getCollection } from 'astro:content';
-
-const buildEntries = (await getCollection('builds')).sort((a, b) => a.data.order - b.data.order);
-const bossEntries = (await getCollection('jefes')).sort((a, b) => a.data.order - b.data.order);
-
-const buildsData = buildEntries.map(({ data }) => ({
-  id: data.id,
-  label: data.title,
-  meta: data.meta,
-  header: data.header,
-  desc: data.description,
-  copyStr: data.copyString,
-  whUrl: data.wowheadUrl,
-  flexibles: data.flexibleTalents,
-  notes: data.notes,
-}));
-
-const bossData = bossEntries.map(({ data }) => ({
-  name: data.name,
-  imgUrl: data.image,
-  diff: data.difficulty === 'mitico' ? 'm' : 'h',
-  summary: data.summary,
-  builds: data.builds,
-  video: data.video,
-}));
-
-const baseUrl = import.meta.env.BASE_URL;
-const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
+import { REALMS } from '../lib/realms';
+import '../styles/portada.css';
 ---
 
 <MainLayout
-  title="Guía Hunter BM — Midnight S2"
-  description="Mejores talentos, rotación y equipo BiS para Hunter BM en Midnight Season 2. ¡Guía PvE 100% actualizada!."
+  realm="portada"
+  title="Guía Hunter BM — Midnight y Forever | Mishuko"
+  description="Guía de Hunter Beast Mastery de Mishuko para World of Warcraft Midnight y WoW Forever: talentos, rotación, opener y BiS."
 >
-  <GuideContent />
-  <script is:inline define:vars={{ buildsData, bossData }}>
-    window.BM_BUILDS_DATA = buildsData;
-    window.BM_BOSS_DATA = bossData;
-  </script>
-  <script is:inline src={withBase('scripts/bm-guide.js')}></script>
+  <!-- Enlaces antiguos (guiahunterbm.com/#bis…) → la guía de Midnight -->
   <script is:inline>
-    window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+    const toGuide = () => { if (location.hash.length > 1) location.replace('/midnight/' + location.hash); };
+    toGuide();
+    addEventListener('hashchange', toGuide);
   </script>
-  <script is:inline src="https://wow.zamimg.com/widgets/power.js"></script>
+
+  <main class="pt">
+    <div class="pt-bg" aria-hidden="true">
+      <span class="pt-glow pt-glow--midnight"></span>
+      <span class="pt-glow pt-glow--forever"></span>
+      <span class="pt-grid"></span>
+      {Array.from({ length: 18 }, (_, i) => <span class="pt-ember" style={`--i:${i}`}></span>)}
+    </div>
+
+    <header class="pt-head">
+      <img class="pt-logo" src="/brand/mishuko-logo.webp" width="150" height="150" alt="Logo de Mishuko" fetchpriority="high" />
+      <p class="pt-eyebrow">Guía Hunter <b>Beast Mastery</b> <i>·</i> por Mishuko</p>
+      <h1 class="pt-title">Elige tu <span>versión</span></h1>
+    </header>
+
+    <div class="pt-cards">
+      {REALMS.map((r, i) => (
+        <a class:list={['pt-card', `pt-card--${r.id}`]} href={r.href} style={`--d:${i}`} data-tilt>
+          <span class="pt-card__shine" aria-hidden="true"></span>
+          {r.etiqueta && <span class="pt-card__tag">{r.etiqueta}</span>}
+          <span class="pt-card__logo">
+            {r.logo ? <img src={r.logo} alt={`World of Warcraft ${r.nombre}`} /> : (
+              <span class="pt-card__wordmark">
+                <small>World of Warcraft</small>
+                {r.titulo}
+              </span>
+            )}
+          </span>
+          <span class="pt-card__sub">{r.subtitulo}</span>
+          <span class="pt-card__status">
+            {r.disponible ? 'Guía completa: talentos, rotación, opener y BiS' : 'En construcción · disponible en menos de 24 h'}
+          </span>
+          <span class="pt-card__cta">
+            {r.disponible ? 'Entrar a la guía' : 'Ver avance'}
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" /></svg>
+          </span>
+        </a>
+      ))}
+      <span class="pt-divider" aria-hidden="true"><i></i></span>
+    </div>
+
+    <footer class="pt-foot">Guía de apoyo creada por <strong>Mishuko</strong> · guiahunterbm.com</footer>
+  </main>
+
+  <script is:inline>
+    // Inclinación 3D suave de las tarjetas siguiendo el ratón
+    if (matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) {
+      document.querySelectorAll('[data-tilt]').forEach((card) => {
+        card.addEventListener('pointermove', (e) => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          card.style.setProperty('--rx', `${(-y * 7).toFixed(2)}deg`);
+          card.style.setProperty('--ry', `${(x * 9).toFixed(2)}deg`);
+          card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
+          card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.setProperty('--rx', '0deg');
+          card.style.setProperty('--ry', '0deg');
+        });
+      });
+    }
+  </script>
 </MainLayout>

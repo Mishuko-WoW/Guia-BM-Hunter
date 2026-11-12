@@ -1,0 +1,48 @@
+---
+// WoW Forever — de momento "en construcción" (cambiar `disponible` en src/lib/realms.ts cuando esté lista)
+import MainLayout from '../../layouts/MainLayout.astro';
+import RealmSwitch from '../../components/RealmSwitch.astro';
+import '../../styles/obra.css';
+
+const PROXIMAMENTE = ['Talentos y builds', 'Rotación y opener', 'Stats', 'BiS y consumibles', 'Mascotas', 'Macros'];
+---
+
+<MainLayout
+  realm="forever"
+  title="Guía Hunter BM — WoW Forever | Mishuko"
+  description="Guía de Hunter Beast Mastery para WoW Forever de Mishuko: talentos, rotación, opener y BiS. Disponible muy pronto."
+>
+  <RealmSwitch actual="forever" />
+
+  <main class="ob">
+    <div class="ob-bg" aria-hidden="true">
+      <span class="ob-frost"></span>
+      {Array.from({ length: 22 }, (_, i) => <span class="ob-flake" style={`--i:${i}`}></span>)}
+    </div>
+
+    <img class="ob-realm" src="/brand/realms/forever.webp" width="340" height="277" alt="World of Warcraft Forever" fetchpriority="high" />
+    <p class="ob-eyebrow">Por <b>Mishuko</b></p>
+    <h1 class="ob-title">Guía Hunter <em>BM</em></h1>
+
+    <section class="ob-card" aria-labelledby="ob-estado">
+      <span class="ob-badge"><span class="ob-dot"></span> En construcción</span>
+      <h2 id="ob-estado">Estará disponible en menos de 24 horas</h2>
+      <p>Estoy preparando la guía de Beast Mastery para Forever con el mismo nivel de detalle que la de Midnight. Vuelve muy pronto.</p>
+
+      <div class="ob-progress" role="progressbar" aria-label="Preparando la guía" aria-valuetext="En preparación">
+        <span></span>
+      </div>
+
+      <ul class="ob-list">
+        {PROXIMAMENTE.map((item, i) => <li style={`--i:${i}`}>{item}</li>)}
+      </ul>
+
+      <a class="ob-cta" href="/midnight/">
+        Mientras tanto, ver la guía de Midnight
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" /></svg>
+      </a>
+    </section>
+
+    <p class="ob-foot">Creada por <strong>Mishuko</strong> · guiahunterbm.com</p>
+  </main>
+</MainLayout>
