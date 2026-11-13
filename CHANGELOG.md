@@ -10,10 +10,22 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 ---
 
 ## ▶ PRÓXIMO TRABAJO
-- Pestañas de Forever Stats, Rotación y Opener, BiS y Consumibles, Macros, Leveling 1-60 (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
-- Search Console: reenviar `sitemap-index.xml` y pedir indexación de las páginas nuevas (lo hace Mishuko o con su permiso).
+- Pestañas de Forever Stats, BiS y Consumibles, Macros, Leveling 1-60 (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
+- Search Console: pedir indexación de `/forever/coaching/`, `/forever/rotacion/`, `/midnight/bis/`, `/midnight/rotacion/` (límite diario).
 
 ---
+
+## 2026-11-14 — Rotación de Forever
+- Nueva pestaña Rotación de Forever (`/forever/rotacion/`): 3 ideas clave, lista antes del combate, selector Un objetivo / Área, escalera de prioridades con etiquetas por tipo, línea de tiempo de 36 s (relojes de 6 s, halcones, Aguijón, Tiro automático), inicio del combate en 7 pasos, tarjetas de cooldowns, «Júntalos con» y utilidad. Textos y errores frecuentes en `rotacion.md`.
+- Datos en `src/content/data/forever-rotacion.json` (lo pinta `RotacionForever.astro`, que falla en el build si un hechizo no está en `spells.json`). Estilos en el bloque "ROTACIÓN" de `forever.css`.
+- «Antes de empezar»: 3 tarjetas con icono grande y tooltip (`antes` en el JSON: `hechizo`, `cuando`, `texto`) y la mascota centrada debajo (`antesMascota`). Hover en iconos (sube y brilla con el color de su tipo) y tarjetas, número grande de fondo en las claves; sin movimiento con `prefers-reduced-motion`.
+- Ciclo de 36 s animado (`CicloForever.astro`, uno por modo): reproducir/pausa, reiniciar, x1/x2/x4, reloj, cabezal, piezas que se iluminan al tocar, barras que se rellenan, carga de Puntería y panel «Ahora: pulsa / Siguiente en N s» con una nota por momento (`ciclos.<modo>.notas`). Clic en la línea = saltar a ese segundo. Arranca sola al verse (no con movimiento reducido) y se para fuera de pantalla o al cambiar de modo. Sin JS se ve estática. El script sigue en `RotacionForever.astro` (una sola vez para las dos).
+- Área (2 a 7 enemigos): mismo ritmo, Multidisparo (instantáneo) en el reloj 2 y Trampa explosiva cada 30 s con su recarga. 8+ enemigos sin ciclo fijo (nota). Tiro automático cada 3 s (arma 3,0 de ejemplo, `ciclos.velocidadArma`) y **también durante Tiro de puntería** (notas de desarrollo de Blizzard, 16-10-2026: «still fire Auto Shot while casting… Aimed Shot»): esos disparos van en dorado (sin etiqueta, para no distraer) y lo explica una nota bajo la línea. Multidisparo en cuadradito como Puntería. Aguijón también en área (solo en enemigos que duren >15 s), con textura de veneno (rayas y burbujas lentas; quietas con movimiento reducido). Panel «Ahora» de altura fija (2 líneas de nota; en móvil, mínimo 304 px) para que la página no salte. En móvil, columna de nombres estrecha y fija.
+- Forever ya no tiene pestaña Opener: el inicio del combate va dentro de Rotación (`TABS_FOREVER`).
+- `spells.json`: hechizos nuevos (trampas, Golpe de raptor, Picadura de víbora, Llamar a mascota…) y campo opcional `iconForever` (icono distinto en Forever; lo usan `markup.ts` y `foreverIcon()` en `spells.ts`). `icons-hd.mjs` también lee `forever-rotacion.json`.
+- Enlaces `#opener` desde otra página (`/forever/#opener`, `/midnight/#opener`) no redirigían (opener no tiene botón): ahora van a `/<versión>/rotacion/#opener` (`bm-guide.js`); en Forever la sección del inicio del combate lleva `id="opener"`.
+- Fuentes: WoWTBC pone Multidisparo en un objetivo; se sigue la mayoría (solo Tiro de puntería, comparten reutilización).
+- Archivos: `RotacionForever.astro`, `GuideForever.astro`, `forever-rotacion.json`, `rotacion.md`, `forever.css`, `spells.json`, `spells.ts`, `markup.ts`, `tabs.ts`, `realms.ts`, `changelog.json`, `scripts/icons-hd.mjs`.
 
 ## 2026-11-14 — Search Console e IndexNow
 - Search Console: enviado `sitemap-index.xml` (estado Correcto) y reenviado `sitemap-0.xml`. Google no conocía `/forever/` ni `/midnight/talentos/`; el resto ya salía "Descubierta" por el sitemap.

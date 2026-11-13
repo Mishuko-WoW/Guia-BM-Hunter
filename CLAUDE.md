@@ -39,13 +39,14 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
     - Elección de bestia: zona de su facción > compartida > mazmorra; si solo existe en la otra facción se marca "Zona de la Horda/Alianza".
     - Rangos mostrados: el más bajo, uno intermedio (si la habilidad tiene más de 3 rangos) y el más alto con bestia conocida. Selector Alianza/Horda (recuerda la elección en `localStorage`). Comunes primero, luego las propias.
     - **"Carrerilla"** (Dash), no "Diligencia": así sale en el juego (confirmado por Mishuko). Las familias solo muestran su habilidad propia.
+  - **Rotación**: datos en `src/content/data/forever-rotacion.json` (claves, antes del combate, prioridades `st`/`aoe`, inicio del combate, `ciclos` de 36 s, cooldowns, utilidad) → `src/components/forever/RotacionForever.astro`; la línea de tiempo animada de cada modo es `CicloForever.astro` (textos en `ciclos.st` / `ciclos.aoe`) (estilos "ROTACIÓN" en `forever.css`). El inicio del combate va dentro: Forever no tiene pestaña Opener. `iconForever` en `spells.json` = icono distinto en Forever.
   - Las páginas `.md` admiten `intro` (bloques antes de los componentes de la pestaña).
   - Hechizos de Forever con su **nombre oficial en español** (Wowhead Forever es-ES) en el mismo `spells.json`. Ej.: Invocar halcón, Ira de bestias, Tiro automático.
   - En Forever `renameLinks: false` en `whTooltips` (Wowhead no renombra los enlaces).
   - `obra.css` (antigua página "en construcción") ya no se usa.
 - Datos de cada versión (nombre, enlace, logo, etiqueta, `disponible`) en `src/lib/realms.ts`; selector superior en `RealmSwitch.astro`.
 - Logos oficiales de Midnight y Forever (Blizzard Press Center, blizzard.gamespress.com) reducidos a WebP en `public/brand/realms/`. Colores de versión: `--realm-midnight` violeta, `--realm-forever` turquesa (`tokens.css`).
-- Forever ya es `disponible: true` (desde 2026-11-13). `estado` en `realms.ts` = texto de la tarjeta de portada; actualizarlo al completar pestañas (hoy: General, Talentos y Mascotas).
+- Forever ya es `disponible: true` (desde 2026-11-13). `estado` en `realms.ts` = texto de la tarjeta de portada; actualizarlo al completar pestañas (hoy: General, Talentos, Rotación y Mascotas).
 - Tema por versión: `MainLayout` pone `<html data-realm="portada|midnight|forever">`; el tema Forever solo redefine variables en `tokens.css` (`:root[data-realm="forever"]`).
 - Analytics (GA4 G-EJY55YHE6Q): `page_view` con ruta limpia `/<versión>/<pestaña>` (`/midnight/bis`, `/forever/mecanicas`, `/`) y `content_group` = versión; igual que antes de tener una página por pestaña. Al crear una página nueva pasar `realm` y `defaultTab` (= su pestaña) a `MainLayout`.
 
@@ -83,7 +84,7 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 | BiS y consumibles | **HTML a mano** en `SeccionBiS.astro` (1700 líneas, estilos propios dentro). `bis.json` NO se usa (datos viejos) |
 | Esquemas de contenido (zod) | `src/content.config.ts` |
 
-Pestañas Forever: mecanicas, talentos, estadisticas, rotacion, opener (oculta), bis, mascotas, macros, leveling.
+Pestañas Forever: mecanicas, talentos, estadisticas, rotacion, bis, mascotas, macros, leveling.
 Pestañas válidas Midnight (`data-tab`): mecanicas, talentos, estadisticas, rotacion, opener (oculta, va con rotacion), bis, mascotas, macros, simulacion, coaching, errores.
 **Oculta a propósito (sin botón):** `errores` — reservada a quien compra el coaching. Los exámenes ST/AoE se eliminaron (2026-11-13). No añadirles botón. Ojo: hoy tampoco abren con `#enlace` (showTab solo acepta pestañas con botón).
 

@@ -1,0 +1,191 @@
+---
+// Línea de tiempo animada de 36 s (Rotación de Forever). Una por modo: "st" (un objetivo) y "aoe" (pocos enemigos).
+// Textos en forever-rotacion.json → ciclos.<modo>. La animación la hace el script "Simulación del ciclo" de RotacionForever.astro.
+import data from '../../content/data/forever-rotacion.json';
+import { getSpell, foreverIcon } from '../../lib/spells';
+import { md } from '../../lib/markup';
+
+interface Props { modo: 'st' | 'aoe' }
+const { modo } = Astro.props;
+const C = data.ciclos[modo];
+const T = data.ciclos.total;
+const VEL = data.ciclos.velocidadArma;
+const pct = (s: number) => `${(s / T) * 100}%`;
+const tip = (nombre: string, desc?: string) => {
+  const s = getSpell(nombre);
+  return { 'data-name': nombre, 'data-type': s?.type ?? '', 'data-desc': desc ?? s?.desc ?? '' };
+};
+
+// ─── Ritmo (idéntico en los dos modos para los halcones) ───
+const slots = [0, 6, 12, 18, 24, 30];
+const reloj1 = slots.map((t, i) => ({ t, arcano: i % 3 === 2, n: i % 3 === 0 ? 1 : 2 }));
+const halcones = [
+  { n: 1, tramos: [[0, 18], [18, 36]] },
+  { n: 2, tramos: [[6, 24], [24, 36]] },
+];
+const aguijon = [[0, 15], [15, 30], [30, 36]];
+const trampa = [0, 30]; // las trampas comparten 30 s
+const marcas = [0, 6, 12, 18, 24, 30, 36];
+const PUNTERIA = 2; // s de lanzamiento
+
+// Tiro automático: 0,5 s quieto y sale; con arma de 3,0 uno cada 3 s. Sigue saliendo mientras lanzas Puntería (notas de Blizzard, 16-10-2026).
+const autos: number[] = [];
+for (let s = 0; s + 0.5 <= T; s += VEL) autos.push(s);
+const durantePunteria = (s: number) => modo === 'st' && slots.some((p) => s >= p && s < p + PUNTERIA);
+const autoTramos = autos.map((s) => ({ s, hasta: Math.min(T, s + VEL), cast: durantePunteria(s) }));
+
+// ─── Qué pulsar en cada momento ───
+type Accion = { nombre: string; icono: string; texto: string };
+const accion = (nombre: string, texto = nombre): Accion => ({ nombre, icono: foreverIcon(nombre), texto });
+const porT = new Map<number, Accion[]>();
+const add = (t: number, a: Accion) => porT.set(t, [...(porT.get(t) ?? []), a]);
+reloj1.forEach((c) => add(c.t, c.arcano ? accion('Tiro Arcano') : accion('Invocar halcón', `Halcón ${c.n}`)));
+if (modo === 'st') {
+  slots.forEach((t) => add(t, accion('Tiro de puntería')));
+  aguijon.forEach(([a]) => add(a, accion('Aguijón de serpiente', a === 0 ? 'Aguijón' : 'Renueva Aguijón')));
+} else {
+  aguijon.forEach(([a]) => add(a, accion('Aguijón de serpiente', a === 0 ? 'Aguijón' : 'Renueva Aguijón')));
+  trampa.forEach((t) => add(t, accion('Trampa explosiva', 'Trampa')));
+  slots.forEach((t) => add(t, accion('Multidisparo')));
+}
+const notas = C.notas as Record<string, string>;
+const grupos = [...porT.entries()].sort((a, b) => a[0] - b[0]).map(([t, items]) => ({ t, items, nota: notas[String(t)] ?? '' }));
+const descAutoCast = 'Sale también mientras lanzas Tiro de puntería: no tienes que esperar a que termine.';
+---
+
+<section class="rt-cycle">
+  <h3 class="rt-label">{C.titulo}</h3>
+  <p class="rt-cycle__intro" set:html={md(C.texto)} />
+  <div class="rt-sim" data-rt-sim data-total={T} data-eventos={JSON.stringify(grupos)}
+    data-idle-icon={foreverIcon(C.espera.hechizo)} data-idle-name={C.espera.texto} data-idle-nota={C.espera.nota} hidden>
+    <div class="rt-sim__bar">
+      <button type="button" class="rt-sim__play" data-sim-play aria-label="Reproducir el ciclo">
+        <svg class="rt-sim__i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+        <svg class="rt-sim__i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zm6 0h4v14h-4z" /></svg>
+      </button>
+      <button type="button" class="rt-sim__btn" data-sim-reset>Reiniciar</button>
+      <div class="rt-sim__speeds" role="group" aria-label="Velocidad">
+        {[1, 2, 4].map((v) => (
+          <button type="button" class:list={['rt-sim__btn', { 'is-on': v === 1 }]} data-sim-speed={v} aria-pressed={v === 1 ? 'true' : 'false'}>x{v}</button>
+        ))}
+      </div>
+      <span class="rt-sim__clock" aria-live="off"><b data-sim-clock>0,0</b> / {T} s</span>
+    </div>
+    <div class="rt-sim__now" data-sim-now>
+      <div class="rt-sim__col">
+        <span class="rt-sim__k" data-sim-k>Ahora</span>
+        <div class="rt-sim__items" data-sim-items></div>
+        <p class="rt-sim__nota" data-sim-nota></p>
+      </div>
+      <div class="rt-sim__col rt-sim__col--next">
+        <span class="rt-sim__k">Siguiente <b data-sim-in></b></span>
+        <div class="rt-sim__items rt-sim__items--next" data-sim-next></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rt-tl-scroll">
+    <div class="rt-tl">
+      <div class="rt-tl__play" aria-hidden="true"><span class="rt-tl__head" data-sim-head></span></div>
+      <div class="rt-tl__row rt-tl__axis">
+        <span class="rt-tl__label"></span>
+        <div class="rt-tl__track">
+          {marcas.map((s) => <span class="rt-tl__tick" style={`left:${pct(s)}`}>{s} s</span>)}
+        </div>
+      </div>
+
+      <div class="rt-tl__row">
+        <span class="rt-tl__label">Reloj 1<small>Halcón / Arcano · 6 s</small></span>
+        <div class="rt-tl__track rt-tl__track--grid">
+          {reloj1.map((c) => (
+            <span class:list={['rt-tl__chip', c.arcano ? 'rt-tl__chip--arcano' : 'rt-tl__chip--halcon']} data-t={c.t} data-d="1.2" style={`left:${pct(c.t)};width:${pct(6)}`}
+              {...tip(c.arcano ? 'Tiro Arcano' : 'Invocar halcón')}>
+              <img src={foreverIcon(c.arcano ? 'Tiro Arcano' : 'Invocar halcón')} alt="" width="22" height="22" />
+              {c.arcano ? 'Arcano' : `Halcón ${c.n}`}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {halcones.map((h) => (
+        <div class="rt-tl__row rt-tl__row--thin">
+          <span class="rt-tl__label">Halcón {h.n} activo<small>dura 18 s</small></span>
+          <div class="rt-tl__track">
+            {h.tramos.map(([a, b]) => (
+              <span class:list={['rt-tl__bar', 'rt-tl__bar--halcon', { 'rt-tl__bar--cut': b === T && b - a < 18 }]} data-a={a} data-b={b} style={`left:${pct(a)};width:${pct(b - a)}`}></span>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      {modo === 'st' ? (
+        <div class="rt-tl__row">
+          <span class="rt-tl__label">Reloj 2<small>Tiro de puntería · 6 s<br />(2 s de lanzamiento)</small></span>
+          <div class="rt-tl__track rt-tl__track--grid">
+            {slots.map((t) => (
+              <span class="rt-tl__chip rt-tl__chip--punteria" data-t={t} data-d={PUNTERIA} style={`left:${pct(t)};width:${pct(PUNTERIA)}`} {...tip('Tiro de puntería')}>
+                <img src={foreverIcon('Tiro de puntería')} alt="" width="22" height="22" />
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div class="rt-tl__row">
+          <span class="rt-tl__label">Reloj 2<small>Multidisparo · 6 s<br />(instantáneo, 3 objetivos)</small></span>
+          <div class="rt-tl__track rt-tl__track--grid">
+            {slots.map((t) => (
+              <span class="rt-tl__chip rt-tl__chip--multi" data-t={t} data-d="1.2" style={`left:${pct(t)};width:${pct(PUNTERIA)}`} {...tip('Multidisparo')}>
+                <img src={foreverIcon('Multidisparo')} alt="" width="22" height="22" />
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="rt-tl__row rt-tl__row--thin">
+        <span class="rt-tl__label">Aguijón de serpiente<small>{modo === 'st' ? 'dura 15 s' : 'dura 15 s · si va a durar'}</small></span>
+        <div class="rt-tl__track">
+          {aguijon.map(([a, b]) => (
+            <span class:list={['rt-tl__bar', 'rt-tl__bar--aguijon', { 'rt-tl__bar--cut': b === T }]} data-a={a} data-b={b} style={`left:${pct(a)};width:${pct(b - a)}`}></span>
+          ))}
+        </div>
+      </div>
+
+      {modo === 'aoe' && (
+        <div class="rt-tl__row">
+          <span class="rt-tl__label">Trampa explosiva<small>reutilización 30 s</small></span>
+          <div class="rt-tl__track">
+            {trampa.map((t, i) => (
+              <>
+                <span class="rt-tl__bar rt-tl__bar--cd" data-a={t} data-b={Math.min(T, t + 30)} style={`left:${pct(t)};width:${pct(Math.min(T, t + 30) - t)}`}>
+                  {i === 0 && <span class="rt-tl__note" style="left:52px">recargando…</span>}
+                </span>
+                <span class="rt-tl__chip rt-tl__chip--trampa" data-t={t} data-d="1.2" style={`left:${pct(t)};width:${pct(PUNTERIA)}`} {...tip('Trampa explosiva')}>
+                  <img src={foreverIcon('Trampa explosiva')} alt="" width="22" height="22" />
+                </span>
+              </>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="rt-tl__row rt-tl__row--thin">
+        <span class="rt-tl__label">Tiro automático<small>arma 3,0 · 0,5 s quieto</small></span>
+        <div class="rt-tl__track">
+          {autoTramos.map((a) => (
+            <>
+              <span class:list={["rt-tl__auto-shot", { "rt-tl__auto-shot--cast": a.cast }]} data-t={a.s} data-d="0.5" style={`left:${pct(a.s)};width:${pct(0.5)}`}
+                {...tip('Tiro automático', a.cast ? descAutoCast : undefined)}></span>
+              {a.hasta > a.s + 0.5 && (
+                <span class="rt-tl__auto-gap" data-a={a.s + 0.5} data-b={a.hasta} style={`left:${pct(a.s + 0.5)};width:${pct(a.hasta - a.s - 0.5)}`}></span>
+              )}
+            </>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rt-cycle__foot">
+    {C.pies.map((p) => <p set:html={md(p)} />)}
+  </div>
+</section>

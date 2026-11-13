@@ -26,7 +26,7 @@ function mention(raw: string): string {
   const name = rawName.trim();
   const spell = getSpell(name);
   const cls = badge || spell?.badge || 'sp';
-  const icon = iconUrl(spell?.icon);
+  const icon = iconUrl(spell?.iconForever ?? spell?.icon);
   const img = icon ? `<img class="sp-ico" src="${icon}" alt="" width="18" height="18" loading="lazy">` : '';
   return `<span class="${cls}" ${tipAttrs(name, desc, type, spell)}>${img}${label.trim()}</span>`;
 }
@@ -38,7 +38,7 @@ function tile(raw: string): string {
   const [rawName, label = rawName] = head.split('>');
   const name = rawName.trim();
   const spell = getSpell(name);
-  const icon = iconUrl(spell?.icon);
+  const icon = iconUrl(spell?.iconForever ?? spell?.icon);
   return (
     `<span class="spell-tile ${spell?.badge ?? 'sp'}-tile" ${tipAttrs(name, desc, undefined, spell)}>` +
     (icon ? `<img src="${icon}" alt="" width="56" height="56" loading="lazy">` : '') +

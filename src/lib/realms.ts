@@ -34,6 +34,6 @@ export const REALMS: Realm[] = [
     logo: '/brand/realms/forever.webp',
     etiqueta: 'Nuevo',
     disponible: true,
-    estado: 'General, talentos y mascotas · se amplía cada día',
+    estado: 'General, talentos, rotación y mascotas · se amplía cada día',
   },
 ];

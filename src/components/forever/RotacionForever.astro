@@ -1,0 +1,342 @@
+---
+// Pestaña Rotación (Forever): claves, antes del combate, prioridades de un objetivo y de área,
+// línea de tiempo del ciclo de 6 s, inicio del combate, cooldowns y utilidad.
+// Contenido: src/content/data/forever-rotacion.json (textos con mini-formato [[Hechizo]]).
+import data from '../../content/data/forever-rotacion.json';
+import { getSpell, foreverIcon, iconUrl } from '../../lib/spells';
+import { md } from '../../lib/markup';
+import CicloForever from './CicloForever.astro';
+
+type Paso = { hechizo: string; nombre?: string; icono?: string; tipo: string; cuando: string; porque: string };
+
+// Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
+const citados = new Set<string>();
+const recoger = (v: unknown) => {
+  if (typeof v === 'string') for (const m of v.matchAll(/\[\[([^\]|>]+)/g)) citados.add(m[1].trim());
+  else if (Array.isArray(v)) v.forEach(recoger);
+  else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) k === 'hechizo' ? citados.add(String(x)) : recoger(x);
+};
+recoger({ ...data, _ayuda: '' });
+const faltan = [...citados].filter((n) => !getSpell(n));
+if (faltan.length) throw new Error(`forever-rotacion.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
+
+const icono = (p: { hechizo: string; icono?: string }) => (p.icono ? iconUrl(p.icono) : foreverIcon(p.hechizo));
+const tip = (nombre: string) => {
+  const s = getSpell(nombre);
+  return { 'data-name': nombre, 'data-type': s?.type ?? '', 'data-desc': s?.desc ?? '' };
+};
+
+const TIPOS: Record<string, string> = {
+  previo: 'Antes del combate',
+  mascota: 'Mascota',
+  mantener: 'Mantener siempre',
+  cd: 'A reutilización',
+  condicion: 'Con condición',
+  situacional: 'Según el combate',
+  relleno: 'Relleno',
+};
+
+---
+
+<div class="rt" id="rt">
+  <!-- ─── Las 3 claves ─── -->
+  <div class="rt-keys">
+    {data.claves.map((c, i) => (
+      <article class="rt-key" data-n={i + 1}>
+        <div class="rt-key__icon">
+          <img src={iconUrl(c.icono)} alt="" width="56" height="56" loading="lazy" />
+          <span class="rt-key__num">{i + 1}</span>
+        </div>
+        <h3 class="rt-key__title">{c.titulo}</h3>
+        <p set:html={md(c.texto)} />
+      </article>
+    ))}
+  </div>
+
+  <!-- ─── Antes del combate ─── -->
+  <section class="rt-pre">
+    <h3 class="rt-label">Antes de empezar cualquier combate</h3>
+    <ul class="rt-buffs">
+      {data.antes.map((a) => (
+        <li class="rt-buff">
+          <div class="rt-buff__icon rt-ico" {...tip(a.hechizo)}>
+            <img src={foreverIcon(a.hechizo)} alt="" width="64" height="64" loading="lazy" />
+            <span class="rt-check" aria-hidden="true"></span>
+          </div>
+          <h4 class="rt-buff__title">{a.hechizo}</h4>
+          <span class="rt-buff__when">{a.cuando}</span>
+          <p set:html={md(a.texto)} />
+        </li>
+      ))}
+    </ul>
+    <div class="rt-buff rt-buff--pet">
+      <div class="rt-buff__icon rt-ico">
+        <img src={iconUrl(data.antesMascota.icono)} alt="" width="64" height="64" loading="lazy" />
+        <span class="rt-check" aria-hidden="true"></span>
+      </div>
+      <div>
+        <h4 class="rt-buff__title">{data.antesMascota.titulo}</h4>
+        <p set:html={md(data.antesMascota.texto)} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Selector de modo ─── -->
+  <div class="toggle-wrap combat-switch rt-modes" role="tablist" aria-label="Tipo de combate">
+    {data.modos.map((m, i) => (
+      <button type="button" role="tab" class:list={['toggle-btn', { active: i === 0 }]} data-rt-mode={m.id} aria-selected={i === 0 ? 'true' : 'false'}>
+        <img src={iconUrl(m.icono)} alt="" width="22" height="22" class="toggle-icon" />{m.boton}
+      </button>
+    ))}
+  </div>
+
+  {data.modos.map((m, i) => (
+    <section class="rt-panel" data-rt-panel={m.id} hidden={i !== 0} role="tabpanel">
+      <p class="rt-intro" set:html={md(m.intro)} />
+
+      <div class="rt-legend" aria-label="Leyenda">
+        {['mantener', 'cd', 'condicion', 'situacional', 'relleno'].filter((k) => m.columnas.some((c) => c.pasos.some((p) => p.tipo === k))).map((k) => (
+          <span class={`rt-chip rt-t--${k}`}>{TIPOS[k]}</span>
+        ))}
+      </div>
+
+      <div class:list={['rt-ladders', { 'rt-ladders--two': m.columnas.length > 1 }]}>
+        {m.columnas.map((col) => (
+          <div class="rt-ladder">
+            <header class="rt-ladder__head">
+              <span class="rt-ladder__title">{col.titulo}</span>
+              {col.sub && <span class="rt-ladder__sub">{col.sub}</span>}
+            </header>
+            <ol class="rt-steps">
+              {(col.pasos as Paso[]).map((p, n) => (
+                <li class={`rt-step rt-t--${p.tipo}`}>
+                  <span class="rt-step__num">{n + 1}</span>
+                  <img class="rt-step__icon" src={icono(p)} alt="" width="48" height="48" loading="lazy" {...tip(p.hechizo)} />
+                  <div class="rt-step__body">
+                    <div class="rt-step__top">
+                      <b class="rt-step__name">{p.nombre ?? p.hechizo}</b>
+                      <span class={`rt-chip rt-t--${p.tipo}`}>{p.cuando}</span>
+                    </div>
+                    <p set:html={md(p.porque)} />
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
+      </div>
+
+      {m.aviso && <div class="box box-warn rt-aviso"><div class="box-title">Cuidado con la amenaza</div><Fragment set:html={md(m.aviso)} /></div>}
+
+      <!-- ─── Línea de tiempo animada ─── -->
+      <CicloForever modo={m.id as 'st' | 'aoe'} />
+
+      {m.id === 'st' && (
+        <>
+          <!-- ─── Inicio del combate ─── -->
+          <section class="rt-open" id="opener">
+            <h3 class="rt-label">Inicio del combate contra un jefe</h3>
+            <ol class="rt-open__steps">
+              {data.modos[0].inicio!.map((s, n) => (
+                <li class:list={['rt-open__step', { 'rt-open__step--gold': s.tono === 'gold' }]}>
+                  <span class="rt-open__num">{n + 1}</span>
+                  <img src={icono(s)} alt="" width="44" height="44" loading="lazy" {...tip(s.hechizo)} />
+                  <b>{s.texto}</b>
+                  {s.nota && <small set:html={md(s.nota)} />}
+                </li>
+              ))}
+            </ol>
+          </section>
+        </>
+      )}
+    </section>
+  ))}
+
+  <!-- ─── Cooldowns ─── -->
+  <h3 class="rt-h3">Cooldowns: cuándo usarlos</h3>
+  <div class="rt-cds">
+    {data.cds.map((c) => (
+      <article class="rt-cd">
+        <header class="rt-cd__head">
+          <img src={foreverIcon(c.hechizo)} alt="" width="64" height="64" loading="lazy" {...tip(c.hechizo)} />
+          <h4>{c.hechizo}</h4>
+        </header>
+        <dl class="rt-cd__stats">
+          {c.datos.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+        </dl>
+        <p set:html={md(c.texto)} />
+      </article>
+    ))}
+  </div>
+  <div class="rt-join">
+    <span class="rt-join__title">Júntalos con</span>
+    {data.juntar.map((j) => (
+      <span class="rt-join__chip" {...tip(j.hechizo)}>
+        <img src={foreverIcon(j.hechizo)} alt="" width="26" height="26" loading="lazy" />{j.hechizo}<small>{j.nota}</small>
+      </span>
+    ))}
+    <span class="rt-join__chip rt-join__chip--plain">tus abalorios de uso</span>
+  </div>
+
+  <!-- ─── Utilidad ─── -->
+  <h3 class="rt-h3">Utilidad: según lo que pida el combate</h3>
+  <div class="rt-utils">
+    {data.utilidad.map((u) => (
+      <div class="rt-util">
+        <img src={foreverIcon(u.hechizo)} alt="" width="44" height="44" loading="lazy" {...tip(u.hechizo)} />
+        <div>
+          <b>{u.hechizo}</b>
+          <p set:html={md(u.texto)} />
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const root = document.getElementById('rt');
+    if (!root) return;
+    const btns = root.querySelectorAll('[data-rt-mode]');
+    btns.forEach((b) =>
+      b.addEventListener('click', () => {
+        btns.forEach((x) => {
+          const on = x === b;
+          x.classList.toggle('active', on);
+          x.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        root.querySelectorAll('[data-rt-panel]').forEach((p) => (p.hidden = p.dataset.rtPanel !== b.dataset.rtMode));
+      }),
+    );
+  })();
+</script>
+
+<!-- Simulación del ciclo: cabezal que avanza en tiempo real e ilumina lo que toca pulsar -->
+<script is:inline>
+  (function () {
+    document.querySelectorAll('[data-rt-sim]').forEach(function (sim) {
+      var cycle = sim.closest('.rt-cycle');
+      var tl = cycle.querySelector('.rt-tl');
+      var scroller = cycle.querySelector('.rt-tl-scroll');
+      var play = cycle.querySelector('.rt-tl__play');
+      var head = cycle.querySelector('[data-sim-head]');
+      var T = Number(sim.dataset.total);
+      var grupos = JSON.parse(sim.dataset.eventos);
+      var $ = function (s) { return sim.querySelector(s); };
+      var clock = $('[data-sim-clock]'), btnPlay = $('[data-sim-play]'), nowBox = $('[data-sim-now]');
+      var elK = $('[data-sim-k]'), elItems = $('[data-sim-items]'), elNota = $('[data-sim-nota]');
+      var elNext = $('[data-sim-next]'), elIn = $('[data-sim-in]');
+      var marks = Array.prototype.map.call(tl.querySelectorAll('[data-t]'), function (el) {
+        return { el: el, t: Number(el.dataset.t), d: Number(el.dataset.d || 1), st: '' };
+      });
+      var bars = Array.prototype.map.call(tl.querySelectorAll('[data-a]'), function (el) {
+        return { el: el, a: Number(el.dataset.a), b: Number(el.dataset.b) };
+      });
+      var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var t = 0, speed = 1, playing = false, userPaused = false, last = 0, raf = 0, shown = '', visible = false;
+      var HIT = 1.6; // segundos (de simulación) que se muestra "Ahora"
+
+      sim.hidden = false;
+      cycle.classList.add('is-sim');
+
+      function fmt(x) { return x.toFixed(1).replace('.', ','); }
+      function pintaItems(box, items) {
+        box.textContent = '';
+        items.forEach(function (it) {
+          var s = document.createElement('span');
+          s.className = 'rt-sim__item';
+          var img = document.createElement('img');
+          img.src = it.icono; img.alt = ''; img.width = 40; img.height = 40;
+          var b = document.createElement('b');
+          b.textContent = it.texto;
+          s.appendChild(img); s.appendChild(b);
+          box.appendChild(s);
+        });
+      }
+      function render() {
+        head.style.left = (t / T) * 100 + '%';
+        clock.textContent = fmt(t);
+        marks.forEach(function (m) {
+          var st = t < m.t ? 'is-next' : t < m.t + m.d ? 'is-now' : 'is-past';
+          if (st !== m.st) { m.el.classList.remove('is-next', 'is-now', 'is-past'); m.el.classList.add(st); m.st = st; }
+          if (m.d > 1) m.el.style.setProperty('--p', Math.min(1, Math.max(0, (t - m.t) / m.d)).toFixed(3));
+        });
+        bars.forEach(function (b) {
+          b.el.style.setProperty('--p', Math.min(1, Math.max(0, (t - b.a) / (b.b - b.a))).toFixed(3));
+        });
+        // Panel "Ahora / Siguiente"
+        var g = -1;
+        for (var i = 0; i < grupos.length; i++) if (t >= grupos[i].t) g = i;
+        var hit = g >= 0 && t - grupos[g].t < HIT;
+        var next = grupos[g + 1];
+        var key = g + ':' + hit;
+        if (key !== shown) {
+          shown = key;
+          nowBox.classList.toggle('is-hit', hit);
+          if (hit) {
+            elK.textContent = 'Ahora: pulsa';
+            pintaItems(elItems, grupos[g].items);
+            elNota.textContent = grupos[g].nota;
+          } else {
+            elK.textContent = 'Ahora';
+            pintaItems(elItems, [{ icono: sim.dataset.idleIcon, texto: sim.dataset.idleName }]);
+            elNota.textContent = sim.dataset.idleNota;
+          }
+          if (next) pintaItems(elNext, next.items); else elNext.textContent = '';
+        }
+        elIn.textContent = next ? 'en ' + fmt(Math.max(0, next.t - t)) + ' s' : '';
+        // En móvil la línea de tiempo se desplaza: seguir al cabezal
+        if (playing && scroller.scrollWidth > scroller.clientWidth + 4) {
+          var x = play.offsetLeft + head.offsetLeft;
+          var target = x - scroller.clientWidth * 0.45;
+          if (Math.abs(scroller.scrollLeft - target) > 24) scroller.scrollLeft = target;
+        }
+      }
+      function frame(now) {
+        var dt = Math.min(0.1, (now - last) / 1000);
+        last = now;
+        t += dt * speed;
+        if (t >= T) { t = 0; shown = ''; }
+        render();
+        if (playing) raf = requestAnimationFrame(frame);
+      }
+      function setPlaying(on) {
+        if (on === playing) return;
+        playing = on;
+        cycle.classList.toggle('is-playing', on);
+        btnPlay.setAttribute('aria-label', on ? 'Pausar el ciclo' : 'Reproducir el ciclo');
+        if (on) { last = performance.now(); raf = requestAnimationFrame(frame); }
+        else cancelAnimationFrame(raf);
+      }
+      btnPlay.addEventListener('click', function () { userPaused = playing; setPlaying(!playing); });
+      $('[data-sim-reset]').addEventListener('click', function () { t = 0; shown = ''; scroller.scrollLeft = 0; render(); });
+      sim.querySelectorAll('[data-sim-speed]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          speed = Number(b.dataset.simSpeed);
+          sim.querySelectorAll('[data-sim-speed]').forEach(function (x) {
+            x.classList.toggle('is-on', x === b);
+            x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+          });
+        });
+      });
+      // Clic en la línea de tiempo: saltar a ese segundo
+      tl.addEventListener('click', function (e) {
+        var track = e.target.closest('.rt-tl__track');
+        if (!track) return;
+        var r = track.getBoundingClientRect();
+        t = Math.min(T - 0.01, Math.max(0, ((e.clientX - r.left) / r.width) * T));
+        shown = '';
+        render();
+      });
+      // Empieza sola al verse (salvo movimiento reducido o pausa del usuario) y se para fuera de pantalla
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) {
+          visible = en[0].isIntersecting;
+          if (!visible) setPlaying(false);
+          else if (!reduce && !userPaused) setPlaying(true);
+        }, { threshold: 0.35 }).observe(cycle);
+      }
+      render();
+    });
+  })();
+</script>

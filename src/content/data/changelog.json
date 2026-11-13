@@ -1,6 +1,13 @@
 [
   {
     "fecha": "2026-11-14",
+    "pestana": "rotacion",
+    "texto": "Rotación para un objetivo y en área, inicio del combate y cooldowns en",
+    "enlace": "Rotación",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-14",
     "pestana": "coaching",
     "texto": "Ya puedes pedir coaching personalizado para tu Cazador en",
     "enlace": "Coaching",

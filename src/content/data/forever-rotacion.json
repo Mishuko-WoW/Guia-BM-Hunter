@@ -1,0 +1,165 @@
+{
+  "_ayuda": "Contenido de la pestaña Rotación de Forever (RotacionForever.astro). Textos con mini-formato: [[Hechizo]], **negrita**. tipo: previo | mascota | mantener | cd | condicion | situacional | relleno.",
+  "claves": [
+    {
+      "icono": "ability_whirlwind",
+      "titulo": "Tiro automático es tu base",
+      "texto": "Gran parte de tu daño personal sale de [[Tiro automático]]. Tiene **0,5 s de lanzamiento**: si te mueves justo cuando va a salir, se retrasa. Quédate quieto siempre que puedas y muévete entre disparo y disparo."
+    },
+    {
+      "icono": "ability_hunter_animalhandler",
+      "titulo": "Dos relojes de 6 segundos",
+      "texto": "[[Invocar halcón]] y [[Tiro Arcano]] comparten **6 s** de reutilización, y [[Tiro de puntería]] y [[Multidisparo]] comparten **otros 6 s**. En cada ciclo eliges uno de cada pareja: así de simple."
+    },
+    {
+      "icono": "ability_hunter_beastcall",
+      "titulo": "Tu mascota hace la mitad",
+      "texto": "Tu mascota (y tus halcones) son una parte enorme de tu daño. Que **siempre esté atacando al objetivo correcto** importa tanto como pulsar los botones en orden."
+    }
+  ],
+  "antes": [
+    { "hechizo": "Aspecto del halcón", "cuando": "Siempre puesto", "texto": "Tu aspecto de daño: **aumenta tu poder de ataque a distancia**. Ponlo antes del pull y llévalo activo todo el combate." },
+    { "hechizo": "Aura de disparo certero", "cuando": "Si la llevas en talentos", "texto": "Actívala y olvídate: **sube el poder de ataque a distancia de todo tu grupo o banda** en un radio de 45 m. No caduca." },
+    { "hechizo": "Marca del cazador", "cuando": "Antes del primer disparo", "texto": "Marca al objetivo antes de empezar: **sube el poder de ataque a distancia contra él**. Vuelve a ponerla si cambias de objetivo." }
+  ],
+  "antesMascota": { "icono": "ability_hunter_beasttraining", "titulo": "Mascota contenta y con sus habilidades en automático", "texto": "Dale de comer antes de la banda o la mazmorra: una mascota contenta **hace más daño**. Comprueba que sus habilidades de ataque estén **en automático** para no tener que pulsarlas tú." },
+  "modos": [
+    {
+      "id": "st",
+      "boton": "Un objetivo",
+      "icono": "ability_hunter_snipershot",
+      "intro": "Para jefes y para cualquier enemigo que quieras matar rápido. Es una **lista de prioridades**: en cada momento usa la habilidad **más alta de la lista que esté disponible**.",
+      "columnas": [
+        {
+          "titulo": "Prioridad en un objetivo",
+          "pasos": [
+            { "hechizo": "Marca del cazador", "tipo": "previo", "cuando": "Antes del combate", "porque": "Pónsela antes de empezar y vuelve a ponerla si cambias de objetivo. Sube el poder de ataque a distancia de quien ataca al objetivo." },
+            { "hechizo": "Llamar a mascota", "nombre": "Mascota al ataque", "icono": "ability_hunter_beastcall", "tipo": "mascota", "cuando": "Lo primero", "porque": "Manda a tu mascota antes de disparar, con sus habilidades en automático, para que coja amenaza y empiece a hacer daño cuanto antes." },
+            { "hechizo": "Aguijón de serpiente", "tipo": "mantener", "cuando": "Que no se caiga", "porque": "Dura **15 s**. Renuévalo cuando se acabe, nunca antes: si lo reaplicas antes de tiempo pierdes daño y maná." },
+            { "hechizo": "Invocar halcón", "tipo": "mantener", "cuando": "Siempre 2 activos", "porque": "Cada halcón dura **18 s** y puedes tener **2**. Invoca el siguiente cuando el anterior esté a punto de irse, no antes: gastarías maná para nada." },
+            { "hechizo": "Tiro de puntería", "tipo": "cd", "cuando": "A reutilización", "porque": "Tu disparo más fuerte (2 s de lanzamiento). Comparte reutilización con [[Multidisparo]], así que en un objetivo **solo Puntería**." },
+            { "hechizo": "Tiro Arcano", "tipo": "condicion", "cuando": "Si tus 2 halcones duran más de 6 s", "porque": "Es el hueco del ciclo: halcón, halcón, **Arcano**. Si lo usas cuando un halcón va a caducar, te quedas con uno solo." },
+            { "hechizo": "Trampa de inmolación", "tipo": "situacional", "cuando": "Si el enemigo está quieto", "porque": "La trampa se coloca a tus pies: solo compensa si el jefe no se mueve. Lo mejor es dejarla puesta **antes del pull** donde va a estar el tanque." }
+          ]
+        }
+      ],
+      "inicio": [
+        { "hechizo": "Marca del cazador", "texto": "Antes del pull", "nota": "Con [[Aspecto del halcón]] y, si puedes, [[Trampa de inmolación]] donde estará el tanque." },
+        { "hechizo": "Llamar a mascota", "icono": "ability_hunter_beastcall", "texto": "Mascota al jefe", "nota": "Que empiece a atacar." },
+        { "hechizo": "Tiro de puntería", "texto": "Tiro de puntería", "nota": "Lánzalo mientras empieza el combate." },
+        { "hechizo": "Aguijón de serpiente", "texto": "Aguijón de serpiente" },
+        { "hechizo": "Invocar halcón", "texto": "Primer halcón" },
+        { "hechizo": "Ira de bestias", "texto": "Ira de bestias + Fuego rápido", "nota": "Con la mascota ya pegando; junta tu racial y tu abalorio.", "tono": "gold" },
+        { "hechizo": "Invocar halcón", "texto": "Segundo halcón", "nota": "Y a partir de aquí, la lista de prioridades." }
+      ]
+    },
+    {
+      "id": "aoe",
+      "boton": "Área (AoE)",
+      "icono": "ability_marksmanship",
+      "intro": "El Cazador tiene **pocas herramientas de área**: [[Multidisparo]], [[Trampa explosiva]] y [[Lluvia]]. Lo que cambia es **cuántos enemigos hay**: con pocos sigues usando tu rotación normal; con muchos, la trampa y la Lluvia mandan.",
+      "columnas": [
+        {
+          "titulo": "Pocos enemigos",
+          "sub": "2 a 7 objetivos",
+          "pasos": [
+            { "hechizo": "Marca del cazador", "tipo": "previo", "cuando": "Al objetivo prioritario", "porque": "El enemigo que hay que matar primero." },
+            { "hechizo": "Llamar a mascota", "nombre": "Mascota al ataque", "icono": "ability_hunter_beastcall", "tipo": "mascota", "cuando": "Al objetivo prioritario", "porque": "Mándala a tu objetivo antes de disparar." },
+            { "hechizo": "Multidisparo", "tipo": "cd", "cuando": "A reutilización", "porque": "Golpea a **3 objetivos**. Comparte reutilización con [[Tiro de puntería]]: en área **sustituye a Puntería**." },
+            { "hechizo": "Trampa explosiva", "tipo": "cd", "cuando": "A reutilización", "porque": "Bajo el grupo. Las trampas comparten **30 s** de reutilización y solo puede haber una activa." },
+            { "hechizo": "Invocar halcón", "tipo": "mantener", "cuando": "Siempre 2 activos", "porque": "Igual que en un objetivo: 2 halcones, renovando el que va a caducar." },
+            { "hechizo": "Aguijón de serpiente", "tipo": "condicion", "cuando": "En los que vayan a durar", "porque": "Su daño llega en 15 s: si el enemigo va a morir antes, no lo merece." },
+            { "hechizo": "Tiro Arcano", "tipo": "condicion", "cuando": "Si tus 2 halcones duran más de 6 s", "porque": "El mismo hueco del ciclo que en un objetivo." },
+            { "hechizo": "Lluvia", "tipo": "relleno", "cuando": "Cuando no haya nada más", "porque": "Canalizada sobre el grupo mientras esperas las reutilizaciones." }
+          ]
+        },
+        {
+          "titulo": "Muchos enemigos",
+          "sub": "8 objetivos o más",
+          "pasos": [
+            { "hechizo": "Marca del cazador", "tipo": "previo", "cuando": "Al objetivo principal", "porque": "Antes del pull." },
+            { "hechizo": "Llamar a mascota", "nombre": "Mascota al ataque", "icono": "ability_hunter_beastcall", "tipo": "mascota", "cuando": "Al objetivo principal", "porque": "Mándala primero." },
+            { "hechizo": "Trampa explosiva", "tipo": "cd", "cuando": "A reutilización", "porque": "Tu mejor golpe de área: siempre que esté lista." },
+            { "hechizo": "Lluvia", "tipo": "cd", "cuando": "Canalízala entera", "porque": "Con tantos enemigos es tu mayor daño: no la cortes antes de tiempo." },
+            { "hechizo": "Multidisparo", "tipo": "relleno", "cuando": "Mientras te mueves", "porque": "Es instantáneo: úsalo cuando tengas que moverte y no puedas canalizar." }
+          ]
+        }
+      ],
+      "aviso": "En área **tu mascota mantiene mal la amenaza** y tú generas mucha más. Deja que el tanque (o tu mascota) coja amenaza antes de soltar [[Lluvia]]. Si un grupo se te echa encima, [[Fingir muerte]] te quita la amenaza (pero no a tu mascota)."
+    }
+  ],
+  "ciclos": {
+    "total": 36,
+    "velocidadArma": 3,
+    "st": {
+      "titulo": "Así se ve en 36 segundos",
+      "texto": "Ejemplo ideal en un objetivo. Cada **6 s** tienes un hueco en cada reloj. En el de los halcones el patrón se repite cada 18 s: **halcón, halcón, Arcano**. Así siempre hay 2 halcones y el [[Tiro Arcano]] entra justo en el hueco.",
+      "notas": {
+        "0": "Primer halcón, Puntería y Aguijón para abrir el ciclo.",
+        "6": "El primer halcón aún dura 12 s: invoca el segundo.",
+        "12": "Tus 2 halcones aún duran 6 s o más: el hueco es para Tiro Arcano.",
+        "15": "Aguijón se acaba de caer: renuévalo.",
+        "18": "El halcón 1 se va ahora: invócalo otra vez.",
+        "24": "Se va el halcón 2: renuévalo.",
+        "30": "Hueco de nuevo para Tiro Arcano. Aguijón se ha caído: renuévalo."
+      },
+      "espera": {
+        "hechizo": "Tiro automático",
+        "texto": "Tiro automático",
+        "nota": "Quédate quieto y deja que salgan los disparos: tu mascota y tus halcones siguen pegando."
+      },
+      "pies": [
+        "**El [[Tiro automático]] sigue saliendo mientras lanzas [[Tiro de puntería]].** Por eso en la línea verás los dos a la vez: no es un error, no tienes que esperar a que termine uno para el otro. Como estás quieto lanzando Puntería, el disparo sale igual.",
+        "Ejemplo con un arma de velocidad **3,0**: sale un [[Tiro automático]] cada **3 s**. La barra se va cargando entre disparo y disparo, y en el último **0,5 s** tienes que estar **quieto** para que salga. En el juego depende de la velocidad de tu arma."
+      ]
+    },
+    "aoe": {
+      "titulo": "Así se ve en área: 2 a 7 enemigos",
+      "texto": "El mismo ritmo de 6 s que en un objetivo, con dos cambios: en el segundo reloj **[[Multidisparo]] sustituye a [[Tiro de puntería]]** (es instantáneo y golpea a 3 objetivos) y [[Trampa explosiva]] entra cada **30 s**. Los halcones y [[Aguijón de serpiente]] siguen igual: **halcón, halcón, Arcano**.",
+      "notas": {
+        "0": "Trampa explosiva bajo el grupo, primer halcón, Multidisparo y Aguijón al objetivo principal.",
+        "6": "Segundo halcón y Multidisparo en cuanto vuelve.",
+        "12": "Tus 2 halcones aún duran 6 s o más: Tiro Arcano en el hueco, y Multidisparo.",
+        "15": "Se ha caído Aguijón: renuévalo si el enemigo va a durar otros 15 s.",
+        "18": "Se va el halcón 1: invócalo otra vez. Multidisparo.",
+        "24": "Se va el halcón 2: renuévalo. Multidisparo.",
+        "30": "La trampa ha vuelto (30 s): otra vez bajo el grupo. Arcano, Multidisparo y Aguijón si el enemigo va a durar."
+      },
+      "espera": {
+        "hechizo": "Lluvia",
+        "texto": "Lluvia o Tiro automático",
+        "nota": "En los huecos entre reutilizaciones, Lluvia sobre el grupo como relleno. Si no merece la pena, quieto y que salga el Tiro automático."
+      },
+      "pies": [
+        "**[[Aguijón de serpiente]] también se usa en área**, pero solo en los enemigos que vayan a durar más de 15 s (como mínimo, el principal): en los que van a morir antes no compensa. **Con 8 enemigos o más** no hay ciclo fijo: [[Trampa explosiva]] siempre que esté lista y [[Lluvia]] canalizada entera.",
+        "Ejemplo con un arma de velocidad **3,0**: un [[Tiro automático]] cada **3 s**, con **0,5 s** quieto antes de cada uno. En el juego depende de la velocidad de tu arma."
+      ]
+    }
+  },
+  "cds": [
+    {
+      "hechizo": "Ira de bestias",
+      "datos": [["Duración", "18 s"], ["Reutilización", "2 min"], ["Efecto", "+50% daño de la mascota"]],
+      "texto": "Tu gran cooldown. Además, tu mascota **no puede ser controlada** mientras dura. Úsala cada vez que esté lista, pero **con la mascota ya atacando**: si está corriendo o parada, la desperdicias."
+    },
+    {
+      "hechizo": "Fuego rápido",
+      "datos": [["Duración", "15 s"], ["Reutilización", "5 min"], ["Efecto", "+40% velocidad de ataque"]],
+      "texto": "Normalmente **una vez por combate** (3 min con el talento [[Matanza rápida]]). Úsala junto a [[Ira de bestias]], tu racial y tus abalorios de uso para concentrar todo el daño en la misma ventana."
+    }
+  ],
+  "juntar": [
+    { "hechizo": "Furia sangrienta", "nota": "Orco" },
+    { "hechizo": "Iracundia", "nota": "Trol" },
+    { "hechizo": "Luz de Elune", "nota": "Elfo de la noche" }
+  ],
+  "utilidad": [
+    { "hechizo": "Disparo tranquilizante", "texto": "Quita el **frenesí** a un enemigo. Úsalo cuando te lo pida la banda: puede salvar al tanque." },
+    { "hechizo": "Intimidación", "texto": "Aturde 3 s y genera mucha amenaza a tu mascota. Si no hace falta el aturdimiento, úsala igual: es un pequeño extra de daño." },
+    { "hechizo": "Fingir muerte", "texto": "Te quita la amenaza al instante. Tu mascota sigue en combate." },
+    { "hechizo": "Separación", "texto": "Reduce tu amenaza si un enemigo te ataca cuerpo a cuerpo." },
+    { "hechizo": "Trampa congelante", "texto": "Congela a un enemigo hasta 20 s. Cualquier daño la rompe." },
+    { "hechizo": "Trampa de Escarcha", "texto": "Ralentiza a todo un grupo: ideal para controlar adds." },
+    { "hechizo": "Picadura de víbora", "texto": "Drena maná a enemigos lanzadores en los combates en que haga falta." }
+  ]
+}

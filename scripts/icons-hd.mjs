@@ -43,6 +43,13 @@ function iconsFromForever() {
   const pet = JSON.parse(fs.readFileSync(path.join(root, 'src/content/data/forever-mascotas.json'), 'utf8'));
   pet.familias.forEach((f) => set.add(f.icono));
   Object.values(pet.habilidades).forEach((h) => set.add(h.icono));
+  // Rotación: "hechizo" (icono del catálogo, iconForever si existe), "icono" y [[Hechizo]] en los textos
+  const rot = fs.readFileSync(path.join(root, 'src/content/data/forever-rotacion.json'), 'utf8');
+  for (const m of rot.matchAll(/"hechizo":\s*"([^"]+)"|\[\[([^\]|>]+)/g)) {
+    const s = spells[(m[1] ?? m[2]).trim()];
+    if (s) set.add(s.iconForever ?? s.icon);
+  }
+  for (const m of rot.matchAll(/"icono":\s*"([a-z0-9_]+)"/g)) set.add(m[1]);
   return [...set];
 }
 

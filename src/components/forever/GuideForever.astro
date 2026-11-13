@@ -8,6 +8,7 @@ import CalculadoraTalentos from './CalculadoraTalentos.astro';
 import RangosEntrenables from './RangosEntrenables.astro';
 import MascotasForever from './MascotasForever.astro';
 import SeccionCoaching from '../SeccionCoaching.astro';
+import RotacionForever from './RotacionForever.astro';
 import { TABS_FOREVER } from '../../lib/tabs';
 import { SEO } from '../../lib/seo';
 import { formatLong, latestChangeDate } from '../../lib/changelog';
@@ -38,6 +39,7 @@ const visibles = TABS_FOREVER.filter((t) => t.id === tab || (tab === 'rotacion' 
         </>
       )}
       {t.id === 'mascotas' && <MascotasForever />}
+      {t.id === 'rotacion' && <RotacionForever />}
     </SeccionForever>
   ))}
 </div>

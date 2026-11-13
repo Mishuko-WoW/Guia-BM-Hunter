@@ -19,8 +19,7 @@ export const TABS_FOREVER: Tab[] = [
   { id: 'mecanicas', label: 'General' },
   { id: 'talentos', label: 'Talentos' },
   { id: 'estadisticas', label: 'Stats' },
-  { id: 'rotacion', label: 'Rotación y Opener' },
-  { id: 'opener', label: 'Opener', hidden: true }, // comparte botón con Rotación
+  { id: 'rotacion', label: 'Rotación y Opener' }, // incluye el inicio del combate (no hay pestaña Opener aparte)
   { id: 'bis', label: 'BiS y Consumibles' },
   { id: 'mascotas', label: 'Mascotas' },
   { id: 'macros', label: 'Macros' },

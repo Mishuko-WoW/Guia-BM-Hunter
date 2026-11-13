@@ -50,6 +50,11 @@
         const url = tabUrl(normalizedTab);
         if (url) { location.replace(url); return; }
       }
+      // #opener no tiene botón ni página: vive en Rotación (/<versión>/rotacion/#opener)
+      if (hashTab === 'opener' && !hasPanel('opener') && !document.getElementById('opener')) {
+        const url = tabUrl('rotacion');
+        if (url) { location.replace(url + '#opener'); return; }
+      }
       // Anclas dentro de la página (#pf-claw…): no tocar las pestañas
       if (hashTab && !validTabIds.has(normalizedTab) && document.getElementById(hashTab)) return;
 

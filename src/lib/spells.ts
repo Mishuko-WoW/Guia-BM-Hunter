@@ -9,6 +9,8 @@ type SpellData = {
   badge: BadgeType;
   type: string;
   desc: string;
+  /** Icono en la guía Forever si es distinto (p. ej. Marca del cazador clásica) */
+  iconForever?: string;
 };
 
 const catalog = spells as Record<string, SpellData>;
@@ -36,6 +38,12 @@ export function iconUrl(icon?: string): string | undefined {
   if (!icon) return undefined;
   if (icon.startsWith('http') || icon.startsWith('/')) return icon;
   return localIcons.has(icon) ? `/icons/${icon}.webp` : `https://wow.zamimg.com/images/wow/icons/large/${icon}.jpg`;
+}
+
+/** Icono de un hechizo para la guía Forever (iconForever si existe) */
+export function foreverIcon(name?: string): string | undefined {
+  const sp = getSpell(name);
+  return iconUrl(sp?.iconForever ?? sp?.icon);
 }
 
 // Icono explícito o, si no hay, el del primer [[hechizo]] del texto

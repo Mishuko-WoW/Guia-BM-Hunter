@@ -63,7 +63,8 @@
     "icon": "ability_hunter_markedfordeath",
     "badge": "bf",
     "type": "Debuff",
-    "desc": "Mantener en objetivo prioritario."
+    "desc": "Mantener en objetivo prioritario.",
+    "iconForever": "ability_hunter_snipershot"
   },
   "Matar": {
     "icon": "ability_hunter_killcommand",
@@ -724,5 +725,47 @@
     "badge": "sp",
     "type": "Habilidad de mascota (común)",
     "desc": "Reduce la amenaza que genera tu mascota."
+  },
+  "Trampa de inmolación": {
+    "icon": "spell_fire_flameshock",
+    "badge": "sp",
+    "type": "Trampa · 30 s CD (compartido con las trampas)",
+    "desc": "Trampa de Fuego que quema al primer enemigo que se acerca durante 15 s. La trampa dura 1 min. Solo puede haber una trampa activa."
+  },
+  "Disparo tranquilizante": {
+    "icon": "spell_nature_drowsy",
+    "badge": "sp",
+    "type": "Habilidad · 8-35 m",
+    "desc": "Intenta quitar 1 efecto de frenesí a una criatura enemiga."
+  },
+  "Trampa congelante": {
+    "icon": "spell_frost_chainsofice",
+    "badge": "sp",
+    "type": "Trampa · 30 s CD (compartido con las trampas)",
+    "desc": "Congela al primer enemigo que se acerca hasta 20 s. Cualquier daño rompe el efecto."
+  },
+  "Trampa de Escarcha": {
+    "icon": "spell_frost_freezingbreath",
+    "badge": "sp",
+    "type": "Trampa · 30 s CD (compartido con las trampas)",
+    "desc": "Crea una placa de hielo que ralentiza a todos los enemigos de la zona."
+  },
+  "Golpe de raptor": {
+    "icon": "ability_meleedamage",
+    "badge": "sp",
+    "type": "Cuerpo a cuerpo · 6 s CD",
+    "desc": "Ataque cuerpo a cuerpo potenciado con tu arma."
+  },
+  "Picadura de víbora": {
+    "icon": "ability_hunter_aimedshot",
+    "badge": "sp",
+    "type": "Aguijón · 8-35 m",
+    "desc": "Drena el maná del enemigo durante 8 s. Solo puede haber 1 aguijón tuyo en el objetivo."
+  },
+  "Llamar a mascota": {
+    "icon": "ability_hunter_beastcall",
+    "badge": "sp",
+    "type": "Habilidad de mascota",
+    "desc": "Llama a tu mascota. Con ella activa, ordénale atacar a tu objetivo antes de empezar a disparar."
   }
 }
