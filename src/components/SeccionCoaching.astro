@@ -1,3 +1,72 @@
+---
+// Página de Coaching. La misma para Midnight y Forever: solo cambian los textos de TEXTOS[version].
+interface Props {
+  version?: 'midnight' | 'forever';
+}
+const { version = 'midnight' } = Astro.props;
+
+const TEXTOS = {
+  midnight: {
+    contexto: null,
+    consiste: 'Te ofrezco ayuda directa y personalizada para mejorar tu Hunter Beast Mastery en Midnight. Cada sesion esta adaptada a tu nivel actual y objetivos.',
+    incluye: [
+      'Analisis detallado de tus logs (Warcraft Logs)',
+      'Revision de tus simulaciones en Raidbots',
+      'Correccion de opener, rotacion y prioridades',
+      'Optimizacion de talentos por raid / boss / Mythic+',
+      'Consejos especificos sobre equipo, mascotas y consumibles',
+      'Resolucion de errores comunes y malos habitos',
+      'Plan de mejora personalizado',
+    ],
+    individual: [
+      'Sims premium (Quick Sim + Top Gear + Optimizer)',
+      'Revisión previa completa de logs',
+      'Sesión privada en Discord',
+      'Feedback detallado en vivo',
+      'Plan personalizado post-sesión',
+    ],
+    pro: [
+      'Sesión privada cada semana (1 hora aprox)',
+      'Análisis completo de logs semanales',
+      'Simulaciones premium semanales',
+      'Revisión de decisiones de Vault',
+      'Revisión de vídeos Archon grabados (si los aportas)',
+      'Plan progresivo adaptado a ti',
+    ],
+    cierre: '¿Listo para topear aunque nuestra clase de pena?',
+  },
+  forever: {
+    contexto: 'Ahora aplico esa misma forma de trabajar a WoW Forever: la guía del Cazador de Bestias para Forever sigue el mismo método, basado en datos y probado en juego.',
+    consiste: 'Te ofrezco ayuda directa y personalizada para mejorar tu Cazador de Bestias (Hunter BM) en WoW Forever, tanto si estás subiendo de nivel como si ya juegas mazmorras y banda a nivel 60. Cada sesión está adaptada a tu nivel actual y a tus objetivos.',
+    incluye: [
+      'Revisión de tu rotación: Tiro automático, Invocar halcón y gestión del maná',
+      'Elección y entrenamiento de tu mascota: familia, habilidades y rangos',
+      'Talentos para raid, mazmorras o leveling, según lo que juegues',
+      'Ruta de leveling, profesiones y qué entrenar en cada nivel',
+      'Equipo, consumibles y prioridad de estadísticas',
+      'Análisis de tus registros de combate si los tienes (Warcraft Logs)',
+      'Plan de mejora personalizado',
+    ],
+    individual: [
+      'Revisión previa de tu personaje, talentos y equipo',
+      'Revisión de logs o vídeos de tus combates (si los aportas)',
+      'Sesión privada en Discord',
+      'Feedback detallado en vivo',
+      'Plan personalizado post-sesión',
+    ],
+    pro: [
+      'Sesión privada cada semana (1 hora aprox)',
+      'Seguimiento semanal de tu progreso (leveling, mazmorras o banda)',
+      'Revisión semanal de equipo, talentos y mascota',
+      'Revisión de logs semanales (si juegas contenido con registros)',
+      'Revisión de vídeos grabados de tus combates (si los aportas)',
+      'Plan progresivo adaptado a ti',
+    ],
+    cierre: '¿Listo para llevar a tu Cazador al siguiente nivel?',
+  },
+}[version];
+---
+
 <div id="tab-coaching" class="tab-panel">
   <main class="coach-container">
 
@@ -29,24 +98,19 @@
         <p style="margin-bottom: 0;">
           Mi objetivo principal es que sea la referencia práctica que yo mismo querría tener abierta en segunda pantalla mientras juego: clara, actualizada y basada en datos reales, para que puedas resolver cualquier duda rápidamente sin tener que saltar entre varias webs.
         </p>
+        {TEXTOS.contexto && <><br><p style="margin-bottom: 0;">{TEXTOS.contexto}</p></>}
       </section>
     </div>
 
     <section class="coach-card">
       <h2>En que consiste el coaching?</h2>
-      <p>Te ofrezco ayuda directa y personalizada para mejorar tu Hunter Beast Mastery en Midnight. Cada sesion esta adaptada a tu nivel actual y objetivos.</p>
+      <p>{TEXTOS.consiste}</p>
 
       <div class="coach-grid even">
         <div>
           <h3>Que incluye una sesion tipica:</h3>
           <ul class="coach-bullets">
-            <li>Analisis detallado de tus logs (Warcraft Logs)</li>
-            <li>Revision de tus simulaciones en Raidbots</li>
-            <li>Correccion de opener, rotacion y prioridades</li>
-            <li>Optimizacion de talentos por raid / boss / Mythic+</li>
-            <li>Consejos especificos sobre equipo, mascotas y consumibles</li>
-            <li>Resolucion de errores comunes y malos habitos</li>
-            <li>Plan de mejora personalizado</li>
+            {TEXTOS.incluye.map((t) => <li>{t}</li>)}
           </ul>
         </div>
         <div>
@@ -87,11 +151,7 @@
           <p class="price cyan">Consulta el precio conmigo en Discord</p>
           <p style="font-size: 13px; color: var(--text2); margin-bottom: 1rem;">1 hora aprox · 1:1 privado</p>
           <ul class="coach-check-list">
-            <li><span class="ok">✓</span> Sims premium (Quick Sim + Top Gear + Optimizer)</li>
-            <li><span class="ok">✓</span> Revisión previa completa de logs</li>
-            <li><span class="ok">✓</span> Sesión privada en Discord</li>
-            <li><span class="ok">✓</span> Feedback detallado en vivo</li>
-            <li><span class="ok">✓</span> Plan personalizado post-sesión</li>
+            {TEXTOS.individual.map((t) => <li><span class="ok">✓</span> {t}</li>)}
           </ul>
           <p class="small-note">💡 <strong>Para ti si:</strong> quieres una revisión profunda y puntual</p>
           <a href="https://discordapp.com/users/604762837092532233" target="_blank" rel="noopener noreferrer" class="coach-btn">Contactar</a>
@@ -105,12 +165,7 @@
           <p class="price cyan">Consulta el precio conmigo en Discord</p>
           <p style="font-size: 13px; color: var(--text2); margin-bottom: 1rem;">4 semanas · 4 sesiones incluidas</p>
           <ul class="coach-check-list">
-            <li><span class="ok">✓</span> Sesión privada cada semana (1 hora aprox)</li>
-            <li><span class="ok">✓</span> Análisis completo de logs semanales</li>
-            <li><span class="ok">✓</span> Simulaciones premium semanales</li>
-            <li><span class="ok">✓</span> Revisión de decisiones de Vault</li>
-            <li><span class="ok">✓</span> Revisión de vídeos Archon grabados (si los aportas)</li>
-            <li><span class="ok">✓</span> Plan progresivo adaptado a ti</li>
+            {TEXTOS.pro.map((t) => <li><span class="ok">✓</span> {t}</li>)}
           </ul>
           <p class="small-note">🚀 <strong>Para ti si:</strong> buscas transformación real con seguimiento</p>
           <a href="https://discordapp.com/users/604762837092532233" target="_blank" rel="noopener noreferrer" class="coach-btn primary">Reservar</a>
@@ -120,7 +175,7 @@
     </section>
 
     <section class="coach-card accent-gold center">
-      <h2 style="margin-bottom: 1rem;">¿Listo para topear aunque nuestra clase de pena?</h2>
+      <h2 style="margin-bottom: 1rem;">{TEXTOS.cierre}</h2>
       <p style="font-size: 1.05rem; margin-bottom: 2rem;">La guía es gratuita. El coaching es la inversión en TI.</p>
 
       <div class="coach-cta-options">

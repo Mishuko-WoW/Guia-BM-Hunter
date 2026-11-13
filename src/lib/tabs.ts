@@ -25,6 +25,7 @@ export const TABS_FOREVER: Tab[] = [
   { id: 'mascotas', label: 'Mascotas' },
   { id: 'macros', label: 'Macros' },
   { id: 'leveling', label: 'Leveling 1-60' },
+  { id: 'coaching', label: 'Coaching', cta: true },
 ];
 
 export const TABS = { midnight: TABS_MIDNIGHT, forever: TABS_FOREVER } as const;

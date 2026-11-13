@@ -7,6 +7,7 @@ import SeccionForever from './SeccionForever.astro';
 import CalculadoraTalentos from './CalculadoraTalentos.astro';
 import RangosEntrenables from './RangosEntrenables.astro';
 import MascotasForever from './MascotasForever.astro';
+import SeccionCoaching from '../SeccionCoaching.astro';
 import { TABS_FOREVER } from '../../lib/tabs';
 import { SEO } from '../../lib/seo';
 import { formatLong, latestChangeDate } from '../../lib/changelog';
@@ -26,7 +27,8 @@ const visibles = TABS_FOREVER.filter((t) => t.id === tab || (tab === 'rotacion' 
 <TabBar realm="forever" activa={tab} />
 
 <div class="content-area">
-  {visibles.map((t) => (
+  {tab === 'coaching' && <SeccionCoaching version="forever" />}
+  {tab !== 'coaching' && visibles.map((t) => (
     <SeccionForever tab={t.id} label={t.label} pagina={paginas.get(t.id)} activa={t.id === tab}>
       {t.id === 'talentos' && (
         <>

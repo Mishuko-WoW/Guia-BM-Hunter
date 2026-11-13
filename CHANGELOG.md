@@ -10,10 +10,15 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 ---
 
 ## ▶ PRÓXIMO TRABAJO
-- Coaching de Forever (en curso, 2026-11-14). Después: pestañas de Forever Stats, Rotación y Opener, BiS y Consumibles, Macros, Leveling 1-60 (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
+- Pestañas de Forever Stats, Rotación y Opener, BiS y Consumibles, Macros, Leveling 1-60 (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
 - Search Console: reenviar `sitemap-index.xml` y pedir indexación de las páginas nuevas (lo hace Mishuko o con su permiso).
 
 ---
+
+## 2026-11-14 — Coaching de Forever
+- Nueva pestaña Coaching en Forever (`/forever/coaching/`, en `TABS_FOREVER` con `cta`). Mismo componente que Midnight: `SeccionCoaching.astro` con prop `version` y textos en `TEXTOS[version]` (Midnight sin cambios). En Forever fuera Raidbots/Top Gear/Optimizer, Gran Cámara y Archon; dentro rotación con Invocar halcón y maná, mascota, leveling y profesiones.
+- Entrada en `changelog.json` (Forever, coaching).
+- Archivos: `src/components/SeccionCoaching.astro`, `src/components/forever/GuideForever.astro`, `src/lib/tabs.ts`, `src/content/data/changelog.json`.
 
 ## 2026-11-14 — SEO: una página por pestaña, títulos, JSON-LD, robots y sitemap
 - Search Console (28 días hasta 10-11): las consultas con más impresiones son «cazador bestias midnight» (64), «guia cazador bestias midnight» (51), «talentos cazador bestias midnight» (29); todas las impresiones iban a `/`. Ningún título decía «Cazador».
