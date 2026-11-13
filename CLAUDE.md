@@ -35,7 +35,7 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
   - `obra.css` (antigua página "en construcción") ya no se usa.
 - Datos de cada versión (nombre, enlace, logo, etiqueta, `disponible`) en `src/lib/realms.ts`; selector superior en `RealmSwitch.astro`.
 - Logos oficiales de Midnight y Forever (Blizzard Press Center, blizzard.gamespress.com) reducidos a WebP en `public/brand/realms/`. Colores de versión: `--realm-midnight` violeta, `--realm-forever` turquesa (`tokens.css`).
-- Cuando Forever esté lista: `disponible: true` en `realms.ts` y sustituir `src/pages/forever/index.astro` por la guía.
+- Forever ya es `disponible: true` (desde 2026-11-13). `estado` en `realms.ts` = texto de la tarjeta de portada; actualizarlo al completar pestañas (hoy: General, Talentos y Mascotas).
 - Tema por versión: `MainLayout` pone `<html data-realm="portada|midnight|forever">`; el tema Forever solo redefine variables en `tokens.css` (`:root[data-realm="forever"]`).
 - Analytics (GA4 G-EJY55YHE6Q): `page_view` con ruta limpia (`/midnight/bis`, `/forever`, `/`) y `content_group` = versión. Al crear una página nueva pasar `realm` y `defaultTab` a `MainLayout`.
 

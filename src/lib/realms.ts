@@ -12,6 +12,7 @@ export type Realm = {
   logo?: string;
   etiqueta?: string;    // chip sobre la tarjeta ("NUEVO", "PRÓXIMAMENTE"…)
   disponible: boolean;  // false = página "en construcción"
+  estado?: string;      // texto bajo el subtítulo en la portada (si falta, uno genérico)
 };
 
 export const REALMS: Realm[] = [
@@ -32,6 +33,7 @@ export const REALMS: Realm[] = [
     href: '/forever/',
     logo: '/brand/realms/forever.webp',
     etiqueta: 'Nuevo',
-    disponible: false,
+    disponible: true,
+    estado: 'General, talentos y mascotas · se amplía cada día',
   },
 ];

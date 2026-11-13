@@ -9,6 +9,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-13 — Forever disponible en la portada (publicado)
+- `disponible: true` y nuevo campo `estado` en `src/lib/realms.ts` (texto de la tarjeta: "General, talentos y mascotas · se amplía cada día"); `src/pages/index.astro` lo usa.
+- Publicado junto al commit `0cb0d04` (General, Talentos, Mascotas), deploy en success.
+
 ## 2026-11-13 — Partículas en toda la web y cabecera de Forever (sin publicar)
 - Las brasas de la portada pasan a ser comunes: `src/components/Particulas.astro` en `MainLayout` (capa fija `z-index: -1`, `body { isolation: isolate }`), colores por versión en `marca.css` (portada violeta/turquesa como antes, Midnight violeta/lima, Forever turquesa/bronce). Fuera `.pt-ember` de la portada.
 - Cabecera de Forever sin las tarjetas "Ira de bestias" / "Invocar halcón" (solo Midnight muestra talentos de héroe); fuera `.mk-chip--fv`.

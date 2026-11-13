@@ -45,7 +45,7 @@ import '../styles/portada.css';
           </span>
           <span class="pt-card__sub">{r.subtitulo}</span>
           <span class="pt-card__status">
-            {r.disponible ? 'Guía completa: talentos, rotación, opener y BiS' : 'En construcción · disponible en menos de 24 h'}
+            {r.estado ?? (r.disponible ? 'Guía completa: talentos, rotación, opener y BiS' : 'En construcción · disponible en menos de 24 h')}
           </span>
           <span class="pt-card__cta">
             {r.disponible ? 'Entrar a la guía' : 'Ver avance'}
