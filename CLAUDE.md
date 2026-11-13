@@ -14,6 +14,7 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 - Enlaces antiguos con `#` **siguen funcionando**: `/#bis` (portada) y `/<versión>/#bis` → `location.replace` a la página de la pestaña (`bm-guide.js`, bloque "PÁGINAS POR PESTAÑA"; alias `#mec`, `#rot`…). Anclas que no son pestañas (`#pf-charge`) no tocan las pestañas.
 - Nunca borrar ni renombrar una ruta publicada. Pestañas sin contenido = página con `noindex` (no 404) y fuera del sitemap (`astro.config.mjs`).
 - `public/robots.txt`; sitemap con `lastmod` desde `changelog.json`. Imagen de Forever: `node scripts/og-images.mjs` → `public/brand/og-forever.png`.
+- Tras publicar páginas nuevas: `node scripts/indexnow.mjs` (avisa a Bing/Yandex con las URL del sitemap; clave en `public/<clave>.txt`, no borrarla) y, en Search Console, pedir indexación de las nuevas.
 - Palabras clave: «guía hunter BM», «Cazador de Bestias» (lo más buscado en Search Console), «guía hunter forever», «guía hunter midnight».
 - `npm run dev` → http://localhost:4321 (recarga en caliente)
 - `npm run build` → valida contenido (`scripts/check-content.mjs`) + genera `dist/`. **Ejecutar siempre antes de commit.**

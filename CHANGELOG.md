@@ -15,6 +15,11 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-14 — Search Console e IndexNow
+- Search Console: enviado `sitemap-index.xml` (estado Correcto) y reenviado `sitemap-0.xml`; Google no conocía `/forever/` → solicitada su indexación y la de las páginas clave.
+- IndexNow (Bing, Yandex…): clave en `public/<clave>.txt` y `scripts/indexnow.mjs`, que envía las URL del sitemap publicado.
+- Archivos: `public/2bc3f289da037de495de3fd9daa2fbcf.txt`, `scripts/indexnow.mjs`, `CLAUDE.md`.
+
 ## 2026-11-14 — Coaching de Forever
 - Nueva pestaña Coaching en Forever (`/forever/coaching/`, en `TABS_FOREVER` con `cta`). Mismo componente que Midnight: `SeccionCoaching.astro` con prop `version` y textos en `TEXTOS[version]` (Midnight sin cambios). En Forever fuera Raidbots/Top Gear/Optimizer, Gran Cámara y Archon; dentro rotación con Invocar halcón y maná, mascota, leveling y profesiones.
 - Entrada en `changelog.json` (Forever, coaching).
