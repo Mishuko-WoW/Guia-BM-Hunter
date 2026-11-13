@@ -16,8 +16,9 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 ---
 
 ## 2026-11-14 — Search Console e IndexNow
-- Search Console: enviado `sitemap-index.xml` (estado Correcto) y reenviado `sitemap-0.xml`; Google no conocía `/forever/` → solicitada su indexación y la de las páginas clave.
-- IndexNow (Bing, Yandex…): clave en `public/<clave>.txt` y `scripts/indexnow.mjs`, que envía las URL del sitemap publicado.
+- Search Console: enviado `sitemap-index.xml` (estado Correcto) y reenviado `sitemap-0.xml`. Google no conocía `/forever/` ni `/midnight/talentos/`; el resto ya salía "Descubierta" por el sitemap.
+- Indexación solicitada (cola prioritaria) el 2026-11-14: `/forever/`, `/forever/talentos/`, `/forever/mascotas/`, `/`, `/midnight/`, `/midnight/talentos/`. Límite diario alcanzado: **pendiente** `/forever/coaching/`, `/midnight/bis/`, `/midnight/rotacion/` (pedirlas otro día).
+- IndexNow (Bing, Yandex…): clave en `public/<clave>.txt` y `scripts/indexnow.mjs`; enviadas las 14 URL del sitemap (HTTP 202).
 - Archivos: `public/2bc3f289da037de495de3fd9daa2fbcf.txt`, `scripts/indexnow.mjs`, `CLAUDE.md`.
 
 ## 2026-11-14 — Coaching de Forever
