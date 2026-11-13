@@ -9,6 +9,15 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## ▶ PRÓXIMO TRABAJO (pedido por Mishuko el 2026-11-13)
+**SEO a fondo, antes de seguir con las pestañas de Forever.** Primero investigar y **presentar el plan para que lo apruebe**; no tocar nada sin su visto bueno.
+- Objetivo: posicionar arriba para **«guía hunter BM forever»** y **«guía hunter forever»** (prioridad máxima: que salga aunque busquen solo «hunter» sin «BM»), además de **«guía hunter midnight»** y mantener/mejorar **«guía hunter BM midnight»** y **«guía hunter BM»**.
+- Hacer búsquedas (competencia, palabras clave en español, intención de búsqueda) y optimizar al máximo: `<title>`, metadescripciones, H1/H2, textos, datos estructurados (JSON-LD), Open Graph/imagen por versión, canonical, sitemap, enlaces internos entre portada/Midnight/Forever, rendimiento, etc.
+- Hoy: la web está bien posicionada para «guía hunter BM midnight» y «guía hunter BM»; Forever acaba de publicarse (General, Talentos, Mascotas).
+- Pendiente después: pestañas de Forever Stats, Rotación y Opener, BiS y Consumibles, Macros, Leveling 1-60 (y actualizar `estado` en `realms.ts`).
+
+---
+
 ## 2026-11-13 — Forever disponible en la portada (publicado)
 - `disponible: true` y nuevo campo `estado` en `src/lib/realms.ts` (texto de la tarjeta: "General, talentos y mascotas · se amplía cada día"); `src/pages/index.astro` lo usa.
 - Publicado junto al commit `0cb0d04` (General, Talentos, Mascotas), deploy en success.
