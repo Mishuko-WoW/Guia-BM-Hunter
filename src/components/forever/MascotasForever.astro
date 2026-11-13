@@ -1,0 +1,168 @@
+---
+// Pestaña Mascotas (Forever): las 18 familias con su habilidad propia (exclusiva) y dónde domesticar cada
+// habilidad (comunes primero), con un selector Alianza/Horda. Rangos: el más bajo, uno intermedio y el más alto.
+// Datos: src/content/data/forever-mascotas.json (generado con scripts/gen-forever-mascotas.mjs).
+import data from '../../content/data/forever-mascotas.json';
+import { iconUrl } from '../../lib/spells';
+
+type Bestia = { npc: number; nombre: string; nivel: string; zona: string; faccionZona: string; otraFaccion: boolean; url: string } | null;
+type Doma = { rango: number; nivelMascota: number; pi: number; esMax: boolean; alianza: Bestia; horda: Bestia };
+type Hab = { id: string; nombre: string; icono: string; desc: string; rangos: number | null; rangoMaxConFuente: number | null; doma: Doma[] };
+
+const H = data.habilidades as Record<string, Hab>;
+const familias = data.familias;
+const comunes = data.comunes.map((id) => H[id]);
+const quienAprende = (id: string) => familias.filter((f) => f.aprende.includes(id));
+const fam = (id: string) => familias.find((f) => f.id === id)!;
+
+const INSTRUCTOR = [
+  { nombre: 'Bramido', icono: 'ability_physical_taunt', desc: 'Provoca al enemigo para que ataque a tu mascota. La única activa que enseña el instructor.' },
+  { nombre: 'Gran aguante', icono: 'spell_nature_unyeildingstamina', desc: 'Pasiva: más salud para tu mascota.' },
+  { nombre: 'Armadura natural', icono: 'spell_nature_spiritarmor', desc: 'Pasiva: más armadura para tu mascota.' },
+  { nombre: 'Resistencias', icono: 'spell_nature_resistnature', desc: 'Pasivas: Arcana, Fuego, Escarcha, Naturaleza y Sombras.' },
+];
+const ZONA_DE = { A: 'Zona de la Alianza', H: 'Zona de la Horda' } as Record<string, string>;
+
+const tarjetas = [
+  ...comunes.map((h) => ({ h, sub: `Común · ${quienAprende(h.id).length === familias.length ? 'todas las familias' : `${quienAprende(h.id).length} familias`}` })),
+  ...familias.map((f) => ({ h: H[f.propia], sub: `Solo ${f.nombre.toLowerCase()}`, propia: true })),
+];
+---
+
+<div class="pf" id="pf" data-faccion="a">
+  <!-- ─── Regla de exclusividad ─── -->
+  <div class="pf-rule">
+    <div class="pf-rule__demo" aria-hidden="true">
+      <img src={iconUrl(fam('oso').icono)} alt="" width="52" height="52" />
+      <span class="pf-rule__x"></span>
+      <img src={iconUrl(H.charge.icono)} alt="" width="40" height="40" />
+      <img src={iconUrl(H.furioushowl.icono)} alt="" width="40" height="40" />
+    </div>
+    <p>
+      <b>La habilidad propia de cada familia es exclusiva.</b> Ninguna otra familia la puede aprender: un oso
+      <b>nunca</b> podrá tener Embestir (del jabalí) ni Aullido furioso (del lobo). Si quieres una de ellas,
+      tienes que domesticar una mascota de esa familia.
+    </p>
+  </div>
+
+  <!-- ─── Familias ─── -->
+  <h3>Las 18 familias y su habilidad propia</h3>
+  <div class="pf-families">
+    {familias.map((f) => {
+      const p = H[f.propia];
+      return (
+        <article class="pf-family">
+          <header class="pf-family__head">
+            <img src={iconUrl(f.icono)} alt="" width="48" height="48" loading="lazy" />
+            <h4>{f.nombre}</h4>
+            {f.familiaNueva ? <span class="pf-tag pf-tag--new">Familia nueva</span> : f.nueva && <span class="pf-tag">Nueva en Forever</span>}
+          </header>
+          <a class="pf-own" href={`#pf-${p.id}`} data-name={p.nombre} data-type={`Habilidad propia · solo ${f.nombre.toLowerCase()}`} data-desc={p.desc}>
+            <img src={iconUrl(p.icono)} alt="" width="52" height="52" loading="lazy" />
+            <span class="pf-own__body">
+              <b>{p.nombre}</b>
+              <span class="pf-own__desc">{p.desc}</span>
+            </span>
+          </a>
+          <footer class="pf-family__foot">
+            <span class="pf-excl"><span class="pf-lock" aria-hidden="true"></span>Solo {f.nombre.toLowerCase()}</span>
+            <span class="pf-diet" title="Dieta">Come: {f.dieta.toLowerCase()}</span>
+          </footer>
+        </article>
+      );
+    })}
+  </div>
+
+  <!-- ─── Dónde domesticar ─── -->
+  <h3>Dónde domesticar cada habilidad</h3>
+  <div class="pf-taming-top">
+    <p>
+      Para cada habilidad te pongo la bestia que enseña el <b>rango más bajo</b>, uno <b>intermedio</b> y el
+      <b>más alto</b>. Pulsa su nombre para ver en Wowhead dónde está.
+    </p>
+    <div class="toggle-wrap combat-switch pf-faction" role="group" aria-label="Elegir facción">
+      <button type="button" class="toggle-btn active pf-faction__a" data-pf-faccion="a">Alianza</button>
+      <button type="button" class="toggle-btn pf-faction__h" data-pf-faccion="h">Horda</button>
+    </div>
+  </div>
+
+  {tarjetas.map(({ h, sub, propia }, i) => (
+    <>
+      {i === 0 && <h4 class="pf-group">Habilidades comunes</h4>}
+      {i === comunes.length && <h4 class="pf-group">Habilidades propias de cada familia</h4>}
+      <section class="pf-ab" id={`pf-${h.id}`}>
+        <header class="pf-ab__head" data-name={h.nombre} data-type={sub} data-desc={h.desc}>
+          <img src={iconUrl(h.icono)} alt="" width="48" height="48" loading="lazy" />
+          <div>
+            <h5>{h.nombre}</h5>
+            <p class="pf-ab__sub">
+              {propia && <span class="pf-lock" aria-hidden="true"></span>}{sub}{h.rangos ? ` · ${h.rangos} ${h.rangos === 1 ? 'rango' : 'rangos'}` : ''}
+            </p>
+            <p class="pf-ab__desc">{h.desc}</p>
+          </div>
+        </header>
+
+        {h.doma.length ? (
+          <ol class="pf-steps">
+            {h.doma.map((d) => (
+              <li class="pf-step">
+                <div class="pf-step__rank">
+                  <b>Rango {d.rango}</b>
+                  {d.esMax && h.rangos! > 1 && <span class="pf-max">Máximo</span>}
+                  <small>Mascota nv. {d.nivelMascota} · {d.pi} PI</small>
+                </div>
+                {([['a', d.alianza], ['h', d.horda]] as const).map(([k, b]) => (
+                  <div class={`pf-beast pf-beast--${k}`}>
+                    {b ? (
+                      <>
+                        <a href={b.url} target="_blank" rel="noopener">{b.nombre}</a>
+                        <small>Nv. {b.nivel}</small>
+                        <small>{b.zona}</small>
+                        {b.otraFaccion && <span class="pf-warn">{ZONA_DE[b.faccionZona]}</span>}
+                      </>
+                    ) : <small>Sin bestia conocida</small>}
+                  </div>
+                ))}
+              </li>
+            ))}
+            {h.rangos && h.rangoMaxConFuente! < h.rangos && (
+              <li class="pf-step pf-step--unknown">
+                <div class="pf-step__rank"><b>Rango {h.rangoMaxConFuente! + 1}{h.rangos > h.rangoMaxConFuente! + 1 ? `–${h.rangos}` : ''}</b></div>
+                <small>Aún no se sabe qué bestia lo enseña</small>
+              </li>
+            )}
+          </ol>
+        ) : (
+          <p class="pf-ab__none">Todavía no se sabe qué bestias la enseñan.</p>
+        )}
+      </section>
+      {i === comunes.length - 1 && (
+        <div class="pf-trainer">
+          <span class="pf-trainer__title">Y del instructor de mascotas, sin domesticar nada (todas las familias):</span>
+          {INSTRUCTOR.map((t) => (
+            <span class="pf-chip" data-name={t.nombre} data-type="Instructor de mascotas" data-desc={t.desc}>
+              <img src={iconUrl(t.icono)} alt="" width="24" height="24" loading="lazy" />{t.nombre}
+            </span>
+          ))}
+        </div>
+      )}
+    </>
+  ))}
+</div>
+
+<script is:inline>
+  (function () {
+    const root = document.getElementById('pf');
+    if (!root) return;
+    const btns = root.querySelectorAll('[data-pf-faccion]');
+    function elegir(f) {
+      root.dataset.faccion = f;
+      btns.forEach((b) => b.classList.toggle('active', b.dataset.pfFaccion === f));
+      try { localStorage.setItem('fv-faccion', f); } catch (e) {}
+    }
+    btns.forEach((b) => b.addEventListener('click', () => elegir(b.dataset.pfFaccion)));
+    let guardada = null;
+    try { guardada = localStorage.getItem('fv-faccion'); } catch (e) {}
+    if (guardada === 'a' || guardada === 'h') elegir(guardada);
+  })();
+</script>

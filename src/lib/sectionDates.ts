@@ -1,11 +1,16 @@
 import { execFileSync } from 'node:child_process';
 import { formatLong, latestChangeDate } from './changelog';
+import type { GuideRealm } from './tabs';
 
 // "Última revisión" de una sección = fecha de la última entrada de esa pestaña
 // en src/content/data/changelog.json. Así los cambios técnicos no la mueven.
 // Si la pestaña aún no tiene entradas, se usa el último commit de `fallbackSources`.
-export function getSectionReviewDate(pestana: string, fallbackSources: string[] = []): string {
-  const fecha = latestChangeDate(pestana) ?? lastCommitDay(fallbackSources);
+export function getSectionReviewDate(
+  pestana: string,
+  fallbackSources: string[] = [],
+  realm: GuideRealm = 'midnight',
+): string {
+  const fecha = latestChangeDate(pestana, realm) ?? lastCommitDay(fallbackSources);
   return fecha ? formatLong(fecha) : '—';
 }
 

@@ -1,13 +1,32 @@
 ---
-import { changelog, formatShort } from '../lib/changelog';
+import { changelogFor, formatShort } from '../lib/changelog';
+import type { GuideRealm } from '../lib/tabs';
 import RealmSwitch from './RealmSwitch.astro';
+
+interface Props {
+  realm?: GuideRealm;
+}
+const { realm = 'midnight' } = Astro.props;
 
 // Entradas visibles en la cabecera (el historial completo queda en changelog.json)
 const CHANGELOG_VISIBLE = 2;
-const recentChanges = changelog.slice(0, CHANGELOG_VISIBLE);
+const recentChanges = changelogFor(realm).slice(0, CHANGELOG_VISIBLE);
 
-// Aviso de parche (franja bajo la cabecera). Vaciar `texto` para ocultarla.
-const PARCHE = { titulo: 'Parche — 14 de octubre', texto: "Nueva raid Kith'ix con objetos importantes" };
+// Textos de cabecera por versión.
+// parche = franja bajo la cabecera (vaciar `texto` para ocultarla).
+const CABECERA = {
+  midnight: {
+    eyebrow: ['World of Warcraft', 'Midnight', 'Temporada 2'],
+    sub: 'Talentos, Rotación y Builds PvE',
+    parche: { titulo: 'Parche — 14 de octubre', texto: "Nueva raid Kith'ix con objetos importantes" },
+  },
+  forever: {
+    eyebrow: ['World of Warcraft', 'Forever', 'Nivel 60'],
+    sub: 'Talentos, Rotación, Mascotas y BiS PvE',
+    parche: { titulo: 'Fase 1', texto: 'La beta llegó a nivel 30: los datos de nivel 60 se irán confirmando' },
+  },
+}[realm];
+const PARCHE = CABECERA.parche;
 ---
 
 <!-- Tooltip de hechizos (lo posiciona bm-guide.js) -->
@@ -17,7 +36,7 @@ const PARCHE = { titulo: 'Parche — 14 de octubre', texto: "Nueva raid Kith'ix 
   <div class="tooltip-desc" id="tt-desc"></div>
 </div>
 
-<RealmSwitch actual="midnight" />
+<RealmSwitch actual={realm} />
 
 <header class="mk-header">
   <div class="mk-header__bg" aria-hidden="true">
@@ -32,21 +51,24 @@ const PARCHE = { titulo: 'Parche — 14 de octubre', texto: "Nueva raid Kith'ix 
     </a>
 
     <div class="mk-title">
-      <p class="mk-eyebrow">World of Warcraft <i>·</i> Midnight <i>·</i> Temporada 2</p>
+      <p class="mk-eyebrow">{CABECERA.eyebrow.map((t, i) => <>{i > 0 && <i> · </i>}{t}</>)}</p>
       <h1>
         <span class="mk-h1-main">Guía Hunter <em>BM</em></span>
-        <span class="mk-h1-sub">Talentos, Rotación y Builds PvE</span>
+        <span class="mk-h1-sub">{CABECERA.sub}</span>
       </h1>
-      <div class="mk-heroes">
-        <span class="mk-chip mk-chip--pl">
-          <img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="22" height="22" alt="" />
-          Pack Leader
-        </span>
-        <span class="mk-chip mk-chip--dr">
-          <img src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp" width="22" height="22" alt="" />
-          Dark Ranger
-        </span>
-      </div>
+      {/* Solo Midnight tiene talentos de héroe; en Forever no se muestra nada aquí */}
+      {realm === 'midnight' && (
+        <div class="mk-heroes">
+          <span class="mk-chip mk-chip--pl">
+            <img src="https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png" width="22" height="22" alt="" />
+            Pack Leader
+          </span>
+          <span class="mk-chip mk-chip--dr">
+            <img src="https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp" width="22" height="22" alt="" />
+            Dark Ranger
+          </span>
+        </div>
+      )}
     </div>
 
     <aside class="mk-changelog" aria-label="Últimos cambios">

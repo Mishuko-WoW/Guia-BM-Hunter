@@ -1,0 +1,1549 @@
+{
+  "fuente": "Wowhead Forever (es-ES), 2026-11-13",
+  "arboles": [
+    {
+      "id": "bm",
+      "nombre": "Dominio de bestias",
+      "icono": "ability_hunter_bestialdiscipline",
+      "fondo": "https://wow.zamimg.com/images/wow/talents/backgrounds/classicplus/361.jpg",
+      "talentos": [
+        {
+          "id": "bm-0-1",
+          "nombre": "Aspectos letales",
+          "icono": "spell_nature_ravenform",
+          "fila": 0,
+          "col": 1,
+          "max": 5,
+          "spell": 19552,
+          "meta": "",
+          "rangos": [
+            "Mientras Aspecto del halcón está activo, Disparo automático tiene un 2% de probabilidad de aumentar la velocidad de ataque a distancia un 30% durante 12 s. Mientras Aspecto de la bestia está activo, todos los ataques automáticos cuerpo a cuerpo tienen un 2% de probabilidad de aumentar la velocidad de ataque cuerpo a cuerpo un 30% durante 12 s.",
+            "Mientras Aspecto del halcón está activo, Disparo automático tiene un 4% de probabilidad de aumentar la velocidad de ataque a distancia un 30% durante 12 s. Mientras Aspecto de la bestia está activo, todos los ataques automáticos cuerpo a cuerpo tienen un 4% de probabilidad de aumentar la velocidad de ataque cuerpo a cuerpo un 30% durante 12 s.",
+            "Mientras Aspecto del halcón está activo, Disparo automático tiene un 6% de probabilidad de aumentar la velocidad de ataque a distancia un 30% durante 12 s. Mientras Aspecto de la bestia está activo, todos los ataques automáticos cuerpo a cuerpo tienen un 6% de probabilidad de aumentar la velocidad de ataque cuerpo a cuerpo un 30% durante 12 s.",
+            "Mientras Aspecto del halcón está activo, Disparo automático tiene un 8% de probabilidad de aumentar la velocidad de ataque a distancia un 30% durante 12 s. Mientras Aspecto de la bestia está activo, todos los ataques automáticos cuerpo a cuerpo tienen un 8% de probabilidad de aumentar la velocidad de ataque cuerpo a cuerpo un 30% durante 12 s.",
+            "Mientras Aspecto del halcón está activo, Disparo automático tiene un 10% de probabilidad de aumentar la velocidad de ataque a distancia un 30% durante 12 s. Mientras Aspecto de la bestia está activo, todos los ataques automáticos cuerpo a cuerpo tienen un 10% de probabilidad de aumentar la velocidad de ataque cuerpo a cuerpo un 30% durante 12 s."
+          ]
+        },
+        {
+          "id": "bm-0-2",
+          "nombre": "Entrenamiento en aguante",
+          "icono": "spell_nature_reincarnation",
+          "fila": 0,
+          "col": 2,
+          "max": 5,
+          "spell": 19583,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 3% la salud y la armadura de tus mascotas.",
+            "Aumenta un 6% la salud y la armadura de tus mascotas.",
+            "Aumenta un 9% la salud y la armadura de tus mascotas.",
+            "Aumenta un 12% la salud y la armadura de tus mascotas.",
+            "Aumenta un 15% la salud y la armadura de tus mascotas."
+          ]
+        },
+        {
+          "id": "bm-1-0",
+          "nombre": "Fuego enfocado",
+          "icono": "inv_weapon_crossbow_10",
+          "fila": 1,
+          "col": 0,
+          "max": 2,
+          "spell": 1223755,
+          "meta": "",
+          "rangos": [
+            "Aumenta todo el daño que infligís tú y tu mascota un 1% mientras tu mascota está activa.",
+            "Aumenta todo el daño que infligís tú y tu mascota un 2% mientras tu mascota está activa."
+          ]
+        },
+        {
+          "id": "bm-1-1",
+          "nombre": "Aspecto del Mono mejorado",
+          "icono": "ability_hunter_aspectofthemonkey",
+          "fila": 1,
+          "col": 1,
+          "max": 3,
+          "spell": 19549,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 2% el bonus al esquivar de tu Aspecto del mono. Además, tu mascota obtiene un 50% del efecto de tu facultad Aspecto del mono.",
+            "Aumenta un 4% el bonus al esquivar de tu Aspecto del mono. Además, tu mascota obtiene un 50% del efecto de tu facultad Aspecto del mono.",
+            "Aumenta un 6% el bonus al esquivar de tu Aspecto del mono. Además, tu mascota obtiene un 50% del efecto de tu facultad Aspecto del mono."
+          ]
+        },
+        {
+          "id": "bm-1-2",
+          "nombre": "Revivir mascota mejorado",
+          "icono": "ability_hunter_beastsoothe",
+          "fila": 1,
+          "col": 2,
+          "max": 2,
+          "spell": 24443,
+          "meta": "",
+          "rangos": [
+            "Reduce el tiempo de lanzamiento de Revivir mascota en 3 s., reduce el coste de maná en un 20% y aumenta la salud de tu mascota en un 15%.",
+            "Reduce el tiempo de lanzamiento de Revivir mascota en 6 s., reduce el coste de maná en un 40% y aumenta la salud de tu mascota en un 30%."
+          ]
+        },
+        {
+          "id": "bm-2-0",
+          "nombre": "Encontrar camino",
+          "icono": "ability_mount_jungletiger",
+          "fila": 2,
+          "col": 0,
+          "max": 2,
+          "spell": 19559,
+          "meta": "",
+          "rangos": [
+            "Aumenta en un 3% el bonus de velocidad de tu Aspecto del guepardo y de tu Aspecto de la manada.",
+            "Aumenta en un 6% el bonus de velocidad de tu Aspecto del guepardo y de tu Aspecto de la manada."
+          ]
+        },
+        {
+          "id": "bm-2-1",
+          "nombre": "Rapidez de bestias",
+          "icono": "ability_druid_dash",
+          "fila": 2,
+          "col": 1,
+          "max": 1,
+          "spell": 19596,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 30% la velocidad de movimiento de tus mascotas."
+          ]
+        },
+        {
+          "id": "bm-2-2",
+          "nombre": "Furia desatada",
+          "icono": "ability_bullrush",
+          "fila": 2,
+          "col": 2,
+          "max": 5,
+          "spell": 19616,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 3% el daño infligido por tus mascotas y halcones.",
+            "Aumenta un 6% el daño infligido por tus mascotas y halcones.",
+            "Aumenta un 9% el daño infligido por tus mascotas y halcones.",
+            "Aumenta un 12% el daño infligido por tus mascotas y halcones.",
+            "Aumenta un 15% el daño infligido por tus mascotas y halcones."
+          ]
+        },
+        {
+          "id": "bm-3-0",
+          "nombre": "Sanar mascota mejorado",
+          "icono": "ability_hunter_mendpet",
+          "fila": 3,
+          "col": 0,
+          "max": 2,
+          "spell": 19572,
+          "meta": "",
+          "rangos": [
+            "Otorga a tu hechizo Aliviar mascota un 15% de probabilidad de purificar 1 efecto de maldición, enfermedad, magia o veneno de tu mascota cada vez que se cura, además de reducir un 10% el coste de maná.",
+            "Otorga a tu hechizo Aliviar mascota un 50% de probabilidad de purificar 1 efecto de maldición, enfermedad, magia o veneno de tu mascota cada vez que se cura, además de reducir un 20% el coste de maná."
+          ]
+        },
+        {
+          "id": "bm-3-2",
+          "nombre": "Ferocidad",
+          "icono": "inv_misc_monsterclaw_04",
+          "fila": 3,
+          "col": 2,
+          "max": 5,
+          "spell": 19598,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 2% la probabilidad de golpe crítico de tus mascotas y halcones.",
+            "Aumenta un 4% la probabilidad de golpe crítico de tus mascotas y halcones.",
+            "Aumenta un 6% la probabilidad de golpe crítico de tus mascotas y halcones.",
+            "Aumenta un 8% la probabilidad de golpe crítico de tus mascotas y halcones.",
+            "Aumenta un 10% la probabilidad de golpe crítico de tus mascotas y halcones."
+          ]
+        },
+        {
+          "id": "bm-3-3",
+          "nombre": "Invocar halcón",
+          "icono": "ability_hunter_animalhandler",
+          "fila": 3,
+          "col": 3,
+          "max": 1,
+          "spell": 1293241,
+          "meta": "11% del maná base · Alcance de 35 m",
+          "rangos": [
+            "Ordena a un halcón que se lance contra tu enemigo objetivo, infligiendo [32 / Ferocidad: 48 / Furia desatada: 52 + (Poder de ataque a distancia * (0.05))] p. de daño físico. El ataque continúa durante 18 s. Solo puede haber 2 halcones activos a la vez. Invocar halcón comparte su tiempo de reutilización con Disparo Arcano."
+          ]
+        },
+        {
+          "id": "bm-4-0",
+          "nombre": "Vínculo de espíritu",
+          "icono": "ability_druid_demoralizingroar",
+          "fila": 4,
+          "col": 0,
+          "max": 2,
+          "spell": 19578,
+          "meta": "",
+          "rangos": [
+            "Mientras tu mascota está activa, tu mascota y tú regeneráis un 1% de la salud total cada 10 s.",
+            "Mientras tu mascota está activa, tu mascota y tú regeneráis un 1% de la salud total cada 5 s."
+          ]
+        },
+        {
+          "id": "bm-4-1",
+          "nombre": "Intimidación",
+          "icono": "ability_devour",
+          "fila": 4,
+          "col": 1,
+          "max": 1,
+          "spell": 19577,
+          "meta": "8% del maná base · Alcance de 100 m · Instante · 1 min de reutilización",
+          "rangos": [
+            "Ordena a tu mascota que aturda al objetivo durante 3 s con su siguiente ataque que impacte, lo que también le aumenta un 100% la probabilidad de golpe crítico. Genera una gran cantidad de amenaza."
+          ]
+        },
+        {
+          "id": "bm-4-3",
+          "nombre": "Disciplina de bestias",
+          "icono": "spell_nature_abolishmagic",
+          "fila": 4,
+          "col": 3,
+          "max": 2,
+          "spell": 19590,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 10% la regeneración de enfoque de tus mascotas y permite que continúe un 25% de tu regeneración de maná mientras lanzas hechizos.",
+            "Aumenta un 20% la regeneración de enfoque de tus mascotas y permite que continúe un 50% de tu regeneración de maná mientras lanzas hechizos."
+          ]
+        },
+        {
+          "id": "bm-5-2",
+          "nombre": "Frenesí",
+          "icono": "inv_misc_monsterclaw_03",
+          "fila": 5,
+          "col": 2,
+          "max": 5,
+          "spell": 19621,
+          "meta": "",
+          "rangos": [
+            "Da a tu mascota un 20% probabilidad de aumentar en 30 p. su velocidad de ataque durante 8 s después de dar un golpe crítico.",
+            "Da a tu mascota un 40% probabilidad de aumentar en 30 p. su velocidad de ataque durante 8 s después de dar un golpe crítico.",
+            "Da a tu mascota un 60% probabilidad de aumentar en 30 p. su velocidad de ataque durante 8 s después de dar un golpe crítico.",
+            "Da a tu mascota un 80% probabilidad de aumentar en 30 p. su velocidad de ataque durante 8 s después de dar un golpe crítico.",
+            "Da a tu mascota un 100% probabilidad de aumentar en 30 p. su velocidad de ataque durante 8 s después de dar un golpe crítico."
+          ]
+        },
+        {
+          "id": "bm-6-1",
+          "nombre": "Ira de bestias",
+          "icono": "ability_druid_ferociousbite",
+          "fila": 6,
+          "col": 1,
+          "max": 1,
+          "spell": 19574,
+          "meta": "12% del maná base · Alcance de 100 m · Instante · 2 min de reutilización",
+          "rangos": [
+            "Hace que tu mascota se enfurezca e inflija un 50% más de daño durante 18 s. Mientras está iracunda, la bestia no siente pena ni remordimientos ni miedo y no se la puede detener a menos que la maten."
+          ]
+        }
+      ],
+      "flechas": [
+        {
+          "desde": "bm-2-1",
+          "hasta": "bm-4-1"
+        },
+        {
+          "desde": "bm-4-1",
+          "hasta": "bm-6-1"
+        },
+        {
+          "desde": "bm-3-2",
+          "hasta": "bm-5-2"
+        }
+      ]
+    },
+    {
+      "id": "mm",
+      "nombre": "Puntería",
+      "icono": "ability_marksmanship",
+      "fondo": "https://wow.zamimg.com/images/wow/talents/backgrounds/classicplus/363.jpg",
+      "talentos": [
+        {
+          "id": "mm-0-0",
+          "nombre": "Ojo de águila",
+          "icono": "ability_townwatch",
+          "fila": 0,
+          "col": 0,
+          "max": 3,
+          "spell": 19498,
+          "meta": "",
+          "rangos": [
+            "Aumenta en 2 metros el alcance de tus armas a distancia.",
+            "Aumenta en 4 metros el alcance de tus armas a distancia.",
+            "Aumenta en 6 metros el alcance de tus armas a distancia."
+          ]
+        },
+        {
+          "id": "mm-0-1",
+          "nombre": "Disparo de concusión mejorado",
+          "icono": "spell_frost_stun",
+          "fila": 0,
+          "col": 1,
+          "max": 5,
+          "spell": 19407,
+          "meta": "",
+          "rangos": [
+            "Da a tu Disparo de concusión un 4% de probabilidad de aturdir el objetivo durante 3 s.",
+            "Da a tu Disparo de concusión un 8% de probabilidad de aturdir el objetivo durante 3 s.",
+            "Da a tu Disparo de concusión un 12% de probabilidad de aturdir el objetivo durante 3 s.",
+            "Da a tu Disparo de concusión un 16% de probabilidad de aturdir el objetivo durante 3 s.",
+            "Da a tu Disparo de concusión un 20% de probabilidad de aturdir el objetivo durante 3 s."
+          ]
+        },
+        {
+          "id": "mm-0-2",
+          "nombre": "Ataques letales",
+          "icono": "ability_searingarrow",
+          "fila": 0,
+          "col": 2,
+          "max": 5,
+          "spell": 19426,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 1% tu probabilidad de golpe crítico con todos los ataques.",
+            "Aumenta un 2% tu probabilidad de golpe crítico con todos los ataques.",
+            "Aumenta un 3% tu probabilidad de golpe crítico con todos los ataques.",
+            "Aumenta un 4% tu probabilidad de golpe crítico con todos los ataques.",
+            "Aumenta un 5% tu probabilidad de golpe crítico con todos los ataques."
+          ]
+        },
+        {
+          "id": "mm-1-0",
+          "nombre": "Picaduras mejoradas",
+          "icono": "ability_hunter_quickshot",
+          "fila": 1,
+          "col": 0,
+          "max": 3,
+          "spell": 1310661,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 6% el daño de tu facultad Picadura de serpiente, reduce 2 s el tiempo de reutilización de tu facultad Picadura de víbora y aumenta 15 s la duración de tu facultad Picadura de escórpido.",
+            "Aumenta un 13% el daño de tu facultad Picadura de serpiente, reduce 4 s el tiempo de reutilización de tu facultad Picadura de víbora y aumenta 30 s la duración de tu facultad Picadura de escórpido.",
+            "Aumenta un 20% el daño de tu facultad Picadura de serpiente, reduce 6 s el tiempo de reutilización de tu facultad Picadura de víbora y aumenta 45 s la duración de tu facultad Picadura de escórpido."
+          ]
+        },
+        {
+          "id": "mm-1-1",
+          "nombre": "Eficacia",
+          "icono": "spell_frost_wizardmark",
+          "fila": 1,
+          "col": 1,
+          "max": 5,
+          "spell": 19416,
+          "meta": "",
+          "rangos": [
+            "Reduce un 3% el coste de maná de tus disparos, picaduras y facultades cuerpo a cuerpo.",
+            "Reduce un 6% el coste de maná de tus disparos, picaduras y facultades cuerpo a cuerpo.",
+            "Reduce un 9% el coste de maná de tus disparos, picaduras y facultades cuerpo a cuerpo.",
+            "Reduce un 12% el coste de maná de tus disparos, picaduras y facultades cuerpo a cuerpo.",
+            "Reduce un 15% el coste de maná de tus disparos, picaduras y facultades cuerpo a cuerpo."
+          ]
+        },
+        {
+          "id": "mm-1-2",
+          "nombre": "Afinar la puntería",
+          "icono": "ability_hunter_zenarchery",
+          "fila": 1,
+          "col": 2,
+          "max": 5,
+          "spell": 1223984,
+          "meta": "",
+          "rangos": [
+            "Aumenta tu poder de ataque un 20% de tu intelecto.",
+            "Aumenta tu poder de ataque un 40% de tu intelecto.",
+            "Aumenta tu poder de ataque un 60% de tu intelecto.",
+            "Aumenta tu poder de ataque un 80% de tu intelecto.",
+            "Aumenta tu poder de ataque un 100% de tu intelecto."
+          ]
+        },
+        {
+          "id": "mm-2-0",
+          "nombre": "Matanza rápida",
+          "icono": "ability_hunter_rapidkilling",
+          "fila": 2,
+          "col": 0,
+          "max": 2,
+          "spell": 415405,
+          "meta": "",
+          "rangos": [
+            "Reduce 1 min el tiempo de reutilización de tu facultad Fuego rápido. Además, obtienes Matanza rápida cuando matas a un enemigo no trivial o este muere mientras sufre el efecto de tu Picadura de serpiente, lo que aumenta un 10% el daño de la siguiente facultad de disparo que uses en 20 s.",
+            "Reduce 2 min el tiempo de reutilización de tu facultad Fuego rápido. Además, obtienes Matanza rápida cuando matas a un enemigo no trivial o este muere mientras sufre el efecto de tu Picadura de serpiente, lo que aumenta un 20% el daño de la siguiente facultad de disparo que uses en 20 s."
+          ]
+        },
+        {
+          "id": "mm-2-1",
+          "nombre": "Disparo Arcano mejorado",
+          "icono": "ability_impalingbolt",
+          "fila": 2,
+          "col": 1,
+          "max": 5,
+          "spell": 19454,
+          "meta": "",
+          "rangos": [
+            "Reduce 0.3 s el tiempo de reutilización de Disparo Arcano. No afecta al tiempo de reutilización de facultades que comparten un tiempo de reutilización con Disparo Arcano.",
+            "Reduce 0.6 s el tiempo de reutilización de Disparo Arcano. No afecta al tiempo de reutilización de facultades que comparten un tiempo de reutilización con Disparo Arcano.",
+            "Reduce 0.9 s el tiempo de reutilización de Disparo Arcano. No afecta al tiempo de reutilización de facultades que comparten un tiempo de reutilización con Disparo Arcano.",
+            "Reduce 1.2 s el tiempo de reutilización de Disparo Arcano. No afecta al tiempo de reutilización de facultades que comparten un tiempo de reutilización con Disparo Arcano.",
+            "Reduce 1.5 s el tiempo de reutilización de Disparo Arcano. No afecta al tiempo de reutilización de facultades que comparten un tiempo de reutilización con Disparo Arcano."
+          ]
+        },
+        {
+          "id": "mm-2-3",
+          "nombre": "Lobo solitario",
+          "icono": "ability_mount_whitedirewolf",
+          "fila": 2,
+          "col": 3,
+          "max": 1,
+          "spell": 415370,
+          "meta": "",
+          "rangos": [
+            "Infliges un 20% más de daño con todos los ataques mientras no tengas una mascota activa."
+          ]
+        },
+        {
+          "id": "mm-3-1",
+          "nombre": "Aura de disparo certero",
+          "icono": "ability_trueshot",
+          "fila": 3,
+          "col": 1,
+          "max": 1,
+          "spell": 1299346,
+          "meta": "",
+          "rangos": [
+            "Aumenta en 20 p. el poder de ataque a distancia de los miembros del grupo o de la banda en un radio de 45 m."
+          ]
+        },
+        {
+          "id": "mm-3-2",
+          "nombre": "Disparos mortales",
+          "icono": "ability_piercedamage",
+          "fila": 3,
+          "col": 2,
+          "max": 5,
+          "spell": 19485,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 6% el bonus de daño de golpe crítico de todas tus facultades a distancia.",
+            "Aumenta un 12% el bonus de daño de golpe crítico de todas tus facultades a distancia.",
+            "Aumenta un 18% el bonus de daño de golpe crítico de todas tus facultades a distancia.",
+            "Aumenta un 24% el bonus de daño de golpe crítico de todas tus facultades a distancia.",
+            "Aumenta un 30% el bonus de daño de golpe crítico de todas tus facultades a distancia."
+          ]
+        },
+        {
+          "id": "mm-4-0",
+          "nombre": "Recuperación rápida",
+          "icono": "ability_hunter_rapidregeneration",
+          "fila": 4,
+          "col": 0,
+          "max": 2,
+          "spell": 1223987,
+          "meta": "",
+          "rangos": [
+            "Al aplicar Aguijón de serpiente a un objetivo, permite que un 25% de tu regeneración de maná continúe mientras lanzas hechizos durante 15 s, o un 50% cuando se consume Matanza rápida.",
+            "Al aplicar Aguijón de serpiente a un objetivo, permite que un 50% de tu regeneración de maná continúe mientras lanzas hechizos durante 15 s, o un 100% cuando se consume Matanza rápida."
+          ]
+        },
+        {
+          "id": "mm-4-2",
+          "nombre": "Aluvión",
+          "icono": "ability_upgrademoonglaive",
+          "fila": 4,
+          "col": 2,
+          "max": 3,
+          "spell": 19461,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 5% el daño infligido por tus facultades Multidisparo, Disparo de puntería y Salva.",
+            "Aumenta un 10% el daño infligido por tus facultades Multidisparo, Disparo de puntería y Salva.",
+            "Aumenta un 15% el daño infligido por tus facultades Multidisparo, Disparo de puntería y Salva."
+          ]
+        },
+        {
+          "id": "mm-4-3",
+          "nombre": "Disparo disperso",
+          "icono": "ability_golemstormbolt",
+          "fila": 4,
+          "col": 3,
+          "max": 1,
+          "spell": 19503,
+          "meta": "8% del maná base · Alcance de 15 m",
+          "rangos": [
+            "Un disparo a corta distancia que inflige un 50% de daño de arma y desorienta al objetivo durante 4 s. Cualquier daño causado con posterioridad anulará su efecto. Desactiva tu ataque al ser utilizado."
+          ]
+        },
+        {
+          "id": "mm-5-2",
+          "nombre": "Especialización en armas a distancia",
+          "icono": "inv_weapon_rifle_06",
+          "fila": 5,
+          "col": 2,
+          "max": 5,
+          "spell": 19507,
+          "meta": "",
+          "rangos": [
+            "Aumenta en un 1% el daño infligido con las armas a distancia.",
+            "Aumenta en un 2% el daño infligido con las armas a distancia.",
+            "Aumenta en un 3% el daño infligido con las armas a distancia.",
+            "Aumenta en un 4% el daño infligido con las armas a distancia.",
+            "Aumenta en un 5% el daño infligido con las armas a distancia."
+          ]
+        },
+        {
+          "id": "mm-6-1",
+          "nombre": "Disparo de francotirador",
+          "icono": "hunter_pvp_snipershot",
+          "fila": 6,
+          "col": 1,
+          "max": 1,
+          "spell": 1310687,
+          "meta": "365 Maná · Alcance de 8 - 45 m · Hechizo de 4 seg · 15 seg de reutilización",
+          "rangos": [
+            "Un tiro de largo alcance que inflige daño a distancia más 320 p. de daño y aumenta el alcance de tus próximos 3 disparos a 10 m durante 10 s."
+          ]
+        }
+      ],
+      "flechas": [
+        {
+          "desde": "mm-3-1",
+          "hasta": "mm-6-1"
+        },
+        {
+          "desde": "mm-2-0",
+          "hasta": "mm-4-0"
+        },
+        {
+          "desde": "mm-1-2",
+          "hasta": "mm-3-2"
+        }
+      ]
+    },
+    {
+      "id": "sv",
+      "nombre": "Supervivencia",
+      "icono": "ability_hunter_swiftstrike",
+      "fondo": "https://wow.zamimg.com/images/wow/talents/backgrounds/classicplus/362.jpg",
+      "talentos": [
+        {
+          "id": "sv-0-1",
+          "nombre": "Rastreo mejorado",
+          "icono": "inv_misc_head_dragon_black",
+          "fila": 0,
+          "col": 1,
+          "max": 5,
+          "spell": 24293,
+          "meta": "",
+          "rangos": [
+            "Mientras rastreas bestias, demonios, dragonantes, elementales, gigantes, humanoides o no-muertos, todo el daño que inflijas al tipo de criatura rastreada aumenta un 1%.",
+            "Mientras rastreas bestias, demonios, dragonantes, elementales, gigantes, humanoides o no-muertos, todo el daño que inflijas al tipo de criatura rastreada aumenta un 2%.",
+            "Mientras rastreas bestias, demonios, dragonantes, elementales, gigantes, humanoides o no-muertos, todo el daño que inflijas al tipo de criatura rastreada aumenta un 3%.",
+            "Mientras rastreas bestias, demonios, dragonantes, elementales, gigantes, humanoides o no-muertos, todo el daño que inflijas al tipo de criatura rastreada aumenta un 4%.",
+            "Mientras rastreas bestias, demonios, dragonantes, elementales, gigantes, humanoides o no-muertos, todo el daño que inflijas al tipo de criatura rastreada aumenta un 5%."
+          ]
+        },
+        {
+          "id": "sv-0-2",
+          "nombre": "Desvío",
+          "icono": "ability_parry",
+          "fila": 0,
+          "col": 2,
+          "max": 5,
+          "spell": 19295,
+          "meta": "",
+          "rangos": [
+            "Aumenta tu probabilidad de parar en un 1%.",
+            "Aumenta tu probabilidad de parar en un 2%.",
+            "Aumenta tu probabilidad de parar en un 3%.",
+            "Aumenta tu probabilidad de parar en un 4%.",
+            "Aumenta tu probabilidad de parar en un 5%."
+          ]
+        },
+        {
+          "id": "sv-1-0",
+          "nombre": "Atrapamiento",
+          "icono": "spell_nature_stranglevines",
+          "fila": 1,
+          "col": 0,
+          "max": 5,
+          "spell": 19184,
+          "meta": "",
+          "rangos": [
+            "Cuando se activan tus trampas, todos los objetivos afectados sufren Retenido, lo que les impide moverse durante 1 s.",
+            "Cuando se activan tus trampas, todos los objetivos afectados sufren Retenido, lo que les impide moverse durante 2 s.",
+            "Cuando se activan tus trampas, todos los objetivos afectados sufren Retenido, lo que les impide moverse durante 3 s.",
+            "Cuando se activan tus trampas, todos los objetivos afectados sufren Retenido, lo que les impide moverse durante 4 s.",
+            "Cuando se activan tus trampas, todos los objetivos afectados sufren Retenido, lo que les impide moverse durante 5 s."
+          ]
+        },
+        {
+          "id": "sv-1-1",
+          "nombre": "Golpes salvajes",
+          "icono": "ability_racial_bloodrage",
+          "fila": 1,
+          "col": 1,
+          "max": 2,
+          "spell": 19159,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 2% la probabilidad de golpe crítico de todas tus facultades cuerpo a cuerpo.",
+            "Aumenta un 4% la probabilidad de golpe crítico de todas tus facultades cuerpo a cuerpo."
+          ]
+        },
+        {
+          "id": "sv-1-2",
+          "nombre": "Sobrevividor",
+          "icono": "spell_shadow_twilight",
+          "fila": 1,
+          "col": 2,
+          "max": 5,
+          "spell": 19255,
+          "meta": "",
+          "rangos": [
+            "Aumenta tu salud total un 2%.",
+            "Aumenta tu salud total un 4%.",
+            "Aumenta tu salud total un 6%.",
+            "Aumenta tu salud total un 8%.",
+            "Aumenta tu salud total un 10%."
+          ]
+        },
+        {
+          "id": "sv-1-3",
+          "nombre": "Cortar alas mejorado",
+          "icono": "ability_rogue_trip",
+          "fila": 1,
+          "col": 3,
+          "max": 3,
+          "spell": 19228,
+          "meta": "",
+          "rangos": [
+            "Da a tu facultad Cortar alas un 7% de probabilidad de inmovilizar el objetivo durante 5 s.",
+            "Da a tu facultad Cortar alas un 13% de probabilidad de inmovilizar el objetivo durante 5 s.",
+            "Da a tu facultad Cortar alas un 20% de probabilidad de inmovilizar el objetivo durante 5 s."
+          ]
+        },
+        {
+          "id": "sv-2-0",
+          "nombre": "Trampas inteligentes",
+          "icono": "spell_nature_timestop",
+          "fila": 2,
+          "col": 0,
+          "max": 2,
+          "spell": 19239,
+          "meta": "",
+          "rangos": [
+            "Aumenta en un 15% la duración de los efectos de Congelación y de Trampa de Escarcha y en un 15% el daño de los efectos de Inmolación y de Trampa explosiva.",
+            "Aumenta en un 30% la duración de los efectos de Congelación y de Trampa de Escarcha y en un 30% el daño de los efectos de Inmolación y de Trampa explosiva."
+          ]
+        },
+        {
+          "id": "sv-2-1",
+          "nombre": "Pies de plomo",
+          "icono": "ability_kick",
+          "fila": 2,
+          "col": 1,
+          "max": 3,
+          "spell": 19290,
+          "meta": "",
+          "rangos": [
+            "Aumenta tu probabilidad de golpe un 1% y reduce un 10% la duración de los efectos de reducción de movimiento sobre ti.",
+            "Aumenta tu probabilidad de golpe un 2% y reduce un 20% la duración de los efectos de reducción de movimiento sobre ti.",
+            "Aumenta tu probabilidad de golpe un 3% y reduce un 30% la duración de los efectos de reducción de movimiento sobre ti."
+          ]
+        },
+        {
+          "id": "sv-2-2",
+          "nombre": "Disuasión",
+          "icono": "ability_whirlwind",
+          "fila": 2,
+          "col": 2,
+          "max": 1,
+          "spell": 19263,
+          "meta": "Instante · 5 min de reutilización",
+          "rangos": [
+            "Aumenta la probabilidad de esquivar y parar en un 25% durante 10 s."
+          ]
+        },
+        {
+          "id": "sv-3-0",
+          "nombre": "Tácticas de supervivencia",
+          "icono": "ability_ensnare",
+          "fila": 3,
+          "col": 0,
+          "max": 2,
+          "spell": 19376,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 5% tu probabilidad de golpear con tus facultades Trampa y Fingir muerte.",
+            "Aumenta un 10% tu probabilidad de golpear con tus facultades Trampa y Fingir muerte."
+          ]
+        },
+        {
+          "id": "sv-3-1",
+          "nombre": "Filo de depredador",
+          "icono": "ability_dualwield",
+          "fila": 3,
+          "col": 1,
+          "max": 5,
+          "spell": 1310627,
+          "meta": "",
+          "rangos": [
+            "Aumenta un 6% el daño de golpe crítico de facultades cuerpo a cuerpo y un 10% el daño con arma de la mano izquierda.",
+            "Aumenta un 12% el daño de golpe crítico de facultades cuerpo a cuerpo y un 20% el daño con arma de la mano izquierda.",
+            "Aumenta un 18% el daño de golpe crítico de facultades cuerpo a cuerpo y un 30% el daño con arma de la mano izquierda.",
+            "Aumenta un 24% el daño de golpe crítico de facultades cuerpo a cuerpo y un 40% el daño con arma de la mano izquierda.",
+            "Aumenta un 30% el daño de golpe crítico de facultades cuerpo a cuerpo y un 50% el daño con arma de la mano izquierda."
+          ]
+        },
+        {
+          "id": "sv-3-2",
+          "nombre": "Contraataque",
+          "icono": "ability_warrior_challange",
+          "fila": 3,
+          "col": 2,
+          "max": 1,
+          "spell": 19306,
+          "meta": "30 Maná · Alcance de ataques cuerpo a cuerpo · Instante · 5 seg de reutilización",
+          "rangos": [
+            "Un golpe que se activa tras haber parado el ataque de un oponente. Este ataque inflige un 50% de daño de arma más 26 p. e inmoviliza al objetivo durante 5 s. El contrataque no se puede bloquear, esquivar ni parar."
+          ]
+        },
+        {
+          "id": "sv-4-0",
+          "nombre": "Ingenio",
+          "icono": "ability_hunter_resourcefulness",
+          "fila": 4,
+          "col": 0,
+          "max": 2,
+          "spell": 440529,
+          "meta": "",
+          "rangos": [
+            "Reduce el coste de maná de tus trampas y habilidades cuerpo a cuerpo un 30%, y otorga a los golpes críticos de tus habilidades a distancia y cuerpo a cuerpo un 50% de probabilidad de permitir que un 50% de tu regeneración de maná continúe mientras lanzas hechizos durante 30 s.",
+            "Reduce el coste de maná de tus trampas y habilidades cuerpo a cuerpo un 60%, y otorga a los golpes críticos de tus habilidades a distancia y cuerpo a cuerpo un 100% de probabilidad de permitir que un 50% de tu regeneración de maná continúe mientras lanzas hechizos durante 30 s."
+          ]
+        },
+        {
+          "id": "sv-4-1",
+          "nombre": "Exponer presa",
+          "icono": "ability_hunter_swiftstrike",
+          "fila": 4,
+          "col": 1,
+          "max": 2,
+          "spell": 1310532,
+          "meta": "",
+          "rangos": [
+            "Tus ataques cuerpo a cuerpo y a distancia contra enemigos afectados por tu Marca del cazador tienen un 5% de probabilidad de permitir la activación de Mordedura de mangosta. Dura 10 s.",
+            "Tus ataques cuerpo a cuerpo y a distancia contra enemigos afectados por tu Marca del cazador tienen un 10% de probabilidad de permitir la activación de Mordedura de mangosta. Dura 10 s."
+          ]
+        },
+        {
+          "id": "sv-4-2",
+          "nombre": "Disciplina de superviviente",
+          "icono": "ability_hunter_mastertactitian",
+          "fila": 4,
+          "col": 2,
+          "max": 2,
+          "spell": 1310496,
+          "meta": "",
+          "rangos": [
+            "Reduce un 20% el tiempo de reutilización de tus facultades Trampa y Disuasión.",
+            "Reduce un 40% el tiempo de reutilización de tus facultades Trampa y Disuasión."
+          ]
+        },
+        {
+          "id": "sv-4-3",
+          "nombre": "Patada de zancudo",
+          "icono": "ability_hunter_pet_tallstrider",
+          "fila": 4,
+          "col": 3,
+          "max": 1,
+          "spell": 1317257,
+          "meta": "5.81% del maná base · Alcance de ataques cuerpo a cuerpo · Instante · 8 seg de reutilización",
+          "rangos": [
+            "Una patada potente que inflige un 100% de daño con arma cuerpo a cuerpo y aumenta un 30% la velocidad de movimiento durante 3 s."
+          ]
+        },
+        {
+          "id": "sv-5-2",
+          "nombre": "Reflejos de relámpago",
+          "icono": "spell_nature_invisibilty",
+          "fila": 5,
+          "col": 2,
+          "max": 5,
+          "spell": 19168,
+          "meta": "",
+          "rangos": [
+            "Aumenta tu agilidad en un 3%.",
+            "Aumenta tu agilidad en un 6%.",
+            "Aumenta tu agilidad en un 9%.",
+            "Aumenta tu agilidad en un 12%.",
+            "Aumenta tu agilidad en un 15%."
+          ]
+        },
+        {
+          "id": "sv-6-1",
+          "nombre": "Golpes lacerantes",
+          "icono": "ability_gouge",
+          "fila": 6,
+          "col": 1,
+          "max": 1,
+          "spell": 1310533,
+          "meta": "",
+          "rangos": [
+            "Tu Mordisco de mangosta también provoca una hemorragia al enemigo, lo que le inflige una cantidad de daño equivalente al 40% del infligido por Mordisco de mangosta durante 21 s."
+          ]
+        }
+      ],
+      "flechas": [
+        {
+          "desde": "sv-4-1",
+          "hasta": "sv-6-1"
+        },
+        {
+          "desde": "sv-2-2",
+          "hasta": "sv-3-2"
+        }
+      ]
+    }
+  ],
+  "entrenables": [
+    {
+      "nivel": 1,
+      "spell": 75,
+      "nombre": "Tiro automático",
+      "icono": "ability_whirlwind",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": null,
+      "meta": "",
+      "desc": "Dispara automáticamente al objetivo hasta que se desactiva."
+    },
+    {
+      "nivel": 1,
+      "spell": 1494,
+      "nombre": "Rastrear bestias",
+      "icono": "ability_tracking",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 10,
+      "meta": "",
+      "desc": "Muestra la ubicación de las bestias cercanas en el minimapa. Solo se puede activar una forma de rastreo cada vez."
+    },
+    {
+      "nivel": 4,
+      "spell": 13163,
+      "nombre": "Aspecto del mono",
+      "icono": "ability_hunter_aspectofthemonkey",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 100,
+      "meta": "20 Maná · Alcance de 100 m",
+      "desc": "El cazador asume los aspectos de un mono aumentando en un 8% la probabilidad de esquivar. Solo puede haber 1 aspecto activo cada vez."
+    },
+    {
+      "nivel": 8,
+      "spell": 5116,
+      "nombre": "Disparo de concusión",
+      "icono": "spell_frost_stun",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 200,
+      "meta": "8% del maná base · Alcance de 8 - 35 m",
+      "desc": "Deja conmocionado al objetivo, ralentizando su velocidad de movimiento en un 50% durante 4 s."
+    },
+    {
+      "nivel": 10,
+      "spell": 883,
+      "nombre": "Llamar a mascota",
+      "icono": "ability_hunter_beastcall",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": null,
+      "meta": "",
+      "desc": "Invoca a tu mascota."
+    },
+    {
+      "nivel": 10,
+      "spell": 2641,
+      "nombre": "Retirar mascota",
+      "icono": "spell_nature_spiritwolf",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": null,
+      "meta": "",
+      "desc": "Retira la mascota. Retirar a la mascota disminuirá su felicidad en 50 p."
+    },
+    {
+      "nivel": 10,
+      "spell": 6991,
+      "nombre": "Alimentar mascota",
+      "icono": "ability_hunter_beasttraining",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": null,
+      "meta": "",
+      "desc": "Alimenta a tu mascota con el objeto seleccionado. Al alimentar a tu mascota, aumenta su felicidad. Si utilizas comida de un nivel similar al de tu mascota, obtendrás mejores resultados."
+    },
+    {
+      "nivel": 10,
+      "spell": 982,
+      "nombre": "Revivir mascota",
+      "icono": "ability_hunter_beastsoothe",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": null,
+      "meta": "",
+      "desc": "Revive tu mascota y la devuelve a la vida con el 15% de salud."
+    },
+    {
+      "nivel": 10,
+      "spell": 1515,
+      "nombre": "Domesticar bestia",
+      "icono": "ability_hunter_beasttaming",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": null,
+      "meta": "60% del maná base · Alcance de 30 m",
+      "desc": "Da comienzo al proceso de domesticación de una bestia para convertirla en tu mascota. Tu armadura se reduce en un 100% durante el proceso de domesticación, que dura 20 s. Si por cualquier motivo pierdes la atención de la bestia, el proceso no se completará. Una vez domesticada, la bestia no estará contenta y será desleal. Intenta darle de comer a tu mascota para hacerla feliz."
+    },
+    {
+      "nivel": 10,
+      "spell": 19883,
+      "nombre": "Rastrear humanoides",
+      "icono": "spell_holy_prayerofhealing",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 400,
+      "meta": "",
+      "desc": "Muestra la ubicación de los humanoides cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+    },
+    {
+      "nivel": 14,
+      "spell": 6197,
+      "nombre": "Ojo de águila",
+      "icono": "ability_hunter_eagleeye",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 1200,
+      "meta": "25 Maná · Rango ilimitado",
+      "desc": "Acerca el zoom con la visión del cazador. Solo se puede usar en el exterior. Dura 1 min."
+    },
+    {
+      "nivel": 14,
+      "spell": 1002,
+      "nombre": "Ojos de la bestia",
+      "icono": "ability_eyeoftheowl",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 1200,
+      "meta": "20 Maná · Rango ilimitado",
+      "desc": "Controla a tu mascota y mira con sus ojos durante 2 min."
+    },
+    {
+      "nivel": 18,
+      "spell": 2643,
+      "nombre": "Multidisparo",
+      "icono": "ability_upgrademoonglaive",
+      "rango": null,
+      "cambio": "Cambia de nivel",
+      "mascota": false,
+      "coste": 1684,
+      "meta": "13.9% del maná base · Alcance de 8 - 35 m · Instante · 6 seg de reutilización",
+      "desc": "Dispara varios misiles que alcanzan hasta 3 objetivos. Multidisparo comparte su tiempo de reutilización con Disparo de puntería."
+    },
+    {
+      "nivel": 18,
+      "spell": 19884,
+      "nombre": "Rastrear no-muertos",
+      "icono": "spell_shadow_darksummoning",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 1684,
+      "meta": "",
+      "desc": "Muestra la ubicación de los no-muertos cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+    },
+    {
+      "nivel": 20,
+      "spell": 5118,
+      "nombre": "Aspecto del guepardo",
+      "icono": "ability_mount_jungletiger",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 2210,
+      "meta": "",
+      "desc": "El cazador asume el aspecto de un guepardo aumentando su velocidad en un 30%. Si recibe daño, quedará conmocionado durante 4 s. Solo puede haber 1 aspecto activo cada vez."
+    },
+    {
+      "nivel": 22,
+      "spell": 3043,
+      "nombre": "Aguijón de escorpido",
+      "icono": "ability_hunter_criticalshot",
+      "rango": null,
+      "cambio": "Cambia de nivel",
+      "mascota": false,
+      "coste": 7368,
+      "meta": "9% del maná base · Alcance de 8 - 35 m",
+      "desc": "Pica al objetivo, lo que reduce un 2% su probabilidad de golpear con ataques durante 20 s. Un cazador solo puede tener una picadura activa sobre un mismo objetivo."
+    },
+    {
+      "nivel": 24,
+      "spell": 1462,
+      "nombre": "Tradición de bestias",
+      "icono": "ability_physical_taunt",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 7578,
+      "meta": "40 Maná · Alcance de 40 m",
+      "desc": "Reúne información sobre la bestia objetivo. La información en pantalla mostrará el daño, la salud, la armadura, cualquier resistencia especial y la dieta."
+    },
+    {
+      "nivel": 24,
+      "spell": 19885,
+      "nombre": "Rastrear lo oculto",
+      "icono": "ability_stealth",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 7578,
+      "meta": "",
+      "desc": "Aumenta la detección de sigilo y revela unidades ocultas dentro del radio de detección en el minimapa. Solo puede haber 1 forma de rastreo activa a la vez."
+    },
+    {
+      "nivel": 26,
+      "spell": 3045,
+      "nombre": "Fuego rápido",
+      "icono": "ability_hunter_runningshot",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 7789,
+      "meta": "Instante · 5 min de reutilización",
+      "desc": "Aumenta la velocidad de ataque cuerpo a cuerpo y a distancia un 40% durante 15 s."
+    },
+    {
+      "nivel": 26,
+      "spell": 19880,
+      "nombre": "Rastrear elementales",
+      "icono": "spell_frost_summonwaterelemental",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 7789,
+      "meta": "",
+      "desc": "Muestra la ubicación de los elementales cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+    },
+    {
+      "nivel": 28,
+      "spell": 13809,
+      "nombre": "Trampa de Escarcha",
+      "icono": "spell_frost_freezingbreath",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 7894,
+      "meta": "Instante · 30 seg de reutilización",
+      "desc": "Coloca una trampa de Escarcha que crea una placa de hielo a su alrededor durante 30 s cuando el primer enemigo se acerca. Todos los enemigos en un radio de 10 m sufren un 60% de ralentización mientras están dentro del área de efecto. La trampa dura 1 min. Solo puede haber una trampa de Escarcha activa cada vez."
+    },
+    {
+      "nivel": 30,
+      "spell": 5384,
+      "nombre": "Fingir muerte",
+      "icono": "ability_rogue_feigndeath",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 8000,
+      "meta": "Instante · 30 seg de reutilización",
+      "desc": "Fingir muerte puede hacer que los enemigos te ignoren. Dura 6 min. Si no se cancela, morirás de verdad tras 6 min."
+    },
+    {
+      "nivel": 32,
+      "spell": 1543,
+      "nombre": "Bengala",
+      "icono": "spell_fire_flare",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 10000,
+      "meta": "50 Maná · Alcance de 30 m · Instante · 15 seg de reutilización",
+      "desc": "Saca a luz a todos los enemigos escondidos o invisibles en un radio de 10 metros de la zona seleccionada durante 30 s."
+    },
+    {
+      "nivel": 32,
+      "spell": 19878,
+      "nombre": "Rastrear demonios",
+      "icono": "spell_shadow_summonfelhunter",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 10000,
+      "meta": "",
+      "desc": "Muestra la ubicación de los demonios cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+    },
+    {
+      "nivel": 40,
+      "spell": 13159,
+      "nombre": "Aspecto de la manada",
+      "icono": "ability_mount_whitetiger",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 16842,
+      "meta": "",
+      "desc": "El cazador y los miembros del grupo que estén en un radio de 30 metros asumen el aspecto de una manada de guepardos aumentando su velocidad en un 30%. Si un miembro de la manada recibe daño, quedará conmocionado durante 4 s. Solo puede haber 1 aspecto activo cada vez."
+    },
+    {
+      "nivel": 40,
+      "spell": 19882,
+      "nombre": "Rastrear gigantes",
+      "icono": "ability_racial_avatar",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 16842,
+      "meta": "",
+      "desc": "Muestra la ubicación de los gigantes cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+    },
+    {
+      "nivel": 46,
+      "spell": 14327,
+      "nombre": "Bestia temible",
+      "icono": "ability_druid_cower",
+      "rango": 3,
+      "cambio": null,
+      "mascota": false,
+      "coste": 28000,
+      "meta": "75 Maná · Alcance de 10 m · Hechizo de 1.5 seg · 30 seg de reutilización",
+      "desc": "Asusta a una bestia haciendo que huya durante un máximo de 20 s. El daño causado puede interrumpir el efecto. Solo se puede asustar a una bestia cada vez."
+    },
+    {
+      "nivel": 48,
+      "spell": 14273,
+      "nombre": "Separación",
+      "icono": "ability_rogue_feint",
+      "rango": 3,
+      "cambio": null,
+      "mascota": false,
+      "coste": 32000,
+      "meta": "150 Maná · Alcance de ataques cuerpo a cuerpo · Instante · 5 seg de reutilización",
+      "desc": "Intenta separarse del objetivo reduciendo la amenaza. Más efectivo que Separación (Rango 2). Desactiva el ataque automático."
+    },
+    {
+      "nivel": 50,
+      "spell": 24510,
+      "nombre": "Resistencia Arcana",
+      "icono": "spell_nature_starfall",
+      "rango": 4,
+      "cambio": "Cambia de nivel",
+      "mascota": true,
+      "coste": 7200,
+      "meta": "",
+      "desc": "Aumenta la resistencia Arcana en 120 p."
+    },
+    {
+      "nivel": 50,
+      "spell": 24464,
+      "nombre": "Resistencia al Fuego",
+      "icono": "spell_fire_firearmor",
+      "rango": 4,
+      "cambio": "Cambia de nivel",
+      "mascota": true,
+      "coste": 7200,
+      "meta": "",
+      "desc": "Aumenta la resistencia al Fuego en 120 p."
+    },
+    {
+      "nivel": 50,
+      "spell": 24478,
+      "nombre": "Resistencia a la Escarcha",
+      "icono": "spell_frost_frostward",
+      "rango": 4,
+      "cambio": "Cambia de nivel",
+      "mascota": true,
+      "coste": 7200,
+      "meta": "",
+      "desc": "Aumenta la resistencia a la Escarcha en 120 p."
+    },
+    {
+      "nivel": 50,
+      "spell": 24513,
+      "nombre": "Resistencia a la naturaleza",
+      "icono": "spell_nature_resistnature",
+      "rango": 4,
+      "cambio": "Cambia de nivel",
+      "mascota": true,
+      "coste": 7200,
+      "meta": "",
+      "desc": "Aumenta la resistencia a la Naturaleza en 120 p."
+    },
+    {
+      "nivel": 50,
+      "spell": 24516,
+      "nombre": "Resistencia a las Sombras",
+      "icono": "spell_shadow_antishadow",
+      "rango": 4,
+      "cambio": "Cambia de nivel",
+      "mascota": true,
+      "coste": 7200,
+      "meta": "",
+      "desc": "Aumenta la resistencia a las Sombras en 120 p."
+    },
+    {
+      "nivel": 50,
+      "spell": 1264456,
+      "nombre": "Pisotón de trueno",
+      "icono": "ability_hunter_pet_gorilla",
+      "rango": 4,
+      "cambio": "Ahora entrenable",
+      "mascota": true,
+      "coste": null,
+      "meta": "",
+      "desc": ""
+    },
+    {
+      "nivel": 50,
+      "spell": 19879,
+      "nombre": "Rastrear dragonantes",
+      "icono": "inv_misc_head_dragon_01",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": 36000,
+      "meta": "",
+      "desc": "Muestra la ubicación de los dragonantes cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+    },
+    {
+      "nivel": 54,
+      "spell": 20910,
+      "nombre": "Contraataque",
+      "icono": "ability_warrior_challange",
+      "rango": 4,
+      "cambio": "Cambia de nivel",
+      "mascota": false,
+      "coste": 38947,
+      "meta": "85 Maná · Alcance de ataques cuerpo a cuerpo · Instante · 5 seg de reutilización",
+      "desc": "Un golpe que se activa tras haber parado el ataque de un oponente. Este ataque inflige un 50% de daño de arma más 110 p. e inmoviliza al objetivo durante 5 s. El contrataque no se puede bloquear, esquivar ni parar."
+    },
+    {
+      "nivel": 54,
+      "spell": 14317,
+      "nombre": "Trampa explosiva",
+      "icono": "spell_fire_selfdestruct",
+      "rango": 3,
+      "cambio": null,
+      "mascota": false,
+      "coste": 42000,
+      "meta": "Trampa explosiva · Nivel 60 · Instante · 30 seg de reutilización",
+      "desc": "Coloca una trampa de Fuego que explota cuando un enemigo se acerca y le inflige 208 al 264 p. de daño de Fuego y 330 p. de daño de Fuego adicional durante 20 s a todos los enemigos en un radio de 10 m. La trampa dura 1 min. Solo puede haber una trampa de Fuego activa cada vez."
+    },
+    {
+      "nivel": 56,
+      "spell": 20190,
+      "nombre": "Aspecto salvaje",
+      "icono": "spell_nature_protectionformnature",
+      "rango": 2,
+      "cambio": null,
+      "mascota": false,
+      "coste": 46000,
+      "meta": "",
+      "desc": "El cazador y todos los miembros del grupo y banda en un radio de 30 m asumen el aspecto salvaje, lo que aumenta 60 p. la resistencia a la Naturaleza. Solo puede haber un aspecto activo cada vez."
+    },
+    {
+      "nivel": 56,
+      "spell": 14305,
+      "nombre": "Trampa de inmolación",
+      "icono": "spell_fire_flameshock",
+      "rango": 5,
+      "cambio": null,
+      "mascota": false,
+      "coste": 46000,
+      "meta": "Instante · 30 seg de reutilización",
+      "desc": "Coloca una trampa de Fuego que quema al primer enemigo que se acerca y le inflige 690 p. de daño de Fuego durante 15 s. La trampa dura 1 min. Solo puede haber una trampa de Fuego activa cada vez."
+    },
+    {
+      "nivel": 56,
+      "spell": 14266,
+      "nombre": "Golpe de raptor",
+      "icono": "ability_meleedamage",
+      "rango": 8,
+      "cambio": null,
+      "mascota": false,
+      "coste": 46000,
+      "meta": "100 Maná · Alcance de ataques cuerpo a cuerpo · Siguiente cuerpo a cuerpo · 6 seg de reutilización",
+      "desc": "Un ataque contundente que inflige daño con arma cuerpo a cuerpo más 70 p."
+    },
+    {
+      "nivel": 56,
+      "spell": 14280,
+      "nombre": "Picadura de víbora",
+      "icono": "ability_hunter_aimedshot",
+      "rango": 3,
+      "cambio": null,
+      "mascota": false,
+      "coste": 46000,
+      "meta": "215 Maná · Alcance de 8 - 35 m",
+      "desc": "Aguijonea al enemigo drenando 1108 p. de maná durante 8 s. Solo puede estar activo 1 aguijón por cazador."
+    },
+    {
+      "nivel": 58,
+      "spell": 14325,
+      "nombre": "Marca del cazador",
+      "icono": "ability_hunter_snipershot",
+      "rango": 4,
+      "cambio": null,
+      "mascota": false,
+      "coste": 48000,
+      "meta": "60 Maná · Alcance de 100 m",
+      "desc": "Deja la Marca del cazador en el objetivo y aumenta el poder de ataque a distancia de todos los que ataquen al objetivo en 143 p. Además, el cazador siempre podrá ver al objetivo, aunque este utilice Sigilo o Invisibilidad. El objetivo también aparecerá en el minimapa. Dura 2 min."
+    },
+    {
+      "nivel": 58,
+      "spell": 14271,
+      "nombre": "Mordedura de mangosta",
+      "icono": "ability_hunter_swiftstrike",
+      "rango": 4,
+      "cambio": null,
+      "mascota": false,
+      "coste": 48000,
+      "meta": "65 Maná · Alcance de ataques cuerpo a cuerpo · Instante · 5 seg de reutilización",
+      "desc": "Contraataca al enemigo y le inflige daño con arma cuerpo a cuerpo, además de 57 p. Solo se puede ejecutar después de esquivar."
+    },
+    {
+      "nivel": 58,
+      "spell": 1310786,
+      "nombre": "Disparo de francotirador",
+      "icono": "hunter_pvp_snipershot",
+      "rango": 3,
+      "cambio": "Nueva",
+      "mascota": false,
+      "coste": 41052,
+      "meta": "365 Maná · Alcance de 8 - 45 m · Hechizo de 4 seg · 15 seg de reutilización",
+      "desc": "Un tiro de largo alcance que inflige daño a distancia más 590 p. de daño y aumenta el alcance de tus próximos 3 disparos a 10 m durante 10 s."
+    },
+    {
+      "nivel": 58,
+      "spell": 14295,
+      "nombre": "Lluvia",
+      "icono": "ability_marksmanship",
+      "rango": 3,
+      "cambio": null,
+      "mascota": false,
+      "coste": 48000,
+      "meta": "490 Maná · Alcance de 35 m",
+      "desc": "Dispara de forma continua una ráfaga de munición a la zona objetivo e inflige 112 p. de daño Arcano a los objetivos enemigos en un radio de 8 m cada 1 s durante 6 s."
+    },
+    {
+      "nivel": 60,
+      "spell": 20904,
+      "nombre": "Tiro de puntería",
+      "icono": "inv_spear_07",
+      "rango": 6,
+      "cambio": "Cambia de nivel",
+      "mascota": false,
+      "coste": 44210,
+      "meta": "310 Maná · Alcance de 8 - 35 m · Hechizo de 2 seg · 6 seg de reutilización",
+      "desc": "Un disparo de puntería que aumenta 350 p. el daño a distancia. Disparo de puntería comparte su tiempo de reutilización con Multidisparo."
+    },
+    {
+      "nivel": 60,
+      "spell": 14287,
+      "nombre": "Tiro Arcano",
+      "icono": "ability_impalingbolt",
+      "rango": 8,
+      "cambio": null,
+      "mascota": false,
+      "coste": 50000,
+      "meta": "11% del maná base · Alcance de 8 - 35 m",
+      "desc": "Un disparo instantáneo que causa 280 p. de daño Arcano."
+    },
+    {
+      "nivel": 60,
+      "spell": 1299447,
+      "nombre": "Aspecto de la bestia",
+      "icono": "ability_mount_pinktiger",
+      "rango": 4,
+      "cambio": "Cambia de nivel",
+      "mascota": false,
+      "coste": 44210,
+      "meta": "",
+      "desc": "Asumes el aspecto de una bestia, te vuelves imposible de rastrear y obtienes 110 p. de poder de ataque cuerpo a cuerpo. Solo puede haber un aspecto activo cada vez."
+    },
+    {
+      "nivel": 60,
+      "spell": 25296,
+      "nombre": "Aspecto del halcón",
+      "icono": "spell_nature_ravenform",
+      "rango": 7,
+      "cambio": null,
+      "mascota": false,
+      "coste": null,
+      "meta": "",
+      "desc": "El cazador asume los aspectos de un halcón aumentando en 120 p. su poder de ataque a distancia. Solo puede haber 1 aspecto activo cada vez."
+    },
+    {
+      "nivel": 60,
+      "spell": 15632,
+      "nombre": "Disparo de distracción",
+      "icono": "spell_arcane_blink",
+      "rango": 6,
+      "cambio": null,
+      "mascota": false,
+      "coste": 50000,
+      "meta": "110 Maná · Alcance de 8 - 35 m",
+      "desc": "Distrae al objetivo, causando amenaza. Más efectivo que Disparo de distracción (Rango 5)."
+    },
+    {
+      "nivel": 60,
+      "spell": 14311,
+      "nombre": "Trampa congelante",
+      "icono": "spell_frost_chainsofice",
+      "rango": 3,
+      "cambio": null,
+      "mascota": false,
+      "coste": 50000,
+      "meta": "Instante · 30 seg de reutilización",
+      "desc": "Coloca una trampa de Escarcha que congela al primer enemigo que se acerca e impide cualquier acción durante un máximo de 20 s. Cualquier daño que se inflija romperá el hielo. La trampa dura 1 min. Solo puede haber una trampa de Escarcha activa cada vez."
+    },
+    {
+      "nivel": 60,
+      "spell": 5049,
+      "nombre": "Gran aguante",
+      "icono": "spell_nature_unyeildingstamina",
+      "rango": 10,
+      "cambio": "Cambia de nivel",
+      "mascota": true,
+      "coste": 10000,
+      "meta": "",
+      "desc": "Aguante aumentado en 400 p."
+    },
+    {
+      "nivel": 60,
+      "spell": 14927,
+      "nombre": "Bramido",
+      "icono": "ability_physical_taunt",
+      "rango": 7,
+      "cambio": "Cambia de nivel",
+      "mascota": true,
+      "coste": 10000,
+      "meta": "",
+      "desc": "Irrita al objetivo aumentando la posibilidad de que la criatura te ataque."
+    },
+    {
+      "nivel": 60,
+      "spell": 1299332,
+      "nombre": "Lacerar",
+      "icono": "ability_gouge",
+      "rango": 4,
+      "cambio": "Nueva",
+      "mascota": false,
+      "coste": null,
+      "meta": "Lacerar · Nivel 60 · 95 Maná · Alcance de ataques cuerpo a cuerpo",
+      "desc": "Hiere al objetivo, lo que lo hace sangrar 451 p. de daño durante 21 s."
+    },
+    {
+      "nivel": 60,
+      "spell": 13544,
+      "nombre": "Sanar mascota",
+      "icono": "ability_hunter_mendpet",
+      "rango": 7,
+      "cambio": null,
+      "mascota": false,
+      "coste": 50000,
+      "meta": "480 Maná · Alcance de 20 m",
+      "desc": "Cura a tu mascota en 245 p. de salud cada segundo cada vez que te concentras. Dura 5 s."
+    },
+    {
+      "nivel": 60,
+      "spell": 24632,
+      "nombre": "Armadura natural",
+      "icono": "spell_nature_spiritarmor",
+      "rango": 10,
+      "cambio": "Cambia de nivel",
+      "mascota": true,
+      "coste": 10000,
+      "meta": "",
+      "desc": "Armadura aumentada en 1000 p."
+    },
+    {
+      "nivel": 60,
+      "spell": 25295,
+      "nombre": "Aguijón de serpiente",
+      "icono": "ability_hunter_quickshot",
+      "rango": 9,
+      "cambio": null,
+      "mascota": false,
+      "coste": null,
+      "meta": "250 Maná · Alcance de 8 - 35 m",
+      "desc": "Aguijonea al enemigo causando 675 p. de daño de Naturaleza durante 15 s. Solo puede estar activo 1 aguijón por cazador."
+    },
+    {
+      "nivel": 60,
+      "spell": 1293527,
+      "nombre": "Invocar halcón",
+      "icono": "ability_hunter_animalhandler",
+      "rango": 4,
+      "cambio": "Nueva",
+      "mascota": false,
+      "coste": 44210,
+      "meta": "11% del maná base · Alcance de 35 m",
+      "desc": "Ordena a un halcón que se lance contra tu enemigo objetivo, infligiendo [108 + (Poder de ataque a distancia * (0.05))] p. de daño físico. El ataque continúa durante 18 s. Solo puede haber 2 halcones activos a la vez. Invocar halcón comparte su tiempo de reutilización con Disparo Arcano."
+    },
+    {
+      "nivel": 60,
+      "spell": 19801,
+      "nombre": "Disparo tranquilizante",
+      "icono": "spell_nature_drowsy",
+      "rango": null,
+      "cambio": null,
+      "mascota": false,
+      "coste": null,
+      "meta": "270 Maná · Alcance de 8 - 35 m",
+      "desc": "Intenta poner fin a 1 efecto de frenesí de una criatura enemiga."
+    },
+    {
+      "nivel": 60,
+      "spell": 20906,
+      "nombre": "Aura de disparo certero",
+      "icono": "ability_trueshot",
+      "rango": 5,
+      "cambio": "Cambia de nivel",
+      "mascota": false,
+      "coste": 44210,
+      "meta": "",
+      "desc": "Aumenta en 100 p. el poder de ataque a distancia de los miembros del grupo o de la banda en un radio de 45 m. Dura 30 min."
+    },
+    {
+      "nivel": 60,
+      "spell": 14268,
+      "nombre": "Cortar alas",
+      "icono": "ability_rogue_trip",
+      "rango": 3,
+      "cambio": null,
+      "mascota": false,
+      "coste": 50000,
+      "meta": "80 Maná · Alcance de ataques cuerpo a cuerpo",
+      "desc": "Inflige 50 p. de daño y reduce la velocidad de movimiento del objetivo en un 60% durante 10 s."
+    }
+  ]
+}

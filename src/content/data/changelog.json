@@ -1,5 +1,26 @@
 [
   {
+    "fecha": "2026-11-13",
+    "pestana": "mascotas",
+    "texto": "Las 18 familias, sus habilidades y dónde domesticar cada una en",
+    "enlace": "Mascotas",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-13",
+    "pestana": "talentos",
+    "texto": "Árbol de talentos, orden de leveling y habilidades con su coste en",
+    "enlace": "Talentos",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-13",
+    "pestana": "mecanicas",
+    "texto": "Nueva guía de BM para WoW Forever. Empieza por",
+    "enlace": "General",
+    "version": "forever"
+  },
+  {
     "fecha": "2026-11-11",
     "pestana": "mecanicas",
     "texto": "Nuevo diseño de toda la guía. Echa un vistazo a",

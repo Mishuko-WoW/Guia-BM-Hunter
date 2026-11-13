@@ -1,0 +1,48 @@
+---
+// Guía WoW Forever: cabecera, pestañas (TABS_FOREVER) y una sección por pestaña.
+import { getCollection } from 'astro:content';
+import Header from '../Header.astro';
+import TabBar from '../TabBar.astro';
+import SeccionForever from './SeccionForever.astro';
+import CalculadoraTalentos from './CalculadoraTalentos.astro';
+import RangosEntrenables from './RangosEntrenables.astro';
+import MascotasForever from './MascotasForever.astro';
+import { TABS_FOREVER } from '../../lib/tabs';
+import { formatLong, latestChangeDate } from '../../lib/changelog';
+import '../../styles/forever.css';
+
+const paginas = new Map((await getCollection('foreverPaginas')).map((p) => [p.data.tab, p]));
+const lastUpdate = latestChangeDate(undefined, 'forever');
+---
+
+<Header realm="forever" />
+<TabBar realm="forever" />
+
+<div class="content-area">
+  {TABS_FOREVER.map((t, i) => (
+    <SeccionForever tab={t.id} label={t.label} pagina={paginas.get(t.id)} activa={i === 0}>
+      {t.id === 'talentos' && (
+        <>
+          <CalculadoraTalentos />
+          <h3>Rangos entrenables más altos a nivel 60</h3>
+          <RangosEntrenables />
+        </>
+      )}
+      {t.id === 'mascotas' && <MascotasForever />}
+    </SeccionForever>
+  ))}
+</div>
+
+<footer class="mk-footer">
+  <div class="mk-footer__inner">
+    <img src="/brand/mishuko-logo.webp" width="64" height="64" alt="" loading="lazy" />
+    <div>
+      <p class="mk-footer__meta">
+        Creada y actualizada por <strong>Mishuko</strong>{lastUpdate && <> · <time datetime={lastUpdate}>{formatLong(lastUpdate)}</time></>}
+      </p>
+      <p class="mk-footer__note">
+        Recurso de apoyo para entender la clase, escrito por Mishuko.
+      </p>
+    </div>
+  </div>
+</footer>

@@ -18,7 +18,34 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  isolation: isolate; /* las partículas (z-index: -1) quedan sobre el fondo y bajo el contenido */
 }
+
+/* ─── PARTÍCULAS de fondo en toda la web (Particulas.astro) ─── */
+.fx-embers { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.fx-ember {
+  --fx-a: var(--brand); --fx-b: var(--dr);
+  position: absolute; bottom: -10px; left: calc(4% + var(--i) * 5.3%);
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--fx-a); box-shadow: 0 0 8px var(--fx-a);
+  opacity: 0;
+  animation: fx-ember calc(9s + var(--i) * 0.45s) linear infinite;
+  animation-delay: calc(var(--i) * -0.9s);
+}
+.fx-ember:nth-child(3n) { background: var(--fx-b); box-shadow: 0 0 8px var(--fx-b); }
+:root[data-realm="portada"] .fx-ember { --fx-a: var(--realm-midnight); --fx-b: var(--realm-forever); }
+/* portada: como estaba, las 12 primeras de Midnight y las 6 últimas de Forever */
+:root[data-realm="portada"] .fx-ember:nth-child(3n) { background: var(--fx-a); box-shadow: 0 0 8px var(--fx-a); }
+:root[data-realm="portada"] .fx-ember:nth-child(n+13) { background: var(--fx-b); box-shadow: 0 0 8px var(--fx-b); }
+:root[data-realm="midnight"] .fx-ember { --fx-a: var(--realm-midnight); --fx-b: var(--brand); }
+:root[data-realm="forever"] .fx-ember { --fx-a: var(--realm-forever); --fx-b: var(--gold); }
+@keyframes fx-ember {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.4; }
+  100% { opacity: 0; transform: translate(calc((var(--i) - 9) * 6px), -105vh); }
+}
+
 /* grano sutil para quitar el aspecto "plano digital" */
 body::before {
   content: '';
@@ -496,4 +523,79 @@ strong { color: var(--text); font-weight: 700; }
   .mk-realmbar__inner { padding: 6px 12px; }
   .mk-realmbar__home span { display: none; }
   .mk-realm-switch__opt { padding: 7px 12px; font-size: 12.5px; }
+}
+
+/* ─── BLOQUES DE CONTENIDO (tarjeta, tabla, icono de cabecera) — usados por Forever ─── */
+.blk-head-icon {
+  width: 28px; height: 28px; margin-right: 10px;
+  border-radius: 50%; vertical-align: middle;
+  box-shadow: 0 0 0 1px var(--border2);
+}
+.card-header:has(.blk-head-icon), .col-header:has(.blk-head-icon) { display: flex; align-items: center; }
+.blk-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.blk-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.blk-table th, .blk-table td {
+  padding: 10px 14px; text-align: left; vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+.blk-table th {
+  font: 700 13px/1.2 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--brand-text); background: color-mix(in srgb, var(--bg) 40%, transparent);
+  white-space: nowrap;
+}
+.blk-table td { color: var(--text2); }
+.blk-table td:first-child { color: var(--text); font-weight: 600; }
+.blk-table tr:last-child td { border-bottom: 0; }
+.blk-table tbody tr:hover td { background: color-mix(in srgb, var(--brand) 5%, transparent); }
+
+/* ─── ICONOS DE HECHIZO ───
+   [[Hechizo]] lleva un icono pequeño dentro de la etiqueta: oculto por defecto, visible en Forever.
+   {{Hechizo}} = icono grande con el nombre debajo. Tooltip propio (data-name) en ambos. */
+.sp-ico { display: none; }
+:root[data-realm="forever"] .sp-ico {
+  display: inline-block;
+  width: 1.15em; height: 1.15em;
+  margin: 0 0.3em 0 -0.1em;
+  vertical-align: -0.2em;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--border2);
+}
+.spell-tile {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
+  width: 104px; padding: 4px 0;
+  text-align: center; cursor: help;
+}
+.spell-tile img {
+  width: 56px; height: 56px;
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 1px var(--border2), 0 0 0 3px color-mix(in srgb, var(--brand) 18%, transparent), 0 6px 14px -6px rgb(0 0 0 / 0.9);
+  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast);
+}
+.spell-tile:hover img {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px var(--brand), 0 0 0 3px color-mix(in srgb, var(--brand) 35%, transparent), 0 8px 18px -6px rgb(0 0 0 / 0.9);
+}
+.spell-tile__name { font: 700 14px/1.2 var(--font-display); letter-spacing: 0.04em; color: var(--text); }
+.pr-tile .spell-tile__name { color: var(--pl-soft); }
+.bf-tile .spell-tile__name { color: var(--brand-text); }
+.blk-table td:has(> .spell-tile:only-child) { width: 120px; text-align: center; vertical-align: middle; }
+
+/* ─── FOREVER: texto más grande y legible ─── */
+:root[data-realm="forever"] .content-area .box { font-size: 17.5px; }
+:root[data-realm="forever"] .content-area .data-row { font-size: 18px; }
+:root[data-realm="forever"] .content-area .col-row { font-size: 17.5px; }
+:root[data-realm="forever"] .content-area .prio-item { font-size: 18px; }
+:root[data-realm="forever"] .content-area .blk-table { font-size: 17px; }
+:root[data-realm="forever"] .content-area .blk-table td { line-height: 1.6; }
+@media (max-width: 600px) {
+  :root[data-realm="forever"] .content-area .box,
+  :root[data-realm="forever"] .content-area .data-row,
+  :root[data-realm="forever"] .content-area .col-row,
+  :root[data-realm="forever"] .content-area .prio-item,
+  :root[data-realm="forever"] .content-area .blk-table { font-size: 16.5px; }
+  .spell-tile { width: 76px; }
+  .spell-tile img { width: 44px; height: 44px; }
+  .spell-tile__name { font-size: 12.5px; }
+  .blk-table td:has(> .spell-tile:only-child) { width: 84px; }
+  .blk-table th, .blk-table td { padding: 10px 10px; }
 }

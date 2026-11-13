@@ -1,0 +1,103 @@
+---
+// "Rangos entrenables más altos a nivel 60": habilidades del cazador (y de su mascota) agrupadas por nivel,
+// con su coste de entrenamiento. Datos: src/content/data/forever-talentos.json → entrenables.
+import data from '../../content/data/forever-talentos.json';
+import { iconUrl } from '../../lib/spells';
+
+const porNivel = new Map<number, typeof data.entrenables>();
+for (const e of data.entrenables) {
+  if (!porNivel.has(e.nivel)) porNivel.set(e.nivel, []);
+  porNivel.get(e.nivel)!.push(e);
+}
+const novedades = data.entrenables.filter((e) => e.cambio).length;
+const mascota = data.entrenables.filter((e) => e.mascota).length;
+const CLASE: Record<string, string> = { Nueva: 'is-new', 'Cambia de nivel': 'is-changed', 'Ahora entrenable': 'is-trainable' };
+
+// cobre → [[valor, 'g'|'s'|'c'], ...]
+function monedas(cobre: number | null) {
+  if (!cobre) return [];
+  const g = Math.floor(cobre / 10000), s = Math.floor((cobre % 10000) / 100), c = cobre % 100;
+  return [[g, 'g'], [s, 's'], [c, 'c']].filter(([v]) => v) as [number, string][];
+}
+const textoMonedas = (cobre: number | null) =>
+  monedas(cobre).map(([v, u]) => `${v} ${{ g: 'oro', s: 'plata', c: 'cobre' }[u]}`).join(' ');
+---
+
+<div class="tr" id="tr">
+  <div class="tr-top">
+    <p class="tr-intro">
+      La habilidad o el rango más alto de cada hechizo que puedes entrenar, ordenado por el nivel al que se aprende y
+      con lo que cuesta en el entrenador. Pasa el ratón por encima para ver qué hace.
+    </p>
+    <div class="toggle-wrap combat-switch tr-filter" role="group" aria-label="Filtrar habilidades">
+      <button type="button" class="toggle-btn active" data-tr-filter="cazador">Cazador ({data.entrenables.length - mascota})</button>
+      <button type="button" class="toggle-btn" data-tr-filter="mascota">Mascota ({mascota})</button>
+      <button type="button" class="toggle-btn" data-tr-filter="todas">Todas ({data.entrenables.length})</button>
+      <button type="button" class="toggle-btn" data-tr-filter="novedades">Novedades de Forever ({novedades})</button>
+    </div>
+    <ul class="tr-legend" aria-label="Leyenda">
+      <li><span class="tr-badge is-new">Nueva</span> no existía en Classic</li>
+      <li><span class="tr-badge is-changed">Cambia de nivel</span> se aprende a otro nivel</li>
+      <li><span class="tr-badge is-trainable">Ahora entrenable</span> antes no se entrenaba</li>
+      <li><span class="tr-badge is-pet">Mascota</span> la aprende tu mascota (entrenador de mascotas)</li>
+    </ul>
+  </div>
+
+  <div class="tr-levels">
+    {[...porNivel].map(([nivel, lista]) => (
+      <section class="tr-level" data-tr-level hidden={lista.every((e) => e.mascota)}>
+        <div class="tr-level__num"><span>Nivel</span><b>{nivel}</b></div>
+        <div class="tr-level__list">
+          {lista.map((e) => (
+            <div
+              class:list={['tr-item', { 'is-novelty': e.cambio, 'is-pet': e.mascota }]}
+              hidden={e.mascota}
+              data-name={e.nombre}
+              data-type={[e.mascota ? 'Habilidad de mascota' : '', e.rango ? `Rango ${e.rango}` : '', e.meta, e.coste ? `Coste: ${textoMonedas(e.coste)}` : '']
+                .filter(Boolean).join(' · ')}
+              data-desc={e.desc || (e.mascota ? 'Habilidad que aprende tu mascota en el entrenador de mascotas.' : e.cambio || '')}
+            >
+              <img src={iconUrl(e.icono)} alt="" width="40" height="40" loading="lazy" />
+              <span class="tr-item__body">
+                <span class="tr-item__name">{e.nombre}</span>
+                <span class="tr-item__meta">
+                  {e.rango && <span class="tr-rank">Rango {e.rango}</span>}
+                  {e.mascota && <span class="tr-badge is-pet">Mascota</span>}
+                  {e.cambio && <span class:list={['tr-badge', CLASE[e.cambio]]}>{e.cambio}</span>}
+                </span>
+              </span>
+              {e.coste && (
+                <span class="tr-cost" aria-label={`Coste: ${textoMonedas(e.coste)}`}>
+                  {monedas(e.coste).map(([v, u]) => <span class={`tr-coin tr-coin--${u}`}>{v}</span>)}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const root = document.getElementById('tr');
+    if (!root) return;
+    const FILTROS = {
+      cazador: (it) => !it.classList.contains('is-pet'),
+      mascota: (it) => it.classList.contains('is-pet'),
+      todas: () => true,
+      novedades: (it) => it.classList.contains('is-novelty'),
+    };
+    function filtrar(btn) {
+      const ok = FILTROS[btn.dataset.trFilter];
+      root.querySelectorAll('[data-tr-filter]').forEach((b) => b.classList.toggle('active', b === btn));
+      root.querySelectorAll('.tr-item').forEach((it) => (it.hidden = !ok(it)));
+      root.querySelectorAll('[data-tr-level]').forEach((sec) => {
+        sec.hidden = ![...sec.querySelectorAll('.tr-item')].some((it) => !it.hidden);
+      });
+    }
+    root.querySelectorAll('[data-tr-filter]').forEach((btn) => btn.addEventListener('click', () => filtrar(btn)));
+    filtrar(root.querySelector('[data-tr-filter].active')); // por defecto: solo las del cazador
+  })();
+</script>

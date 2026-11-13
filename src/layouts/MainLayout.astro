@@ -3,6 +3,7 @@
 import '../styles/tokens.css';
 import '../styles/bm-guide.css';
 import '../styles/marca.css';
+import Particulas from '../components/Particulas.astro';
 
 interface Props {
   title?: string;
@@ -114,6 +115,7 @@ const ogImage = new URL('/brand/og-image.png', Astro.site).href;
   </head>
 
   <body>
+    <Particulas />
     <slot />
   </body>
 </html>

@@ -34,19 +34,6 @@
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse at 50% 45%, #000 10%, transparent 70%);
 }
-.pt-ember {
-  position: absolute;
-  bottom: -10px;
-  left: calc(4% + var(--i) * 5.3%);
-  width: 3px; height: 3px;
-  border-radius: 50%;
-  background: var(--realm-midnight);
-  box-shadow: 0 0 8px currentColor;
-  opacity: 0;
-  animation: pt-ember calc(9s + var(--i) * 0.45s) linear infinite;
-  animation-delay: calc(var(--i) * -0.9s);
-}
-.pt-ember:nth-child(n+13) { background: var(--realm-forever); }
 
 /* ─── Cabecera ─── */
 .pt-head { text-align: center; }
@@ -218,12 +205,6 @@
 }
 @keyframes pt-shine { from { transform: translateX(-60%); } to { transform: translateX(60%); } }
 @keyframes pt-drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(4vmax, -3vmax) scale(1.08); } }
-@keyframes pt-ember {
-  0%   { opacity: 0; transform: translate(0, 0); }
-  10%  { opacity: 0.8; }
-  90%  { opacity: 0.4; }
-  100% { opacity: 0; transform: translate(calc((var(--i) - 9) * 6px), -105vh); }
-}
 
 /* ─── Móvil ─── */
 @media (max-width: 720px) {

@@ -2,6 +2,8 @@
 
 Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor: Mishuko. Responder siempre en español.
 
+**Al empezar cada sesión, leer `CHANGELOG.md`** (historial técnico de la web) y añadir en él una entrada por cada cambio antes del commit. Es distinto de `changelog.json` (lista para visitantes).
+
 ## Stack y comandos
 - Astro 6, sitio estático de **una sola página** con pestañas. Node ≥ 22.
 - `npm run dev` → http://localhost:4321 (recarga en caliente)
@@ -13,7 +15,24 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 ## Páginas y versiones
 - `/` → portada de elección (`src/pages/index.astro` + `src/styles/portada.css`). Redirige enlaces antiguos `/#tab` a `/midnight/#tab`.
 - `/midnight/` → guía de Midnight (`src/pages/midnight/index.astro`, todo lo que sigue en este documento).
-- `/forever/` → WoW Forever, ahora "en construcción" (`src/pages/forever/index.astro` + `src/styles/obra.css`).
+- `/forever/` → guía de WoW Forever (en desarrollo, pestaña a pestaña). `src/pages/forever/index.astro` → `src/components/forever/GuideForever.astro`.
+  - Contenido: **una página `.md` por pestaña** en `src/content/forever/paginas/<tab>.md` (`tab`, `titulo`, `fuentes`, `bloques`); colección `foreverPaginas`. Pestaña sin `.md` = aviso "en preparación".
+  - Bloques extra (también válidos en Midnight): `tarjeta` (titulo + `icono` + `filas`), `tabla` (`cabecera` + `filas`), y `columnas` con `filas` (párrafos) además de `pasos`.
+  - Iconos HD: `node scripts/icons-hd.mjs` baja de zamimg los iconos usados en `src/content/forever/`, los reescala x4 con Real-ESRGAN (el del proyecto TikTok) y los guarda a 128 px en `public/icons/<icono>.webp`; `iconUrl()` usa el local si existe. Ejecutarlo tras añadir hechizos nuevos y subir los .webp.
+  - Texto de Forever más grande (bloque "FOREVER: texto más grande" en `marca.css`).
+  - **Sin fuentes a la vista**: en Forever no se citan guías externas (ni cajas "Fuente" ni menciones en el texto); se escribe como de Mishuko. Al final de cada pestaña solo "Última revisión por Mishuko".
+  - **Talentos**: árbol **solo lectura** (ver y copiar, no sumar/quitar) en `src/components/forever/CalculadoraTalentos.astro` + `public/scripts/forever-talentos.js`, y "Rangos entrenables" (`RangosEntrenables.astro`). Estilos en `src/styles/forever.css` (solo Forever). Árboles de 312 px fijos con el fondo original entero (300×331, `100% 100%`).
+    - Datos de árboles/rangos/entrenables: `src/content/data/forever-talentos.json`, **generado** con `node scripts/gen-forever-talentos.mjs` (posiciones, IDs, coste de entrenamiento en cobre y habilidades de mascota dentro del script; textos es-ES de Wowhead). No editar a mano.
+    - Builds: `src/content/data/forever-builds.json` (`nombre` = etiqueta, ids `<arbol>-<fila>-<col>`; `puntos` o `orden` por nivel desde el 10; `cadena` opcional = string de importación → botón "Copiar talentos"). A 13-11-2026 Forever no tiene strings de importación (árboles clásicos), así que no hay botón.
+  - **Mascotas**: `src/components/forever/MascotasForever.astro` (18 familias con su habilidad propia, comunes + instructor, y "Dónde domesticar" con bestia de Alianza y de Horda para el rango más bajo y el más alto conocido, enlazadas a Wowhead es).
+    - Datos: `src/content/data/forever-mascotas.json`, **generado** con `node scripts/gen-forever-mascotas.mjs` (lee Petopia Forever en vivo; nombres de bestias y zonas en es-ES de Wowhead; familias, nombres y descripciones de habilidades dentro del script, del vídeo 3 del proyecto TikTok). Volver a ejecutarlo cuando Petopia descubra más rangos.
+    - Elección de bestia: zona de su facción > compartida > mazmorra; si solo existe en la otra facción se marca "Zona de la Horda/Alianza".
+    - Rangos mostrados: el más bajo, uno intermedio (si la habilidad tiene más de 3 rangos) y el más alto con bestia conocida. Selector Alianza/Horda (recuerda la elección en `localStorage`). Comunes primero, luego las propias.
+    - **"Carrerilla"** (Dash), no "Diligencia": así sale en el juego (confirmado por Mishuko). Las familias solo muestran su habilidad propia.
+  - Las páginas `.md` admiten `intro` (bloques antes de los componentes de la pestaña).
+  - Hechizos de Forever con su **nombre oficial en español** (Wowhead Forever es-ES) en el mismo `spells.json`. Ej.: Invocar halcón, Ira de bestias, Tiro automático.
+  - En Forever `renameLinks: false` en `whTooltips` (Wowhead no renombra los enlaces).
+  - `obra.css` (antigua página "en construcción") ya no se usa.
 - Datos de cada versión (nombre, enlace, logo, etiqueta, `disponible`) en `src/lib/realms.ts`; selector superior en `RealmSwitch.astro`.
 - Logos oficiales de Midnight y Forever (Blizzard Press Center, blizzard.gamespress.com) reducidos a WebP en `public/brand/realms/`. Colores de versión: `--realm-midnight` violeta, `--realm-forever` turquesa (`tokens.css`).
 - Cuando Forever esté lista: `disponible: true` en `realms.ts` y sustituir `src/pages/forever/index.astro` por la guía.
@@ -33,7 +52,8 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 - Lenguaje para el visitante (qué cambia para él), **nunca** cambios técnicos (refactors, CSS, arreglos de código): esos no llevan entrada.
 - La cabecera muestra las 2 más recientes (`CHANGELOG_VISIBLE` en `Header.astro`); el resto queda como historial.
 - De aquí salen automáticamente: "Última revisión" de cada sección (última entrada de su pestaña) y la fecha del footer (última entrada global). No editar esas fechas a mano.
-- El build valida fecha real, pestaña existente (data-tab de `TabBar.astro`) y campos no vacíos.
+- Entradas de Forever llevan `"version": "forever"` (sin `version` = Midnight); cada cabecera solo muestra las suyas.
+- El build valida fecha real, pestaña existente en su versión (`src/lib/tabs.ts`) y campos no vacíos.
 - Proponer el texto de la entrada al usuario junto con el enlace local, antes del push.
 
 ## Dónde está cada cosa
@@ -41,7 +61,7 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 |---|---|
 | Cabecera, aviso de parche (`PARCHE`) | `src/components/Header.astro` |
 | Lista de cambios, fechas de revisión y del footer | `src/content/data/changelog.json` (lógica en `src/lib/changelog.ts`) |
-| Pestañas (lista `TABS`) | `src/components/TabBar.astro` |
+| Pestañas (`TABS_MIDNIGHT`, `TABS_FOREVER`) | `src/lib/tabs.ts` (las pinta `TabBar.astro`) |
 | Orden de secciones, footer | `src/components/guide/GuideContent.astro` |
 | `<head>`, SEO, Analytics (GA4 con page_view por hash) | `src/layouts/MainLayout.astro` |
 | Pestaña X | `src/components/Seccion<X>.astro` (`<div id="tab-<id>" class="tab-panel">`) |
@@ -52,17 +72,18 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 | BiS y consumibles | **HTML a mano** en `SeccionBiS.astro` (1700 líneas, estilos propios dentro). `bis.json` NO se usa (datos viejos) |
 | Esquemas de contenido (zod) | `src/content.config.ts` |
 
-Pestañas válidas (`data-tab`): mecanicas, talentos, estadisticas, rotacion, opener (oculta, va con rotacion), bis, mascotas, macros, simulacion, coaching, errores, examen-st, examen-aoe.
-**Ocultas a propósito (sin botón):** `errores`, `examen-st`, `examen-aoe` — reservadas a quien compra el coaching. No añadirles botón. Ojo: hoy tampoco abren con `#enlace` (showTab solo acepta pestañas con botón).
+Pestañas Forever: mecanicas, talentos, estadisticas, rotacion, opener (oculta), bis, mascotas, macros, leveling.
+Pestañas válidas Midnight (`data-tab`): mecanicas, talentos, estadisticas, rotacion, opener (oculta, va con rotacion), bis, mascotas, macros, simulacion, coaching, errores.
+**Oculta a propósito (sin botón):** `errores` — reservada a quien compra el coaching. Los exámenes ST/AoE se eliminaron (2026-11-13). No añadirles botón. Ojo: hoy tampoco abren con `#enlace` (showTab solo acepta pestañas con botón).
 
 ## Formato de Rotación y Opener
 Cada `.md` = un botón del selector: `id`, `orden`, `boton`, `heroe` (pack-leader | dark-ranger), `oculto` (true = muestra "en desarrollo") y `bloques`, en orden:
 `caja` (info|warn|tip|crit + titulo + texto) · `columnas` (titulo, color, pasos[{icono?, texto}]) · `cadena` (pasos del opener con tono sp|pr|bf|gold y nota) · `pasos` (titulo + lista[{icono?, pre?, texto}]) · `filas` (+ compacto) · `subtitulo` · `separador`. Esquema zod en `src/content.config.ts`.
-Mini-formato de texto (`src/lib/markup.ts`): `[[Hechizo]]` (tooltip/clase del catálogo), `[[Hechizo|tooltip propio]]`, `[[Hechizo|tooltip|tipo|clase]]`, `[[Hechizo>Texto]]`, `**negrita**`, `*cursiva*`, `!!alerta roja!!`. `icono` = nombre de icono Wowhead (`ability_hunter_barbedshot`) o URL; si falta se usa el del primer `[[hechizo]]`. Todo `[[hechizo]]` debe existir en `spells.json` (lo valida el build).
+Mini-formato de texto (`src/lib/markup.ts`): `[[Hechizo]]` (tooltip/clase del catálogo; en Forever lleva icono pequeño), `{{Hechizo}}` / `{{Hechizo>Texto}}` (icono grande con nombre debajo, tooltip propio), `[[Hechizo|tooltip propio]]`, `[[Hechizo|tooltip|tipo|clase]]`, `[[Hechizo>Texto]]`, `**negrita**`, `*cursiva*`, `!!alerta roja!!`. `icono` = nombre de icono Wowhead (`ability_hunter_barbedshot`) o URL; si falta se usa el del primer `[[hechizo]]`. Todo `[[hechizo]]` debe existir en `spells.json` (lo valida el build).
 
 ## JavaScript (`public/scripts/bm-guide.js`, ~1090 líneas, sin bundler)
 Script clásico global (funciones llamadas desde `onclick` en el HTML). Secciones, buscar con `grep -n "// ───"`:
-TABS (`showTab`, `syncTabFromHash`) · TOGGLE (`setPanel` para Rotación/Opener, `setBuild` para Talentos) · TOOLTIP · QUIZ ENGINE + PREGUNTAS ST/AoE · BIS TRACKER (`bisCheck`, `BIS_TOTAL`) · TALENT COPY · BOSS DATA (`SPELL_REGISTRY`, `autoLink`) · BUILDS RENDERER · BOSS PANEL · REPORT MODAL (webhook Discord).
+TABS (`showTab`, `syncTabFromHash`) · TOGGLE (`setPanel` para Rotación/Opener, `setBuild` para Talentos) · TOOLTIP · BIS TRACKER (`bisCheck`, `BIS_TOTAL`) · TALENT COPY · BOSS DATA (`SPELL_REGISTRY`, `autoLink`) · BUILDS RENDERER · BOSS PANEL · REPORT MODAL (webhook Discord).
 - Datos de Astro llegan vía `window.BM_BUILDS_DATA` / `window.BM_BOSS_DATA` (inyectados en `src/pages/index.astro`).
 - Si un elemento puede no existir (secciones ocultas), proteger con `if (el)`: un error corta el resto del script.
 - Navegación: `#<tab>` en la URL abre la pestaña (los enlaces internos deben ser `href="#bis"`, nunca URL absoluta).
@@ -70,6 +91,7 @@ TABS (`showTab`, `syncTabFromHash`) · TOGGLE (`setPanel` para Rotación/Opener,
 ## Estilos (marca Mishuko)
 Orden de carga en `MainLayout.astro`: `tokens.css` → `bm-guide.css` (heredado) → `marca.css` (manda).
 - `src/styles/tokens.css`: **única fuente** de colores, fuentes, esquinas cortadas (`--clip-card`, `--clip-btn`) y movimiento. Marca `--brand` #c4d70b (verde del logo), `--pl` ámbar (Pack Leader), `--dr` violeta (Dark Ranger). Los nombres antiguos (`--accent`, `--orange`…) son alias.
+- Partículas de fondo (brasas) en todas las páginas: `src/components/Particulas.astro` (lo incluye `MainLayout`); colores por versión en el bloque "PARTÍCULAS" de `marca.css`.
 - `src/styles/marca.css`: cabecera (`.mk-header`), pestañas (`.mk-tabs`/`.mk-tab`), títulos, cajas, tarjetas, listas, selectores, hechizos, tooltip, footer, animaciones y móvil. Estilos nuevos van aquí.
 - `src/styles/bm-guide.css` (~2.2k líneas): estilos heredados por sección; localizar con `grep -n "/\* ───"` y leer solo ese rango. No añadir colores fijos: usar variables.
 - Nunca colores hex sueltos ni emojis en títulos (`.box-title`, `.card-header`, `.col-header`): las cajas ya llevan icono por tipo (`box-info|warn|tip|crit`).

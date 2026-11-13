@@ -44,6 +44,15 @@
   --red2:    #f2a3a0;
   --purple:  var(--dr);
 
+  /* Facciones (pestaña Mascotas de Forever) */
+  --alianza: #5b9bf0;
+  --horda:   #e2554f;
+
+  /* Monedas del juego (costes de entrenamiento): texto, brillo, cuerpo y sombra */
+  --coin-gold:   #f5d06a; --coin-gold-hi:   #fff2b0; --coin-gold-mid:   #d9a520; --coin-gold-lo:   #8a6210;
+  --coin-silver: #d6dde3; --coin-silver-hi: #ffffff; --coin-silver-mid: #b8c2cb; --coin-silver-lo: #6c757d;
+  --coin-copper: #e3a27a; --coin-copper-hi: #ffd2b3; --coin-copper-mid: #c0703f; --coin-copper-lo: #7a3f1c;
+
   /* Texto (hueso con matiz verde) */
   --text:  #eceee4;
   --text2: #a5ae9a;

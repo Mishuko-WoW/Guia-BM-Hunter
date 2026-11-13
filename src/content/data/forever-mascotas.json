@@ -1,0 +1,1720 @@
+{
+  "fuente": "Petopia Forever + Wowhead Forever (es-ES), 2026-11-13",
+  "familias": [
+    {
+      "id": "jabali",
+      "nombre": "Jabalí",
+      "en": "Boar",
+      "icono": "ability_hunter_pet_boar",
+      "propia": "charge",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dash",
+      "dieta": "Pan, queso, pescado, fruta, hongos y carne",
+      "aprende": [
+        "bite",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "lobo",
+      "nombre": "Lobo",
+      "en": "Wolf",
+      "icono": "ability_hunter_pet_wolf",
+      "propia": "furioushowl",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dash",
+      "dieta": "Carne",
+      "aprende": [
+        "bite",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "felino",
+      "nombre": "Felino",
+      "en": "Cat",
+      "icono": "ability_hunter_pet_cat",
+      "propia": "prowl",
+      "ataque": [
+        "bite",
+        "claw"
+      ],
+      "mov": "dash",
+      "dieta": "Pescado y carne",
+      "aprende": [
+        "bite",
+        "claw",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "arana",
+      "nombre": "Araña",
+      "en": "Spider",
+      "icono": "ability_hunter_pet_spider",
+      "propia": "web",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dash",
+      "dieta": "Carne",
+      "aprende": [
+        "bite",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "escorpido",
+      "nombre": "Escórpido",
+      "en": "Scorpid",
+      "icono": "ability_hunter_pet_scorpid",
+      "propia": "scorpidpoison",
+      "ataque": [
+        "claw"
+      ],
+      "mov": "dash",
+      "dieta": "Carne",
+      "aprende": [
+        "claw",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "tortuga",
+      "nombre": "Tortuga",
+      "en": "Turtle",
+      "icono": "ability_hunter_pet_turtle",
+      "propia": "shellshield",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dash",
+      "dieta": "Pan, pescado, fruta y hongos",
+      "aprende": [
+        "bite",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "gorila",
+      "nombre": "Gorila",
+      "en": "Gorilla",
+      "icono": "ability_hunter_pet_gorilla",
+      "propia": "thunderstomp",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dash",
+      "dieta": "Pan, fruta y hongos",
+      "aprende": [
+        "bite",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "serpiente",
+      "nombre": "Serpiente alada",
+      "en": "Wind Serpent",
+      "icono": "ability_hunter_pet_windserpent",
+      "propia": "lightningbreath",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dive",
+      "dieta": "Pan, queso y pescado",
+      "aprende": [
+        "bite",
+        "dive",
+        "cower"
+      ]
+    },
+    {
+      "id": "oso",
+      "nombre": "Oso",
+      "en": "Bear",
+      "icono": "ability_hunter_pet_bear",
+      "propia": "swipe",
+      "ataque": [
+        "bite",
+        "claw"
+      ],
+      "mov": "dash",
+      "dieta": "Pan, queso, pescado, fruta, hongos y carne",
+      "nueva": true,
+      "aprende": [
+        "bite",
+        "claw",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "raptor",
+      "nombre": "Raptor",
+      "en": "Raptor",
+      "icono": "ability_hunter_pet_raptor",
+      "propia": "savagerend",
+      "ataque": [
+        "bite",
+        "claw"
+      ],
+      "mov": "dash",
+      "dieta": "Carne",
+      "nueva": true,
+      "aprende": [
+        "bite",
+        "claw",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "hiena",
+      "nombre": "Hiena",
+      "en": "Hyena",
+      "icono": "ability_hunter_pet_hyena",
+      "propia": "tendonrip",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dash",
+      "dieta": "Carne",
+      "nueva": true,
+      "aprende": [
+        "bite",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "cangrejo",
+      "nombre": "Cangrejo",
+      "en": "Crab",
+      "icono": "ability_hunter_pet_crab",
+      "propia": "pinch",
+      "ataque": [
+        "claw"
+      ],
+      "mov": "dash",
+      "dieta": "Pan, pescado, fruta y hongos",
+      "nueva": true,
+      "aprende": [
+        "claw",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "crocolisco",
+      "nombre": "Crocolisco",
+      "en": "Crocolisk",
+      "icono": "ability_hunter_pet_crocolisk",
+      "propia": "dismember",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dash",
+      "dieta": "Pescado y carne",
+      "nueva": true,
+      "aprende": [
+        "bite",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "zancudo",
+      "nombre": "Zancudo",
+      "en": "Tallstrider",
+      "icono": "ability_hunter_pet_tallstrider",
+      "propia": "dustcloud",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dash",
+      "dieta": "Pan, queso, fruta y hongos",
+      "nueva": true,
+      "aprende": [
+        "bite",
+        "dash",
+        "cower"
+      ]
+    },
+    {
+      "id": "rapaz",
+      "nombre": "Ave rapaz",
+      "en": "Bird of Prey",
+      "icono": "ability_hunter_pet_owl",
+      "propia": "mine!",
+      "ataque": [
+        "claw"
+      ],
+      "mov": "dive",
+      "dieta": "Pescado y carne",
+      "nueva": true,
+      "aprende": [
+        "claw",
+        "dive",
+        "cower"
+      ]
+    },
+    {
+      "id": "carronero",
+      "nombre": "Carroñero",
+      "en": "Carrion Bird",
+      "icono": "ability_hunter_pet_vulture",
+      "propia": "demoralizingscreech",
+      "ataque": [
+        "bite",
+        "claw"
+      ],
+      "mov": "dive",
+      "dieta": "Pescado y carne",
+      "nueva": true,
+      "aprende": [
+        "bite",
+        "claw",
+        "dive",
+        "cower"
+      ]
+    },
+    {
+      "id": "murcielago",
+      "nombre": "Murciélago",
+      "en": "Bat",
+      "icono": "ability_hunter_pet_bat",
+      "propia": "sonicblast",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dive",
+      "dieta": "Fruta y hongos",
+      "nueva": true,
+      "aprende": [
+        "bite",
+        "dive",
+        "cower"
+      ]
+    },
+    {
+      "id": "zorro",
+      "nombre": "Zorro",
+      "en": "Fox",
+      "icono": "ability_hunter_aspectofthefox",
+      "propia": "trickstersdance",
+      "ataque": [
+        "bite"
+      ],
+      "mov": "dash",
+      "dieta": "Fruta y carne",
+      "nueva": true,
+      "familiaNueva": true,
+      "aprende": [
+        "bite",
+        "dash",
+        "cower"
+      ]
+    }
+  ],
+  "comunes": [
+    "bite",
+    "claw",
+    "dash",
+    "dive",
+    "cower"
+  ],
+  "habilidades": {
+    "charge": {
+      "nombre": "Embestir",
+      "icono": "ability_hunter_pet_boar",
+      "desc": "Carga contra el enemigo, lo inmoviliza 1 s y su siguiente golpe pega más.",
+      "id": "charge",
+      "rangos": 6,
+      "rangoMaxConFuente": 6,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 1,
+          "pi": 5,
+          "esMax": false,
+          "alianza": {
+            "npc": 1984,
+            "nombre": "Joven jabalí Cardo",
+            "nivel": "1-2",
+            "zona": "Teldrassil",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1984"
+          },
+          "horda": {
+            "npc": 3098,
+            "nombre": "Jabalí jaspeado",
+            "nivel": "1-2",
+            "zona": "Durotar",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3098"
+          }
+        },
+        {
+          "rango": 3,
+          "nivelMascota": 24,
+          "pi": 13,
+          "esMax": false,
+          "alianza": {
+            "npc": 345,
+            "nombre": "Panzallena",
+            "nivel": "24",
+            "zona": "Montañas Crestagrana",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=345"
+          },
+          "horda": {
+            "npc": 345,
+            "nombre": "Panzallena",
+            "nivel": "24",
+            "zona": "Montañas Crestagrana",
+            "faccionZona": "A",
+            "otraFaccion": true,
+            "url": "https://www.wowhead.com/forever/es/npc=345"
+          }
+        },
+        {
+          "rango": 6,
+          "nivelMascota": 60,
+          "pi": 25,
+          "esMax": true,
+          "alianza": {
+            "npc": 16117,
+            "nombre": "Cerdo infestado",
+            "nivel": "60",
+            "zona": "Tierras de la Peste del Este",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=16117"
+          },
+          "horda": {
+            "npc": 16117,
+            "nombre": "Cerdo infestado",
+            "nivel": "60",
+            "zona": "Tierras de la Peste del Este",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=16117"
+          }
+        }
+      ]
+    },
+    "furioushowl": {
+      "nombre": "Aullido furioso",
+      "icono": "ability_hunter_pet_wolf",
+      "desc": "Aumenta el poder de ataque cuerpo a cuerpo de tu grupo cercano durante 1 min.",
+      "id": "furioushowl",
+      "rangos": 4,
+      "rangoMaxConFuente": 4,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 10,
+          "pi": 10,
+          "esMax": false,
+          "alianza": {
+            "npc": 833,
+            "nombre": "Coyote líder",
+            "nivel": "11-12",
+            "zona": "Páramos de Poniente",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=833"
+          },
+          "horda": {
+            "npc": 1765,
+            "nombre": "Lupo",
+            "nivel": "10-11",
+            "zona": "Bosque de Argénteos",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1765"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 24,
+          "pi": 15,
+          "esMax": false,
+          "alianza": {
+            "npc": 1258,
+            "nombre": "Masadura Nicroyermo",
+            "nivel": "25-26",
+            "zona": "Bosque del Ocaso",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1258"
+          },
+          "horda": {
+            "npc": 3825,
+            "nombre": "Alfa Fangarra",
+            "nivel": "27-28",
+            "zona": "Vallefresno",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3825"
+          }
+        },
+        {
+          "rango": 4,
+          "nivelMascota": 56,
+          "pi": 25,
+          "esMax": true,
+          "alianza": {
+            "npc": 9696,
+            "nombre": "Lupo Hacha de Sangre",
+            "nivel": "56-57",
+            "zona": "Cumbre de Roca Negra (mazmorra)",
+            "faccionZona": "M",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=9696"
+          },
+          "horda": {
+            "npc": 9696,
+            "nombre": "Lupo Hacha de Sangre",
+            "nivel": "56-57",
+            "zona": "Cumbre de Roca Negra (mazmorra)",
+            "faccionZona": "M",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=9696"
+          }
+        }
+      ]
+    },
+    "prowl": {
+      "nombre": "Acechar",
+      "icono": "ability_druid_supriseattack",
+      "desc": "Entra en sigilo (se mueve a la mitad de velocidad) y su primer golpe hace un 20% más de daño.",
+      "id": "prowl",
+      "rangos": 3,
+      "rangoMaxConFuente": 3,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 30,
+          "pi": 15,
+          "esMax": false,
+          "alianza": {
+            "npc": 2406,
+            "nombre": "León montés",
+            "nivel": "32-33",
+            "zona": "Montañas de Alterac",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2406"
+          },
+          "horda": {
+            "npc": 2406,
+            "nombre": "León montés",
+            "nivel": "32-33",
+            "zona": "Montañas de Alterac",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2406"
+          }
+        },
+        {
+          "rango": 3,
+          "nivelMascota": 50,
+          "pi": 25,
+          "esMax": true,
+          "alianza": {
+            "npc": 2522,
+            "nombre": "Acechador Jaguero",
+            "nivel": "50",
+            "zona": "Vega de Tuercespina",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2522"
+          },
+          "horda": {
+            "npc": 2522,
+            "nombre": "Acechador Jaguero",
+            "nivel": "50",
+            "zona": "Vega de Tuercespina",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2522"
+          }
+        }
+      ]
+    },
+    "web": {
+      "nombre": "Telaraña",
+      "icono": "spell_nature_web",
+      "desc": "Inmoviliza al enemigo 4 s y le hace daño de Naturaleza.",
+      "id": "web",
+      "rangos": 5,
+      "rangoMaxConFuente": 2,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 12,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 1184,
+            "nombre": "Rondador del risco",
+            "nivel": "13-14",
+            "zona": "Loch Modan",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1184"
+          },
+          "horda": {
+            "npc": 1780,
+            "nombre": "Acechamusgo",
+            "nivel": "12-13",
+            "zona": "Bosque de Argénteos",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1780"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 24,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 949,
+            "nombre": "Ermitaño carroñero",
+            "nivel": "21-22",
+            "zona": "Bosque del Ocaso",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=949"
+          },
+          "horda": {
+            "npc": 2349,
+            "nombre": "Trepamusgo gigante",
+            "nivel": "24-25",
+            "zona": "Laderas de Trabalomas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2349"
+          }
+        }
+      ]
+    },
+    "scorpidpoison": {
+      "nombre": "Veneno de escórpido",
+      "icono": "ability_poisonsting",
+      "desc": "Daño de Naturaleza en el tiempo que se acumula hasta 5 veces.",
+      "id": "scorpidpoison",
+      "rangos": 4,
+      "rangoMaxConFuente": 4,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 8,
+          "pi": 10,
+          "esMax": false,
+          "alianza": {
+            "npc": 3127,
+            "nombre": "escórpido Venocola",
+            "nivel": "9-10",
+            "zona": "Durotar",
+            "faccionZona": "H",
+            "otraFaccion": true,
+            "url": "https://www.wowhead.com/forever/es/npc=3127"
+          },
+          "horda": {
+            "npc": 3127,
+            "nombre": "escórpido Venocola",
+            "nivel": "9-10",
+            "zona": "Durotar",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3127"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 24,
+          "pi": 15,
+          "esMax": false,
+          "alianza": {
+            "npc": 4696,
+            "nombre": "Sacudidor Scorpashi",
+            "nivel": "30-31",
+            "zona": "Desolace",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4696"
+          },
+          "horda": {
+            "npc": 4696,
+            "nombre": "Sacudidor Scorpashi",
+            "nivel": "30-31",
+            "zona": "Desolace",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4696"
+          }
+        },
+        {
+          "rango": 4,
+          "nivelMascota": 56,
+          "pi": 25,
+          "esMax": true,
+          "alianza": {
+            "npc": 14476,
+            "nombre": "Krellack",
+            "nivel": "56",
+            "zona": "Silithus",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=14476"
+          },
+          "horda": {
+            "npc": 14476,
+            "nombre": "Krellack",
+            "nivel": "56",
+            "zona": "Silithus",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=14476"
+          }
+        }
+      ]
+    },
+    "shellshield": {
+      "nombre": "Escudo de caparazón",
+      "icono": "ability_hunter_pet_turtle",
+      "desc": "Recibe un 50% menos de daño durante 12 s, pero ataca más lento (y más fuerte).",
+      "id": "shellshield",
+      "rangos": 1,
+      "rangoMaxConFuente": 1,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 20,
+          "pi": 15,
+          "esMax": true,
+          "alianza": {
+            "npc": 2408,
+            "nombre": "Quijaforte",
+            "nivel": "30-31",
+            "zona": "Laderas de Trabalomas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2408"
+          },
+          "horda": {
+            "npc": 2408,
+            "nombre": "Quijaforte",
+            "nivel": "30-31",
+            "zona": "Laderas de Trabalomas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2408"
+          }
+        }
+      ]
+    },
+    "thunderstomp": {
+      "nombre": "Pisotón de trueno",
+      "icono": "ability_hunter_pet_gorilla",
+      "desc": "Daño de Naturaleza a todos los enemigos a 8 m.",
+      "id": "thunderstomp",
+      "rangos": 4,
+      "rangoMaxConFuente": 3,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 30,
+          "pi": 15,
+          "esMax": false,
+          "alianza": {
+            "npc": 1108,
+            "nombre": "Gorila Velo de Bruma",
+            "nivel": "32-33",
+            "zona": "Vega de Tuercespina",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1108"
+          },
+          "horda": {
+            "npc": 1108,
+            "nombre": "Gorila Velo de Bruma",
+            "nivel": "32-33",
+            "zona": "Vega de Tuercespina",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1108"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 40,
+          "pi": 20,
+          "esMax": false,
+          "alianza": {
+            "npc": 1557,
+            "nombre": "Gorila del Valle Velo de Bruma viejo",
+            "nivel": "40-41",
+            "zona": "Vega de Tuercespina",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1557"
+          },
+          "horda": {
+            "npc": 1557,
+            "nombre": "Gorila del Valle Velo de Bruma viejo",
+            "nivel": "40-41",
+            "zona": "Vega de Tuercespina",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1557"
+          }
+        },
+        {
+          "rango": 3,
+          "nivelMascota": 50,
+          "pi": 25,
+          "esMax": false,
+          "alianza": {
+            "npc": 6516,
+            "nombre": "Tronador de Un'Goro",
+            "nivel": "52-53",
+            "zona": "Cráter de Un'Goro",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=6516"
+          },
+          "horda": {
+            "npc": 6516,
+            "nombre": "Tronador de Un'Goro",
+            "nivel": "52-53",
+            "zona": "Cráter de Un'Goro",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=6516"
+          }
+        }
+      ]
+    },
+    "lightningbreath": {
+      "nombre": "Aliento de relámpagos",
+      "icono": "spell_nature_lightning",
+      "desc": "Daño de Naturaleza a distancia a un objetivo. Ignora la armadura.",
+      "id": "lightningbreath",
+      "rangos": 6,
+      "rangoMaxConFuente": 6,
+      "doma": [
+        {
+          "rango": 2,
+          "nivelMascota": 12,
+          "pi": 5,
+          "esMax": false,
+          "alianza": {
+            "npc": 3630,
+            "nombre": "Volutador descarriado",
+            "nivel": "15-16",
+            "zona": "Los Baldíos",
+            "faccionZona": "H",
+            "otraFaccion": true,
+            "url": "https://www.wowhead.com/forever/es/npc=3630"
+          },
+          "horda": {
+            "npc": 3630,
+            "nombre": "Volutador descarriado",
+            "nivel": "15-16",
+            "zona": "Los Baldíos",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3630"
+          }
+        },
+        {
+          "rango": 3,
+          "nivelMascota": 24,
+          "pi": 10,
+          "esMax": false,
+          "alianza": {
+            "npc": 4117,
+            "nombre": "Serpiente nubosa",
+            "nivel": "25-26",
+            "zona": "Las Mil Agujas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4117"
+          },
+          "horda": {
+            "npc": 3472,
+            "nombre": "Washte Pawne",
+            "nivel": "25",
+            "zona": "Los Baldíos",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3472"
+          }
+        },
+        {
+          "rango": 6,
+          "nivelMascota": 60,
+          "pi": 25,
+          "esMax": true,
+          "alianza": {
+            "npc": 11357,
+            "nombre": "Hijo de Hakkar",
+            "nivel": "60",
+            "zona": "Zul'Gurub (banda)",
+            "faccionZona": "M",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=11357"
+          },
+          "horda": {
+            "npc": 11357,
+            "nombre": "Hijo de Hakkar",
+            "nivel": "60",
+            "zona": "Zul'Gurub (banda)",
+            "faccionZona": "M",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=11357"
+          }
+        }
+      ]
+    },
+    "swipe": {
+      "nombre": "Flagelo",
+      "icono": "inv_misc_monsterclaw_03",
+      "desc": "Golpea a la vez a hasta 3 enemigos cercanos.",
+      "id": "swipe",
+      "rangos": 5,
+      "rangoMaxConFuente": 2,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 12,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 1188,
+            "nombre": "Oso negro grizul",
+            "nivel": "13-14",
+            "zona": "Loch Modan",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1188"
+          },
+          "horda": {
+            "npc": 1797,
+            "nombre": "Grisoso gigante",
+            "nivel": "12-13",
+            "zona": "Bosque de Argénteos",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1797"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 24,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 271334,
+            "nombre": "Garrapútrea enajenado",
+            "nivel": "25-26",
+            "zona": "Los Humedales",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=271334"
+          },
+          "horda": {
+            "npc": 2356,
+            "nombre": "Oso gris viejo",
+            "nivel": "25-26",
+            "zona": "Laderas de Trabalomas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2356"
+          }
+        }
+      ]
+    },
+    "savagerend": {
+      "nombre": "Desgarro salvaje",
+      "icono": "ability_hunter_pet_raptor",
+      "desc": "Hace sangrar al enemigo durante 18 s.",
+      "id": "savagerend",
+      "rangos": 5,
+      "rangoMaxConFuente": 2,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 12,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 3255,
+            "nombre": "Estridador solescama",
+            "nivel": "13-15",
+            "zona": "Los Baldíos",
+            "faccionZona": "H",
+            "otraFaccion": true,
+            "url": "https://www.wowhead.com/forever/es/npc=3255"
+          },
+          "horda": {
+            "npc": 3255,
+            "nombre": "Estridador solescama",
+            "nivel": "13-15",
+            "zona": "Los Baldíos",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3255"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 24,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 1015,
+            "nombre": "Raptor de las Tierras Altas",
+            "nivel": "23-24",
+            "zona": "Los Humedales",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1015"
+          },
+          "horda": {
+            "npc": 855,
+            "nombre": "Raptor joven de Tuercespina",
+            "nivel": "30-31",
+            "zona": "Vega de Tuercespina",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=855"
+          }
+        }
+      ]
+    },
+    "tendonrip": {
+      "nombre": "Desgarre de tendón",
+      "icono": "ability_hunter_pet_hyena",
+      "desc": "Daño y reduce un 50% la velocidad de movimiento del enemigo.",
+      "id": "tendonrip",
+      "rangos": 5,
+      "rangoMaxConFuente": 2,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 12,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 4316,
+            "nombre": "Can de manada Kolkar",
+            "nivel": "13",
+            "zona": "Los Baldíos",
+            "faccionZona": "H",
+            "otraFaccion": true,
+            "url": "https://www.wowhead.com/forever/es/npc=4316"
+          },
+          "horda": {
+            "npc": 4316,
+            "nombre": "Can de manada Kolkar",
+            "nivel": "13",
+            "zona": "Los Baldíos",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4316"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 24,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 4248,
+            "nombre": "Hiena Molestapiel",
+            "nivel": "26-27",
+            "zona": "Las Mil Agujas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4248"
+          },
+          "horda": {
+            "npc": 4248,
+            "nombre": "Hiena Molestapiel",
+            "nivel": "26-27",
+            "zona": "Las Mil Agujas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4248"
+          }
+        }
+      ]
+    },
+    "pinch": {
+      "nombre": "Pellizco",
+      "icono": "ability_hunter_pet_crab",
+      "desc": "Daño instantáneo y reduce un 50% la velocidad de movimiento del enemigo.",
+      "id": "pinch",
+      "rangos": 5,
+      "rangoMaxConFuente": 2,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 12,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 2232,
+            "nombre": "Corremareas",
+            "nivel": "12-14",
+            "zona": "Costa Oscura",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2232"
+          },
+          "horda": {
+            "npc": 2232,
+            "nombre": "Corremareas",
+            "nivel": "12-14",
+            "zona": "Costa Oscura",
+            "faccionZona": "A",
+            "otraFaccion": true,
+            "url": "https://www.wowhead.com/forever/es/npc=2232"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 24,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 12347,
+            "nombre": "Reptador Correarrecifes iracundo",
+            "nivel": "30-32",
+            "zona": "Desolace",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=12347"
+          },
+          "horda": {
+            "npc": 12347,
+            "nombre": "Reptador Correarrecifes iracundo",
+            "nivel": "30-32",
+            "zona": "Desolace",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=12347"
+          }
+        }
+      ]
+    },
+    "dismember": {
+      "nombre": "Desmembramiento",
+      "icono": "ability_hunter_pet_crocolisk",
+      "desc": "Daño y reduce la sanación que recibe el enemigo. No se acumula con Golpe mortal.",
+      "id": "dismember",
+      "rangos": 5,
+      "rangoMaxConFuente": 2,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 12,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 1693,
+            "nombre": "Crocolisco del lago",
+            "nivel": "14-15",
+            "zona": "Loch Modan",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1693"
+          },
+          "horda": {
+            "npc": 1693,
+            "nombre": "Crocolisco del lago",
+            "nivel": "14-15",
+            "zona": "Loch Modan",
+            "faccionZona": "A",
+            "otraFaccion": true,
+            "url": "https://www.wowhead.com/forever/es/npc=1693"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 24,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 1150,
+            "nombre": "Crocolisco fluvial",
+            "nivel": "30-31",
+            "zona": "Vega de Tuercespina",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1150"
+          },
+          "horda": {
+            "npc": 1150,
+            "nombre": "Crocolisco fluvial",
+            "nivel": "30-31",
+            "zona": "Vega de Tuercespina",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1150"
+          }
+        }
+      ]
+    },
+    "dustcloud": {
+      "nombre": "Nube de polvo",
+      "icono": "spell_nature_sleep",
+      "desc": "Reduce la armadura del enemigo durante 30 s. No se acumula con Fuego feérico.",
+      "id": "dustcloud",
+      "rangos": 5,
+      "rangoMaxConFuente": 2,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 12,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 2322,
+            "nombre": "Zancudo del bosque",
+            "nivel": "14-16",
+            "zona": "Costa Oscura",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2322"
+          },
+          "horda": {
+            "npc": 3246,
+            "nombre": "Zancudo de llanura flotador",
+            "nivel": "12-13",
+            "zona": "Los Baldíos",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3246"
+          }
+        },
+        {
+          "rango": 2,
+          "nivelMascota": 24,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 4724,
+            "nombre": "Zancarena",
+            "nivel": "30-31",
+            "zona": "Desolace",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4724"
+          },
+          "horda": {
+            "npc": 4724,
+            "nombre": "Zancarena",
+            "nivel": "30-31",
+            "zona": "Desolace",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4724"
+          }
+        }
+      ]
+    },
+    "mine!": {
+      "nombre": "¡Mío!",
+      "icono": "spell_nature_natureswrath",
+      "desc": "Daño y desarma al enemigo unos segundos.",
+      "id": "mine!",
+      "rangos": 5,
+      "rangoMaxConFuente": 1,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 10,
+          "pi": 0,
+          "esMax": false,
+          "alianza": {
+            "npc": 276101,
+            "nombre": "Noctigrito",
+            "nivel": "10",
+            "zona": "Teldrassil",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=276101"
+          },
+          "horda": {
+            "npc": 276101,
+            "nombre": "Noctigrito",
+            "nivel": "10",
+            "zona": "Teldrassil",
+            "faccionZona": "A",
+            "otraFaccion": true,
+            "url": "https://www.wowhead.com/forever/es/npc=276101"
+          }
+        }
+      ]
+    },
+    "demoralizingscreech": {
+      "nombre": "Chirrido desmoralizador",
+      "icono": "ability_hunter_pet_bat",
+      "desc": "Daño y reduce el poder de ataque de los enemigos cercanos durante 30 s. No se acumula con Rugido desmoralizador.",
+      "id": "demoralizingscreech",
+      "rangos": 4,
+      "rangoMaxConFuente": 1,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 8,
+          "pi": 10,
+          "esMax": false,
+          "alianza": {
+            "npc": 199,
+            "nombre": "Desgarrador joven",
+            "nivel": "10-11",
+            "zona": "Páramos de Poniente",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=199"
+          },
+          "horda": {
+            "npc": 2971,
+            "nombre": "Aguilón garrudo",
+            "nivel": "8-10",
+            "zona": "Mulgore",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2971"
+          }
+        }
+      ]
+    },
+    "trickstersdance": {
+      "nombre": "Baile de timador",
+      "icono": "ability_hunter_aspectofthefox",
+      "desc": "Un 50% más de esquivar y ataca más rápido durante 12 s.",
+      "id": "trickstersdance",
+      "rangos": 1,
+      "rangoMaxConFuente": 1,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 20,
+          "pi": 0,
+          "esMax": true,
+          "alianza": {
+            "npc": 277645,
+            "nombre": "Zorro gris",
+            "nivel": "22-23",
+            "zona": "Bosque del Ocaso",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=277645"
+          },
+          "horda": {
+            "npc": 277645,
+            "nombre": "Zorro gris",
+            "nivel": "22-23",
+            "zona": "Bosque del Ocaso",
+            "faccionZona": "A",
+            "otraFaccion": true,
+            "url": "https://www.wowhead.com/forever/es/npc=277645"
+          }
+        }
+      ]
+    },
+    "sonicblast": {
+      "nombre": "Explosión sónica",
+      "icono": "ability_vehicle_sonicshockwave",
+      "desc": "Daño de Naturaleza y hace que los hechizos del enemigo sean un 30% más lentos durante 20 s.",
+      "id": "sonicblast",
+      "rangos": null,
+      "rangoMaxConFuente": null,
+      "doma": []
+    },
+    "bite": {
+      "nombre": "Mordedura",
+      "icono": "ability_druid_ferociousbite",
+      "desc": "Muerde al enemigo. Ataque principal de casi todas las familias.",
+      "id": "bite",
+      "rangos": 8,
+      "rangoMaxConFuente": 8,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 1,
+          "pi": 1,
+          "esMax": false,
+          "alianza": {
+            "npc": 30,
+            "nombre": "Araña del bosque",
+            "nivel": "5-6",
+            "zona": "Bosque de Elwynn",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=30"
+          },
+          "horda": {
+            "npc": 1509,
+            "nombre": "Carroñero andrajoso",
+            "nivel": "2-3",
+            "zona": "Claros de Tirisfal",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1509"
+          }
+        },
+        {
+          "rango": 4,
+          "nivelMascota": 24,
+          "pi": 10,
+          "esMax": false,
+          "alianza": {
+            "npc": 628,
+            "nombre": "Nicroyermo",
+            "nivel": "24-25",
+            "zona": "Bosque del Ocaso",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=628"
+          },
+          "horda": {
+            "npc": 2349,
+            "nombre": "Trepamusgo gigante",
+            "nivel": "24-25",
+            "zona": "Laderas de Trabalomas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2349"
+          }
+        },
+        {
+          "rango": 8,
+          "nivelMascota": 56,
+          "pi": 25,
+          "esMax": true,
+          "alianza": {
+            "npc": 9696,
+            "nombre": "Lupo Hacha de Sangre",
+            "nivel": "56-57",
+            "zona": "Cumbre de Roca Negra (mazmorra)",
+            "faccionZona": "M",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=9696"
+          },
+          "horda": {
+            "npc": 9696,
+            "nombre": "Lupo Hacha de Sangre",
+            "nivel": "56-57",
+            "zona": "Cumbre de Roca Negra (mazmorra)",
+            "faccionZona": "M",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=9696"
+          }
+        }
+      ]
+    },
+    "claw": {
+      "nombre": "Zarpa",
+      "icono": "ability_druid_rake",
+      "desc": "Araña al enemigo. Ataque principal de las familias sin Mordedura y de otras.",
+      "id": "claw",
+      "rangos": 8,
+      "rangoMaxConFuente": 8,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 1,
+          "pi": 1,
+          "esMax": false,
+          "alianza": {
+            "npc": 1995,
+            "nombre": "Lechuza estrígida",
+            "nivel": "5-6",
+            "zona": "Teldrassil",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1995"
+          },
+          "horda": {
+            "npc": 3124,
+            "nombre": "Trabajador escórpido",
+            "nivel": "3",
+            "zona": "Durotar",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3124"
+          }
+        },
+        {
+          "rango": 4,
+          "nivelMascota": 24,
+          "pi": 10,
+          "esMax": false,
+          "alianza": {
+            "npc": 3810,
+            "nombre": "Oso viejo de Vallefresno",
+            "nivel": "25-26",
+            "zona": "Vallefresno",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3810"
+          },
+          "horda": {
+            "npc": 3810,
+            "nombre": "Oso viejo de Vallefresno",
+            "nivel": "25-26",
+            "zona": "Vallefresno",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=3810"
+          }
+        },
+        {
+          "rango": 8,
+          "nivelMascota": 56,
+          "pi": 25,
+          "esMax": true,
+          "alianza": {
+            "npc": 7456,
+            "nombre": "Estridador invernal",
+            "nivel": "57-59",
+            "zona": "Cuna del Invierno",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=7456"
+          },
+          "horda": {
+            "npc": 7456,
+            "nombre": "Estridador invernal",
+            "nivel": "57-59",
+            "zona": "Cuna del Invierno",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=7456"
+          }
+        }
+      ]
+    },
+    "dash": {
+      "nombre": "Carrerilla",
+      "icono": "ability_druid_dash",
+      "desc": "Un 40% más de velocidad de movimiento durante 15 s.",
+      "id": "dash",
+      "rangos": 3,
+      "rangoMaxConFuente": 3,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 30,
+          "pi": 15,
+          "esMax": false,
+          "alianza": {
+            "npc": 4724,
+            "nombre": "Zancarena",
+            "nivel": "30-31",
+            "zona": "Desolace",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4724"
+          },
+          "horda": {
+            "npc": 4724,
+            "nombre": "Zancarena",
+            "nivel": "30-31",
+            "zona": "Desolace",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4724"
+          }
+        },
+        {
+          "rango": 3,
+          "nivelMascota": 50,
+          "pi": 25,
+          "esMax": true,
+          "alianza": {
+            "npc": 2681,
+            "nombre": "Lobo de montar Vilrama",
+            "nivel": "50-51",
+            "zona": "Tierras del Interior",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2681"
+          },
+          "horda": {
+            "npc": 2681,
+            "nombre": "Lobo de montar Vilrama",
+            "nivel": "50-51",
+            "zona": "Tierras del Interior",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2681"
+          }
+        }
+      ]
+    },
+    "dive": {
+      "nombre": "Lanzada",
+      "icono": "spell_shadow_burningspirit",
+      "desc": "Un 40% más de velocidad de movimiento durante 15 s (la versión de las que vuelan).",
+      "id": "dive",
+      "rangos": 3,
+      "rangoMaxConFuente": 3,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 30,
+          "pi": 15,
+          "esMax": false,
+          "alianza": {
+            "npc": 2578,
+            "nombre": "Águila ratonera joven Mesa",
+            "nivel": "31-32",
+            "zona": "Tierras Altas de Arathi",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2578"
+          },
+          "horda": {
+            "npc": 2578,
+            "nombre": "Águila ratonera joven Mesa",
+            "nivel": "31-32",
+            "zona": "Tierras Altas de Arathi",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=2578"
+          }
+        },
+        {
+          "rango": 3,
+          "nivelMascota": 50,
+          "pi": 25,
+          "esMax": true,
+          "alianza": {
+            "npc": 1809,
+            "nombre": "Buitre carroñero",
+            "nivel": "50-52",
+            "zona": "Tierras de la Peste del Oeste",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1809"
+          },
+          "horda": {
+            "npc": 1809,
+            "nombre": "Buitre carroñero",
+            "nivel": "50-52",
+            "zona": "Tierras de la Peste del Oeste",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1809"
+          }
+        }
+      ]
+    },
+    "cower": {
+      "nombre": "Pavor",
+      "icono": "ability_druid_cower",
+      "desc": "Reduce la amenaza que genera tu mascota.",
+      "id": "cower",
+      "rangos": 6,
+      "rangoMaxConFuente": 6,
+      "doma": [
+        {
+          "rango": 1,
+          "nivelMascota": 5,
+          "pi": 8,
+          "esMax": false,
+          "alianza": {
+            "npc": 1199,
+            "nombre": "Leopardo de la nieve joven",
+            "nivel": "5-6",
+            "zona": "Dun Morogh",
+            "faccionZona": "A",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1199"
+          },
+          "horda": {
+            "npc": 1553,
+            "nombre": "Murciumbrío mayor",
+            "nivel": "6-7",
+            "zona": "Claros de Tirisfal",
+            "faccionZona": "H",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=1553"
+          }
+        },
+        {
+          "rango": 3,
+          "nivelMascota": 25,
+          "pi": 12,
+          "esMax": false,
+          "alianza": {
+            "npc": 4126,
+            "nombre": "Acechador del risco",
+            "nivel": "25-26",
+            "zona": "Las Mil Agujas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4126"
+          },
+          "horda": {
+            "npc": 4126,
+            "nombre": "Acechador del risco",
+            "nivel": "25-26",
+            "zona": "Las Mil Agujas",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=4126"
+          }
+        },
+        {
+          "rango": 6,
+          "nivelMascota": 55,
+          "pi": 18,
+          "esMax": true,
+          "alianza": {
+            "npc": 7430,
+            "nombre": "Cachorro Sable de Hielo",
+            "nivel": "55-56",
+            "zona": "Cuna del Invierno",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=7430"
+          },
+          "horda": {
+            "npc": 7430,
+            "nombre": "Cachorro Sable de Hielo",
+            "nivel": "55-56",
+            "zona": "Cuna del Invierno",
+            "faccionZona": "C",
+            "otraFaccion": false,
+            "url": "https://www.wowhead.com/forever/es/npc=7430"
+          }
+        }
+      ]
+    }
+  }
+}

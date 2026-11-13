@@ -36,16 +36,17 @@ function strings(v, out = []) {
   return out;
 }
 
-// Rotación y Opener: cada [[Hechizo]] debe existir en spells.json
+// Rotación, Opener y páginas de Forever: cada [[Hechizo]] debe existir en spells.json
 function validatePaneles(errors) {
-  for (const dir of ['rotacion', 'opener']) {
+  for (const dir of ['rotacion', 'opener', 'forever']) {
     for (const filePath of walk(path.join(root, 'src', 'content', dir))) {
       const data = readFrontmatter(filePath);
       if (!data) continue;
       if (!Array.isArray(data.bloques)) errors.push(`${filePath}: falta bloques[]`);
-      for (const text of strings(data.bloques)) {
-        for (const m of text.matchAll(/\[\[([^\]|>]+)/g)) {
-          const name = m[1].trim();
+      for (const text of strings([data.bloques, data.intro])) {
+        // [[Hechizo]] (etiqueta) y {{Hechizo}} (icono grande con nombre)
+        for (const m of text.matchAll(/\[\[([^\]|>]+)|\{\{([^}|>]+)/g)) {
+          const name = (m[1] ?? m[2]).trim();
           if (!spellNames.has(name)) {
             errors.push(`${filePath}: hechizo desconocido [[${name}]] (añádelo a spells.json)`);
           }
@@ -55,10 +56,14 @@ function validatePaneles(errors) {
   }
 }
 
-// Pestañas válidas = ids de la lista TABS de TabBar.astro
+// Pestañas válidas por versión = ids de TABS_MIDNIGHT / TABS_FOREVER en src/lib/tabs.ts
 function getValidTabs() {
-  const tabBar = fs.readFileSync(path.join(root, 'src', 'components', 'TabBar.astro'), 'utf8');
-  return new Set([...tabBar.matchAll(/\{\s*id:\s*'([^']+)'/g)].map((m) => m[1]));
+  const src = fs.readFileSync(path.join(root, 'src', 'lib', 'tabs.ts'), 'utf8');
+  const byRealm = {};
+  for (const [, realm, body] of src.matchAll(/export const TABS_([A-Z]+)[^=]*=\s*\[([\s\S]*?)\];/g)) {
+    byRealm[realm.toLowerCase()] = new Set([...body.matchAll(/\{\s*id:\s*'([^']+)'/g)].map((m) => m[1]));
+  }
+  return byRealm;
 }
 
 function validateChangelog(errors) {
@@ -74,8 +79,14 @@ function validateChangelog(errors) {
     errors.push(`${file}: debe ser una lista con al menos una entrada`);
     return;
   }
-  const tabs = getValidTabs();
+  const tabsByRealm = getValidTabs();
   entries.forEach((e, i) => {
+    const version = e?.version ?? 'midnight';
+    const tabs = tabsByRealm[version];
+    if (!tabs) {
+      errors.push(`${file}: entrada ${i + 1}: version "${version}" no existe. Válidas: ${Object.keys(tabsByRealm).join(', ')}`);
+      return;
+    }
     const where = `${file}: entrada ${i + 1}`;
     const fecha = e?.fecha;
     const d = new Date(`${fecha}T12:00:00Z`);
@@ -86,7 +97,7 @@ function validateChangelog(errors) {
       d.toISOString().startsWith(fecha);
     if (!valid) errors.push(`${where}: fecha debe ser AAAA-MM-DD real (tiene "${fecha}")`);
     if (!tabs.has(e?.pestana)) {
-      errors.push(`${where}: pestana "${e?.pestana}" no existe. Válidas: ${[...tabs].join(', ')}`);
+      errors.push(`${where}: pestana "${e?.pestana}" no existe en ${version}. Válidas: ${[...tabs].join(', ')}`);
     }
     for (const campo of ['texto', 'enlace']) {
       if (typeof e?.[campo] !== 'string' || !e[campo].trim()) {

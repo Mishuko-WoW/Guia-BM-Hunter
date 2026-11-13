@@ -94,5 +94,635 @@
     "badge": "pr",
     "type": "Proc Pack Leader",
     "desc": "Línea de animales. Sin ajuste de altura."
+  },
+  "Invocar halcón": {
+    "icon": "ability_hunter_animalhandler",
+    "badge": "sp",
+    "type": "Talento (Bestias, nivel 25) · 6 s CD",
+    "desc": "Un halcón se lanza contra tu objetivo y sigue atacando 18 s. Máximo 2 halcones activos. Comparte reutilización con Tiro Arcano y escala con tu poder de ataque a distancia."
+  },
+  "Fuego enfocado": {
+    "icon": "inv_weapon_crossbow_10",
+    "badge": "bf",
+    "type": "Talento nuevo (Bestias)",
+    "desc": "Aumenta todo el daño que infligís tú y tu mascota un 2% mientras tu mascota está activa."
+  },
+  "Aspectos letales": {
+    "icon": "spell_nature_ravenform",
+    "badge": "pr",
+    "type": "Talento nuevo (Bestias)",
+    "desc": "Con Aspecto del halcón, Tiro automático tiene un 10% de probabilidad de aumentar la velocidad de ataque a distancia un 30% durante 12 s."
+  },
+  "Afinar la puntería": {
+    "icon": "ability_hunter_zenarchery",
+    "badge": "bf",
+    "type": "Talento nuevo (Puntería)",
+    "desc": "Tu poder de ataque aumenta en un 100% de tu Intelecto."
+  },
+  "Tiro automático": {
+    "icon": "ability_whirlwind",
+    "badge": "sp",
+    "type": "Ataque a distancia · 8-35 m",
+    "desc": "Dispara automáticamente al objetivo. En Forever tiene 0,5 s de lanzamiento, pero sigue disparando mientras lanzas otras habilidades."
+  },
+  "Tiro de puntería": {
+    "icon": "inv_spear_07",
+    "badge": "sp",
+    "type": "Habilidad · 2 s de lanzamiento · 6 s CD",
+    "desc": "Disparo fuerte. En Forever es habilidad base (ya no es talento) y comparte reutilización con Multidisparo."
+  },
+  "Multidisparo": {
+    "icon": "ability_upgrademoonglaive",
+    "badge": "sp",
+    "type": "Habilidad · instantánea · 6 s CD",
+    "desc": "Dispara a un máximo de 3 objetivos. Comparte reutilización con Tiro de puntería."
+  },
+  "Tiro Arcano": {
+    "icon": "ability_impalingbolt",
+    "badge": "sp",
+    "type": "Habilidad · instantánea · 6 s CD",
+    "desc": "Disparo instantáneo de daño Arcano. Comparte reutilización con Invocar halcón."
+  },
+  "Disciplina de bestias": {
+    "icon": "spell_nature_abolishmagic",
+    "badge": "bf",
+    "type": "Talento (Bestias)",
+    "desc": "Mejora la regeneración de enfoque de tus mascotas y permite que el 50% de tu regeneración de maná continúe mientras lanzas hechizos."
+  },
+  "Intimidación": {
+    "icon": "ability_devour",
+    "badge": "sp",
+    "type": "Talento (Bestias) · 1 min CD",
+    "desc": "El siguiente ataque de tu mascota aturde 3 s y tiene un 100% más de probabilidad de crítico. Genera mucha amenaza."
+  },
+  "Entrenamiento en aguante": {
+    "icon": "spell_nature_reincarnation",
+    "badge": "bf",
+    "type": "Talento (Bestias)",
+    "desc": "Aumenta la salud y la armadura de tus mascotas (3% por rango, 15% con 5/5)."
+  },
+  "Ira de bestias": {
+    "icon": "ability_druid_ferociousbite",
+    "badge": "sp",
+    "type": "Talento (Bestias) · 2 min CD",
+    "desc": "Tu mascota inflige un 50% más de daño durante 18 s y no puede ser detenida (inmune a control) salvo que muera."
+  },
+  "Frenesí": {
+    "icon": "inv_misc_monsterclaw_03",
+    "badge": "pr",
+    "type": "Talento (Bestias)",
+    "desc": "Tras un golpe crítico, tu mascota gana un 30% de velocidad de ataque durante 8 s (100% de probabilidad con 5/5)."
+  },
+  "Fingir muerte": {
+    "icon": "ability_rogue_feigndeath",
+    "badge": "sp",
+    "type": "Habilidad · 30 s CD",
+    "desc": "Finges tu muerte y los enemigos dejan de atacarte. Sirve para soltar amenaza o salir de combate. No afecta a tu mascota."
+  },
+  "Sanar mascota": {
+    "icon": "ability_hunter_mendpet",
+    "badge": "sp",
+    "type": "Canalizado · 5 s",
+    "desc": "Cura a tu mascota cada segundo mientras canalizas."
+  },
+  "Revivir mascota": {
+    "icon": "ability_hunter_beastsoothe",
+    "badge": "sp",
+    "type": "Habilidad · 10 s de lanzamiento",
+    "desc": "Devuelve a la vida a tu mascota con poca salud. Lanzamiento largo y caro (se mejora con el talento Revivir mascota mejorado)."
+  },
+  "Alimentar mascota": {
+    "icon": "ability_hunter_beasttraining",
+    "badge": "sp",
+    "type": "Habilidad",
+    "desc": "Alimenta a tu mascota con comida de su dieta para subir su felicidad."
+  },
+  "Aspecto del halcón": {
+    "icon": "spell_nature_ravenform",
+    "badge": "bf",
+    "type": "Aspecto",
+    "desc": "Aumenta tu poder de ataque a distancia. Tu aspecto por defecto para hacer daño."
+  },
+  "Aspecto del guepardo": {
+    "icon": "ability_mount_jungletiger",
+    "badge": "bf",
+    "type": "Aspecto · nivel 20",
+    "desc": "+30% de velocidad de movimiento. Si recibes daño quedas conmocionado 4 s."
+  },
+  "Cortar alas": {
+    "icon": "ability_rogue_trip",
+    "badge": "sp",
+    "type": "Cuerpo a cuerpo",
+    "desc": "Reduce un 50% la velocidad de movimiento del objetivo durante 10 s."
+  },
+  "Separación": {
+    "icon": "ability_rogue_feint",
+    "badge": "sp",
+    "type": "Cuerpo a cuerpo · 5 s CD",
+    "desc": "Intenta separarse del objetivo reduciendo tu amenaza."
+  },
+  "Aguijón de serpiente": {
+    "icon": "ability_hunter_quickshot",
+    "badge": "sp",
+    "type": "Aguijón (DoT de Naturaleza) · 15 s",
+    "desc": "Daño de Naturaleza en el tiempo. Solo puede haber 1 aguijón tuyo en el objetivo."
+  },
+  "Fuego rápido": {
+    "icon": "ability_hunter_runningshot",
+    "badge": "sp",
+    "type": "CD · 5 min",
+    "desc": "Aumenta un 40% la velocidad de ataque cuerpo a cuerpo y a distancia durante 15 s."
+  },
+  "Nube de polvo": {
+    "icon": "spell_nature_sleep",
+    "badge": "sp",
+    "type": "Habilidad de mascota (Zancaalta)",
+    "desc": "Reduce la armadura del objetivo durante 30 s. No se acumula con Fuego feérico."
+  },
+  "Disparo de concusión": {
+    "icon": "spell_frost_stun",
+    "badge": "sp",
+    "type": "Habilidad · 12 s CD",
+    "desc": "Deja conmocionado al objetivo y reduce su velocidad de movimiento."
+  },
+  "Trampa explosiva": {
+    "icon": "spell_fire_selfdestruct",
+    "badge": "sp",
+    "type": "Trampa · 30 s CD",
+    "desc": "Trampa de Fuego que explota al acercarse un enemigo: daño inicial y quemadura en área."
+  },
+  "Lluvia": {
+    "icon": "ability_marksmanship",
+    "badge": "sp",
+    "type": "Canalizado · 6 s",
+    "desc": "Dispara de forma continua sobre una zona, dañando a todos los enemigos dentro (Volley)."
+  },
+  "Eficacia": {
+    "icon": "spell_frost_wizardmark",
+    "badge": "bf",
+    "type": "Talento (Puntería)",
+    "desc": "Reduce el coste de maná de tus disparos, aguijones y habilidades cuerpo a cuerpo (3% por rango)."
+  },
+  "Revivir mascota mejorado": {
+    "icon": "ability_hunter_beastsoothe",
+    "badge": "bf",
+    "type": "Talento (Bestias)",
+    "desc": "Revivir mascota se lanza 6 s más rápido, cuesta un 40% menos de maná y la mascota vuelve con un 30% más de salud."
+  },
+  "Ordenar": {
+    "icon": "ability_warrior_warcry",
+    "badge": "bf",
+    "type": "Racial pasiva (Orco)",
+    "desc": "Aumenta un 5% el daño infligido por las mascotas de cazadores y brujos."
+  },
+  "Furia sangrienta": {
+    "icon": "racial_orc_berserkerstrength",
+    "badge": "sp",
+    "type": "Racial (Orco) · 2 min CD",
+    "desc": "Aumenta un 10% el poder de ataque y el poder con hechizos durante 15 s. Instantánea."
+  },
+  "Crueldad": {
+    "icon": "ability_rogue_eviscerate",
+    "badge": "bf",
+    "type": "Racial pasiva (Humano)",
+    "desc": "Aumenta un 1% la probabilidad de golpe crítico con todos los hechizos y ataques."
+  },
+  "Voluntad de supervivencia": {
+    "icon": "spell_shadow_charm",
+    "badge": "sp",
+    "type": "Racial (Humano) · 3 min CD",
+    "desc": "Elimina al instante todos los efectos de aturdimiento."
+  },
+  "Luz de Elune": {
+    "icon": "spell_nature_moonglow",
+    "badge": "sp",
+    "type": "Racial (Elfo de la noche) · 3 min CD",
+    "desc": "Aumenta un 10% tu probabilidad de golpe crítico con todos los hechizos y ataques durante 15 s."
+  },
+  "Bendición del viento": {
+    "icon": "inv_misc_volatileair",
+    "badge": "bf",
+    "type": "Racial pasiva (Skyborne)",
+    "desc": "Aumenta un 2% la celeridad con hechizos, cuerpo a cuerpo y a distancia."
+  },
+  "Perspicacia elemental": {
+    "icon": "achievement_raidprimalist_windelemental",
+    "badge": "bf",
+    "type": "Racial pasiva (Skyborne)",
+    "desc": "Aumenta un 5% el daño infligido contra elementales."
+  },
+  "Visión cielonata": {
+    "icon": "ability_skyreach_lens_flare",
+    "badge": "sp",
+    "type": "Racial (Skyborne de la Horda) · 2 min CD",
+    "desc": "Aumenta un 15% tu velocidad de movimiento, también en montura."
+  },
+  "Precisión de artesano": {
+    "icon": "inv_hammer_09",
+    "badge": "bf",
+    "type": "Racial pasiva (Enano)",
+    "desc": "Aumenta un 1% tu probabilidad de golpear con todos los hechizos y ataques."
+  },
+  "Caza mayor": {
+    "icon": "inv_weapon_rifle_05",
+    "badge": "bf",
+    "type": "Racial pasiva (Enano)",
+    "desc": "Aumenta un 5% el daño infligido contra bestias."
+  },
+  "Iracundia": {
+    "icon": "racial_troll_berserk",
+    "badge": "sp",
+    "type": "Racial (Trol) · 3 min CD",
+    "desc": "Aumenta un 10% tus velocidades de ataque y de lanzamiento durante 15 s."
+  },
+  "Matanza de bestias": {
+    "icon": "inv_misc_pelt_bear_ruin_02",
+    "badge": "bf",
+    "type": "Racial pasiva (Trol)",
+    "desc": "Aumenta un 5% el daño causado contra bestias."
+  },
+  "Pisotón de guerra": {
+    "icon": "ability_warstomp",
+    "badge": "sp",
+    "type": "Racial (Tauren) · 1,5 min CD",
+    "desc": "Aturde a un máximo de 5 enemigos en un radio de 8 m durante 2 s."
+  },
+  "Correr planicies": {
+    "icon": "achievement_zone_barrens_01",
+    "badge": "bf",
+    "type": "Racial pasiva (Tauren)",
+    "desc": "Ganas un 2% de velocidad de movimiento cada 5 s en movimiento (hasta un 60%). Se reduce al recibir daño o quedarte quieto."
+  },
+  "Domesticar bestia": {
+    "icon": "ability_hunter_beasttaming",
+    "badge": "sp",
+    "type": "Habilidad · nivel 10",
+    "desc": "Domestica una bestia para que sea tu mascota (canalizado, 20 s)."
+  },
+  "Aspecto del Mono mejorado": {
+    "icon": "ability_hunter_aspectofthemonkey",
+    "badge": "bf",
+    "type": "Talento (Dominio de bestias) · 3 rangos",
+    "desc": "Aumenta un 6% el bonus al esquivar de tu Aspecto del mono. Además, tu mascota obtiene un 50% del efecto de tu facultad Aspecto del mono."
+  },
+  "Encontrar camino": {
+    "icon": "ability_mount_jungletiger",
+    "badge": "bf",
+    "type": "Talento (Dominio de bestias) · 2 rangos",
+    "desc": "Aumenta en un 6% el bonus de velocidad de tu Aspecto del guepardo y de tu Aspecto de la manada."
+  },
+  "Rapidez de bestias": {
+    "icon": "ability_druid_dash",
+    "badge": "bf",
+    "type": "Talento (Dominio de bestias)",
+    "desc": "Aumenta un 30% la velocidad de movimiento de tus mascotas."
+  },
+  "Furia desatada": {
+    "icon": "ability_bullrush",
+    "badge": "bf",
+    "type": "Talento (Dominio de bestias) · 5 rangos",
+    "desc": "Aumenta un 15% el daño infligido por tus mascotas y halcones."
+  },
+  "Sanar mascota mejorado": {
+    "icon": "ability_hunter_mendpet",
+    "badge": "bf",
+    "type": "Talento (Dominio de bestias) · 2 rangos",
+    "desc": "Otorga a tu hechizo Aliviar mascota un 50% de probabilidad de purificar 1 efecto de maldición, enfermedad, magia o veneno de tu mascota cada vez que se cura, además de reducir un 20% el coste de maná."
+  },
+  "Ferocidad": {
+    "icon": "inv_misc_monsterclaw_04",
+    "badge": "bf",
+    "type": "Talento (Dominio de bestias) · 5 rangos",
+    "desc": "Aumenta un 10% la probabilidad de golpe crítico de tus mascotas y halcones."
+  },
+  "Vínculo de espíritu": {
+    "icon": "ability_druid_demoralizingroar",
+    "badge": "bf",
+    "type": "Talento (Dominio de bestias) · 2 rangos",
+    "desc": "Mientras tu mascota está activa, tu mascota y tú regeneráis un 1% de la salud total cada 5 s."
+  },
+  "Ojo de águila": {
+    "icon": "ability_townwatch",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 3 rangos",
+    "desc": "Aumenta en 6 metros el alcance de tus armas a distancia."
+  },
+  "Disparo de concusión mejorado": {
+    "icon": "spell_frost_stun",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 5 rangos",
+    "desc": "Da a tu Disparo de concusión un 20% de probabilidad de aturdir el objetivo durante 3 s."
+  },
+  "Ataques letales": {
+    "icon": "ability_searingarrow",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 5 rangos",
+    "desc": "Aumenta un 5% tu probabilidad de golpe crítico con todos los ataques."
+  },
+  "Picaduras mejoradas": {
+    "icon": "ability_hunter_quickshot",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 3 rangos",
+    "desc": "Aumenta un 20% el daño de tu facultad Picadura de serpiente, reduce 6 s el tiempo de reutilización de tu facultad Picadura de víbora y aumenta 45 s la duración de tu facultad Picadura de escórpido."
+  },
+  "Matanza rápida": {
+    "icon": "ability_hunter_rapidkilling",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 2 rangos",
+    "desc": "Reduce 2 min el tiempo de reutilización de tu facultad Fuego rápido. Además, obtienes Matanza rápida cuando matas a un enemigo no trivial o este muere mientras sufre el efecto de tu Picadura de serpiente, lo que aumenta un 20% el daño de la siguiente facultad de disparo que uses en 20 s."
+  },
+  "Disparo Arcano mejorado": {
+    "icon": "ability_impalingbolt",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 5 rangos",
+    "desc": "Reduce 1.5 s el tiempo de reutilización de Disparo Arcano. No afecta al tiempo de reutilización de facultades que comparten un tiempo de reutilización con Disparo Arcano."
+  },
+  "Lobo solitario": {
+    "icon": "ability_mount_whitedirewolf",
+    "badge": "bf",
+    "type": "Talento (Puntería)",
+    "desc": "Infliges un 20% más de daño con todos los ataques mientras no tengas una mascota activa."
+  },
+  "Aura de disparo certero": {
+    "icon": "ability_trueshot",
+    "badge": "bf",
+    "type": "Talento (Puntería)",
+    "desc": "Aumenta en 20 p. el poder de ataque a distancia de los miembros del grupo o de la banda en un radio de 45 m."
+  },
+  "Disparos mortales": {
+    "icon": "ability_piercedamage",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 5 rangos",
+    "desc": "Aumenta un 30% el bonus de daño de golpe crítico de todas tus facultades a distancia."
+  },
+  "Recuperación rápida": {
+    "icon": "ability_hunter_rapidregeneration",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 2 rangos",
+    "desc": "Al aplicar Aguijón de serpiente a un objetivo, permite que un 50% de tu regeneración de maná continúe mientras lanzas hechizos durante 15 s, o un 100% cuando se consume Matanza rápida."
+  },
+  "Aluvión": {
+    "icon": "ability_upgrademoonglaive",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 3 rangos",
+    "desc": "Aumenta un 15% el daño infligido por tus facultades Multidisparo, Disparo de puntería y Salva."
+  },
+  "Disparo disperso": {
+    "icon": "ability_golemstormbolt",
+    "badge": "sp",
+    "type": "Talento (Puntería)",
+    "desc": "Un disparo a corta distancia que inflige un 50% de daño de arma y desorienta al objetivo durante 4 s. Cualquier daño causado con posterioridad anulará su efecto. Desactiva tu ataque al ser utilizado."
+  },
+  "Especialización en armas a distancia": {
+    "icon": "inv_weapon_rifle_06",
+    "badge": "bf",
+    "type": "Talento (Puntería) · 5 rangos",
+    "desc": "Aumenta en un 5% el daño infligido con las armas a distancia."
+  },
+  "Disparo de francotirador": {
+    "icon": "hunter_pvp_snipershot",
+    "badge": "sp",
+    "type": "Talento (Puntería)",
+    "desc": "Un tiro de largo alcance que inflige daño a distancia más 320 p. de daño y aumenta el alcance de tus próximos 3 disparos a 10 m durante 10 s."
+  },
+  "Rastreo mejorado": {
+    "icon": "inv_misc_head_dragon_black",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 5 rangos",
+    "desc": "Mientras rastreas bestias, demonios, dragonantes, elementales, gigantes, humanoides o no-muertos, todo el daño que inflijas al tipo de criatura rastreada aumenta un 5%."
+  },
+  "Desvío": {
+    "icon": "ability_parry",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 5 rangos",
+    "desc": "Aumenta tu probabilidad de parar en un 5%."
+  },
+  "Atrapamiento": {
+    "icon": "spell_nature_stranglevines",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 5 rangos",
+    "desc": "Cuando se activan tus trampas, todos los objetivos afectados sufren Retenido, lo que les impide moverse durante 5 s."
+  },
+  "Golpes salvajes": {
+    "icon": "ability_racial_bloodrage",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 2 rangos",
+    "desc": "Aumenta un 4% la probabilidad de golpe crítico de todas tus facultades cuerpo a cuerpo."
+  },
+  "Sobrevividor": {
+    "icon": "spell_shadow_twilight",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 5 rangos",
+    "desc": "Aumenta tu salud total un 10%."
+  },
+  "Cortar alas mejorado": {
+    "icon": "ability_rogue_trip",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 3 rangos",
+    "desc": "Da a tu facultad Cortar alas un 20% de probabilidad de inmovilizar el objetivo durante 5 s."
+  },
+  "Trampas inteligentes": {
+    "icon": "spell_nature_timestop",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 2 rangos",
+    "desc": "Aumenta en un 30% la duración de los efectos de Congelación y de Trampa de Escarcha y en un 30% el daño de los efectos de Inmolación y de Trampa explosiva."
+  },
+  "Pies de plomo": {
+    "icon": "ability_kick",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 3 rangos",
+    "desc": "Aumenta tu probabilidad de golpe un 3% y reduce un 30% la duración de los efectos de reducción de movimiento sobre ti."
+  },
+  "Disuasión": {
+    "icon": "ability_whirlwind",
+    "badge": "sp",
+    "type": "Talento (Supervivencia)",
+    "desc": "Aumenta la probabilidad de esquivar y parar en un 25% durante 10 s."
+  },
+  "Tácticas de supervivencia": {
+    "icon": "ability_ensnare",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 2 rangos",
+    "desc": "Aumenta un 10% tu probabilidad de golpear con tus facultades Trampa y Fingir muerte."
+  },
+  "Filo de depredador": {
+    "icon": "ability_dualwield",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 5 rangos",
+    "desc": "Aumenta un 30% el daño de golpe crítico de facultades cuerpo a cuerpo y un 50% el daño con arma de la mano izquierda."
+  },
+  "Contraataque": {
+    "icon": "ability_warrior_challange",
+    "badge": "sp",
+    "type": "Talento (Supervivencia)",
+    "desc": "Un golpe que se activa tras haber parado el ataque de un oponente. Este ataque inflige un 50% de daño de arma más 26 p. e inmoviliza al objetivo durante 5 s. El contrataque no se puede bloquear, esquivar ni parar."
+  },
+  "Ingenio": {
+    "icon": "ability_hunter_resourcefulness",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 2 rangos",
+    "desc": "Reduce el coste de maná de tus trampas y habilidades cuerpo a cuerpo un 60%, y otorga a los golpes críticos de tus habilidades a distancia y cuerpo a cuerpo un 100% de probabilidad de permitir que un 50% de tu regeneración de maná continúe mientras lanzas hechizos durante 30 s."
+  },
+  "Exponer presa": {
+    "icon": "ability_hunter_swiftstrike",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 2 rangos",
+    "desc": "Tus ataques cuerpo a cuerpo y a distancia contra enemigos afectados por tu Marca del cazador tienen un 10% de probabilidad de permitir la activación de Mordedura de mangosta. Dura 10 s."
+  },
+  "Disciplina de superviviente": {
+    "icon": "ability_hunter_mastertactitian",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 2 rangos",
+    "desc": "Reduce un 40% el tiempo de reutilización de tus facultades Trampa y Disuasión."
+  },
+  "Patada de zancudo": {
+    "icon": "ability_hunter_pet_tallstrider",
+    "badge": "sp",
+    "type": "Talento (Supervivencia)",
+    "desc": "Una patada potente que inflige un 100% de daño con arma cuerpo a cuerpo y aumenta un 30% la velocidad de movimiento durante 3 s."
+  },
+  "Reflejos de relámpago": {
+    "icon": "spell_nature_invisibilty",
+    "badge": "bf",
+    "type": "Talento (Supervivencia) · 5 rangos",
+    "desc": "Aumenta tu agilidad en un 15%."
+  },
+  "Golpes lacerantes": {
+    "icon": "ability_gouge",
+    "badge": "bf",
+    "type": "Talento (Supervivencia)",
+    "desc": "Tu Mordisco de mangosta también provoca una hemorragia al enemigo, lo que le inflige una cantidad de daño equivalente al 40% del infligido por Mordisco de mangosta durante 21 s."
+  },
+  "Embestir": {
+    "icon": "ability_hunter_pet_boar",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo jabalí",
+    "desc": "Carga contra el enemigo, lo inmoviliza 1 s y su siguiente golpe pega más."
+  },
+  "Aullido furioso": {
+    "icon": "ability_hunter_pet_wolf",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo lobo",
+    "desc": "Aumenta el poder de ataque cuerpo a cuerpo de tu grupo cercano durante 1 min."
+  },
+  "Acechar": {
+    "icon": "ability_druid_supriseattack",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo felino",
+    "desc": "Entra en sigilo (se mueve a la mitad de velocidad) y su primer golpe hace un 20% más de daño."
+  },
+  "Telaraña": {
+    "icon": "spell_nature_web",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo araña",
+    "desc": "Inmoviliza al enemigo 4 s y le hace daño de Naturaleza."
+  },
+  "Veneno de escórpido": {
+    "icon": "ability_poisonsting",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo escórpido",
+    "desc": "Daño de Naturaleza en el tiempo que se acumula hasta 5 veces."
+  },
+  "Escudo de caparazón": {
+    "icon": "ability_hunter_pet_turtle",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo tortuga",
+    "desc": "Recibe un 50% menos de daño durante 12 s, pero ataca más lento (y más fuerte)."
+  },
+  "Pisotón de trueno": {
+    "icon": "ability_hunter_pet_gorilla",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo gorila",
+    "desc": "Daño de Naturaleza a todos los enemigos a 8 m."
+  },
+  "Aliento de relámpagos": {
+    "icon": "spell_nature_lightning",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo serpiente alada",
+    "desc": "Daño de Naturaleza a distancia a un objetivo. Ignora la armadura."
+  },
+  "Flagelo": {
+    "icon": "inv_misc_monsterclaw_03",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo oso",
+    "desc": "Golpea a la vez a hasta 3 enemigos cercanos."
+  },
+  "Desgarro salvaje": {
+    "icon": "ability_hunter_pet_raptor",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo raptor",
+    "desc": "Hace sangrar al enemigo durante 18 s."
+  },
+  "Desgarre de tendón": {
+    "icon": "ability_hunter_pet_hyena",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo hiena",
+    "desc": "Daño y reduce un 50% la velocidad de movimiento del enemigo."
+  },
+  "Pellizco": {
+    "icon": "ability_hunter_pet_crab",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo cangrejo",
+    "desc": "Daño instantáneo y reduce un 50% la velocidad de movimiento del enemigo."
+  },
+  "Desmembramiento": {
+    "icon": "ability_hunter_pet_crocolisk",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo crocolisco",
+    "desc": "Daño y reduce la sanación que recibe el enemigo. No se acumula con Golpe mortal."
+  },
+  "¡Mío!": {
+    "icon": "spell_nature_natureswrath",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo ave rapaz",
+    "desc": "Daño y desarma al enemigo unos segundos."
+  },
+  "Chirrido desmoralizador": {
+    "icon": "ability_hunter_pet_bat",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo carroñero",
+    "desc": "Daño y reduce el poder de ataque de los enemigos cercanos durante 30 s. No se acumula con Rugido desmoralizador."
+  },
+  "Baile de timador": {
+    "icon": "ability_hunter_aspectofthefox",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo zorro",
+    "desc": "Un 50% más de esquivar y ataca más rápido durante 12 s."
+  },
+  "Explosión sónica": {
+    "icon": "ability_vehicle_sonicshockwave",
+    "badge": "sp",
+    "type": "Habilidad de mascota · solo murciélago",
+    "desc": "Daño de Naturaleza y hace que los hechizos del enemigo sean un 30% más lentos durante 20 s."
+  },
+  "Mordedura": {
+    "icon": "ability_druid_ferociousbite",
+    "badge": "sp",
+    "type": "Habilidad de mascota (común)",
+    "desc": "Muerde al enemigo. Ataque principal de casi todas las familias."
+  },
+  "Zarpa": {
+    "icon": "ability_druid_rake",
+    "badge": "sp",
+    "type": "Habilidad de mascota (común)",
+    "desc": "Araña al enemigo. Ataque principal de las familias sin Mordedura y de otras."
+  },
+  "Carrerilla": {
+    "icon": "ability_druid_dash",
+    "badge": "sp",
+    "type": "Habilidad de mascota (común)",
+    "desc": "Un 40% más de velocidad de movimiento durante 15 s."
+  },
+  "Lanzada": {
+    "icon": "spell_shadow_burningspirit",
+    "badge": "sp",
+    "type": "Habilidad de mascota (común)",
+    "desc": "Un 40% más de velocidad de movimiento durante 15 s (la versión de las que vuelan)."
+  },
+  "Pavor": {
+    "icon": "ability_druid_cower",
+    "badge": "sp",
+    "type": "Habilidad de mascota (común)",
+    "desc": "Reduce la amenaza que genera tu mascota."
   }
 }

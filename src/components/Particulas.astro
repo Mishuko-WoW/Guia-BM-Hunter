@@ -1,0 +1,9 @@
+---
+// Partículas (brasas que suben) de fondo en TODA la web. Las incluye MainLayout.
+// Colores según la versión (data-realm en <html>): ver "PARTÍCULAS" en marca.css.
+const TOTAL = 18;
+---
+
+<div class="fx-embers" aria-hidden="true">
+  {Array.from({ length: TOTAL }, (_, i) => <span class="fx-ember" style={`--i:${i}`}></span>)}
+</div>

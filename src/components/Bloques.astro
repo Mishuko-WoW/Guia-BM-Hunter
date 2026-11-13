@@ -1,7 +1,7 @@
 ---
 // Dibuja la lista de bloques de un panel (src/content/rotacion|opener/*.md)
 import { md } from '../lib/markup';
-import { resolveIcon } from '../lib/spells';
+import { iconUrl, resolveIcon } from '../lib/spells';
 import type { Bloque } from '../content.config';
 
 interface Props {
@@ -21,22 +21,60 @@ const { bloques } = Astro.props;
 
   if ('columnas' in b) return (
     <div class="two-col">
-      {b.columnas.map((col) => (
-        <div class="col-card">
-          <div class={`col-header ${col.color ?? ''}`} set:html={md(col.titulo)} />
-          <ul class="prio-list">
-            {col.pasos.map((p) => {
-              const icon = resolveIcon(p.icono, p.texto);
-              return (
-                <li class="prio-item">
-                  {icon && <div class="prio-icon"><img src={icon} alt="" loading="lazy" /></div>}
-                  <p set:html={md(p.texto)} />
-                </li>
-              );
-            })}
-          </ul>
+      {b.columnas.map((col) => {
+        const headIcon = iconUrl(col.icono);
+        return (
+          <div class="col-card">
+            <div class={`col-header ${col.color ?? ''}`}>
+              {headIcon && <img class="blk-head-icon" src={headIcon} alt="" width="28" height="28" loading="lazy" />}
+              <span set:html={md(col.titulo)} />
+            </div>
+            {col.pasos && (
+              <ul class="prio-list">
+                {col.pasos.map((p) => {
+                  const icon = resolveIcon(p.icono, p.texto);
+                  return (
+                    <li class="prio-item">
+                      {icon && <div class="prio-icon"><img src={icon} alt="" loading="lazy" /></div>}
+                      <p set:html={md(p.texto)} />
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            {col.filas?.map((f) => <div class="col-row"><p set:html={md(f)} /></div>)}
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  if ('tarjeta' in b) {
+    const headIcon = resolveIcon(b.icono, b.tarjeta);
+    return (
+      <div class="card card-mt">
+        <div class="card-header">
+          {headIcon && <img class="blk-head-icon" src={headIcon} alt="" width="28" height="28" loading="lazy" />}
+          <span set:html={md(b.tarjeta)} />
         </div>
-      ))}
+        <div class="card-rows">
+          {b.filas.map((f) => <div class="data-row" set:html={md(f)} />)}
+        </div>
+      </div>
+    );
+  }
+
+  if ('tabla' in b) return (
+    <div class="card card-mt blk-table-card">
+      {b.tabla.titulo && <div class="card-header" set:html={md(b.tabla.titulo)} />}
+      <div class="blk-table-wrap">
+        <table class="blk-table">
+          <thead><tr>{b.tabla.cabecera.map((c) => <th set:html={md(c)} />)}</tr></thead>
+          <tbody>
+            {b.tabla.filas.map((fila) => <tr>{fila.map((c) => <td set:html={md(c)} />)}</tr>)}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 

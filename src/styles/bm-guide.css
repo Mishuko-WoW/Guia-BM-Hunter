@@ -1043,142 +1043,6 @@
       color: var(--accent);
     }
 
-    /* ─── QUIZ ───────────────────────────────────────────────────── */
-
-    .quiz-progress {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 20px;
-    }
-
-    .quiz-dot {
-      width: 28px;
-      height: 6px;
-      border-radius: 3px;
-      background: var(--border);
-    }
-
-    .quiz-dot.done    { background: var(--green); }
-    .quiz-dot.current { background: var(--accent); }
-    .quiz-dot.wrong   { background: var(--red); }
-
-    .quiz-q {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 22px;
-      margin-bottom: 16px;
-    }
-
-    .quiz-q-text {
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 18px;
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    .quiz-options {
-      display: grid;
-      gap: 10px;
-    }
-
-    .quiz-opt {
-      background: var(--bg3);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 11px 16px;
-      cursor: pointer;
-      font-size: 15.5px;
-      font-family: var(--font-body);
-      color: var(--text);
-      transition: all .2s;
-      text-align: left;
-    }
-
-    .quiz-opt:hover:not(:disabled) {
-      border-color: var(--accent2);
-      background: color-mix(in srgb, var(--accent) 6%, transparent);
-    }
-
-    .quiz-opt.correct { background: color-mix(in srgb, var(--green) 15%, transparent); border-color: var(--green); color: var(--green2); }
-    .quiz-opt.wrong   { background: color-mix(in srgb, var(--red) 12%, transparent); border-color: var(--red);   color: var(--red2); }
-
-    .quiz-feedback {
-      display: none;
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 15.5px;
-      margin-top: 10px;
-      line-height: 1.6;
-    }
-
-    .quiz-feedback.show { display: block; }
-    .quiz-feedback.ok   { background: color-mix(in srgb, var(--green) 12%, transparent); border: 1px solid color-mix(in srgb, var(--green) 30%, transparent); color: var(--green2); }
-    .quiz-feedback.fail { background: color-mix(in srgb, var(--red) 10%, transparent); border: 1px solid color-mix(in srgb, var(--red) 30%, transparent); color: var(--red2); }
-
-    .quiz-nav {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      background: linear-gradient(135deg, var(--accent2), var(--accent2));
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 22px;
-      font-family: var(--font-body);
-      font-size: 17px;
-      font-weight: 600;
-      cursor: pointer;
-      letter-spacing: .5px;
-    }
-
-    .btn.secondary {
-      background: var(--bg4);
-      border: 1px solid var(--border2);
-      color: var(--text2);
-    }
-
-    .btn:disabled {
-      opacity: .35;
-      cursor: not-allowed;
-    }
-
-    .quiz-score {
-      display: none;
-      text-align: center;
-      padding: 30px;
-      background: var(--card);
-      border: 1px solid var(--border2);
-      border-radius: 12px;
-    }
-
-    .quiz-score.show { display: block; }
-
-    .score-num {
-      font-family: var(--font-display);
-      font-size: 52px;
-      font-weight: 900;
-      color: var(--gold);
-    }
-
-    .score-label {
-      color: var(--text2);
-      font-size: 16px;
-      margin-top: 6px;
-    }
-
-    .score-msg {
-      font-size: 17px;
-      color: var(--text3);
-      margin-top: 8px;
-      margin-bottom: 20px;
-    }
-
     /* ─── FOOTER ─────────────────────────────────────────────────── */
 
     /* ─── MISC ───────────────────────────────────────────────────── */
@@ -1190,12 +1054,6 @@
     }
 
     /* ─── HOVER MICRO-INTERACTIONS ───────────────────────────────── */
-
-    .quiz-opt:focus-visible,
-    .btn:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
 
     .card:hover,
     .col-card:hover,
@@ -1306,12 +1164,6 @@
       /* Spec table (mascotas) */
       .spec-table { grid-template-columns: 80px 1fr 1fr; }
       .spec-th, .spec-td { font-size: 13px; padding: 7px 8px; }
-
-      /* Quiz */
-      .quiz-q-text { font-size: 15px; }
-      .quiz-opt    { font-size: 13px; padding: 9px 13px; }
-      .quiz-feedback { font-size: 13px; }
-      .score-num   { font-size: 38px; }
 
       /* Headings */
       h2 { font-size: 13px; }

@@ -75,9 +75,17 @@ const bloque = z.union([
       z.object({
         titulo: texto,
         color: z.string().optional(),
-        pasos: z.array(z.object({ icono, texto })),
+        icono, // icono de la cabecera de la columna (opcional)
+        pasos: z.array(z.object({ icono, texto })).optional(), // lista numerada con iconos
+        filas: z.array(texto).optional(), // párrafos sueltos
       }),
     ),
+  }),
+  // Tarjeta con cabecera (icono + título) y filas de texto
+  z.object({ tarjeta: texto, icono, filas: z.array(texto) }),
+  // Tabla: cabecera + filas (cada celda admite mini-formato)
+  z.object({
+    tabla: z.object({ titulo: texto.optional(), cabecera: z.array(texto), filas: z.array(z.array(texto)) }),
   }),
   z.object({
     cadena: z.array(
@@ -116,4 +124,16 @@ const opener = defineCollection({
   schema: panel,
 });
 
-export const collections = { builds, jefes, rotacion, opener };
+// ─── WoW Forever: una página por pestaña (src/content/forever/paginas/<tab>.md) ───
+// tab = data-tab de TABS_FOREVER (src/lib/tabs.ts). Usa los mismos bloques que Rotación/Opener.
+const foreverPaginas = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/forever/paginas' }),
+  schema: z.object({
+    tab: z.string(),
+    titulo: z.string(),
+    intro: z.array(bloque).optional(), // bloques antes de los componentes de la pestaña (calculadora…)
+    bloques: z.array(bloque),
+  }),
+});
+
+export const collections = { builds, jefes, rotacion, opener, foreverPaginas };

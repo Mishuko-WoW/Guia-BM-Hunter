@@ -1,0 +1,40 @@
+---
+// Una pestaña de la guía Forever. El contenido sale de src/content/forever/paginas/<tab>.md
+// (formato de bloques, ver CLAUDE.md). Si la página aún no existe, muestra "en preparación".
+// Orden: título → `intro` (bloques) → contenido del slot (componentes, p. ej. calculadora) → `bloques` → "Última revisión" (sin fuentes: la guía se presenta como de Mishuko).
+import Bloques from '../Bloques.astro';
+import { getSectionReviewDate } from '../../lib/sectionDates';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  tab: string;
+  label: string;
+  pagina?: CollectionEntry<'foreverPaginas'>;
+  activa?: boolean;
+}
+
+const { tab, label, pagina, activa = false } = Astro.props;
+const reviewDate = pagina
+  ? getSectionReviewDate(tab, [`src/content/forever/paginas/${tab}.md`], 'forever')
+  : undefined;
+---
+
+<div id={`tab-${tab}`} class:list={['tab-panel', { active: activa }]}>
+  {pagina ? (
+    <>
+      <h2>{pagina.data.titulo}</h2>
+      {pagina.data.intro && <Bloques bloques={pagina.data.intro} />}
+      <slot />
+      <Bloques bloques={pagina.data.bloques} />
+      <p class="fv-review">Última revisión por <strong>Mishuko</strong> el <strong>{reviewDate}</strong>.</p>
+    </>
+  ) : (
+    <>
+      <h2>{label}</h2>
+      <div class="box box-info">
+        <div class="box-title">{label} en preparación</div>
+        Estoy preparando esta sección. Estará disponible muy pronto.
+      </div>
+    </>
+  )}
+</div>

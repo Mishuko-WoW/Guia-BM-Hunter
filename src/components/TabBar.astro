@@ -1,22 +1,17 @@
 ---
-// Pestañas de la guía. `id` = data-tab (y #ancla de la URL); debe existir <div id="tab-<id>">.
-const TABS = [
-  { id: 'mecanicas', label: 'General' },
-  { id: 'talentos', label: 'Talentos' },
-  { id: 'estadisticas', label: 'Stats' },
-  { id: 'rotacion', label: 'Rotación y Opener' },
-  { id: 'opener', label: 'Opener', hidden: true }, // comparte botón con Rotación
-  { id: 'bis', label: 'BiS y Consumibles' },
-  { id: 'mascotas', label: 'Mascotas' },
-  { id: 'macros', label: 'Macros' },
-  { id: 'simulacion', label: 'Simulación' },
-  { id: 'coaching', label: 'Coaching', cta: true },
-];
+// Barra de pestañas. Las listas están en src/lib/tabs.ts (una por versión).
+import { TABS, type GuideRealm } from '../lib/tabs';
+
+interface Props {
+  realm?: GuideRealm;
+}
+const { realm = 'midnight' } = Astro.props;
+const tabs = TABS[realm];
 ---
 
 <nav class="mk-tabs" aria-label="Secciones de la guía">
   <div class="mk-tabs__inner">
-    {TABS.map((t, i) => (
+    {tabs.map((t, i) => (
       <button
         type="button"
         class:list={['mk-tab', { active: i === 0, 'mk-tab--cta': t.cta }]}

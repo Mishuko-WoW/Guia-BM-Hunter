@@ -1,0 +1,156 @@
+---
+// Árbol de talentos del Cazador (WoW Forever), al estilo de la calculadora de Wowhead. SOLO LECTURA:
+// muestra la build elegida para verla y copiarla (tooltip por rango, sin sumar ni quitar puntos).
+// Datos: src/content/data/forever-talentos.json (generado con scripts/gen-forever-talentos.mjs)
+// Builds: src/content/data/forever-builds.json (`cadena` opcional = string de importación → botón Copiar).
+// Interacción: public/scripts/forever-talentos.js
+import data from '../../content/data/forever-talentos.json';
+import buildsFile from '../../content/data/forever-builds.json';
+import { iconUrl } from '../../lib/spells';
+import { md } from '../../lib/markup';
+
+type Build = {
+  id: string; boton: string; nombre: string; titulo: string; descripcion: string;
+  cadena?: string; puntos?: Record<string, number>; orden?: string[];
+};
+
+const talentos = data.arboles.flatMap((a) => a.talentos.map((t) => ({ ...t, arbol: a.id })));
+const porId = Object.fromEntries(talentos.map((t) => [t.id, t]));
+
+// Reparto final de cada build (las de "orden" se calculan sumando)
+const builds = (buildsFile.builds as Build[]).map((b) => {
+  const puntos: Record<string, number> = { ...(b.puntos ?? {}) };
+  if (b.orden) b.orden.forEach((id) => (puntos[id] = (puntos[id] ?? 0) + 1));
+  return { ...b, puntos };
+});
+const inicial = builds[0];
+
+// Línea de tiempo del leveling: tramos de niveles seguidos con el mismo talento
+const leveling = builds.find((b) => b.orden);
+type Tramo = { desde: number; hasta: number; id: string; rangoDesde: number; rangoHasta: number };
+const tramos: Tramo[] = [];
+if (leveling?.orden) {
+  const cuenta: Record<string, number> = {};
+  leveling.orden.forEach((id, i) => {
+    const nivel = 10 + i;
+    cuenta[id] = (cuenta[id] ?? 0) + 1;
+    const last = tramos.at(-1);
+    if (last && last.id === id && last.hasta === nivel - 1) {
+      last.hasta = nivel;
+      last.rangoHasta = cuenta[id];
+    } else tramos.push({ desde: nivel, hasta: nivel, id, rangoDesde: cuenta[id], rangoHasta: cuenta[id] });
+  });
+}
+
+const datosJS = {
+  talentos: talentos.map(({ id, arbol, fila, col, max, nombre, meta, rangos }) => ({ id, arbol, fila, col, max, nombre, meta, rangos })),
+  arboles: data.arboles.map((a) => ({ id: a.id, nombre: a.nombre })),
+  flechas: data.arboles.flatMap((a) => a.flechas),
+  builds: builds.map(({ id, nombre, puntos, orden }) => ({ id, nombre, puntos, orden: orden ?? null })),
+};
+const TOTAL = 51;
+const nivelInicial = Object.values(inicial.puntos).reduce((s, v) => s + v, 0) + 9;
+const repartoInicial = data.arboles
+  .map((a) => a.talentos.reduce((s, t) => s + (inicial.puntos[t.id] ?? 0), 0))
+  .join(' / ');
+---
+
+<div class="tc" id="tc">
+  {builds.map((b, i) => (
+    <div class="box box-info tc-build-desc" data-tc-desc={b.id} hidden={i !== 0}>
+      <div class="box-title">{b.titulo}</div>
+      <Fragment set:html={md(b.descripcion)} />
+    </div>
+  ))}
+
+  <!-- Selector de build: debajo de la descripción y centrado -->
+  <div class="toggle-wrap combat-switch tc-builds" role="group" aria-label="Elegir build">
+    {builds.map((b, i) => (
+      <button type="button" class:list={['toggle-btn', { active: i === 0 }]} data-tc-build={b.id}>{b.boton}</button>
+    ))}
+  </div>
+
+  <div class="tc-bar">
+    <span class="tc-split" data-tc-split>{repartoInicial}</span>
+    <span class="tc-stat">Nivel requerido <b data-tc-level>{nivelInicial}</b></span>
+    <span class="tc-name" data-tc-name>{inicial.nombre}</span>
+    {builds.filter((b) => b.cadena).map((b, i) => (
+      <button
+        type="button"
+        class="tc-copy"
+        data-tc-copy={b.id}
+        hidden={b.id !== inicial.id}
+        onclick={`copyTalent(this, ${JSON.stringify(b.cadena)})`}
+      >Copiar talentos</button>
+    ))}
+  </div>
+
+  <div class="tc-trees">
+    {data.arboles.map((a) => (
+      <section class="tc-tree" data-tc-tree={a.id} style={`--tc-bg: url('${a.fondo}')`}>
+        <header class="tc-tree__head">
+          <img src={iconUrl(a.icono)} alt="" width="30" height="30" />
+          <span class="tc-tree__name">{a.nombre}</span>
+          <span class="tc-tree__pts"><b data-tc-tree-pts={a.id}>0</b> / {TOTAL}</span>
+        </header>
+        <div class="tc-grid">
+          {a.flechas.map((f) => {
+            const d = porId[f.desde];
+            const h = porId[f.hasta];
+            return <span class="tc-arrow" data-tc-arrow={f.hasta} style={`--r:${d.fila};--c:${d.col};--n:${h.fila - d.fila}`} />;
+          })}
+          {a.talentos.map((t) => {
+            const pts = inicial.puntos[t.id] ?? 0;
+            return (
+              <span
+                class="tc-talent"
+                tabindex="0"
+                role="img"
+                data-tc-talent={t.id}
+                style={`--r:${t.fila};--c:${t.col}`}
+                aria-label={`${t.nombre} ${pts}/${t.max}`}
+                data-name={t.nombre}
+                data-type={`Rango ${pts}/${t.max}`}
+                data-desc={t.rangos[Math.max(0, pts - 1)]}
+              >
+                <img src={iconUrl(t.icono)} alt="" width="44" height="44" loading="lazy" />
+                <span class="tc-rank" data-tc-rank>{pts}/{t.max}</span>
+              </span>
+            );
+          })}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <p class="tc-help">Pasa el ratón por un talento (o tócalo en el móvil) para ver lo que hace en cada rango.</p>
+
+  {leveling && (
+    <div class="tc-leveling" data-tc-leveling hidden>
+      <div class="tc-slider">
+        <label for="tc-nivel">Talentos a nivel <b data-tc-slider-out>60</b></label>
+        <input id="tc-nivel" type="range" min="10" max="60" step="1" value="60" data-tc-slider />
+      </div>
+      <h3>Orden de talentos</h3>
+      <ol class="tc-order">
+        {tramos.map((t) => {
+          const tal = porId[t.id];
+          return (
+            <li class="tc-step" data-tc-step={t.hasta} data-tc-from={t.desde}>
+              <span class="tc-step__lvl">{t.desde === t.hasta ? `Nv. ${t.desde}` : `Nv. ${t.desde}–${t.hasta}`}</span>
+              <span class="tc-step__spell bf" data-name={tal.nombre} data-type={`Rango ${t.rangoHasta}/${tal.max}`} data-desc={tal.rangos[t.rangoHasta - 1]}>
+                <img src={iconUrl(tal.icono)} alt="" width="32" height="32" loading="lazy" />
+                <span class="tc-step__name">{tal.nombre}</span>
+              </span>
+              <span class="tc-step__rank">{t.rangoDesde === t.rangoHasta ? `${t.rangoHasta}/${tal.max}` : `${t.rangoDesde}→${t.rangoHasta}/${tal.max}`}</span>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  )}
+</div>
+
+<script is:inline define:vars={{ datosJS }}>
+  window.FV_TALENTOS = datosJS;
+</script>

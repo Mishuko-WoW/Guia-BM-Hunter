@@ -20,7 +20,6 @@ Creada y mantenida por **Mishuko#2340** como proyecto personal para la comunidad
 - 🗡️ **BiS & Consumibles** — Equipamiento, encantamientos, gemas y consumibles
 - 🌟 **Talentos** — Builds con strings importables y links a Wowhead
 - 🐾 **Mascotas** — Qué mascotas llevar y para qué situación
-- 📝 **Examen ST / AoE** — Pon a prueba tus conocimientos
 
 ---
 
