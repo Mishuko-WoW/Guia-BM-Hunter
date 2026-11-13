@@ -9,14 +9,19 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
-## ▶ PRÓXIMO TRABAJO (pedido por Mishuko el 2026-11-13)
-**SEO a fondo, antes de seguir con las pestañas de Forever.** Primero investigar y **presentar el plan para que lo apruebe**; no tocar nada sin su visto bueno.
-- Objetivo: posicionar arriba para **«guía hunter BM forever»** y **«guía hunter forever»** (prioridad máxima: que salga aunque busquen solo «hunter» sin «BM»), además de **«guía hunter midnight»** y mantener/mejorar **«guía hunter BM midnight»** y **«guía hunter BM»**.
-- Hacer búsquedas (competencia, palabras clave en español, intención de búsqueda) y optimizar al máximo: `<title>`, metadescripciones, H1/H2, textos, datos estructurados (JSON-LD), Open Graph/imagen por versión, canonical, sitemap, enlaces internos entre portada/Midnight/Forever, rendimiento, etc.
-- Hoy: la web está bien posicionada para «guía hunter BM midnight» y «guía hunter BM»; Forever acaba de publicarse (General, Talentos, Mascotas).
-- Pendiente después: pestañas de Forever Stats, Rotación y Opener, BiS y Consumibles, Macros, Leveling 1-60 (y actualizar `estado` en `realms.ts`).
+## ▶ PRÓXIMO TRABAJO
+- Coaching de Forever (en curso, 2026-11-14). Después: pestañas de Forever Stats, Rotación y Opener, BiS y Consumibles, Macros, Leveling 1-60 (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
+- Search Console: reenviar `sitemap-index.xml` y pedir indexación de las páginas nuevas (lo hace Mishuko o con su permiso).
 
 ---
+
+## 2026-11-14 — SEO: una página por pestaña, títulos, JSON-LD, robots y sitemap
+- Search Console (28 días hasta 10-11): las consultas con más impresiones son «cazador bestias midnight» (64), «guia cazador bestias midnight» (51), «talentos cazador bestias midnight» (29); todas las impresiones iban a `/`. Ningún título decía «Cazador».
+- **Una página por pestaña**: `/midnight/<tab>/` y `/forever/<tab>/` (`[tab].astro` + `PaginaMidnight`/`PaginaForever`), cada una solo con su panel, su título, descripción, H1 (subtítulo de la cabecera) y JSON-LD (Article + BreadcrumbList, autor Mishuko como Person, `dateModified` del changelog). General sigue en `/midnight/` y `/forever/`.
+- **Sin romper enlaces**: `/#tab` y `/<versión>/#tab` (y alias `#mec`, `#rot`…) redirigen con `location.replace` a la página; `#opener` → `/<versión>/rotacion/#opener`. Pestañas = enlaces `<a>`. Comprobadas 26 URL (200) y todas las redirecciones en local.
+- Pestañas de Forever sin contenido: página con `noindex` (no 404) y fuera del sitemap.
+- `src/lib/seo.ts` (rutas, títulos con «Hunter» y «Cazador de Bestias», descripciones, JSON-LD, OG); portada con H1 de palabras clave, texto y enlaces; imagen para redes de Forever (`scripts/og-images.mjs`); `public/robots.txt`; sitemap con `lastmod` y filtro (`astro.config.mjs`); enlaces del pie entre guías; Analytics con la misma ruta limpia de siempre.
+- Archivos: `src/lib/seo.ts`, `src/pages/{index,midnight/index,midnight/[tab],forever/index,forever/[tab]}.astro`, `src/components/guide/{GuideContent,PaginaMidnight}.astro`, `src/components/forever/{GuideForever,PaginaForever}.astro`, `src/components/{TabBar,Header,SeccionMecanicas,SeccionBiS}.astro`, `src/layouts/MainLayout.astro`, `public/scripts/bm-guide.js`, `public/robots.txt`, `public/brand/og-forever.png`, `scripts/og-images.mjs`, `astro.config.mjs`, `src/styles/{marca,portada}.css`, `CLAUDE.md`.
 
 ## 2026-11-13 — Forever disponible en la portada (publicado)
 - `disponible: true` y nuevo campo `estado` en `src/lib/realms.ts` (texto de la tarjeta: "General, talentos y mascotas · se amplía cada día"); `src/pages/index.astro` lo usa.

@@ -1,5 +1,19 @@
+    // ─── PÁGINAS POR PESTAÑA ─────────────────────────────────────────
+    // Cada pestaña es una página (/midnight/talentos/…). Las pestañas son enlaces <a data-tab href>.
+    // En la página solo está el panel de su pestaña (y opener junto a rotación).
+    const htmlRoot = document.documentElement;
+    htmlRoot.classList.add('js-tabs'); // sin JS, el CSS muestra el primer panel
+    const PAGE_TAB = htmlRoot.dataset.defaultTab || 'mecanicas';
     const tabButtons = Array.from(document.querySelectorAll('.mk-tab[data-tab]'));
     const validTabIds = new Set(tabButtons.map(btn => btn.dataset.tab));
+    const tabUrl = (id) => {
+      const link = document.querySelector(`.mk-tab[data-tab="${id}"]`);
+      return link ? link.getAttribute('href') : null;
+    };
+    const hasPanel = (id) => !!document.getElementById('tab-' + id);
+    // Restaurar el scroll solo al recargar o volver atrás (no al llegar desde otra pestaña)
+    const navType = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0] || {}).type;
+    const shouldRestoreScroll = navType === 'reload' || navType === 'back_forward';
     const tabAliases = {
       mec: 'mecanicas',
       tal: 'estadisticas',
@@ -10,7 +24,7 @@
 
     function getActiveTabId() {
       const activePanel = document.querySelector('.tab-panel.active');
-      return activePanel ? activePanel.id.replace(/^tab-/, '') : 'mecanicas';
+      return activePanel ? activePanel.id.replace(/^tab-/, '') : PAGE_TAB;
     }
 
     function getScrollStorageKey(tabId) {
@@ -27,12 +41,22 @@
       requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: 'auto' }));
     }
 
-    function syncTabFromHash() {
+    function syncTabFromHash(event) {
       const hashTab = decodeURIComponent(window.location.hash.replace(/^#/, ''));
       const normalizedTab = tabAliases[hashTab] || hashTab;
-      const tabId = validTabIds.has(normalizedTab) ? normalizedTab : 'mecanicas';
-      const btn = document.querySelector(`.mk-tab[data-tab="${tabId}"]`);
-      if (btn) showTab(tabId, btn, { updateHash: false, preserveScroll: true });
+
+      // Enlace antiguo o interno a otra pestaña (/midnight/#bis, #macros…) → su página, sin pasar por un 404
+      if (hashTab && validTabIds.has(normalizedTab) && !hasPanel(normalizedTab)) {
+        const url = tabUrl(normalizedTab);
+        if (url) { location.replace(url); return; }
+      }
+      // Anclas dentro de la página (#pf-claw…): no tocar las pestañas
+      if (hashTab && !validTabIds.has(normalizedTab) && document.getElementById(hashTab)) return;
+
+      const tabId = validTabIds.has(normalizedTab) && hasPanel(normalizedTab) ? normalizedTab : PAGE_TAB;
+      const btn = document.querySelector(`.mk-tab[data-tab="${tabId}"]`)
+        || document.querySelector(`.mk-tab[data-tab="${PAGE_TAB}"]`);
+      if (btn) showTab(tabId, btn, { updateHash: false, preserveScroll: !event && shouldRestoreScroll });
     }
 
     function refreshWowheadTooltips() {
@@ -88,7 +112,12 @@
       const targetBtn = btn || document.querySelector(`.mk-tab[data-tab="${id}"]`);
       if (!targetBtn || !validTabIds.has(id)) return;
       const targetPanel = document.getElementById('tab-' + id);
-      if (!targetPanel) return;
+      if (!targetPanel) {
+        // La pestaña está en otra página: ir a ella
+        const url = tabUrl(id);
+        if (url) location.href = url;
+        return;
+      }
 
       // Opener comparte item de menu con Rotacion: al navegar a Opener,
       // mantenemos resaltado visual en Rotacion para no perder contexto.
@@ -100,7 +129,10 @@
       targetPanel.classList.add('active');
       (highlightedBtn || targetBtn).classList.add('active');
 
-      if (updateHash && window.location.hash !== `#${id}`) {
+      if (updateHash && id === PAGE_TAB && window.location.hash) {
+        // Volver a la pestaña propia de la página (p. ej. de Opener a Rotación): URL limpia
+        history.replaceState(null, '', location.pathname + location.search);
+      } else if (updateHash && id !== PAGE_TAB && window.location.hash !== `#${id}`) {
         history.replaceState(null, '', `#${id}`);
         // Si el cambio viene de un hash (enlace changelog), hacer scroll al top absoluto de la página
         setTimeout(() => {

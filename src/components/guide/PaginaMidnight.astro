@@ -1,0 +1,62 @@
+---
+// Página de la guía de Midnight para una pestaña (la usan src/pages/midnight/index.astro y [tab].astro).
+import GuideContent from './GuideContent.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+import { SEO, guideJsonLd } from '../../lib/seo';
+import { TABS_MIDNIGHT } from '../../lib/tabs';
+import { latestChangeDate } from '../../lib/changelog';
+
+interface Props {
+  tab: string;
+}
+const { tab } = Astro.props;
+const meta = SEO.midnight[tab];
+const label = TABS_MIDNIGHT.find((t) => t.id === tab)?.label ?? tab;
+
+const buildEntries = (await getCollection('builds')).sort((a, b) => a.data.order - b.data.order);
+const bossEntries = (await getCollection('jefes')).sort((a, b) => a.data.order - b.data.order);
+
+const buildsData = buildEntries.map(({ data }) => ({
+  id: data.id,
+  label: data.title,
+  meta: data.meta,
+  header: data.header,
+  desc: data.description,
+  copyStr: data.copyString,
+  whUrl: data.wowheadUrl,
+  flexibles: data.flexibleTalents,
+  notes: data.notes,
+}));
+
+const bossData = bossEntries.map(({ data }) => ({
+  name: data.name,
+  imgUrl: data.image,
+  diff: data.difficulty === 'mitico' ? 'm' : 'h',
+  summary: data.summary,
+  builds: data.builds,
+  video: data.video,
+}));
+
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
+---
+
+<MainLayout
+  realm="midnight"
+  defaultTab={tab}
+  title={meta.title}
+  description={meta.description}
+  jsonLd={guideJsonLd('midnight', tab, label, latestChangeDate(tab === 'mecanicas' ? undefined : tab))}
+>
+  <GuideContent tab={tab} />
+  <script is:inline define:vars={{ buildsData, bossData }}>
+    window.BM_BUILDS_DATA = buildsData;
+    window.BM_BOSS_DATA = bossData;
+  </script>
+  <script is:inline src={withBase('scripts/bm-guide.js')}></script>
+  <script is:inline>
+    window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+  </script>
+  <script is:inline src="https://wow.zamimg.com/widgets/power.js"></script>
+</MainLayout>

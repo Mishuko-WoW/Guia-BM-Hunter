@@ -2,17 +2,28 @@
 // Portada: elección entre Midnight y Forever
 import MainLayout from '../layouts/MainLayout.astro';
 import { REALMS } from '../lib/realms';
+import { PORTADA, PORTADA_JSONLD, tabPath } from '../lib/seo';
+import { TABS_MIDNIGHT } from '../lib/tabs';
 import '../styles/portada.css';
+
+// Enlaces antiguos guiahunterbm.com/#<pestaña> → su página de Midnight (sin pasar por un 404)
+const RUTAS_MIDNIGHT = Object.fromEntries(TABS_MIDNIGHT.map((t) => [t.id, tabPath('midnight', t.id)]));
 ---
 
 <MainLayout
   realm="portada"
-  title="Guía Hunter BM — Midnight y Forever | Mishuko"
-  description="Guía de Hunter Beast Mastery de Mishuko para World of Warcraft Midnight y WoW Forever: talentos, rotación, opener y BiS."
+  title={PORTADA.title}
+  description={PORTADA.description}
+  jsonLd={PORTADA_JSONLD}
 >
-  <!-- Enlaces antiguos (guiahunterbm.com/#bis…) → la guía de Midnight -->
-  <script is:inline>
-    const toGuide = () => { if (location.hash.length > 1) location.replace('/midnight/' + location.hash); };
+  <!-- Enlaces antiguos (guiahunterbm.com/#bis…) → la página de esa pestaña en Midnight -->
+  <script is:inline define:vars={{ RUTAS_MIDNIGHT }}>
+    const toGuide = () => {
+      const h = location.hash.slice(1);
+      if (!h) return;
+      // pestaña conocida → su página; cualquier otro # (alias antiguos) → la guía, que lo resuelve
+      location.replace(RUTAS_MIDNIGHT[h] || '/midnight/' + location.hash);
+    };
     toGuide();
     addEventListener('hashchange', toGuide);
   </script>
@@ -26,8 +37,8 @@ import '../styles/portada.css';
 
     <header class="pt-head">
       <img class="pt-logo" src="/brand/mishuko-logo.webp" width="150" height="150" alt="Logo de Mishuko" fetchpriority="high" />
-      <p class="pt-eyebrow">Guía Hunter <b>Beast Mastery</b> <i>·</i> por Mishuko</p>
-      <h1 class="pt-title">Elige tu <span>versión</span></h1>
+      <h1 class="pt-eyebrow">Guía Hunter <b>BM</b> <i>·</i> Cazador de Bestias <i>·</i> por Mishuko</h1>
+      <p class="pt-title">Elige tu <span>versión</span></p>
     </header>
 
     <div class="pt-cards">
@@ -55,6 +66,14 @@ import '../styles/portada.css';
       ))}
       <span class="pt-divider" aria-hidden="true"><i></i></span>
     </div>
+
+    <section class="pt-about" aria-label="Sobre la guía">
+      <p>
+        Guías en español del <strong>Hunter BM</strong> (<strong>Cazador de Bestias</strong>) escritas por Mishuko:
+        la <a href="/midnight/">guía Hunter BM de Midnight</a> (Temporada 2: talentos, rotación, opener y BiS) y la
+        <a href="/forever/">guía Hunter de WoW Forever</a> (talentos 31/20/0, <a href="/forever/mascotas/">mascotas</a> y leveling).
+      </p>
+    </section>
 
     <footer class="pt-foot">Guía de apoyo creada por <strong>Mishuko</strong> · guiahunterbm.com</footer>
   </main>

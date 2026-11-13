@@ -1,0 +1,14 @@
+---
+// /midnight/<pestaña>/ → una página por pestaña (General está en /midnight/, Opener dentro de Rotación).
+import PaginaMidnight from '../../components/guide/PaginaMidnight.astro';
+import { TABS_MIDNIGHT } from '../../lib/tabs';
+import { TAB_HOST } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return TABS_MIDNIGHT.filter((t) => t.id !== 'mecanicas' && !TAB_HOST[t.id]).map((t) => ({ params: { tab: t.id } }));
+}
+
+const { tab } = Astro.params;
+---
+
+<PaginaMidnight tab={tab} />

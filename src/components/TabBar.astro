@@ -1,26 +1,31 @@
 ---
-// Barra de pestañas. Las listas están en src/lib/tabs.ts (una por versión).
+// Barra de pestañas. Cada pestaña es un enlace a su página (src/lib/seo.ts → tabPath).
+// Las listas están en src/lib/tabs.ts (una por versión). data-tab lo usa bm-guide.js.
 import { TABS, type GuideRealm } from '../lib/tabs';
+import { tabPath } from '../lib/seo';
 
 interface Props {
   realm?: GuideRealm;
+  /** Pestaña de la página actual */
+  activa?: string;
 }
-const { realm = 'midnight' } = Astro.props;
+const { realm = 'midnight', activa = 'mecanicas' } = Astro.props;
 const tabs = TABS[realm];
+const marcada = activa === 'opener' ? 'rotacion' : activa;
 ---
 
 <nav class="mk-tabs" aria-label="Secciones de la guía">
   <div class="mk-tabs__inner">
-    {tabs.map((t, i) => (
-      <button
-        type="button"
-        class:list={['mk-tab', { active: i === 0, 'mk-tab--cta': t.cta }]}
+    {tabs.map((t) => (
+      <a
+        href={tabPath(realm, t.id)}
+        class:list={['mk-tab', { active: t.id === marcada, 'mk-tab--cta': t.cta }]}
         data-tab={t.id}
-        onclick={`showTab('${t.id}', this)`}
+        aria-current={t.id === marcada ? 'page' : undefined}
         hidden={t.hidden}
       >
         {t.label}
-      </button>
+      </a>
     ))}
   </div>
 </nav>

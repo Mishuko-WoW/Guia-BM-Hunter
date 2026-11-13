@@ -5,7 +5,16 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 **Al empezar cada sesión, leer `CHANGELOG.md`** (historial técnico de la web) y añadir en él una entrada por cada cambio antes del commit. Es distinto de `changelog.json` (lista para visitantes).
 
 ## Stack y comandos
-- Astro 6, sitio estático de **una sola página** con pestañas. Node ≥ 22.
+- Astro 6, sitio estático. **Una página por pestaña** (desde 2026-11-14, por SEO): `/midnight/` = General, `/midnight/<tab>/` el resto; igual en `/forever/`. Node ≥ 22.
+
+## SEO y rutas (NO romper enlaces: hay mucho tráfico desde TikTok)
+- `src/lib/seo.ts`: `tabPath()` (ruta de cada pestaña), `SEO` (título, descripción y subtítulo del H1 por versión y pestaña), `guideJsonLd()` / `PORTADA_JSONLD` (datos estructurados), `OG` (imagen para redes por versión).
+- Páginas: `src/pages/{midnight,forever}/index.astro` (General) y `[tab].astro` (resto) → `src/components/guide/PaginaMidnight.astro` / `src/components/forever/PaginaForever.astro`. Cada página trae **solo su panel** (Rotación incluye Opener; General de Midnight incluye la oculta `errores`).
+- Pestañas = enlaces `<a class="mk-tab" data-tab href>` (`TabBar.astro`). `opener` no tiene página: `/<versión>/rotacion/#opener`.
+- Enlaces antiguos con `#` **siguen funcionando**: `/#bis` (portada) y `/<versión>/#bis` → `location.replace` a la página de la pestaña (`bm-guide.js`, bloque "PÁGINAS POR PESTAÑA"; alias `#mec`, `#rot`…). Anclas que no son pestañas (`#pf-charge`) no tocan las pestañas.
+- Nunca borrar ni renombrar una ruta publicada. Pestañas sin contenido = página con `noindex` (no 404) y fuera del sitemap (`astro.config.mjs`).
+- `public/robots.txt`; sitemap con `lastmod` desde `changelog.json`. Imagen de Forever: `node scripts/og-images.mjs` → `public/brand/og-forever.png`.
+- Palabras clave: «guía hunter BM», «Cazador de Bestias» (lo más buscado en Search Console), «guía hunter forever», «guía hunter midnight».
 - `npm run dev` → http://localhost:4321 (recarga en caliente)
 - `npm run build` → valida contenido (`scripts/check-content.mjs`) + genera `dist/`. **Ejecutar siempre antes de commit.**
 - Deploy: push a `main` → GitHub Actions (`.github/workflows/deploy.yml`) → GitHub Pages (~40 s).
@@ -14,7 +23,7 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 
 ## Páginas y versiones
 - `/` → portada de elección (`src/pages/index.astro` + `src/styles/portada.css`). Redirige enlaces antiguos `/#tab` a `/midnight/#tab`.
-- `/midnight/` → guía de Midnight (`src/pages/midnight/index.astro`, todo lo que sigue en este documento).
+- `/midnight/` → guía de Midnight (`src/pages/midnight/index.astro` + `[tab].astro`, todo lo que sigue en este documento).
 - `/forever/` → guía de WoW Forever (en desarrollo, pestaña a pestaña). `src/pages/forever/index.astro` → `src/components/forever/GuideForever.astro`.
   - Contenido: **una página `.md` por pestaña** en `src/content/forever/paginas/<tab>.md` (`tab`, `titulo`, `fuentes`, `bloques`); colección `foreverPaginas`. Pestaña sin `.md` = aviso "en preparación".
   - Bloques extra (también válidos en Midnight): `tarjeta` (titulo + `icono` + `filas`), `tabla` (`cabecera` + `filas`), y `columnas` con `filas` (párrafos) además de `pasos`.
@@ -37,7 +46,7 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 - Logos oficiales de Midnight y Forever (Blizzard Press Center, blizzard.gamespress.com) reducidos a WebP en `public/brand/realms/`. Colores de versión: `--realm-midnight` violeta, `--realm-forever` turquesa (`tokens.css`).
 - Forever ya es `disponible: true` (desde 2026-11-13). `estado` en `realms.ts` = texto de la tarjeta de portada; actualizarlo al completar pestañas (hoy: General, Talentos y Mascotas).
 - Tema por versión: `MainLayout` pone `<html data-realm="portada|midnight|forever">`; el tema Forever solo redefine variables en `tokens.css` (`:root[data-realm="forever"]`).
-- Analytics (GA4 G-EJY55YHE6Q): `page_view` con ruta limpia (`/midnight/bis`, `/forever`, `/`) y `content_group` = versión. Al crear una página nueva pasar `realm` y `defaultTab` a `MainLayout`.
+- Analytics (GA4 G-EJY55YHE6Q): `page_view` con ruta limpia `/<versión>/<pestaña>` (`/midnight/bis`, `/forever/mecanicas`, `/`) y `content_group` = versión; igual que antes de tener una página por pestaña. Al crear una página nueva pasar `realm` y `defaultTab` (= su pestaña) a `MainLayout`.
 
 ## Flujo obligatorio antes de publicar (push)
 1. `npm run build` sin errores.
@@ -62,8 +71,9 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 | Cabecera, aviso de parche (`PARCHE`) | `src/components/Header.astro` |
 | Lista de cambios, fechas de revisión y del footer | `src/content/data/changelog.json` (lógica en `src/lib/changelog.ts`) |
 | Pestañas (`TABS_MIDNIGHT`, `TABS_FOREVER`) | `src/lib/tabs.ts` (las pinta `TabBar.astro`) |
-| Orden de secciones, footer | `src/components/guide/GuideContent.astro` |
-| `<head>`, SEO, Analytics (GA4 con page_view por hash) | `src/layouts/MainLayout.astro` |
+| Qué sección pinta cada página de Midnight, footer | `src/components/guide/GuideContent.astro` |
+| Títulos, descripciones, H1, JSON-LD, imagen para redes | `src/lib/seo.ts` |
+| `<head>`, robots, Analytics (GA4) | `src/layouts/MainLayout.astro` |
 | Pestaña X | `src/components/Seccion<X>.astro` (`<div id="tab-<id>" class="tab-panel">`) |
 | Builds de talentos (strings, notas) | `src/content/builds/*.md` → renderizado en JS (`renderBuilds`) |
 | Opener / rotación (un `.md` por build) | `src/content/opener/*.md`, `src/content/rotacion/*.md` → `PanelesHeroe.astro` + `Bloques.astro`. Intro y textos fijos de la pestaña en `SeccionOpener/Rotacion.astro` |
@@ -84,9 +94,10 @@ Mini-formato de texto (`src/lib/markup.ts`): `[[Hechizo]]` (tooltip/clase del ca
 ## JavaScript (`public/scripts/bm-guide.js`, ~1090 líneas, sin bundler)
 Script clásico global (funciones llamadas desde `onclick` en el HTML). Secciones, buscar con `grep -n "// ───"`:
 TABS (`showTab`, `syncTabFromHash`) · TOGGLE (`setPanel` para Rotación/Opener, `setBuild` para Talentos) · TOOLTIP · BIS TRACKER (`bisCheck`, `BIS_TOTAL`) · TALENT COPY · BOSS DATA (`SPELL_REGISTRY`, `autoLink`) · BUILDS RENDERER · BOSS PANEL · REPORT MODAL (webhook Discord).
-- Datos de Astro llegan vía `window.BM_BUILDS_DATA` / `window.BM_BOSS_DATA` (inyectados en `src/pages/index.astro`).
+- Datos de Astro llegan vía `window.BM_BUILDS_DATA` / `window.BM_BOSS_DATA` (inyectados en `src/components/guide/PaginaMidnight.astro`).
 - Si un elemento puede no existir (secciones ocultas), proteger con `if (el)`: un error corta el resto del script.
-- Navegación: `#<tab>` en la URL abre la pestaña (los enlaces internos deben ser `href="#bis"`, nunca URL absoluta).
+- Navegación: cada pestaña es una página; los enlaces internos a otra pestaña van a su ruta (`href="/forever/mascotas/"`, ver `tabPath`). Un `#<tab>` sigue funcionando (redirige a su página), pero mejor la ruta real.
+- La página trae `<html data-default-tab="<tab>">`: sin `#`, `bm-guide.js` muestra esa pestaña. Sin JS, `marca.css` muestra el primer panel (`html:not(.js-tabs)`).
 
 ## Estilos (marca Mishuko)
 Orden de carga en `MainLayout.astro`: `tokens.css` → `bm-guide.css` (heredado) → `marca.css` (manda).

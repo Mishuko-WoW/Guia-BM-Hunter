@@ -209,6 +209,11 @@ strong { color: var(--text); font-weight: 700; }
   transform-origin: left;
   transition: transform var(--t) var(--ease);
 }
+/* Antes de que cargue bm-guide.js (o sin JS) se ve el panel de la página: cada página solo trae el suyo */
+html:not(.js-tabs) .content-area > .tab-panel:first-child { display: block; }
+/* las pestañas son enlaces (una página por pestaña): mismo aspecto que los antiguos botones */
+a.mk-tab { display: inline-block; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+a.mk-tab[hidden] { display: none; }
 .mk-tab:hover { color: var(--text); }
 .mk-tab:hover::after { transform: scaleX(0.35); }
 .mk-tab.active { color: var(--brand-text); }
@@ -433,6 +438,9 @@ strong { color: var(--text); font-weight: 700; }
 .mk-footer__meta { font: 600 15px/1.4 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text2); }
 .mk-footer__meta strong { color: var(--brand-text); }
 .mk-footer__note { font-size: 14px; color: var(--text3); margin-top: 4px !important; }
+.mk-footer__links { margin-top: 6px; font-size: 14px; color: var(--text3); }
+.mk-footer__links a { color: var(--text2); text-decoration: none; box-shadow: inset 0 -1px 0 var(--border2); }
+.mk-footer__links a:hover { color: var(--text); box-shadow: inset 0 -1px 0 var(--brand); }
 
 /* ─── MOVIMIENTO ─── */
 .tab-panel.active { animation: mk-panel-in var(--t-slow) var(--ease) both; }

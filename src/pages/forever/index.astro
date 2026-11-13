@@ -1,22 +1,6 @@
 ---
-// Guía WoW Forever. Contenido en src/content/forever/ (una página .md por pestaña).
-import GuideForever from '../../components/forever/GuideForever.astro';
-import MainLayout from '../../layouts/MainLayout.astro';
-
-const baseUrl = import.meta.env.BASE_URL;
-const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
+// /forever/ → pestaña General. El resto de pestañas: [tab].astro
+import PaginaForever from '../../components/forever/PaginaForever.astro';
 ---
 
-<MainLayout realm="forever" defaultTab="mecanicas"
-  title="Guía Hunter BM — WoW Forever | Mishuko"
-  description="Guía de Hunter Beast Mastery para WoW Forever: talentos 31/20/0, rotación con Invocar halcón, stats, mascotas, macros y leveling 1-60."
->
-  <GuideForever />
-  <script is:inline src={withBase('scripts/bm-guide.js')}></script>
-  <script is:inline src={withBase('scripts/forever-talentos.js')}></script>
-  <script is:inline>
-    // renameLinks: false → Wowhead no cambia el texto de los enlaces (p. ej. los de la caja "Fuente")
-    window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: false };
-  </script>
-  <script is:inline src="https://wow.zamimg.com/widgets/power.js"></script>
-</MainLayout>
+<PaginaForever tab="mecanicas" />

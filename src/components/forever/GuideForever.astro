@@ -1,6 +1,6 @@
 ---
-// Guía WoW Forever: cabecera, pestañas (TABS_FOREVER) y una sección por pestaña.
-import { getCollection } from 'astro:content';
+// Guía WoW Forever: cabecera, pestañas y SOLO la sección de la página actual (una página por pestaña).
+// "rotacion" incluye también el panel "opener".
 import Header from '../Header.astro';
 import TabBar from '../TabBar.astro';
 import SeccionForever from './SeccionForever.astro';
@@ -8,19 +8,26 @@ import CalculadoraTalentos from './CalculadoraTalentos.astro';
 import RangosEntrenables from './RangosEntrenables.astro';
 import MascotasForever from './MascotasForever.astro';
 import { TABS_FOREVER } from '../../lib/tabs';
+import { SEO } from '../../lib/seo';
 import { formatLong, latestChangeDate } from '../../lib/changelog';
+import type { CollectionEntry } from 'astro:content';
 import '../../styles/forever.css';
 
-const paginas = new Map((await getCollection('foreverPaginas')).map((p) => [p.data.tab, p]));
+interface Props {
+  tab?: string;
+  paginas: Map<string, CollectionEntry<'foreverPaginas'>>;
+}
+const { tab = 'mecanicas', paginas } = Astro.props;
 const lastUpdate = latestChangeDate(undefined, 'forever');
+const visibles = TABS_FOREVER.filter((t) => t.id === tab || (tab === 'rotacion' && t.id === 'opener'));
 ---
 
-<Header realm="forever" />
-<TabBar realm="forever" />
+<Header realm="forever" subtitulo={SEO.forever[tab]?.h1sub} />
+<TabBar realm="forever" activa={tab} />
 
 <div class="content-area">
-  {TABS_FOREVER.map((t, i) => (
-    <SeccionForever tab={t.id} label={t.label} pagina={paginas.get(t.id)} activa={i === 0}>
+  {visibles.map((t) => (
+    <SeccionForever tab={t.id} label={t.label} pagina={paginas.get(t.id)} activa={t.id === tab}>
       {t.id === 'talentos' && (
         <>
           <CalculadoraTalentos />
@@ -43,6 +50,9 @@ const lastUpdate = latestChangeDate(undefined, 'forever');
       <p class="mk-footer__note">
         Recurso de apoyo para entender la clase, escrito por Mishuko.
       </p>
+      <nav class="mk-footer__links" aria-label="Otras guías">
+        <a href="/">Inicio</a> · <a href="/midnight/">Guía Hunter BM Midnight</a>
+      </nav>
     </div>
   </div>
 </footer>

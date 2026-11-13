@@ -190,6 +190,13 @@
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
+/* Texto breve con las palabras clave y enlaces a las guías (SEO) */
+.pt-about { max-width: 760px; margin: 0 auto 22px; text-align: center; }
+.pt-about p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text3); }
+.pt-about strong { color: var(--text2); font-weight: 600; }
+.pt-about a { color: var(--text2); text-decoration: none; box-shadow: inset 0 -1px 0 var(--border2); }
+.pt-about a:hover { color: var(--text); box-shadow: inset 0 -1px 0 var(--brand); }
+
 .pt-foot {
   text-align: center;
   font: 600 13px/1.4 var(--font-display);

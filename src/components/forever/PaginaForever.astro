@@ -1,0 +1,42 @@
+---
+// Página de la guía Forever para una pestaña (la usan src/pages/forever/index.astro y [tab].astro).
+// Pestañas sin contenido todavía ("en preparación") → noindex y fuera del sitemap (astro.config.mjs).
+import { getCollection } from 'astro:content';
+import GuideForever from './GuideForever.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import { SEO, guideJsonLd } from '../../lib/seo';
+import { TABS_FOREVER } from '../../lib/tabs';
+import { latestChangeDate } from '../../lib/changelog';
+
+interface Props {
+  tab: string;
+}
+const { tab } = Astro.props;
+const meta = SEO.forever[tab];
+const label = TABS_FOREVER.find((t) => t.id === tab)?.label ?? tab;
+const paginas = new Map((await getCollection('foreverPaginas')).map((p) => [p.data.tab, p]));
+/** Pestañas con contenido aunque no tengan .md (componente propio) */
+const CON_COMPONENTE = new Set(['coaching']);
+const enPreparacion = !paginas.has(tab) && !CON_COMPONENTE.has(tab);
+
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
+---
+
+<MainLayout
+  realm="forever"
+  defaultTab={tab}
+  title={meta.title}
+  description={meta.description}
+  noindex={enPreparacion}
+  jsonLd={enPreparacion ? [] : guideJsonLd('forever', tab, label, latestChangeDate(tab === 'mecanicas' ? undefined : tab, 'forever'))}
+>
+  <GuideForever tab={tab} paginas={paginas} />
+  <script is:inline src={withBase('scripts/bm-guide.js')}></script>
+  <script is:inline src={withBase('scripts/forever-talentos.js')}></script>
+  <script is:inline>
+    // renameLinks: false → Wowhead no cambia el texto de los enlaces
+    window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: false };
+  </script>
+  <script is:inline src="https://wow.zamimg.com/widgets/power.js"></script>
+</MainLayout>

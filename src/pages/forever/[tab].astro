@@ -1,0 +1,14 @@
+---
+// /forever/<pestaña>/ → una página por pestaña (General está en /forever/, Opener dentro de Rotación).
+import PaginaForever from '../../components/forever/PaginaForever.astro';
+import { TABS_FOREVER } from '../../lib/tabs';
+import { TAB_HOST } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return TABS_FOREVER.filter((t) => t.id !== 'mecanicas' && !TAB_HOST[t.id]).map((t) => ({ params: { tab: t.id } }));
+}
+
+const { tab } = Astro.params;
+---
+
+<PaginaForever tab={tab} />

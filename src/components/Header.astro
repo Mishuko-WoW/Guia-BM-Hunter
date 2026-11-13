@@ -1,12 +1,15 @@
 ---
 import { changelogFor, formatShort } from '../lib/changelog';
 import type { GuideRealm } from '../lib/tabs';
+import { tabPath } from '../lib/seo';
 import RealmSwitch from './RealmSwitch.astro';
 
 interface Props {
   realm?: GuideRealm;
+  /** Subtítulo del H1 (cambia por página para el SEO); si falta, el de la versión */
+  subtitulo?: string;
 }
-const { realm = 'midnight' } = Astro.props;
+const { realm = 'midnight', subtitulo } = Astro.props;
 
 // Entradas visibles en la cabecera (el historial completo queda en changelog.json)
 const CHANGELOG_VISIBLE = 2;
@@ -54,7 +57,7 @@ const PARCHE = CABECERA.parche;
       <p class="mk-eyebrow">{CABECERA.eyebrow.map((t, i) => <>{i > 0 && <i> · </i>}{t}</>)}</p>
       <h1>
         <span class="mk-h1-main">Guía Hunter <em>BM</em></span>
-        <span class="mk-h1-sub">{CABECERA.sub}</span>
+        <span class="mk-h1-sub">{subtitulo ?? CABECERA.sub}</span>
       </h1>
       {/* Solo Midnight tiene talentos de héroe; en Forever no se muestra nada aquí */}
       {realm === 'midnight' && (
@@ -77,7 +80,7 @@ const PARCHE = CABECERA.parche;
         {recentChanges.map((c) => (
           <li>
             <time datetime={c.fecha}>{formatShort(c.fecha)}</time>
-            <span>{c.texto} <a href={`#${c.pestana}`}>{c.enlace}</a></span>
+            <span>{c.texto} <a href={tabPath(realm, c.pestana)}>{c.enlace}</a></span>
           </li>
         ))}
       </ul>

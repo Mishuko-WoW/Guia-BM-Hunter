@@ -4,25 +4,33 @@ import '../styles/tokens.css';
 import '../styles/bm-guide.css';
 import '../styles/marca.css';
 import Particulas from '../components/Particulas.astro';
+import { OG } from '../lib/seo';
 
 interface Props {
   title?: string;
   description?: string;
   /** Versión de la web: cambia el tema (data-realm) y el grupo de contenido de Analytics */
   realm?: 'portada' | 'midnight' | 'forever';
-  /** Pestaña por defecto (para Analytics cuando la URL no lleva #) */
+  /** Pestaña de esta página (cada pestaña es una página; Analytics y bm-guide.js la usan) */
   defaultTab?: string;
+  /** true = no indexar (pestañas "en preparación") */
+  noindex?: boolean;
+  /** Datos estructurados (JSON-LD) de la página */
+  jsonLd?: Record<string, unknown>[];
 }
 
 const {
   title = 'Guía Hunter BM — Midnight S2',
-  description = 'Mejores talentos, rotación y equipo BiS para Hunter BM en Midnight Season 2. ¡Guía PvE 100% actualizada!.',
+  description = 'Guía del Cazador de Bestias (Hunter BM) en WoW Midnight Temporada 2.',
   realm = 'midnight',
   defaultTab = '',
+  noindex = false,
+  jsonLd = [],
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL('/brand/og-image.png', Astro.site).href;
+const og = OG[realm];
+const ogImage = new URL(og.image, Astro.site).href;
 ---
 
 <html lang="es" data-realm={realm} data-default-tab={defaultTab}>
@@ -34,6 +42,7 @@ const ogImage = new URL('/brand/og-image.png', Astro.site).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Vista previa al compartir (Discord, redes sociales) -->
@@ -46,7 +55,7 @@ const ogImage = new URL('/brand/og-image.png', Astro.site).href;
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Guía Hunter BM de Mishuko — Midnight Temporada 2" />
+    <meta property="og:image:alt" content={og.alt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -65,24 +74,7 @@ const ogImage = new URL('/brand/og-image.png', Astro.site).href;
       rel="stylesheet"
     />
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "Guía Hunter BM: Talentos, Rotación y Builds PvE",
-      "description": "Guía completa de Beast Mastery Hunter para PvE en World of Warcraft: Midnight. Incluye mecánicas, rotación, talentos héroe, procs clave, BiS y gestión de mascotas.",
-      "inLanguage": "es",
-      "author": {
-        "@type": "Organization",
-        "name": "Mishuko"
-      },
-      "about": [
-        "Beast Mastery Hunter",
-        "Hunter BM PvE",
-        "World of Warcraft Midnight"
-      ]
-    }
-    </script>
+    {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJY55YHE6Q"></script>
 
@@ -94,13 +86,16 @@ const ogImage = new URL('/brand/og-image.png', Astro.site).href;
     send_page_view: false
   });
 
-  // GA4 ignora el #: convertimos /midnight/#bis en la ruta limpia /midnight/bis
-  // y agrupamos por versión (content_group: portada | midnight | forever)
+  // Ruta limpia para GA4: /<versión>/<pestaña> (igual que antes de tener una página por pestaña):
+  // /midnight/talentos/ → /midnight/talentos · /midnight/rotacion/#opener → /midnight/opener · /midnight/ → /midnight/mecanicas
+  // Agrupamos por versión (content_group: portada | midnight | forever)
   function trackPageView() {
     const root = document.documentElement;
-    const base = location.pathname.replace(/\/+$/, '');
-    const tab = location.hash.slice(1) || root.dataset.defaultTab || '';
-    const pagePath = (base + (tab ? '/' + tab : '')) || '/';
+    const realmBase = root.dataset.realm === 'portada' ? '' : '/' + root.dataset.realm;
+    const hash = location.hash.slice(1);
+    const esPestana = /^[a-z-]+$/.test(hash) && document.querySelector('.mk-tab[data-tab="' + hash + '"]');
+    const tab = (esPestana ? hash : '') || root.dataset.defaultTab || '';
+    const pagePath = (realmBase + (tab ? '/' + tab : '')) || '/';
     gtag('event', 'page_view', {
       page_path: pagePath,
       page_location: location.origin + pagePath,

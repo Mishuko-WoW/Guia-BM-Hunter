@@ -1,4 +1,7 @@
 ---
+// Guía de Midnight: cabecera, pestañas y SOLO la sección de la página actual (una página por pestaña).
+// "rotacion" incluye también "opener" (se cambia con el selector de dentro) y "mecanicas" la sección
+// oculta "errores" (reservada al coaching).
 import Header from '../Header.astro';
 import TabBar from '../TabBar.astro';
 import SeccionMecanicas from '../SeccionMecanicas.astro';
@@ -13,26 +16,30 @@ import SeccionMascotas from '../SeccionMascotas.astro';
 import SeccionErrores from '../SeccionErrores.astro';
 import SeccionCoaching from '../SeccionCoaching.astro';
 import { formatLong, latestChangeDate } from '../../lib/changelog';
+import { SEO } from '../../lib/seo';
+
+interface Props {
+  tab?: string;
+}
+const { tab = 'mecanicas' } = Astro.props;
 
 // Fecha del footer = último cambio anotado en changelog.json
 const lastUpdate = latestChangeDate();
 ---
 
-<Header />
-<TabBar />
+<Header realm="midnight" subtitulo={SEO.midnight[tab]?.h1sub} />
+<TabBar realm="midnight" activa={tab} />
 
 <div class="content-area">
-  <SeccionMecanicas />
-  <SeccionTalentos />
-  <SeccionSimulacion />
-  <SeccionStats />
-  <SeccionRotacion />
-  <SeccionOpener />
-  <SeccionBiS />
-  <SeccionMacros />
-  <SeccionMascotas />
-  <SeccionErrores />
-  <SeccionCoaching />
+  {tab === 'mecanicas' && <><SeccionMecanicas /><SeccionErrores /></>}
+  {tab === 'talentos' && <SeccionTalentos />}
+  {tab === 'simulacion' && <SeccionSimulacion />}
+  {tab === 'estadisticas' && <SeccionStats />}
+  {tab === 'rotacion' && <><SeccionRotacion /><SeccionOpener /></>}
+  {tab === 'bis' && <SeccionBiS />}
+  {tab === 'macros' && <SeccionMacros />}
+  {tab === 'mascotas' && <SeccionMascotas />}
+  {tab === 'coaching' && <SeccionCoaching />}
 </div>
 
 <footer class="mk-footer">
@@ -45,6 +52,9 @@ const lastUpdate = latestChangeDate();
       <p class="mk-footer__note">
         Recurso de apoyo para entender la clase. Basado en Wowhead, Icy Veins, WarcraftLogs y mi experiencia personal.
       </p>
+      <nav class="mk-footer__links" aria-label="Otras guías">
+        <a href="/">Inicio</a> · <a href="/forever/">Guía Hunter WoW Forever</a>
+      </nav>
     </div>
   </div>
 </footer>

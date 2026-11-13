@@ -6,7 +6,7 @@ bloques:
     titulo: Resumen
     texto: >-
       WoW Forever es una versión de nivel **1 a 60** con árboles de talentos clásicos (builds tipo **31/20/0**).
-      El Beast Mastery es el especialista en mascotas: tu mascota es a la vez **tu mayor fuente de daño y tu tanque**,
+      El Hunter Beast Mastery (el **Cazador de Bestias**; en el árbol de talentos, *Dominio de bestias*) es el especialista en mascotas: tu mascota es a la vez **tu mayor fuente de daño y tu tanque**,
       y tú disparas a distancia con [[Tiro automático]] y tus disparos. El recurso es el **maná**, no el enfoque.
       <br><br>
       Respecto al Classic original, Forever mantiene casi todo y añade dos cosas clave:
@@ -34,7 +34,7 @@ bloques:
         - ["{{Disciplina de bestias}}", "Ahora también deja que el **50% de tu regeneración de maná** siga mientras lanzas: es tu talento de maná."]
         - ["{{Intimidación}}", "El siguiente ataque de la mascota aturde 3 s y tiene +100% de probabilidad de crítico. Genera mucha amenaza."]
         - ["{{Entrenamiento en aguante}}", "Aumenta salud **y armadura** de la mascota (hasta un 15% con 5/5)."]
-        - ["{{Domesticar bestia>Mascotas|Las mascotas escalan con tus estadísticas y cada familia tiene una habilidad única.}}", "**Escalan con tus estadísticas** y **cada familia tiene al menos una habilidad única** (por ejemplo [[Nube de polvo]] del zancaalta). Lo explico en la pestaña <a href=\"#mascotas\">Mascotas</a>."]
+        - ["{{Domesticar bestia>Mascotas|Las mascotas escalan con tus estadísticas y cada familia tiene una habilidad única.}}", "**Escalan con tus estadísticas** y **cada familia tiene al menos una habilidad única** (por ejemplo [[Nube de polvo]] del zancaalta). Lo explico en la pestaña <a href=\"/forever/mascotas/\">Mascotas</a>."]
 
   - tarjeta: Qué hereda tu mascota de tus estadísticas
     icono: ability_hunter_beasttraining
@@ -93,7 +93,7 @@ bloques:
   - tarjeta: Gestión de la mascota
     icono: ability_hunter_mendpet
     filas:
-      - "**Asegúrate de que ataque al objetivo correcto** y **mándala primero** para que genere amenaza antes de empezar a disparar. Las <a href=\"#macros\">macros de ataque</a> lo hacen automático."
+      - "**Asegúrate de que ataque al objetivo correcto** y **mándala primero** para que genere amenaza antes de empezar a disparar. Las <a href=\"/forever/macros/\">macros de ataque</a> lo hacen automático."
       - "**Felicidad:** dale de comer con [[Alimentar mascota]] (cada familia tiene su dieta). Si muere pierde felicidad y, con ella, daño."
       - "**Cúrala** con [[Sanar mascota]] y vigila su vida, sobre todo contra élites."
       - "[[Revivir mascota]] tiene un lanzamiento largo y caro: el talento [[Revivir mascota mejorado]] lo hace mucho más práctico."
