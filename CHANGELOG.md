@@ -15,6 +15,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-14 — Ahorro de uso: publicar.bat
+- `publicar.bat` (doble clic): `git push` + espera 60 s + `node scripts/indexnow.mjs`. El push lo hace Mishuko; Claude deja el commit hecho.
+- `CLAUDE.md`: sección «Ahorro de uso» (revisa Mishuko en local, sin capturas de Claude; sin esperar al deploy).
+
 ## 2026-11-14 — Rotación de Forever
 - Nueva pestaña Rotación de Forever (`/forever/rotacion/`): 3 ideas clave, lista antes del combate, selector Un objetivo / Área, escalera de prioridades con etiquetas por tipo, línea de tiempo de 36 s (relojes de 6 s, halcones, Aguijón, Tiro automático), inicio del combate en 7 pasos, tarjetas de cooldowns, «Júntalos con» y utilidad. Textos y errores frecuentes en `rotacion.md`.
 - Datos en `src/content/data/forever-rotacion.json` (lo pinta `RotacionForever.astro`, que falla en el build si un hechizo no está en `spells.json`). Estilos en el bloque "ROTACIÓN" de `forever.css`.

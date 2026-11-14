@@ -50,11 +50,16 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 - Tema por versión: `MainLayout` pone `<html data-realm="portada|midnight|forever">`; el tema Forever solo redefine variables en `tokens.css` (`:root[data-realm="forever"]`).
 - Analytics (GA4 G-EJY55YHE6Q): `page_view` con ruta limpia `/<versión>/<pestaña>` (`/midnight/bis`, `/forever/mecanicas`, `/`) y `content_group` = versión; igual que antes de tener una página por pestaña. Al crear una página nueva pasar `realm` y `defaultTab` (= su pestaña) a `MainLayout`.
 
+## Ahorro de uso (desde 2026-11-14, pedido por Mishuko)
+- **Revisa Mishuko, no Claude**: nada de capturas ni navegador para comprobar cómo se ve. Claude solo mira errores de consola o el HTML si hace falta (texto, no imágenes).
+- **Push y deploy los hace Mishuko** con doble clic en `publicar.bat` (push + IndexNow). Claude deja el commit hecho y no espera al deploy ni revisa la web publicada (Mishuko mira el tic verde en GitHub → Actions).
+- Una sesión por tarea; todos los cambios en un solo mensaje; muestras/capturas solo si las pide.
+
 ## Flujo obligatorio antes de publicar (push)
 1. `npm run build` sin errores.
-2. Levantar la web en local (`npx astro preview --port 4321`, en segundo plano) y comprobarla en el navegador: la pestaña afectada se ve bien y no hay errores de consola nuevos (ignorar el CORS de Wowhead).
-3. Dar al usuario el enlace **http://localhost:<puerto>/midnight/#<pestaña>** (o `/`, `/forever/`) (usar el puerto que imprime astro; si 4321 está ocupado usa 4322…) para que la revise él mismo.
-4. Hacer push **solo** cuando el usuario lo apruebe. Después, confirmar que el deploy termina en `success`.
+2. Levantar la web en local (`npx astro preview --port 4321`, en segundo plano) y mirar solo que no haya errores nuevos de consola (sin capturas; ignorar el CORS de Wowhead).
+3. Dar al usuario el enlace **http://localhost:<puerto>/<versión>/<pestaña>/** (usar el puerto que imprime astro; si 4321 está ocupado usa 4322…) para que la revise él mismo.
+4. Con su visto bueno: commit (con su entrada en `CHANGELOG.md`). El push lo hace Mishuko con `publicar.bat`, salvo que pida que lo haga Claude.
 
 ## Lista de cambios (changelog) — en cada actualización de contenido
 - Añadir **al principio** de `src/content/data/changelog.json` una entrada por cambio visible:
