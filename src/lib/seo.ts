@@ -105,7 +105,7 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
     },
     leveling: {
       title: 'Leveling Hunter WoW Forever 1-60: guía del Cazador',
-      description: 'Cómo subir del 1 al 60 con el Cazador de Bestias en WoW Forever: hitos, habilidades, armas y consejos.',
+      description: 'Guía de leveling 1-60 del Cazador de Bestias en WoW Forever: talentos por nivel, munición y carcaj, mejores mascotas para subir y consejos.',
       h1sub: 'Leveling 1-60 del Cazador en WoW Forever',
     },
     coaching: {

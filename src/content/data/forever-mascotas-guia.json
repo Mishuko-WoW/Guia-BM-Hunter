@@ -1,0 +1,46 @@
+{
+  "_ayuda": "Textos de la pestaña Mascotas de Forever (cabecera, pasos y aviso). Las familias y bestias salen de forever-mascotas.json (generado). Mini-formato [[Hechizo]].",
+  "resumen": "Cada mascota tiene **su habilidad propia** (la de su familia) y además aprende **habilidades comunes**: [[Mordedura]] o [[Zarpa]] para pegar, [[Carrerilla]] o [[Lanzada]] para correr más y [[Pavor]] para quitarse amenaza. Puede tener **4 habilidades activas** a la vez; las pasivas, todas las que quieras.",
+  "datos": [
+    {
+      "valor": "18",
+      "texto": "Familias"
+    },
+    {
+      "valor": "4",
+      "texto": "Habilidades activas a la vez"
+    },
+    {
+      "valor": "1",
+      "texto": "Habilidad propia por familia"
+    },
+    {
+      "valor": "Nv 10",
+      "texto": "Tu primera mascota"
+    }
+  ],
+  "aviso": "Para varias habilidades nuevas de Forever aún no se sabe qué bestias enseñan los rangos altos; en esos casos muestro el rango más alto conocido.",
+  "pasos": [
+    {
+      "icono": "ability_hunter_beastcall",
+      "titulo": "Guárdala",
+      "texto": "Deja tu mascota en el establo."
+    },
+    {
+      "icono": "ability_hunter_beasttaming",
+      "titulo": "Domestica",
+      "texto": "Con [[Domesticar bestia]], una bestia que ya tenga la habilidad (abajo tienes cuáles). No puede ser de nivel superior al tuyo."
+    },
+    {
+      "icono": "ability_hunter_beasttraining",
+      "titulo": "Aprende",
+      "texto": "Úsala en combate hasta que el chat diga que has aprendido la habilidad."
+    },
+    {
+      "icono": "ability_hunter_beastsoothe",
+      "titulo": "Enséñasela",
+      "texto": "Recupera tu mascota y enséñasela con **Doma de bestias** gastando **puntos de instrucción** (suben con su nivel y su lealtad)."
+    }
+  ],
+  "consejo": "Las bestias de más nivel enseñan **rangos más altos** de la misma habilidad. Cada 8-10 niveles merece la pena buscar el siguiente rango de [[Mordedura]] o [[Zarpa]]."
+}

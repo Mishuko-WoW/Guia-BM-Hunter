@@ -1,6 +1,13 @@
 [
   {
     "fecha": "2026-11-14",
+    "pestana": "leveling",
+    "texto": "Guía para subir del 1 al 60 (talentos por nivel, munición, carcaj y mascotas) en",
+    "enlace": "Leveling 1-60",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-14",
     "pestana": "rotacion",
     "texto": "Rotación para un objetivo y en área, inicio del combate y cooldowns en",
     "enlace": "Rotación",

@@ -1,0 +1,107 @@
+---
+// Pestaña Talentos (Forever) con el diseño de Leveling (clases lv-*/gn-*): resumen, calculadora,
+// talentos clave, puntos flexibles y rangos entrenables (sin precios).
+// Contenido: src/content/data/forever-talentos-guia.json (los árboles y builds siguen en forever-talentos.json / forever-builds.json).
+import data from '../../content/data/forever-talentos-guia.json';
+import talentosData from '../../content/data/forever-talentos.json';
+import { getSpell, foreverIcon, iconUrl } from '../../lib/spells';
+import { md } from '../../lib/markup';
+import { tabPath } from '../../lib/seo';
+import IndiceForever from './IndiceForever.astro';
+import CalculadoraTalentos from './CalculadoraTalentos.astro';
+import RangosEntrenables from './RangosEntrenables.astro';
+
+// Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
+const citados = new Set<string>();
+const recoger = (v: unknown) => {
+  if (typeof v === 'string') for (const m of v.matchAll(/\[\[([^\]|>]+)/g)) citados.add(m[1].trim());
+  else if (Array.isArray(v)) v.forEach(recoger);
+  else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) k === 'hechizo' ? citados.add(String(x)) : recoger(x);
+};
+recoger({ ...data, _ayuda: '' });
+const faltan = [...citados].filter((n) => !getSpell(n));
+if (faltan.length) throw new Error(`forever-talentos-guia.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
+
+const tip = (nombre: string) => {
+  const s = getSpell(nombre);
+  return { 'data-name': nombre, 'data-type': s?.type ?? '', 'data-desc': s?.desc ?? '' };
+};
+// Icono del talento (el del árbol) o, si no es talento, el del catálogo
+const ICONO = new Map(talentosData.arboles.flatMap((a) => a.talentos.map((t) => [t.nombre, t.icono] as const)));
+const icono = (n: string) => (ICONO.has(n) ? iconUrl(ICONO.get(n)) : foreverIcon(n));
+const INDICE = [
+  { id: 'tf-calc', texto: 'Calculadora' },
+  { id: 'tf-clave', texto: 'Talentos clave' },
+  { id: 'tf-flex', texto: 'Puntos flexibles' },
+  { id: 'tf-rangos', texto: 'Rangos entrenables' },
+];
+---
+
+<div class="lv gn tf">
+  <div class="gn-hero">
+    <p set:html={md(data.resumen)} />
+    <ul class="gn-datos">
+      {data.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
+    </ul>
+  </div>
+
+  <a class="gn-banner" href={`${tabPath('forever', 'leveling')}#lv-talentos`}>
+    <img src={iconUrl('inv_misc_map_01')} alt="" width="40" height="40" />
+    <span><b>¿Estás subiendo de nivel?</b> El orden de talentos nivel a nivel está en la guía de leveling.</span>
+    <span class="gn-banner__btn">Build de leveling →</span>
+  </a>
+
+  <IndiceForever items={INDICE} />
+
+  <p class="lv-demo gn-aviso" set:html={md(data.aviso)} />
+
+  <section class="lv-sec" id="tf-calc">
+    <h3>Calculadora de talentos</h3>
+    <CalculadoraTalentos />
+  </section>
+
+  <section class="lv-sec" id="tf-clave">
+    <h3>Talentos clave</h3>
+    <div class="gn-pros">
+      {data.clave.map((g) => (
+        <div class={`gn-col tf-col tf-col--${g.color}`}>
+          <h4><img src={iconUrl(g.icono)} alt="" width="36" height="36" />{g.arbol}</h4>
+          <ul class="tf-list">
+            {g.lista.map((t) => (
+              <li>
+                <img src={icono(t.hechizo)} alt="" width="44" height="44" loading="lazy" {...tip(t.hechizo)} />
+                <span><b>{t.titulo ?? t.hechizo}</b> <span set:html={md(t.texto)} /></span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="tf-flex">
+    <h3>Puntos flexibles según la situación</h3>
+    <div class="tf-flex">
+      {data.flexibles.map((f) => {
+        const primero = f.cambio.match(/\[\[([^\]|>]+)/)?.[1] ?? '';
+        return (
+          <div class="tf-flex__card">
+            <img src={icono(primero)} alt="" width="44" height="44" loading="lazy" {...tip(primero)} />
+            <div>
+              <p class="tf-flex__cambio" set:html={md(f.cambio)} />
+              <p class="tf-flex__cuando"><span>Cuándo</span> <span set:html={md(f.cuando)} /></p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="tf-rangos">
+    <h3>Rangos entrenables más altos a nivel 60</h3>
+    <RangosEntrenables />
+    <p class="lv-lead tf-nota">
+      Qué comprar en el instructor mientras subes, y cuánto cuesta: <a href={`${tabPath('forever', 'leveling')}#lv-instructor`}>Leveling 1-60 → Instructor</a>.
+    </p>
+  </section>
+</div>

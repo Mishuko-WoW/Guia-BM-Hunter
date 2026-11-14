@@ -1,0 +1,2224 @@
+{
+  "_ayuda": "Pestaña Leveling 1-60 de Forever (lo pinta LevelingForever.astro). Textos con mini-formato [[Hechizo]]. Los talentos de cada tramo salen solos del 'orden' de la build 'leveling' (forever-builds.json) y la munición de cada tramo de 'municion' (por nivel). 'familias' = ids de forever-mascotas.json. Munición y carcajes: Wowhead Forever es-ES (2026-11-14). Carcajes y bolsas (municion.carcajes / municion.bolsas, Wowhead Forever 2026-11-14): origen = texto; npc: true añade el botón «Venta de NPC» (#sold-by).",
+  "hitos": [
+    {
+      "nivel": 10,
+      "hechizo": "Domesticar bestia",
+      "texto": "Tu primera mascota"
+    },
+    {
+      "nivel": 25,
+      "hechizo": "Invocar halcón",
+      "texto": "Tu habilidad estrella"
+    },
+    {
+      "nivel": 40,
+      "hechizo": "Ira de bestias",
+      "texto": "Tu gran cooldown"
+    },
+    {
+      "nivel": 60,
+      "hechizo": "Disparos mortales",
+      "nombre": "Build de raid",
+      "texto": "Cambia a la 31/20/0"
+    }
+  ],
+  "tramos": [
+    {
+      "id": "1-10",
+      "desde": 1,
+      "hasta": 9,
+      "titulo": "Aprende lo básico",
+      "resumen": "Aún no tienes mascota ni talentos: tu daño es el arma a distancia y la munición. Sube rápido haciendo misiones, que a estos niveles todo se mata en pocos golpes.",
+      "claves": [
+        "Abre con [[Aguijón de serpiente]] y deja que [[Tiro automático]] haga el resto. Si el enemigo llega hasta ti, remata cuerpo a cuerpo.",
+        "Compra **munición en cada pueblo** y un **carcaj** (o una faltriquera si usas arma de fuego): da un 10% de velocidad de ataque.",
+        "Un arma a distancia mejor es la mayor subida de daño que vas a notar. Mira las recompensas de misión."
+      ],
+      "mascota": "Todavía no tienes. Al llegar a nivel 10 el instructor de cazadores te da la misión para aprender [[Domesticar bestia]].",
+      "familias": []
+    },
+    {
+      "id": "10-20",
+      "desde": 10,
+      "hasta": 19,
+      "titulo": "Tu primera mascota",
+      "resumen": "Con la mascota todo cambia: ella aguanta los golpes y tú disparas desde lejos. Tus primeros talentos van directos a daño.",
+      "claves": [
+        "Pon [[Aspecto del halcón]] siempre que pelees: con [[Aspectos letales]] tu [[Tiro automático]] dispara mucho más rápido.",
+        "Manda primero a la mascota y **espera 2 o 3 golpes** antes de disparar, para que se quede con la amenaza.",
+        "Cura a la mascota con [[Sanar mascota]] entre combates y dale de comer con [[Alimentar mascota]] para que esté contenta (pega más).",
+        "Deja [[Pavor]] **desactivado** cuando vayas solo: tu mascota tiene que mantener la amenaza, no quitársela."
+      ],
+      "mascota": "Un **jabalí**: [[Embestir]] le lleva al enemigo antes que a ti y come casi de todo, así que alimentarlo sale barato.",
+      "familias": [
+        "jabali",
+        "raptor"
+      ]
+    },
+    {
+      "id": "20-30",
+      "desde": 20,
+      "hasta": 29,
+      "titulo": "Llega el halcón",
+      "resumen": "A nivel 25 desbloqueas [[Invocar halcón]], el gran cambio de Forever. Desde aquí tu daño sube muchísimo.",
+      "claves": [
+        "Usa [[Invocar halcón]] **siempre que esté disponible**: puedes tener 2 halcones a la vez y comparte reutilización con [[Tiro Arcano]].",
+        "A nivel 20 llega [[Aspecto del guepardo]] para viajar. Quítalo cerca de enemigos: si te golpean, te atontan.",
+        "A nivel 24 tu mascota puede aprender un rango nuevo de [[Mordedura]] o [[Zarpa]]. Merece la pena ir a buscarlo."
+      ],
+      "mascota": "Sigue con el jabalí o pásate al **raptor**: [[Desgarro salvaje]] añade un sangrado y tiene [[Mordedura]] y [[Zarpa]].",
+      "familias": [
+        "jabali",
+        "raptor"
+      ]
+    },
+    {
+      "id": "30-40",
+      "desde": 30,
+      "hasta": 39,
+      "titulo": "La mascota pega de verdad",
+      "resumen": "[[Ferocidad]], [[Intimidación]] y [[Disciplina de bestias]] hacen de tu mascota un monstruo y te dan maná para pelear sin parar.",
+      "claves": [
+        "A nivel 30 aprendes [[Fingir muerte]]: si algo sale mal, finge, los enemigos se olvidan de ti y vuelves a empezar.",
+        "[[Disciplina de bestias]] te deja recuperar maná mientras disparas: bebes mucho menos entre combates.",
+        "Enseña [[Carrerilla]] (o [[Lanzada]] si vuela) a tu mascota: llega antes al enemigo y te pierdes menos tiempo."
+      ],
+      "mascota": "El **felino** es la mejor mascota de daño: [[Mordedura]], [[Zarpa]] y [[Acechar]] (su primer golpe hace un 20% más). Desde nivel 32 ya puedes domesticar uno con Acechar.",
+      "familias": [
+        "felino",
+        "tortuga"
+      ]
+    },
+    {
+      "id": "40-50",
+      "desde": 40,
+      "hasta": 49,
+      "titulo": "Ira de bestias",
+      "resumen": "A nivel 40 cierras Dominio de bestias con [[Ira de bestias]] y empiezas Puntería. Toca renovar munición y carcaj.",
+      "claves": [
+        "Usa [[Ira de bestias]] en los combates difíciles o cuando juntes varios enemigos: es tu gran cooldown cada 2 minutos.",
+        "Los puntos de Puntería van a [[Ataques letales]]: +5% de crítico para ti… y tu mascota lo hereda entero.",
+        "Con [[Afinar la puntería]] tu Intelecto pasa a darte poder de ataque. Ya no es solo una estadística de maná."
+      ],
+      "mascota": "Felino para matar rápido. Si te cuestan los élites o te juntas con muchos enemigos a la vez, una **tortuga** con [[Escudo de caparazón]] aguanta lo que le eches.",
+      "familias": [
+        "felino",
+        "tortuga"
+      ]
+    },
+    {
+      "id": "50-60",
+      "desde": 50,
+      "hasta": 60,
+      "titulo": "Recta final",
+      "resumen": "Los últimos puntos son mejoras pequeñas. Lo importante ahora es la munición buena, el carcaj de 16 casillas y el rango máximo de [[Mordedura]].",
+      "claves": [
+        "A nivel 56 tu mascota ya puede aprender el rango máximo de [[Mordedura]] o [[Zarpa]] (mira dónde en la pestaña Mascotas).",
+        "Si pasas por Profundidades de Roca Negra, Ribbly Llavenrosca puede soltar el carcaj o la bandolera de 16 casillas (14% de velocidad).",
+        "A nivel 60 cambia a la **build de raid** (31/20/0) en el instructor: pasas los puntos de Supervivencia a Puntería."
+      ],
+      "mascota": "Felino hasta el final. A estas alturas lo que más importa es que tenga sus habilidades **al rango máximo**.",
+      "familias": [
+        "felino",
+        "tortuga"
+      ]
+    }
+  ],
+  "municion": {
+    "tipos": [
+      {
+        "nivel": 1,
+        "flecha": {
+          "id": 2512,
+          "nombre": "Flecha basta"
+        },
+        "bala": {
+          "id": 2516,
+          "nombre": "Tiro ligero"
+        },
+        "dps": 1.5
+      },
+      {
+        "nivel": 10,
+        "flecha": {
+          "id": 2515,
+          "nombre": "Flecha afilada"
+        },
+        "bala": {
+          "id": 2519,
+          "nombre": "Tiro pesado"
+        },
+        "dps": 3.5
+      },
+      {
+        "nivel": 25,
+        "flecha": {
+          "id": 3030,
+          "nombre": "Flecha cuchilla"
+        },
+        "bala": {
+          "id": 3033,
+          "nombre": "Perdigón sólido"
+        },
+        "dps": 7.5
+      },
+      {
+        "nivel": 40,
+        "flecha": {
+          "id": 11285,
+          "nombre": "Flecha dentada"
+        },
+        "bala": {
+          "id": 11284,
+          "nombre": "Balas precisas"
+        },
+        "dps": 13
+      }
+    ],
+    "especial": [
+      {
+        "nivel": 5,
+        "id": 8067,
+        "nombre": "Proyectil artesanal ligero",
+        "dps": 2,
+        "tipo": "bala",
+        "origen": "Ingeniería"
+      },
+      {
+        "nivel": 15,
+        "id": 8068,
+        "nombre": "Proyectil artesanal pesado",
+        "dps": 4.5,
+        "tipo": "bala",
+        "origen": "Ingeniería"
+      },
+      {
+        "nivel": 30,
+        "id": 8069,
+        "nombre": "Proyectil artesanal sólido",
+        "dps": 8.5,
+        "tipo": "bala",
+        "origen": "Ingeniería"
+      },
+      {
+        "nivel": 37,
+        "id": 10512,
+        "nombre": "Balas de mitril de gran impacto",
+        "dps": 12.5,
+        "tipo": "bala",
+        "origen": "Ingeniería"
+      },
+      {
+        "nivel": 44,
+        "id": 10513,
+        "nombre": "Girotiro de mitril",
+        "dps": 15,
+        "tipo": "bala",
+        "origen": "Ingeniería"
+      },
+      {
+        "nivel": 51,
+        "id": 19316,
+        "nombre": "Flecha con hielo",
+        "dps": 16.5,
+        "tipo": "flecha",
+        "origen": "Valle de Alterac (Honorable)"
+      },
+      {
+        "nivel": 51,
+        "id": 19317,
+        "nombre": "Bala con hielo",
+        "dps": 16.5,
+        "tipo": "bala",
+        "origen": "Valle de Alterac (Honorable)"
+      },
+      {
+        "nivel": 52,
+        "id": 18042,
+        "nombre": "Flecha con punta de torio",
+        "dps": 17.5,
+        "tipo": "flecha",
+        "origen": "Fabricada (subasta)"
+      },
+      {
+        "nivel": 52,
+        "id": 15997,
+        "nombre": "Proyectiles de torio",
+        "dps": 17.5,
+        "tipo": "bala",
+        "origen": "Ingeniería"
+      },
+      {
+        "nivel": 56,
+        "id": 13377,
+        "nombre": "Balas de cañón en miniatura",
+        "dps": 20.5,
+        "tipo": "bala",
+        "origen": "Stratholme (Maestro cañonero Willey)"
+      }
+    ],
+    "carcajes": [
+      {
+        "nivel": 1,
+        "id": 2101,
+        "nombre": "Carcaj ligero",
+        "casillas": 6,
+        "vel": 10,
+        "npc": true
+      },
+      {
+        "nivel": 1,
+        "id": 7278,
+        "nombre": "Carcaj de cuero ligero",
+        "casillas": 8,
+        "vel": 10,
+        "origen": "Peletería"
+      },
+      {
+        "nivel": 1,
+        "id": 5439,
+        "nombre": "Carcaj pequeño",
+        "casillas": 8,
+        "vel": 10,
+        "npc": true
+      },
+      {
+        "nivel": 4,
+        "id": 286734,
+        "nombre": "Carcaj de Ban'ethil",
+        "casillas": 10,
+        "vel": 10,
+        "origen": "Misión «Fuga de Ban'ethil»"
+      },
+      {
+        "nivel": 10,
+        "id": 11362,
+        "nombre": "Carcaj fino",
+        "casillas": 10,
+        "vel": 10,
+        "npc": true
+      },
+      {
+        "nivel": 15,
+        "id": 3573,
+        "nombre": "Carcaj de caza",
+        "casillas": 10,
+        "vel": 10,
+        "origen": "Misión «La venganza de Vyrin»"
+      },
+      {
+        "nivel": 18,
+        "id": 3605,
+        "nombre": "Carcaj de la Guardia Nocturna",
+        "casillas": 12,
+        "vel": 11,
+        "origen": "Misión «Vigilancia nocturna»"
+      },
+      {
+        "nivel": 30,
+        "id": 7371,
+        "nombre": "Carcaj pesado",
+        "casillas": 14,
+        "vel": 12,
+        "origen": "Peletería",
+        "npc": true
+      },
+      {
+        "nivel": 35,
+        "id": 274926,
+        "nombre": "Carcaj de matriarca",
+        "casillas": 14,
+        "vel": 13,
+        "origen": "Misión de clase de cazador"
+      },
+      {
+        "nivel": 40,
+        "id": 8217,
+        "nombre": "Carcaj rápido",
+        "casillas": 16,
+        "vel": 13,
+        "origen": "Peletería o subasta"
+      },
+      {
+        "nivel": 50,
+        "id": 2662,
+        "nombre": "Carcaj de Ribbly",
+        "casillas": 16,
+        "vel": 14,
+        "origen": "Botín: Ribbly Llavenrosca (Profundidades de Roca Negra)"
+      },
+      {
+        "nivel": 55,
+        "id": 19319,
+        "nombre": "Carcaj de pellejo de arpía",
+        "casillas": 16,
+        "vel": 15,
+        "origen": "Valle de Alterac (Venerado)",
+        "npc": true
+      },
+      {
+        "nivel": 60,
+        "id": 18714,
+        "nombre": "Antigua lámina envuelta en tendones",
+        "casillas": 18,
+        "vel": 15,
+        "origen": "Misión «Carcaj antiguo cosido con tendón»"
+      }
+    ],
+    "bolsas": [
+      {
+        "nivel": 1,
+        "id": 7279,
+        "nombre": "Faltriquera de munición de cuero pequeña",
+        "casillas": 8,
+        "vel": 10,
+        "origen": "Peletería"
+      },
+      {
+        "nivel": 1,
+        "id": 5441,
+        "nombre": "Faltriquera de pólvora pequeña",
+        "casillas": 8,
+        "vel": 10,
+        "npc": true
+      },
+      {
+        "nivel": 15,
+        "id": 3574,
+        "nombre": "Saco de munición de caza",
+        "casillas": 10,
+        "vel": 10,
+        "origen": "Misión «La venganza de Vyrin»"
+      },
+      {
+        "nivel": 18,
+        "id": 3604,
+        "nombre": "Bandolera de la Guardia Nocturna",
+        "casillas": 12,
+        "vel": 11,
+        "origen": "Misión «Vigilancia nocturna»"
+      },
+      {
+        "nivel": 30,
+        "id": 7372,
+        "nombre": "Faltriquera de munición de cuero pesado",
+        "casillas": 14,
+        "vel": 12,
+        "origen": "Peletería"
+      },
+      {
+        "nivel": 40,
+        "id": 8218,
+        "nombre": "Faltriquera de munición de cuero grueso",
+        "casillas": 16,
+        "vel": 13,
+        "origen": "Peletería o subasta"
+      },
+      {
+        "nivel": 50,
+        "id": 2663,
+        "nombre": "Bandolera de Ribbly",
+        "casillas": 16,
+        "vel": 14,
+        "origen": "Botín: Ribbly Llavenrosca (Profundidades de Roca Negra)"
+      },
+      {
+        "nivel": 55,
+        "id": 19320,
+        "nombre": "Bandolera de piel de gnoll",
+        "casillas": 16,
+        "vel": 15,
+        "origen": "Valle de Alterac (Venerado)",
+        "npc": true
+      }
+    ]
+  },
+  "mascotas": {
+    "recomendadas": [
+      {
+        "familia": "jabali",
+        "tramo": "Nivel 10 a 30",
+        "texto": "La más fácil para empezar: [[Embestir]] llega antes que tú al enemigo y come pan, queso, pescado, fruta, hongos y carne."
+      },
+      {
+        "familia": "felino",
+        "tramo": "Nivel 30 a 60",
+        "texto": "La de más daño: [[Mordedura]] y [[Zarpa]] a la vez, y [[Acechar]] para empezar cada combate con un golpe fuerte."
+      },
+      {
+        "familia": "raptor",
+        "tramo": "Alternativa de daño",
+        "texto": "[[Desgarro salvaje]] añade un sangrado de 18 s y también tiene [[Mordedura]] y [[Zarpa]]."
+      },
+      {
+        "familia": "tortuga",
+        "tramo": "Para élites",
+        "texto": "[[Escudo de caparazón]] le quita un 50% del daño durante 12 s. Ideal si juntas muchos enemigos o vas a por élites."
+      }
+    ],
+    "habilidades": [
+      {
+        "hechizo": "Mordedura",
+        "texto": "Su ataque principal. Súbela de rango cada 8 niveles (24, 32, 40, 48, 56…): es lo que más daño le da."
+      },
+      {
+        "hechizo": "Zarpa",
+        "texto": "El ataque de las familias sin [[Mordedura]]. Si tiene las dos (felino, raptor), enséñale las dos."
+      },
+      {
+        "hechizo": "Carrerilla",
+        "texto": "Desde nivel 30. Llega antes al enemigo y te deja recolocarla rápido. [[Lanzada]] si vuela."
+      },
+      {
+        "hechizo": "Pavor",
+        "texto": "**Desactívala yendo solo** (la mascota debe quedarse la amenaza). Actívala en grupo, con un tanque."
+      }
+    ],
+    "cambiar": [
+      "**No hace falta cambiar de mascota para mejorarla**: sube de nivel contigo. Para un rango nuevo, domestica un momento a una bestia que lo tenga, apréndelo y vuelve con la tuya.",
+      "Cambia cuando quieras **otra familia** (por ejemplo, del jabalí al felino a partir de nivel 30).",
+      "Domestica bestias **de tu nivel o muy cerca**: en Forever no puedes domesticar una de nivel superior al tuyo, y una de mucho menos nivel te tocará subirla.",
+      "Una mascota recién domesticada empieza con **poca lealtad**: dale de comer y combate con ella para que suba y gane puntos de instrucción."
+    ]
+  },
+  "consejos": [
+    {
+      "icono": "ability_hunter_beastcall",
+      "titulo": "La mascota entra primero",
+      "texto": "Mándala, espera a que tenga la amenaza y entonces dispara. Si el enemigo se gira hacia ti, para un momento."
+    },
+    {
+      "icono": "inv_drink_07",
+      "titulo": "Bebe con cabeza",
+      "texto": "El maná es tu límite al principio. No gastes en [[Tiro Arcano]] contra enemigos que ya mueren solos con [[Tiro automático]]."
+    },
+    {
+      "icono": "ability_rogue_feint",
+      "titulo": "Cuidado con la zona muerta",
+      "texto": "Entre el cuerpo a cuerpo y los 8 m no puedes disparar. Aléjate o pégate del todo. [[Invocar halcón]] sí funciona ahí."
+    },
+    {
+      "icono": "inv_weapon_bow_08",
+      "titulo": "Mejora el arma",
+      "texto": "Un arco, una ballesta o un arma de fuego nuevos son la mayor subida de daño. Revisa la subasta cada pocos niveles."
+    },
+    {
+      "icono": "inv_misc_ammo_arrow_01",
+      "titulo": "Nunca sin munición",
+      "texto": "Lleva 1.000 o más. Sin munición no puedes atacar a distancia, y quedarte sin ella en mitad de una zona es perder media hora."
+    },
+    {
+      "icono": "ability_rogue_feigndeath",
+      "titulo": "Finge y sobrevive",
+      "texto": "Desde nivel 30, [[Fingir muerte]] te saca de casi cualquier mal pull. Después revive o cura a la mascota y sigue."
+    }
+  ],
+  "instructor": {
+    "_ayuda": "Lo que enseña el instructor de cazadores (lista y precios pasados por Mishuko, 2026-11-14; iconos y descripciones de Wowhead Forever es-ES). coste en cobre (10000 = 1 oro). rec: si (cómprala) | opc (opcional) | no (sáltatela). nota = motivo visible.",
+    "lista": [
+      {
+        "nivel": 1,
+        "nombre": "Rastrear bestias",
+        "rango": null,
+        "coste": 10,
+        "icono": "ability_tracking",
+        "spell": 1494,
+        "rec": "si",
+        "nota": "Cuesta casi nada y te muestra las bestias en el minimapa.",
+        "desc": "Muestra la ubicación de las bestias cercanas en el minimapa. Solo se puede activar una forma de rastreo cada vez."
+      },
+      {
+        "nivel": 4,
+        "nombre": "Aguijón de serpiente",
+        "rango": 1,
+        "coste": 100,
+        "icono": "ability_hunter_quickshot",
+        "spell": 1978,
+        "rec": "si",
+        "nota": "Daño en cada combate: compra todos los rangos.",
+        "desc": "Aguijonea al enemigo causando 15 p. de daño de Naturaleza durante 15 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 4,
+        "nombre": "Aspecto del mono",
+        "rango": null,
+        "coste": 100,
+        "icono": "ability_hunter_aspectofthemonkey",
+        "spell": 13163,
+        "rec": "si",
+        "nota": "Barato y te protege hasta tener Aspecto del halcón.",
+        "desc": "El cazador asume los aspectos de un mono aumentando en un 8% la probabilidad de esquivar. Solo puede haber 1 aspecto activo cada vez."
+      },
+      {
+        "nivel": 6,
+        "nombre": "Marca del cazador",
+        "rango": 1,
+        "coste": 100,
+        "icono": "ability_hunter_snipershot",
+        "spell": 1130,
+        "rec": "si",
+        "nota": "Más daño contra tu objetivo para ti y tu mascota.",
+        "desc": "Deja la Marca del cazador en el objetivo y aumenta el poder de ataque a distancia de todos los que ataquen al objetivo en 26 p. Además, el cazador siempre podrá ver al objetivo, aunque este utilice Sigilo o Invisibilidad. El objetivo también aparecerá en el minimapa. Dura 2 min."
+      },
+      {
+        "nivel": 6,
+        "nombre": "Tiro Arcano",
+        "rango": 1,
+        "coste": 100,
+        "icono": "ability_impalingbolt",
+        "spell": 3044,
+        "rec": "si",
+        "nota": "Tu disparo instantáneo: cada rango pega más.",
+        "desc": "Un disparo instantáneo que causa 25 p. de daño Arcano."
+      },
+      {
+        "nivel": 8,
+        "nombre": "Disparo de concusión",
+        "rango": null,
+        "coste": 200,
+        "icono": "spell_frost_stun",
+        "spell": 5116,
+        "rec": "si",
+        "nota": "Frena al enemigo para que no te alcance.",
+        "desc": "Deja conmocionado al objetivo, ralentizando su velocidad de movimiento en un 50% durante 4 s."
+      },
+      {
+        "nivel": 8,
+        "nombre": "Golpe de raptor",
+        "rango": 2,
+        "coste": 200,
+        "icono": "ability_meleedamage",
+        "spell": 14260,
+        "rec": "no",
+        "nota": "Ataque cuerpo a cuerpo: casi no lo vas a usar.",
+        "desc": "Un ataque contundente que inflige daño con arma cuerpo a cuerpo más 11 p."
+      },
+      {
+        "nivel": 10,
+        "nombre": "Aguijón de serpiente",
+        "rango": 2,
+        "coste": 400,
+        "icono": "ability_hunter_quickshot",
+        "spell": 13549,
+        "rec": "si",
+        "nota": "Daño en cada combate: compra todos los rangos.",
+        "desc": "Aguijonea al enemigo causando 35 p. de daño de Naturaleza durante 15 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 10,
+        "nombre": "Aspecto del halcón",
+        "rango": 1,
+        "coste": 400,
+        "icono": "spell_nature_ravenform",
+        "spell": 13165,
+        "rec": "si",
+        "nota": "Lo llevas puesto siempre: más poder de ataque a distancia.",
+        "desc": "El cazador asume los aspectos de un halcón aumentando en 20 p. su poder de ataque a distancia. Solo puede haber 1 aspecto activo cada vez."
+      },
+      {
+        "nivel": 10,
+        "nombre": "Rastrear humanoides",
+        "rango": null,
+        "coste": 400,
+        "icono": "spell_holy_prayerofhealing",
+        "spell": 19883,
+        "rec": "si",
+        "nota": "Barato y útil para buscar objetivos de misión.",
+        "desc": "Muestra la ubicación de los humanoides cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+      },
+      {
+        "nivel": 12,
+        "nombre": "Cortar alas",
+        "rango": 1,
+        "coste": 600,
+        "icono": "ability_rogue_trip",
+        "spell": 2974,
+        "rec": "si",
+        "nota": "Frena al enemigo cuando se te pega.",
+        "desc": "Inflige 5 p. de daño y reduce la velocidad de movimiento del objetivo en un 50% durante 10 s."
+      },
+      {
+        "nivel": 12,
+        "nombre": "Disparo de distracción",
+        "rango": 1,
+        "coste": 600,
+        "icono": "spell_arcane_blink",
+        "spell": 20736,
+        "rec": "no",
+        "nota": "Genera amenaza: es para tanquear, no para subir.",
+        "desc": "Distrae al objetivo, causando amenaza."
+      },
+      {
+        "nivel": 12,
+        "nombre": "Sanar mascota",
+        "rango": 1,
+        "coste": 600,
+        "icono": "ability_hunter_mendpet",
+        "spell": 136,
+        "rec": "si",
+        "nota": "Cada rango cura más a tu mascota: menos tiempo parado.",
+        "desc": "Cura a tu mascota en 20 p. de salud cada segundo cada vez que te concentras. Dura 5 s."
+      },
+      {
+        "nivel": 12,
+        "nombre": "Tiro Arcano",
+        "rango": 2,
+        "coste": 600,
+        "icono": "ability_impalingbolt",
+        "spell": 14281,
+        "rec": "si",
+        "nota": "Tu disparo instantáneo: cada rango pega más.",
+        "desc": "Un disparo instantáneo que causa 35 p. de daño Arcano."
+      },
+      {
+        "nivel": 14,
+        "nombre": "Bestia temible",
+        "rango": 1,
+        "coste": 1200,
+        "icono": "ability_druid_cower",
+        "spell": 1513,
+        "rec": "opc",
+        "nota": "Asusta a una bestia unos segundos. El primer rango basta.",
+        "desc": "Asusta a una bestia haciendo que huya durante un máximo de 10 s. El daño causado puede interrumpir el efecto. Solo se puede asustar a una bestia cada vez."
+      },
+      {
+        "nivel": 14,
+        "nombre": "Ojo de águila",
+        "rango": null,
+        "coste": 1200,
+        "icono": "ability_hunter_eagleeye",
+        "spell": 6197,
+        "rec": "opc",
+        "nota": "Ves una zona lejana. No ayuda a subir.",
+        "desc": "Acerca el zoom con la visión del cazador. Solo se puede usar en el exterior. Dura 1 min."
+      },
+      {
+        "nivel": 14,
+        "nombre": "Ojos de la bestia",
+        "rango": null,
+        "coste": 1200,
+        "icono": "ability_eyeoftheowl",
+        "spell": 1002,
+        "rec": "opc",
+        "nota": "Controlas a tu mascota a distancia. Curioso, pero no ayuda a subir.",
+        "desc": "Controla a tu mascota y mira con sus ojos durante 2 min."
+      },
+      {
+        "nivel": 16,
+        "nombre": "Golpe de raptor",
+        "rango": 3,
+        "coste": 1578,
+        "icono": "ability_meleedamage",
+        "spell": 14261,
+        "rec": "no",
+        "nota": "Ataque cuerpo a cuerpo: casi no lo vas a usar.",
+        "desc": "Un ataque contundente que inflige daño con arma cuerpo a cuerpo más 21 p."
+      },
+      {
+        "nivel": 16,
+        "nombre": "Mordedura de mangosta",
+        "rango": 1,
+        "coste": 1894,
+        "icono": "ability_hunter_swiftstrike",
+        "spell": 1495,
+        "rec": "no",
+        "nota": "Cuerpo a cuerpo y solo tras esquivar: no merece el oro.",
+        "desc": "Contraataca al enemigo y le inflige daño con arma cuerpo a cuerpo, además de 15 p. Solo se puede ejecutar después de esquivar."
+      },
+      {
+        "nivel": 16,
+        "nombre": "Trampa de inmolación",
+        "rango": 1,
+        "coste": 1894,
+        "icono": "spell_fire_flameshock",
+        "spell": 13795,
+        "rec": "opc",
+        "nota": "Algo de daño extra, pero se pone antes del combate.",
+        "desc": "Coloca una trampa de Fuego que quema al primer enemigo que se acerca y le inflige 105 p. de daño de Fuego durante 15 s. La trampa dura 1 min. Solo puede haber una trampa de Fuego activa cada vez."
+      },
+      {
+        "nivel": 18,
+        "nombre": "Aguijón de serpiente",
+        "rango": 3,
+        "coste": 1600,
+        "icono": "ability_hunter_quickshot",
+        "spell": 13550,
+        "rec": "si",
+        "nota": "Daño en cada combate: compra todos los rangos.",
+        "desc": "Aguijonea al enemigo causando 70 p. de daño de Naturaleza durante 15 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 18,
+        "nombre": "Aspecto del halcón",
+        "rango": 2,
+        "coste": 1600,
+        "icono": "spell_nature_ravenform",
+        "spell": 14318,
+        "rec": "si",
+        "nota": "Lo llevas puesto siempre: más poder de ataque a distancia.",
+        "desc": "El cazador asume los aspectos de un halcón aumentando en 35 p. su poder de ataque a distancia. Solo puede haber 1 aspecto activo cada vez."
+      },
+      {
+        "nivel": 18,
+        "nombre": "Multidisparo",
+        "rango": null,
+        "coste": 1600,
+        "icono": "ability_upgrademoonglaive",
+        "spell": 2643,
+        "rec": "si",
+        "nota": "Daño a varios enemigos a la vez.",
+        "desc": "Dispara varios misiles que alcanzan hasta 3 objetivos. Multidisparo comparte su tiempo de reutilización con Disparo de puntería."
+      },
+      {
+        "nivel": 18,
+        "nombre": "Rastrear no-muertos",
+        "rango": null,
+        "coste": 1600,
+        "icono": "spell_shadow_darksummoning",
+        "spell": 19884,
+        "rec": "opc",
+        "nota": "Solo si necesitas buscar ese tipo de enemigo.",
+        "desc": "Muestra la ubicación de los no-muertos cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+      },
+      {
+        "nivel": 20,
+        "nombre": "Aspecto del guepardo",
+        "rango": null,
+        "coste": 2315,
+        "icono": "ability_mount_jungletiger",
+        "spell": 5118,
+        "rec": "si",
+        "nota": "Corres un 30% más: vas más rápido de misión en misión.",
+        "desc": "El cazador asume el aspecto de un guepardo aumentando su velocidad en un 30%. Si recibe daño, quedará conmocionado durante 4 s. Solo puede haber 1 aspecto activo cada vez."
+      },
+      {
+        "nivel": 20,
+        "nombre": "Disparo de distracción",
+        "rango": 2,
+        "coste": 2210,
+        "icono": "spell_arcane_blink",
+        "spell": 14274,
+        "rec": "no",
+        "nota": "Genera amenaza: es para tanquear, no para subir.",
+        "desc": "Distrae al objetivo, causando amenaza. Más efectivo que Disparo de distracción (Rango 1)."
+      },
+      {
+        "nivel": 20,
+        "nombre": "Sanar mascota",
+        "rango": 2,
+        "coste": 2210,
+        "icono": "ability_hunter_mendpet",
+        "spell": 3111,
+        "rec": "si",
+        "nota": "Cada rango cura más a tu mascota: menos tiempo parado.",
+        "desc": "Cura a tu mascota en 38 p. de salud cada segundo cada vez que te concentras. Dura 5 s."
+      },
+      {
+        "nivel": 20,
+        "nombre": "Separación",
+        "rango": 1,
+        "coste": 2210,
+        "icono": "ability_rogue_feint",
+        "spell": 781,
+        "rec": "opc",
+        "nota": "Reduce tu amenaza. Útil en grupo, poco yendo solo.",
+        "desc": "Intenta separarse del objetivo reduciendo la amenaza. Desactiva el ataque automático."
+      },
+      {
+        "nivel": 20,
+        "nombre": "Tiro Arcano",
+        "rango": 3,
+        "coste": 2210,
+        "icono": "ability_impalingbolt",
+        "spell": 14282,
+        "rec": "si",
+        "nota": "Tu disparo instantáneo: cada rango pega más.",
+        "desc": "Un disparo instantáneo que causa 50 p. de daño Arcano."
+      },
+      {
+        "nivel": 20,
+        "nombre": "Tiro de puntería",
+        "rango": 1,
+        "coste": 2210,
+        "icono": "inv_spear_07",
+        "spell": 19434,
+        "rec": "si",
+        "nota": "Disparo fuerte para abrir el combate.",
+        "desc": "Un disparo de puntería que aumenta 40 p. el daño a distancia. Disparo de puntería comparte su tiempo de reutilización con Multidisparo."
+      },
+      {
+        "nivel": 20,
+        "nombre": "Trampa congelante",
+        "rango": 1,
+        "coste": 2210,
+        "icono": "spell_frost_chainsofice",
+        "spell": 1499,
+        "rec": "si",
+        "nota": "El primer rango: control o daño en área.",
+        "desc": "Coloca una trampa de Escarcha que congela al primer enemigo que se acerca e impide cualquier acción durante un máximo de 10 s. Cualquier daño que se inflija romperá el hielo. La trampa dura 1 min. Solo puede haber una trampa de Escarcha activa cada vez."
+      },
+      {
+        "nivel": 22,
+        "nombre": "Aguijón de escorpido",
+        "rango": null,
+        "coste": 7368,
+        "icono": "ability_hunter_criticalshot",
+        "spell": 3043,
+        "rec": "no",
+        "nota": "Baja la precisión del enemigo: casi nunca compensa frente a Aguijón de serpiente.",
+        "desc": "Pica al objetivo, lo que reduce un 2% su probabilidad de golpear con ataques durante 20 s. Un cazador solo puede tener una picadura activa sobre un mismo objetivo."
+      },
+      {
+        "nivel": 22,
+        "nombre": "Marca del cazador",
+        "rango": 2,
+        "coste": 7368,
+        "icono": "ability_hunter_snipershot",
+        "spell": 14323,
+        "rec": "si",
+        "nota": "Más daño contra tu objetivo para ti y tu mascota.",
+        "desc": "Deja la Marca del cazador en el objetivo y aumenta el poder de ataque a distancia de todos los que ataquen al objetivo en 59 p. Además, el cazador siempre podrá ver al objetivo, aunque este utilice Sigilo o Invisibilidad. El objetivo también aparecerá en el minimapa. Dura 2 min."
+      },
+      {
+        "nivel": 24,
+        "nombre": "Golpe de raptor",
+        "rango": 4,
+        "coste": 7578,
+        "icono": "ability_meleedamage",
+        "spell": 14262,
+        "rec": "no",
+        "nota": "Ataque cuerpo a cuerpo: casi no lo vas a usar.",
+        "desc": "Un ataque contundente que inflige daño con arma cuerpo a cuerpo más 30 p."
+      },
+      {
+        "nivel": 24,
+        "nombre": "Rastrear lo oculto",
+        "rango": null,
+        "coste": 7578,
+        "icono": "ability_stealth",
+        "spell": 19885,
+        "rec": "opc",
+        "nota": "Solo si necesitas buscar ese tipo de enemigo.",
+        "desc": "Aumenta la detección de sigilo y revela unidades ocultas dentro del radio de detección en el minimapa. Solo puede haber 1 forma de rastreo activa a la vez."
+      },
+      {
+        "nivel": 24,
+        "nombre": "Tradición de bestias",
+        "rango": null,
+        "coste": 7578,
+        "icono": "ability_physical_taunt",
+        "spell": 1462,
+        "rec": "opc",
+        "nota": "Te dice la dieta y las habilidades de una bestia antes de domesticarla.",
+        "desc": "Reúne información sobre la bestia objetivo. La información en pantalla mostrará el daño, la salud, la armadura, cualquier resistencia especial y la dieta."
+      },
+      {
+        "nivel": 26,
+        "nombre": "Aguijón de serpiente",
+        "rango": 4,
+        "coste": 7789,
+        "icono": "ability_hunter_quickshot",
+        "spell": 13551,
+        "rec": "si",
+        "nota": "Daño en cada combate: compra todos los rangos.",
+        "desc": "Aguijonea al enemigo causando 130 p. de daño de Naturaleza durante 15 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 26,
+        "nombre": "Fuego rápido",
+        "rango": null,
+        "coste": 7789,
+        "icono": "ability_hunter_runningshot",
+        "spell": 3045,
+        "rec": "si",
+        "nota": "Cooldown de daño: mata más rápido.",
+        "desc": "Aumenta la velocidad de ataque cuerpo a cuerpo y a distancia un 40% durante 15 s."
+      },
+      {
+        "nivel": 26,
+        "nombre": "Rastrear elementales",
+        "rango": null,
+        "coste": 7789,
+        "icono": "spell_frost_summonwaterelemental",
+        "spell": 19880,
+        "rec": "opc",
+        "nota": "Solo si necesitas buscar ese tipo de enemigo.",
+        "desc": "Muestra la ubicación de los elementales cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+      },
+      {
+        "nivel": 26,
+        "nombre": "Trampa de inmolación",
+        "rango": 2,
+        "coste": 7789,
+        "icono": "spell_fire_flameshock",
+        "spell": 14302,
+        "rec": "opc",
+        "nota": "Algo de daño extra, pero se pone antes del combate.",
+        "desc": "Coloca una trampa de Fuego que quema al primer enemigo que se acerca y le inflige 215 p. de daño de Fuego durante 15 s. La trampa dura 1 min. Solo puede haber una trampa de Fuego activa cada vez."
+      },
+      {
+        "nivel": 28,
+        "nombre": "Aspecto del halcón",
+        "rango": 3,
+        "coste": 7894,
+        "icono": "spell_nature_ravenform",
+        "spell": 14319,
+        "rec": "si",
+        "nota": "Lo llevas puesto siempre: más poder de ataque a distancia.",
+        "desc": "El cazador asume los aspectos de un halcón aumentando en 50 p. su poder de ataque a distancia. Solo puede haber 1 aspecto activo cada vez."
+      },
+      {
+        "nivel": 28,
+        "nombre": "Sanar mascota",
+        "rango": 3,
+        "coste": 7894,
+        "icono": "ability_hunter_mendpet",
+        "spell": 3661,
+        "rec": "si",
+        "nota": "Cada rango cura más a tu mascota: menos tiempo parado.",
+        "desc": "Cura a tu mascota en 68 p. de salud cada segundo cada vez que te concentras. Dura 5 s."
+      },
+      {
+        "nivel": 28,
+        "nombre": "Tiro Arcano",
+        "rango": 4,
+        "coste": 7894,
+        "icono": "ability_impalingbolt",
+        "spell": 14283,
+        "rec": "si",
+        "nota": "Tu disparo instantáneo: cada rango pega más.",
+        "desc": "Un disparo instantáneo que causa 85 p. de daño Arcano."
+      },
+      {
+        "nivel": 28,
+        "nombre": "Tiro de puntería",
+        "rango": 2,
+        "coste": 7894,
+        "icono": "inv_spear_07",
+        "spell": 20900,
+        "rec": "si",
+        "nota": "Disparo fuerte para abrir el combate.",
+        "desc": "Un disparo de puntería que aumenta 70 p. el daño a distancia. Disparo de puntería comparte su tiempo de reutilización con Multidisparo."
+      },
+      {
+        "nivel": 28,
+        "nombre": "Trampa de Escarcha",
+        "rango": null,
+        "coste": 7894,
+        "icono": "spell_frost_freezingbreath",
+        "spell": 13809,
+        "rec": "opc",
+        "nota": "Frena a varios enemigos. Útil, no imprescindible.",
+        "desc": "Coloca una trampa de Escarcha que crea una placa de hielo a su alrededor durante 30 s cuando el primer enemigo se acerca. Todos los enemigos en un radio de 10 m sufren un 60% de ralentización mientras están dentro del área de efecto. La trampa dura 1 min. Solo puede haber una trampa de Escarcha activa cada vez."
+      },
+      {
+        "nivel": 30,
+        "nombre": "Aspecto de la bestia",
+        "rango": 1,
+        "coste": 8000,
+        "icono": "ability_mount_pinktiger",
+        "spell": 13161,
+        "rec": "no",
+        "nota": "Te hace imposible de rastrear y da poder cuerpo a cuerpo: no te sirve.",
+        "desc": "El cazador asume el aspecto de una bestia, se vuelve imposible de rastrear y obtiene 50 p. de poder de ataque cuerpo a cuerpo. Solo puede haber un aspecto activo cada vez."
+      },
+      {
+        "nivel": 30,
+        "nombre": "Bestia temible",
+        "rango": 2,
+        "coste": 8000,
+        "icono": "ability_druid_cower",
+        "spell": 14326,
+        "rec": "no",
+        "nota": "El rango 1 ya hace el trabajo.",
+        "desc": "Asusta a una bestia haciendo que huya durante un máximo de 15 s. El daño causado puede interrumpir el efecto. Solo se puede asustar a una bestia cada vez."
+      },
+      {
+        "nivel": 30,
+        "nombre": "Contraataque",
+        "rango": 2,
+        "coste": 8000,
+        "icono": "ability_warrior_challange",
+        "spell": 1242634,
+        "rec": "no",
+        "nota": "Talento de Supervivencia que no llevas: no puedes usarlo.",
+        "desc": "Un golpe que se activa tras haber parado el ataque de un oponente. Este ataque inflige un 50% de daño de arma más 40 p. e inmoviliza al objetivo durante 5 s. El contrataque no se puede bloquear, esquivar ni parar."
+      },
+      {
+        "nivel": 30,
+        "nombre": "Disparo de distracción",
+        "rango": 3,
+        "coste": 8000,
+        "icono": "spell_arcane_blink",
+        "spell": 15629,
+        "rec": "no",
+        "nota": "Genera amenaza: es para tanquear, no para subir.",
+        "desc": "Distrae al objetivo, causando amenaza. Más efectivo que Disparo de distracción (Rango 2)."
+      },
+      {
+        "nivel": 30,
+        "nombre": "Fingir muerte",
+        "rango": null,
+        "coste": 8000,
+        "icono": "ability_rogue_feigndeath",
+        "spell": 5384,
+        "rec": "si",
+        "nota": "Te salva la vida en un mal pull.",
+        "desc": "Fingir muerte puede hacer que los enemigos te ignoren. Dura 6 min. Si no se cancela, morirás de verdad tras 6 min."
+      },
+      {
+        "nivel": 30,
+        "nombre": "Mordedura de mangosta",
+        "rango": 2,
+        "coste": 8000,
+        "icono": "ability_hunter_swiftstrike",
+        "spell": 14269,
+        "rec": "no",
+        "nota": "Cuerpo a cuerpo y solo tras esquivar: no merece el oro.",
+        "desc": "Contraataca al enemigo y le inflige daño con arma cuerpo a cuerpo, además de 22 p. Solo se puede ejecutar después de esquivar."
+      },
+      {
+        "nivel": 32,
+        "nombre": "Aura de disparo certero",
+        "rango": 2,
+        "coste": 10526,
+        "icono": "ability_trueshot",
+        "spell": 1299348,
+        "rec": "no",
+        "nota": "Solo con el talento, que coges a nivel 56.",
+        "desc": "Aumenta en 35 p. el poder de ataque a distancia de los miembros del grupo o de la banda en un radio de 45 m."
+      },
+      {
+        "nivel": 32,
+        "nombre": "Bengala",
+        "rango": null,
+        "coste": 10000,
+        "icono": "spell_fire_flare",
+        "spell": 1543,
+        "rec": "opc",
+        "nota": "Revela pícaros y enemigos en sigilo. Sobre todo para PvP.",
+        "desc": "Saca a luz a todos los enemigos escondidos o invisibles en un radio de 10 metros de la zona seleccionada durante 30 s."
+      },
+      {
+        "nivel": 32,
+        "nombre": "Golpe de raptor",
+        "rango": 5,
+        "coste": 10000,
+        "icono": "ability_meleedamage",
+        "spell": 14263,
+        "rec": "no",
+        "nota": "Ataque cuerpo a cuerpo: casi no lo vas a usar.",
+        "desc": "Un ataque contundente que inflige daño con arma cuerpo a cuerpo más 35 p."
+      },
+      {
+        "nivel": 32,
+        "nombre": "Rastrear demonios",
+        "rango": null,
+        "coste": 10000,
+        "icono": "spell_shadow_summonfelhunter",
+        "spell": 19878,
+        "rec": "opc",
+        "nota": "Solo si necesitas buscar ese tipo de enemigo.",
+        "desc": "Muestra la ubicación de los demonios cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+      },
+      {
+        "nivel": 34,
+        "nombre": "Aguijón de serpiente",
+        "rango": 5,
+        "coste": 11578,
+        "icono": "ability_hunter_quickshot",
+        "spell": 13552,
+        "rec": "si",
+        "nota": "Daño en cada combate: compra todos los rangos.",
+        "desc": "Aguijonea al enemigo causando 200 p. de daño de Naturaleza durante 15 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 34,
+        "nombre": "Separación",
+        "rango": 2,
+        "coste": 11578,
+        "icono": "ability_rogue_feint",
+        "spell": 14272,
+        "rec": "no",
+        "nota": "Yendo solo no la necesitas mejorada.",
+        "desc": "Intenta separarse del objetivo reduciendo la amenaza. Más efectivo que Separación (Rango 1). Desactiva el ataque automático."
+      },
+      {
+        "nivel": 34,
+        "nombre": "Trampa explosiva",
+        "rango": 1,
+        "coste": 11578,
+        "icono": "spell_fire_selfdestruct",
+        "spell": 13813,
+        "rec": "si",
+        "nota": "Tu daño en área (el primer rango).",
+        "desc": "Coloca una trampa de fuego que explota cuando un enemigo se acerca y le inflige 105 al 135 p. de daño de Fuego y 150 p. de daño de Fuego adicional durante 20 s a todos los enemigos en un radio de 10 m. La trampa dura 1 min. Solo puede haber una trampa de fuego activa cada vez."
+      },
+      {
+        "nivel": 36,
+        "nombre": "Invocar halcón",
+        "rango": 2,
+        "coste": 13684,
+        "icono": "ability_hunter_animalhandler",
+        "spell": 1293525,
+        "rec": "si",
+        "nota": "Tu habilidad estrella (con el talento de nivel 25).",
+        "desc": "Ordena a un halcón que se lance contra tu enemigo objetivo, infligiendo [47 + (Poder de ataque a distancia * (0.05))] p. de daño físico. El ataque continúa durante 18 s. Solo puede haber 2 halcones activos a la vez. Invocar halcón comparte su tiempo de reutilización con Disparo Arcano."
+      },
+      {
+        "nivel": 36,
+        "nombre": "Picadura de víbora",
+        "rango": 1,
+        "coste": 13684,
+        "icono": "ability_hunter_aimedshot",
+        "spell": 3034,
+        "rec": "no",
+        "nota": "Quita maná al enemigo. Es para PvP.",
+        "desc": "Aguijonea al enemigo drenando 616 p. de maná durante 8 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 36,
+        "nombre": "Sanar mascota",
+        "rango": 4,
+        "coste": 13684,
+        "icono": "ability_hunter_mendpet",
+        "spell": 3662,
+        "rec": "si",
+        "nota": "Cada rango cura más a tu mascota: menos tiempo parado.",
+        "desc": "Cura a tu mascota en 103 p. de salud cada segundo cada vez que te concentras. Dura 5 s."
+      },
+      {
+        "nivel": 36,
+        "nombre": "Tiro Arcano",
+        "rango": 5,
+        "coste": 13684,
+        "icono": "ability_impalingbolt",
+        "spell": 14284,
+        "rec": "si",
+        "nota": "Tu disparo instantáneo: cada rango pega más.",
+        "desc": "Un disparo instantáneo que causa 120 p. de daño Arcano."
+      },
+      {
+        "nivel": 36,
+        "nombre": "Tiro de puntería",
+        "rango": 3,
+        "coste": 13684,
+        "icono": "inv_spear_07",
+        "spell": 20901,
+        "rec": "si",
+        "nota": "Disparo fuerte para abrir el combate.",
+        "desc": "Un disparo de puntería que aumenta 115 p. el daño a distancia. Disparo de puntería comparte su tiempo de reutilización con Multidisparo."
+      },
+      {
+        "nivel": 36,
+        "nombre": "Trampa de inmolación",
+        "rango": 3,
+        "coste": 13684,
+        "icono": "spell_fire_flameshock",
+        "spell": 14303,
+        "rec": "opc",
+        "nota": "Algo de daño extra, pero se pone antes del combate.",
+        "desc": "Coloca una trampa de Fuego que quema al primer enemigo que se acerca y le inflige 340 p. de daño de Fuego durante 15 s. La trampa dura 1 min. Solo puede haber una trampa de Fuego activa cada vez."
+      },
+      {
+        "nivel": 38,
+        "nombre": "Aspecto del halcón",
+        "rango": 4,
+        "coste": 15789,
+        "icono": "spell_nature_ravenform",
+        "spell": 14320,
+        "rec": "si",
+        "nota": "Lo llevas puesto siempre: más poder de ataque a distancia.",
+        "desc": "El cazador asume los aspectos de un halcón aumentando en 70 p. su poder de ataque a distancia. Solo puede haber 1 aspecto activo cada vez."
+      },
+      {
+        "nivel": 38,
+        "nombre": "Cortar alas",
+        "rango": 2,
+        "coste": 15789,
+        "icono": "ability_rogue_trip",
+        "spell": 14267,
+        "rec": "no",
+        "nota": "El primer rango frena igual; los demás solo pegan un poco más.",
+        "desc": "Inflige 25 p. de daño y reduce la velocidad de movimiento del objetivo en un 55% durante 10 s."
+      },
+      {
+        "nivel": 40,
+        "nombre": "Aspecto de la bestia",
+        "rango": 2,
+        "coste": 16842,
+        "icono": "ability_mount_pinktiger",
+        "spell": 1299445,
+        "rec": "no",
+        "nota": "Te hace imposible de rastrear y da poder cuerpo a cuerpo: no te sirve.",
+        "desc": "Asumes el aspecto de una bestia, te vuelves imposible de rastrear y obtienes 70 p. de poder de ataque cuerpo a cuerpo. Solo puede haber un aspecto activo cada vez."
+      },
+      {
+        "nivel": 40,
+        "nombre": "Aspecto de la manada",
+        "rango": null,
+        "coste": 16842,
+        "icono": "ability_mount_whitetiger",
+        "spell": 13159,
+        "rec": "opc",
+        "nota": "Para viajar en grupo; yendo solo no lo necesitas.",
+        "desc": "El cazador y los miembros del grupo que estén en un radio de 30 metros asumen el aspecto de una manada de guepardos aumentando su velocidad en un 30%. Si un miembro de la manada recibe daño, quedará conmocionado durante 4 s. Solo puede haber 1 aspecto activo cada vez."
+      },
+      {
+        "nivel": 40,
+        "nombre": "Aura de disparo certero",
+        "rango": 3,
+        "coste": 16842,
+        "icono": "ability_trueshot",
+        "spell": 19506,
+        "rec": "no",
+        "nota": "Solo con el talento, que coges a nivel 56.",
+        "desc": "Aumenta en 50 p. el poder de ataque a distancia de los miembros del grupo o de la banda en un radio de 45 m. Dura 30 min."
+      },
+      {
+        "nivel": 40,
+        "nombre": "Disparo de distracción",
+        "rango": 4,
+        "coste": 16842,
+        "icono": "spell_arcane_blink",
+        "spell": 15630,
+        "rec": "no",
+        "nota": "Genera amenaza: es para tanquear, no para subir.",
+        "desc": "Distrae al objetivo, causando amenaza. Más efectivo que Disparo de distracción (Rango 3)."
+      },
+      {
+        "nivel": 40,
+        "nombre": "Golpe de raptor",
+        "rango": 6,
+        "coste": 16842,
+        "icono": "ability_meleedamage",
+        "spell": 14264,
+        "rec": "no",
+        "nota": "Ataque cuerpo a cuerpo: casi no lo vas a usar.",
+        "desc": "Un ataque contundente que inflige daño con arma cuerpo a cuerpo más 40 p."
+      },
+      {
+        "nivel": 40,
+        "nombre": "Lluvia",
+        "rango": 1,
+        "coste": 16842,
+        "icono": "ability_marksmanship",
+        "spell": 1510,
+        "rec": "opc",
+        "nota": "Daño en área. Útil si juntas muchos enemigos.",
+        "desc": "Dispara de forma continua una ráfaga de munición a la zona objetivo e inflige 70 p. de daño Arcano a los objetivos enemigos en un radio de 8 m cada 1 s durante 6 s."
+      },
+      {
+        "nivel": 40,
+        "nombre": "Marca del cazador",
+        "rango": 3,
+        "coste": 16842,
+        "icono": "ability_hunter_snipershot",
+        "spell": 14324,
+        "rec": "si",
+        "nota": "Más daño contra tu objetivo para ti y tu mascota.",
+        "desc": "Deja la Marca del cazador en el objetivo y aumenta el poder de ataque a distancia de todos los que ataquen al objetivo en 98 p. Además, el cazador siempre podrá ver al objetivo, aunque este utilice Sigilo o Invisibilidad. El objetivo también aparecerá en el minimapa. Dura 2 min."
+      },
+      {
+        "nivel": 40,
+        "nombre": "Rastrear gigantes",
+        "rango": null,
+        "coste": 16842,
+        "icono": "ability_racial_avatar",
+        "spell": 19882,
+        "rec": "opc",
+        "nota": "Solo si necesitas buscar ese tipo de enemigo.",
+        "desc": "Muestra la ubicación de los gigantes cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+      },
+      {
+        "nivel": 40,
+        "nombre": "Trampa congelante",
+        "rango": 2,
+        "coste": 16842,
+        "icono": "spell_frost_chainsofice",
+        "spell": 14310,
+        "rec": "opc",
+        "nota": "Los rangos nuevos solo alargan la congelación.",
+        "desc": "Coloca una trampa de Escarcha que congela al primer enemigo que se acerca e impide cualquier acción durante un máximo de 15 s. Cualquier daño que se inflija romperá el hielo. La trampa dura 1 min. Solo puede haber una trampa de Escarcha activa cada vez."
+      },
+      {
+        "nivel": 42,
+        "nombre": "Aguijón de serpiente",
+        "rango": 6,
+        "coste": 24000,
+        "icono": "ability_hunter_quickshot",
+        "spell": 13553,
+        "rec": "si",
+        "nota": "Daño en cada combate: compra todos los rangos.",
+        "desc": "Aguijonea al enemigo causando 290 p. de daño de Naturaleza durante 15 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 42,
+        "nombre": "Contraataque",
+        "rango": 3,
+        "coste": 23157,
+        "icono": "ability_warrior_challange",
+        "spell": 20909,
+        "rec": "no",
+        "nota": "Talento de Supervivencia que no llevas: no puedes usarlo.",
+        "desc": "Un golpe que se activa tras haber parado el ataque de un oponente. Este ataque inflige un 50% de daño de arma más 70 p. e inmoviliza al objetivo durante 5 s. El contrataque no se puede bloquear, esquivar ni parar."
+      },
+      {
+        "nivel": 44,
+        "nombre": "Mordedura de mangosta",
+        "rango": 3,
+        "coste": 26000,
+        "icono": "ability_hunter_swiftstrike",
+        "spell": 14270,
+        "rec": "no",
+        "nota": "Cuerpo a cuerpo y solo tras esquivar: no merece el oro.",
+        "desc": "Contraataca al enemigo y le inflige daño con arma cuerpo a cuerpo, además de 37 p. Solo se puede ejecutar después de esquivar."
+      },
+      {
+        "nivel": 44,
+        "nombre": "Sanar mascota",
+        "rango": 5,
+        "coste": 26000,
+        "icono": "ability_hunter_mendpet",
+        "spell": 13542,
+        "rec": "si",
+        "nota": "Cada rango cura más a tu mascota: menos tiempo parado.",
+        "desc": "Cura a tu mascota en 142 p. de salud cada segundo cada vez que te concentras. Dura 5 s."
+      },
+      {
+        "nivel": 44,
+        "nombre": "Tiro Arcano",
+        "rango": 6,
+        "coste": 26000,
+        "icono": "ability_impalingbolt",
+        "spell": 14285,
+        "rec": "si",
+        "nota": "Tu disparo instantáneo: cada rango pega más.",
+        "desc": "Un disparo instantáneo que causa 175 p. de daño Arcano."
+      },
+      {
+        "nivel": 44,
+        "nombre": "Tiro de puntería",
+        "rango": 4,
+        "coste": 24210,
+        "icono": "inv_spear_07",
+        "spell": 20902,
+        "rec": "si",
+        "nota": "Disparo fuerte para abrir el combate.",
+        "desc": "Un disparo de puntería que aumenta 185 p. el daño a distancia. Disparo de puntería comparte su tiempo de reutilización con Multidisparo."
+      },
+      {
+        "nivel": 44,
+        "nombre": "Trampa explosiva",
+        "rango": 2,
+        "coste": 26000,
+        "icono": "spell_fire_selfdestruct",
+        "spell": 14316,
+        "rec": "opc",
+        "nota": "Daño en área. Los rangos nuevos solo pegan algo más.",
+        "desc": "Coloca una trampa de Fuego que explota cuando un enemigo se acerca y le inflige 145 al 193 p. de daño de Fuego y 240 p. de daño de Fuego adicional durante 20 s a todos los enemigos en un radio de 10 m. La trampa dura 1 min. Solo puede haber una trampa de Fuego activa cada vez."
+      },
+      {
+        "nivel": 46,
+        "nombre": "Aspecto salvaje",
+        "rango": 1,
+        "coste": 28000,
+        "icono": "spell_nature_protectionformnature",
+        "spell": 20043,
+        "rec": "no",
+        "nota": "Resistencia a la Naturaleza para raids concretas.",
+        "desc": "El cazador y todos los miembros del grupo y banda en un radio de 30 m asumen el aspecto salvaje, lo que aumenta 45 p. la resistencia a la Naturaleza. Solo puede haber un aspecto activo cada vez."
+      },
+      {
+        "nivel": 46,
+        "nombre": "Bestia temible",
+        "rango": 3,
+        "coste": 28000,
+        "icono": "ability_druid_cower",
+        "spell": 14327,
+        "rec": "no",
+        "nota": "El rango 1 ya hace el trabajo.",
+        "desc": "Asusta a una bestia haciendo que huya durante un máximo de 20 s. El daño causado puede interrumpir el efecto. Solo se puede asustar a una bestia cada vez."
+      },
+      {
+        "nivel": 46,
+        "nombre": "Picadura de víbora",
+        "rango": 2,
+        "coste": 28000,
+        "icono": "ability_hunter_aimedshot",
+        "spell": 14279,
+        "rec": "no",
+        "nota": "Quita maná al enemigo. Es para PvP.",
+        "desc": "Aguijonea al enemigo drenando 848 p. de maná durante 8 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 46,
+        "nombre": "Trampa de inmolación",
+        "rango": 4,
+        "coste": 28000,
+        "icono": "spell_fire_flameshock",
+        "spell": 14304,
+        "rec": "opc",
+        "nota": "Algo de daño extra, pero se pone antes del combate.",
+        "desc": "Coloca una trampa de Fuego que quema al primer enemigo que se acerca y le inflige 510 p. de daño de Fuego durante 15 s. La trampa dura 1 min. Solo puede haber una trampa de Fuego activa cada vez."
+      },
+      {
+        "nivel": 48,
+        "nombre": "Aspecto del halcón",
+        "rango": 5,
+        "coste": 32000,
+        "icono": "spell_nature_ravenform",
+        "spell": 14321,
+        "rec": "si",
+        "nota": "Lo llevas puesto siempre: más poder de ataque a distancia.",
+        "desc": "El cazador asume los aspectos de un halcón aumentando en 90 p. su poder de ataque a distancia. Solo puede haber 1 aspecto activo cada vez."
+      },
+      {
+        "nivel": 48,
+        "nombre": "Disparo de francotirador",
+        "rango": 2,
+        "coste": 30526,
+        "icono": "hunter_pvp_snipershot",
+        "spell": 1310785,
+        "rec": "no",
+        "nota": "Talento de Puntería que no llevas: no puedes usarlo.",
+        "desc": "Un tiro de largo alcance que inflige daño a distancia más 450 p. de daño y aumenta el alcance de tus próximos 3 disparos a 10 m durante 10 s."
+      },
+      {
+        "nivel": 48,
+        "nombre": "Golpe de raptor",
+        "rango": 7,
+        "coste": 32000,
+        "icono": "ability_meleedamage",
+        "spell": 14265,
+        "rec": "no",
+        "nota": "Ataque cuerpo a cuerpo: casi no lo vas a usar.",
+        "desc": "Un ataque contundente que inflige daño con arma cuerpo a cuerpo más 55 p."
+      },
+      {
+        "nivel": 48,
+        "nombre": "Invocar halcón",
+        "rango": 3,
+        "coste": 30526,
+        "icono": "ability_hunter_animalhandler",
+        "spell": 1293526,
+        "rec": "si",
+        "nota": "Tu habilidad estrella (con el talento de nivel 25).",
+        "desc": "Ordena a un halcón que se lance contra tu enemigo objetivo, infligiendo [85 + (Poder de ataque a distancia * (0.05))] p. de daño físico. El ataque continúa durante 18 s. Solo puede haber 2 halcones activos a la vez. Invocar halcón comparte su tiempo de reutilización con Disparo Arcano."
+      },
+      {
+        "nivel": 48,
+        "nombre": "Separación",
+        "rango": 3,
+        "coste": 32000,
+        "icono": "ability_rogue_feint",
+        "spell": 14273,
+        "rec": "no",
+        "nota": "Yendo solo no la necesitas mejorada.",
+        "desc": "Intenta separarse del objetivo reduciendo la amenaza. Más efectivo que Separación (Rango 2). Desactiva el ataque automático."
+      },
+      {
+        "nivel": 50,
+        "nombre": "Aguijón de serpiente",
+        "rango": 7,
+        "coste": 36000,
+        "icono": "ability_hunter_quickshot",
+        "spell": 13554,
+        "rec": "si",
+        "nota": "Daño en cada combate: compra todos los rangos.",
+        "desc": "Aguijonea al enemigo causando 375 p. de daño de Naturaleza durante 15 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 50,
+        "nombre": "Aspecto de la bestia",
+        "rango": 3,
+        "coste": 31578,
+        "icono": "ability_mount_pinktiger",
+        "spell": 1299446,
+        "rec": "no",
+        "nota": "Te hace imposible de rastrear y da poder cuerpo a cuerpo: no te sirve.",
+        "desc": "Asumes el aspecto de una bestia, te vuelves imposible de rastrear y obtienes 90 p. de poder de ataque cuerpo a cuerpo. Solo puede haber un aspecto activo cada vez."
+      },
+      {
+        "nivel": 50,
+        "nombre": "Aura de disparo certero",
+        "rango": 4,
+        "coste": 31578,
+        "icono": "ability_trueshot",
+        "spell": 20905,
+        "rec": "si",
+        "nota": "Ya tienes el talento (nivel 56): cómpralo.",
+        "desc": "Aumenta en 75 p. el poder de ataque a distancia de los miembros del grupo o de la banda en un radio de 45 m. Dura 30 min."
+      },
+      {
+        "nivel": 50,
+        "nombre": "Disparo de distracción",
+        "rango": 5,
+        "coste": 36000,
+        "icono": "spell_arcane_blink",
+        "spell": 15631,
+        "rec": "no",
+        "nota": "Genera amenaza: es para tanquear, no para subir.",
+        "desc": "Distrae al objetivo, causando amenaza. Más efectivo que Disparo de distracción (Rango 4)."
+      },
+      {
+        "nivel": 50,
+        "nombre": "Lluvia",
+        "rango": 2,
+        "coste": 36000,
+        "icono": "ability_marksmanship",
+        "spell": 14294,
+        "rec": "opc",
+        "nota": "Daño en área. Útil si juntas muchos enemigos.",
+        "desc": "Dispara de forma continua una ráfaga de munición a la zona objetivo e inflige 91 p. de daño Arcano a los objetivos enemigos en un radio de 8 m cada 1 s durante 6 s."
+      },
+      {
+        "nivel": 50,
+        "nombre": "Rastrear dragonantes",
+        "rango": null,
+        "coste": 36000,
+        "icono": "inv_misc_head_dragon_01",
+        "spell": 19879,
+        "rec": "opc",
+        "nota": "Solo si necesitas buscar ese tipo de enemigo.",
+        "desc": "Muestra la ubicación de los dragonantes cercanos en el minimapa. Solo se puede activar 1 forma de rastreo cada vez."
+      },
+      {
+        "nivel": 52,
+        "nombre": "Sanar mascota",
+        "rango": 6,
+        "coste": 40000,
+        "icono": "ability_hunter_mendpet",
+        "spell": 13543,
+        "rec": "si",
+        "nota": "Cada rango cura más a tu mascota: menos tiempo parado.",
+        "desc": "Cura a tu mascota en 189 p. de salud cada segundo cada vez que te concentras. Dura 5 s."
+      },
+      {
+        "nivel": 52,
+        "nombre": "Tiro Arcano",
+        "rango": 7,
+        "coste": 40000,
+        "icono": "ability_impalingbolt",
+        "spell": 14286,
+        "rec": "si",
+        "nota": "Tu disparo instantáneo: cada rango pega más.",
+        "desc": "Un disparo instantáneo que causa 220 p. de daño Arcano."
+      },
+      {
+        "nivel": 52,
+        "nombre": "Tiro de puntería",
+        "rango": 5,
+        "coste": 37894,
+        "icono": "inv_spear_07",
+        "spell": 20903,
+        "rec": "si",
+        "nota": "Disparo fuerte para abrir el combate.",
+        "desc": "Un disparo de puntería que aumenta 260 p. el daño a distancia. Disparo de puntería comparte su tiempo de reutilización con Multidisparo."
+      },
+      {
+        "nivel": 54,
+        "nombre": "Contraataque",
+        "rango": 4,
+        "coste": 38947,
+        "icono": "ability_warrior_challange",
+        "spell": 20910,
+        "rec": "no",
+        "nota": "Talento de Supervivencia que no llevas: no puedes usarlo.",
+        "desc": "Un golpe que se activa tras haber parado el ataque de un oponente. Este ataque inflige un 50% de daño de arma más 110 p. e inmoviliza al objetivo durante 5 s. El contrataque no se puede bloquear, esquivar ni parar."
+      },
+      {
+        "nivel": 54,
+        "nombre": "Trampa explosiva",
+        "rango": 3,
+        "coste": 42000,
+        "icono": "spell_fire_selfdestruct",
+        "spell": 14317,
+        "rec": "opc",
+        "nota": "Daño en área. Los rangos nuevos solo pegan algo más.",
+        "desc": "Coloca una trampa de Fuego que explota cuando un enemigo se acerca y le inflige 208 al 264 p. de daño de Fuego y 330 p. de daño de Fuego adicional durante 20 s a todos los enemigos en un radio de 10 m. La trampa dura 1 min. Solo puede haber una trampa de Fuego activa cada vez."
+      },
+      {
+        "nivel": 56,
+        "nombre": "Aspecto salvaje",
+        "rango": 2,
+        "coste": 46000,
+        "icono": "spell_nature_protectionformnature",
+        "spell": 20190,
+        "rec": "no",
+        "nota": "Resistencia a la Naturaleza para raids concretas.",
+        "desc": "El cazador y todos los miembros del grupo y banda en un radio de 30 m asumen el aspecto salvaje, lo que aumenta 60 p. la resistencia a la Naturaleza. Solo puede haber un aspecto activo cada vez."
+      },
+      {
+        "nivel": 56,
+        "nombre": "Golpe de raptor",
+        "rango": 8,
+        "coste": 46000,
+        "icono": "ability_meleedamage",
+        "spell": 14266,
+        "rec": "no",
+        "nota": "Ataque cuerpo a cuerpo: casi no lo vas a usar.",
+        "desc": "Un ataque contundente que inflige daño con arma cuerpo a cuerpo más 70 p."
+      },
+      {
+        "nivel": 56,
+        "nombre": "Picadura de víbora",
+        "rango": 3,
+        "coste": 46000,
+        "icono": "ability_hunter_aimedshot",
+        "spell": 14280,
+        "rec": "no",
+        "nota": "Quita maná al enemigo. Es para PvP.",
+        "desc": "Aguijonea al enemigo drenando 1108 p. de maná durante 8 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 56,
+        "nombre": "Trampa de inmolación",
+        "rango": 5,
+        "coste": 46000,
+        "icono": "spell_fire_flameshock",
+        "spell": 14305,
+        "rec": "opc",
+        "nota": "Algo de daño extra, pero se pone antes del combate.",
+        "desc": "Coloca una trampa de Fuego que quema al primer enemigo que se acerca y le inflige 690 p. de daño de Fuego durante 15 s. La trampa dura 1 min. Solo puede haber una trampa de Fuego activa cada vez."
+      },
+      {
+        "nivel": 58,
+        "nombre": "Aguijón de serpiente",
+        "rango": 8,
+        "coste": 48000,
+        "icono": "ability_hunter_quickshot",
+        "spell": 13555,
+        "rec": "si",
+        "nota": "Daño en cada combate: compra todos los rangos.",
+        "desc": "Aguijonea al enemigo causando 500 p. de daño de Naturaleza durante 15 s. Solo puede estar activo 1 aguijón por cazador."
+      },
+      {
+        "nivel": 58,
+        "nombre": "Aspecto del halcón",
+        "rango": 6,
+        "coste": 48000,
+        "icono": "spell_nature_ravenform",
+        "spell": 14322,
+        "rec": "si",
+        "nota": "Lo llevas puesto siempre: más poder de ataque a distancia.",
+        "desc": "El cazador asume los aspectos de un halcón aumentando en 110 p. su poder de ataque a distancia. Solo puede haber 1 aspecto activo cada vez."
+      },
+      {
+        "nivel": 58,
+        "nombre": "Disparo de francotirador",
+        "rango": 3,
+        "coste": 41052,
+        "icono": "hunter_pvp_snipershot",
+        "spell": 1310786,
+        "rec": "no",
+        "nota": "Talento de Puntería que no llevas: no puedes usarlo.",
+        "desc": "Un tiro de largo alcance que inflige daño a distancia más 590 p. de daño y aumenta el alcance de tus próximos 3 disparos a 10 m durante 10 s."
+      },
+      {
+        "nivel": 58,
+        "nombre": "Lluvia",
+        "rango": 3,
+        "coste": 48000,
+        "icono": "ability_marksmanship",
+        "spell": 14295,
+        "rec": "opc",
+        "nota": "Daño en área. Útil si juntas muchos enemigos.",
+        "desc": "Dispara de forma continua una ráfaga de munición a la zona objetivo e inflige 112 p. de daño Arcano a los objetivos enemigos en un radio de 8 m cada 1 s durante 6 s."
+      },
+      {
+        "nivel": 58,
+        "nombre": "Marca del cazador",
+        "rango": 4,
+        "coste": 48000,
+        "icono": "ability_hunter_snipershot",
+        "spell": 14325,
+        "rec": "si",
+        "nota": "Más daño contra tu objetivo para ti y tu mascota.",
+        "desc": "Deja la Marca del cazador en el objetivo y aumenta el poder de ataque a distancia de todos los que ataquen al objetivo en 143 p. Además, el cazador siempre podrá ver al objetivo, aunque este utilice Sigilo o Invisibilidad. El objetivo también aparecerá en el minimapa. Dura 2 min."
+      },
+      {
+        "nivel": 58,
+        "nombre": "Mordedura de mangosta",
+        "rango": 4,
+        "coste": 48000,
+        "icono": "ability_hunter_swiftstrike",
+        "spell": 14271,
+        "rec": "no",
+        "nota": "Cuerpo a cuerpo y solo tras esquivar: no merece el oro.",
+        "desc": "Contraataca al enemigo y le inflige daño con arma cuerpo a cuerpo, además de 57 p. Solo se puede ejecutar después de esquivar."
+      },
+      {
+        "nivel": 60,
+        "nombre": "Aspecto de la bestia",
+        "rango": 4,
+        "coste": 44210,
+        "icono": "ability_mount_pinktiger",
+        "spell": 1299447,
+        "rec": "no",
+        "nota": "Te hace imposible de rastrear y da poder cuerpo a cuerpo: no te sirve.",
+        "desc": "Asumes el aspecto de una bestia, te vuelves imposible de rastrear y obtienes 110 p. de poder de ataque cuerpo a cuerpo. Solo puede haber un aspecto activo cada vez."
+      },
+      {
+        "nivel": 60,
+        "nombre": "Aura de disparo certero",
+        "rango": 5,
+        "coste": 44210,
+        "icono": "ability_trueshot",
+        "spell": 20906,
+        "rec": "si",
+        "nota": "Ya tienes el talento (nivel 56): cómpralo.",
+        "desc": "Aumenta en 100 p. el poder de ataque a distancia de los miembros del grupo o de la banda en un radio de 45 m. Dura 30 min."
+      },
+      {
+        "nivel": 60,
+        "nombre": "Cortar alas",
+        "rango": 3,
+        "coste": 50000,
+        "icono": "ability_rogue_trip",
+        "spell": 14268,
+        "rec": "no",
+        "nota": "El primer rango frena igual; los demás solo pegan un poco más.",
+        "desc": "Inflige 50 p. de daño y reduce la velocidad de movimiento del objetivo en un 60% durante 10 s."
+      },
+      {
+        "nivel": 60,
+        "nombre": "Disparo de distracción",
+        "rango": 6,
+        "coste": 50000,
+        "icono": "spell_arcane_blink",
+        "spell": 15632,
+        "rec": "no",
+        "nota": "Genera amenaza: es para tanquear, no para subir.",
+        "desc": "Distrae al objetivo, causando amenaza. Más efectivo que Disparo de distracción (Rango 5)."
+      },
+      {
+        "nivel": 60,
+        "nombre": "Invocar halcón",
+        "rango": 4,
+        "coste": 44210,
+        "icono": "ability_hunter_animalhandler",
+        "spell": 1293527,
+        "rec": "si",
+        "nota": "Tu habilidad estrella (con el talento de nivel 25).",
+        "desc": "Ordena a un halcón que se lance contra tu enemigo objetivo, infligiendo [108 + (Poder de ataque a distancia * (0.05))] p. de daño físico. El ataque continúa durante 18 s. Solo puede haber 2 halcones activos a la vez. Invocar halcón comparte su tiempo de reutilización con Disparo Arcano."
+      },
+      {
+        "nivel": 60,
+        "nombre": "Sanar mascota",
+        "rango": 7,
+        "coste": 50000,
+        "icono": "ability_hunter_mendpet",
+        "spell": 13544,
+        "rec": "si",
+        "nota": "Cada rango cura más a tu mascota: menos tiempo parado.",
+        "desc": "Cura a tu mascota en 245 p. de salud cada segundo cada vez que te concentras. Dura 5 s."
+      },
+      {
+        "nivel": 60,
+        "nombre": "Tiro Arcano",
+        "rango": 8,
+        "coste": 50000,
+        "icono": "ability_impalingbolt",
+        "spell": 14287,
+        "rec": "si",
+        "nota": "Tu disparo instantáneo: cada rango pega más.",
+        "desc": "Un disparo instantáneo que causa 280 p. de daño Arcano."
+      },
+      {
+        "nivel": 60,
+        "nombre": "Tiro de puntería",
+        "rango": 6,
+        "coste": 44210,
+        "icono": "inv_spear_07",
+        "spell": 20904,
+        "rec": "si",
+        "nota": "Disparo fuerte para abrir el combate.",
+        "desc": "Un disparo de puntería que aumenta 350 p. el daño a distancia. Disparo de puntería comparte su tiempo de reutilización con Multidisparo."
+      },
+      {
+        "nivel": 60,
+        "nombre": "Trampa congelante",
+        "rango": 3,
+        "coste": 50000,
+        "icono": "spell_frost_chainsofice",
+        "spell": 14311,
+        "rec": "opc",
+        "nota": "Los rangos nuevos solo alargan la congelación.",
+        "desc": "Coloca una trampa de Escarcha que congela al primer enemigo que se acerca e impide cualquier acción durante un máximo de 20 s. Cualquier daño que se inflija romperá el hielo. La trampa dura 1 min. Solo puede haber una trampa de Escarcha activa cada vez."
+      }
+    ]
+  },
+  "combate": {
+    "_ayuda": "Cómo pelear mientras subes: borrador de Claude para que Mishuko lo corrija. Cada paso: hechizo (de spells.json) o icono+nombre, y texto.",
+    "modos": [
+      {
+        "id": "uno",
+        "boton": "Un enemigo",
+        "intro": "Lo normal al hacer misiones: un enemigo cada vez. Tu mascota aguanta y tú disparas.",
+        "pasos": [
+          {
+            "icono": "ability_hunter_beastcall",
+            "nombre": "Mascota primero",
+            "texto": "Mándala al enemigo y espera **2 o 3 golpes** para que se quede con la amenaza."
+          },
+          {
+            "hechizo": "Marca del cazador",
+            "texto": "Márcalo: tú y tu mascota le hacéis más daño."
+          },
+          {
+            "hechizo": "Aguijón de serpiente",
+            "texto": "Ponle el veneno si el enemigo va a durar más de unos segundos."
+          },
+          {
+            "hechizo": "Invocar halcón",
+            "texto": "Desde nivel 25, **siempre que esté disponible**. Es tu mayor fuente de daño."
+          },
+          {
+            "hechizo": "Tiro Arcano",
+            "texto": "Cuando el halcón esté en reutilización y te sobre maná."
+          },
+          {
+            "hechizo": "Tiro automático",
+            "texto": "Hace el resto. Si al enemigo le queda poca vida, no gastes más maná: deja que lo remate."
+          }
+        ]
+      },
+      {
+        "id": "pegado",
+        "boton": "Se te pega",
+        "intro": "El enemigo te ha quitado la amenaza y está encima de ti, en la zona en la que no puedes disparar.",
+        "pasos": [
+          {
+            "hechizo": "Intimidación",
+            "texto": "Aturde al enemigo y tu mascota recupera la amenaza de golpe."
+          },
+          {
+            "hechizo": "Cortar alas",
+            "texto": "Si sigue pegado a ti, frénalo cuerpo a cuerpo."
+          },
+          {
+            "icono": "ability_rogue_sprint",
+            "nombre": "Aléjate",
+            "texto": "Corre hasta pasar los **8 metros** para volver a disparar."
+          },
+          {
+            "hechizo": "Disparo de concusión",
+            "texto": "Si vuelve a por ti, frénalo desde lejos."
+          },
+          {
+            "hechizo": "Invocar halcón",
+            "texto": "Funciona aunque lo tengas encima: no tiene alcance mínimo."
+          }
+        ]
+      },
+      {
+        "id": "varios",
+        "boton": "Varios a la vez",
+        "intro": "Se te han juntado dos o tres enemigos. No te asustes: tienes herramientas de sobra.",
+        "pasos": [
+          {
+            "icono": "ability_hunter_beastcall",
+            "nombre": "Mascota al peligroso",
+            "texto": "Mándala al enemigo que más pega o al que lanza hechizos."
+          },
+          {
+            "hechizo": "Disparo de concusión",
+            "texto": "Frena al segundo enemigo para que tarde en llegar."
+          },
+          {
+            "hechizo": "Multidisparo",
+            "texto": "Daño a hasta 3 enemigos a la vez."
+          },
+          {
+            "hechizo": "Ira de bestias",
+            "texto": "Desde nivel 40: tu mascota se enfurece y termina el combate mucho antes."
+          },
+          {
+            "hechizo": "Fingir muerte",
+            "texto": "Si se complica, finge. Al levantarte, pon [[Trampa congelante]] y vuelve a empezar con calma."
+          }
+        ]
+      },
+      {
+        "id": "entre",
+        "boton": "Entre combates",
+        "intro": "Lo que haces entre un enemigo y el siguiente marca lo rápido que subes.",
+        "pasos": [
+          {
+            "hechizo": "Sanar mascota",
+            "texto": "Cúrala mientras vas al siguiente enemigo. Mascota entera = combate seguro."
+          },
+          {
+            "icono": "inv_drink_07",
+            "nombre": "Bebe a tiempo",
+            "texto": "Si te queda menos de un tercio de maná, bebe antes del siguiente combate."
+          },
+          {
+            "hechizo": "Alimentar mascota",
+            "texto": "Que esté contenta: una mascota feliz hace más daño."
+          },
+          {
+            "icono": "inv_misc_ammo_arrow_01",
+            "nombre": "Mira la munición",
+            "texto": "Si te queda poca, compra en el próximo pueblo antes de seguir."
+          }
+        ]
+      }
+    ]
+  },
+  "armas": {
+    "_ayuda": "Armas a distancia por tramo (Wowhead Forever es-ES, 2026-11-14). origen = texto; npc: true añade el botón «Venta de NPC». enConstruccion: true oculta la tabla y deja solo el aviso.",
+    "tramos": [
+      {
+        "tramo": "1-10",
+        "lista": [
+          {
+            "id": 2506,
+            "nombre": "Arco corvo de madera de cuerno",
+            "tipo": "Arco",
+            "nivel": 3,
+            "dps": 2.38,
+            "npc": true
+          },
+          {
+            "id": 2509,
+            "nombre": "Trabuco ornamentado",
+            "tipo": "Arma de fuego",
+            "nivel": 4,
+            "dps": 2.95,
+            "npc": true
+          },
+          {
+            "id": 2511,
+            "nombre": "Trabuco de cazador",
+            "tipo": "Arma de fuego",
+            "nivel": 9,
+            "dps": 5.0,
+            "npc": true
+          }
+        ]
+      },
+      {
+        "tramo": "10-20",
+        "lista": [
+          {
+            "id": 2507,
+            "nombre": "Arco corvo laminado",
+            "tipo": "Arco",
+            "nivel": 11,
+            "dps": 5.77,
+            "npc": true
+          },
+          {
+            "id": 3026,
+            "nombre": "Arco reforzado",
+            "tipo": "Arco",
+            "nivel": 16,
+            "dps": 7.5,
+            "npc": true
+          },
+          {
+            "id": 3023,
+            "nombre": "Trabuco pesado grande",
+            "tipo": "Arma de fuego",
+            "nivel": 16,
+            "dps": 7.4,
+            "npc": true
+          },
+          {
+            "id": 4372,
+            "nombre": "Trabuco fabricado con amor",
+            "tipo": "Arma de fuego",
+            "nivel": 19,
+            "dps": 9.72,
+            "origen": "Ingeniería o subasta"
+          },
+          {
+            "id": 6469,
+            "nombre": "Golpe venenoso",
+            "tipo": "Arco",
+            "nivel": 19,
+            "dps": 12.08,
+            "origen": "Cuevas de los Lamentos (Lord Serpentis)",
+            "top": true
+          }
+        ]
+      },
+      {
+        "tramo": "20-30",
+        "lista": [
+          {
+            "id": 3027,
+            "nombre": "Arco corvo pesado",
+            "tipo": "Arco",
+            "nivel": 20,
+            "dps": 9.17,
+            "npc": true
+          },
+          {
+            "id": 3024,
+            "nombre": "BKP 2700 \"Déspota\"",
+            "tipo": "Arma de fuego",
+            "nivel": 21,
+            "dps": 9.63,
+            "npc": true
+          },
+          {
+            "id": 4383,
+            "nombre": "Rifle de vista lunar",
+            "tipo": "Arma de fuego",
+            "nivel": 24,
+            "dps": 11.76,
+            "origen": "Ingeniería o subasta"
+          },
+          {
+            "id": 3021,
+            "nombre": "Arco de especialista",
+            "tipo": "Arco",
+            "nivel": 20,
+            "dps": 12.59,
+            "origen": "Subasta (botín del mundo)",
+            "top": true
+          },
+          {
+            "id": 13137,
+            "nombre": "Hilacero",
+            "tipo": "Arma de fuego",
+            "nivel": 29,
+            "dps": 17.31,
+            "origen": "Subasta (botín del mundo)",
+            "top": true
+          }
+        ]
+      },
+      {
+        "tramo": "30-40",
+        "lista": [
+          {
+            "id": 3025,
+            "nombre": "BKP 42 \"Ultra\"",
+            "tipo": "Arma de fuego",
+            "nivel": 31,
+            "dps": 13.81,
+            "npc": true
+          },
+          {
+            "id": 11305,
+            "nombre": "Arco corto denso",
+            "tipo": "Arco",
+            "nivel": 30,
+            "dps": 14.21,
+            "origen": "Subasta (botín del mundo)"
+          },
+          {
+            "id": 10508,
+            "nombre": "Trabuco de mitril",
+            "tipo": "Arma de fuego",
+            "nivel": 36,
+            "dps": 17.93,
+            "origen": "Ingeniería o subasta"
+          },
+          {
+            "id": 10510,
+            "nombre": "Rifle de gran calibre de mitril",
+            "tipo": "Arma de fuego",
+            "nivel": 39,
+            "dps": 20.17,
+            "origen": "Ingeniería o subasta",
+            "top": true
+          }
+        ]
+      },
+      {
+        "tramo": "40-50",
+        "lista": [
+          {
+            "id": 11307,
+            "nombre": "Arco largo macizo",
+            "tipo": "Arco",
+            "nivel": 42,
+            "dps": 21.96,
+            "origen": "Subasta (botín del mundo)"
+          },
+          {
+            "id": 4089,
+            "nombre": "Trabuco rompebloques",
+            "tipo": "Arma de fuego",
+            "nivel": 43,
+            "dps": 22.39,
+            "origen": "Subasta (botín del mundo)"
+          },
+          {
+            "id": 13021,
+            "nombre": "Aguja",
+            "tipo": "Arco",
+            "nivel": 42,
+            "dps": 24.5,
+            "origen": "Subasta (botín del mundo)",
+            "top": true
+          },
+          {
+            "id": 13039,
+            "nombre": "Ballesta Atraviesa calaveras",
+            "tipo": "Ballesta",
+            "nivel": 43,
+            "dps": 25.19,
+            "origen": "Subasta (botín del mundo)",
+            "top": true
+          }
+        ]
+      },
+      {
+        "tramo": "50-60",
+        "lista": [
+          {
+            "id": 16004,
+            "nombre": "Rifle Hierro Negro",
+            "tipo": "Arma de fuego",
+            "nivel": 50,
+            "dps": 28.33,
+            "origen": "Ingeniería o subasta"
+          },
+          {
+            "id": 13146,
+            "nombre": "Escopeta de conchas",
+            "tipo": "Arma de fuego",
+            "nivel": 53,
+            "dps": 29.78,
+            "origen": "Subasta (botín del mundo)",
+            "top": true
+          }
+        ]
+      }
+    ],
+    "enConstruccion": true
+  },
+  "faq": [
+    {
+      "p": "¿Cuál es la mejor mascota para subir con el Cazador en WoW Forever?",
+      "r": "Un **jabalí** del nivel 10 al 30 (carga contra el enemigo y come casi de todo) y un **felino** del 30 al 60, que es la mascota con más daño."
+    },
+    {
+      "p": "¿Qué talentos cojo para subir del 1 al 60?",
+      "r": "Vas recto por Dominio de bestias: Aspectos letales a nivel 10, Invocar halcón a nivel 25 e Ira de bestias a nivel 40. Después, Puntería. Tienes el orden nivel a nivel en la calculadora de esta página."
+    },
+    {
+      "p": "¿Qué munición tengo que usar a cada nivel?",
+      "r": "Flecha basta o Tiro ligero hasta el 10, Flecha afilada o Tiro pesado hasta el 25, Flecha cuchilla o Perdigón sólido hasta el 40 y Flecha dentada o Balas precisas a partir del 40. Todas se compran a vendedores."
+    },
+    {
+      "p": "¿Cuánto oro necesito para el instructor de cazadores?",
+      "r": "Comprarlo todo del 1 al 60 cuesta unas **227 de oro**. Si compras solo lo recomendado, unas **92 de oro**, y te ahorras más de 130."
+    },
+    {
+      "p": "¿Cuándo consigo mi primera mascota?",
+      "r": "A **nivel 10**. El instructor de cazadores te da la misión para aprender Domesticar bestia."
+    },
+    {
+      "p": "¿Arco, ballesta o arma de fuego?",
+      "r": "Dan lo mismo: lo que importa es el daño por segundo del arma. Usa la que mejor te salga y recuerda que el arco y la ballesta usan flechas y el arma de fuego, balas."
+    }
+  ]
+}

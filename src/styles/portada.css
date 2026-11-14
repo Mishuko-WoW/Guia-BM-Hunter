@@ -223,3 +223,13 @@
 
 /* Las tarjetas son enlaces: sin subrayado en ningún estado */
 .pt-card, .pt-card:hover, .pt-card:focus-visible, .pt-card * { text-decoration: none; }
+
+/* Tarjeta con enlace que la cubre entera (.pt-card__link) y enlace secundario encima (.pt-card__extra) */
+.pt-card__link { position: absolute; inset: 0; z-index: 1; transform: translateZ(35px); }
+.pt-card:focus-within { box-shadow: inset 0 0 0 2px var(--tone); }
+.pt-card__extra {
+  position: relative; z-index: 2; margin-top: 14px; transform: translateZ(45px);
+  font: 700 15px/1.2 var(--font-display); letter-spacing: 0.04em; color: var(--tone);
+  border-bottom: 1px solid color-mix(in srgb, var(--tone) 50%, transparent);
+}
+.pt-card__extra:hover { color: var(--text); border-color: var(--text); }

@@ -43,7 +43,8 @@ const RUTAS_MIDNIGHT = Object.fromEntries(TABS_MIDNIGHT.map((t) => [t.id, tabPat
 
     <div class="pt-cards">
       {REALMS.map((r, i) => (
-        <a class:list={['pt-card', `pt-card--${r.id}`]} href={r.href} style={`--d:${i}`} data-tilt>
+        <div class:list={['pt-card', `pt-card--${r.id}`]} style={`--d:${i}`} data-tilt>
+          <a class="pt-card__link" href={r.href} aria-label={`Guía Hunter BM de ${r.nombre}`}></a>
           <span class="pt-card__shine" aria-hidden="true"></span>
           {r.etiqueta && <span class="pt-card__tag">{r.etiqueta}</span>}
           <span class="pt-card__logo">
@@ -62,7 +63,8 @@ const RUTAS_MIDNIGHT = Object.fromEntries(TABS_MIDNIGHT.map((t) => [t.id, tabPat
             {r.disponible ? 'Entrar a la guía' : 'Ver avance'}
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" /></svg>
           </span>
-        </a>
+          {r.extra && <a class="pt-card__extra" href={r.extra.href}>{r.extra.texto} →</a>}
+        </div>
       ))}
       <span class="pt-divider" aria-hidden="true"><i></i></span>
     </div>

@@ -1,0 +1,577 @@
+---
+// Pestaña Leveling 1-60 (Forever): hitos, hoja de ruta por tramos (talentos, munición, mascota y claves),
+// instructor (qué comprar y qué no), build de leveling (calculadora), munición y carcaj, mascotas para subir y consejos.
+// Contenido: src/content/data/forever-leveling.json. Los talentos de cada tramo salen del 'orden'
+// de la build de leveling (forever-builds.json); familias de mascota de forever-mascotas.json.
+import data from '../../content/data/forever-leveling.json';
+import builds from '../../content/data/forever-builds.json';
+import talentosData from '../../content/data/forever-talentos.json';
+import mascotasData from '../../content/data/forever-mascotas.json';
+import { getSpell, foreverIcon, iconUrl } from '../../lib/spells';
+import { md } from '../../lib/markup';
+import CalculadoraTalentos from './CalculadoraTalentos.astro';
+import IndiceForever from './IndiceForever.astro';
+
+// Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
+const citados = new Set<string>();
+const recoger = (v: unknown) => {
+  if (typeof v === 'string') for (const m of v.matchAll(/\[\[([^\]|>]+)/g)) citados.add(m[1].trim());
+  else if (Array.isArray(v)) v.forEach(recoger);
+  else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) k === 'hechizo' ? citados.add(String(x)) : recoger(x);
+};
+recoger({ ...data, _ayuda: '' });
+const faltan = [...citados].filter((n) => !getSpell(n));
+if (faltan.length) throw new Error(`forever-leveling.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
+
+const tip = (nombre: string) => {
+  const s = getSpell(nombre);
+  return { 'data-name': nombre, 'data-type': s?.type ?? '', 'data-desc': s?.desc ?? '' };
+};
+
+// Talentos: id → datos; orden de leveling → nivel de cada punto
+const TAL = new Map<string, { nombre: string; icono: string; max: number }>();
+for (const a of talentosData.arboles) for (const t of a.talentos) TAL.set(t.id, { nombre: t.nombre, icono: t.icono, max: t.max });
+const orden = builds.builds.find((b) => b.id === 'leveling')?.orden ?? [];
+const puntosHasta = new Map<string, number>(); // puntos acumulados del talento
+const porNivel = orden.map((id, i) => {
+  const n = (puntosHasta.get(id) ?? 0) + 1;
+  puntosHasta.set(id, n);
+  return { nivel: 10 + i, id, rango: n };
+});
+function talentosDe(desde: number, hasta: number) {
+  const grupos: { id: string; nombre: string; icono: string; max: number; desde: number; hasta: number; rango: number }[] = [];
+  for (const p of porNivel.filter((p) => p.nivel >= desde && p.nivel <= hasta)) {
+    const ult = grupos[grupos.length - 1];
+    if (ult && ult.id === p.id) { ult.hasta = p.nivel; ult.rango = p.rango; continue; }
+    const t = TAL.get(p.id)!;
+    grupos.push({ id: p.id, ...t, desde: p.nivel, hasta: p.nivel, rango: p.rango });
+  }
+  return grupos;
+}
+
+// Munición y carcaj del tramo: el que tienes al empezar y los cambios dentro del tramo
+const { tipos, especial, carcajes, bolsas } = data.municion;
+const enTramo = <T extends { nivel: number }>(lista: T[], desde: number, hasta: number) => {
+  const actual = [...lista].reverse().find((x) => x.nivel <= desde) ?? lista[0];
+  return [actual, ...lista.filter((x) => x.nivel > desde && x.nivel <= hasta)];
+};
+const maxDps = Math.max(...tipos.map((t) => t.dps), ...especial.map((e) => e.dps));
+const wh = (id: number) => `https://www.wowhead.com/forever/es/item=${id}`;
+// cobre → [[valor, 'g'|'s'|'c'], ...] (mismas monedas que RangosEntrenables)
+const monedas = (cobre: number) => {
+  const g = Math.floor(cobre / 10000), sv = Math.floor((cobre % 10000) / 100), c = cobre % 100;
+  return ([[g, 'g'], [sv, 's'], [c, 'c']] as [number, string][]).filter(([v]) => v);
+};
+const ins = data.instructor.lista;
+const sumar = (l: typeof ins) => l.reduce((t, x) => t + x.coste, 0);
+const totalTodo = sumar(ins), totalSi = sumar(ins.filter((x) => x.rec === 'si'));
+// Habilidades recomendadas de cada tramo (fuera de la plantilla: el compilador no acepta '<=' ahí)
+const insPorTramo = Object.fromEntries(
+  data.tramos.map((t) => [t.id, ins.filter((x) => x.rec === 'si' && x.nivel >= t.desde && x.nivel <= t.hasta)]),
+);
+const insNiveles = [...new Set(ins.map((x) => x.nivel))];
+const REC: Record<string, string> = { si: 'Cómprala', opc: 'Opcional', no: 'Sáltatela' };
+const textoMonedas = (cobre: number) => monedas(cobre).map(([v, u]) => `${v} ${{ g: 'oro', s: 'plata', c: 'cobre' }[u]}`).join(' ');
+// Carcaj (flechas) y bolsa de munición (balas): dos tablas con un selector
+const QUIVER = [
+  { id: 'carcaj', boton: 'Carcaj (flechas)', icono: 'inv_misc_quiver_09' },
+  { id: 'bolsa', boton: 'Bolsa de munición (balas)', icono: 'inv_misc_ammo_bullet_01' },
+] as const;
+type Contenedor = { nivel: number; id: number; nombre: string; casillas: number; vel: number; origen?: string; npc?: boolean };
+const LISTA_Q: Record<string, Contenedor[]> = { carcaj: carcajes, bolsa: bolsas };
+// En cada tramo: el mejor que tienes al empezar y los que mejoran (más casillas) dentro del tramo
+const mejoras = (lista: Contenedor[], desde: number, hasta: number) =>
+  enTramo(lista, desde, hasta).filter((c, j, arr) => j === 0 || c.casillas > arr[j - 1].casillas);
+// Preguntas frecuentes → datos estructurados FAQPage (texto plano, sin mini-formato)
+const plano = (t: string) => t.replace(/\[\[([^\]|>]+)(?:[|>][^\]]*)?\]\]/g, '$1').replace(/\*\*?|!!/g, '');
+const faqJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: data.faq.map((f) => ({ '@type': 'Question', name: f.p, acceptedAnswer: { '@type': 'Answer', text: plano(f.r) } })),
+});
+const icoPaso = (p: { hechizo?: string; icono?: string }) => (p.icono ? iconUrl(p.icono) : foreverIcon(p.hechizo));
+// Índice de la página (orden = orden de las secciones)
+const INDICE = [
+  { id: 'lv-ruta', texto: 'Hoja de ruta' },
+  { id: 'lv-combate', texto: 'Cómo pelear' },
+  { id: 'lv-instructor', texto: 'Instructor' },
+  { id: 'lv-talentos', texto: 'Talentos' },
+  { id: 'lv-mascotas', texto: 'Mascotas' },
+  { id: 'lv-consejos', texto: 'Consejos' },
+  { id: 'lv-municion', texto: 'Munición y carcaj' },
+  { id: 'lv-faq', texto: 'Preguntas frecuentes' },
+  { id: 'lv-armas', texto: 'Armas (en construcción)' },
+];
+const fmt = (n: number) => String(n).replace('.', ',');
+
+// Mascotas
+const FAM = new Map(mascotasData.familias.map((f) => [f.id, f]));
+const HAB = mascotasData.habilidades as Record<string, { nombre: string }>;
+const familia = (id: string) => {
+  const f = FAM.get(id)!;
+  return { ...f, propiaNombre: HAB[f.propia]?.nombre ?? '' };
+};
+---
+
+<div class="lv" id="lv">
+  <IndiceForever items={INDICE} />
+
+  <ol class="lv-hitos" aria-label="Los 4 momentos clave">
+    {data.hitos.map((h) => (
+      <li class="lv-hito">
+        <span class="lv-hito__lvl"><small>Nivel</small>{h.nivel}</span>
+        <img src={foreverIcon(h.hechizo)} alt="" width="44" height="44" loading="lazy" {...tip(h.hechizo)} />
+        <span class="lv-hito__txt"><b>{h.nombre ?? h.hechizo}</b>{h.texto}</span>
+      </li>
+    ))}
+  </ol>
+
+  <!-- HOJA DE RUTA -->
+  <section class="lv-sec" id="lv-ruta">
+    <h3>Hoja de ruta del 1 al 60</h3>
+    <div class="lv-pick">
+      <label class="lv-pick__lvl">
+        <span>¿Qué nivel eres?</span>
+        <input type="number" min="1" max="60" inputmode="numeric" placeholder="1-60" data-lv-input />
+      </label>
+      <div class="lv-tramos" role="tablist" aria-label="Tramos de nivel">
+        {data.tramos.map((t, i) => (
+          <button type="button" role="tab" class:list={['lv-tramo', { active: i === 0 }]} data-lv-tramo={t.id} aria-selected={i === 0 ? 'true' : 'false'}>
+            {t.id}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {data.tramos.map((t, i) => {
+      const tal = talentosDe(t.desde, t.hasta);
+      const mun = enTramo(tipos, t.desde, t.hasta);
+      const insTramo = insPorTramo[t.id];
+      const car = mejoras(carcajes, t.desde, t.hasta);
+      const bol = mejoras(bolsas, t.desde, t.hasta);
+      return (
+        <article class="lv-panel" data-lv-panel={t.id} data-desde={t.desde} data-hasta={t.hasta} role="tabpanel">
+          <header class="lv-panel__head">
+            <span class="lv-panel__range">Nivel <b>{t.id}</b></span>
+            <h4>{t.titulo}</h4>
+            <p set:html={md(t.resumen)} />
+            {insTramo.length > 0 && (
+              <a class="lv-panel__ins" href="#lv-instructor">
+                Instructor en estos niveles: <b>{insTramo.length} habilidades</b> recomendadas por
+                <span class="tr-cost">{monedas(sumar(insTramo)).map(([v, u]) => <span class={`tr-coin tr-coin--${u}`}>{v}</span>)}</span>
+              </a>
+            )}
+          </header>
+
+          <div class="lv-grid">
+            <div class="lv-card lv-card--talentos">
+              <h5>Talentos</h5>
+              {tal.length ? (
+                <ul class="lv-tal">
+                  {tal.map((g) => (
+                    <li {...tip(g.nombre)}>
+                      <img src={iconUrl(g.icono)} alt="" width="32" height="32" loading="lazy" />
+                      <span class="lv-tal__name">{g.nombre}</span>
+                      <span class="lv-tal__lvl">{g.desde === g.hasta ? `Nv ${g.desde}` : `Nv ${g.desde}-${g.hasta}`}</span>
+                      <span class="lv-tal__pts">{g.rango}/{g.max}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="lv-muted">Los talentos empiezan a nivel 10 (1 punto por nivel).</p>
+              )}
+            </div>
+
+            <div class="lv-card lv-card--municion">
+              <h5>Munición y carcaj</h5>
+              <ul class="lv-ammo">
+                {mun.map((m, j) => (
+                  <li>
+                    <span class="lv-ammo__when">{j === 0 ? 'Usa' : `Nivel ${m.nivel}`}</span>
+                    <span class="lv-ammo__names">
+                      <a href={wh(m.flecha.id)}>{m.flecha.nombre}</a> <span class="lv-muted">o</span> <a href={wh(m.bala.id)}>{m.bala.nombre}</a>
+                    </span>
+                    <span class="lv-ammo__dps">+{fmt(m.dps)} DPS</span>
+                  </li>
+                ))}
+                {([['Carcaj', car], ['Bolsa', bol]] as const).map(([etq, lista]) => lista.map((c, j) => (
+                  <li class="is-quiver">
+                    <span class="lv-ammo__when">{j === 0 ? etq : `Nivel ${c.nivel}`}</span>
+                    <span class="lv-ammo__names"><a href={wh(c.id)}>{c.nombre}</a></span>
+                    <span class="lv-ammo__dps">{c.casillas} casillas · {c.vel}%</span>
+                  </li>
+                )))}
+              </ul>
+            </div>
+
+            <div class="lv-card lv-card--mascota">
+              <h5>Mascota</h5>
+              {t.familias.length > 0 && (
+                <div class="lv-pets">
+                  {t.familias.map((id) => {
+                    const f = familia(id);
+                    return (
+                      <span class="lv-pet">
+                        <img src={iconUrl(f.icono)} alt="" width="36" height="36" loading="lazy" />
+                        <span><b>{f.nombre}</b><small>{f.propiaNombre}</small></span>
+                      </span>
+                    );
+                  })}
+                </div>
+              )}
+              <p set:html={md(t.mascota)} />
+            </div>
+
+            <div class="lv-card lv-card--claves">
+              <h5>Lo importante</h5>
+              <ul class="lv-claves">
+                {t.claves.map((c) => <li set:html={md(c)} />)}
+              </ul>
+            </div>
+          </div>
+
+          <div class="lv-panel__nav">
+            {i > 0 && <button type="button" class="lv-step" data-lv-go={data.tramos[i - 1].id}>← Nivel {data.tramos[i - 1].id}</button>}
+            {i < data.tramos.length - 1 && <button type="button" class="lv-step lv-step--next" data-lv-go={data.tramos[i + 1].id}>Nivel {data.tramos[i + 1].id} →</button>}
+          </div>
+        </article>
+      );
+    })}
+  </section>
+
+  <!-- CÓMO PELEAR -->
+  <section class="lv-sec" id="lv-combate">
+    <h3>Cómo pelear mientras subes</h3>
+    <div class="lv-qtoggle">
+      <div class="toggle-wrap combat-switch" role="group" aria-label="Situación de combate">
+        {data.combate.modos.map((m, i) => (
+          <button type="button" class:list={['toggle-btn', { active: i === 0 }]} data-cb={m.id}>{m.boton}</button>
+        ))}
+      </div>
+    </div>
+    {data.combate.modos.map((m) => (
+      <div class="lv-cb" data-cb-panel={m.id}>
+        <p class="lv-lead lv-cb__intro">{m.intro}</p>
+        <ol class="lv-cb__steps">
+          {m.pasos.map((p) => (
+            <li class="lv-cb__step">
+              <img src={icoPaso(p)} alt="" width="56" height="56" loading="lazy" {...(p.hechizo ? tip(p.hechizo) : {})} />
+              <span class="lv-cb__body">
+                <b>{p.nombre ?? p.hechizo}</b>
+                <span set:html={md(p.texto)} />
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))}
+  </section>
+
+  <!-- INSTRUCTOR -->
+  <section class="lv-sec" id="lv-instructor">
+    <h3>Instructor: qué comprar y qué no</h3>
+    <p class="lv-lead">
+      Cada pocos niveles el instructor de cazadores te ofrece habilidades y rangos nuevos, y no todos merecen el oro.
+      Compra lo que usas en cada combate y deja el resto para cuando te sobre el dinero. Pasa el ratón por una habilidad para ver qué hace.
+    </p>
+    <div class="lv-ins-sum">
+      <div class="lv-ins-stat"><span>Si lo compras todo</span><b class="tr-cost">{monedas(totalTodo).map(([v, u]) => <span class={`tr-coin tr-coin--${u}`}>{v}</span>)}</b></div>
+      <div class="lv-ins-stat is-si"><span>Si compras solo lo recomendado</span><b class="tr-cost">{monedas(totalSi).map(([v, u]) => <span class={`tr-coin tr-coin--${u}`}>{v}</span>)}</b></div>
+      <div class="lv-ins-stat is-save"><span>Dinero que te ahorras</span><b class="tr-cost">{monedas(totalTodo - totalSi).map(([v, u]) => <span class={`tr-coin tr-coin--${u}`}>{v}</span>)}</b></div>
+    </div>
+    <div class="toggle-wrap combat-switch lv-ins-filter" role="group" aria-label="Filtrar habilidades del instructor">
+      <button type="button" class="toggle-btn active" data-ins-filter="si">Cómpralas ({ins.filter((x) => x.rec === 'si').length})</button>
+      <button type="button" class="toggle-btn" data-ins-filter="opc">Opcionales ({ins.filter((x) => x.rec === 'opc').length})</button>
+      <button type="button" class="toggle-btn" data-ins-filter="no">Sáltatelas ({ins.filter((x) => x.rec === 'no').length})</button>
+      <button type="button" class="toggle-btn" data-ins-filter="todas">Todas ({ins.length})</button>
+    </div>
+    <div class="lv-ins-levels" id="lv-ins">
+      {insNiveles.map((n) => (
+        <section class="lv-ins-level" data-ins-level>
+          <div class="lv-ins-level__num"><span>Nivel</span><b>{n}</b></div>
+          <div class="lv-ins-level__list">
+            {ins.filter((x) => x.nivel === n).map((x) => (
+              <div
+                class={`lv-ins-item is-${x.rec}`}
+                data-rec={x.rec}
+                data-name={x.nombre}
+                data-type={[x.rango ? `Rango ${x.rango}` : '', `Coste: ${textoMonedas(x.coste)}`].filter(Boolean).join(' · ')}
+                data-desc={x.desc}
+              >
+                <img src={iconUrl(x.icono)} alt="" width="48" height="48" loading="lazy" />
+                <span class="lv-ins-item__body">
+                  <span class="lv-ins-item__name">{x.nombre}{x.rango && <span class="lv-ins-item__rank">Rango {x.rango}</span>}</span>
+                  <span class="lv-ins-item__note">{x.nota}</span>
+                </span>
+                <span class="lv-ins-item__side">
+                  <span class={`lv-rec lv-rec--${x.rec}`}>{REC[x.rec]}</span>
+                  <span class="tr-cost">{monedas(x.coste).map(([v, u]) => <span class={`tr-coin tr-coin--${u}`}>{v}</span>)}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+
+  <!-- TALENTOS -->
+  <section class="lv-sec" id="lv-talentos">
+    <h3>Build de talentos para subir</h3>
+    <p class="lv-lead">
+      Mueve el nivel para ver cómo queda el árbol en cada momento y qué punto toca. Vas recto por Dominio de bestias hasta
+      Ira de bestias (nivel 40) y luego a Puntería. A nivel 60, cambia a la build de raid de la pestaña <a href="/forever/talentos/">Talentos</a>.
+    </p>
+    <CalculadoraTalentos build="leveling" solo />
+  </section>
+
+  <!-- MASCOTAS -->
+  <section class="lv-sec" id="lv-mascotas">
+    <h3>Mascotas para subir</h3>
+    <div class="lv-petcards">
+      {data.mascotas.recomendadas.map((r) => {
+        const f = familia(r.familia);
+        return (
+          <div class="lv-petcard">
+            <img src={iconUrl(f.icono)} alt="" width="56" height="56" loading="lazy" />
+            <div>
+              <span class="lv-petcard__tag">{r.tramo}</span>
+              <h4>{f.nombre}</h4>
+              <p set:html={md(r.texto)} />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <h4 class="lv-h4">Habilidades que debe tener</h4>
+    <ul class="lv-skills">
+      {data.mascotas.habilidades.map((h) => (
+        <li>
+          <img src={foreverIcon(h.hechizo)} alt="" width="40" height="40" loading="lazy" {...tip(h.hechizo)} />
+          <span><b>{h.hechizo}</b> <span set:html={md(h.texto)} /></span>
+        </li>
+      ))}
+    </ul>
+
+    <h4 class="lv-h4">Cuándo cambiar de mascota</h4>
+    <ol class="lv-steps">
+      {data.mascotas.cambiar.map((c) => <li set:html={md(c)} />)}
+    </ol>
+    <p class="lv-lead">
+      Dónde domesticar cada familia y cada rango, con bestias de Alianza y de Horda: pestaña <a href="/forever/mascotas/">Mascotas</a>.
+    </p>
+  </section>
+
+  <!-- CONSEJOS -->
+  <section class="lv-sec" id="lv-consejos">
+    <h3>Consejos para subir más rápido</h3>
+    <div class="lv-tips">
+      {data.consejos.map((c) => (
+        <div class="lv-tip">
+          <img src={iconUrl(c.icono)} alt="" width="40" height="40" loading="lazy" />
+          <h4>{c.titulo}</h4>
+          <p set:html={md(c.texto)} />
+        </div>
+      ))}
+    </div>
+  </section>
+  <!-- MUNICIÓN -->
+  <section class="lv-sec" id="lv-municion">
+    <h3>Munición y carcaj</h3>
+    <p class="lv-lead">
+      La munición <strong>suma daño a cada disparo</strong>, así que cámbiala en cuanto llegues al nivel. La de vendedor la tienes en
+      cualquier pueblo o ciudad. Flechas para arcos y ballestas, balas para armas de fuego: dan exactamente lo mismo.
+    </p>
+    <div class="lv-ladder" role="list">
+      {tipos.map((m) => (
+        <div class="lv-rung" role="listitem">
+          <span class="lv-rung__lvl"><small>Nivel</small>{m.nivel}</span>
+          <span class="lv-rung__names"><a href={wh(m.flecha.id)}>{m.flecha.nombre}</a><a href={wh(m.bala.id)}>{m.bala.nombre}</a></span>
+          <span class="lv-rung__bar"><span style={`--w:${(m.dps / maxDps) * 100}%`} /></span>
+          <span class="lv-rung__dps">+{fmt(m.dps)}</span>
+        </div>
+      ))}
+    </div>
+
+    <h4 class="lv-h4">Munición mejor que la de vendedor</h4>
+    <div class="lv-table-wrap">
+      <table class="lv-table">
+        <thead><tr><th>Nivel</th><th>Munición</th><th>Daño</th><th>De dónde sale</th></tr></thead>
+        <tbody>
+          {especial.map((e) => (
+            <tr>
+              <td><b>{e.nivel}</b></td>
+              <td><a href={wh(e.id)}>{e.nombre}</a> <span class="lv-muted">({e.tipo})</span></td>
+              <td>+{fmt(e.dps)} DPS</td>
+              <td>{e.origen}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="lv-h4">Carcaj o bolsa de munición</h4>
+    <p class="lv-lead">
+      Ocupa un hueco de bolsa, pero te da <strong>velocidad de ataque a distancia</strong> y guarda la munición. El carcaj es para flechas;
+      la bolsa (faltriquera o bandolera), para balas. Cambia cuando encuentres uno con más casillas o más velocidad. Pulsa «Venta de NPC» para ver en Wowhead qué NPC lo vende y dónde está en el mapa.
+    </p>
+    <div class="lv-qtoggle">
+      <div class="toggle-wrap combat-switch" role="group" aria-label="Carcaj o bolsa de munición">
+        {QUIVER.map((q, i) => (
+          <button type="button" class:list={['toggle-btn', 'lv-qbtn', { active: i === 0 }]} data-q={q.id}>
+            <img src={iconUrl(q.icono)} alt="" width="28" height="28" />{q.boton}
+          </button>
+        ))}
+      </div>
+    </div>
+    {QUIVER.map((q) => (
+      <div class="lv-table-wrap" data-q-table={q.id}>
+        <table class="lv-table">
+          <thead><tr><th>Nivel</th><th>{q.boton}</th><th>Casillas</th><th>Velocidad</th><th>De dónde sale</th></tr></thead>
+          <tbody>
+            {LISTA_Q[q.id].map((it) => {
+              return (
+                <tr>
+                  <td><b>{it.nivel}</b></td>
+                  <td><a href={wh(it.id)}>{it.nombre}</a></td>
+                  <td>{it.casillas}</td>
+                  <td>+{it.vel}%</td>
+                  <td class="lv-origen">
+                    {it.origen && <span>{it.origen}{it.npc && ' y'}</span>}
+                    {it.npc && (
+                      <button type="button" class="toggle-btn lv-npc-btn" data-npc-href={wh(it.id) + '#sold-by'} title="Ver en Wowhead qué NPC lo vende y dónde está">
+                        Venta de NPC
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    ))}
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES -->
+  <section class="lv-sec" id="lv-faq">
+    <h3>Preguntas frecuentes</h3>
+    <div class="lv-faq">
+      {data.faq.map((f, i) => (
+        <details class="lv-faq__item" open={i === 0}>
+          <summary>{f.p}</summary>
+          <p set:html={md(f.r)} />
+        </details>
+      ))}
+    </div>
+    <script type="application/ld+json" set:html={faqJsonLd} />
+  </section>
+
+  <!-- ARMAS -->
+  <section class="lv-sec" id="lv-armas">
+    <h3>Armas a distancia para subir</h3>
+    {data.armas.enConstruccion && (
+      <p class="lv-demo gn-aviso">En construcción: estoy completando las armas de cada tramo de nivel. Pronto estará disponible.</p>
+    )}
+    {!data.armas.enConstruccion && (
+      <>
+    <p class="lv-lead">
+      El arma es tu mayor subida de daño: fíjate sobre todo en su <strong>daño por segundo</strong>. La de vendedor te sirve
+      siempre; las marcadas como <span class="lv-top">Mejor opción</span> son las que merece la pena buscar.
+      Arcos y ballestas usan flechas; las armas de fuego, balas.
+    </p>
+    <div class="lv-table-wrap">
+      <table class="lv-table">
+        <thead><tr><th>Nivel</th><th>Arma</th><th>Tipo</th><th>DPS</th><th>De dónde sale</th></tr></thead>
+        {data.armas.tramos.map((t) => (
+          <tbody>
+            <tr class="lv-table__group"><th colspan="5">Nivel {t.tramo}</th></tr>
+            {t.lista.map((a) => (
+              <tr class:list={{ 'is-top': a.top }}>
+                <td><b>{a.nivel}</b></td>
+                <td><a href={wh(a.id)}>{a.nombre}</a>{a.top && <span class="lv-top">Mejor opción</span>}</td>
+                <td>{a.tipo}</td>
+                <td>{fmt(a.dps)}</td>
+                <td class="lv-origen">
+                  {a.origen && <span>{a.origen}</span>}
+                  {a.npc && (
+                    <button type="button" class="toggle-btn lv-npc-btn" data-npc-href={wh(a.id) + '#sold-by'} title="Ver en Wowhead qué NPC lo vende y dónde está">
+                      Venta de NPC
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        ))}
+      </table>
+    </div>
+      </>
+    )}
+  </section>
+</div>
+
+<script is:inline>
+  (function () {
+    const root = document.getElementById('lv');
+    if (!root) return;
+    const tabs = [...root.querySelectorAll('[data-lv-tramo]')];
+    const panels = [...root.querySelectorAll('[data-lv-panel]')];
+    const input = root.querySelector('[data-lv-input]');
+    const KEY = 'forever-leveling-nivel';
+    function mostrar(id, scroll) {
+      tabs.forEach((b) => {
+        const on = b.dataset.lvTramo === id;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      panels.forEach((p) => (p.hidden = p.dataset.lvPanel !== id));
+      if (scroll) document.getElementById('lv-ruta').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function porNivel(n) {
+      const p = panels.find((x) => n >= +x.dataset.desde && n <= +x.dataset.hasta);
+      if (p) mostrar(p.dataset.lvPanel);
+    }
+    tabs.forEach((b) => b.addEventListener('click', () => mostrar(b.dataset.lvTramo)));
+    root.querySelectorAll('[data-lv-go]').forEach((b) => b.addEventListener('click', () => mostrar(b.dataset.lvGo, true)));
+    if (input) {
+      input.addEventListener('input', () => {
+        const n = parseInt(input.value, 10);
+        if (n >= 1 && n <= 60) {
+          porNivel(n);
+          try { localStorage.setItem(KEY, String(n)); } catch (e) {}
+        }
+      });
+    }
+    const insRoot = document.getElementById('lv-ins');
+    function filtrarIns(btn) {
+      root.querySelectorAll('[data-ins-filter]').forEach((b) => b.classList.toggle('active', b === btn));
+      const f = btn.dataset.insFilter;
+      insRoot.querySelectorAll('[data-rec]').forEach((it) => (it.hidden = f !== 'todas' && it.dataset.rec !== f));
+      insRoot.querySelectorAll('[data-ins-level]').forEach((sec) => (sec.hidden = ![...sec.querySelectorAll('[data-rec]')].some((it) => !it.hidden)));
+    }
+    root.querySelectorAll('[data-ins-filter]').forEach((b) => b.addEventListener('click', () => filtrarIns(b)));
+    if (insRoot) filtrarIns(root.querySelector('[data-ins-filter].active'));
+    const qBtns = [...root.querySelectorAll('[data-q]')];
+    function verQ(id) {
+      qBtns.forEach((b) => b.classList.toggle('active', b.dataset.q === id));
+      root.querySelectorAll('[data-q-table]').forEach((t) => (t.hidden = t.dataset.qTable !== id));
+    }
+    qBtns.forEach((b) => b.addEventListener('click', () => verQ(b.dataset.q)));
+    if (qBtns.length) verQ(qBtns[0].dataset.q);
+    // «Venta de NPC» es un botón (no un enlace) para que Wowhead no le añada icono ni tooltip
+    root.querySelectorAll('[data-npc-href]').forEach((b) => b.addEventListener('click', () => window.open(b.dataset.npcHref, '_blank', 'noopener')));
+    const cbBtns = [...root.querySelectorAll('[data-cb]')];
+    function verCb(id) {
+      cbBtns.forEach((b) => b.classList.toggle('active', b.dataset.cb === id));
+      root.querySelectorAll('[data-cb-panel]').forEach((p) => (p.hidden = p.dataset.cbPanel !== id));
+    }
+    cbBtns.forEach((b) => b.addEventListener('click', () => verCb(b.dataset.cb)));
+    if (cbBtns.length) verCb(cbBtns[0].dataset.cb);
+    let guardado = null;
+    try { guardado = parseInt(localStorage.getItem(KEY), 10); } catch (e) {}
+    if (guardado >= 1 && guardado <= 60) { input.value = guardado; porNivel(guardado); }
+    else mostrar(tabs[0].dataset.lvTramo);
+  })();
+</script>

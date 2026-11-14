@@ -1,0 +1,90 @@
+{
+  "_ayuda": "Pestaña General de Forever (lo pinta GeneralForever.astro). Textos con mini-formato [[Hechizo]]; todo hechizo citado debe estar en spells.json.",
+  "resumen": "El **Cazador de Bestias** (en el árbol de talentos, *Dominio de bestias*) es el especialista en mascotas: tu mascota es a la vez **tu mayor fuente de daño y tu tanque**, y tú disparas a distancia con [[Tiro automático]] y tus disparos. Forever mantiene casi todo el Classic original y añade dos cosas clave: [[Invocar halcón]] y que **las mascotas escalan con tus estadísticas**, así que el BM crece con tu equipo hasta el final.",
+  "datos": [
+    { "valor": "1-60", "texto": "Niveles" },
+    { "valor": "31/20/0", "texto": "Build de raid" },
+    { "valor": "Maná", "texto": "Recurso" },
+    { "valor": "Fácil", "texto": "De aprender" }
+  ],
+  "aviso": "La beta de Forever llegaba a **nivel 30**. Lo que se refiere a nivel 60 (estadísticas exactas, BiS, encantamientos) es una estimación y se irá confirmando.",
+  "cambios": [
+    { "hechizo": "Invocar halcón", "etiqueta": "Nuevo", "texto": "Talento de Bestias a nivel 25. El halcón ataca 18 s y puedes tener **2 a la vez**. Comparte reutilización (6 s) con [[Tiro Arcano]], escala con tu poder de ataque a distancia y **no tiene alcance mínimo**." },
+    { "hechizo": "Fuego enfocado", "etiqueta": "Nuevo", "texto": "+2% a todo tu daño y al de tu mascota mientras la mascota está activa." },
+    { "hechizo": "Aspectos letales", "etiqueta": "Nuevo", "texto": "Con [[Aspecto del halcón]], cada [[Tiro automático]] puede darte un 30% de velocidad de ataque a distancia durante 12 s." },
+    { "hechizo": "Afinar la puntería", "etiqueta": "Nuevo", "texto": "Talento de Puntería: el Intelecto te da poder de ataque 1 a 1." },
+    { "hechizo": "Tiro automático", "etiqueta": "Cambia", "texto": "Tiene **0,5 s de lanzamiento**, pero ya **no se corta** al lanzar otras habilidades." },
+    { "hechizo": "Tiro de puntería", "etiqueta": "Cambia", "texto": "Pasa a ser **habilidad base** (antes era talento) y comparte reutilización con [[Multidisparo]]." },
+    { "hechizo": "Multidisparo", "etiqueta": "Cambia", "texto": "Golpea a un máximo de 3 objetivos y comparte reutilización con [[Tiro de puntería]]." },
+    { "hechizo": "Disciplina de bestias", "etiqueta": "Cambia", "texto": "Deja que el **50% de tu regeneración de maná** siga mientras lanzas: es tu talento de maná." },
+    { "hechizo": "Intimidación", "etiqueta": "Cambia", "texto": "El siguiente ataque de la mascota aturde 3 s y tiene +100% de probabilidad de crítico. Genera mucha amenaza." },
+    { "hechizo": "Entrenamiento en aguante", "etiqueta": "Cambia", "texto": "Aumenta salud **y armadura** de la mascota (hasta un 15% con 5/5)." },
+    { "hechizo": "Domesticar bestia", "nombre": "Mascotas", "etiqueta": "Cambia", "texto": "**Escalan con tus estadísticas** y **cada familia tiene al menos una habilidad única** (por ejemplo [[Nube de polvo]] del zancudo)." }
+  ],
+  "herencia": {
+    "stats": [
+      { "valor": "10%", "texto": "de tu poder de ataque a distancia" },
+      { "valor": "100%", "texto": "de tu probabilidad de crítico" },
+      { "valor": "30%", "texto": "de tu armadura" },
+      { "valor": "×2", "texto": "vida por cada punto de tu aguante" }
+    ],
+    "nota": "Cada punto de crítico te mejora a ti y a tu mascota, y además alimenta [[Frenesí]]. Las mascotas ahora tienen **evasión** y ya **no reciben los bufos de otras clases**. Lo ves todo en el panel de mascota de la ventana de personaje."
+  },
+  "fuertes": [
+    "**El mejor para subir y para el contenido en solitario:** la mascota tanquea y tú disparas desde lejos.",
+    "**Daño explosivo muy alto** en la ventana de [[Ira de bestias]] (cada 2 min) junto a [[Fuego rápido]].",
+    "**Fácil de aprender:** la rotación es una lista de prioridades corta, con mucho margen de mejora (control de la mascota, mantener los 2 halcones, posicionamiento).",
+    "**Control y kiteo:** trampas, [[Cortar alas]], [[Disparo de concusión]] y [[Fingir muerte]] para soltar amenaza o salir de combate.",
+    "**Mascotas con utilidad:** según la familia aportas reducción de armadura, debilitaciones o desarmes."
+  ],
+  "debiles": [
+    "**Casi sin utilidad de grupo:** no aportas bufos importantes a la banda; te ganas el sitio con el daño.",
+    "**Zona muerta:** si el enemigo está a menos de 8 m pero fuera del cuerpo a cuerpo, no puedes atacarle.",
+    "**Dependes de la mascota:** si muere o no ataca al objetivo correcto pierdes gran parte de tu daño.",
+    "**Daño en área limitado:** [[Multidisparo]], [[Trampa explosiva]] y [[Lluvia]], y a la mascota le cuesta mantener la amenaza contra varios enemigos.",
+    "**Gestión de recursos:** maná, munición (ocupa una bolsa) y felicidad de la mascota."
+  ],
+  "mecanicas": [
+    { "titulo": "Zona muerta", "icono": "ability_rogue_feint", "filas": [
+      "Tus disparos alcanzan de **8 a 35 m**. Entre el cuerpo a cuerpo y los 8 m **no puedes disparar ni golpear cuerpo a cuerpo**.",
+      "Si un enemigo se te pega, **aléjate hasta pasar los 8 m** o acércate del todo para usar [[Cortar alas]] o [[Separación]].",
+      "[[Invocar halcón]] **no tiene alcance mínimo**: lo puedes lanzar aunque el enemigo esté encima."
+    ] },
+    { "titulo": "Munición y carcaj", "icono": "inv_misc_quiver_10", "filas": [
+      "Necesitas **flechas** (arcos y ballestas) o **balas** (armas de fuego). Sin munición no atacas a distancia.",
+      "El **carcaj** o la **bolsa de munición** ocupa un hueco de bolsa, pero aumenta tu velocidad de ataque. **Mejóralo** al subir.",
+      "Qué munición y carcaj usar a cada nivel: <a href=\"/forever/leveling/#lv-municion\">Leveling 1-60</a>."
+    ] },
+    { "titulo": "Maná", "icono": "spell_nature_abolishmagic", "filas": [
+      "Tus disparos y aguijones cuestan **maná**. [[Tiro automático]] es gratis y es una parte enorme de tu daño.",
+      "El Espíritu regenera maná fuera de lanzamientos: cada 2 s recuperas **(Espíritu / 5 + 15) / 2**, desde 5 s después de tu último hechizo.",
+      "[[Disciplina de bestias]] deja que el **50%** de esa regeneración siga mientras lanzas. [[Eficacia]] abarata tus disparos en peleas largas.",
+      "Sin maná no está todo perdido: **la mascota sigue haciendo gran parte de tu daño**."
+    ] },
+    { "titulo": "Gestión de la mascota", "icono": "ability_hunter_mendpet", "filas": [
+      "**Mándala primero** y asegúrate de que ataca al objetivo correcto. Las <a href=\"/forever/macros/\">macros de ataque</a> lo hacen automático.",
+      "**Felicidad:** dale de comer con [[Alimentar mascota]]. Si muere pierde felicidad y, con ella, daño.",
+      "**Cúrala** con [[Sanar mascota]]. [[Revivir mascota]] es lento y caro: [[Revivir mascota mejorado]] lo hace práctico.",
+      "En mazmorras, que no se meta en otro grupo: usa *Quieta* / *Moverse a*. [[Ira de bestias]] la hace **inmune al control** durante 18 s."
+    ] }
+  ],
+  "razas": {
+    "intro": "Las diferencias son **pequeñas** (en torno a un 1%): elige la que más te guste.",
+    "lista": [
+      { "raza": "Orco", "faccion": "Horda", "top": true, "texto": "[[Ordenar]]: +5% de daño de las mascotas (pasiva). [[Furia sangrienta]]: +10% de poder de ataque 15 s; úsala con [[Ira de bestias]]." },
+      { "raza": "Humano", "faccion": "Alianza", "top": true, "texto": "[[Crueldad]]: +1% de crítico con todo, y tu mascota lo hereda. [[Voluntad de supervivencia]] quita los aturdimientos (PvP). Nuevo como cazador." },
+      { "raza": "Elfo de la noche", "faccion": "Alianza", "top": true, "texto": "[[Luz de Elune]]: +10% de crítico 15 s (3 min). Combínala con [[Ira de bestias]] y [[Fuego rápido]]; la mascota hereda ese crítico." },
+      { "raza": "Skyborne", "faccion": "Ambas", "texto": "[[Bendición del viento]]: +2% de celeridad. [[Perspicacia elemental]]: +5% contra elementales. [[Visión cielonata]] da velocidad y caída lenta." },
+      { "raza": "Enano", "faccion": "Alianza", "texto": "[[Precisión de artesano]]: +1% de golpe. [[Caza mayor]]: +5% de daño contra bestias." },
+      { "raza": "Trol", "faccion": "Horda", "texto": "[[Iracundia]]: +10% de velocidad de ataque 15 s. [[Matanza de bestias]]: +5% contra bestias." },
+      { "raza": "Tauren", "faccion": "Horda", "texto": "Sin bonus ofensivo. Más vida, [[Pisotón de guerra]] (aturdimiento en área) y [[Correr planicies]] (velocidad sin el riesgo de [[Aspecto del guepardo]])." }
+    ],
+    "consejo": "En la **Horda**, **Orco**: el 5% de daño de mascota es justo lo que más aprovecha un BM. En la **Alianza**, **Humano** o **Elfo de la noche**. Todas son viables: no rehagas tu personaje por la raza."
+  },
+  "siguiente": [
+    { "tab": "leveling", "titulo": "Leveling 1-60", "icono": "inv_misc_map_01", "texto": "Talentos, instructor, mascotas y munición nivel a nivel." },
+    { "tab": "talentos", "titulo": "Talentos", "icono": "ability_hunter_bestialdiscipline", "texto": "La build 31/20/0 y el árbol para copiar." },
+    { "tab": "rotacion", "titulo": "Rotación", "icono": "ability_hunter_aimedshot", "texto": "Prioridades, inicio del combate y cooldowns." },
+    { "tab": "mascotas", "titulo": "Mascotas", "icono": "ability_hunter_beasttaming", "texto": "Familias, habilidades y dónde domesticar." }
+  ]
+}

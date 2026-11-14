@@ -1,0 +1,103 @@
+{
+  "_ayuda": "Pestaña Talentos de Forever (lo pinta TalentosForever.astro junto a la calculadora y los rangos entrenables). Textos con mini-formato [[Hechizo]].",
+  "resumen": "Los árboles son **clásicos**: ganas un punto por nivel y cada fila pide **5 puntos más** en ese árbol; algunos talentos necesitan otro al máximo (las flechas). La build del Cazador de Bestias es **31 en Dominio de bestias** hasta [[Ira de bestias]] y el resto en Puntería.",
+  "datos": [
+    {
+      "valor": "51",
+      "texto": "Puntos a nivel 60"
+    },
+    {
+      "valor": "Nv 10",
+      "texto": "Primer punto"
+    },
+    {
+      "valor": "+5",
+      "texto": "Puntos por fila"
+    },
+    {
+      "valor": "31/20/0",
+      "texto": "Build de raid"
+    }
+  ],
+  "clave": [
+    {
+      "arbol": "Dominio de bestias",
+      "color": "brand",
+      "icono": "ability_hunter_bestialdiscipline",
+      "lista": [
+        {
+          "hechizo": "Aspectos letales",
+          "texto": "El mejor talento de daño al empezar: con [[Aspecto del halcón]] tu [[Tiro automático]] puede darte un 30% de velocidad de ataque."
+        },
+        {
+          "hechizo": "Fuego enfocado",
+          "titulo": "Fuego enfocado, Furia desatada, Ferocidad y Frenesí",
+          "texto": "La base de tu daño: mejoran a la vez a tu mascota y a los halcones."
+        },
+        {
+          "hechizo": "Invocar halcón",
+          "texto": "Tu habilidad rotacional más importante. Se coge en cuanto llegas a nivel 25."
+        },
+        {
+          "hechizo": "Disciplina de bestias",
+          "texto": "Tu regeneración de maná mientras lanzas. Imprescindible en peleas largas."
+        },
+        {
+          "hechizo": "Ira de bestias",
+          "texto": "El último talento del árbol: tu gran cooldown cada 2 minutos."
+        }
+      ]
+    },
+    {
+      "arbol": "Puntería",
+      "color": "gold",
+      "icono": "ability_marksmanship",
+      "lista": [
+        {
+          "hechizo": "Ataques letales",
+          "texto": "+5% de crítico con todos los ataques… y tu mascota lo hereda entero."
+        },
+        {
+          "hechizo": "Afinar la puntería",
+          "texto": "Tu Intelecto pasa a darte poder de ataque, así que deja de ser solo maná."
+        },
+        {
+          "hechizo": "Disparos mortales",
+          "texto": "Más daño en los críticos de tus disparos."
+        },
+        {
+          "hechizo": "Aura de disparo certero",
+          "texto": "Poder de ataque a distancia para ti y tu grupo (y tu mascota escala con él)."
+        },
+        {
+          "hechizo": "Picaduras mejoradas",
+          "titulo": "Picaduras mejoradas y Disparo Arcano mejorado",
+          "texto": "Pequeñas mejoras para tus aguijones y tu [[Tiro Arcano]]."
+        }
+      ]
+    }
+  ],
+  "flexibles": [
+    {
+      "cambio": "[[Revivir mascota mejorado]] en vez de puntos de [[Entrenamiento en aguante]]",
+      "cuando": "Si tu mascota muere a menudo y tienes que revivirla en combate."
+    },
+    {
+      "cambio": "[[Matanza rápida]] + 3/3 [[Picaduras mejoradas]] + 5/5 [[Disparos mortales]] en vez de [[Aura de disparo certero]] y [[Disparo Arcano mejorado]]",
+      "cuando": "Si en tu banda ya hay un Cazador de Puntería que pone el aura."
+    },
+    {
+      "cambio": "5/5 [[Eficacia]]",
+      "cuando": "Si te quedas sin maná en combates largos (más de 2-3 minutos) sin poder beber."
+    },
+    {
+      "cambio": "4/5 [[Frenesí]] en vez de 5/5",
+      "cuando": "Con mucho crítico 4 puntos bastan, pero 5/5 es más seguro si tu mascota cambia mucho de objetivo."
+    },
+    {
+      "cambio": "2/2 [[Encontrar camino]]",
+      "cuando": "No hace falta en raid; útil para moverte más rápido con [[Aspecto del guepardo]] en el mundo."
+    }
+  ],
+  "aviso": "La beta de Forever llegó solo a **nivel 30**: nadie ha probado todavía estas builds en raids de nivel 60. Las revisaré en cuanto haya datos reales."
+}

@@ -25,6 +25,7 @@ const marcada = activa === 'opener' ? 'rotacion' : activa;
         hidden={t.hidden}
       >
         {t.label}
+        {t.nuevo && <span class="mk-tab__new">Nuevo</span>}
       </a>
     ))}
   </div>

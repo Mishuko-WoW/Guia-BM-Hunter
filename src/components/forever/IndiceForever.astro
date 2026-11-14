@@ -1,0 +1,9 @@
+---
+// Índice «En esta página» de las pestañas de Forever: botones dorados que saltan a cada sección.
+interface Props { items: { id: string; texto: string }[] }
+const { items } = Astro.props;
+---
+
+<nav class="lv-index" aria-label="En esta página">
+  {items.map((x) => <a href={`#${x.id}`}>{x.texto}</a>)}
+</nav>

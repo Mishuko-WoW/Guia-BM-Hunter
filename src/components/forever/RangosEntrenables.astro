@@ -1,6 +1,6 @@
 ---
 // "Rangos entrenables más altos a nivel 60": habilidades del cazador (y de su mascota) agrupadas por nivel,
-// con su coste de entrenamiento. Datos: src/content/data/forever-talentos.json → entrenables.
+// (sin precios: el coste está en Leveling → Instructor). Datos: src/content/data/forever-talentos.json → entrenables.
 import data from '../../content/data/forever-talentos.json';
 import { iconUrl } from '../../lib/spells';
 
@@ -13,21 +13,13 @@ const novedades = data.entrenables.filter((e) => e.cambio).length;
 const mascota = data.entrenables.filter((e) => e.mascota).length;
 const CLASE: Record<string, string> = { Nueva: 'is-new', 'Cambia de nivel': 'is-changed', 'Ahora entrenable': 'is-trainable' };
 
-// cobre → [[valor, 'g'|'s'|'c'], ...]
-function monedas(cobre: number | null) {
-  if (!cobre) return [];
-  const g = Math.floor(cobre / 10000), s = Math.floor((cobre % 10000) / 100), c = cobre % 100;
-  return [[g, 'g'], [s, 's'], [c, 'c']].filter(([v]) => v) as [number, string][];
-}
-const textoMonedas = (cobre: number | null) =>
-  monedas(cobre).map(([v, u]) => `${v} ${{ g: 'oro', s: 'plata', c: 'cobre' }[u]}`).join(' ');
 ---
 
 <div class="tr" id="tr">
   <div class="tr-top">
     <p class="tr-intro">
-      La habilidad o el rango más alto de cada hechizo que puedes entrenar, ordenado por el nivel al que se aprende y
-      con lo que cuesta en el entrenador. Pasa el ratón por encima para ver qué hace.
+      La habilidad o el rango más alto de cada hechizo que puedes entrenar, ordenado por el nivel al que se aprende.
+      Pasa el ratón por encima para ver qué hace.
     </p>
     <div class="toggle-wrap combat-switch tr-filter" role="group" aria-label="Filtrar habilidades">
       <button type="button" class="toggle-btn active" data-tr-filter="cazador">Cazador ({data.entrenables.length - mascota})</button>
@@ -53,7 +45,7 @@ const textoMonedas = (cobre: number | null) =>
               class:list={['tr-item', { 'is-novelty': e.cambio, 'is-pet': e.mascota }]}
               hidden={e.mascota}
               data-name={e.nombre}
-              data-type={[e.mascota ? 'Habilidad de mascota' : '', e.rango ? `Rango ${e.rango}` : '', e.meta, e.coste ? `Coste: ${textoMonedas(e.coste)}` : '']
+              data-type={[e.mascota ? 'Habilidad de mascota' : '', e.rango ? `Rango ${e.rango}` : '', e.meta]
                 .filter(Boolean).join(' · ')}
               data-desc={e.desc || (e.mascota ? 'Habilidad que aprende tu mascota en el entrenador de mascotas.' : e.cambio || '')}
             >
@@ -66,11 +58,6 @@ const textoMonedas = (cobre: number | null) =>
                   {e.cambio && <span class:list={['tr-badge', CLASE[e.cambio]]}>{e.cambio}</span>}
                 </span>
               </span>
-              {e.coste && (
-                <span class="tr-cost" aria-label={`Coste: ${textoMonedas(e.coste)}`}>
-                  {monedas(e.coste).map(([v, u]) => <span class={`tr-coin tr-coin--${u}`}>{v}</span>)}
-                </span>
-              )}
             </div>
           ))}
         </div>

@@ -12,7 +12,8 @@ export type Realm = {
   logo?: string;
   etiqueta?: string;    // chip sobre la tarjeta ("NUEVO", "PRÓXIMAMENTE"…)
   disponible: boolean;  // false = página "en construcción"
-  estado?: string;      // texto bajo el subtítulo en la portada (si falta, uno genérico)
+  estado?: string;
+  extra?: { texto: string; href: string }; // enlace secundario en la tarjeta de portada      // texto bajo el subtítulo en la portada (si falta, uno genérico)
 };
 
 export const REALMS: Realm[] = [
@@ -34,6 +35,7 @@ export const REALMS: Realm[] = [
     logo: '/brand/realms/forever.webp',
     etiqueta: 'Nuevo',
     disponible: true,
-    estado: 'General, talentos, rotación y mascotas · se amplía cada día',
+    estado: 'General, talentos, rotación, mascotas y leveling 1-60 · se amplía cada día',
+    extra: { texto: 'O ve directo al leveling 1-60', href: '/forever/leveling/' },
   },
 ];

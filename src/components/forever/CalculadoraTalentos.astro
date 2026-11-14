@@ -18,12 +18,16 @@ const talentos = data.arboles.flatMap((a) => a.talentos.map((t) => ({ ...t, arbo
 const porId = Object.fromEntries(talentos.map((t) => [t.id, t]));
 
 // Reparto final de cada build (las de "orden" se calculan sumando)
-const builds = (buildsFile.builds as Build[]).map((b) => {
+const todas = (buildsFile.builds as Build[]).map((b) => {
   const puntos: Record<string, number> = { ...(b.puntos ?? {}) };
   if (b.orden) b.orden.forEach((id) => (puntos[id] = (puntos[id] ?? 0) + 1));
   return { ...b, puntos };
 });
-const inicial = builds[0];
+// Build que se ve al cargar (prop `build`, p. ej. 'leveling' en la pestaña Leveling).
+// `solo` = mostrar solo esa build, sin selector.
+const { build, solo = false } = Astro.props as { build?: string; solo?: boolean };
+const builds = solo && build ? todas.filter((b) => b.id === build) : todas;
+const inicial = builds.find((b) => b.id === build) ?? builds[0];
 
 // Línea de tiempo del leveling: tramos de niveles seguidos con el mismo talento
 const leveling = builds.find((b) => b.orden);
@@ -55,20 +59,22 @@ const repartoInicial = data.arboles
   .join(' / ');
 ---
 
-<div class="tc" id="tc">
+<div class="tc" id="tc" data-tc-inicial={inicial.id}>
   {builds.map((b, i) => (
-    <div class="box box-info tc-build-desc" data-tc-desc={b.id} hidden={i !== 0}>
+    <div class="box box-info tc-build-desc" data-tc-desc={b.id} hidden={b.id !== inicial.id}>
       <div class="box-title">{b.titulo}</div>
       <Fragment set:html={md(b.descripcion)} />
     </div>
   ))}
 
   <!-- Selector de build: debajo de la descripción y centrado -->
-  <div class="toggle-wrap combat-switch tc-builds" role="group" aria-label="Elegir build">
-    {builds.map((b, i) => (
-      <button type="button" class:list={['toggle-btn', { active: i === 0 }]} data-tc-build={b.id}>{b.boton}</button>
-    ))}
-  </div>
+  {builds.length > 1 && (
+    <div class="toggle-wrap combat-switch tc-builds" role="group" aria-label="Elegir build">
+      {builds.map((b) => (
+        <button type="button" class:list={['toggle-btn', { active: b.id === inicial.id }]} data-tc-build={b.id}>{b.boton}</button>
+      ))}
+    </div>
+  )}
 
   <div class="tc-bar">
     <span class="tc-split" data-tc-split>{repartoInicial}</span>

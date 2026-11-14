@@ -96,5 +96,5 @@
   );
   root.querySelectorAll('[data-tc-build]').forEach((btn) => btn.addEventListener('click', () => cargarBuild(btn.dataset.tcBuild)));
 
-  cargarBuild(D.builds[0].id);
+  cargarBuild(root.dataset.tcInicial || D.builds[0].id);
 })();

@@ -3,7 +3,20 @@
 // habilidad (comunes primero), con un selector Alianza/Horda. Rangos: el más bajo, uno intermedio y el más alto.
 // Datos: src/content/data/forever-mascotas.json (generado con scripts/gen-forever-mascotas.mjs).
 import data from '../../content/data/forever-mascotas.json';
-import { iconUrl } from '../../lib/spells';
+import guia from '../../content/data/forever-mascotas-guia.json';
+import { getSpell, iconUrl } from '../../lib/spells';
+import { md } from '../../lib/markup';
+import { tabPath } from '../../lib/seo';
+import IndiceForever from './IndiceForever.astro';
+
+// Seguridad: todo [[hechizo]] de los textos debe existir en spells.json
+const faltan = [...JSON.stringify({ ...guia, _ayuda: "" }).matchAll(/\[\[([^\]|>]+)/g)].map((m) => m[1]).filter((n) => !getSpell(n));
+if (faltan.length) throw new Error(`forever-mascotas-guia.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
+const INDICE = [
+  { id: 'pf-ensenar', texto: 'Cómo enseñar' },
+  { id: 'pf-familias', texto: 'Familias' },
+  { id: 'pf-domesticar', texto: 'Dónde domesticar' },
+];
 
 type Bestia = { npc: number; nombre: string; nivel: string; zona: string; faccionZona: string; otraFaccion: boolean; url: string } | null;
 type Doma = { rango: number; nivelMascota: number; pi: number; esMax: boolean; alianza: Bestia; horda: Bestia };
@@ -29,7 +42,39 @@ const tarjetas = [
 ];
 ---
 
-<div class="pf" id="pf" data-faccion="a">
+<div class="lv gn pf" id="pf" data-faccion="a">
+  <div class="gn-hero">
+    <p set:html={md(guia.resumen)} />
+    <ul class="gn-datos">
+      {guia.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
+    </ul>
+  </div>
+
+  <a class="gn-banner" href={`${tabPath('forever', 'leveling')}#lv-mascotas`}>
+    <img src={iconUrl('inv_misc_map_01')} alt="" width="40" height="40" />
+    <span><b>¿Estás subiendo de nivel?</b> Qué mascota usar en cada tramo del 1 al 60.</span>
+    <span class="gn-banner__btn">Mascotas para subir →</span>
+  </a>
+
+  <IndiceForever items={INDICE} />
+
+  <p class="lv-demo gn-aviso" set:html={md(guia.aviso)} />
+
+  <section class="lv-sec" id="pf-ensenar">
+    <h3>Cómo enseñar una habilidad a tu mascota</h3>
+    <ol class="lv-cb__steps">
+      {guia.pasos.map((p) => (
+        <li class="lv-cb__step">
+          <img src={iconUrl(p.icono)} alt="" width="56" height="56" loading="lazy" />
+          <span class="lv-cb__body"><b>{p.titulo}</b><span set:html={md(p.texto)} /></span>
+        </li>
+      ))}
+    </ol>
+    <p class="gn-consejo" set:html={md(guia.consejo)} />
+  </section>
+
+  <section class="lv-sec" id="pf-familias">
+  <h3>Las 18 familias y su habilidad propia</h3>
   <!-- ─── Regla de exclusividad ─── -->
   <div class="pf-rule">
     <div class="pf-rule__demo" aria-hidden="true">
@@ -46,7 +91,6 @@ const tarjetas = [
   </div>
 
   <!-- ─── Familias ─── -->
-  <h3>Las 18 familias y su habilidad propia</h3>
   <div class="pf-families">
     {familias.map((f) => {
       const p = H[f.propia];
@@ -73,7 +117,10 @@ const tarjetas = [
     })}
   </div>
 
+  </section>
+
   <!-- ─── Dónde domesticar ─── -->
+  <section class="lv-sec" id="pf-domesticar">
   <h3>Dónde domesticar cada habilidad</h3>
   <div class="pf-taming-top">
     <p>
@@ -81,8 +128,8 @@ const tarjetas = [
       <b>más alto</b>. Pulsa su nombre para ver en Wowhead dónde está.
     </p>
     <div class="toggle-wrap combat-switch pf-faction" role="group" aria-label="Elegir facción">
-      <button type="button" class="toggle-btn active pf-faction__a" data-pf-faccion="a">Alianza</button>
-      <button type="button" class="toggle-btn pf-faction__h" data-pf-faccion="h">Horda</button>
+      <button type="button" class="toggle-btn active pf-faction__a" data-pf-faccion="a"><img src={iconUrl('inv_bannerpvp_02')} alt="" width="26" height="26" />Alianza</button>
+      <button type="button" class="toggle-btn pf-faction__h" data-pf-faccion="h"><img src={iconUrl('inv_bannerpvp_01')} alt="" width="26" height="26" />Horda</button>
     </div>
   </div>
 
@@ -148,6 +195,7 @@ const tarjetas = [
       )}
     </>
   ))}
+  </section>
 </div>
 
 <script is:inline>

@@ -10,10 +10,37 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 ---
 
 ## ▶ PRÓXIMO TRABAJO
-- Pestañas de Forever Stats, BiS y Consumibles, Macros, Leveling 1-60 (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
+- **Antes de publicar el bloque Leveling/General/Talentos/Mascotas (sin commit aún):** Mishuko revisa en local y pasa los datos de bolsas de munición (origen) y la lista de armas por tramo (quitar «En construcción»).
+- Pestañas de Forever Stats, BiS y Consumibles, Macros (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
 - Search Console: pedir indexación de `/forever/coaching/`, `/forever/rotacion/`, `/midnight/bis/`, `/midnight/rotacion/` (límite diario).
 
 ---
+
+## 2026-11-14 — General de Forever rediseñada y Leveling destacado
+- General (`/forever/`): el contenido pasa de `mecanicas.md` (queda solo con título) a `src/content/data/forever-general.json`, pintado por `GeneralForever.astro` con el diseño de Leveling (clases `lv-*` + bloque "GENERAL" en `forever.css`): resumen con 4 datos, banner a Leveling, índice, qué cambia (tarjetas con etiqueta Nuevo/Cambia), qué hereda la mascota (4 cifras), puntos fuertes/débiles, 4 mecánicas, razas en tarjetas (facción y «Recomendada») y «Sigue con la guía».
+- Talentos (`/forever/talentos/`) con el mismo diseño: `TalentosForever.astro` + `src/content/data/forever-talentos-guia.json` (resumen con 4 datos, banner a la build de leveling, índice, calculadora, talentos clave en dos columnas con icono, puntos flexibles en tarjetas con etiqueta «Cuándo» y rangos entrenables). `talentos.md` queda solo con el título. «Rangos entrenables» ya **sin precios** (están en Leveling → Instructor).
+- Mascotas (`/forever/mascotas/`) con el mismo diseño: cabecera con 4 datos, banner a «Mascotas para subir», índice, aviso, «Cómo enseñar» en 4 pasos con icono y secciones con separador (familias, dónde domesticar). Textos en `src/content/data/forever-mascotas-guia.json`; `mascotas.md` queda solo con el título; `MascotasForever.astro` pinta también la cabecera.
+- Leveling: «Habilidades que debe tener» 2 por fila y «Consejos» 3 por fila (1 en móvil); «Armas» al final, oculta: solo se ve el aviso «En construcción» (`armas.enConstruccion: true` en el JSON; ponerlo a false para mostrar la tabla).
+- Mascotas: selector Alianza/Horda con icono de estandarte y el color de cada facción.
+- Coaching de Forever con el diseño nuevo: reglas `#tab-coaching` en `forever.css` (solo se carga en Forever; Midnight no cambia).
+- Índice de página compartido: `IndiceForever.astro` (botones dorados, también en Leveling).
+- Pestaña Leveling justo después de General con etiqueta «Nuevo» (`nuevo: true` en `tabs.ts`, `.mk-tab__new` en `marca.css`).
+- Portada: la tarjeta pasa de `<a>` a `<div>` con enlace que la cubre (`.pt-card__link`) para poder llevar un enlace secundario (`extra` en `realms.ts`): Forever → «O ve directo al leveling 1-60».
+- Archivos: `GeneralForever.astro`, `IndiceForever.astro`, `forever-general.json`, `mecanicas.md`, `GuideForever.astro`, `LevelingForever.astro`, `tabs.ts`, `TabBar.astro`, `marca.css`, `forever.css`, `realms.ts`, `index.astro`, `portada.css`.
+
+## 2026-11-14 — Leveling 1-60 de Forever
+- Nueva pestaña `/forever/leveling/`: índice (`INDICE` en el componente), 4 hitos (10/25/40/60), hoja de ruta por tramos (1-10 … 50-60) con selector y campo «¿Qué nivel eres?» (recuerda el nivel en `localStorage`), y en cada tramo talentos, munición y carcaj, mascota y claves. Después: «Instructor: qué comprar y qué no»: las 121 habilidades y rangos del instructor por nivel (lista y precios de Mishuko; iconos y descripciones de los tooltips de Wowhead Forever es-ES), clasificadas en Cómpralas / Opcionales / Sáltatelas con su motivo, filtro, totales (todo, recomendado y ahorro) y, en cada tramo, el coste de lo recomendado. Precios: un número suelto = cobre a nivel 1, plata hasta el 30 y oro desde el 32; dos números = plata y cobre hasta el 28, oro y plata desde el 40, la calculadora de talentos con la build de leveling ya elegida (`CalculadoraTalentos build="leveling" solo`: props nuevos, `solo` quita las demás builds y el selector; el JS lee `data-tc-inicial`), escalera de munición, tablas de munición especial y carcajes, mascotas recomendadas, habilidades de mascota, cuándo cambiarla y consejos.
+- Datos en `src/content/data/forever-leveling.json`. Los talentos por tramo salen solos del `orden` de la build `leveling` (`forever-builds.json`); familias de `forever-mascotas.json`. Munición y carcajes: tooltips de Wowhead Forever es-ES (`nether.wowhead.com/forever/tooltip/item/<id>?locale=6`), enlaces a `wowhead.com/forever/es/item=<id>`.
+- Nombres corregidos a mano (Wowhead es los trae mal o en inglés): «Flecha con punta de torio» (Wowhead: «Espada con punta de torio»), «Carcaj/Bandolera de Ribbly», «Balas de cañón en miniatura».
+- Instructor en 2 columnas (`columns` en `.lv-ins-levels`), totales con texto claro y color legible. Filtros arreglados: `.lv [hidden] { display: none !important }` (las piezas con `display: grid` ignoraban `hidden`). Separador entre secciones (línea con rombo de la marca, `.lv-sec::before/::after`).
+- Carcajes: selector centrado con icono «Carcaj (flechas)» / «Bolsa de munición (balas)» que cambia entre dos tablas (`data-q`), cada una con su lista (`municion.carcajes` y `municion.bolsas`, de la lista de carcajes de Wowhead Forever leída en el navegador, 2026-11-14): 13 carcajes y 8 bolsas con origen (vendedor, peletería, misión, botín, Valle de Alterac). Botón «Venta de NPC» → `#sold-by`. Faltriquera de munición pequeña y Faltriquera de pólvora fina fuera: en Forever no tienen fuente conocida. La faltriquera de cuero pesado es solo de peletería. En la hoja de ruta, carcaj y bolsa por separado.
+- «Cómo pelear mientras subes» (`combate` en el JSON, **borrador de Claude** para que lo corrija Mishuko): selector Un enemigo / Se te pega / Varios a la vez / Entre combates, pasos numerados con icono y tooltip.
+- «Armas a distancia para subir» (`armas`): tabla agrupada por tramo con DPS, origen y botón «Venta de NPC»; las «Mejor opción» resaltadas. Datos de los tooltips de Wowhead Forever es-ES (solo armas con nombre traducido).
+- «Preguntas frecuentes» (`faq`): desplegables y JSON-LD `FAQPage` en la propia sección (texto plano, sin mini-formato).
+- Orden de secciones: ruta → cómo pelear → instructor → talentos → mascotas → consejos → armas → munición y carcaj → preguntas frecuentes. Tablas en caja cerrada con cabecera dorada y filas alternas.
+- «Orden de talentos» de la calculadora (también en Talentos) en columnas: de arriba abajo y luego la siguiente (`columns` en `.tc-order`).
+- Estilos en el bloque "LEVELING" de `forever.css` (letra e iconos más grandes que en otras pestañas, a petición de Mishuko). SEO de la pestaña y `estado` de `realms.ts` actualizados.
+- Archivos: `LevelingForever.astro`, `GuideForever.astro`, `forever-leveling.json`, `leveling.md`, `forever.css`, `seo.ts`, `realms.ts`, `changelog.json`, `CalculadoraTalentos.astro`, `public/scripts/forever-talentos.js`.
 
 ## 2026-11-14 — Ahorro de uso: publicar.bat
 - `publicar.bat` (doble clic): `git push` + espera 60 s + `node scripts/indexnow.mjs`. El push lo hace Mishuko; Claude deja el commit hecho.

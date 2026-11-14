@@ -4,11 +4,12 @@
 import Header from '../Header.astro';
 import TabBar from '../TabBar.astro';
 import SeccionForever from './SeccionForever.astro';
-import CalculadoraTalentos from './CalculadoraTalentos.astro';
-import RangosEntrenables from './RangosEntrenables.astro';
+import TalentosForever from './TalentosForever.astro';
 import MascotasForever from './MascotasForever.astro';
 import SeccionCoaching from '../SeccionCoaching.astro';
 import RotacionForever from './RotacionForever.astro';
+import LevelingForever from './LevelingForever.astro';
+import GeneralForever from './GeneralForever.astro';
 import { TABS_FOREVER } from '../../lib/tabs';
 import { SEO } from '../../lib/seo';
 import { formatLong, latestChangeDate } from '../../lib/changelog';
@@ -31,15 +32,11 @@ const visibles = TABS_FOREVER.filter((t) => t.id === tab || (tab === 'rotacion' 
   {tab === 'coaching' && <SeccionCoaching version="forever" />}
   {tab !== 'coaching' && visibles.map((t) => (
     <SeccionForever tab={t.id} label={t.label} pagina={paginas.get(t.id)} activa={t.id === tab}>
-      {t.id === 'talentos' && (
-        <>
-          <CalculadoraTalentos />
-          <h3>Rangos entrenables más altos a nivel 60</h3>
-          <RangosEntrenables />
-        </>
-      )}
+      {t.id === 'talentos' && <TalentosForever />}
       {t.id === 'mascotas' && <MascotasForever />}
       {t.id === 'rotacion' && <RotacionForever />}
+      {t.id === 'leveling' && <LevelingForever />}
+      {t.id === 'mecanicas' && <GeneralForever />}
     </SeccionForever>
   ))}
 </div>

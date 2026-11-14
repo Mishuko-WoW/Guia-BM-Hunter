@@ -607,3 +607,6 @@ a.mk-tab[hidden] { display: none; }
   .blk-table td:has(> .spell-tile:only-child) { width: 84px; }
   .blk-table th, .blk-table td { padding: 10px 10px; }
 }
+
+/* Etiqueta «Nuevo» en una pestaña (tabs.ts → nuevo: true) */
+.mk-tab__new { display: inline-block; margin-left: 6px; padding: 2px 6px; vertical-align: 2px; font: 800 10px/1.2 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--bg); background: var(--gold); border-radius: 3px; }
