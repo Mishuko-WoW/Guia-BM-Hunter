@@ -1,5 +1,12 @@
 [
   {
+    "fecha": "2026-11-15",
+    "pestana": "talentos",
+    "texto": "Nueva calculadora para montar tu propia build en",
+    "enlace": "Talentos",
+    "version": "forever"
+  },
+  {
     "fecha": "2026-11-14",
     "pestana": "leveling",
     "texto": "Guía para subir del 1 al 60 (talentos por nivel, munición, carcaj y mascotas) en",

@@ -16,6 +16,11 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-15 — Forever: calculadora de talentos editable (sin commit)
+- Pestaña Talentos: tercer botón «Calculadora» junto a «Raid y mazmorras» y «Leveling (con orden)». Árbol vacío donde se suman y quitan puntos con las reglas clásicas (5 puntos por fila, prerequisito al máximo, 51 máx.; no deja quitar un punto que rompa un talento superior). Clic +1, clic derecho / Mayús+clic −1; teclado Enter/+ y −/Supr; móvil: tocar +1, mantener pulsado −1 y botón «Quitar puntos». «Vaciar todo», × por árbol, puntos restantes. Lo montado se conserva al cambiar de build y volver.
+- Solo en Talentos: prop `calculadora` de `CalculadoraTalentos.astro` (Leveling no la pasa). El JS trata la build `editable`; el resto siguen en solo lectura.
+- Archivos: `src/components/forever/{CalculadoraTalentos,TalentosForever}.astro`, `public/scripts/forever-talentos.js`, `src/styles/forever.css`.
+
 ## 2026-11-14 — General de Forever rediseñada y Leveling destacado
 - General (`/forever/`): el contenido pasa de `mecanicas.md` (queda solo con título) a `src/content/data/forever-general.json`, pintado por `GeneralForever.astro` con el diseño de Leveling (clases `lv-*` + bloque "GENERAL" en `forever.css`): resumen con 4 datos, banner a Leveling, índice, qué cambia (tarjetas con etiqueta Nuevo/Cambia), qué hereda la mascota (4 cifras), puntos fuertes/débiles, 4 mecánicas, razas en tarjetas (facción y «Recomendada») y «Sigue con la guía».
 - Talentos (`/forever/talentos/`) con el mismo diseño: `TalentosForever.astro` + `src/content/data/forever-talentos-guia.json` (resumen con 4 datos, banner a la build de leveling, índice, calculadora, talentos clave en dos columnas con icono, puntos flexibles en tarjetas con etiqueta «Cuándo» y rangos entrenables). `talentos.md` queda solo con el título. «Rangos entrenables» ya **sin precios** (están en Leveling → Instructor).

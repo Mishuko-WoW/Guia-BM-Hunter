@@ -1,6 +1,7 @@
 ---
-// Árbol de talentos del Cazador (WoW Forever), al estilo de la calculadora de Wowhead. SOLO LECTURA:
-// muestra la build elegida para verla y copiarla (tooltip por rango, sin sumar ni quitar puntos).
+// Árbol de talentos del Cazador (WoW Forever), al estilo de la calculadora de Wowhead. Las builds son
+// SOLO LECTURA (verla y copiarla, tooltip por rango). Con `calculadora` (solo en la pestaña Talentos)
+// se añade un botón más, "Calculadora": árbol vacío donde se suman y quitan puntos.
 // Datos: src/content/data/forever-talentos.json (generado con scripts/gen-forever-talentos.mjs)
 // Builds: src/content/data/forever-builds.json (`cadena` opcional = string de importación → botón Copiar).
 // Interacción: public/scripts/forever-talentos.js
@@ -11,7 +12,7 @@ import { md } from '../../lib/markup';
 
 type Build = {
   id: string; boton: string; nombre: string; titulo: string; descripcion: string;
-  cadena?: string; puntos?: Record<string, number>; orden?: string[];
+  cadena?: string; puntos?: Record<string, number>; orden?: string[]; editable?: boolean;
 };
 
 const talentos = data.arboles.flatMap((a) => a.talentos.map((t) => ({ ...t, arbol: a.id })));
@@ -25,8 +26,13 @@ const todas = (buildsFile.builds as Build[]).map((b) => {
 });
 // Build que se ve al cargar (prop `build`, p. ej. 'leveling' en la pestaña Leveling).
 // `solo` = mostrar solo esa build, sin selector.
-const { build, solo = false } = Astro.props as { build?: string; solo?: boolean };
-const builds = solo && build ? todas.filter((b) => b.id === build) : todas;
+// `calculadora` = añadir el modo editable (árbol vacío, sumar/quitar puntos).
+const { build, solo = false, calculadora = false } = Astro.props as { build?: string; solo?: boolean; calculadora?: boolean };
+const calc: Build & { puntos: Record<string, number> } = {
+  id: 'calc', boton: 'Calculadora', nombre: 'Tu build', titulo: 'Calculadora de talentos', editable: true, puntos: {},
+  descripcion: 'Árbol vacío para montar tu propia build: **clic** en un talento suma un punto y **clic derecho** (o mantener pulsado en el móvil) lo quita. En el móvil también puedes usar el botón **Quitar puntos**. Reglas del juego: 5 puntos por fila, requisitos de las flechas y 51 puntos como máximo (nivel 60).',
+};
+const builds = solo && build ? todas.filter((b) => b.id === build) : calculadora ? [...todas, calc] : todas;
 const inicial = builds.find((b) => b.id === build) ?? builds[0];
 
 // Línea de tiempo del leveling: tramos de niveles seguidos con el mismo talento
@@ -50,7 +56,7 @@ const datosJS = {
   talentos: talentos.map(({ id, arbol, fila, col, max, nombre, meta, rangos }) => ({ id, arbol, fila, col, max, nombre, meta, rangos })),
   arboles: data.arboles.map((a) => ({ id: a.id, nombre: a.nombre })),
   flechas: data.arboles.flatMap((a) => a.flechas),
-  builds: builds.map(({ id, nombre, puntos, orden }) => ({ id, nombre, puntos, orden: orden ?? null })),
+  builds: builds.map(({ id, nombre, puntos, orden, editable }) => ({ id, nombre, puntos, orden: orden ?? null, editable: !!editable })),
 };
 const TOTAL = 51;
 const nivelInicial = Object.values(inicial.puntos).reduce((s, v) => s + v, 0) + 9;
@@ -89,6 +95,12 @@ const repartoInicial = data.arboles
         onclick={`copyTalent(this, ${JSON.stringify(b.cadena)})`}
       >Copiar talentos</button>
     ))}
+    {calculadora && (
+      <div class="tc-tools" data-tc-tools hidden>
+        <button type="button" class="tc-tool" data-tc-minus aria-pressed="false">Quitar puntos</button>
+        <button type="button" class="tc-tool" data-tc-reset>Vaciar todo</button>
+      </div>
+    )}
   </div>
 
   <div class="tc-trees">
@@ -98,6 +110,7 @@ const repartoInicial = data.arboles
           <img src={iconUrl(a.icono)} alt="" width="30" height="30" />
           <span class="tc-tree__name">{a.nombre}</span>
           <span class="tc-tree__pts"><b data-tc-tree-pts={a.id}>0</b> / {TOTAL}</span>
+          {calculadora && <button type="button" class="tc-tree__reset" data-tc-tree-reset={a.id} hidden aria-label={`Vaciar ${a.nombre}`} title={`Vaciar ${a.nombre}`}>×</button>}
         </header>
         <div class="tc-grid">
           {a.flechas.map((f) => {
@@ -129,7 +142,8 @@ const repartoInicial = data.arboles
     ))}
   </div>
 
-  <p class="tc-help">Pasa el ratón por un talento (o tócalo en el móvil) para ver lo que hace en cada rango.</p>
+  <p class="tc-help" data-tc-help-calc hidden>Clic: +1 punto · Clic derecho o mantener pulsado: −1 punto. Puntos restantes: <b data-tc-left>51</b>.</p>
+  <p class="tc-help" data-tc-help-ro>Pasa el ratón por un talento (o tócalo en el móvil) para ver lo que hace en cada rango.</p>
 
   {leveling && (
     <div class="tc-leveling" data-tc-leveling hidden>
