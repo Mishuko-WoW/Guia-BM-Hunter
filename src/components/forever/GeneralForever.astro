@@ -40,6 +40,12 @@ const INDICE = [
     </ul>
   </div>
 
+  <!-- Lo esencial: para quien acaba de llegar y quiere saber qué hacer ya -->
+  <div class="box box-tip gn-esencial">
+    <div class="box-title">Lo esencial en 30 segundos</div>
+    <ol>{data.esencial.map((t) => <li set:html={md(t)} />)}</ol>
+  </div>
+
   <a class="gn-banner" href={tabPath('forever', 'leveling')}>
     <img src={iconUrl('inv_misc_map_01')} alt="" width="40" height="40" />
     <span><b>¿Estás subiendo de nivel?</b> Talentos, instructor, mascotas y munición del 1 al 60.</span>

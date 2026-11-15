@@ -6,7 +6,7 @@
     { "valor": "Agilidad", "texto": "la mejor estadística general" },
     { "valor": "Mascota", "texto": "hereda parte de tus stats" }
   ],
-  "aviso": "**Datos provisionales.** La beta de Forever llegaba a **nivel 30** y Forever ha cambiado las estadísticas del equipo respecto a Classic. Lo que ves aquí es lo que ya está claro hoy; **lo iré actualizando** según se juegue y haya simulaciones.",
+  "aviso": "**Datos provisionales.** WoW Forever acaba de salir y ha cambiado las estadísticas del equipo respecto a Classic; Blizzard todavía puede ajustarlas. Lo que ves aquí es lo que ya está claro hoy; **lo iré actualizando** según se juegue y haya simulaciones.",
   "prioridad": [
     {
       "nombre": "Daño del arma a distancia",

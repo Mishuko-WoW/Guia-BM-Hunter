@@ -1,12 +1,35 @@
 ---
 import { getSectionReviewDate } from '../lib/sectionDates';
 import ReviewSourceBox from './ReviewSourceBox.astro';
+import Faq from './Faq.astro';
+import { getCollection } from 'astro:content';
 
 const reviewDate = getSectionReviewDate('talentos', ['src/content/builds']);
+
+// Las builds se pintan ya en el HTML (para buscadores y para verse sin esperar al JS).
+// bm-guide.js (renderBuilds) las vuelve a pintar igual al cargar y añade los enlaces de Wowhead,
+// así que si cambias este marcado, cambia también renderBuilds.
+const builds = (await getCollection('builds')).map((e) => e.data).sort((a, b) => a.order - b.order);
+
+const HERO_ICON: Record<string, string> = {
+  'Pack Leader': 'https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png',
+  'Dark Ranger': 'https://assets.rpglogs.com/img/warcraft/talents/hero/44_full.png',
+};
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// Igual que replaceHeroEmojiWithIcon() de bm-guide.js: cambia el emoji inicial por el icono del árbol héroe
+function heroLabel(text: string): string {
+  const m = text.match(/^\s*(?:[^\p{L}\p{N}]\s*)*(Pack Leader|Dark Ranger)\b/u);
+  if (!m) return esc(text);
+  const hero = m[1];
+  const rest = text.slice(text.indexOf(hero) + hero.length);
+  return `<img class="hero-inline-icon" src="${HERO_ICON[hero]}" alt="${hero}" loading="lazy" decoding="async">${hero}${esc(rest)}`;
+}
+// Contenido de la build: lo que va tras el "—" de la cabecera ("Pack Leader — M+" → "M+")
+const contenido = (header: string) => header.split('—').slice(1).join('—').trim() || header;
 ---
 
 <div id="tab-talentos" class="tab-panel">
-  <h2>Builds de Talentos</h2>
+  <h2>Mejor build Hunter BM: Pack Leader y Dark Ranger</h2>
 
   <div class="box box-info">
     <div class="box-title">Cómo importar</div>
@@ -17,8 +40,66 @@ const reviewDate = getSectionReviewDate('talentos', ['src/content/builds']);
     Builds extraídas de <a href="https://www.icy-veins.com" target="_blank">Icy Veins</a> y <a href="https://www.wowhead.com/es" target="_blank">Wowhead</a>, actualizadas a parche <strong>12.1</strong>. Contrastadas y verificadas en juego.
   </ReviewSourceBox>
 
-  <div id="builds-toggle-wrap" class="toggle-wrap" style="flex-wrap:wrap;gap:8px;margin-bottom:24px;padding-top:12px"></div>
-  <div id="builds-container"></div>
+  <div class="mk-table-wrap">
+    <table class="mk-table">
+      <caption>Mejor build Hunter BM por contenido — Midnight Temporada 2</caption>
+      <thead>
+        <tr><th scope="col">Árbol héroe</th><th scope="col">Contenido</th><th scope="col">Recomendada</th></tr>
+      </thead>
+      <tbody>
+        {builds.map((b) => (
+          <tr>
+            <th scope="row" class={b.heroTalent === 'Pack Leader' ? 'is-pl' : 'is-dr'}>{b.heroTalent}</th>
+            <td><strong>{contenido(b.header)}</strong></td>
+            <td>{b.meta ? 'Sí (meta)' : b.heroTalent === 'Dark Ranger' ? 'Alternativa · rotación y opener en desarrollo' : 'Alternativa'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="mk-table-note">Las builds de <strong>Dark Ranger</strong> ya puedes usarlas, pero su rotación y su opener todavía están en desarrollo. Mientras tanto, en <a href="/midnight/rotacion/">Rotación y Opener</a> tienes la de <strong>Pack Leader</strong>, que es la build meta.</p>
+
+  <div id="builds-toggle-wrap" class="toggle-wrap" style="flex-wrap:wrap;gap:8px;margin-bottom:24px;padding-top:12px">
+    {builds.map((b, i) => (
+      <button class:list={['toggle-btn', { meta: b.meta, active: i === 0 }]} onclick={`setBuild('${b.id}', this)`} set:html={heroLabel(b.title)} />
+    ))}
+  </div>
+  <div id="builds-container">
+    {builds.map((b, i) => (
+      <div id={`build-${b.id}`} style={i !== 0 ? 'display:none' : undefined}>
+        <div class="card">
+          <div class="card-header" set:html={heroLabel(b.header)} />
+          <p class="build-desc">{b.description}</p>
+          <div class="build-actions">
+            <button id={`copybtn-${b.id}`} onclick={`copyTalent(document.getElementById('copybtn-${b.id}'), '${b.copyString}')`} class="build-btn build-btn-copy">📋 Copiar string</button>
+          </div>
+
+          <div class="talent-showcase">
+            <div class="ts-header">
+              <span class="ts-title">🔧 Talentos Flexibles</span>
+              <span class="ts-sub">Ajusta estos puntos según el encuentro — en orden de prioridad para quitar:</span>
+            </div>
+            <div class="ts-flexible">
+              {b.flexibleTalents.map((f, j) => (
+                <div class="ts-flex-item">
+                  <span class="ts-flex-num">{j + 1}</span>
+                  <div class="ts-flex-content">
+                    <strong>{f.name}</strong>
+                    <span class="ts-flex-note">{f.note}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="box box-tip" style="margin-top:0">
+            <div class="box-title">Notas del build</div>
+            <ul class="build-notes">{b.notes.map((n) => <li>{n}</li>)}</ul>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
 
   <div class="divider"></div>
 
@@ -26,7 +107,7 @@ const reviewDate = getSectionReviewDate('talentos', ['src/content/builds']);
 <div class="card box-info" style="margin-bottom: 30px; text-align: center; padding: 24px 20px; background: color-mix(in srgb, var(--accent) 3%, transparent); border: 1px dashed color-mix(in srgb, var(--accent) 30%, transparent); border-radius: 8px; overflow: hidden;">
   
   <!-- Imagen integrada -->
-  <img src="https://imgs.search.brave.com/XzjBlwSmWUa7wC_HIQhkQWp_Vanz3X99aFI7NjOz1zQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bWV0aG9kLmdnL2lt/YWdlcy9ibG9nL2hl/cm8vMzAwNzI2MjAt/Q3Vyc2UlMjBvZiUy/MFVsYXRlayUyMEhl/YWRlci5wbmc" alt="Talentos por Boss en Desarrollo" style="width: 100%; max-width: 860px; height: auto; aspect-ratio: 860/251; border-radius: 6px; margin-bottom: 20px; object-fit: cover; display: block; margin-left: auto; margin-right: auto;" />
+  <img src="https://imgs.search.brave.com/XzjBlwSmWUa7wC_HIQhkQWp_Vanz3X99aFI7NjOz1zQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bWV0aG9kLmdnL2lt/YWdlcy9ibG9nL2hl/cm8vMzAwNzI2MjAt/Q3Vyc2UlMjBvZiUy/MFVsYXRlayUyMEhl/YWRlci5wbmc" alt="Talentos del Hunter BM por jefe de banda (en desarrollo)" style="width: 100%; max-width: 860px; height: auto; aspect-ratio: 860/251; border-radius: 6px; margin-bottom: 20px; object-fit: cover; display: block; margin-left: auto; margin-right: auto;" />
 
   <h3 style="margin: 0 0 8px 0; color: var(--accent); font-size: 20px;">Talentos por Boss — En Desarrollo</h3>
   <p style="margin: 0 auto; max-width: 580px; color: var(--text2); font-size: 15px; line-height: 1.5;">
@@ -88,4 +169,5 @@ const reviewDate = getSectionReviewDate('talentos', ['src/content/builds']);
     <div id="boss-panels" style="margin-top: 20px;"></div>
   </div>
   -->
+  <Faq tab="talentos" titulo="builds de talentos" />
 </div>

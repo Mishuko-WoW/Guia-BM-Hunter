@@ -1,0 +1,68 @@
+{
+  "mecanicas": [
+    {
+      "pregunta": "¿Es bueno el Cazador de Bestias (Hunter BM) en WoW Forever?",
+      "respuesta": "Sí. Es **el mejor para subir de nivel y para el contenido en solitario**: la mascota tanquea y tú disparas desde lejos. Tiene un **daño explosivo muy alto** en la ventana de Ira de bestias (cada 2 minutos) junto a Fuego rápido y es **fácil de aprender**. Sus puntos débiles: casi no aporta utilidad de grupo y depende mucho de la mascota."
+    },
+    {
+      "pregunta": "¿Qué cambia el Hunter en WoW Forever respecto a Classic?",
+      "respuesta": "Lo más importante: el nuevo talento **Invocar halcón** (nivel 25, hasta 2 a la vez y sin alcance mínimo), que **las mascotas escalan con tus estadísticas** y que **cada familia tiene al menos una habilidad única**. Además, Tiro automático tiene 0,5 s de lanzamiento pero ya no se corta, y Tiro de puntería pasa a ser una habilidad base."
+    },
+    {
+      "pregunta": "¿Cuál es la mejor raza para un Hunter BM en WoW Forever?",
+      "respuesta": "Las diferencias son pequeñas (en torno a un 1%). En la **Horda**, **Orco**: su pasiva da un +5% de daño a las mascotas. En la **Alianza**, **Humano** o **Elfo de la noche**. Todas son viables: no rehagas tu personaje por la raza."
+    },
+    {
+      "pregunta": "¿Es lo mismo Cazador de Bestias, Dominio de bestias y Hunter BM?",
+      "respuesta": "Sí. **Hunter BM** (Beast Mastery) es como lo llama la comunidad; **Cazador de Bestias** o **Maestro de bestias** es la forma en español, y **Dominio de bestias** es el nombre del árbol de talentos en el juego. Todo se refiere al cazador especializado en mascotas."
+    }
+  ],
+  "talentos": [
+    {
+      "pregunta": "¿Cuál es la mejor build de talentos del Hunter BM en WoW Forever?",
+      "respuesta": "La **31/20/0**: 31 puntos en **Dominio de bestias** hasta Ira de bestias y 20 en **Puntería** para Ataques letales, Afinar la puntería y Disparos mortales. Sirve tanto para raid como para mazmorras."
+    },
+    {
+      "pregunta": "¿A qué nivel se consigue Invocar halcón?",
+      "respuesta": "A **nivel 25**, como talento del árbol de Bestias. Es tu habilidad rotacional más importante, así que cógelo en cuanto puedas."
+    },
+    {
+      "pregunta": "¿Cuántos puntos de talento hay en WoW Forever?",
+      "respuesta": "**51 a nivel 60**. Ganas el primero a nivel 10 y uno más por nivel, y cada fila del árbol pide **5 puntos más** en ese árbol."
+    }
+  ],
+  "estadisticas": [
+    {
+      "pregunta": "¿Cuál es la prioridad de estadísticas del Hunter BM en WoW Forever?",
+      "respuesta": "**Daño del arma a distancia > Golpe (hasta el tope) > Agilidad > Crítico > Poder de ataque > Intelecto, aguante y espíritu**. La fuerza no te sirve."
+    },
+    {
+      "pregunta": "¿Cuánto golpe necesita un cazador en WoW Forever?",
+      "respuesta": "Un **8%** contra jefes de raid; pasado ese tope no sirve. Mientras subes de nivel **no es prioritario**, porque los enemigos de tu nivel fallan poco."
+    }
+  ],
+  "rotacion": [
+    {
+      "pregunta": "¿Cuál es la rotación del Hunter BM en WoW Forever?",
+      "respuesta": "Es una lista de prioridades: **Marca del cazador** antes del combate, **mascota al ataque**, **Aguijón de serpiente** que no se caiga, **2 halcones** siempre activos, **Tiro de puntería** a reutilización y **Tiro Arcano** solo si tus halcones duran más de 6 s."
+    },
+    {
+      "pregunta": "¿Cómo hace daño en área el cazador en WoW Forever?",
+      "respuesta": "Tiene pocas herramientas: **Multidisparo**, **Trampa explosiva** y **Lluvia**. Con pocos enemigos sigues con tu rotación normal; con muchos, la trampa y la Lluvia mandan."
+    }
+  ],
+  "mascotas": [
+    {
+      "pregunta": "¿Cuántas familias de mascotas hay en WoW Forever?",
+      "respuesta": "**18 familias**, y cada una tiene **una habilidad propia** que ninguna otra puede aprender. Tu mascota puede tener **4 habilidades activas** a la vez y todas las pasivas que quieras."
+    },
+    {
+      "pregunta": "¿Cómo enseño una habilidad nueva a mi mascota?",
+      "respuesta": "Deja tu mascota en el establo, **domestica una bestia que ya tenga la habilidad**, úsala en combate hasta que el chat diga que la has aprendido y, con tu mascota de vuelta, enséñasela con **Doma de bestias** gastando puntos de instrucción."
+    },
+    {
+      "pregunta": "¿Cómo mantengo contenta a mi mascota?",
+      "respuesta": "Dale de comer con **Alimentar mascota** antes de la banda o la mazmorra: una mascota contenta **hace más daño**. Si muere pierde felicidad y, con ella, daño."
+    }
+  ]
+}

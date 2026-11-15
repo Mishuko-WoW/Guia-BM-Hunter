@@ -1,0 +1,70 @@
+{
+  "mecanicas": [
+    {
+      "pregunta": "¿Qué es el Hunter BM (Maestro de bestias)?",
+      "respuesta": "El Hunter BM o **Maestro de bestias** (Beast Mastery) es la especialización a distancia del Cazador cuyo daño sale sobre todo de **sus mascotas y sus disparos**. En Midnight Temporada 2 se juega con dos árboles héroe: **Pack Leader** (más daño de mascotas) y **Dark Ranger** (más protagonismo de los disparos de Sombras)."
+    },
+    {
+      "pregunta": "¿Es lo mismo Cazador de Bestias, Maestro de bestias y Hunter BM?",
+      "respuesta": "Sí. Son nombres de la **misma especialización** del Cazador: **Hunter BM** (Beast Mastery) es como la llama la comunidad, y **Maestro de bestias** o **Cazador de Bestias** son las formas en español que verás según el cliente del juego y la región. En esta guía usamos sobre todo «Hunter BM»."
+    },
+    {
+      "pregunta": "¿Cuál es el cooldown principal del Hunter BM?",
+      "respuesta": "**Cólera de las bestias**: durante 15 segundos tú y tus mascotas infligís un 20% más de daño y aplica Escabechina al objetivo de tu mascota. Con Pack Leader, el siguiente Matar activa ¡Estampida!; con Dark Ranger habilita Flecha lastimera para cerrar la ventana de daño."
+    }
+  ],
+  "talentos": [
+    {
+      "pregunta": "¿Cuál es la mejor build de Hunter BM en Midnight Temporada 2?",
+      "respuesta": "En **raid**, la mejor build es **Pack Leader Single Target**: es la referencia estándar para la mayoría de encuentros. En **Míticas+**, Pack Leader es la build que más daño saca a inicio de temporada, y Dark Ranger M+ ofrece una mezcla muy equilibrada de daño a un objetivo y AoE."
+    },
+    {
+      "pregunta": "¿Pack Leader o Dark Ranger para el Maestro de bestias?",
+      "respuesta": "Con **Pack Leader** la mayor parte del daño sale de tus mascotas, así que gestionarlas bien y orientar ¡Estampida! es clave. Con **Dark Ranger** ganan protagonismo los disparos de Sombras y las ventanas de Fuego devastador. Hoy Pack Leader rinde más en raid; Dark Ranger es viable y tiene sus defensores."
+    },
+    {
+      "pregunta": "¿Cómo importo una build de talentos en WoW?",
+      "respuesta": "Pulsa **Copiar string** en la build que quieras, abre el árbol de talentos en el juego, pulsa el botón **Cargar** (icono de importar), pega el string y confirma."
+    }
+  ],
+  "estadisticas": [
+    {
+      "pregunta": "¿Cuál es la prioridad de estadísticas del Hunter BM?",
+      "respuesta": "A un objetivo: **Daño de arma > Agilidad > Maestría > Golpe crítico > Celeridad > Versatilidad**. En AoE el orden es parecido, pero el Golpe crítico gana todavía más valor y la Celeridad pierde mucho rendimiento. Simula tu personaje en Raidbots para obtener tus valores exactos."
+    },
+    {
+      "pregunta": "¿Tienen rendimientos decrecientes las estadísticas secundarias?",
+      "respuesta": "Sí. Por encima de **1380 de rating** en Golpe crítico y Maestría, **1320** en Celeridad y **1620** en Versatilidad, cada punto da un 10% menos de beneficio. Solo afecta al rating, no a procs porcentuales como Ansia de sangre."
+    }
+  ],
+  "rotacion": [
+    {
+      "pregunta": "¿Cuál es la rotación del Hunter BM Pack Leader en raid?",
+      "respuesta": "Prioridad a un objetivo: **Disparo con púas** si Cólera de las bestias sale en 3 segundos o menos → **Cólera de las bestias** a cooldown → **Matar** con Aullido de la manada o Aliado de la naturaleza activos → **Disparo de cobra** con 3 o más cargas de Colmillo de cobra → **Disparo con púas** a cooldown → **Disparo de cobra** como relleno de Enfoque."
+    },
+    {
+      "pregunta": "¿Debo aplicar Disparo con púas a varios objetivos en M+?",
+      "respuesta": "No. En packs de Míticas+ **nunca** multi-dotees Disparo con púas: úsalo siempre en el objetivo prioritario. Es uno de los errores más comunes y costosos del BM Hunter."
+    }
+  ],
+  "bis": [
+    {
+      "pregunta": "¿Cuáles son los mejores abalorios (trinkets) del Hunter BM?",
+      "respuesta": "En la Temporada 2 los abalorios de **S Tier** son **Corazón voraz de Ula'tek** (uso activo) y **Tentáculo de horror retorcido**. El ranking completo está en la tabla de mejores trinkets."
+    },
+    {
+      "pregunta": "¿El Catalizador conserva las estadísticas secundarias en la Temporada 2?",
+      "respuesta": "Sí. A partir de esta temporada, al transformar un objeto en el Catalizador el resultado **conserva las secundarias** (Crítico, Celeridad, Maestría, Versatilidad) de la pieza base en lugar de usar las del conjunto de tier."
+    }
+  ],
+  "mascotas": [
+    {
+      "pregunta": "¿Cuál es la mejor mascota para el Hunter BM?",
+      "respuesta": "La familia exótica **Aqir**: su pasiva Zancudo de las dunas da un **+30% de velocidad de movimiento** permanente a la mascota, así que persigue mejor a los jefes que se mueven. Lo ideal es tener tres Aqir, una de cada especialización."
+    },
+    {
+      "pregunta": "¿Qué especialización de mascota uso en raid y en M+?",
+      "respuesta": "En **raid**, **Tenacidad** por sus beneficios defensivos (ten una de Ferocidad por si nadie más lleva Bloodlust/Heroísmo). En **M+**, **Ferocidad** si eres el Bloodlust/Heroísmo del grupo; si no, Tenacidad. En ambos casos desactiva el auto-cast de Laceración de tendones."
+    }
+  ]
+}

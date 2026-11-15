@@ -7,7 +7,13 @@
     { "valor": "Maná", "texto": "Recurso" },
     { "valor": "Fácil", "texto": "De aprender" }
   ],
-  "aviso": "La beta de Forever llegaba a **nivel 30**. Lo que se refiere a nivel 60 (estadísticas exactas, BiS, encantamientos) es una estimación y se irá confirmando.",
+  "esencial": [
+    "**Build 31/20/0:** 31 puntos en Dominio de bestias hasta [[Ira de bestias]] y 20 en Puntería.",
+    "**Mascota primero:** mándala antes de disparar, que ataque al objetivo correcto y dale de comer con [[Alimentar mascota]].",
+    "**Desde nivel 25, 2 halcones siempre activos** con [[Invocar halcón]], y [[Aguijón de serpiente]] que no se caiga.",
+    "**Quédate entre 8 y 35 m:** más cerca estás en la zona muerta y no puedes disparar."
+  ],
+  "aviso": "**WoW Forever acaba de salir:** todo está sujeto a cambios y ajustes por parte de Blizzard. Lo que se refiere a nivel 60 (estadísticas exactas, BiS, encantamientos) es una estimación y lo iré confirmando según se juegue.",
   "cambios": [
     { "hechizo": "Invocar halcón", "etiqueta": "Nuevo", "texto": "Talento de Bestias a nivel 25. El halcón ataca 18 s y puedes tener **2 a la vez**. Comparte reutilización (6 s) con [[Tiro Arcano]], escala con tu poder de ataque a distancia y **no tiene alcance mínimo**." },
     { "hechizo": "Fuego enfocado", "etiqueta": "Nuevo", "texto": "+2% a todo tu daño y al de tu mascota mientras la mascota está activa." },

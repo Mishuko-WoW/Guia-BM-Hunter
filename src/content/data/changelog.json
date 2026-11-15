@@ -1,6 +1,19 @@
 [
   {
     "fecha": "2026-11-15",
+    "pestana": "mecanicas",
+    "texto": "Menú nuevo para móvil, resumen rápido y preguntas frecuentes en",
+    "enlace": "General",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-15",
+    "pestana": "talentos",
+    "texto": "Tabla de mejores builds y preguntas frecuentes en",
+    "enlace": "Talentos"
+  },
+  {
+    "fecha": "2026-11-15",
     "pestana": "estadisticas",
     "texto": "Nueva sección con la prioridad de estadísticas en",
     "enlace": "Stats",

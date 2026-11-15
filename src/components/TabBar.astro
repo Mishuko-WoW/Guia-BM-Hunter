@@ -1,8 +1,13 @@
 ---
-// Barra de pestañas. Cada pestaña es un enlace a su página (src/lib/seo.ts → tabPath).
+// Navegación de la guía. Cada pestaña es un enlace a su página (src/lib/seo.ts → tabPath).
 // Las listas están en src/lib/tabs.ts (una por versión). data-tab lo usa bm-guide.js.
+// · Escritorio: barra de pestañas fija arriba (.mk-tabs).
+// · Móvil (≤900px): barra inferior al alcance del pulgar (.mk-dock) que abre un panel desde abajo
+//   (.mk-sheet) con botones grandes, cambio de versión y Coaching. Estilos en marca.css (MENÚ MÓVIL).
 import { TABS, type GuideRealm } from '../lib/tabs';
 import { tabPath } from '../lib/seo';
+import { REALMS } from '../lib/realms';
+import { iconUrl } from '../lib/spells';
 
 interface Props {
   realm?: GuideRealm;
@@ -12,6 +17,26 @@ interface Props {
 const { realm = 'midnight', activa = 'mecanicas' } = Astro.props;
 const tabs = TABS[realm];
 const marcada = activa === 'opener' ? 'rotacion' : activa;
+const visibles = tabs.filter((t) => !t.hidden);
+const secciones = visibles.filter((t) => !t.cta);
+const cta = visibles.find((t) => t.cta);
+const actual = visibles.find((t) => t.id === marcada)?.label ?? 'General';
+const NOMBRE = { midnight: 'Midnight', forever: 'WoW Forever' }[realm];
+
+// Icono del juego por pestaña (iconos de Wowhead que ya usa la guía)
+const ICONO: Record<string, string> = {
+  mecanicas: 'inv_scroll_03',
+  leveling: 'inv_misc_map_01',
+  talentos: 'ability_hunter_bestialdiscipline',
+  estadisticas: 'spell_holy_blessingofagility',
+  rotacion: 'ability_hunter_aimedshot',
+  bis: 'inv_chest_leather_08',
+  mascotas: 'ability_hunter_beasttaming',
+  macros: 'inv_misc_note_01',
+  simulacion: 'inv_misc_enggizmos_18',
+  coaching: 'ability_hunter_eagleeye',
+};
+const icono = (id: string) => iconUrl(ICONO[id] ?? ICONO.mecanicas);
 ---
 
 <nav class="mk-tabs" aria-label="Secciones de la guía">
@@ -30,3 +55,120 @@ const marcada = activa === 'opener' ? 'rotacion' : activa;
     ))}
   </div>
 </nav>
+
+<!-- ─── Menú móvil: barra inferior + panel desde abajo ─── -->
+<div class="mk-dock" data-dock>
+  <button type="button" class="mk-dock__menu" aria-expanded="false" aria-controls="mk-sheet" data-sheet-open>
+    <span class="mk-burger" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="mk-dock__text">
+      <small>Secciones · {NOMBRE}</small>
+      <b>{actual}</b>
+    </span>
+    <svg class="mk-dock__chev" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 15l6-6 6 6" /></svg>
+  </button>
+  <button type="button" class="mk-dock__top" aria-label="Volver arriba" data-top>
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+  </button>
+</div>
+
+<div class="mk-sheet" id="mk-sheet" role="dialog" aria-modal="true" aria-label={`Secciones de la guía ${NOMBRE}`} hidden data-sheet>
+  <div class="mk-sheet__backdrop" data-sheet-close></div>
+  <div class="mk-sheet__panel" data-sheet-panel>
+    <div class="mk-sheet__grip" data-sheet-grip aria-hidden="true"><span></span></div>
+
+    <div class="mk-sheet__head">
+      <div>
+        <small>Guía Hunter BM</small>
+        <b>{NOMBRE}</b>
+      </div>
+      <nav class="mk-sheet__realms" aria-label="Versión del juego">
+        {REALMS.map((r) => (
+          <a href={r.href} class:list={[`is-${r.id}`, { active: r.id === realm }]} aria-current={r.id === realm ? 'page' : undefined}>{r.nombre}</a>
+        ))}
+      </nav>
+    </div>
+
+    <ul class="mk-sheet__list">
+      {secciones.map((t, i) => (
+        <li style={`--i:${i}`}>
+          <a href={tabPath(realm, t.id)} class:list={['mk-sheet__item', { active: t.id === marcada }]} aria-current={t.id === marcada ? 'page' : undefined}>
+            <img class="mk-sheet__ico" src={icono(t.id)} alt="" width="36" height="36" loading="lazy" />
+            <span class="mk-sheet__label">{t.label}</span>
+            {t.nuevo && <span class="mk-tab__new">Nuevo</span>}
+            <svg class="mk-sheet__go" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mk-sheet__foot">
+      {cta && (
+        <a href={tabPath(realm, cta.id)} class:list={['mk-sheet__cta', { active: cta.id === marcada }]}>
+          <img class="mk-sheet__ico" src={icono(cta.id)} alt="" width="32" height="32" loading="lazy" />
+          {cta.label} personalizado
+        </a>
+      )}
+      <button type="button" class="mk-sheet__close" data-sheet-close>Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const sheet = document.querySelector('[data-sheet]');
+    const panel = sheet && sheet.querySelector('[data-sheet-panel]');
+    const opener = document.querySelector('[data-sheet-open]');
+    const dock = document.querySelector('[data-dock]');
+    if (!sheet || !panel || !opener || !dock) return;
+    const root = document.documentElement;
+
+    const open = () => {
+      sheet.hidden = false;
+      requestAnimationFrame(() => sheet.classList.add('is-open'));
+      opener.setAttribute('aria-expanded', 'true');
+      root.classList.add('mk-sheet-lock');
+      const cur = panel.querySelector('.mk-sheet__item.active') || panel.querySelector('a');
+      if (cur) cur.focus({ preventScroll: true });
+    };
+    const close = () => {
+      sheet.classList.remove('is-open');
+      panel.style.transform = '';
+      opener.setAttribute('aria-expanded', 'false');
+      root.classList.remove('mk-sheet-lock');
+      setTimeout(() => { if (!sheet.classList.contains('is-open')) sheet.hidden = true; }, 280);
+      opener.focus({ preventScroll: true });
+    };
+
+    opener.addEventListener('click', open);
+    sheet.querySelectorAll('[data-sheet-close]').forEach((b) => b.addEventListener('click', close));
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && sheet.classList.contains('is-open')) close(); });
+    // Al navegar a otra pestaña se cierra (y al volver atrás no aparece abierto)
+    sheet.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => sheet.classList.remove('is-open')));
+    addEventListener('pageshow', () => { sheet.classList.remove('is-open'); sheet.hidden = true; root.classList.remove('mk-sheet-lock'); });
+
+    // Deslizar hacia abajo para cerrar (desde el asa o la cabecera del panel)
+    let y0 = null, dy = 0;
+    panel.addEventListener('touchstart', (e) => {
+      if (!e.target.closest('[data-sheet-grip], .mk-sheet__head')) return;
+      y0 = e.touches[0].clientY; dy = 0; panel.style.transition = 'none';
+    }, { passive: true });
+    panel.addEventListener('touchmove', (e) => {
+      if (y0 === null) return;
+      dy = Math.max(0, e.touches[0].clientY - y0);
+      panel.style.transform = `translateY(${dy}px)`;
+    }, { passive: true });
+    panel.addEventListener('touchend', () => {
+      if (y0 === null) return;
+      panel.style.transition = '';
+      y0 = null;
+      if (dy > 90) close(); else panel.style.transform = '';
+    });
+
+    // Botón "volver arriba": aparece al bajar
+    const top = dock.querySelector('[data-top]');
+    const onScroll = () => dock.classList.toggle('show-top', scrollY > 600);
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    top.addEventListener('click', () => scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+  })();
+</script>

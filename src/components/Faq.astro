@@ -1,0 +1,27 @@
+---
+// Preguntas frecuentes visibles al final de una pestaña.
+// Textos en src/content/data/faq-<versión>.json (los mismos alimentan el FAQPage de Schema.org, ver seo.ts).
+import { FAQ } from '../lib/seo';
+import type { GuideRealm } from '../lib/tabs';
+import { md } from '../lib/markup';
+
+interface Props {
+  realm?: GuideRealm;
+  tab: string;
+  titulo: string;
+}
+const { realm = 'midnight', tab, titulo } = Astro.props;
+const items = FAQ[realm][tab] ?? [];
+---
+
+{items.length > 0 && (
+  <section class="mk-faq" aria-labelledby={`faq-${tab}`}>
+    <h3 id={`faq-${tab}`}>Preguntas frecuentes: {titulo}</h3>
+    {items.map((it) => (
+      <details class="mk-faq__item">
+        <summary>{it.pregunta}</summary>
+        <p set:html={md(it.respuesta)} />
+      </details>
+    ))}
+  </section>
+)}

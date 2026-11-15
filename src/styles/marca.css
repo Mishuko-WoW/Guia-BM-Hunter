@@ -443,16 +443,16 @@ a.mk-tab[hidden] { display: none; }
 .mk-footer__links a:hover { color: var(--text); box-shadow: inset 0 -1px 0 var(--brand); }
 
 /* ─── MOVIMIENTO ─── */
-.tab-panel.active { animation: mk-panel-in var(--t-slow) var(--ease) both; }
-.tab-panel.active > * { animation: mk-rise var(--t-slow) var(--ease) both; }
-.tab-panel.active > :nth-child(2) { animation-delay: 40ms; }
-.tab-panel.active > :nth-child(3) { animation-delay: 80ms; }
-.tab-panel.active > :nth-child(4) { animation-delay: 120ms; }
-.tab-panel.active > :nth-child(5) { animation-delay: 160ms; }
-.tab-panel.active > :nth-child(n+6) { animation-delay: 200ms; }
+/* Entrada de la página: rápida y sin partir de transparente (cada pestaña es una página nueva,
+   así que se ve en cada clic: el contenido tiene que estar legible al instante) */
+.tab-panel.active > * { animation: mk-rise-soft 0.32s var(--ease) both; }
+.tab-panel.active > :nth-child(2) { animation-delay: 30ms; }
+.tab-panel.active > :nth-child(3) { animation-delay: 60ms; }
+.tab-panel.active > :nth-child(n+4) { animation-delay: 90ms; }
 [data-panel-id]:not([hidden]) { animation: mk-rise var(--t) var(--ease) both; }
 
 @keyframes mk-panel-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mk-rise-soft { from { opacity: 0.4; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @keyframes mk-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes mk-drop-in { from { opacity: 0; transform: scale(0.8) rotate(-12deg); } to { opacity: 1; transform: none; } }
 @keyframes mk-slash { to { stroke-dashoffset: 0; } }
@@ -610,3 +610,338 @@ a.mk-tab[hidden] { display: none; }
 
 /* Etiqueta «Nuevo» en una pestaña (tabs.ts → nuevo: true) */
 .mk-tab__new { display: inline-block; margin-left: 6px; padding: 2px 6px; vertical-align: 2px; font: 800 10px/1.2 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--bg); background: var(--gold); border-radius: 3px; }
+/* ─── TABLAS DE DATOS (resumen de builds, BiS por ranura) ─── */
+.mk-table-wrap { overflow-x: auto; margin: 16px 0; clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border); background: var(--card); }
+.mk-table { width: 100%; border-collapse: collapse; font-size: 15.5px; color: var(--text2); }
+.mk-table caption { caption-side: top; text-align: left; padding: 12px 14px 4px; font: 700 15px/1.2 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-text); }
+.mk-table th {
+  padding: 9px 14px; text-align: left; white-space: nowrap;
+  font: 700 14px/1.2 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); border-bottom: 1px solid var(--border2);
+}
+.mk-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.mk-table tr:last-child td { border-bottom: 0; }
+.mk-table tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--bg3) 60%, transparent); }
+.mk-table td strong { color: var(--text); }
+.mk-table .is-pl { color: var(--pl); font-weight: 700; }
+.mk-table .is-dr { color: var(--dr); font-weight: 700; }
+.mk-table tbody th { white-space: normal; }
+.mk-table-note { margin: -6px 0 22px; font-size: 14.5px; line-height: 1.5; color: var(--text3); }
+.mk-table-note strong { color: var(--text2); }
+@media (max-width: 600px) {
+  .mk-table { font-size: 14px; }
+  .mk-table th, .mk-table td { padding: 8px 10px; }
+}
+
+/* Bloque plegable con una tabla (BiS en tabla) */
+.mk-fold { margin: 24px 0; }
+.mk-fold > summary {
+  cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 8px;
+  font: 700 15px/1.2 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-text);
+}
+.mk-fold > summary::-webkit-details-marker { display: none; }
+.mk-fold > summary::before { content: '+'; display: inline-grid; place-items: center; width: 20px; height: 20px; color: var(--bg); background: var(--brand); clip-path: var(--clip-btn); }
+.mk-fold[open] > summary::before { content: '−'; }
+
+/* Tabla de especializaciones de mascota: <table> real con el mismo aspecto que la rejilla anterior */
+table.spec-table { display: table; width: 100%; border-collapse: collapse; }
+table.spec-table th, table.spec-table td { text-align: left; vertical-align: top; }
+table.spec-table th:first-child, table.spec-table td:first-child { width: 100px; }
+@media (max-width: 600px) {
+  table.spec-table th:first-child, table.spec-table td:first-child { width: 80px; }
+}
+
+/* ─── PREGUNTAS FRECUENTES ─── */
+.mk-faq { margin-top: 40px; }
+.mk-faq__item {
+  margin: 8px 0;
+  background: linear-gradient(180deg, var(--bg3), var(--card));
+  clip-path: var(--clip-card);
+  box-shadow: inset 0 0 0 1px var(--border);
+  transition: box-shadow var(--t);
+}
+.mk-faq__item:hover, .mk-faq__item[open] { box-shadow: inset 0 0 0 1px var(--border2); }
+.mk-faq__item > summary {
+  cursor: pointer; list-style: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 13px 16px;
+  font: 700 16.5px/1.25 var(--font-display); letter-spacing: 0.03em; color: var(--text);
+}
+.mk-faq__item > summary::-webkit-details-marker { display: none; }
+.mk-faq__item > summary::after { content: '+'; flex-shrink: 0; font-size: 22px; line-height: 1; color: var(--brand); }
+.mk-faq__item[open] > summary::after { content: '−'; }
+.mk-faq__item > p { margin: 0; padding: 0 16px 15px; font-size: 15.5px; color: var(--text2); }
+.mk-faq__item strong { color: var(--text); }
+
+
+/* Texto solo para lectores de pantalla y buscadores */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ═══ MENÚ MÓVIL (TabBar.astro): barra inferior + panel desde abajo ═══
+   Pensado para una mano: todo lo que se pulsa queda en el tercio inferior de la pantalla. */
+.mk-dock, .mk-sheet { display: none; }
+@media (max-width: 900px) {
+  .mk-tabs { display: none; }
+  /* hueco para la barra inferior (solo en páginas de guía, la portada no la tiene) */
+  body:has(.mk-dock) { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+
+  .mk-dock {
+    position: fixed; z-index: 90;
+    left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom));
+    display: flex; gap: 8px; align-items: stretch;
+    animation: mk-dock-in 0.5s var(--ease) 0.2s both;
+  }
+  .mk-dock__menu {
+    flex: 1; min-height: 60px;
+    display: flex; align-items: center; gap: 14px;
+    padding: 8px 18px 8px 16px;
+    border: 0; cursor: pointer; text-align: left;
+    color: var(--text);
+    background: color-mix(in srgb, var(--bg2) 95%, transparent);
+    backdrop-filter: blur(16px) saturate(1.3);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    clip-path: var(--clip-btn);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 38%, transparent), 0 10px 30px rgb(0 0 0 / 0.5);
+    transition: transform var(--t-fast) var(--ease);
+  }
+  .mk-dock__menu:active { transform: scale(0.98); }
+  .mk-burger { display: grid; gap: 4px; width: 22px; flex-shrink: 0; }
+  .mk-burger i { display: block; height: 2.5px; background: var(--brand); border-radius: 2px; }
+  .mk-burger i:nth-child(2) { width: 70%; }
+  .mk-dock__text { flex: 1; min-width: 0; display: grid; gap: 3px; }
+  .mk-dock__text small { font: 700 10.5px/1 var(--font-display); letter-spacing: 0.18em; text-transform: uppercase; color: var(--text3); }
+  .mk-dock__text b { font: 800 19px/1 var(--font-display); letter-spacing: 0.04em; text-transform: uppercase; color: var(--brand-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mk-dock__chev { fill: none; stroke: var(--text2); stroke-width: 2.4; stroke-linecap: square; flex-shrink: 0; }
+  .mk-dock__top {
+    width: 0; padding: 0; border: 0; overflow: hidden; cursor: pointer;
+    display: grid; place-items: center;
+    color: var(--brand-ink); background: var(--brand-fill);
+    clip-path: var(--clip-btn);
+    opacity: 0;
+    transition: width var(--t) var(--ease), opacity var(--t) var(--ease);
+  }
+  .mk-dock.show-top .mk-dock__top { width: 60px; opacity: 1; }
+  .mk-dock__top svg { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: square; }
+
+  .mk-sheet { display: block; position: fixed; inset: 0; z-index: 100; }
+  .mk-sheet[hidden] { display: none; }
+  .mk-sheet__backdrop {
+    position: absolute; inset: 0;
+    background: rgb(0 0 0 / 0.55);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    opacity: 0; transition: opacity var(--t) var(--ease);
+  }
+  .mk-sheet__panel {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    max-height: 88dvh; overflow-y: auto; overscroll-behavior: contain;
+    padding: 6px 16px calc(16px + env(safe-area-inset-bottom));
+    background:
+      radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--brand) 9%, transparent), transparent 60%),
+      var(--bg2);
+    border-top: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -20px 60px rgb(0 0 0 / 0.6);
+    transform: translateY(100%);
+    transition: transform 0.34s var(--ease);
+  }
+  .mk-sheet.is-open .mk-sheet__backdrop { opacity: 1; }
+  .mk-sheet.is-open .mk-sheet__panel { transform: translateY(0); }
+  .mk-sheet__grip { display: grid; place-items: center; height: 22px; }
+  .mk-sheet__grip span { width: 44px; height: 5px; border-radius: 3px; background: var(--border2); }
+
+  .mk-sheet__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 4px 14px; }
+  .mk-sheet__head small { display: block; font: 700 11px/1 var(--font-display); letter-spacing: 0.2em; text-transform: uppercase; color: var(--text3); }
+  .mk-sheet__head b { display: block; margin-top: 4px; font: 800 24px/1 var(--font-display); letter-spacing: 0.02em; text-transform: uppercase; color: var(--text); }
+  .mk-sheet__realms { display: inline-flex; padding: 3px; gap: 3px; background: var(--bg); clip-path: var(--clip-btn); box-shadow: inset 0 0 0 1px var(--border2); }
+  .mk-sheet__realms a {
+    --tone: var(--realm-midnight);
+    padding: 10px 12px; min-height: 40px; display: grid; place-items: center;
+    font: 700 13px/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text2); text-decoration: none; clip-path: var(--clip-btn);
+  }
+  .mk-sheet__realms a.is-forever { --tone: var(--realm-forever); }
+  .mk-sheet__realms a.active { color: var(--bg); background: color-mix(in srgb, var(--tone) 85%, #000); }
+
+  .mk-sheet__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mk-sheet.is-open .mk-sheet__list li { animation: mk-rise 0.32s var(--ease) both; animation-delay: calc(var(--i) * 25ms + 60ms); }
+  .mk-sheet__item {
+    position: relative;
+    display: flex; align-items: center; gap: 10px;
+    min-height: 58px; padding: 10px 12px;
+    font: 700 16px/1.1 var(--font-display); letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--text); text-decoration: none;
+    background: linear-gradient(180deg, var(--bg3), color-mix(in srgb, var(--bg3) 50%, var(--bg)));
+    clip-path: var(--clip-btn);
+    box-shadow: inset 0 0 0 1px var(--border);
+    transition: background var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast);
+  }
+  .mk-sheet__item:active { transform: scale(0.97); }
+  .mk-sheet__item.active {
+    color: var(--brand-text);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 16%, var(--bg3)), var(--bg3));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 55%, transparent);
+  }
+  .mk-sheet__ico { width: 36px; height: 36px; flex-shrink: 0; border-radius: 6px; box-shadow: 0 0 0 1px rgb(0 0 0 / 0.6), 0 0 0 2px color-mix(in srgb, var(--brand) 30%, transparent); }
+  .mk-sheet__item.active .mk-sheet__ico { box-shadow: 0 0 0 1px rgb(0 0 0 / 0.6), 0 0 0 2px var(--brand); }
+  .mk-sheet__cta .mk-sheet__ico { width: 32px; height: 32px; box-shadow: 0 0 0 1px rgb(0 0 0 / 0.5); }
+  .mk-sheet__label { flex: 1; min-width: 0; }
+  .mk-sheet__item .mk-tab__new { position: absolute; top: 5px; right: 6px; }
+  .mk-sheet__go { display: none; }
+
+  .mk-sheet__foot { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 12px; }
+  .mk-sheet__cta {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 56px; padding: 0 16px;
+    font: 800 16px/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--brand-ink); background: var(--brand-fill); text-decoration: none; clip-path: var(--clip-btn);
+  }
+  .mk-sheet__close {
+    min-height: 56px; padding: 0 20px; border: 0; cursor: pointer;
+    font: 700 15px/1 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text2); background: var(--bg3); clip-path: var(--clip-btn); box-shadow: inset 0 0 0 1px var(--border2);
+  }
+  html.mk-sheet-lock { overflow: hidden; }
+}
+@media (max-width: 360px) {
+  .mk-sheet__list { grid-template-columns: 1fr; }
+}
+@keyframes mk-dock-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* ═══ CABECERA COMPACTA EN MÓVIL: el contenido empieza en la primera pantalla ═══ */
+.mk-changelog > summary { list-style: none; cursor: default; }
+.mk-changelog > summary::-webkit-details-marker { display: none; }
+@media (max-width: 900px) {
+  .mk-changelog { padding: 10px 14px; }
+  .mk-changelog > summary { cursor: pointer; margin-bottom: 0; }
+  .mk-changelog > summary::after { content: '+'; margin-left: auto; font-size: 18px; color: var(--brand); }
+  .mk-changelog[open] > summary { margin-bottom: 10px; }
+  .mk-changelog[open] > summary::after { content: '−'; }
+}
+@media (max-width: 600px) {
+  .mk-header__inner { padding: 14px 16px 12px; gap: 10px 14px; }
+  .mk-brand { width: 58px; height: 58px; }
+  .mk-eyebrow { margin-bottom: 4px; font-size: 10px; letter-spacing: 0.14em; }
+  .mk-h1-main { font-size: 34px; }
+  .mk-h1-sub { margin-top: 5px; font-size: 13.5px; letter-spacing: 0.04em; }
+  .mk-heroes { margin-top: 10px; }
+  .mk-changelog__list li { font-size: 13.5px; }
+  .mk-patch { padding: 8px 14px; gap: 4px 10px; font-size: 13.5px; line-height: 1.35; }
+  .mk-patch__tag { font-size: 11px; padding: 4px 8px; }
+  .content-area { padding-top: 18px; }
+}
+
+/* «Lo esencial» de General (Forever) */
+.gn-esencial ol { margin: 8px 0 2px; padding-left: 20px; display: grid; gap: 7px; }
+.gn-esencial li::marker { color: var(--brand-text); font-weight: 700; }
+
+/* ═══ LECTURA EN MÓVIL ═══
+   Mínimos pensados para leer con el móvil en la mano, sin hacer zoom:
+   texto 16px (interlineado 1.6) · secundario 14-15px · etiquetas en mayúsculas 12.5-13px · tablas 15px.
+   Va al final y con .content-area delante para ganar a los estilos heredados (bm-guide.css) y a forever.css. */
+@media (max-width: 600px) {
+  .content-area { font-size: 16px; line-height: 1.6; padding-left: 16px; padding-right: 16px; }
+
+  /* Texto corrido */
+  .content-area p,
+  .content-area li,
+  .content-area dd,
+  .content-area .col-row,
+  .content-area .col-row p,
+  .content-area .data-row,
+  .content-area .prio-item,
+  .content-area .opener-step,
+  .content-area .box { font-size: 16px; line-height: 1.6; }
+  .content-area .box { padding: 14px 14px 14px 46px; }
+  .content-area .box-title { font-size: 14px; margin-bottom: 6px; }
+
+  /* Títulos */
+  .tab-panel h2 { font-size: 27px; line-height: 1.08; margin-bottom: 18px; }
+  .tab-panel h3 { font-size: 20px; margin-top: 30px; }
+  .content-area h4 { font-size: 17px; }
+  .card-header, .col-header { font-size: 15px; }
+
+  /* Textos secundarios (notas, fuentes, descripciones cortas) */
+  .content-area small,
+  .content-area .lv-rec,
+  .content-area .pf-ab__sub,
+  .content-area .pf-diet,
+  .content-area .pf-excl,
+  .content-area .chain-step-text,
+  .content-area .ostep-pre,
+  .content-area .bis-item-source,
+  .content-area .bis-consumable-link,
+  .content-area .bis-catalyst-label,
+  .content-area .macro-desc,
+  .content-area .macro-tip,
+  .content-area .lv-ins-item__rank,
+  .content-area .tc-step__rank,
+  .content-area .tc-step__lvl,
+  .content-area .lv-panel__range,
+  .content-area .lv-petcard__tag,
+  .content-area .rt-tl__label,
+  .content-area .fv-review,
+  .content-area .gn-banner__btn { font-size: 14.5px; line-height: 1.45; }
+
+  /* Etiquetas y chips en mayúsculas */
+  .content-area .gn-tag,
+  .content-area .gn-fac,
+  .content-area .lv-top,
+  .content-area .rt-chip,
+  .content-area .rt-tl__tick,
+  .content-area .tr-badge,
+  .content-area .tr-rank,
+  .content-area .pf-tag,
+  .content-area .pf-max,
+  .content-area .pf-warn,
+  .content-area .bis-badge,
+  .content-area .video-btn__sub,
+  .content-area dt { font-size: 12.5px; letter-spacing: 0.08em; }
+  .content-area .chain-step small { font-size: 11px; }
+
+  /* Hechizos dentro del texto: mismo tamaño que el texto que los rodea */
+  .content-area .sp, .content-area .pr, .content-area .bf { font-size: 0.97em; }
+
+  /* Código de macros: legible y sin cortar líneas a mitad */
+  .content-area pre.macro-code, .content-area .mf-code { font-size: 14px; line-height: 1.55; }
+
+  /* Tablas */
+  .content-area td, .content-area th { font-size: 15px; }
+  .mk-table th, .mk-table td { padding: 10px 12px; }
+  .mk-table caption { font-size: 14px; }
+  .content-area thead th { font-size: 13px; }
+
+  /* Botones y selectores: altura cómoda para el dedo */
+  .content-area .toggle-btn { font-size: 14.5px; min-height: 44px; padding: 10px 14px; }
+  .content-area .lv-index a { font-size: 14px; min-height: 40px; display: inline-flex; align-items: center; }
+  .mk-fold > summary { font-size: 15px; min-height: 44px; }
+  .mk-faq__item > summary { font-size: 17px; padding: 15px 16px; min-height: 52px; }
+  .mk-faq__item > p { font-size: 16px; line-height: 1.6; }
+
+}
+@media (max-width: 600px) {
+  /* Cabecera y barra inferior */
+  .mk-eyebrow { font-size: 11.5px; }
+  .mk-chip { font-size: 12.5px; }
+  .mk-changelog__title { font-size: 13px; }
+  .mk-patch__tag { font-size: 12px; }
+  .mk-tab__new { font-size: 11px; }
+  .mk-dock__text small { font-size: 11.5px; }
+
+  /* Etiquetas sueltas que quedaban por debajo de 12.5px */
+  .content-area .tab-panel dt,
+  .content-area .rt-buff__when,
+  .content-area .rt-sim__k,
+  .content-area .rt-sim__k b,
+  .content-area .lv-ins-level__num span,
+  .content-area .tr-level__num span,
+  .content-area .tf-flex__cuando span,
+  .content-area .macro-cat,
+  .content-area .tag,
+  .content-area .section-label,
+  .content-area .coach-tag,
+  .content-area .tier-badge { font-size: 12.5px; }
+  .content-area .video-btn__sub { font-size: 13px; }
+  /* Línea de tiempo de la rotación: gráfico con poco espacio, 12px es el mínimo legible */
+  .content-area .rt-tl__label small,
+  .content-area .rt-tl__note { font-size: 12px; }
+}

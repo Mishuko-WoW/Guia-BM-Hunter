@@ -16,6 +16,20 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-15 — SEO on-page, menú móvil y lectura en móvil
+- **Nombres:** títulos con «Cazador de Bestias» (lo más buscado); subtítulo del H1 de Midnight con «Maestro de bestias»; descripción de General y portada con ambos; `alternateName`/`about` del JSON-LD con los dos; `og:locale:alternate` es_MX. Forever mantiene «Dominio de bestias» (nombre del árbol en Classic) y sus títulos de pestaña pasan de «Beast Mastery Hunter» a «Hunter BM».
+- **Preguntas frecuentes:** `src/components/Faq.astro` (`realm`, `tab`, `titulo`) al final de cada pestaña + `FAQPage` en `guideJsonLd` (seo.ts, `FAQ[realm][tab]`). Textos en `src/content/data/faq-midnight.json` y `faq-forever.json` (solo información que ya está en la guía). Leveling de Forever mantiene su propio FAQ.
+- **Tablas:** Midnight: resumen de builds en Talentos (+ nota de que la rotación/opener de Dark Ranger están en desarrollo), BiS por ranura plegable, especializaciones de mascota como `<table>` real. Forever: `TablaForever.astro` (plegable «Ver en tabla», generada de los mismos JSON) en Talentos, Stats, Mascotas y Rotación.
+- **Builds de Midnight en el HTML:** `SeccionTalentos.astro` las pinta en el servidor (para buscadores); `renderBuilds` de bm-guide.js las vuelve a pintar igual y añade los enlaces de Wowhead. Si cambias el marcado, cambia ambos.
+- **Un solo H1 por página:** Coaching y Simulación pasan a H2 (`.mk-h-intro`, mismo aspecto).
+- **Menú móvil (≤900 px):** `TabBar.astro` añade barra inferior (`.mk-dock`) que abre un panel desde abajo (`.mk-sheet`) con iconos del juego, cambio de versión, Coaching y botón «volver arriba»; la barra de pestañas superior se oculta en móvil. Estilos «MENÚ MÓVIL» en `marca.css`.
+- **Cabecera compacta en móvil** y «Últimos cambios» plegable (`<details>`, se cierra en móvil antes de pintar). Aviso de Forever: «Recién lanzado» (sustituye los avisos de la beta a nivel 30 en cabecera, General, Stats, Talentos, BiS y Leveling).
+- **Lectura en móvil:** bloque «LECTURA EN MÓVIL» al final de `marca.css` (texto 16 px, secundarios 14,5 px, etiquetas ≥12,5 px, tablas 15 px, botones ≥44 px). Entrada de página más rápida (`mk-rise-soft`).
+- **Portada móvil:** las dos tarjetas lado a lado en una pantalla; se quita el enlace extra «O ve directo al leveling» de `realms.ts`.
+- **Forever General:** bloque «Lo esencial en 30 segundos» (`esencial` en `forever-general.json`). Rotación con índice `IndiceForever`.
+- **Arreglos:** orden de Stats AoE de Midnight (Versatilidad 5.ª, Celeridad 6.ª); «Perneras en espiral de víbora merodeadora» en BiS; alt descriptivos en BiS, consumibles, Simulación y Coaching.
+- Pendiente: imagen de «Talentos por Boss» cargada desde `imgs.search.brave.com` (cambiarla por una propia).
+
 ## 2026-11-15 — Forever: pestaña Stats (BiS preparada, sin publicar)
 - `/forever/estadisticas/` con contenido (deja de ser `noindex` y entra en el sitemap al existir su `.md`). **BiS sigue «en preparación»** por decisión de Mishuko: el componente y los datos están hechos pero sin `src/content/forever/paginas/bis.md`; para publicarla basta con crear ese `.md` (`tab: bis`, `bloques: []`). Datos de guías de Forever (Icy Veins, wow.gg, Mobalytics, Timesaver, wowtbc.gg, WoWVendor), sin citarlas en la web. Se avisa de que son **provisionales** (beta hasta nivel 30).
 - Stats: `StatsForever.astro` + `src/content/data/forever-estadisticas.json` (cabecera con datos, aviso, prioridad en 6 tarjetas numeradas `st-rank`, leveling / nivel 60 en columnas `gn-col`, notas de mascota y arma de melé, «Sigue con la guía»). Estilos «STATS» en `forever.css`.

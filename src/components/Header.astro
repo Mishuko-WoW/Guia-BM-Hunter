@@ -26,7 +26,7 @@ const CABECERA = {
   forever: {
     eyebrow: ['World of Warcraft', 'Forever', 'Nivel 60'],
     sub: 'Talentos, Rotación, Mascotas y BiS PvE',
-    parche: { titulo: 'Fase 1', texto: 'La beta llegó a nivel 30: los datos de nivel 60 se irán confirmando' },
+    parche: { titulo: 'Recién lanzado', texto: 'WoW Forever acaba de salir: todo está sujeto a cambios y actualizaciones por parte de Blizzard' },
   },
 }[realm];
 const PARCHE = CABECERA.parche;
@@ -74,8 +74,9 @@ const PARCHE = CABECERA.parche;
       )}
     </div>
 
-    <aside class="mk-changelog" aria-label="Últimos cambios">
-      <div class="mk-changelog__title">Últimos cambios</div>
+    <!-- Plegado en móvil (lo cierra el script de abajo antes de pintar) para que el contenido salga en la primera pantalla -->
+    <details class="mk-changelog" open aria-label="Últimos cambios" data-changelog>
+      <summary class="mk-changelog__title">Últimos cambios</summary>
       <ul class="mk-changelog__list">
         {recentChanges.map((c) => (
           <li>
@@ -84,7 +85,10 @@ const PARCHE = CABECERA.parche;
           </li>
         ))}
       </ul>
-    </aside>
+    </details>
+    <script is:inline>
+      if (matchMedia('(max-width: 900px)').matches) document.querySelector('[data-changelog]')?.removeAttribute('open');
+    </script>
   </div>
 
   {PARCHE.texto && (

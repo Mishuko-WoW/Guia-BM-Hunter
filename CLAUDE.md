@@ -16,6 +16,9 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 - `public/robots.txt`; sitemap con `lastmod` desde `changelog.json`. Imagen de Forever: `node scripts/og-images.mjs` → `public/brand/og-forever.png`.
 - Tras publicar páginas nuevas: `node scripts/indexnow.mjs` (avisa a Bing/Yandex con las URL del sitemap; clave en `public/<clave>.txt`, no borrarla) y, en Search Console, pedir indexación de las nuevas.
 - Palabras clave: «guía hunter BM», «Cazador de Bestias» (lo más buscado en Search Console), «guía hunter forever», «guía hunter midnight».
+- Nombres (España + Latinoamérica): `<title>` con «Cazador de Bestias»; subtítulo del H1 de Midnight con «Maestro de bestias»; descripciones con ambos; en el texto, «Hunter BM». Forever: «Dominio de bestias» es el nombre del árbol. No mezclarlos al azar.
+- Preguntas frecuentes: `src/content/data/faq-midnight.json` / `faq-forever.json` (por pestaña) → bloque visible `Faq.astro` al final de la pestaña + `FAQPage` automático en `guideJsonLd`. Toda pregunta del JSON-LD debe verse en la página (lo garantiza usar el mismo JSON).
+- Tablas para fragmentos destacados: Forever `TablaForever.astro` (sale de los JSON de la pestaña); Midnight a mano en `SeccionTalentos`/`SeccionBiS`/`SeccionMascotas`.
 - `npm run dev` → http://localhost:4321 (recarga en caliente)
 - `npm run build` → valida contenido (`scripts/check-content.mjs`) + genera `dist/`. **Ejecutar siempre antes de commit.**
 - Deploy: push a `main` → GitHub Actions (`.github/workflows/deploy.yml`) → GitHub Pages (~40 s).
@@ -78,12 +81,12 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 |---|---|
 | Cabecera, aviso de parche (`PARCHE`) | `src/components/Header.astro` |
 | Lista de cambios, fechas de revisión y del footer | `src/content/data/changelog.json` (lógica en `src/lib/changelog.ts`) |
-| Pestañas (`TABS_MIDNIGHT`, `TABS_FOREVER`) | `src/lib/tabs.ts` (las pinta `TabBar.astro`) |
+| Pestañas (`TABS_MIDNIGHT`, `TABS_FOREVER`) | `src/lib/tabs.ts` (las pinta `TabBar.astro`: barra superior en escritorio y menú inferior en móvil ≤900 px, iconos del juego en `ICONO`) |
 | Qué sección pinta cada página de Midnight, footer | `src/components/guide/GuideContent.astro` |
 | Títulos, descripciones, H1, JSON-LD, imagen para redes | `src/lib/seo.ts` |
 | `<head>`, robots, Analytics (GA4) | `src/layouts/MainLayout.astro` |
 | Pestaña X | `src/components/Seccion<X>.astro` (`<div id="tab-<id>" class="tab-panel">`) |
-| Builds de talentos (strings, notas) | `src/content/builds/*.md` → renderizado en JS (`renderBuilds`) |
+| Builds de talentos (strings, notas) | `src/content/builds/*.md` → HTML en `SeccionTalentos.astro` y repintado en JS (`renderBuilds`, añade enlaces de Wowhead): mismo marcado en ambos |
 | Opener / rotación (un `.md` por build) | `src/content/opener/*.md`, `src/content/rotacion/*.md` → `PanelesHeroe.astro` + `Bloques.astro`. Intro y textos fijos de la pestaña en `SeccionOpener/Rotacion.astro` |
 | Catálogo de hechizos (icono, clase sp/pr/bf, tipo, tooltip) | `src/content/data/spells.json` (helpers en `src/lib/spells.ts`) |
 | Jefes de raid | `src/content/Bosses/*.md` (sección **oculta**: comentada en `SeccionTalentos.astro`) |
@@ -112,6 +115,7 @@ Orden de carga en `MainLayout.astro`: `tokens.css` → `bm-guide.css` (heredado)
 - `src/styles/tokens.css`: **única fuente** de colores, fuentes, esquinas cortadas (`--clip-card`, `--clip-btn`) y movimiento. Marca `--brand` #c4d70b (verde del logo), `--pl` ámbar (Pack Leader), `--dr` violeta (Dark Ranger). Los nombres antiguos (`--accent`, `--orange`…) son alias.
 - Partículas de fondo (brasas) en todas las páginas: `src/components/Particulas.astro` (lo incluye `MainLayout`); colores por versión en el bloque "PARTÍCULAS" de `marca.css`.
 - `src/styles/marca.css`: cabecera (`.mk-header`), pestañas (`.mk-tabs`/`.mk-tab`), títulos, cajas, tarjetas, listas, selectores, hechizos, tooltip, footer, animaciones y móvil. Estilos nuevos van aquí.
+- Móvil: bloques «MENÚ MÓVIL», «CABECERA COMPACTA» y «LECTURA EN MÓVIL» al final de `marca.css` (mínimos: texto 16 px, secundario 14,5 px, etiquetas 12,5 px, botones ≥44 px). Clase nueva con texto pequeño → añadirla allí.
 - `src/styles/bm-guide.css` (~2.2k líneas): estilos heredados por sección; localizar con `grep -n "/\* ───"` y leer solo ese rango. No añadir colores fijos: usar variables.
 - Nunca colores hex sueltos ni emojis en títulos (`.box-title`, `.card-header`, `.col-header`): las cajas ya llevan icono por tipo (`box-info|warn|tip|crit`).
 - Logo y derivados en `public/brand/` (favicon, apple-touch, `og-image.png` 1200×630 para Discord/redes).

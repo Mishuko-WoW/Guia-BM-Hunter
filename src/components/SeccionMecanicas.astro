@@ -1,9 +1,10 @@
 ---
 import { Image } from 'astro:assets';
+import Faq from './Faq.astro';
 ---
 
 <div id="tab-mecanicas" class="tab-panel active">
-  <h2>Visión General del Beast Mastery Hunter</h2>
+  <h2>Visión general del Hunter BM (Maestro de bestias)</h2>
 
   <div class="box box-info">
     <div class="box-title">Resumen</div>
@@ -73,7 +74,7 @@ import { Image } from 'astro:assets';
 <div class="card" style="border: 1px solid var(--purple, var(--dr)); margin-bottom: 20px;">
   <div class="card-header">
     
-    <Image src="https://wow.zamimg.com/images/wow/icons/large/inv_121_crest_myth.jpg" alt="Tier Set Season 2" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />
+    <Image src="https://wow.zamimg.com/images/wow/icons/large/inv_121_crest_myth.jpg" alt="Conjunto de tier de la Temporada 2 del Hunter BM" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />
     Bonus de Tier Set — <strong style="color: var(--pl);">Season 2 (Parche 12.1)</strong>
   </div>
   <div class="card-rows">
@@ -90,7 +91,7 @@ import { Image } from 'astro:assets';
 </div>
 
   <div class="card">
-    <div class="card-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_focusfire.jpg" alt="Recurso Principal" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Recurso Principal</div>
+    <div class="card-header"><Image src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_focusfire.jpg" alt="Enfoque, recurso principal del Hunter BM" width={28} height={28} style="border-radius:50%;vertical-align:middle;margin-right:10px;" />Recurso Principal</div>
     <div class="card-rows">
       <div class="data-row"><strong>Enfoque</strong> — Se regenera pasivamente. La <strong>Celeridad</strong> acelera su regeneración. El objetivo es no malgastar Enfoque durante la ventana de <span class="sp" data-name="Cólera de las bestias" data-type="Habilidad activa" data-desc="Tu único CD mayor. CD corto pero enormemente impactante. Toda la rotación gira en torno a él.">Cólera de las bestias</span> ni quedarte seco entre ventanas.</div>
       <div class="data-row">Habilidades como Disparo con púas generan enfoque y otras como Disparo de cobra lo consumen.</div>
@@ -179,7 +180,8 @@ import { Image } from 'astro:assets';
         <p><span class="bf" data-name="Marca del Cazador" data-type="Debuff" data-desc="Aumenta un 3% el daño recibido por el objetivo. Solo se puede marcar a un objetivo a la vez.">Marca del Cazador</span> — Desde el lanzamiento de Midnight se ha convertido en una herramienta esencial para maximizar el daño en objetivos prioritarios ya que ahora aumenta el daño en un 3% durante <strong>todo el combate</strong></p>
       </div>
     </div>
-  </div>
+</div>
+<Faq tab="mecanicas" titulo="Hunter BM en Midnight" />
 
 
 

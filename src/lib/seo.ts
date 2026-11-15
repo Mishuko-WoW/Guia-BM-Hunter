@@ -4,6 +4,8 @@
 // "opener" no tiene página propia: vive en la página de Rotación (/<versión>/rotacion/#opener).
 // Los enlaces antiguos con # (/#bis, /midnight/#bis) los redirige bm-guide.js a estas rutas.
 import type { GuideRealm } from './tabs';
+import faqMidnight from '../content/data/faq-midnight.json';
+import faqForever from '../content/data/faq-forever.json';
 
 export const SITE = 'https://guiahunterbm.com';
 
@@ -23,48 +25,48 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
   midnight: {
     mecanicas: {
       title: 'Guía Hunter BM Midnight S2 — Cazador de Bestias | Mishuko',
-      description: 'Guía del Cazador de Bestias (Hunter BM) en WoW Midnight Temporada 2: talentos, rotación, opener, stats y BiS de Pack Leader y Dark Ranger.',
-      h1sub: 'Cazador de Bestias · Talentos, rotación y BiS',
+      description: 'Guía del Hunter BM (Maestro de bestias o Cazador de Bestias) en WoW Midnight Temporada 2: talentos, rotación, opener, stats y BiS de Pack Leader y Dark Ranger.',
+      h1sub: 'Maestro de bestias · Talentos, rotación y BiS',
     },
     talentos: {
       title: 'Talentos Hunter BM Midnight S2: builds de raid y M+',
       description: 'Builds de talentos del Cazador de Bestias en Midnight Temporada 2 para raid y Míticas+: Pack Leader y Dark Ranger, strings para copiar y talentos flexibles.',
-      h1sub: 'Talentos del Cazador de Bestias en Midnight',
+      h1sub: 'Talentos del Maestro de bestias en Midnight',
     },
     estadisticas: {
       title: 'Stats Hunter BM Midnight S2: prioridad de estadísticas',
       description: 'Prioridad de estadísticas del Hunter BM (Cazador de Bestias) en Midnight Temporada 2 y por qué: qué subir primero en tu equipo.',
-      h1sub: 'Estadísticas del Cazador de Bestias en Midnight',
+      h1sub: 'Estadísticas del Maestro de bestias en Midnight',
     },
     rotacion: {
       title: 'Rotación y opener Hunter BM Midnight S2',
       description: 'Rotación del Cazador de Bestias en Midnight Temporada 2 para un objetivo y AoE, y opener paso a paso con Pack Leader y Dark Ranger.',
-      h1sub: 'Rotación y opener del Cazador de Bestias',
+      h1sub: 'Rotación y opener del Maestro de bestias',
     },
     bis: {
       title: 'BiS Hunter BM Midnight S2: equipo y consumibles',
       description: 'Equipo BiS del Cazador de Bestias (Hunter BM) en Midnight Temporada 2 por ranura, con encantamientos, gemas y consumibles.',
-      h1sub: 'BiS y consumibles del Cazador de Bestias',
+      h1sub: 'BiS y consumibles del Maestro de bestias',
     },
     mascotas: {
       title: 'Mascotas Hunter BM Midnight: cuáles usar y para qué',
       description: 'Qué mascotas llevar como Cazador de Bestias (Hunter BM) en Midnight Temporada 2 y para qué situación.',
-      h1sub: 'Mascotas del Cazador de Bestias en Midnight',
+      h1sub: 'Mascotas del Maestro de bestias en Midnight',
     },
     macros: {
       title: 'Macros Hunter BM Midnight: las imprescindibles',
       description: 'Macros útiles para el Hunter BM (Cazador de Bestias) en Midnight Temporada 2, listas para copiar y pegar.',
-      h1sub: 'Macros del Cazador de Bestias en Midnight',
+      h1sub: 'Macros del Maestro de bestias en Midnight',
     },
     simulacion: {
       title: 'Simular Hunter BM Midnight: Raidbots y Top Gear',
       description: 'Cómo simular tu Cazador de Bestias (Hunter BM) en Midnight con Raidbots y Top Gear para elegir el mejor equipo.',
-      h1sub: 'Simulación del Cazador de Bestias',
+      h1sub: 'Simulación del Maestro de bestias',
     },
     coaching: {
       title: 'Coaching Hunter BM Midnight con Mishuko',
       description: 'Coaching personalizado de Hunter BM (Cazador de Bestias) en Midnight con Mishuko: revisión de logs, rotación, talentos y plan de mejora.',
-      h1sub: 'Coaching de Cazador de Bestias',
+      h1sub: 'Coaching de Maestro de bestias',
     },
   },
   forever: {
@@ -147,10 +149,38 @@ export function guideJsonLd(realm: GuideRealm, tab: string, label: string, dateM
       author: AUTOR,
       publisher: AUTOR,
       ...(dateModified ? { dateModified } : {}),
-      about: ['Hunter Beast Mastery', 'Cazador de Bestias', `World of Warcraft ${NOMBRE_VERSION[realm]}`],
+      about: ['Hunter Beast Mastery', 'Cazador de Bestias', 'Maestro de bestias', `World of Warcraft ${NOMBRE_VERSION[realm]}`],
     },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs },
+    ...(FAQ[realm][tab]?.length ? [faqJsonLd(FAQ[realm][tab])] : []),
   ];
+}
+
+// ─── Preguntas frecuentes ───
+// Textos en src/content/data/faq-<versión>.json. Se muestran al final de su pestaña con <Faq realm tab>
+// y, aquí, como FAQPage (Google exige que las preguntas también se vean en la página).
+// Leveling de Forever tiene su propio bloque de preguntas (LevelingForever.astro), por eso no está aquí.
+export type FaqItem = { pregunta: string; respuesta: string };
+export const FAQ: Record<GuideRealm, Record<string, FaqItem[]>> = {
+  midnight: faqMidnight as Record<string, FaqItem[]>,
+  forever: faqForever as Record<string, FaqItem[]>,
+};
+
+// Quita el mini-formato (**negrita**, [[Hechizo]]) para el texto plano del JSON-LD
+const plano = (t: string) =>
+  t.replace(/\[\[([^\]|>]+)(?:[|>][^\]]*)?\]\]/g, '$1').replace(/\*\*([^*]+)\*\*/g, '$1').replace(/\*([^*]+)\*/g, '$1');
+
+function faqJsonLd(items: FaqItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'es',
+    mainEntity: items.map((it) => ({
+      '@type': 'Question',
+      name: it.pregunta,
+      acceptedAnswer: { '@type': 'Answer', text: plano(it.respuesta) },
+    })),
+  };
 }
 
 /** JSON-LD de la portada */
@@ -159,11 +189,11 @@ export const PORTADA_JSONLD = [
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Guía Hunter BM',
-    alternateName: ['Guía Cazador de Bestias', 'guiahunterbm.com'],
+    alternateName: ['Guía Cazador de Bestias', 'Guía Maestro de bestias', 'guiahunterbm.com'],
     url: `${SITE}/`,
     inLanguage: 'es',
     author: AUTOR,
-    description: 'Guías en español del Hunter BM (Cazador de Bestias) para WoW Midnight y WoW Forever.',
+    description: 'Guías en español del Hunter BM (Maestro de bestias o Cazador de Bestias) para WoW Midnight y WoW Forever.',
   },
 ];
 

@@ -2,7 +2,7 @@
   <main class="container">
 
     <header class="header">
-      <h1 style="font-size:26px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:0.5rem">Aprende a simular a tu personaje con Raidbots</h1>
+      <h2 class="mk-h-intro" style="font-size:26px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:0.5rem">Aprende a simular a tu personaje con Raidbots</h2>
       <p style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">Sabrás usar cada herramienta para tomar decisiones basadas en datos, no en sensaciones.</p>
     </header>
 
@@ -132,12 +132,12 @@
       </div>
 
       <div class="img-showcase img-large">
-        <img src="https://i.imgur.com/jWAGYJP.png" alt="Resultado del Quick Sim" />
+        <img src="https://i.imgur.com/jWAGYJP.png" alt="Resultado del Quick Sim de Raidbots para un Hunter BM" />
         <div class="img-caption">Resultado principal - DPS media y breakdown por habilidad</div>
       </div>
 
       <div class="img-showcase img-large">
-        <img src="https://i.imgur.com/rhS2DeB.png" alt="Sample Ability Log" />
+        <img src="https://i.imgur.com/rhS2DeB.png" alt="Registro de habilidades (Sample Ability Log) de Raidbots del Hunter BM" />
         <div class="img-caption">Sample Ability Log - secuencia de habilidades de una iteración</div>
       </div>
 
@@ -199,7 +199,7 @@
 
         <div>
           <div class="img-showcase img-large" style="margin-top: 1.5rem;">
-            <img src="https://i.imgur.com/Rb23dJj.png" alt="Top Gear opciones" />
+            <img src="https://i.imgur.com/Rb23dJj.png" alt="Opciones de Top Gear en Raidbots para comparar equipo del Hunter BM" />
             <div class="img-caption">Top Gear - opciones al expandir una pieza (upgrade, catalizador, socket)</div>
           </div>
         </div>
@@ -214,7 +214,7 @@
       </div>
       <br>
       <div class="img-showcase img-large">
-        <img src="https://i.imgur.com/RiIUouc.png" alt="Configuración ganadora" />
+        <img src="https://i.imgur.com/RiIUouc.png" alt="Configuración de equipo ganadora en Top Gear de Raidbots" />
         <div class="img-caption">Top Gear - configuración ganadora con ítems resaltados</div>
       </div>
       <br>
@@ -226,7 +226,7 @@
       <br>
 
       <div class="img-showcase img-large">
-        <img src="https://i.imgur.com/33zw3eE.png" alt="Ranking de DPS" />
+        <img src="https://i.imgur.com/33zw3eE.png" alt="Ranking de DPS de combinaciones de equipo en Top Gear" />
         <div class="img-caption">Top Gear - ranking de DPS con diferencias exactas</div>
       </div>
       
@@ -259,7 +259,7 @@
 
         <div>
           <div class="img-showcase">
-            <img data-sim-lightbox="true" src="https://i.imgur.com/htnrlth.png" alt="Selector de Droptimizer" />
+            <img data-sim-lightbox="true" src="https://i.imgur.com/htnrlth.png" alt="Selector de contenido del Droptimizer de Raidbots" />
             <div class="img-caption">Selector de Droptimizer - Selección de contenido y nivel de dificultad</div>
           </div>
           <div class="callout info" style="margin-top: 1rem;">
@@ -275,7 +275,7 @@
       <div class="layout-grid even" style="align-items: start; margin-bottom: 2rem;">
         <div>
           <div class="img-showcase">
-            <img data-sim-lightbox="true" src="https://i.imgur.com/GdEGbPD.png" alt="Resultados Droptimizer" />
+            <img data-sim-lightbox="true" src="https://i.imgur.com/GdEGbPD.png" alt="Resultados del Droptimizer: mejoras de equipo para Hunter BM en M+10" />
             <div class="img-caption">Resultados de Droptimizer</div>
           </div>
         </div>
@@ -538,6 +538,9 @@
   .container { max-width: none; width: 100%; margin: 0; padding: 0; }
 
   .header { text-align: center; margin: 0 0 2rem 0; padding: 0 0.75rem; }
+  /* Título de la pestaña: h2 (un solo h1 por página) con el aspecto del antiguo h1 */
+  .header .mk-h-intro { font-family: inherit; text-transform: uppercase; line-height: 1.2; padding: 0; border: 0; }
+  .header .mk-h-intro::after { display: none; }
   .header h1 { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2; }
   .header h1 span { color: var(--accent-cyan); }
   .header p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }

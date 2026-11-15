@@ -3,6 +3,7 @@ import { getSectionReviewDate } from '../lib/sectionDates';
 import ReviewSourceBox from './ReviewSourceBox.astro';
 
 const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro']);
+import Faq from './Faq.astro';
 ---
 
 <!-- CSS CRÍTICO INLINE - Carga estructura básica PRIMERO -->
@@ -216,7 +217,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
 </style>
 
 <div class="tab-panel" id="tab-bis">
-  <h2>Best in Slot &amp; Consumibles</h2>
+  <h2>BiS y estadísticas del Hunter BM: equipo y consumibles</h2>
 
   <h3>Equipo BIS Completo optimizado para contenido de raid</h3>
   <ReviewSourceBox reviewDate={reviewDate}>
@@ -262,7 +263,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="yelmo">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271492/colmillos-supurantes-de-v%C3%ADbora-merodeadora?bonus=12854&class=3&original-item=251220&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidhunterulatek_d_01.jpg" alt="Cabeza">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_helm_mail_raidhunterulatek_d_01.jpg" alt="Colmillos supurantes de víbora merodeadora — cabeza BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=271492/colmillos-supurantes-de-v%C3%ADbora-merodeadora?bonus=12854&class=3&original-item=251220&spec=253&spellModifier=137015" target="_blank" rel="noopener noreferrer" data-disable-wowhead-tooltip="true">Colmillos supurantes de víbora merodeadora</a>
@@ -288,7 +289,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="cuello">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268265/relicario-de-azote-aqir?bonus=13708:13335:13668:12854" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_121_jewelry_neck03_green.jpg" alt="Cuello">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_121_jewelry_neck03_green.jpg" alt="Relicario de azote aqir — cuello BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=268265/relicario-de-azote-aqir?bonus=13708:13335:13668:12854" target="_blank" rel="noopener noreferrer" data-disable-wowhead-tooltip="true">Relicario de azote aqir</a>
@@ -302,7 +303,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="hombros">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271490/mand%C3%ADbulas-de-la-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=268231&spec=253&spellModifier=137015:137015" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_mail_raidhunterulatek_d_01.jpg" alt="Hombros">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_mail_raidhunterulatek_d_01.jpg" alt="Mandíbulas de la víbora merodeadora — hombros BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=271490/mand%C3%ADbulas-de-la-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=268231&spec=253&spellModifier=137015:137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Mandíbulas de la víbora merodeadora</a>
@@ -327,7 +328,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="capa">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268253/mant%C3%B3n-vud%C3%BA-sedoso?bonus=13848" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_cape_leather_raidrogueulatek_d_01.jpg" alt="Capa">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_cape_leather_raidrogueulatek_d_01.jpg" alt="Mantón Vudú sedoso — capa BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=268253/mant%C3%B3n-vud%C3%BA-sedoso?bonus=13848" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Mantón Vudú sedoso</a>
@@ -341,7 +342,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="pecho">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271495/placa-d%C3%A9rmica-de-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=271876&spec=253&spellModifier=137015:137015" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_chest_mail_raidhunterulatek_d_01.jpg" alt="Pecho">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_chest_mail_raidhunterulatek_d_01.jpg" alt="Placa dérmica de víbora merodeadora — pecho BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=271495/placa-d%C3%A9rmica-de-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=271876&spec=253&spellModifier=137015:137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Placa dérmica de víbora merodeadora</a>
@@ -366,7 +367,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-bar"></div>
         <div class="bis-slot-content">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/items/armor/shirts" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://i.imgur.com/m1gu7dS.png" alt="Camisa">
+            <img class="bis-slot-icon" src="https://i.imgur.com/m1gu7dS.png" alt="Brazales de Placas de Errante — camisa BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <span class="bis-item-cosmetic-label">Estético</span>
@@ -408,7 +409,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-spec-bg-wrap">
           <img src="https://i.imgur.com/4riJkRj.png" alt="">
         </div>
-        <img class="bis-spec-crest" src="https://i.imgur.com/hQNAYmV.png" alt="Beast Mastery">
+        <img class="bis-spec-crest" src="https://i.imgur.com/hQNAYmV.png" alt="Emblema del Cazador Maestro de bestias (Hunter BM)">
         <div class="bis-spec-name">Cazador Maestro de Bestias</div>
       </div>
 
@@ -419,7 +420,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
           <div class="bis-slot-content">
             <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="arma">
             <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268207/gran-arco-de-reposo-c%C3%A1ustico?bonus=13848:13708" target="_blank" rel="noopener noreferrer">
-              <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_bow_1h_ulatek_d_01.jpg" alt="Arma">
+              <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_bow_1h_ulatek_d_01.jpg" alt="Gran Arco de Reposo Cáustico — arma BiS Hunter BM">
             </a>
             <div class="bis-slot-info">
               <a class="bis-item-link" href="https://www.wowhead.com/es/item=268207/gran-arco-de-reposo-c%C3%A1ustico?bonus=13848:13708" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Gran Arco de Reposo Cáustico</a>
@@ -439,7 +440,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="guantes">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271493/perforapellejos-de-v%C3%ADbora-merodeadora?bonus=13335:12854:14049&original-item=281238" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_glove_mail_raidhunterulatek_d_01.jpg" alt="Manos">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_glove_mail_raidhunterulatek_d_01.jpg" alt="Perforapellejos de víbora merodeadora — manos BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=271493/perforapellejos-de-v%C3%ADbora-merodeadora?bonus=13335:12854:14049&original-item=281238" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Perforapellejos de víbora merodeadora</a>
@@ -458,7 +459,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="cinturon">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=244581/cintur%C3%B3n-de-trofeos-de-errante?bonus=13751:12497:13836:12384:8791:8960:1808" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_belt_mail_questbloodelf_b_01.jpg" alt="Cinturón">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_belt_mail_questbloodelf_b_01.jpg" alt="Cinturón de trofeos de errante — cinturón BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=244581/cintur%C3%B3n-de-trofeos-de-errante?bonus=13751:12497:13836:12384:8791:8960:1808" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Cinturón de trofeos de errante</a>
@@ -472,10 +473,10 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="piernas">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=271491/perneras-en-espiral-de-v%C3%ADbora-merodeadora?bonus=12854:13335&class=3&original-item=268237&spec=253&spellModifier=137015:137015:137015" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_pant_mail_raidhunterulatek_d_01.jpg" alt="Piernas">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_pant_mail_raidhunterulatek_d_01.jpg" alt="Perneras en espiral de víbora merodeadora — piernas BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
-            <a class="bis-item-link" href="https://www.wowhead.com/es/item=271491/perneras-en-espiral-de-v%C3%ADbora-merodeadora?bonus=12854:13335&class=3&original-item=268237&spec=253&spellModifier=137015:137015:137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Perneras en espiral de vía merodeadora</a>
+            <a class="bis-item-link" href="https://www.wowhead.com/es/item=271491/perneras-en-espiral-de-v%C3%ADbora-merodeadora?bonus=12854:13335&class=3&original-item=268237&spec=253&spellModifier=137015:137015:137015" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Perneras en espiral de víbora merodeadora</a>
               <!-- LÍNEA 1: CATALIZADOR -->
           <div class="bis-item-catalyst">
           <span class="bis-catalyst-label">Catalizar</span>
@@ -497,7 +498,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="botas">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268233/botas-de-escamas-feroces?bonus=12854" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_boot_mail_raidhunterulatek_d_01.jpg" alt="Botas">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_boot_mail_raidhunterulatek_d_01.jpg" alt="Botas de escamas feroces — botas BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=268233/botas-de-escamas-feroces?bonus=12854" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Botas de escamas feroces</a>
@@ -516,7 +517,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="anillo1">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=281029/sortija-del-evocaenjambres?bonus=13335:12854" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/8268560.jpg" alt="Anillo">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/8268560.jpg" alt="Sortija del evocaenjambres — anillo BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=281029/sortija-del-evocaenjambres?bonus=13335:12854" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Sortija del evocaenjambres</a>
@@ -533,7 +534,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="anillo2">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=268249/sortija-de-alquimista-vil?bonus=12854" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_121_jewelry_ring01_purple.jpg" alt="Anillo">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_121_jewelry_ring01_purple.jpg" alt="Sortija de alquimista vil — anillo BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=268249/sortija-de-alquimista-vil?bonus=12854" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Sortija de alquimista vil</a>
@@ -550,7 +551,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="trinket1">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=281215/tent%C3%A1culo-de-horror-retorcido?bonus=13335:12856" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/8268563.jpg" alt="Reliquia">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/8268563.jpg" alt="Núcleo hirviente de guardián — reliquia BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=270165/n%C3%BAcleo-hirviente-de-guardi%C3%A1n?bonus=13848" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Núcleo hirviente de guardián</a>
@@ -564,7 +565,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-slot-content">
           <input class="bis-check" type="checkbox" onchange="bisCheck(this)" data-bis="trinket2">
           <a class="bis-slot-icon-link" href="https://www.wowhead.com/es/item=270175/coraz%C3%B3n-voraz-de-ulatek?bonus=13848" target="_blank" rel="noopener noreferrer">
-            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_121_trinket_raid_ulatek_heart.jpg" alt="Reliquia">
+            <img class="bis-slot-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_121_trinket_raid_ulatek_heart.jpg" alt="Corazón voraz de Ulatek — reliquia BiS Hunter BM">
           </a>
           <div class="bis-slot-info">
             <a class="bis-item-link" href="https://www.wowhead.com/es/item=270175/coraz%C3%B3n-voraz-de-ulatek?bonus=13848" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Corazón voraz de Ulatek</a>
@@ -580,7 +581,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-sidebar-items">
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241322/frasco-de-los-magistri" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_flask_sindoreipotion_black.jpg" alt="Flask">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_flask_sindoreipotion_black.jpg" alt="Frasco de los Magistri — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241322/frasco-de-los-magistri" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Frasco de los Magistri</a>
             <span class="bis-badge bis-badge-recommended">Recomendado</span>
@@ -588,7 +589,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
 
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/spell=1230878/frasco-del-sol-devastado" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_flask_sindoreipotion_red--.jpg" alt="Flask">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_flask_sindoreipotion_red--.jpg" alt="Frasco del Sol Devastado — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/spell=1230878/frasco-del-sol-devastado" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Frasco del Sol Devastado</a>
             <span class="bis-badge bis-badge-situational">Según tu simulación</span>
@@ -596,7 +597,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
 
            <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241292/jarabe-de-abandono-rampante" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_voidpotion_red.jpg" alt="Potion">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_voidpotion_red.jpg" alt="Poción de Temeridad — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241288/poci%C3%B3n-de-temeridad" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Poción de Temeridad</a>
             <span class="bis-badge bis-badge-recommended">Recomendado</span>
@@ -605,7 +606,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
 
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Potion">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_yellow.jpg" alt="Potencial de Luz — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=241308/potencial-de-luz" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Potencial de Luz</a>
             <span class="bis-badge bis-badge-situational">Aceptable</span>
@@ -613,35 +614,35 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
 
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=243733/aceite-de-f%C3%A9nix-thalassiano" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_enchanting_manaoil_red.jpg" alt="Oil">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_enchanting_manaoil_red.jpg" alt="Aceite de Fénix Thalassiano — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=243733/aceite-de-f%C3%A9nix-thalassiano" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Aceite de Fénix Thalassiano</a>
           </div>
 
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_10_enchanting_crystal_color2.jpg" alt="Rune">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_10_enchanting_crystal_color2.jpg" alt="Runa de Aumento Tocada por el Vacío — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Runa de Aumento Tocada por el Vacío</a>
           </div>
 
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=255846/celebraci%C3%B3n-de-harandar" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_1h_soup_b_01_misc_1h_soup_b_01.jpg" alt="food">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_1h_soup_b_01_misc_1h_soup_b_01.jpg" alt="Celebración de Harandar — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=255846/celebraci%C3%B3n-de-harandar" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Celebración de Harandar</a>
           </div>
 
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=242747/asado-real-copioso" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_cooking_100_roastduck.jpg" alt="food">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_cooking_100_roastduck.jpg" alt="Asado Real copioso — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=242747/asado-real-copioso" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Asado Real copioso</a>
           </div>
 
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=271883/poci%C3%B3n-de-sanaci%C3%B3n-concentrada-de-lunargenta" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_purple.jpg" alt="life-potion">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_alchemy_lightpotion_purple.jpg" alt="Poción de Sanación Concentrada de Lunargenta — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=271883/poci%C3%B3n-de-sanaci%C3%B3n-concentrada-de-lunargenta" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Poción de Sanación Concentrada de Lunargenta</a>
           </div>
@@ -657,14 +658,14 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
         <div class="bis-sidebar-items">
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_jewelcrafting_epic_gem_cut_green.jpg" alt="Gem">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_jewelcrafting_epic_gem_cut_green.jpg" alt="Diamante de Canción Eterna Indescifrable — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Diamante de Canción Eterna Indescifrable</a>
           </div>
 
           <div class="bis-sidebar-item">
             <a class="bis-sidebar-icon-link" href="https://www.wowhead.com/es/item=240898/amatista-mortal-impecable" target="_blank" rel="noopener noreferrer">
-              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_jewelcrafting_rare_gem_cut_fire_purple.jpg" alt="Gem">
+              <img class="bis-sidebar-icon" src="https://wow.zamimg.com/images/wow/icons/large/inv_12_profession_jewelcrafting_rare_gem_cut_fire_purple.jpg" alt="Amatista Mortal Impecable — consumible Hunter BM">
             </a>
             <a class="bis-consumable-link" href="https://www.wowhead.com/es/item=240898/amatista-mortal-impecable" target="_blank" rel="noopener noreferrer" data-wh-icon-size="false" data-disable-wowhead-tooltip="true">Amatista Mortal Impecable</a>
           </div>
@@ -673,8 +674,35 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
     </div>
   </div>
 
+  <details class="mk-fold">
+    <summary>Ver la lista BiS del Hunter BM en tabla</summary>
+    <div class="mk-table-wrap">
+      <table class="mk-table">
+        <caption>BiS Hunter BM (Maestro de bestias) — Midnight Temporada 2</caption>
+        <thead><tr><th scope="col">Ranura</th><th scope="col">Objeto BiS</th><th scope="col">Cómo conseguirlo</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Cabeza</th><td><strong>Colmillos supurantes de víbora merodeadora</strong></td><td>Tier (Catalizador) — Nek'zali</td></tr>
+          <tr><th scope="row">Cuello</th><td><strong>Relicario de azote aqir</strong></td><td>Ula'tek</td></tr>
+          <tr><th scope="row">Hombros</th><td><strong>Mandíbulas de la víbora merodeadora</strong></td><td>Tier (Catalizador) — Bufas de reptaalmas</td></tr>
+          <tr><th scope="row">Capa</th><td><strong>Mantón Vudú sedoso</strong></td><td>Zul'jan</td></tr>
+          <tr><th scope="row">Pecho</th><td><strong>Placa dérmica de víbora merodeadora</strong></td><td>Tier (Catalizador) — Ula'tek</td></tr>
+          <tr><th scope="row">Muñecas</th><td><strong>Brazales de Placas de Errante</strong></td><td>Artesanía (Peletería)</td></tr>
+          <tr><th scope="row">Arma</th><td><strong>Gran Arco de Reposo Cáustico</strong></td><td>Ula'tek</td></tr>
+          <tr><th scope="row">Manos</th><td><strong>Perforapellejos de víbora merodeadora</strong></td><td>Tier (Catalizador) — Kith'ix</td></tr>
+          <tr><th scope="row">Cinturón</th><td><strong>Cinturón de trofeos de errante</strong></td><td>Artesanía (Peletería)</td></tr>
+          <tr><th scope="row">Piernas</th><td><strong>Perneras en espiral de víbora merodeadora</strong></td><td>Tier (Catalizador) — Zul'jan</td></tr>
+          <tr><th scope="row">Botas</th><td><strong>Botas de escamas feroces</strong></td><td>Sszorak</td></tr>
+          <tr><th scope="row">Anillo</th><td><strong>Sortija del evocaenjambres</strong></td><td>Kith'ix</td></tr>
+          <tr><th scope="row">Anillo</th><td><strong>Sortija de alquimista vil</strong></td><td>Vashnik</td></tr>
+          <tr><th scope="row">Abalorio</th><td><strong>Núcleo hirviente de guardián</strong></td><td>Kith'ix</td></tr>
+          <tr><th scope="row">Abalorio</th><td><strong>Corazón voraz de Ulatek</strong></td><td>Ula'tek</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
   <div class="bis-table-wrap" style="margin-top:32px;">
-    <h2>MEJORES TRINKETS</h2>
+    <h2>Mejores trinkets del Hunter BM</h2>
     <div class="bis-trinket-ranking">
       <table>
         <thead>
@@ -921,6 +949,7 @@ const reviewDate = getSectionReviewDate('bis', ['src/components/SeccionBiS.astro
     </div>
   </div>
 
+  <Faq tab="bis" titulo="BiS y trinkets" />
 </div>
 <!-- CSS COMPLETO GLOBAL - Estilos decorativos -->
 <style is:global>

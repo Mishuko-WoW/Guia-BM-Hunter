@@ -71,7 +71,7 @@ const TEXTOS = {
   <main class="coach-container">
 
     <header class="header">
-      <h1 style="font-size:26px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:0.5rem">Coaching Personalizado para tu BM</h1>
+      <h2 class="mk-h-intro" style="font-size:26px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:0.5rem">Coaching Personalizado para tu BM</h2>
       <p style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">Pasa de leer la guia a dominar tu Hunter de verdad.</p>
     </header>
 
@@ -115,7 +115,7 @@ const TEXTOS = {
         </div>
         <div>
           <div class="coach-showcase">
-            <img class="coach-showcase-image" src="https://i.imgur.com/urm8f5M.png" alt="Ejemplo de analisis de logs" role="button" tabindex="0" aria-label="Abrir imagen en grande" />
+            <img class="coach-showcase-image" src="https://i.imgur.com/urm8f5M.png" alt="Ejemplo de análisis de logs de Warcraft Logs de un Hunter BM en el coaching" role="button" tabindex="0" aria-label="Abrir imagen en grande" />
             <div class="coach-caption">Ejemplo de revision detallada de logs y simulaciones</div>
           </div>
         </div>
@@ -214,6 +214,9 @@ const TEXTOS = {
   }
 
   .header { text-align: center; margin-bottom: 3rem; }
+  /* Título de la pestaña: h2 (un solo h1 por página) con el aspecto del antiguo h1 */
+  .header .mk-h-intro { font-family: inherit; text-transform: uppercase; line-height: 1.2; padding: 0; border: 0; }
+  .header .mk-h-intro::after { display: none; }
   .header h1 { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2; }
   .header h1 span { color: var(--accent-cyan); }
   .header p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }

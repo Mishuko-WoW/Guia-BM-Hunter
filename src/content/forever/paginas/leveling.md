@@ -12,6 +12,6 @@ bloques:
   - caja: warn
     titulo: Datos en revisión
     texto: >-
-      La beta de Forever llegaba a **nivel 30**. Lo que va del 30 al 60 sigue lo que se sabe de Classic y lo iré
-      confirmando según se juegue.
+      WoW Forever acaba de salir y todo está sujeto a cambios por parte de Blizzard. Lo que va del 30 al 60 sigue
+      lo que se sabe de Classic y lo iré confirmando según se juegue.
 ---

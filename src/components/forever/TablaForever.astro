@@ -1,0 +1,63 @@
+---
+// Resumen en <table> de una pestaña de Forever, plegado bajo «Ver en tabla».
+// Sale de los mismos JSON que pintan las tarjetas, así que nunca se desincroniza.
+// Sirve a quien prefiere una tabla (y a Google para los fragmentos destacados).
+import { md } from '../../lib/markup';
+import talentos from '../../content/data/forever-talentos-guia.json';
+import stats from '../../content/data/forever-estadisticas.json';
+import mascotas from '../../content/data/forever-mascotas.json';
+import rotacion from '../../content/data/forever-rotacion.json';
+
+interface Props { tab: string }
+const { tab } = Astro.props;
+
+type Tabla = { resumen: string; caption: string; cols: string[]; filas: string[][] };
+const H = mascotas.habilidades as Record<string, { nombre: string; desc: string }>;
+const st = rotacion.modos.find((m) => m.id === 'st');
+
+const TABLAS: Record<string, Tabla> = {
+  talentos: {
+    resumen: 'Ver la build 31/20/0 en tabla',
+    caption: 'Talentos clave de la build 31/20/0 del Hunter BM en WoW Forever',
+    cols: ['Árbol', 'Talento', 'Para qué sirve'],
+    filas: talentos.clave.flatMap((g) => g.lista.map((t) => [g.arbol, `**${t.titulo ?? t.hechizo}**`, t.texto])),
+  },
+  estadisticas: {
+    resumen: 'Ver la prioridad de estadísticas en tabla',
+    caption: 'Prioridad de estadísticas del Hunter BM en WoW Forever',
+    cols: ['#', 'Estadística', 'Importancia', 'Por qué'],
+    filas: stats.prioridad.map((s, i) => [String(i + 1), `**${s.nombre}**`, s.etiqueta, s.texto]),
+  },
+  mascotas: {
+    resumen: 'Ver las 18 familias de mascotas en tabla',
+    caption: 'Familias de mascotas del Cazador en WoW Forever y su habilidad propia',
+    cols: ['Familia', 'Habilidad propia', 'Qué hace', 'Come'],
+    filas: mascotas.familias.map((f) => [`**${f.nombre}**`, H[f.propia]?.nombre ?? '—', H[f.propia]?.desc ?? '', f.dieta]),
+  },
+  rotacion: {
+    resumen: 'Ver la prioridad en un objetivo en tabla',
+    caption: 'Rotación del Hunter BM en WoW Forever: prioridad en un objetivo',
+    cols: ['#', 'Habilidad', 'Cuándo'],
+    filas: (st?.columnas[0]?.pasos ?? []).map((p, i) => [String(i + 1), `**${p.nombre ?? p.hechizo}**`, p.cuando]),
+  },
+};
+const t = TABLAS[tab];
+const celda = (s: string) => md(s);
+---
+
+{t && (
+  <details class="mk-fold">
+    <summary>{t.resumen}</summary>
+    <div class="mk-table-wrap">
+      <table class="mk-table">
+        <caption>{t.caption}</caption>
+        <thead><tr>{t.cols.map((c) => <th scope="col">{c}</th>)}</tr></thead>
+        <tbody>
+          {t.filas.map((f) => (
+            <tr>{f.map((c, i) => i === 0 ? <th scope="row" set:html={celda(c)} /> : <td set:html={celda(c)} />)}</tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
+)}

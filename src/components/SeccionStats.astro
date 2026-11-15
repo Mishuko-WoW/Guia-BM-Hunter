@@ -1,5 +1,9 @@
+---
+import Faq from './Faq.astro';
+---
+
 <div id="tab-estadisticas" class="tab-panel">
-  <h2>Stats</h2>
+  <h2>Estadísticas del Hunter BM (Maestro de bestias)</h2>
 
   <div class="box box-info">
     <div class="box-title box-title-heroes">
@@ -10,7 +14,7 @@
     Esta guía cubre ambos árboles héroe: <strong>Pack Leader</strong> y <strong>Dark Ranger</strong>. La prioridad de stats es muy parecida entre ambos, con pequeños ajustes según el escenario de <strong>AoE</strong>.
   </div>
 
-  <h3>Prioridad de Stats</h3>
+  <h3>Prioridad de estadísticas</h3>
   <div class="two-col">
     <div class="col-card">
       <div class="col-header blue">Single-Target</div>
@@ -27,8 +31,8 @@
       <div class="col-row"><div class="prio-num">2</div><p><strong>Agilidad</strong></p></div>
       <div class="col-row"><div class="prio-num">3</div><p><strong>Maestría</strong></p></div>
       <div class="col-row"><div class="prio-num">4</div><p><strong>Golpe Crítico</strong> — En AoE es aun mejor de lo que ya es en ST.</p></div>
+      <div class="col-row"><div class="prio-num">5</div><p><strong>Versatilidad</strong> — +Daño / -Daño recibido. Más valioso con trinkets de daño directo.</p></div>
       <div class="col-row"><div class="prio-num">6</div><p><strong>Celeridad</strong> — Baja mucho rendimiento en AoE.</p></div>
-      <div class="col-row"><div class="prio-num">5</div><p><strong>Versatilidad</strong> — +Daño / -Daño recibido. Más valioso con trinkets de daño directo. </p></div>
       
     </div>
   </div>
@@ -72,4 +76,5 @@
       <div class="data-row compact">💡 Aplica únicamente al rating, no a procs porcentuales como <span class="pr" data-name="Ansia de sangre" data-type="Proc" data-desc="Proc porcentual. No se ve afectado por los DRs de rating.">Ansia de sangre</span>.</div>
     </div>
   </div>
+  <Faq tab="estadisticas" titulo="estadísticas" />
 </div>

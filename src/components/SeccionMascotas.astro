@@ -1,12 +1,16 @@
+---
+import Faq from './Faq.astro';
+---
+
 <div id="tab-mascotas" class="tab-panel">
-  <h2>Mascotas</h2>
+  <h2>Mejores mascotas del Hunter BM</h2>
 
   <div class="box box-info">
     <div class="box-title">Nota importante</div>
     Desde el parche 11.1, la especialización de cualquier mascota se puede cambiar libremente en el Establo. Esto significa que puedes usar la mascota que quieras y adaptarla a cada situación. Lo ideal es tener <strong>una Aqir de cada especialización</strong>. La razón es su habilidad exótica pasiva <em>Zancudo de las dunas</em>, que otorga un <strong>+30% de velocidad de movimiento</strong> permanente — exclusiva de esta familia. Como necesitas esa ventaja independientemente de la spec que requiera cada situación, lo óptimo es tener tres Aqirs listas, una de cada tipo, para poder cambiar sin ir al Establo.
   </div>
 
-  <h3>Mascota Recomendada — Aqir</h3>
+  <h3>Mejor mascota para el Maestro de bestias — Aqir</h3>
   <div class="two-col">
     <div class="col-card">
       <div class="col-header blue">Raid — Aqir Tenacidad</div>
@@ -25,23 +29,27 @@
   <h3>Especializaciones de Mascota</h3>
   <div class="card">
     <div class="card-header">Las tres especializaciones</div>
-    <div class="spec-table">
-      <div class="spec-th">Spec</div>
-      <div class="spec-th">Pasivo</div>
-      <div class="spec-th">Activo</div>
-
-      <div class="spec-td ferocidad">Ferocidad</div>
-      <div class="spec-td">4% Leech para ti y tu mascota</div>
-      <div class="spec-td"><strong style="color:var(--orange2)">Furia primigenia</strong> — Bloodlust/Heroísmo (+30% Celeridad 40s)</div>
-
-      <div class="spec-td tenacidad">Tenacidad</div>
-      <div class="spec-td">+5% vida máxima para ti y tu mascota</div>
-      <div class="spec-td"><strong style="color:var(--green2)">Fortaleza del oso</strong> — +3% de redución de daño <strong style="color:var(--green2)">pasiva</strong></div>
-
-      <div class="spec-td astucia no-border">Astucia</div>
-      <div class="spec-td no-border">+4% velocidad de movimiento para ti y tu mascota</div>
-      <div class="spec-td no-border"><strong style="color:var(--accent-soft);font-weight:700">Llamada del amo</strong> — Elimina efectos de movimiento de ti o un aliado y otorga inmunidad a estos efectos 4s (CD 45s)</div>
-    </div>
+    <table class="spec-table">
+      <caption class="sr-only">Especializaciones de mascota del Hunter BM: pasiva y habilidad activa</caption>
+      <thead><tr><th scope="col" class="spec-th">Spec</th><th scope="col" class="spec-th">Pasivo</th><th scope="col" class="spec-th">Activo</th></tr></thead>
+      <tbody>
+        <tr>
+          <th scope="row" class="spec-td ferocidad">Ferocidad</th>
+          <td class="spec-td">4% Leech para ti y tu mascota</td>
+          <td class="spec-td"><strong style="color:var(--orange2)">Furia primigenia</strong> — Bloodlust/Heroísmo (+30% Celeridad 40s)</td>
+        </tr>
+        <tr>
+          <th scope="row" class="spec-td tenacidad">Tenacidad</th>
+          <td class="spec-td">+5% vida máxima para ti y tu mascota</td>
+          <td class="spec-td"><strong style="color:var(--green2)">Fortaleza del oso</strong> — +3% de redución de daño <strong style="color:var(--green2)">pasiva</strong></td>
+        </tr>
+        <tr>
+          <th scope="row" class="spec-td astucia no-border">Astucia</th>
+          <td class="spec-td no-border">+4% velocidad de movimiento para ti y tu mascota</td>
+          <td class="spec-td no-border"><strong style="color:var(--accent-soft);font-weight:700">Llamada del amo</strong> — Elimina efectos de movimiento de ti o un aliado y otorga inmunidad a estos efectos 4s (CD 45s)</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <h3>Situaciones Especiales en M+</h3>
@@ -96,4 +104,5 @@
     <div class="box-title">Resumen de qué llevar siempre</div>
     Idealmente deberías tener en tus establos: <strong>3 Aqirs</strong> (una de cada spec), <strong>1 mascota con reducción de curación</strong> para M+, <strong>1 mascota con reducción de daño</strong> para tankbusters, y <strong>1 Pterrordáctilo</strong> para movilidad. No necesitas cambiar de mascota en cada pull — es para estar preparado cuando el grupo lo necesite.
   </div>
+  <Faq tab="mascotas" titulo="mascotas" />
 </div>

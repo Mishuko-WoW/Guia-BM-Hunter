@@ -6,6 +6,16 @@ import data from '../../content/data/forever-rotacion.json';
 import { getSpell, foreverIcon, iconUrl } from '../../lib/spells';
 import { md } from '../../lib/markup';
 import CicloForever from './CicloForever.astro';
+import IndiceForever from './IndiceForever.astro';
+
+const INDICE = [
+  { id: 'rt-claves', texto: 'Las 3 claves' },
+  { id: 'rt-antes', texto: 'Antes del combate' },
+  { id: 'rt-prioridad', texto: 'Prioridades' },
+  { id: 'opener', texto: 'Inicio del combate' },
+  { id: 'rt-cds', texto: 'Cooldowns' },
+  { id: 'rt-utilidad', texto: 'Utilidad' },
+];
 
 type Paso = { hechizo: string; nombre?: string; icono?: string; tipo: string; cuando: string; porque: string };
 
@@ -39,8 +49,10 @@ const TIPOS: Record<string, string> = {
 ---
 
 <div class="rt" id="rt">
+  <IndiceForever items={INDICE} />
+
   <!-- ─── Las 3 claves ─── -->
-  <div class="rt-keys">
+  <div class="rt-keys" id="rt-claves">
     {data.claves.map((c, i) => (
       <article class="rt-key" data-n={i + 1}>
         <div class="rt-key__icon">
@@ -54,7 +66,7 @@ const TIPOS: Record<string, string> = {
   </div>
 
   <!-- ─── Antes del combate ─── -->
-  <section class="rt-pre">
+  <section class="rt-pre" id="rt-antes">
     <h3 class="rt-label">Antes de empezar cualquier combate</h3>
     <ul class="rt-buffs">
       {data.antes.map((a) => (
@@ -82,7 +94,7 @@ const TIPOS: Record<string, string> = {
   </section>
 
   <!-- ─── Selector de modo ─── -->
-  <div class="toggle-wrap combat-switch rt-modes" role="tablist" aria-label="Tipo de combate">
+  <div class="toggle-wrap combat-switch rt-modes" id="rt-prioridad" role="tablist" aria-label="Tipo de combate">
     {data.modos.map((m, i) => (
       <button type="button" role="tab" class:list={['toggle-btn', { active: i === 0 }]} data-rt-mode={m.id} aria-selected={i === 0 ? 'true' : 'false'}>
         <img src={iconUrl(m.icono)} alt="" width="22" height="22" class="toggle-icon" />{m.boton}
@@ -153,7 +165,7 @@ const TIPOS: Record<string, string> = {
   ))}
 
   <!-- ─── Cooldowns ─── -->
-  <h3 class="rt-h3">Cooldowns: cuándo usarlos</h3>
+  <h3 class="rt-h3" id="rt-cds">Cooldowns: cuándo usarlos</h3>
   <div class="rt-cds">
     {data.cds.map((c) => (
       <article class="rt-cd">
@@ -179,7 +191,7 @@ const TIPOS: Record<string, string> = {
   </div>
 
   <!-- ─── Utilidad ─── -->
-  <h3 class="rt-h3">Utilidad: según lo que pida el combate</h3>
+  <h3 class="rt-h3" id="rt-utilidad">Utilidad: según lo que pida el combate</h3>
   <div class="rt-utils">
     {data.utilidad.map((u) => (
       <div class="rt-util">
