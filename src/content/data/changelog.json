@@ -2,6 +2,13 @@
   {
     "fecha": "2026-11-15",
     "pestana": "talentos",
+    "texto": "Botón para guardar tu build como imagen en",
+    "enlace": "Talentos",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-15",
+    "pestana": "talentos",
     "texto": "Nueva calculadora para montar tu propia build en",
     "enlace": "Talentos",
     "version": "forever"

@@ -201,5 +201,235 @@
   );
   root.querySelectorAll('[data-tc-build]').forEach((btn) => btn.addEventListener('click', () => cargarBuild(btn.dataset.tcBuild)));
 
+  // ─── IMAGEN: «Guardar imagen» de la build (Forever no tiene strings de importación) ───
+  // Dibuja en un canvas los 3 árboles con el diseño de las stories de TikTok (IDENTIDAD.md del proyecto
+  // TikTok: fondo negro verdoso, lima de marca, Barlow Condensed, esquinas cortadas) + logo y enlace a la web.
+  // Colores de la marca Mishuko (los mismos que tokens.css en Midnight); el canvas no puede leer var().
+  const C = {
+    bg: '#0a0d09', card: '#121810', bar: '#161d13', border: '#243020', border2: '#34432d',
+    lima: '#c4d70b', limaHi: '#dcef3a', text: '#eceee4', text2: '#a5ae9a', text3: '#6c7664',
+    gold: '#e9c46a', green: '#6fbf4a', green2: '#a8db8a', off: '#4a5245',
+  };
+  const F = '"Barlow Condensed", "Arial Narrow", sans-serif';
+  const FB = 'Barlow, system-ui, sans-serif';
+  const LOGO = '/brand/mishuko-logo.webp';
+
+  const cacheImg = {};
+  function cargarImg(src) {
+    if (!cacheImg[src]) {
+      cacheImg[src] = new Promise((ok) => {
+        const im = new Image();
+        im.crossOrigin = 'anonymous'; // zamimg manda Access-Control-Allow-Origin: *
+        im.onload = () => ok(im);
+        im.onerror = () => ok(null); // sin icono se dibuja el hueco vacío
+        im.src = src;
+      });
+    }
+    return cacheImg[src];
+  }
+  // Rectángulo con esquinas cortadas en diagonal (arriba-izquierda y abajo-derecha), como --clip-card
+  function corte(ctx, x, y, w, h, k) {
+    ctx.beginPath();
+    ctx.moveTo(x + k, y); ctx.lineTo(x + w, y); ctx.lineTo(x + w, y + h - k);
+    ctx.lineTo(x + w - k, y + h); ctx.lineTo(x, y + h); ctx.lineTo(x, y + k);
+    ctx.closePath();
+  }
+  function redondo(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  function espaciado(ctx, txt, x, y, sp) { // texto con letras separadas (etiquetas)
+    for (const ch of txt) { ctx.fillText(ch, x, y); x += ctx.measureText(ch).width + sp; }
+    return x;
+  }
+  function anchoEspaciado(ctx, txt, sp) { return [...txt].reduce((s, ch) => s + ctx.measureText(ch).width + sp, 0) - sp; }
+
+  async function dibujarImagen() {
+    const W = 1080, PAD = 40, TW = 320, TG = 20;
+    const CELL = 46, GX = 24, GY = 18, GPAD_T = 22, GPAD_B = 26, HEAD = 46;
+    const GRID_H = GPAD_T + 7 * CELL + 6 * GY + GPAD_B;
+    const TOP_TREES = 178, TREE_H = HEAD + GRID_H;
+    const H = TOP_TREES + TREE_H + 130;
+    const ESC = 2;
+
+    await Promise.all([
+      document.fonts ? document.fonts.load(`800 48px ${F}`) : null,
+      document.fonts ? document.fonts.load(`italic 700 48px ${F}`) : null,
+      document.fonts ? document.fonts.load(`700 20px ${F}`) : null,
+      document.fonts ? document.fonts.load(`700 14px ${FB}`) : null,
+    ].filter(Boolean)).catch(() => {});
+    const imgs = {};
+    const srcs = [LOGO, ...D.arboles.flatMap((a) => [a.icono, a.fondo]), ...D.talentos.map((t) => t.icono)];
+    (await Promise.all(srcs.map(cargarImg))).forEach((im, i) => (imgs[srcs[i]] = im));
+
+    const cv = document.createElement('canvas');
+    cv.width = W * ESC; cv.height = H * ESC;
+    const ctx = cv.getContext('2d');
+    ctx.scale(ESC, ESC);
+    const hayFiltro = 'filter' in ctx;
+
+    // Fondo: negro verdoso, brillo oliva arriba a la izquierda, rayas lima suaves arriba a la derecha, logo difuminado
+    ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
+    let g = ctx.createRadialGradient(120, 40, 0, 120, 40, 520);
+    g.addColorStop(0, 'rgba(120,140,20,0.22)'); g.addColorStop(1, 'rgba(120,140,20,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    ctx.save();
+    ctx.beginPath(); ctx.rect(W - 420, 0, 420, 260); ctx.clip();
+    ctx.strokeStyle = 'rgba(196,215,11,0.07)'; ctx.lineWidth = 10;
+    for (let i = -300; i < 700; i += 28) { ctx.beginPath(); ctx.moveTo(W - 420 + i, 0); ctx.lineTo(W - 420 + i + 260, 260); ctx.stroke(); }
+    ctx.restore();
+    if (imgs[LOGO]) {
+      ctx.save(); ctx.globalAlpha = 0.07;
+      if (hayFiltro) ctx.filter = 'blur(6px)';
+      const L = 620; ctx.drawImage(imgs[LOGO], (W - L) / 2, (H - L) / 2 + 30, L, L);
+      ctx.restore();
+    }
+
+    // Cabecera: logo + «WOW FOREVER · TALENTOS» / «GUÍA HUNTER BM» + subrayado lima
+    if (imgs[LOGO]) ctx.drawImage(imgs[LOGO], PAD, 34, 96, 96);
+    const hx = PAD + 112;
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = C.text2; ctx.font = `700 17px ${F}`;
+    espaciado(ctx, 'WOW FOREVER · TALENTOS', hx, 60, 3);
+    ctx.fillStyle = C.text; ctx.font = `800 52px ${F}`;
+    ctx.fillText('GUÍA HUNTER', hx, 108);
+    const wGH = ctx.measureText('GUÍA HUNTER ').width;
+    ctx.fillStyle = C.lima; ctx.font = `italic 700 52px ${F}`;
+    ctx.fillText('BM', hx + wGH, 108);
+    ctx.fillStyle = C.lima; ctx.fillRect(hx, 122, 64, 4);
+
+    // Derecha: nombre de la build (chip oro), reparto grande y nivel
+    const tot = total();
+    const nivel = tot ? tot + 9 : 10;
+    const reparto = D.arboles.map((a) => ptsArbol(a.id)).join(' / ');
+    const xr = W - PAD;
+    ctx.textAlign = 'right';
+    ctx.font = `700 15px ${F}`;
+    const chip = (buildActual.nombre || '').toUpperCase();
+    const wc = anchoEspaciado(ctx, chip, 2.4) + 22;
+    ctx.fillStyle = 'rgba(233,196,106,0.12)'; corte(ctx, xr - wc, 38, wc, 28, 7); ctx.fill();
+    ctx.strokeStyle = 'rgba(233,196,106,0.55)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.textAlign = 'left'; ctx.fillStyle = C.gold;
+    espaciado(ctx, chip, xr - wc + 11, 58, 2.4);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = C.text; ctx.font = `800 46px ${F}`;
+    ctx.fillText(reparto, xr, 116);
+    ctx.fillStyle = C.text2; ctx.font = `600 16px ${FB}`;
+    ctx.fillText(`Nivel requerido ${nivel} · ${tot}/${MAX_PUNTOS} puntos`, xr, 142);
+    ctx.textAlign = 'left';
+
+    // Árboles
+    const x0 = (W - (3 * TW + 2 * TG)) / 2;
+    const gridW = 4 * CELL + 3 * GX;
+    D.arboles.forEach((a, i) => {
+      const tx = x0 + i * (TW + TG), ty = TOP_TREES;
+      ctx.save();
+      corte(ctx, tx, ty, TW, TREE_H, 14); ctx.clip();
+      ctx.fillStyle = C.card; ctx.fillRect(tx, ty, TW, TREE_H);
+      // cabecera del árbol
+      ctx.fillStyle = C.bar; ctx.fillRect(tx, ty, TW, HEAD);
+      ctx.fillStyle = C.border; ctx.fillRect(tx, ty + HEAD - 1, TW, 1);
+      if (imgs[a.icono]) {
+        ctx.save(); ctx.beginPath(); ctx.arc(tx + 30, ty + HEAD / 2, 15, 0, Math.PI * 2); ctx.clip();
+        ctx.drawImage(imgs[a.icono], tx + 15, ty + HEAD / 2 - 15, 30, 30); ctx.restore();
+      }
+      ctx.fillStyle = C.text; ctx.font = `700 19px ${F}`;
+      ctx.fillText(a.nombre, tx + 54, ty + 30);
+      ctx.textAlign = 'right'; ctx.font = `700 18px ${F}`;
+      const pa = ptsArbol(a.id);
+      ctx.fillStyle = C.text2; ctx.fillText(' / 51', tx + TW - 14, ty + 30);
+      const w51 = ctx.measureText(' / 51').width;
+      ctx.fillStyle = pa ? C.lima : C.text; ctx.fillText(String(pa), tx + TW - 14 - w51, ty + 30);
+      ctx.textAlign = 'left';
+      // fondo original del árbol, oscurecido como en la web
+      const gy0 = ty + HEAD;
+      if (imgs[a.fondo]) ctx.drawImage(imgs[a.fondo], tx, gy0, TW, GRID_H);
+      g = ctx.createLinearGradient(0, gy0, 0, gy0 + GRID_H);
+      g.addColorStop(0, 'rgba(0,0,0,0.2)'); g.addColorStop(1, 'rgba(0,0,0,0.55)');
+      ctx.fillStyle = g; ctx.fillRect(tx, gy0, TW, GRID_H);
+
+      const gx0 = tx + (TW - gridW) / 2, gyy = gy0 + GPAD_T;
+      const pos = (t) => [gx0 + t.col * (CELL + GX), gyy + t.fila * (CELL + GY)];
+      // flechas de requisito
+      D.flechas.filter((f) => T[f.hasta].arbol === a.id).forEach((f) => {
+        const d = T[f.desde], h = T[f.hasta];
+        const [x, y1] = pos(d), [, y2] = pos(h);
+        const cx = x + CELL / 2, top = y1 + CELL + 2, bot = y2 - 1;
+        const col = disponible(h) ? C.gold : C.off;
+        ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(cx - 3, top, 6, bot - 8 - top);
+        ctx.fillStyle = col; ctx.fillRect(cx - 2, top, 4, bot - 8 - top);
+        ctx.beginPath(); ctx.moveTo(cx - 7, bot - 8); ctx.lineTo(cx + 7, bot - 8); ctx.lineTo(cx, bot); ctx.closePath(); ctx.fill();
+      });
+      // talentos
+      D.talentos.filter((t) => t.arbol === a.id).forEach((t) => {
+        const [x, y] = pos(t);
+        const n = puntos[t.id] || 0;
+        const borde = n === t.max ? C.gold : n > 0 ? C.green : 'rgba(74,82,69,0.75)';
+        if (n > 0) { ctx.save(); ctx.shadowColor = borde; ctx.shadowBlur = 12; ctx.fillStyle = borde; redondo(ctx, x, y, CELL, CELL, 5); ctx.fill(); ctx.restore(); }
+        ctx.fillStyle = C.bg; redondo(ctx, x, y, CELL, CELL, 5); ctx.fill();
+        const im = imgs[t.icono];
+        if (im) {
+          ctx.save(); redondo(ctx, x + 2, y + 2, CELL - 4, CELL - 4, 3); ctx.clip();
+          if (n === 0 && hayFiltro) ctx.filter = 'grayscale(1) brightness(0.55)';
+          ctx.drawImage(im, x + 2, y + 2, CELL - 4, CELL - 4);
+          ctx.filter = 'none';
+          if (n === 0 && !hayFiltro) { ctx.fillStyle = 'rgba(0,0,0,0.55)'; ctx.fillRect(x, y, CELL, CELL); }
+          ctx.restore();
+        }
+        ctx.strokeStyle = borde; ctx.lineWidth = 2; redondo(ctx, x + 1, y + 1, CELL - 2, CELL - 2, 5); ctx.stroke();
+        if (n > 0) { // rango, abajo a la derecha
+          const txt = `${n}/${t.max}`;
+          ctx.font = `700 12px ${FB}`;
+          const bw = Math.max(30, ctx.measureText(txt).width + 8), bx = x + CELL + 10 - bw, by = y + CELL - 9;
+          ctx.fillStyle = C.bg; redondo(ctx, bx, by, bw, 17, 3); ctx.fill();
+          ctx.strokeStyle = C.border2; ctx.lineWidth = 1; ctx.stroke();
+          ctx.fillStyle = n === t.max ? C.gold : C.green2; ctx.textAlign = 'center';
+          ctx.fillText(txt, bx + bw / 2, by + 13); ctx.textAlign = 'left';
+        }
+      });
+      ctx.restore();
+      ctx.strokeStyle = C.border; ctx.lineWidth = 1; corte(ctx, tx + 0.5, ty + 0.5, TW - 1, TREE_H - 1, 14); ctx.stroke();
+    });
+
+    // Pie: texto + botón lima con el enlace de la web y la cuenta de TikTok
+    const fy = TOP_TREES + TREE_H + 36;
+    const ruta = location.pathname.replace(/\/+$/, '') || '/forever/talentos';
+    const enlace = ('guiahunterbm.com' + ruta).toUpperCase();
+    ctx.font = `800 24px ${F}`;
+    const bw = anchoEspaciado(ctx, enlace, 1.5) + 48, bh = 54, bx = W - PAD - bw;
+    ctx.fillStyle = C.lima; corte(ctx, bx, fy, bw, bh, 12); ctx.fill();
+    ctx.fillStyle = C.bg; espaciado(ctx, enlace, bx + 24, fy + 36, 1.5);
+    ctx.fillStyle = C.text; ctx.font = `800 26px ${F}`;
+    ctx.fillText('MONTA TU BUILD EN LA GUÍA', PAD, fy + 24);
+    ctx.fillStyle = C.text2; ctx.font = `600 17px ${FB}`;
+    ctx.fillText('Talentos, rotación, mascotas y leveling · TikTok @mishuko.wow', PAD, fy + 50);
+
+    return cv;
+  }
+
+  const btnShot = root.querySelector('[data-tc-shot]');
+  if (btnShot) btnShot.addEventListener('click', async () => {
+    const lbl = btnShot.querySelector('[data-tc-shot-txt]') || btnShot;
+    const txt = lbl.textContent;
+    btnShot.disabled = true; lbl.textContent = 'Generando…';
+    try {
+      const cv = await dibujarImagen();
+      const blob = await new Promise((ok) => cv.toBlob(ok, 'image/png'));
+      const nombre = `talentos-forever-${buildActual.id}-${D.arboles.map((a) => ptsArbol(a.id)).join('-')}.png`;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = nombre;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      if (typeof gtag === 'function') gtag('event', 'talentos_imagen', { build: buildActual.id });
+      lbl.textContent = 'Imagen guardada';
+    } catch (e) {
+      console.error(e);
+      lbl.textContent = 'No se pudo generar';
+    }
+    setTimeout(() => { lbl.textContent = txt; btnShot.disabled = false; }, 1800);
+  });
+
   cargarBuild(root.dataset.tcInicial || D.builds[0].id);
 })();

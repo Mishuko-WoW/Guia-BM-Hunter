@@ -16,7 +16,12 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
-## 2026-11-15 — Forever: calculadora de talentos editable (sin commit)
+## 2026-11-15 — Forever: «Guardar imagen» de los talentos
+- Botón «Guardar imagen» en la barra de la calculadora (todas las builds: Raid, Leveling con su nivel del deslizador, Calculadora; también en la pestaña Leveling). Descarga un PNG 2160×~1660 (`talentos-forever-<build>-<reparto>.png`) dibujado en canvas (no captura del DOM): 3 árboles con fondos, flechas, iconos y rangos, y el diseño de las stories de TikTok (IDENTIDAD.md: fondo negro verdoso, lima, Barlow Condensed, esquinas cortadas, rayas y logo difuminado): cabecera con logo y «GUÍA HUNTER BM», chip con el nombre de la build, reparto y nivel, pie con botón lima «GUIAHUNTERBM.COM/<ruta>» y @mishuko.wow. Evento GA4 `talentos_imagen`. Botón destacado en dorado (como `.gn-banner__btn`): icono de cámara (SVG en línea), más grande, resplandor dorado (en `.tc-shot-wrap`, porque el `clip-path` recorta el `drop-shadow` del propio botón) y un brillo que lo recorre cada 3 s (sin animación con `prefers-reduced-motion`).
+- En lima aunque Forever sea turquesa (las stories van en lima). Paleta fija en el JS (el canvas no lee `var()`). Iconos/fondos de zamimg con `crossOrigin` (mandan `Access-Control-Allow-Origin: *`).
+- Archivos: `public/scripts/forever-talentos.js` (bloque «IMAGEN»), `src/components/forever/CalculadoraTalentos.astro` (iconos y fondos en `FV_TALENTOS`, `.tc-actions`), `src/styles/forever.css`.
+
+## 2026-11-15 — Forever: calculadora de talentos editable (a9cf4b5)
 - Pestaña Talentos: tercer botón «Calculadora» junto a «Raid y mazmorras» y «Leveling (con orden)». Árbol vacío donde se suman y quitan puntos con las reglas clásicas (5 puntos por fila, prerequisito al máximo, 51 máx.; no deja quitar un punto que rompa un talento superior). Clic +1, clic derecho / Mayús+clic −1; teclado Enter/+ y −/Supr; móvil: tocar +1, mantener pulsado −1 y botón «Quitar puntos». «Vaciar todo», × por árbol, puntos restantes. Lo montado se conserva al cambiar de build y volver.
 - Solo en Talentos: prop `calculadora` de `CalculadoraTalentos.astro` (Leveling no la pasa). El JS trata la build `editable`; el resto siguen en solo lectura.
 - Archivos: `src/components/forever/{CalculadoraTalentos,TalentosForever}.astro`, `public/scripts/forever-talentos.js`, `src/styles/forever.css`.

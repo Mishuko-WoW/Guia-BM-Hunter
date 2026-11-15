@@ -109,7 +109,36 @@
 .tc.is-editable .tc-talent.is-avail .tc-rank,
 .tc.is-editable .tc-talent.is-locked .tc-rank { display: block; color: var(--text3); }
 .tc.is-editable .tc-talent.is-avail .tc-rank { color: var(--green2); }
-.tc-tools { display: flex; gap: 8px; margin-left: auto; }
+.tc-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.tc-tools { display: flex; gap: 8px; }
+/* «Guardar imagen»: botón principal de la barra, dorado como .gn-banner__btn, con icono de cámara y brillo */
+.tc-tool.tc-shot {
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 11px 20px 11px 16px; font-size: 15px;
+  color: var(--bg); background: var(--gold); box-shadow: none;
+  transition: background var(--t-fast), transform var(--t-fast) var(--ease);
+}
+/* el resplandor va en el envoltorio: el clip-path del botón recortaría su propio drop-shadow */
+.tc-shot-wrap {
+  display: inline-flex;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--gold) 45%, transparent));
+  transition: filter var(--t-fast);
+}
+.tc-shot-wrap:hover { filter: drop-shadow(0 0 16px color-mix(in srgb, var(--gold) 70%, transparent)); }
+.tc-shot::after {
+  content: ""; position: absolute; inset: 0 auto 0 -60%; width: 45%;
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.45), transparent);
+  transform: skewX(-20deg); animation: tc-shot-brillo 3.2s var(--ease) infinite;
+}
+.tc-tool.tc-shot:hover {
+  color: var(--bg); background: color-mix(in srgb, var(--gold) 85%, #fff); box-shadow: none; transform: translateY(-1px);
+}
+.tc-shot__ico { flex-shrink: 0; }
+.tc-shot[disabled] { opacity: 0.6; cursor: progress; }
+.tc-shot[disabled]::after { animation: none; }
+@keyframes tc-shot-brillo { 0%, 55% { left: -60%; } 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) { .tc-shot::after { animation: none; display: none; } }
 .tc-tool {
   padding: 9px 14px; cursor: pointer;
   font: 700 13px/1 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase;
@@ -216,7 +245,7 @@
   .tc-grid { --cell: 42px; --gx: 18px; --gy: 16px; }
   .tc-split { font-size: 22px; }
   .tc-copy { margin-left: 0; }
-  .tc-tools { margin-left: 0; }
+  .tc-actions { margin-left: 0; }
   .tr-level { grid-template-columns: 54px 1fr; }
   .tr-level__num b { font-size: 22px; }
   .tr-item { width: 100%; }

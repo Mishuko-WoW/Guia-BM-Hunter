@@ -4,7 +4,7 @@
 // se añade un botón más, "Calculadora": árbol vacío donde se suman y quitan puntos.
 // Datos: src/content/data/forever-talentos.json (generado con scripts/gen-forever-talentos.mjs)
 // Builds: src/content/data/forever-builds.json (`cadena` opcional = string de importación → botón Copiar).
-// Interacción: public/scripts/forever-talentos.js
+// Interacción: public/scripts/forever-talentos.js (también la imagen para compartir)
 import data from '../../content/data/forever-talentos.json';
 import buildsFile from '../../content/data/forever-builds.json';
 import { iconUrl } from '../../lib/spells';
@@ -53,8 +53,8 @@ if (leveling?.orden) {
 }
 
 const datosJS = {
-  talentos: talentos.map(({ id, arbol, fila, col, max, nombre, meta, rangos }) => ({ id, arbol, fila, col, max, nombre, meta, rangos })),
-  arboles: data.arboles.map((a) => ({ id: a.id, nombre: a.nombre })),
+  talentos: talentos.map(({ id, arbol, fila, col, max, nombre, meta, rangos, icono }) => ({ id, arbol, fila, col, max, nombre, meta, rangos, icono: iconUrl(icono) })),
+  arboles: data.arboles.map((a) => ({ id: a.id, nombre: a.nombre, icono: iconUrl(a.icono), fondo: a.fondo })),
   flechas: data.arboles.flatMap((a) => a.flechas),
   builds: builds.map(({ id, nombre, puntos, orden, editable }) => ({ id, nombre, puntos, orden: orden ?? null, editable: !!editable })),
 };
@@ -95,12 +95,22 @@ const repartoInicial = data.arboles
         onclick={`copyTalent(this, ${JSON.stringify(b.cadena)})`}
       >Copiar talentos</button>
     ))}
-    {calculadora && (
-      <div class="tc-tools" data-tc-tools hidden>
-        <button type="button" class="tc-tool" data-tc-minus aria-pressed="false">Quitar puntos</button>
-        <button type="button" class="tc-tool" data-tc-reset>Vaciar todo</button>
-      </div>
-    )}
+    <div class="tc-actions">
+      {calculadora && (
+        <div class="tc-tools" data-tc-tools hidden>
+          <button type="button" class="tc-tool" data-tc-minus aria-pressed="false">Quitar puntos</button>
+          <button type="button" class="tc-tool" data-tc-reset>Vaciar todo</button>
+        </div>
+      )}
+      <!-- Forever no tiene strings de importación: se guarda una imagen de la build (forever-talentos.js, «IMAGEN») -->
+      <span class="tc-shot-wrap"><button type="button" class="tc-tool tc-shot" data-tc-shot>
+        <svg class="tc-shot__ico" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.8l1.4-2h4.6l1.4 2h1.8A2.5 2.5 0 0 1 20 8.5v9A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5z" />
+          <circle cx="12" cy="13" r="3.6" />
+        </svg>
+        <span data-tc-shot-txt>Guardar imagen</span>
+      </button></span>
+    </div>
   </div>
 
   <div class="tc-trees">
