@@ -48,6 +48,11 @@
   --alianza: #5b9bf0;
   --horda:   #e2554f;
 
+  /* Calidad de objetos (pestaña BiS de Forever): poco común, raro, épico */
+  --q-poco-comun: #1eff00;
+  --q-raro:       #3d9bff;
+  --q-epico:      #b968f5;
+
   /* Monedas del juego (costes de entrenamiento): texto, brillo, cuerpo y sombra */
   --coin-gold:   #f5d06a; --coin-gold-hi:   #fff2b0; --coin-gold-mid:   #d9a520; --coin-gold-lo:   #8a6210;
   --coin-silver: #d6dde3; --coin-silver-hi: #ffffff; --coin-silver-mid: #b8c2cb; --coin-silver-lo: #6c757d;

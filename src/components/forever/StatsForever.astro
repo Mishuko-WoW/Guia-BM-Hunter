@@ -1,0 +1,91 @@
+---
+// Pestaña Stats (Forever): cabecera con datos, aviso, prioridad de estadísticas en tarjetas numeradas,
+// leveling vs nivel 60, notas y «Sigue con la guía». Mismo diseño que General/Leveling (clases lv-*/gn-*, bloque «STATS» en forever.css).
+// Contenido: src/content/data/forever-estadisticas.json.
+import data from '../../content/data/forever-estadisticas.json';
+import { getSpell, iconUrl } from '../../lib/spells';
+import { md } from '../../lib/markup';
+import { tabPath } from '../../lib/seo';
+import IndiceForever from './IndiceForever.astro';
+
+// Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
+const faltan = [...JSON.stringify(data).matchAll(/\[\[([^\]|>]+)/g)].map((m) => m[1].trim()).filter((n) => !getSpell(n));
+if (faltan.length) throw new Error(`forever-estadisticas.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
+
+const INDICE = [
+  { id: 'st-prioridad', texto: 'Prioridad' },
+  { id: 'st-fases', texto: 'Leveling y nivel 60' },
+  { id: 'st-notas', texto: 'Mascota y melé' },
+];
+---
+
+<div class="lv gn st">
+  <div class="gn-hero">
+    <p set:html={md(data.resumen)} />
+    <ul class="gn-datos">
+      {data.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
+    </ul>
+  </div>
+
+  <IndiceForever items={INDICE} />
+
+  <p class="lv-demo gn-aviso" set:html={md(data.aviso)} />
+
+  <section class="lv-sec" id="st-prioridad">
+    <h3>Prioridad de estadísticas</h3>
+    <p class="lv-lead">De más a menos importante. Antes de cambiar una pieza, mira qué estadísticas de esta lista sube.</p>
+    <ol class="st-rank">
+      {data.prioridad.map((s, i) => (
+        <li class={`st-rank__item st-rank__item--${i < 2 ? 'top' : i < 4 ? 'alta' : 'baja'}`}>
+          <span class="st-rank__n">{i + 1}</span>
+          <img src={iconUrl(s.icono)} alt="" width="48" height="48" loading="lazy" />
+          <div>
+            <h4>{s.nombre} <span class:list={['gn-tag', { 'is-new': i < 2 }]}>{s.etiqueta}</span></h4>
+            <p set:html={md(s.texto)} />
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="lv-sec" id="st-fases">
+    <h3>Subiendo de nivel y a nivel 60</h3>
+    <div class="gn-pros">
+      <div class="gn-col st-col--lv">
+        <h4>Subiendo de nivel</h4>
+        <ul class="lv-claves">{data.fases.leveling.map((t) => <li set:html={md(t)} />)}</ul>
+      </div>
+      <div class="gn-col st-col--raid">
+        <h4>A nivel 60 (raid)</h4>
+        <ul class="lv-claves">{data.fases.raid.map((t) => <li set:html={md(t)} />)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="lv-sec" id="st-notas">
+    <h3>Tu mascota y el arma cuerpo a cuerpo</h3>
+    <div class="gn-cambios">
+      {data.notas.map((n) => (
+        <div class="gn-cambio">
+          <img src={iconUrl(n.icono)} alt="" width="48" height="48" loading="lazy" />
+          <div>
+            <h4>{n.titulo}</h4>
+            <p set:html={md(n.texto)} />
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="st-siguiente">
+    <h3>Sigue con la guía</h3>
+    <div class="gn-next">
+      {data.siguiente.map((n) => (
+        <a class="gn-next__item" href={tabPath('forever', n.tab)}>
+          <img src={iconUrl(n.icono)} alt="" width="44" height="44" loading="lazy" />
+          <span><b>{n.titulo}</b>{n.texto}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</div>

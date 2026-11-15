@@ -1,0 +1,153 @@
+---
+// Pestaña BiS y consumibles (Forever): cabecera con datos, aviso, pre-raid 60 en tarjetas por ranura,
+// arma a distancia por nivel (tabla), consumibles, encantamientos y «Sigue con la guía».
+// Mismo diseño que General/Leveling (clases lv-*/gn-*, bloque «BIS Y CONSUMIBLES» en forever.css).
+// Contenido: src/content/data/forever-bis.json (escrito a mano).
+// Nombres en español, calidad e icono: src/content/data/forever-objetos.json, GENERADO con
+// `node scripts/gen-forever-objetos.mjs` (volver a ejecutarlo al añadir objetos).
+import data from '../../content/data/forever-bis.json';
+import objetos from '../../content/data/forever-objetos.json';
+import { md } from '../../lib/markup';
+import { iconUrl } from '../../lib/spells';
+import { tabPath } from '../../lib/seo';
+import IndiceForever from './IndiceForever.astro';
+
+type Tipo = 'item' | 'spell';
+type Obj = { nombre: string; calidad: number; icono: string };
+const info = (id: number, tipo: Tipo = 'item'): Obj => {
+  const o = (objetos as Record<Tipo, Record<string, Obj>>)[tipo][id];
+  if (!o) throw new Error(`forever-objetos.json: falta ${tipo} ${id}. Ejecuta node scripts/gen-forever-objetos.mjs`);
+  return o;
+};
+const url = (id: number, tipo: Tipo = 'item') => `https://www.wowhead.com/forever/es/${tipo}=${id}`;
+const consumibles = data.consumibles.map((g) => ({ ...g, objetos: g.objetos.map((c) => ({ ...c, o: info(c.id) })) }));
+
+const INDICE = [
+  { id: 'bf-preraid', texto: 'Pre-raid 60' },
+  { id: 'bf-armas', texto: 'Arma por nivel' },
+  { id: 'bf-consumibles', texto: 'Consumibles' },
+  { id: 'bf-encant', texto: 'Encantamientos' },
+];
+---
+
+<div class="lv gn bf" id="bf">
+  <div class="gn-hero">
+    <p set:html={md(data.resumen)} />
+    <ul class="gn-datos">
+      {data.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
+    </ul>
+  </div>
+
+  <IndiceForever items={INDICE} />
+
+  <p class="lv-demo gn-aviso" set:html={md(data.aviso)} />
+
+  <section class="lv-sec" id="bf-preraid">
+    <h3>Equipo pre-raid de nivel 60</h3>
+    <p class="lv-lead">Lo mejor que puedes conseguir antes de entrar en raid: mazmorras de nivel 60, misiones y profesiones.</p>
+    <div class="bf-slots">
+      {data.preraid.map((p) => {
+        const o = info(p.id);
+        return (
+          <a class={`bf-slot-card q${o.calidad}`} href={url(p.id)} target="_blank" rel="noopener" data-wh-icon-added="true">
+            <img src={iconUrl(o.icono)} alt="" width="52" height="52" loading="lazy" />
+            <span>
+              <small>{p.ranura}</small>
+              <b>{o.nombre}</b>
+              <em>{p.origen}</em>
+            </span>
+          </a>
+        );
+      })}
+    </div>
+    {data.alternativas.map((a) => {
+      const o = info(a.id);
+      return (
+        <p class="gn-consejo">
+          <b>¿Sin Ingeniería?</b> Usa{' '}
+          <a class={`bf-obj q${o.calidad}`} href={url(a.id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="24" height="24" loading="lazy" />{o.nombre}</a>{' '}
+          ({a.origen}).
+        </p>
+      );
+    })}
+  </section>
+
+  <section class="lv-sec" id="bf-armas">
+    <h3>Arma a distancia para cada nivel</h3>
+    <p class="lv-lead">Es la mejora que más se nota mientras subes. Si la Alianza y la Horda tienen la misma, sale una sola.</p>
+    <div class="lv-table-wrap">
+      <table class="lv-table bf-table">
+        <thead><tr><th>Nivel</th><th>Alianza</th><th>Horda</th><th>Dónde se consigue</th></tr></thead>
+        <tbody>
+          {data.armas.map((a) => {
+            const link = (id: number) => {
+              const o = info(id);
+              return <a class={`bf-obj q${o.calidad}`} href={url(id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="28" height="28" loading="lazy" />{o.nombre}</a>;
+            };
+            return (
+              <tr>
+                <td><b>{a.nivel}</b></td>
+                {a.alianza === a.horda ? <td colspan="2">{link(a.alianza)}</td> : <><td>{link(a.alianza)}</td><td>{link(a.horda)}</td></>}
+                <td>{a.origen}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="lv-sec" id="bf-consumibles">
+    <h3>Consumibles</h3>
+    {consumibles.map((g) => (
+      <>
+        <h4 class="lv-h4">{g.titulo}</h4>
+        <div class="gn-cambios">
+          {g.objetos.map((c) => (
+            <div class="gn-cambio">
+              <img src={iconUrl(c.o.icono)} alt="" width="48" height="48" loading="lazy" />
+              <div>
+                <h4><a class={`bf-obj q${c.o.calidad}`} href={url(c.id)} target="_blank" rel="noopener" data-wh-icon-added="true">{c.o.nombre}</a></h4>
+                <p set:html={md(c.nota)} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
+    ))}
+    <p class="gn-consejo" set:html={md(data.extra)} />
+  </section>
+
+  <section class="lv-sec" id="bf-encant">
+    <h3>Encantamientos</h3>
+    <div class="gn-cambios">
+      {data.encantamientos.map((e) => {
+        const tipo = e.tipo as Tipo;
+        const o = info(e.id, tipo);
+        const pendiente = e.nota.includes('pendiente');
+        return (
+          <div class="gn-cambio">
+            <img src={iconUrl(o.icono)} alt="" width="48" height="48" loading="lazy" />
+            <div>
+              <h4>{e.ranura} <span class:list={['gn-tag', { 'is-new': !pendiente }]}>{pendiente ? 'Por confirmar' : 'Recomendado'}</span></h4>
+              <p><a class={`bf-obj q${o.calidad}`} href={url(e.id, tipo)} target="_blank" rel="noopener" data-wh-icon-added="true">{o.nombre}</a></p>
+              <p set:html={md(e.nota)} />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="bf-siguiente">
+    <h3>Sigue con la guía</h3>
+    <div class="gn-next">
+      {data.siguiente.map((n) => (
+        <a class="gn-next__item" href={tabPath('forever', n.tab)}>
+          <img src={iconUrl(n.icono)} alt="" width="44" height="44" loading="lazy" />
+          <span><b>{n.titulo}</b>{n.texto}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</div>

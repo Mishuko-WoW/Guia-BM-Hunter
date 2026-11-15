@@ -1,0 +1,286 @@
+{
+  "resumen": "El equipo que de momento rinde más para el **Cazador de Bestias** en Forever: la lista **pre-raid de nivel 60**, el **arma a distancia** para cada tramo de nivel, los **consumibles** y los **encantamientos**. Pasa el ratón por cualquier objeto para ver sus estadísticas.",
+  "aviso": "**Listas provisionales.** Forever acaba de salir y la beta solo llegaba a **nivel 30**. Las iré actualizando según se pruebe el equipo de alto nivel y se abran las raids.",
+  "preraid": [
+    {
+      "ranura": "Cabeza",
+      "id": 13404,
+      "origen": "Stratholme · El Imperdonable"
+    },
+    {
+      "ranura": "Cuello",
+      "id": 275736,
+      "origen": "Misión «Work Well Done» · Monte Hyjal"
+    },
+    {
+      "ranura": "Hombros",
+      "id": 277117,
+      "origen": "Profundidades de Roca Negra · Grizzle"
+    },
+    {
+      "ranura": "Espalda",
+      "id": 18511,
+      "origen": "Peletería"
+    },
+    {
+      "ranura": "Pecho",
+      "id": 252483,
+      "origen": "Peletería"
+    },
+    {
+      "ranura": "Muñecas",
+      "id": 13211,
+      "origen": "Cumbre de Roca Negra · Halycon"
+    },
+    {
+      "ranura": "Manos",
+      "id": 15063,
+      "origen": "Peletería"
+    },
+    {
+      "ranura": "Cintura",
+      "id": 18393,
+      "origen": "La Masacre · Tendris Madeguerra"
+    },
+    {
+      "ranura": "Piernas",
+      "id": 15062,
+      "origen": "Peletería"
+    },
+    {
+      "ranura": "Pies",
+      "id": 13967,
+      "origen": "Scholomance · Kirtonos el Heraldo"
+    },
+    {
+      "ranura": "Anillo",
+      "id": 18314,
+      "origen": "La Masacre · Alzzin el Formaferal"
+    },
+    {
+      "ranura": "Anillo",
+      "id": 13392,
+      "origen": "Stratholme · Jefe de correos Malown"
+    },
+    {
+      "ranura": "Abalorio",
+      "id": 13213,
+      "origen": "Cumbre de Roca Negra · Madre Telabrasada"
+    },
+    {
+      "ranura": "Abalorio",
+      "id": 249469,
+      "origen": "Encantamiento"
+    },
+    {
+      "ranura": "Arma (dos manos)",
+      "id": 279910,
+      "origen": "Misión en The Shaper's Terrace (Alianza: «Mapping the Way Forward» · Horda: «The Dark Crystal»)"
+    },
+    {
+      "ranura": "A distancia",
+      "id": 18282,
+      "origen": "Ingeniería"
+    }
+  ],
+  "alternativas": [
+    {
+      "ranura": "A distancia",
+      "id": 12651,
+      "origen": "Cumbre de Roca Negra · Cazador de las Sombras Vosh'gajin (sin Ingeniería)"
+    }
+  ],
+  "armas": [
+    {
+      "nivel": 5,
+      "alianza": 276685,
+      "horda": 273879,
+      "origen": "Misiones de la zona inicial"
+    },
+    {
+      "nivel": 10,
+      "alianza": 276685,
+      "horda": 3079,
+      "origen": "Misiones de la zona inicial"
+    },
+    {
+      "nivel": 15,
+      "alianza": 279894,
+      "horda": 272999,
+      "origen": "Alianza: misión en Hall of Thanes · Horda: Sima Ígnea (Oggleflint)"
+    },
+    {
+      "nivel": 20,
+      "alianza": 6469,
+      "horda": 6469,
+      "origen": "Cuevas de los Lamentos · Lord Serpentis"
+    },
+    {
+      "nivel": 25,
+      "alianza": 273843,
+      "horda": 273843,
+      "origen": "Cavernas de Brazanegra · Lorgus Jett"
+    },
+    {
+      "nivel": 30,
+      "alianza": 273029,
+      "horda": 273029,
+      "origen": "Excavation Site: Wetlands · Relic Guardian"
+    },
+    {
+      "nivel": 35,
+      "alianza": 274604,
+      "horda": 274604,
+      "origen": "The Drowned City · Captain Dreadrise"
+    },
+    {
+      "nivel": 40,
+      "alianza": 9400,
+      "horda": 9400,
+      "origen": "Uldaman · Baelog"
+    },
+    {
+      "nivel": 45,
+      "alianza": 274646,
+      "horda": 274646,
+      "origen": "Zul'Farrak · Sargento Bly"
+    },
+    {
+      "nivel": 50,
+      "alianza": 13022,
+      "horda": 13022,
+      "origen": "Blackmaw Hold · Blackmaw Spearfisher"
+    },
+    {
+      "nivel": 55,
+      "alianza": 12651,
+      "horda": 12651,
+      "origen": "Cumbre de Roca Negra · Cazador de las Sombras Vosh'gajin"
+    },
+    {
+      "nivel": 60,
+      "alianza": 18282,
+      "horda": 18282,
+      "origen": "Ingeniería"
+    }
+  ],
+  "consumibles": [
+    {
+      "titulo": "A nivel 60",
+      "objetos": [
+        {
+          "id": 13452,
+          "nota": "+25 agilidad y +2 % de crítico. El elixir principal."
+        },
+        {
+          "id": 13928,
+          "nota": "Comida: +1 % de crítico."
+        },
+        {
+          "id": 10309,
+          "nota": "Más agilidad; se acumula con el elixir."
+        },
+        {
+          "id": 13444,
+          "nota": "Para recuperar maná en combates largos."
+        }
+      ]
+    },
+    {
+      "titulo": "Subiendo de nivel",
+      "objetos": [
+        {
+          "id": 8949,
+          "nota": "Agilidad barata para mazmorras."
+        },
+        {
+          "id": 9187,
+          "nota": "Versión mejorada a partir de nivel 38."
+        },
+        {
+          "id": 1477,
+          "nota": "Agilidad extra a bajo nivel."
+        },
+        {
+          "id": 2684,
+          "nota": "Comida fácil de cocinar mientras subes."
+        },
+        {
+          "id": 3385,
+          "nota": "Maná de emergencia en mazmorras."
+        }
+      ]
+    }
+  ],
+  "encantamientos": [
+    {
+      "ranura": "Arma a distancia",
+      "tipo": "item",
+      "id": 10548,
+      "nota": "+7 de daño a distancia: lo primero que debes poner."
+    },
+    {
+      "ranura": "Pecho",
+      "tipo": "spell",
+      "id": 20025,
+      "nota": "+4 a todas las estadísticas."
+    },
+    {
+      "ranura": "Pies",
+      "tipo": "spell",
+      "id": 13890,
+      "nota": "Velocidad de movimiento: muy útil para colocarte."
+    },
+    {
+      "ranura": "Manos",
+      "tipo": "spell",
+      "id": 20012,
+      "nota": "Lo habitual en Classic; pendiente de confirmar en Forever."
+    },
+    {
+      "ranura": "Espalda",
+      "tipo": "spell",
+      "id": 13882,
+      "nota": "Lo habitual en Classic; pendiente de confirmar en Forever."
+    }
+  ],
+  "extra": "Lleva siempre **munición y comida para la mascota**, además de vendas y pociones de vida. Tienes qué munición usar en cada nivel en la pestaña <a href=\"/forever/leveling/\">Leveling</a>.",
+  "datos": [
+    {
+      "valor": "16",
+      "texto": "piezas pre-raid de nivel 60"
+    },
+    {
+      "valor": "12",
+      "texto": "armas a distancia del 5 al 60"
+    },
+    {
+      "valor": "Peletería",
+      "texto": "la profesión que más piezas da"
+    },
+    {
+      "valor": "Ingeniería",
+      "texto": "para el mejor rifle"
+    }
+  ],
+  "siguiente": [
+    {
+      "tab": "estadisticas",
+      "icono": "spell_holy_blessingofagility",
+      "titulo": "Stats",
+      "texto": "Qué estadísticas buscar en cada pieza."
+    },
+    {
+      "tab": "leveling",
+      "icono": "inv_misc_map_01",
+      "titulo": "Leveling 1-60",
+      "texto": "Munición, talentos y mascotas mientras subes."
+    },
+    {
+      "tab": "rotacion",
+      "icono": "ability_hunter_aimedshot",
+      "titulo": "Rotación",
+      "texto": "Qué pulsar y en qué orden."
+    }
+  ]
+}

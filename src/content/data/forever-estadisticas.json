@@ -1,0 +1,79 @@
+{
+  "resumen": "Qué estadísticas buscar en tu equipo como **Cazador de Bestias** en Forever, en qué orden, y qué cambia entre subir de nivel y jugar a nivel 60.",
+  "datos": [
+    { "valor": "Arma", "texto": "a distancia: lo más importante" },
+    { "valor": "8 %", "texto": "tope de golpe contra jefes" },
+    { "valor": "Agilidad", "texto": "la mejor estadística general" },
+    { "valor": "Mascota", "texto": "hereda parte de tus stats" }
+  ],
+  "aviso": "**Datos provisionales.** La beta de Forever llegaba a **nivel 30** y Forever ha cambiado las estadísticas del equipo respecto a Classic. Lo que ves aquí es lo que ya está claro hoy; **lo iré actualizando** según se juegue y haya simulaciones.",
+  "prioridad": [
+    {
+      "nombre": "Daño del arma a distancia",
+      "icono": "inv_weapon_bow_07",
+      "etiqueta": "Imprescindible",
+      "texto": "La base de casi todo tu daño: [[Tiro automático]] y tus disparos salen del daño del arco o del rifle. Compara el **daño por disparo**, no solo el DPS del arma."
+    },
+    {
+      "nombre": "Golpe (hasta el tope)",
+      "icono": "ability_marksmanship",
+      "etiqueta": "Imprescindible",
+      "texto": "Un disparo que falla no hace nada. Apunta al **8 %** contra jefes de raid y recalcúlalo cada vez que cambies piezas. Pasado el tope no sirve."
+    },
+    {
+      "nombre": "Agilidad",
+      "icono": "spell_holy_blessingofagility",
+      "etiqueta": "Muy buena",
+      "texto": "Da **poder de ataque a distancia y crítico** a la vez. Es la mejor estadística en cuanto tienes el golpe cubierto."
+    },
+    {
+      "nombre": "Crítico",
+      "icono": "ability_criticalstrike",
+      "etiqueta": "Muy buena",
+      "texto": "Más daño tuyo y, sobre todo, de la mascota: sus críticos activan [[Frenesí]] y suben su velocidad de ataque."
+    },
+    {
+      "nombre": "Poder de ataque",
+      "icono": "spell_nature_ravenform",
+      "etiqueta": "Buena",
+      "texto": "Útil, pero cada punto rinde menos que la agilidad."
+    },
+    {
+      "nombre": "Intelecto, aguante y espíritu",
+      "icono": "spell_holy_magicalsentry",
+      "etiqueta": "Secundarias",
+      "texto": "Intelecto = más maná para seguir disparando. Aguante para sobrevivir. El espíritu solo ayuda a recuperar maná fuera de combate. La **fuerza no te sirve**."
+    }
+  ],
+  "fases": {
+    "leveling": [
+      "Lleva **el arma a distancia con más daño** que encuentres: casi siempre es la mejor mejora.",
+      "Después, **agilidad**.",
+      "El golpe **no es prioritario**: los enemigos de tu nivel fallan poco.",
+      "Algo de **intelecto** viene bien para no quedarte sin maná entre combates."
+    ],
+    "raid": [
+      "**Arma a distancia** y **golpe hasta el tope** primero.",
+      "Luego **agilidad** y **crítico**, que también hacen más fuerte a la mascota.",
+      "Cuando llegues al tope de golpe, cambia piezas de golpe por agilidad.",
+      "Ignora la fuerza y el espíritu en tu equipo."
+    ]
+  },
+  "notas": [
+    {
+      "titulo": "Tu mascota crece contigo",
+      "icono": "ability_hunter_beasttraining",
+      "texto": "En Forever la mascota **recibe parte de tus estadísticas**, así que cada mejora de equipo también la hace más fuerte. Por eso la agilidad y el crítico valen tanto en Bestias."
+    },
+    {
+      "titulo": "El arma cuerpo a cuerpo",
+      "icono": "inv_spear_04",
+      "texto": "Casi no pegas cuerpo a cuerpo: el arma de melé se elige **solo por sus estadísticas** (agilidad, golpe, crítico). Su daño da igual."
+    }
+  ],
+  "siguiente": [
+    { "tab": "mascotas", "icono": "ability_hunter_beasttaming", "titulo": "Mascotas", "texto": "Familias, habilidades y dónde domesticar." },
+    { "tab": "talentos", "icono": "ability_hunter_bestialdiscipline", "titulo": "Talentos", "texto": "La build de raid y la de subir de nivel." },
+    { "tab": "rotacion", "icono": "ability_hunter_aimedshot", "titulo": "Rotación", "texto": "Qué pulsar y en qué orden." }
+  ]
+}

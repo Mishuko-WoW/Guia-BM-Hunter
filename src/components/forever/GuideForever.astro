@@ -11,6 +11,8 @@ import RotacionForever from './RotacionForever.astro';
 import LevelingForever from './LevelingForever.astro';
 import GeneralForever from './GeneralForever.astro';
 import MacrosForever from './MacrosForever.astro';
+import BisForever from './BisForever.astro';
+import StatsForever from './StatsForever.astro';
 import { TABS_FOREVER } from '../../lib/tabs';
 import { SEO } from '../../lib/seo';
 import { formatLong, latestChangeDate } from '../../lib/changelog';
@@ -39,6 +41,8 @@ const visibles = TABS_FOREVER.filter((t) => t.id === tab || (tab === 'rotacion' 
       {t.id === 'leveling' && <LevelingForever />}
       {t.id === 'mecanicas' && <GeneralForever />}
       {t.id === 'macros' && <MacrosForever />}
+      {t.id === 'bis' && <BisForever />}
+      {t.id === 'estadisticas' && <StatsForever />}
     </SeccionForever>
   ))}
 </div>

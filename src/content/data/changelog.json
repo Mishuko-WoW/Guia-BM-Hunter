@@ -1,6 +1,13 @@
 [
   {
     "fecha": "2026-11-15",
+    "pestana": "estadisticas",
+    "texto": "Nueva sección con la prioridad de estadísticas en",
+    "enlace": "Stats",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-15",
     "pestana": "macros",
     "texto": "Nueva sección con macros listas para copiar en",
     "enlace": "Macros",

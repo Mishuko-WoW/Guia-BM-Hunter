@@ -11,10 +11,16 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ## ▶ PRÓXIMO TRABAJO
 - **Antes de publicar el bloque Leveling/General/Talentos/Mascotas (sin commit aún):** Mishuko revisa en local y pasa los datos de bolsas de munición (origen) y la lista de armas por tramo (quitar «En construcción»).
-- Pestañas de Forever Stats, BiS y Consumibles (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
+- Forever BiS: decidir cuándo publicarla (crear `bis.md`); revisar Stats y BiS cuando haya datos de nivel 60 (raids, simulaciones) y volver a ejecutar `node scripts/gen-forever-objetos.mjs` al añadir objetos.
 - Search Console: pedir indexación de `/forever/coaching/`, `/forever/rotacion/`, `/midnight/bis/`, `/midnight/rotacion/` (límite diario).
 
 ---
+
+## 2026-11-15 — Forever: pestaña Stats (BiS preparada, sin publicar)
+- `/forever/estadisticas/` con contenido (deja de ser `noindex` y entra en el sitemap al existir su `.md`). **BiS sigue «en preparación»** por decisión de Mishuko: el componente y los datos están hechos pero sin `src/content/forever/paginas/bis.md`; para publicarla basta con crear ese `.md` (`tab: bis`, `bloques: []`). Datos de guías de Forever (Icy Veins, wow.gg, Mobalytics, Timesaver, wowtbc.gg, WoWVendor), sin citarlas en la web. Se avisa de que son **provisionales** (beta hasta nivel 30).
+- Stats: `StatsForever.astro` + `src/content/data/forever-estadisticas.json` (cabecera con datos, aviso, prioridad en 6 tarjetas numeradas `st-rank`, leveling / nivel 60 en columnas `gn-col`, notas de mascota y arma de melé, «Sigue con la guía»). Estilos «STATS» en `forever.css`.
+- BiS: `BisForever.astro` + `src/content/data/forever-bis.json` (a mano: pre-raid 60 en tarjetas por ranura `bf-slot-card` con borde del color de calidad, arma a distancia por nivel Alianza/Horda, consumibles, encantamientos). Nombres es-ES, calidad e icono en `forever-objetos.json`, **generado** con `node scripts/gen-forever-objetos.mjs` (Wowhead Forever es → Classic es → nombre inglés si no hay traducción). Enlaces a Wowhead Forever es con icono propio (`data-wh-icon-added`). Estilos «BIS Y CONSUMIBLES» en `forever.css`; colores de calidad `--q-*` en `tokens.css`.
+- `estado` de Forever en `realms.ts` incluye stats. Entrada en `changelog.json` (solo Stats).
 
 ## 2026-11-15 — Forever: pestaña Macros
 - `/forever/macros/` con contenido (deja de ser `noindex` y entra en el sitemap al existir `macros.md`). 15 macros en 4 grupos (esenciales, daño, mascota, utilidad), sacadas de guías de Forever (Warcraft Tavern y RankedBoost; sin citarlas en la web, regla de Forever).
