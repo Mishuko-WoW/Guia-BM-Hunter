@@ -29,6 +29,7 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 - **Forever General:** bloque «Lo esencial en 30 segundos» (`esencial` en `forever-general.json`). Rotación con índice `IndiceForever`.
 - **Arreglos:** orden de Stats AoE de Midnight (Versatilidad 5.ª, Celeridad 6.ª); «Perneras en espiral de víbora merodeadora» en BiS; alt descriptivos en BiS, consumibles, Simulación y Coaching.
 - Pendiente: imagen de «Talentos por Boss» cargada desde `imgs.search.brave.com` (cambiarla por una propia).
+- Arreglo (después del primer commit): la barra del menú móvil pasa a ir pegada al borde inferior y a todo el ancho; su entrada es solo de opacidad (antes subía 24 px y, si la animación no llegaba a ejecutarse —pestaña en segundo plano, navegador de TikTok/Instagram—, se quedaba medio fuera de la pantalla).
 
 ## 2026-11-15 — Forever: pestaña Stats (BiS preparada, sin publicar)
 - `/forever/estadisticas/` con contenido (deja de ser `noindex` y entra en el sitemap al existir su `.md`). **BiS sigue «en preparación»** por decisión de Mishuko: el componente y los datos están hechos pero sin `src/content/forever/paginas/bis.md`; para publicarla basta con crear ese `.md` (`tab: bis`, `bloques: []`). Datos de guías de Forever (Icy Veins, wow.gg, Mobalytics, Timesaver, wowtbc.gg, WoWVendor), sin citarlas en la web. Se avisa de que son **provisionales** (beta hasta nivel 30).
