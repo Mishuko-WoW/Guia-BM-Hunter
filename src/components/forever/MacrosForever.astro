@@ -1,0 +1,126 @@
+---
+// Pestaña Macros (Forever), con el diseño del resto de Forever (clases lv-*/gn-* + bloque "MACROS" en forever.css):
+// cabecera con 4 datos, índice, «Cómo crear una macro» en 4 pasos, selector de idioma del cliente (inglés/español)
+// y una sección por grupo con tarjetas (icono, código y botón «Copiar»).
+// Contenido: src/content/data/forever-macros.json (textos con mini-formato [[Hechizo]] y `código`).
+import data from '../../content/data/forever-macros.json';
+import { getSpell, foreverIcon, iconUrl } from '../../lib/spells';
+import { md } from '../../lib/markup';
+import IndiceForever from './IndiceForever.astro';
+
+// Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
+const faltan = new Set<string>();
+const revisar = (t = '') => { for (const x of t.matchAll(/\[\[([^\]|>]+)/g)) if (!getSpell(x[1].trim())) faltan.add(x[1].trim()); };
+revisar(data.resumen); revisar(data.aviso);
+for (const p of data.pasos) revisar(p.texto);
+for (const g of data.grupos) {
+  revisar(g.intro);
+  for (const m of g.macros) { revisar(m.desc); revisar(m.tip); if (!getSpell(m.hechizo)) faltan.add(m.hechizo); }
+}
+if (faltan.size) throw new Error(`forever-macros.json: hechizos que no están en spells.json: ${[...faltan].join(', ')}`);
+
+const texto = (t = '') => md(t).replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+// Descripciones de las tarjetas sin tooltips: [[Hechizo]] / [[Hechizo>Texto]] → texto en negrita
+const plano = (t = '') => texto(t.replace(/\[\[([^\]|>]+)(?:\|[^\]>]*)?(?:>([^\]]+))?\]\]/g, (_, n, l) => `**${(l ?? n).trim()}**`));
+const tip = (nombre: string) => {
+  const s = getSpell(nombre);
+  return { 'data-name': nombre, 'data-type': s?.type ?? '', 'data-desc': s?.desc ?? '' };
+};
+const INDICE = [{ id: 'mf-crear', texto: 'Cómo crearlas' }, ...data.grupos.map((g) => ({ id: g.id, texto: g.indice }))];
+---
+
+<div class="lv gn mf" id="mf">
+  <div class="gn-hero">
+    <p set:html={texto(data.resumen)} />
+    <ul class="gn-datos">
+      {data.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
+    </ul>
+  </div>
+
+  <IndiceForever items={INDICE} />
+
+  <section class="lv-sec" id="mf-crear">
+    <h3>Cómo crear una macro</h3>
+    <ol class="lv-cb__steps">
+      {data.pasos.map((p) => (
+        <li class="lv-cb__step">
+          <img src={iconUrl(p.icono)} alt="" width="56" height="56" loading="lazy" />
+          <span class="lv-cb__body"><b>{p.titulo}</b><span set:html={texto(p.texto)} /></span>
+        </li>
+      ))}
+    </ol>
+
+    <div class="mf-idioma">
+      <p set:html={texto(data.aviso)} />
+      <div class="toggle-wrap combat-switch" role="group" aria-label="Idioma de tu juego">
+        <button type="button" class="toggle-btn active" data-mf-idioma="en" aria-pressed="true">Inglés</button>
+        <button type="button" class="toggle-btn" data-mf-idioma="es" aria-pressed="false">Español</button>
+      </div>
+    </div>
+  </section>
+
+  {data.grupos.map((g) => (
+    <section class="lv-sec" id={g.id}>
+      <h3>{g.titulo}</h3>
+      {g.intro && <p class="lv-lead" set:html={texto(g.intro)} />}
+      <div class="mf-grid">
+        {g.macros.map((m) => (
+          <article class="mf-card">
+            <header class="mf-card__head">
+              <img src={foreverIcon(m.hechizo)} alt="" width="48" height="48" loading="lazy" {...tip(m.hechizo)} />
+              <div class="mf-card__title">
+                <h4>{m.titulo}</h4>
+                <span class:list={['gn-tag', { 'is-new': m.tipo === '' }]}>{m.cat}</span>
+              </div>
+              <span class="tc-shot-wrap"><button type="button" class="tc-tool tc-shot mf-copy" data-mf-copy>
+                <svg class="tc-shot__ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" /></svg>
+                <span data-mf-copy-txt>Copiar</span>
+              </button></span>
+            </header>
+            <p class="mf-card__desc" set:html={plano(m.desc)} />
+            <pre class="mf-code" data-en={m.en} data-es={m.es}>{m.en}</pre>
+            {m.tip && <p class="mf-card__tip" set:html={plano(m.tip)} />}
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+</div>
+
+<script is:inline>
+  (function () {
+    const root = document.getElementById('mf');
+    if (!root) return;
+    const btns = root.querySelectorAll('[data-mf-idioma]');
+    let idioma = 'en';
+    const poner = (i) => {
+      idioma = i;
+      btns.forEach((b) => {
+        const on = b.dataset.mfIdioma === i;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      root.querySelectorAll('pre.mf-code').forEach((pre) => { pre.textContent = pre.dataset[i] || pre.dataset.en; });
+    };
+    btns.forEach((b) => b.addEventListener('click', () => {
+      poner(b.dataset.mfIdioma);
+      try { localStorage.setItem('fv-macro-idioma', idioma); } catch (e) {}
+    }));
+    let guardado = null;
+    try { guardado = localStorage.getItem('fv-macro-idioma'); } catch (e) {}
+    if (guardado === 'es') poner('es');
+
+    root.querySelectorAll('[data-mf-copy]').forEach((btn) => btn.addEventListener('click', () => {
+      const card = btn.closest('.mf-card');
+      const code = card.querySelector('pre.mf-code').textContent.trim();
+      const lbl = btn.querySelector('[data-mf-copy-txt]');
+      const fin = (txt, ok) => {
+        lbl.textContent = txt;
+        btn.classList.toggle('is-ok', ok);
+        setTimeout(() => { lbl.textContent = 'Copiar'; btn.classList.remove('is-ok'); }, 1500);
+      };
+      navigator.clipboard.writeText(code).then(() => fin('Copiada', true), () => fin('Error', false));
+      if (window.gtag) gtag('event', 'macro_copiar', { macro: card.querySelector('h4').textContent, idioma: idioma });
+    }));
+  })();
+</script>

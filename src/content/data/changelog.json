@@ -1,6 +1,13 @@
 [
   {
     "fecha": "2026-11-15",
+    "pestana": "macros",
+    "texto": "Nueva sección con macros listas para copiar en",
+    "enlace": "Macros",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-15",
     "pestana": "talentos",
     "texto": "Botón para guardar tu build como imagen en",
     "enlace": "Talentos",

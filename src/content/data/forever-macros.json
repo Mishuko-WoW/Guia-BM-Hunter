@@ -1,0 +1,229 @@
+{
+  "_ayuda": "Macros de la pestaña Macros de Forever (MacrosForever.astro). Cada grupo: id (ancla), indice (texto del índice), titulo, intro y macros. Cada macro: titulo, hechizo (icono de la tarjeta, de spells.json), cat (etiqueta), tipo ('' | 'aoe' | 'util' = color de la etiqueta), desc y tip (mini-formato [[Hechizo]]), en (código con nombres en inglés) y es (mismo código para cliente en español). Para añadir una, copia un bloque y cambia los textos.",
+  "resumen": "Una macro junta **varias acciones en una sola tecla**: mandar a la mascota y disparar a la vez, curarla o revivirla con el mismo botón, o lanzar una habilidad sobre el enemigo que tienes bajo el ratón **sin cambiar de objetivo**. Todas están listas para copiar.",
+  "datos": [
+    {
+      "valor": "15",
+      "texto": "Macros listas para copiar"
+    },
+    {
+      "valor": "4",
+      "texto": "Grupos: esenciales, daño, mascota y utilidad"
+    },
+    {
+      "valor": "2",
+      "texto": "Idiomas del juego: inglés y español"
+    },
+    {
+      "valor": "1 clic",
+      "texto": "Para copiarla y pegarla en el juego"
+    }
+  ],
+  "pasos": [
+    {
+      "icono": "inv_misc_note_01",
+      "titulo": "Abre el menú",
+      "texto": "Escribe **/macro** en el chat o entra en Menú principal → Macros."
+    },
+    {
+      "icono": "inv_misc_questionmark",
+      "titulo": "Crea una nueva",
+      "texto": "Pulsa **Nueva**, ponle nombre y elige el **signo de interrogación**: el juego pondrá el icono de la habilidad."
+    },
+    {
+      "icono": "inv_scroll_03",
+      "titulo": "Pega el código",
+      "texto": "Pulsa **Copiar** en la macro que quieras y pégala en el recuadro con Ctrl + V."
+    },
+    {
+      "icono": "ability_hunter_beastcall",
+      "titulo": "A tu barra",
+      "texto": "Arrastra el icono de la macro a tu barra de acción y ponle tecla."
+    }
+  ],
+  "aviso": "Los nombres de las habilidades tienen que estar **en el idioma de tu juego**, con sus tildes. Elige aquí el tuyo y todas las macros de la página cambian.",
+  "grupos": [
+    {
+      "titulo": "Macros esenciales",
+      "macros": [
+        {
+          "titulo": "Tiro automático que no se corta",
+          "cat": "Esencial",
+          "tipo": "",
+          "desc": "Si no tienes objetivo, está muerto o es amistoso, coge al enemigo más cercano y empieza [[Tiro automático]]. El **!** hace que pulsarlo otra vez no lo apague: puedes machacar la tecla al cambiar de objetivo sin dejar de disparar.",
+          "tip": "**Consejo:** ponlo en una tecla cómoda y úsalo para abrir cada combate y al cambiar de objetivo.",
+          "en": "#showtooltip\n/targetenemy [noexists][dead][help]\n/cast !Auto Shot",
+          "es": "#showtooltip\n/targetenemy [noexists][dead][help]\n/cast !Tiro automático",
+          "hechizo": "Tiro automático"
+        },
+        {
+          "titulo": "Ataque de mascota (mouseover)",
+          "cat": "Esencial",
+          "tipo": "",
+          "desc": "Manda a la mascota al enemigo que tengas bajo el ratón; si no hay ninguno, a tu objetivo. Sirve para mandarla a un add sin cambiar de objetivo.",
+          "tip": "**Consejo:** con este macro no necesitas la barra de la mascota para atacar.",
+          "en": "#showtooltip\n/petattack [@mouseover,harm,nodead][]",
+          "es": "#showtooltip\n/petattack [@mouseover,harm,nodead][]",
+          "hechizo": "Llamar a mascota"
+        },
+        {
+          "titulo": "Marca del cazador + mascota",
+          "cat": "Esencial",
+          "tipo": "",
+          "desc": "Pone [[Marca del cazador]] a tu objetivo y manda a la mascota a por él en la misma pulsación. Así empiezas cada combate con un solo botón.",
+          "tip": "**Flujo:** marca + mascota → espera a que la mascota coja amenaza → [[Tiro automático]].",
+          "en": "#showtooltip Hunter's Mark\n/petattack [@target,harm,nodead]\n/cast [@target,harm,nodead] Hunter's Mark",
+          "es": "#showtooltip Marca del cazador\n/petattack [@target,harm,nodead]\n/cast [@target,harm,nodead] Marca del cazador",
+          "hechizo": "Marca del cazador"
+        },
+        {
+          "titulo": "Tiro Arcano + mascota",
+          "cat": "Esencial",
+          "tipo": "",
+          "desc": "Lanza [[Tiro Arcano]] y manda a la mascota al mismo objetivo. Útil al cambiar de objetivo: la mascota se va con tu disparo.",
+          "tip": "**Maná:** si vas justo, [[Tiro Arcano]] es lo primero que se quita (mira la pestaña Rotación).",
+          "en": "#showtooltip Arcane Shot\n/petattack [@target,harm,nodead]\n/cast [@target,harm,nodead] Arcane Shot",
+          "es": "#showtooltip Tiro Arcano\n/petattack [@target,harm,nodead]\n/cast [@target,harm,nodead] Tiro Arcano",
+          "hechizo": "Tiro Arcano"
+        }
+      ],
+      "id": "mf-esenciales",
+      "indice": "Esenciales",
+      "intro": "Las cuatro que te recomiendo tener siempre en la barra: abren el combate, mueven a la mascota y no te dejan perder [[Tiro automático]]."
+    },
+    {
+      "titulo": "Macros de daño",
+      "macros": [
+        {
+          "titulo": "Ira de bestias + Fuego rápido",
+          "cat": "CD Principal",
+          "tipo": "",
+          "desc": "Manda a la mascota, activa [[Ira de bestias]] y [[Fuego rápido]] a la vez. Junta tus dos cooldowns grandes en una sola tecla.",
+          "tip": "**Ojo:** úsalo con la mascota ya pegando al objetivo, no mientras corre hacia él.",
+          "en": "#showtooltip Bestial Wrath\n/petattack [@target,harm,nodead]\n/cast [harm,nodead] Bestial Wrath\n/cast [harm,nodead] Rapid Fire",
+          "es": "#showtooltip Ira de bestias\n/petattack [@target,harm,nodead]\n/cast [harm,nodead] Ira de bestias\n/cast [harm,nodead] Fuego rápido",
+          "hechizo": "Ira de bestias"
+        },
+        {
+          "titulo": "Fuego rápido + abalorios",
+          "cat": "CD Principal",
+          "tipo": "",
+          "desc": "Usa tus dos abalorios de activación junto a [[Fuego rápido]].",
+          "tip": "**Huecos:** `13` = primer abalorio · `14` = segundo. Quita la línea del que no sea de activación.",
+          "en": "#showtooltip Rapid Fire\n/use 13\n/use 14\n/cast Rapid Fire",
+          "es": "#showtooltip Fuego rápido\n/use 13\n/use 14\n/cast Fuego rápido",
+          "hechizo": "Fuego rápido"
+        },
+        {
+          "titulo": "Invocar halcón (Ctrl: Tiro Arcano)",
+          "cat": "Daño",
+          "tipo": "",
+          "desc": "Invoca un halcón sobre tu objetivo y manda a la mascota. Si mantienes **Ctrl**, lanza [[Tiro Arcano]] en su lugar. Dos habilidades en una tecla.",
+          "tip": "**Recuerda:** no renueves el halcón mientras aún dura; espera a que esté a punto de irse.",
+          "en": "#showtooltip [mod:ctrl] Arcane Shot; Summon Hawk\n/petattack [@target,harm,nodead]\n/cast [mod:ctrl,@target,harm,nodead] Arcane Shot; [@target,harm,nodead] Summon Hawk",
+          "es": "#showtooltip [mod:ctrl] Tiro Arcano; Invocar halcón\n/petattack [@target,harm,nodead]\n/cast [mod:ctrl,@target,harm,nodead] Tiro Arcano; [@target,harm,nodead] Invocar halcón",
+          "hechizo": "Invocar halcón"
+        },
+        {
+          "titulo": "Intimidación + mascota",
+          "cat": "Control",
+          "tipo": "util",
+          "desc": "Manda a la mascota a tu objetivo y le ordena [[Intimidación]] (aturdimiento). Útil para cortar a un enemigo que va a por ti.",
+          "tip": "**Amenaza:** [[Intimidación]] genera mucha amenaza: va bien para que la mascota recupere al enemigo.",
+          "en": "#showtooltip Intimidation\n/petattack [@target,harm,nodead]\n/cast [harm,nodead] Intimidation",
+          "es": "#showtooltip Intimidación\n/petattack [@target,harm,nodead]\n/cast [harm,nodead] Intimidación",
+          "hechizo": "Intimidación"
+        }
+      ],
+      "id": "mf-dano",
+      "indice": "Daño",
+      "intro": "Juntan tus cooldowns en una sola tecla para que no se te olvide ninguno en la ventana de daño."
+    },
+    {
+      "titulo": "Macros de mascota",
+      "macros": [
+        {
+          "titulo": "Mascota todo en uno",
+          "cat": "Mascota",
+          "tipo": "util",
+          "desc": "Una sola tecla para todo: si la mascota está viva, la cura con [[Sanar mascota]]; si está muerta, la revive con [[Revivir mascota]]; si no la tienes fuera, la llama con [[Llamar a mascota]].",
+          "tip": "**Reinicio:** la secuencia vuelve al principio a los 2 s (`reset=2`).",
+          "en": "#showtooltip\n/use [@pet,nodead,exists] Mend Pet\n/stopmacro [@pet,nodead,exists]\n/use [@pet,dead,exists] Revive Pet\n/castsequence reset=2 Call Pet, Revive Pet",
+          "es": "#showtooltip\n/use [@pet,nodead,exists] Sanar mascota\n/stopmacro [@pet,nodead,exists]\n/use [@pet,dead,exists] Revivir mascota\n/castsequence reset=2 Llamar a mascota, Revivir mascota",
+          "hechizo": "Revivir mascota"
+        },
+        {
+          "titulo": "Sanar mascota (Ctrl: revivir)",
+          "cat": "Mascota",
+          "tipo": "util",
+          "desc": "Cura a la mascota con [[Sanar mascota]]; si mantienes **Ctrl**, usa [[Revivir mascota]]. Más sencillo que el todo en uno.",
+          "tip": "**Consejo:** cura a la mascota entre combates mientras subes: ahorras comida y tiempo.",
+          "en": "#showtooltip\n/cast [mod:ctrl] Revive Pet; Mend Pet",
+          "es": "#showtooltip\n/cast [mod:ctrl] Revivir mascota; Sanar mascota",
+          "hechizo": "Sanar mascota"
+        }
+      ],
+      "id": "mf-mascota",
+      "indice": "Mascota",
+      "intro": "Para tener a la mascota siempre viva y curada sin ir buscando habilidades por la barra."
+    },
+    {
+      "titulo": "Macros de utilidad",
+      "macros": [
+        {
+          "titulo": "Aspecto del halcón en combate, guepardo fuera",
+          "cat": "Utilidad",
+          "tipo": "util",
+          "desc": "Una tecla de aspectos: en combate pone [[Aspecto del halcón]] y fuera de combate [[Aspecto del guepardo]] para moverte más rápido.",
+          "tip": "**Cuidado:** si te pegan con el guepardo puesto te aturden. Cámbialo al entrar en combate.",
+          "en": "#showtooltip\n/cast [combat] Aspect of the Hawk; Aspect of the Cheetah",
+          "es": "#showtooltip\n/cast [combat] Aspecto del halcón; Aspecto del guepardo",
+          "hechizo": "Aspecto del halcón"
+        },
+        {
+          "titulo": "Fingir muerte (Ctrl: recoger mascota)",
+          "cat": "Utilidad",
+          "tipo": "util",
+          "desc": "Corta lo que estés lanzando y usa [[Fingir muerte]] al instante. Con **Ctrl** además hace que la mascota vuelva contigo.",
+          "tip": "**Para qué:** soltar amenaza en banda o salir de un combate que se complica mientras subes.",
+          "en": "#showtooltip Feign Death\n/stopcasting\n/petfollow [mod:ctrl]\n/cast Feign Death",
+          "es": "#showtooltip Fingir muerte\n/stopcasting\n/petfollow [mod:ctrl]\n/cast Fingir muerte",
+          "hechizo": "Fingir muerte"
+        },
+        {
+          "titulo": "Disparo tranquilizante (foco primero)",
+          "cat": "Utilidad",
+          "tipo": "util",
+          "desc": "Corta tu lanzamiento y usa [[Disparo tranquilizante]] en tu foco; si no tienes foco, en tu objetivo. Para quitar el enfurecer a un jefe sin cambiar de objetivo.",
+          "tip": "**Preparación:** selecciona al jefe → escribe `/focus` → el macro siempre irá a él.",
+          "en": "#showtooltip Tranquilizing Shot\n/stopcasting\n/cast [@focus,harm,nodead][@target,harm,nodead] Tranquilizing Shot",
+          "es": "#showtooltip Disparo tranquilizante\n/stopcasting\n/cast [@focus,harm,nodead][@target,harm,nodead] Disparo tranquilizante",
+          "hechizo": "Disparo tranquilizante"
+        },
+        {
+          "titulo": "Trampa congelante (Ctrl: parar y recoger mascota)",
+          "cat": "Control",
+          "tipo": "util",
+          "desc": "Coloca [[Trampa congelante]]. Con **Ctrl** también dejas de atacar y la mascota vuelve contigo, para no romper la trampa.",
+          "tip": "**Flujo típico:** [[Fingir muerte]] → Ctrl + este macro → el enemigo va a por ti y se congela.",
+          "en": "#showtooltip Freezing Trap\n/stopattack [mod:ctrl]\n/petfollow [mod:ctrl]\n/cast Freezing Trap",
+          "es": "#showtooltip Trampa congelante\n/stopattack [mod:ctrl]\n/petfollow [mod:ctrl]\n/cast Trampa congelante",
+          "hechizo": "Trampa congelante"
+        },
+        {
+          "titulo": "Ojo de águila en el cursor",
+          "cat": "Utilidad",
+          "tipo": "util",
+          "desc": "Lanza [[Ojo de águila]] donde tengas el ratón. El **!** te deja volver a usarlo seguido sin que la vista vuelva a tu personaje.",
+          "tip": "**Para qué:** mirar el siguiente grupo o una zona antes de entrar.",
+          "en": "#showtooltip\n/cast [@cursor] !Eagle Eye",
+          "es": "#showtooltip\n/cast [@cursor] !Ojo de águila",
+          "hechizo": "Ojo de águila"
+        }
+      ],
+      "id": "mf-utilidad",
+      "indice": "Utilidad",
+      "intro": "Aspectos, control y escapes: las que más tiempo ahorran mientras subes y en banda."
+    }
+  ]
+}

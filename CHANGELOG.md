@@ -11,10 +11,19 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ## ▶ PRÓXIMO TRABAJO
 - **Antes de publicar el bloque Leveling/General/Talentos/Mascotas (sin commit aún):** Mishuko revisa en local y pasa los datos de bolsas de munición (origen) y la lista de armas por tramo (quitar «En construcción»).
-- Pestañas de Forever Stats, BiS y Consumibles, Macros (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
+- Pestañas de Forever Stats, BiS y Consumibles (quitarles el noindex es automático al crear su `.md`; actualizar `estado` en `realms.ts`).
 - Search Console: pedir indexación de `/forever/coaching/`, `/forever/rotacion/`, `/midnight/bis/`, `/midnight/rotacion/` (límite diario).
 
 ---
+
+## 2026-11-15 — Forever: pestaña Macros
+- `/forever/macros/` con contenido (deja de ser `noindex` y entra en el sitemap al existir `macros.md`). 15 macros en 4 grupos (esenciales, daño, mascota, utilidad), sacadas de guías de Forever (Warcraft Tavern y RankedBoost; sin citarlas en la web, regla de Forever).
+- Diseño del resto de Forever (`lv-*`/`gn-*` + bloque «MACROS» en `forever.css`, clases `mf-*`): cabecera con 4 datos, índice, «Cómo crear una macro» en 4 pasos con icono, caja de idioma y una sección por grupo con tarjetas de 2 columnas (icono de la habilidad con tooltip, etiqueta, código y botón «Copiar» con el estilo dorado de «Guardar imagen» de Talentos: reutiliza `.tc-shot`/`.tc-shot-wrap`; evento GA4 `macro_copiar`). Las tarjetas usan `subgrid` (4 filas: cabecera, texto, código, nota) para que el código quede a la misma altura en cada fila. Texto y nota de las tarjetas sin tooltips (`plano()`: `[[Hechizo]]` → negrita). No usa `.macro-card` de Midnight.
+- Selector **Inglés / Español** del cliente: cada `pre` lleva `data-en` / `data-es` y el script cambia el código de todas (recuerda la elección en `localStorage` `fv-macro-idioma`). Por defecto inglés.
+- Para añadir macros: un bloque más en `src/content/data/forever-macros.json` (`hechizo` = icono; `desc`/`tip` con `[[Hechizo]]` y `` `código` ``; el componente falla el build si un hechizo no está en `spells.json`).
+- Se descarta la franja de donativo Ko-fi (`ApoyoMishuko.astro`, que estaba sin commit): Mishuko no la quiere.
+- `estado` de Forever en `realms.ts` incluye macros. Entrada en `changelog.json`.
+- Archivos: `src/components/forever/MacrosForever.astro`, `src/content/data/forever-macros.json`, `src/content/forever/paginas/macros.md`, `GuideForever.astro`.
 
 ## 2026-11-15 — Forever: «Guardar imagen» de los talentos
 - Botón «Guardar imagen» en la barra de la calculadora (todas las builds: Raid, Leveling con su nivel del deslizador, Calculadora; también en la pestaña Leveling). Descarga un PNG 2160×~1660 (`talentos-forever-<build>-<reparto>.png`) dibujado en canvas (no captura del DOM): 3 árboles con fondos, flechas, iconos y rangos, y el diseño de las stories de TikTok (IDENTIDAD.md: fondo negro verdoso, lima, Barlow Condensed, esquinas cortadas, rayas y logo difuminado): cabecera con logo y «GUÍA HUNTER BM», chip con el nombre de la build, reparto y nivel, pie con botón lima «GUIAHUNTERBM.COM/<ruta>» y @mishuko.wow. Evento GA4 `talentos_imagen`. Botón destacado en dorado (como `.gn-banner__btn`): icono de cámara (SVG en línea), más grande, resplandor dorado (en `.tc-shot-wrap`, porque el `clip-path` recorta el `drop-shadow` del propio botón) y un brillo que lo recorre cada 3 s (sin animación con `prefers-reduced-motion`).
