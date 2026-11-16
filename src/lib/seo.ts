@@ -6,6 +6,9 @@
 import type { GuideRealm } from './tabs';
 import faqMidnight from '../content/data/faq-midnight.json';
 import faqForever from '../content/data/faq-forever.json';
+import top5Mascotas from '../content/data/forever-mascotas-top5.json';
+import fs from 'node:fs';
+import path from 'node:path';
 
 export const SITE = 'https://guiahunterbm.com';
 
@@ -71,13 +74,13 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
   },
   forever: {
     mecanicas: {
-      title: 'Guía Hunter WoW Forever: Cazador de Bestias (BM) | Mishuko',
+      title: 'Guía Hunter BM WoW Forever: Cazador de Bestias',
       description: 'Guía del Hunter BM (Cazador, Dominio de bestias) en WoW Forever: cambios frente a Classic, talentos 31/20/0, mascotas, razas y leveling 1-60.',
       h1sub: 'Cazador de Bestias en WoW Forever',
     },
     talentos: {
-      title: 'Talentos Hunter BM WoW Forever: build 31/20/0 y leveling',
-      description: 'Árbol de talentos del Cazador de Bestias en WoW Forever: build de raid 31/20/0, orden de talentos para subir del 10 al 60 y coste de cada habilidad.',
+      title: 'Mejores talentos Hunter BM WoW Forever: build 31/20/0',
+      description: 'Los mejores talentos del Cazador de Bestias en WoW Forever: build 31/20/0 para raid y mazmorras, orden de talentos para subir del 10 al 60 y coste de cada rango.',
       h1sub: 'Talentos del Cazador de Bestias en WoW Forever',
     },
     estadisticas: {
@@ -86,8 +89,8 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'Estadísticas del Cazador de Bestias en WoW Forever',
     },
     rotacion: {
-      title: 'Rotación Hunter BM WoW Forever: un objetivo y AoE',
-      description: 'Rotación y opener del Cazador de Bestias (Hunter BM) en WoW Forever con Invocar halcón, para un objetivo y para AoE.',
+      title: 'Rotación Hunter BM WoW Forever: opener, un objetivo y AoE',
+      description: 'Rotación del Cazador de Bestias (Hunter BM) en WoW Forever: cómo empezar el combate, prioridades para un objetivo y AoE, Invocar halcón y cooldowns.',
       h1sub: 'Rotación del Cazador de Bestias en WoW Forever',
     },
     bis: {
@@ -96,9 +99,9 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'BiS y consumibles del Cazador de Bestias',
     },
     mascotas: {
-      title: 'Mascotas Hunter WoW Forever: familias y dónde domesticar',
-      description: 'Las 18 familias de mascotas del Cazador en WoW Forever, su habilidad exclusiva y dónde domesticar cada rango para Alianza y Horda.',
-      h1sub: 'Mascotas del Cazador en WoW Forever',
+      title: 'Mejores mascotas Hunter WoW Forever: Top 5 pets del Cazador',
+      description: 'Las 5 mejores pets del Hunter BM en WoW Forever con mapa y coordenadas para domesticarlas, y las 18 familias de mascotas del Cazador con su habilidad.',
+      h1sub: 'Mejores mascotas del Cazador en WoW Forever',
     },
     macros: {
       title: 'Macros Hunter WoW Forever: mascota y disparo automático',
@@ -106,8 +109,8 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'Macros del Cazador en WoW Forever',
     },
     leveling: {
-      title: 'Leveling Hunter WoW Forever 1-60: guía del Cazador',
-      description: 'Guía de leveling 1-60 del Cazador de Bestias en WoW Forever: talentos por nivel, munición y carcaj, mejores mascotas para subir y consejos.',
+      title: 'Guía leveling Hunter WoW Forever 1-60: Cazador de Bestias',
+      description: 'Cómo subir el Cazador del 1 al 60 en WoW Forever: talentos por nivel, mejor munición y flechas, dónde conseguir carcaj y bolsa de munición y mejores pets.',
       h1sub: 'Leveling 1-60 del Cazador en WoW Forever',
     },
     coaching: {
@@ -125,15 +128,23 @@ export const PORTADA: Meta = {
 };
 
 const NOMBRE_VERSION: Record<GuideRealm, string> = { midnight: 'Midnight', forever: 'WoW Forever' };
-const AUTOR = { '@type': 'Person', name: 'Mishuko', url: `${SITE}/` };
+// Autor con sus redes (sameAs): ayuda a Google a saber quién escribe la guía (E-E-A-T)
+const AUTOR = {
+  '@type': 'Person',
+  name: 'Mishuko',
+  url: `${SITE}/`,
+  jobTitle: 'Jugador y creador de contenido de Hunter BM en World of Warcraft',
+  sameAs: ['https://www.youtube.com/@Mishuko-wow', 'https://www.tiktok.com/@mishuko.wow'],
+};
+const SITIO = { '@type': 'WebSite', name: 'Guía Hunter BM', url: `${SITE}/` };
 
 /** JSON-LD de una página de guía: artículo + migas de pan */
-export function guideJsonLd(realm: GuideRealm, tab: string, label: string, dateModified?: string) {
+export function guideJsonLd(realm: GuideRealm, tab: string, label: string, dateModified?: string, datePublished?: string) {
   const meta = SEO[realm][tab];
   const url = `${SITE}${tabPath(realm, tab)}`;
   const crumbs = [
     { '@type': 'ListItem', position: 1, name: 'Guía Hunter BM', item: `${SITE}/` },
-    { '@type': 'ListItem', position: 2, name: `Guía Hunter BM ${NOMBRE_VERSION[realm]}`, item: `${SITE}/${realm}/` },
+    { '@type': 'ListItem', position: 2, name: NOMBRE_VERSION[realm], item: `${SITE}/${realm}/` },
   ];
   if (tab !== 'mecanicas') crumbs.push({ '@type': 'ListItem', position: 3, name: label, item: url });
   return [
@@ -145,15 +156,38 @@ export function guideJsonLd(realm: GuideRealm, tab: string, label: string, dateM
       inLanguage: 'es',
       url,
       mainEntityOfPage: url,
-      image: `${SITE}${OG[realm].image}`,
+      image: ogImagenes(realm, tab).jsonld.map((i) => `${SITE}${i}`),
       author: AUTOR,
       publisher: AUTOR,
+      isPartOf: SITIO,
+      ...(datePublished ? { datePublished } : {}),
       ...(dateModified ? { dateModified } : {}),
       about: ['Hunter Beast Mastery', 'Cazador de Bestias', 'Maestro de bestias', `World of Warcraft ${NOMBRE_VERSION[realm]}`],
     },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs },
     ...(FAQ[realm][tab]?.length ? [faqJsonLd(FAQ[realm][tab])] : []),
+    ...(realm === 'forever' && tab === 'mascotas' ? [top5JsonLd(url)] : []),
   ];
+}
+
+/** Top 5 de mascotas de Forever como lista ordenada (ItemList): Google y su IA entienden el ranking */
+function top5JsonLd(url: string) {
+  const lista = [...top5Mascotas.mascotas].sort((a, b) => a.puesto - b.puesto);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Las 5 mejores mascotas del Cazador (Hunter BM) en WoW Forever',
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    numberOfItems: lista.length,
+    itemListElement: lista.map((m) => ({
+      '@type': 'ListItem',
+      position: m.puesto,
+      name: `${m.nombre} (${m.familia}, nivel ${m.nivel}, ${m.zona})`,
+      description: plano(m.porque),
+      image: `${SITE}/pets/${m.id}.webp`,
+      url: `${url}#pf-top5`,
+    })),
+  };
 }
 
 // ─── Preguntas frecuentes ───
@@ -193,6 +227,7 @@ export const PORTADA_JSONLD = [
     url: `${SITE}/`,
     inLanguage: 'es',
     author: AUTOR,
+    image: ['-1x1.webp', '-4x3.webp', '-16x9.webp'].map((x) => `${SITE}/og/portada${x}`),
     description: 'Guías en español del Hunter BM (Maestro de bestias o Cazador de Bestias) para WoW Midnight y WoW Forever.',
   },
 ];
@@ -202,3 +237,17 @@ export const OG: Record<'portada' | GuideRealm, { image: string; alt: string }> 
   midnight: { image: '/brand/og-image.png', alt: 'Guía Hunter BM de Mishuko — Midnight Temporada 2' },
   forever: { image: '/brand/og-forever.png', alt: 'Guía Hunter BM de Mishuko — WoW Forever' },
 };
+
+/**
+ * Imágenes de una página (las genera scripts/og-images.mjs en public/og/, todo centrado para que el recorte
+ * de la miniatura de Google no corte nada): og = 1200×630 para redes; jsonld = 1:1, 4:3 y 16:9 para Google.
+ * Si falta la de una pestaña, se usa la general de la versión (OG).
+ */
+export function ogImagenes(realm: 'portada' | GuideRealm, tab = 'mecanicas') {
+  const base = realm === 'portada' ? '/og/portada' : `/og/${realm}/${TAB_HOST[tab] ?? (tab || 'mecanicas')}`;
+  const alt = realm === 'portada' ? OG.portada.alt : `${SEO[realm][TAB_HOST[tab] ?? tab]?.h1sub ?? OG[realm].alt} — Guía Hunter BM de Mishuko`;
+  if (!fs.existsSync(path.join(process.cwd(), 'public', `${base}.jpg`))) {
+    return { og: OG[realm].image, jsonld: [OG[realm].image], alt: OG[realm].alt, ancho: 1200, alto: 630 };
+  }
+  return { og: `${base}.jpg`, jsonld: ['-1x1.webp', '-4x3.webp', '-16x9.webp'].map((x) => `${base}${x}`), alt, ancho: 1200, alto: 630 };
+}

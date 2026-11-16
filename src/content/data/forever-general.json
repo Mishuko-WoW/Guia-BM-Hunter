@@ -91,6 +91,6 @@
     { "tab": "leveling", "titulo": "Leveling 1-60", "icono": "inv_misc_map_01", "texto": "Talentos, instructor, mascotas y munición nivel a nivel." },
     { "tab": "talentos", "titulo": "Talentos", "icono": "ability_hunter_bestialdiscipline", "texto": "La build 31/20/0 y el árbol para copiar." },
     { "tab": "rotacion", "titulo": "Rotación", "icono": "ability_hunter_aimedshot", "texto": "Prioridades, inicio del combate y cooldowns." },
-    { "tab": "mascotas", "titulo": "Mascotas", "icono": "ability_hunter_beasttaming", "texto": "Familias, habilidades y dónde domesticar." }
+    { "tab": "mascotas", "titulo": "Mascotas", "icono": "ability_hunter_beasttaming", "texto": "Las 5 mejores pets, familias y dónde domesticar." }
   ]
 }

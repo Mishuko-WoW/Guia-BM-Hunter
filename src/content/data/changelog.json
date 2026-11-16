@@ -1,6 +1,20 @@
 [
   {
     "fecha": "2026-11-16",
+    "pestana": "leveling",
+    "texto": "Dónde conseguir carcaj, bolsa de munición y la mejor munición en",
+    "enlace": "Leveling",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-16",
+    "pestana": "mascotas",
+    "texto": "Preguntas frecuentes sobre la mejor mascota y dónde domesticarla en",
+    "enlace": "Mascotas",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-16",
     "pestana": "mascotas",
     "texto": "Nuevo Top 5 de mejores mascotas en",
     "enlace": "Mascotas",

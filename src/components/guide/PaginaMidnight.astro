@@ -5,7 +5,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
 import { SEO, guideJsonLd } from '../../lib/seo';
 import { TABS_MIDNIGHT } from '../../lib/tabs';
-import { latestChangeDate } from '../../lib/changelog';
+import { latestChangeDate, firstChangeDate } from '../../lib/changelog';
 
 interface Props {
   tab: string;
@@ -47,7 +47,7 @@ const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replac
   defaultTab={tab}
   title={meta.title}
   description={meta.description}
-  jsonLd={guideJsonLd('midnight', tab, label, latestChangeDate(tab === 'mecanicas' ? undefined : tab))}
+  jsonLd={guideJsonLd('midnight', tab, label, latestChangeDate(tab === 'mecanicas' ? undefined : tab), firstChangeDate(tab === 'mecanicas' ? undefined : tab))}
 >
   <GuideContent tab={tab} />
   <script is:inline define:vars={{ buildsData, bossData }}>

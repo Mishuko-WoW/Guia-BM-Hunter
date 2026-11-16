@@ -53,6 +53,18 @@
   ],
   "mascotas": [
     {
+      "pregunta": "¿Cuál es la mejor mascota para el Hunter en WoW Forever?",
+      "respuesta": "**Diente partido**, un felino raro de nivel 37 en las Tierras Inhóspitas: ataca cada **1,0 s** (ninguna otra bestia del mundo abierto lo hace), así que tiene Frenesí casi siempre activo y es la mejor mascota de daño. Completan el Top 5 **El Rastrillo** (felino, nivel 10, Mulgore), **Lupo esclavizante** (lobo, Castillo de Colmillo Oscuro), **Escupetripas** (carroñero, Las Tierras Devastadas) y **Melenaniebla** (oso, Isla de Zephras)."
+    },
+    {
+      "pregunta": "¿Cuál es la mejor pet para subir de nivel con el cazador?",
+      "respuesta": "**El Rastrillo**, un felino raro de nivel 10 en Mulgore: ataca cada **1,2 s** y el felino tiene el +10% de daño, el más alto de las familias. Si no puedes conseguirlo, un **jabalí** del 10 al 30 y cualquier **felino** del 30 al 60."
+    },
+    {
+      "pregunta": "¿Dónde se domestica a Diente partido en WoW Forever?",
+      "respuesta": "En las **Tierras Inhóspitas**, a nivel 37. Tiene tres puntos de aparición: centro-oeste (**43.4, 37.2**), norte (**54.0, 15.8**) y este (**62.2, 31.6**). Es un raro y tarda unas **6-8 horas** en reaparecer, así que mira los tres puntos."
+    },
+    {
       "pregunta": "¿Cuántas familias de mascotas hay en WoW Forever?",
       "respuesta": "**18 familias**, y cada una tiene **una habilidad propia** que ninguna otra puede aprender. Tu mascota puede tener **4 habilidades activas** a la vez y todas las pasivas que quieras."
     },

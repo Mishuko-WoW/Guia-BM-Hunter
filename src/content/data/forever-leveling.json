@@ -2197,16 +2197,28 @@
   },
   "faq": [
     {
-      "p": "¿Cuál es la mejor mascota para subir con el Cazador en WoW Forever?",
-      "r": "Un **jabalí** del nivel 10 al 30 (carga contra el enemigo y come casi de todo) y un **felino** del 30 al 60, que es la mascota con más daño."
+      "p": "¿Cuál es la mejor mascota (pet) para subir el Hunter en WoW Forever?",
+      "r": "Un **jabalí** del nivel 10 al 30 (carga contra el enemigo y come casi de todo) y un **felino** del 30 al 60, que es la familia con más daño. Si quieres la mejor de verdad para empezar, **El Rastrillo** (felino raro de nivel 10 en Mulgore) ataca cada 1,2 s: lo tienes con mapa y coordenadas en el Top 5 de la pestaña Mascotas."
     },
     {
       "p": "¿Qué talentos cojo para subir del 1 al 60?",
       "r": "Vas recto por Dominio de bestias: Aspectos letales a nivel 10, Invocar halcón a nivel 25 e Ira de bestias a nivel 40. Después, Puntería. Tienes el orden nivel a nivel en la calculadora de esta página."
     },
     {
-      "p": "¿Qué munición tengo que usar a cada nivel?",
-      "r": "Flecha basta o Tiro ligero hasta el 10, Flecha afilada o Tiro pesado hasta el 25, Flecha cuchilla o Perdigón sólido hasta el 40 y Flecha dentada o Balas precisas a partir del 40. Todas se compran a vendedores."
+      "p": "¿Cuál es la mejor munición para el cazador en WoW Forever? (flechas y balas)",
+      "r": "Mientras subes, la de vendedor: **Flecha basta** o **Tiro ligero** hasta el 10, **Flecha afilada** o **Tiro pesado** hasta el 25, **Flecha cuchilla** o **Perdigón sólido** hasta el 40 y **Flecha dentada** o **Balas precisas** desde el 40. Al final, las mejores flechas son la **Flecha con punta de torio** (nivel 52, de subasta) y la **Flecha con hielo** (Valle de Alterac); en balas, las **Balas de cañón en miniatura** (nivel 56, Stratholme) y los **Proyectiles de torio** (Ingeniería). Con Ingeniería también tienes balas mejores que las de vendedor desde el nivel 5."
+    },
+    {
+      "p": "¿Dónde consigo un carcaj de cazador en WoW Forever?",
+      "r": "El primero, el **Carcaj ligero** o el **Carcaj pequeño**, se compra a los vendedores de munición desde nivel 1, y a nivel 10 el **Carcaj fino** (10 casillas). Después, los mejores salen de misiones: **Carcaj de caza** (nivel 15, «La venganza de Vyrin»), **Carcaj de la Guardia Nocturna** (nivel 18, «Vigilancia nocturna») y **Carcaj de matriarca** (nivel 35, misión de clase de cazador). Al final: **Carcaj rápido** (nivel 40, Peletería o subasta), **Carcaj de Ribbly** (nivel 50, Profundidades de Roca Negra) y **Carcaj de pellejo de arpía** (nivel 55, Valle de Alterac con reputación Venerado). Tienes la tabla completa por nivel en esta página."
+    },
+    {
+      "p": "¿Dónde consigo una bolsa de munición para arma de fuego (faltriquera)?",
+      "r": "Si usas arma de fuego necesitas una **faltriquera o bandolera de munición** en vez de carcaj. La primera, la **Faltriquera de pólvora pequeña**, se compra a vendedores desde nivel 1. Luego: **Saco de munición de caza** (nivel 15, «La venganza de Vyrin»), **Bandolera de la Guardia Nocturna** (nivel 18, «Vigilancia nocturna»), las faltriqueras de **Peletería** de nivel 30 y 40, la **Bandolera de Ribbly** (nivel 50, Profundidades de Roca Negra) y la **Bandolera de piel de gnoll** (nivel 55, Valle de Alterac, Venerado)."
+    },
+    {
+      "p": "¿Para qué sirve el carcaj o la bolsa de munición del hunter?",
+      "r": "Guarda tu munición y, sobre todo, te da **entre un 10% y un 15% de velocidad de ataque a distancia** según el modelo: más disparos de Tiro automático y más daño. Solo puedes llevar uno, y tiene que ser del tipo de tu arma: **carcaj** para arco y ballesta (flechas) y **faltriquera o bandolera** para arma de fuego (balas)."
     },
     {
       "p": "¿Cuánto oro necesito para el instructor de cazadores?",

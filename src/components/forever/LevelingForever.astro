@@ -98,7 +98,7 @@ const INDICE = [
   { id: 'lv-talentos', texto: 'Talentos' },
   { id: 'lv-mascotas', texto: 'Mascotas' },
   { id: 'lv-consejos', texto: 'Consejos' },
-  { id: 'lv-municion', texto: 'Munición y carcaj' },
+  { id: 'lv-municion', texto: 'Munición, carcaj y bolsas' },
   { id: 'lv-faq', texto: 'Preguntas frecuentes' },
   { id: 'lv-armas', texto: 'Armas (en construcción)' },
 ];
@@ -327,7 +327,7 @@ const familia = (id: string) => {
 
   <!-- MASCOTAS -->
   <section class="lv-sec" id="lv-mascotas">
-    <h3>Mascotas para subir</h3>
+    <h3>Mejores mascotas para subir de nivel</h3>
     <div class="lv-petcards">
       {data.mascotas.recomendadas.map((r) => {
         const f = familia(r.familia);
@@ -378,7 +378,7 @@ const familia = (id: string) => {
   </section>
   <!-- MUNICIÓN -->
   <section class="lv-sec" id="lv-municion">
-    <h3>Munición y carcaj</h3>
+    <h3>Mejor munición, carcaj y bolsa de munición</h3>
     <p class="lv-lead">
       La munición <strong>suma daño a cada disparo</strong>, así que cámbiala en cuanto llegues al nivel. La de vendedor la tienes en
       cualquier pueblo o ciudad. Flechas para arcos y ballestas, balas para armas de fuego: dan exactamente lo mismo.

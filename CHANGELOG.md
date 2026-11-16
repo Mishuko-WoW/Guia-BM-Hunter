@@ -12,9 +12,18 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 ## ▶ PRÓXIMO TRABAJO
 - **Antes de publicar el bloque Leveling/General/Talentos/Mascotas (sin commit aún):** Mishuko revisa en local y pasa los datos de bolsas de munición (origen) y la lista de armas por tramo (quitar «En construcción»).
 - Forever BiS: decidir cuándo publicarla (crear `bis.md`); revisar Stats y BiS cuando haya datos de nivel 60 (raids, simulaciones) y volver a ejecutar `node scripts/gen-forever-objetos.mjs` al añadir objetos.
-- Search Console: pedir indexación de `/forever/coaching/`, `/forever/rotacion/`, `/midnight/bis/`, `/midnight/rotacion/` (límite diario).
+- Search Console: pedir indexación de `/forever/leveling/`, `/forever/rotacion/`, `/forever/mascotas/` (cambió), `/forever/coaching/`, `/midnight/bis/`, `/midnight/rotacion/` (límite diario).
 
 ---
+
+## 2026-11-16 — SEO: imagen propia por pestaña, datos estructurados y búsquedas de Leveling y Mascotas
+- Análisis de Search Console (9-15 nov): Forever trae casi todos los clics; Mascotas con 1.014 impresiones y CTR 1,9 %; Leveling y Rotación de Forever sin impresiones (pendientes de indexar).
+- Imágenes por pestaña: `scripts/og-images.mjs` (reescrito) genera en `public/og/<versión>/<pestaña>` el `.jpg` 1200×630 (og:image/twitter) y `-1x1`/`-4x3`/`-16x9.webp` (JSON-LD, las tres proporciones que pide Google), con todo centrado para que el recorte de la miniatura de Google no corte nada (antes el logo iba a la izquierda y el texto a la derecha). Mascotas de Forever lleva los 5 retratos del Top 5 (el #1 en el centro); Leveling, carcaj/armas; Forever usa iconos HD locales y Midnight el logo. Portada en `public/og/portada*`. `og-image.png`/`og-forever.png` se dejan (respaldo de `OG`).
+- `seo.ts`: `ogImagenes(realm, tab)` (si falta la imagen usa la de la versión); `MainLayout` la usa con `defaultTab`. Article con `image` (3 proporciones), `datePublished` (primera entrada del changelog, `firstChangeDate` en `changelog.ts`), `isPartOf` y autor con `sameAs` (YouTube y TikTok). Mascotas de Forever: `ItemList` del Top 5. Robots: `max-snippet:-1, max-video-preview:-1`.
+- General de Forever: título acortado a «Guía Hunter BM WoW Forever: Cazador de Bestias» (Google lo cortaba en «(B…»). Migas de pan: el 2.º nivel se llama solo «WoW Forever» / «Midnight» (antes «guía hunter bm › guía hunter bm wow forever»).
+- Títulos/descripciones de Forever: Talentos («Mejores talentos…»), Rotación (opener), Mascotas («Mejores mascotas… Top 5 pets del Cazador»), Leveling (munición, flechas, carcaj, bolsa de munición, pets).
+- Preguntas nuevas: Leveling (`forever-leveling.json`: dónde conseguir carcaj, bolsa de munición, para qué sirven, mejor munición, mejor pet para subir) y Mascotas (`faq-forever.json`: mejor mascota, mejor pet para subir, dónde domesticar a Diente partido).
+- Encabezados: «Las 5 mejores mascotas para Hunter BM en WoW Forever» (`MascotasTop5.astro`), «Mejores mascotas para subir de nivel» y «Mejor munición, carcaj y bolsa de munición» (`LevelingForever.astro`); tarjeta de Mascotas en General.
 
 ## 2026-11-16 — Coaching: Ko-fi en «¿Te ha servido la guía?» y etiqueta de Coaching Pro
 - `SeccionCoaching.astro` (Midnight y Forever): la tarjeta «¿Te ha servido la guía?» tiene un tercer punto (apoyar en Ko-fi) y el botón `BotonKofi` debajo de «Escríbeme por Discord» (`.coach-tier__acciones`, evento `kofi_click` con `lugar` = `coaching-<versión>`). Textos retocados a petición de Mishuko.

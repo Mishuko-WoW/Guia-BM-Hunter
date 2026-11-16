@@ -52,3 +52,8 @@ export function formatLong(fecha: string): string {
 export function latestChangeDate(pestana?: string, realm: GuideRealm = 'midnight'): string | undefined {
   return changelogFor(realm).find((e) => !pestana || e.pestana === pestana)?.fecha;
 }
+
+// Fecha (AAAA-MM-DD) del primer cambio anotado (≈ publicación) de una pestaña o de toda la guía
+export function firstChangeDate(pestana?: string, realm: GuideRealm = 'midnight'): string | undefined {
+  return changelogFor(realm).filter((e) => !pestana || e.pestana === pestana).at(-1)?.fecha;
+}
