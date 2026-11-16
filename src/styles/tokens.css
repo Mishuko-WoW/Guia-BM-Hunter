@@ -22,6 +22,10 @@
   --brand-text:  #c3cd7e;   /* textos, títulos y enlaces en verde */
   --brand-fill:  #a7b620;   /* fondos sólidos (botón activo, CTA) */
   --brand-fill-hi: #b9c832;
+  /* Ko-fi: colores de su botón oficial (BotonKofi.astro), iguales en todas las versiones */
+  --kofi:        #ff6433;
+  --kofi-hi:     #ff7a4f;
+  --kofi-heart:  #ff3d3d;
 
   /* Versiones (portada y selector) */
   --realm-midnight: #8f7bff;   /* violeta del logo de Midnight */

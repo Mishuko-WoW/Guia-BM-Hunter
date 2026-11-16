@@ -4,6 +4,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 import { REALMS } from '../lib/realms';
 import { PORTADA, PORTADA_JSONLD, tabPath } from '../lib/seo';
 import { TABS_MIDNIGHT } from '../lib/tabs';
+import BotonKofi from '../components/BotonKofi.astro';
 import '../styles/portada.css';
 
 // Enlaces antiguos guiahunterbm.com/#<pestaña> → su página de Midnight (sin pasar por un 404)
@@ -77,7 +78,7 @@ const RUTAS_MIDNIGHT = Object.fromEntries(TABS_MIDNIGHT.map((t) => [t.id, tabPat
       </p>
     </section>
 
-    <footer class="pt-foot">Guía de apoyo creada por <strong>Mishuko</strong> · guiahunterbm.com</footer>
+    <footer class="pt-foot">Guía de apoyo creada por <strong>Mishuko</strong> · guiahunterbm.com<BotonKofi lugar="portada" class="pt-kofi" /></footer>
   </main>
 
   <script is:inline>

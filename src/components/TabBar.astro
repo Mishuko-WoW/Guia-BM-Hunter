@@ -8,6 +8,7 @@ import { TABS, type GuideRealm } from '../lib/tabs';
 import { tabPath } from '../lib/seo';
 import { REALMS } from '../lib/realms';
 import { iconUrl } from '../lib/spells';
+import BotonKofi from './BotonKofi.astro';
 
 interface Props {
   realm?: GuideRealm;
@@ -109,6 +110,7 @@ const icono = (id: string) => iconUrl(ICONO[id] ?? ICONO.mecanicas);
         </a>
       )}
       <button type="button" class="mk-sheet__close" data-sheet-close>Cerrar</button>
+      <BotonKofi lugar={`menu-movil-${realm}`} class="mk-sheet__kofi" />
     </div>
   </div>
 </div>

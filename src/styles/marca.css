@@ -442,6 +442,50 @@ a.mk-tab[hidden] { display: none; }
 .mk-footer__links a { color: var(--text2); text-decoration: none; box-shadow: inset 0 -1px 0 var(--border2); }
 .mk-footer__links a:hover { color: var(--text); box-shadow: inset 0 -1px 0 var(--brand); }
 
+/* ─── APOYO KO-FI ─── (BotonKofi.astro: footer de las guías y portada)
+   Copia el botón oficial de Ko-fi para que se reconozca de un vistazo: píldora naranja,
+   taza blanca con corazón, texto blanco en negrita y sin mayúsculas. Colores en tokens.css (--kofi*). */
+.mk-kofi {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 46px; padding: 0 22px 0 16px;
+  border-radius: 14px;
+  font: 700 17px/1 "Quicksand", "Nunito", "Segoe UI", system-ui, sans-serif; letter-spacing: 0;
+  text-transform: none; white-space: nowrap;
+  color: #fff; text-decoration: none;
+  background: var(--kofi);
+  box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--kofi) 60%, transparent);
+  transition: background .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease);
+}
+.mk-kofi__taza { flex: none; transition: transform .3s var(--ease-spring); }
+.mk-kofi:hover, .mk-kofi:focus-visible {
+  background: var(--kofi-hi); color: #fff;
+  box-shadow: 0 8px 22px -6px color-mix(in srgb, var(--kofi) 75%, transparent);
+  transform: translateY(-2px);
+}
+.mk-kofi:hover .mk-kofi__taza, .mk-kofi:focus-visible .mk-kofi__taza { transform: rotate(-10deg) scale(1.08); }
+.mk-kofi:active { transform: translateY(0); }
+.mk-kofi:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.mk-footer .mk-kofi { margin-left: auto; }
+.pt-foot .pt-kofi { display: flex; width: max-content; margin: 16px auto 0; }
+@media (max-width: 900px) { .mk-footer .mk-kofi { margin-left: 0; } }
+/* Barra superior: versión pequeña junto al selector Midnight | Forever */
+.mk-realmbar__end { display: flex; align-items: center; gap: 10px; }
+.mk-kofi--mini { min-height: 34px; padding: 0 13px 0 10px; gap: 7px; border-radius: 10px; font-size: 14.5px; }
+.mk-kofi--mini .mk-kofi__taza { width: 24px; height: 18px; }
+@media (prefers-reduced-motion: no-preference) { .mk-kofi--mini:hover, .mk-kofi--mini:focus-visible { transform: translateY(-1px); } }
+@media (max-width: 600px) {
+  .mk-realmbar__end { gap: 8px; }
+  .mk-kofi--mini { min-height: 34px; padding: 0 9px; }
+  .mk-kofi--mini span { display: none; }
+}
+/* Menú móvil: botón grande a todo lo ancho, debajo de Coaching y Cerrar */
+.mk-sheet__kofi { grid-column: 1 / -1; justify-content: center; min-height: 52px; }
+@media (prefers-reduced-motion: reduce) {
+  .mk-kofi, .mk-kofi__taza { transition: none; }
+  .mk-kofi:hover, .mk-kofi:focus-visible,
+  .mk-kofi:hover .mk-kofi__taza, .mk-kofi:focus-visible .mk-kofi__taza { transform: none; }
+}
+
 /* ─── MOVIMIENTO ─── */
 /* Entrada de la página: rápida y sin partir de transparente (cada pestaña es una página nueva,
    así que se ve en cada clic: el contenido tiene que estar legible al instante) */

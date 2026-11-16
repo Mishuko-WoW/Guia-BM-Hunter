@@ -3,6 +3,7 @@
 interface Props {
   version?: 'midnight' | 'forever';
 }
+import BotonKofi from './BotonKofi.astro';
 const { version = 'midnight' } = Astro.props;
 
 const TEXTOS = {
@@ -138,10 +139,14 @@ const TEXTOS = {
           <h3>💬 ¿Te ha servido la guía?</h3>
           <p class="tier-subtitle">Hazme saber si la guía te ha ayudado</p>
           <ul class="coach-check-list">
-            <li><span class="ok">✓</span> Si la guía te ha servido, ¡me alegrarás el día escribiéndome un mensaje!</li>
-            <li><span class="ok">✓</span> Puedes contarme tu experiencia, sugerencias o simplemente saludar</li>
+            <li><span class="ok">✓</span> Si la guía te ha servido, ¡me alegrarías el día escribiéndome un mensaje!</li>
+            <li><span class="ok">✓</span> Puedes contarme tu experiencia o tus sugerencias, o simplemente saludar</li>
+            <li><span class="ok">✓</span> Y si quieres apoyar la guía, puedes invitarme a un café en Ko-fi</li>
           </ul>
-          <a href="https://discordapp.com/users/604762837092532233" target="_blank" rel="noopener noreferrer" class="coach-btn">Escríbeme por Discord</a>
+          <div class="coach-tier__acciones">
+            <a href="https://discordapp.com/users/604762837092532233" target="_blank" rel="noopener noreferrer" class="coach-btn">Escríbeme por Discord</a>
+            <BotonKofi lugar={`coaching-${version}`} />
+          </div>
         </article>
 
         <!-- 2. Coaching Individual -->
@@ -354,10 +359,10 @@ const TEXTOS = {
     transform: translateY(-6px);
   }
   
+  /* Dentro de la tarjeta (antes salía por encima del borde y el recorte de Forever la cortaba) */
   .tier-badge {
-    position: absolute;
-    top: -12px;
-    right: 16px;
+    align-self: flex-start;
+    margin-bottom: 0.9rem;
     padding: 4px 16px;
     border-radius: 999px;
     font-size: 11px;
@@ -368,6 +373,8 @@ const TEXTOS = {
     color: var(--text);
   }
   
+  .coach-tier__acciones { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+  .coach-tier__acciones .coach-btn, .coach-tier__acciones :global(.mk-kofi) { justify-content: center; }
   .coach-tier h3 { margin: 0 0 0.5rem; color: var(--text); font-size: 1.35rem; }
   .tier-subtitle { margin: 0 0 1rem; font-size: 13px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
   

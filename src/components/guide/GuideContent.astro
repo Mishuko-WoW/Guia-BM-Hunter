@@ -15,6 +15,7 @@ import SeccionMacros from '../SeccionMacros.astro';
 import SeccionMascotas from '../SeccionMascotas.astro';
 import SeccionErrores from '../SeccionErrores.astro';
 import SeccionCoaching from '../SeccionCoaching.astro';
+import BotonKofi from '../BotonKofi.astro';
 import { formatLong, latestChangeDate } from '../../lib/changelog';
 import { SEO } from '../../lib/seo';
 
@@ -56,5 +57,6 @@ const lastUpdate = latestChangeDate();
         <a href="/">Inicio</a> · <a href="/forever/">Guía Hunter WoW Forever</a>
       </nav>
     </div>
+    <BotonKofi lugar="footer-midnight" />
   </div>
 </footer>

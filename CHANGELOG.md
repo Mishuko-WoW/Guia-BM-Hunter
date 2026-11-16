@@ -16,6 +16,17 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-16 — Coaching: Ko-fi en «¿Te ha servido la guía?» y etiqueta de Coaching Pro
+- `SeccionCoaching.astro` (Midnight y Forever): la tarjeta «¿Te ha servido la guía?» tiene un tercer punto (apoyar en Ko-fi) y el botón `BotonKofi` debajo de «Escríbeme por Discord» (`.coach-tier__acciones`, evento `kofi_click` con `lugar` = `coaching-<versión>`). Textos retocados a petición de Mishuko.
+- Etiqueta «Popular» de Coaching Pro: ya no va en `position: absolute` con `top: -12px` (en Forever el `clip-path` de la tarjeta la cortaba y salía del recuadro dorado); ahora va dentro, arriba a la izquierda, antes del título.
+
+## 2026-11-16 — Botón de apoyo en Ko-fi
+- Botón discreto «Invítame a un café» → `https://ko-fi.com/mishuko` en el footer de Midnight y Forever (a la derecha; centrado debajo en móvil) y bajo la línea final de la portada. Sustituye a la franja descartada `ApoyoMishuko.astro` (Macros, 2026-11-15): Mishuko quería solo un botón.
+- No se carga el widget de Ko-fi (`Widget_2.js`): enlace propio que copia el botón oficial de Ko-fi para que se reconozca (Mishuko: un botón con los colores de la web pasaba desapercibido). Píldora naranja (`--kofi` en `tokens.css`, igual en todas las versiones), taza blanca con corazón en SVG en línea, texto blanco en negrita sin mayúsculas. Al pasar el ratón se aclara, sube y la taza se inclina (sin movimiento con `prefers-reduced-motion`).
+- También en la barra superior de las guías (versión pequeña «Apóyame» junto al selector Midnight | Forever; en móvil ≤600 px solo la taza) y a todo lo ancho en el menú móvil, debajo de Coaching y Cerrar.
+- Evento GA4 `kofi_click` con `lugar` (`footer-midnight`, `footer-forever`, `portada`, `cabecera-<versión>`, `menu-movil-<versión>`) para ver cuál funciona.
+- Archivos: `src/components/BotonKofi.astro`, `GuideContent.astro`, `GuideForever.astro`, `RealmSwitch.astro`, `TabBar.astro`, `src/pages/index.astro`, bloque «APOYO KO-FI» en `marca.css`, `--kofi*` en `tokens.css`.
+
 ## 2026-11-16 — Forever: retratos en medallón del Top 5 de mascotas
 - Retratos = medallones con las cabezas ilustradas que pasó Mishuko (tira de 5 con aro dorado). Del original solo se toma la ilustración de dentro del aro (r 123,5 px); el aro se dibuja nuevo con SVG (degradado metálico, dorado en la #1 y verde de la marca en el resto, con borde oscuro y brillo interior) más una viñeta interior. Así no hay cortes donde el pelo tapaba el aro original. La tira venía achatada en vertical (aro 135 × 127,5 px): se corrige al recortar. 284 px con transparencia en `public/pets/<id>.webp`.
 - Se probó dejar asomar por encima del aro orejas/melena, pero quedaban puntas sueltas: descartado.

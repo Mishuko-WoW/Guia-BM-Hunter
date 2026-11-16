@@ -1,6 +1,7 @@
 ---
 // Barra superior para cambiar entre Midnight y Forever (y volver a la portada)
 import { REALMS, type RealmId } from '../lib/realms';
+import BotonKofi from './BotonKofi.astro';
 
 interface Props {
   actual: RealmId;
@@ -14,6 +15,7 @@ const { actual } = Astro.props;
       <img src="/brand/mishuko-logo.webp" width="26" height="26" alt="" />
       <span>Mishuko</span>
     </a>
+    <div class="mk-realmbar__end">
     <nav class="mk-realm-switch" aria-label="Versión del juego">
       {REALMS.map((r) => (
         <a
@@ -26,5 +28,7 @@ const { actual } = Astro.props;
         </a>
       ))}
     </nav>
+    <BotonKofi lugar={`cabecera-${actual}`} compacto />
+    </div>
   </div>
 </div>
