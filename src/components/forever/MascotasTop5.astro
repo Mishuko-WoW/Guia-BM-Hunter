@@ -27,7 +27,7 @@ const txt = (s: string) => md(s).replace(/`([^`]+)`/g, '<code>$1</code>');
 const mapaUrl = (z: number | string) => (typeof z === "string" ? z : `https://wow.zamimg.com/images/wow/classic/maps/eses/original/${z}.jpg`);
 const whNpc = (id: number) => `https://www.wowhead.com/forever/es/npc=${id}`;
 const coord = (p: { x: number; y: number }) => `${p.x.toFixed(1)}, ${p.y.toFixed(1)}`;
-// Retrato: miniatura del modelo de Wowhead (public/pets/<id>.webp, de zamimg modelviewer/classicplus/webthumbs)
+// Retrato: cabeza ilustrada de cada bestia (public/pets/<id>.webp, 320 px, fondo transparente)
 const foto = (p: Pet) => `/pets/${p.id}.webp`;
 // Comando de TomTom para copiar: /way <zona> <x> <y> <nombre>
 const way = (p: Pet, q: Pin) => `/way ${p.zona} ${q.x.toFixed(1)} ${q.y.toFixed(1)} ${p.nombre}`;
