@@ -182,11 +182,15 @@ for (const { h } of tarjetas) for (const d of h.doma) for (const b of [d.alianza
       const next = tarjetas[(i + 1) % tarjetas.length].h;
       return (
         <article class={`t5-ficha pf-ficha${propia ? ' pf-ficha--propia' : ''}`} data-pf-ficha={h.id} hidden>
-          <header class="t5-ficha__head pf-ficha__head" data-name={h.nombre} data-type={sub} data-desc={h.desc}>
-            <img src={iconUrl(h.icono)} alt="" width="48" height="48" loading="lazy" />
-            <div>
-              <h4>{h.nombre}</h4>
-              <p>{propia && <span class="pf-lock" aria-hidden="true"></span>}{sub} · {rangosTxt(h)}</p>
+          <header class="t5-ficha__head pf-ficha__head">
+            <!-- El tooltip va solo en icono y nombre: en móvil, bm-guide.js cancela el toque en todo lo que tenga
+                 data-name, y si estuviera en la cabecera la X no cerraría -->
+            <div class="pf-ficha__id" data-name={h.nombre} data-type={sub} data-desc={h.desc}>
+              <img src={iconUrl(h.icono)} alt="" width="48" height="48" loading="lazy" />
+              <div>
+                <h4>{h.nombre}</h4>
+                <p>{propia && <span class="pf-lock" aria-hidden="true"></span>}{sub} · {rangosTxt(h)}</p>
+              </div>
             </div>
             <button type="button" class="t5-x" data-pf-cerrar aria-label="Cerrar ficha"></button>
           </header>
