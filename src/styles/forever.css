@@ -1256,8 +1256,8 @@ pre.mf-code { align-self: start; margin: 0; padding: 12px 14px; overflow-x: auto
 .t5-rank { font: 800 30px/1 var(--font-display); color: var(--brand-text); }
 .t5-card .t5-rank { position: absolute; top: 12px; left: 14px; }
 .t5-card--1 .t5-rank, .t5-ficha--1 .t5-rank { color: var(--gold); }
-/* Retrato: medallón ilustrado (public/pets/<id>.webp, 320 px, fondo transparente). La imagen ya trae el aro dorado
-   abajo y lo que sobresale (orejas, melena, plumas) arriba, así que aquí solo se da tamaño, sombra y el salto al pasar el ratón. */
+/* Retrato: medallón ilustrado (public/pets/<id>.webp, 284 px, transparente). La imagen ya trae el aro (dorado en la #1,
+   verde el resto) y la viñeta, así que aquí solo se da tamaño, sombra y el salto al pasar el ratón. */
 .t5-port { --s: 132px; display: block; flex-shrink: 0; width: var(--s); height: var(--s); }
 .t5-port img { display: block; width: 100%; height: 100%; filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.55)); transform-origin: 50% 100%; transition: transform 0.25s var(--ease), filter 0.25s var(--ease); }
 .t5-card__btn:hover .t5-port img { transform: translateY(-4px) scale(1.04); }
