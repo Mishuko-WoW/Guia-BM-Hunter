@@ -1,0 +1,253 @@
+---
+// Pestaña Mascotas (Forever): «Top 5 mascotas» estilo Pokédex. Tarjetas resumen (#1 → #5) con filtro por rol
+// y una ficha en un <dialog> con Anterior/Siguiente: retrato, mapa de zona con pines, caza, stats de familia,
+// habilidades y por qué es top. Datos: src/content/data/forever-mascotas-top5.json (familias y habilidades de
+// forever-mascotas.json).
+import top from '../../content/data/forever-mascotas-top5.json';
+import data from '../../content/data/forever-mascotas.json';
+import { getSpell, iconUrl } from '../../lib/spells';
+import { md } from '../../lib/markup';
+
+type Pin = { x: number; y: number; etq: string; mx?: number; my?: number }; // mx/my: posición en la imagen si no coincide con las coordenadas (mapa recortado)
+type Pet = (typeof top.mascotas)[number] & { exclusivo?: boolean; zonaNota?: string; puntos?: number[][]; pines: Pin[]; mapa: number | string | null };
+
+const H = data.habilidades as Record<string, { id: string; nombre: string; icono: string; desc: string }>;
+const fam = (id: string) => data.familias.find((f) => f.id === id)!;
+const pets = top.mascotas as Pet[];
+
+// Seguridad: familias, habilidades y [[hechizos]] deben existir
+for (const p of pets) {
+  if (!data.familias.some((f) => f.id === p.familia)) throw new Error(`forever-mascotas-top5.json: familia desconocida «${p.familia}» (${p.nombre})`);
+  for (const h of [...p.viene, ...p.ensenar]) if (!H[h]) throw new Error(`forever-mascotas-top5.json: habilidad desconocida «${h}» (${p.nombre})`);
+}
+const faltan = [...pets.map((p) => p.consejo + p.porque + p.cuando).join(' ').matchAll(/\[\[([^\]|>]+)/g)].map((m) => m[1]).filter((n) => !getSpell(n));
+if (faltan.length) throw new Error(`forever-mascotas-top5.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
+
+const txt = (s: string) => md(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+const mapaUrl = (z: number | string) => (typeof z === "string" ? z : `https://wow.zamimg.com/images/wow/classic/maps/eses/original/${z}.jpg`);
+const whNpc = (id: number) => `https://www.wowhead.com/forever/es/npc=${id}`;
+const coord = (p: { x: number; y: number }) => `${p.x.toFixed(1)}, ${p.y.toFixed(1)}`;
+// Retrato: miniatura del modelo de Wowhead (public/pets/<id>.webp, de zamimg modelviewer/classicplus/webthumbs)
+const foto = (p: Pet) => `/pets/${p.id}.webp`;
+// Comando de TomTom para copiar: /way <zona> <x> <y> <nombre>
+const way = (p: Pet, q: Pin) => `/way ${p.zona} ${q.x.toFixed(1)} ${q.y.toFixed(1)} ${p.nombre}`;
+const ROL = Object.fromEntries(top.roles.map((r) => [r.id, r.texto]));
+const DIETA = (id: string) => fam(id).dieta;
+// Velocidad: golpes por minuto y barra respecto a la más rápida (1.0 s); referencia, una mascota lenta a 2.0 s
+const golpes = (v: string) => Math.round(60 / Number(v));
+const barra = (v: string) => Math.round((1 / Number(v)) * 100);
+// Lo que ya trae al domesticarla no se repite en «Enséñale»
+const aprender = (p: Pet) => p.ensenar.filter((id) => !p.viene.includes(id));
+---
+
+<section class="lv-sec t5" id="pf-top5">
+  <h3>Top 5 mascotas para Cazador de Bestias</h3>
+  <p class="t5-intro">
+    Las cinco mejores mascotas que puedes domesticar en WoW Forever, con <b>dónde están</b>, <b>qué velocidad
+    de ataque tienen</b> y <b>por qué</b>. Pulsa una para ver su ficha completa.
+  </p>
+
+  <div class="t5-filtros" role="group" aria-label="Filtrar por uso">
+    <button type="button" class="t5-filtro is-on" data-t5-rol="todas" aria-pressed="true">Todas</button>
+    {top.roles.map((r) => <button type="button" class="t5-filtro" data-t5-rol={r.id} aria-pressed="false">{r.texto}</button>)}
+  </div>
+
+  <ol class="t5-grid">
+    {pets.map((p) => (
+      <li class={`t5-card t5-card--${p.puesto}`} data-roles={p.roles.join(' ')}>
+        <button type="button" class="t5-card__btn" data-t5-abrir={p.id} aria-haspopup="dialog">
+          <span class="t5-rank">#{p.puesto}</span>
+          <span class="t5-port">
+            <img src={foto(p)} alt="" width="300" height="300" loading="lazy" />
+          </span>
+          <span class="t5-card__name">{p.nombre}</span>
+          <span class="t5-card__meta">{fam(p.familia).nombre} · Nv. {p.nivel} · {p.rareza}</span>
+          <span class="t5-vel"><b>{p.velocidad} s</b> vel. de ataque</span>
+          <span class="t5-card__rol">{p.rol}</span>
+          <span class="t5-card__tags">{p.roles.map((r) => <span>{ROL[r]}</span>)}</span>
+          <span class="t5-card__cta">Ver ficha →</span>
+        </button>
+      </li>
+    ))}
+  </ol>
+  <p class="t5-vacio" hidden>Ninguna mascota del top para ese uso.</p>
+
+  <dialog class="t5-dlg" aria-label="Ficha de mascota">
+    {pets.map((p, i) => {
+      const f = fam(p.familia);
+      const prev = pets[(i + pets.length - 1) % pets.length];
+      const next = pets[(i + 1) % pets.length];
+      return (
+        <article class={`t5-ficha t5-ficha--${p.puesto}`} data-t5-ficha={p.id} hidden>
+          <header class="t5-ficha__head">
+            <span class="t5-rank">#{p.puesto}</span>
+            <div>
+              <h4>{p.nombre}</h4>
+              <p>{f.nombre} · {p.titulo}</p>
+            </div>
+            <button type="button" class="t5-x" data-t5-cerrar aria-label="Cerrar ficha"></button>
+          </header>
+
+          <div class="t5-ficha__body">
+            <!-- Izquierda: identidad, mapa y caza -->
+            <div class="t5-col">
+              <div class="t5-id">
+                <span class="t5-port t5-port--big"><img src={foto(p)} alt={p.nombre} width="300" height="300" loading="lazy" /></span>
+                <div class="t5-id__info">
+                  <div class="t5-id__badges">
+                    <span class={`t5-badge t5-badge--${p.rareza === 'Élite' ? 'elite' : 'raro'}`}>{p.rareza}</span>
+                    <span class="t5-badge">Nivel {p.nivel}</span>
+                    {p.exclusivo && <span class="t5-badge t5-badge--new">Solo en Forever</span>}
+                  </div>
+                  <div class="t5-id__acc">
+                    <button type="button" class="t5-copy t5-tar" data-t5-copiar={`/tar ${p.nombre}`} title="Copiar para pegarlo en el chat del juego"><code>/tar {p.nombre}</code></button>
+                    <a class="t5-3d" href={`${whNpc(p.npc)}#modelviewer`} target="_blank" rel="noopener">Ver modelo 3D</a>
+                  </div>
+                </div>
+              </div>
+
+              <figure class="t5-map">
+                <figcaption><b>{p.zona}</b>{p.zonaNota && <span> · {p.zonaNota}</span>}</figcaption>
+                {p.mapa ? (
+                  <div class="t5-map__img">
+                    <img src={mapaUrl(p.mapa)} alt={`Mapa de ${p.zona}`} width="1002" height="668" loading="lazy" />
+                    {(p.puntos ?? []).map((q) => <span class="t5-dot" style={`left:${q[0]}%;top:${q[1]}%`} aria-hidden="true"></span>)}
+                    {p.pines.map((q) => (
+                      <button type="button" class="t5-pin" style={`left:${q.mx ?? q.x}%;top:${q.my ?? q.y}%`} data-t5-coord={`${q.etq ? q.etq + ': ' : ''}${coord(q)}`} aria-label={`${q.etq || 'Punto'}: ${coord(q)}`}></button>
+                    ))}
+                    {p.pines.length > 0 && <output class="t5-map__out">Toca un punto · copia sus coordenadas abajo</output>}
+                  </div>
+                ) : (
+                  <div class="t5-map__none">
+                    <span class="t5-pin t5-pin--static" aria-hidden="true"></span>
+                    <span>Aún no hay mapa de esta zona en Wowhead. Ve a estas coordenadas:</span>
+                  </div>
+                )}
+                {p.pines.length > 0 ? (
+                  <ul class="t5-coords">
+                    {p.pines.map((q) => <li><button type="button" class="t5-copy" data-t5-copiar={way(p, q)} title={`Copiar «${way(p, q)}» para TomTom`}>{q.etq && <span>{q.etq}</span>}{coord(q)}</button></li>)}
+                  </ul>
+                ) : (
+                  <p class="t5-coords__none">Dentro de la mazmorra, sin coordenadas.</p>
+                )}
+              </figure>
+
+              <div class="t5-caza">
+                <p><span class="t5-lbl">Reaparición</span>{p.respawn}</p>
+                <p set:html={txt(p.consejo)} />
+              </div>
+            </div>
+
+            <!-- Derecha: ficha técnica y análisis -->
+            <div class="t5-col">
+              <div class="t5-speed">
+                <div class="t5-speed__num">
+                  <span class="t5-lbl">Velocidad de ataque</span>
+                  <b>{p.velocidad}<small> s</small></b>
+                </div>
+                <div class="t5-speed__info">
+                  <span class="t5-speed__bar" style={`--w:${barra(p.velocidad)}%`} aria-hidden="true"><i></i></span>
+                  <span class="t5-speed__txt"><b>{golpes(p.velocidad)} golpes por minuto</b> · una mascota a 2.0 s da 30</span>
+                </div>
+              </div>
+              <p class="t5-dieta"><span class="t5-lbl">Dieta</span>{DIETA(p.familia)}</p>
+
+              <div class="t5-habs">
+                <p class="t5-lbl">Te enseña al domesticarla</p>
+                {p.viene.length ? (
+                  <ul>{p.viene.map((id) => (
+                    <li data-name={H[id].nombre} data-type="Se aprende al domesticarla" data-desc={H[id].desc}><img src={iconUrl(H[id].icono)} alt="" width="36" height="36" loading="lazy" />{H[id].nombre}</li>
+                  ))}</ul>
+                ) : <p class="t5-habs__none">Ninguna habilidad nueva: se la enseñas tú.</p>}
+                <p class="t5-lbl">{p.viene.length ? 'Y enséñale también' : 'Enséñale'}</p>
+                <ul>{aprender(p).map((id) => (
+                  <li data-name={H[id].nombre} data-type={id === f.propia ? `Propia · solo ${f.nombre.toLowerCase()}` : 'Habilidad de mascota'} data-desc={H[id].desc} class={id === f.propia ? 'is-propia' : ''}><img src={iconUrl(H[id].icono)} alt="" width="36" height="36" loading="lazy" />{H[id].nombre}</li>
+                ))}</ul>
+              </div>
+
+              <div class="t5-why">
+                <p class="t5-lbl">Por qué es top para Hunter BM</p>
+                <p set:html={txt(p.porque)} />
+                <p class="t5-lbl">Cuándo usarla</p>
+                <p set:html={txt(p.cuando)} />
+              </div>
+            </div>
+          </div>
+
+          <footer class="t5-ficha__nav">
+            <button type="button" class="t5-nav" data-t5-ir={prev.id}>← #{prev.puesto} {prev.nombre}</button>
+            <button type="button" class="t5-nav" data-t5-ir={next.id}>#{next.puesto} {next.nombre} →</button>
+          </footer>
+        </article>
+      );
+    })}
+  </dialog>
+</section>
+
+<script is:inline>
+  (function () {
+    const root = document.getElementById('pf-top5');
+    if (!root) return;
+    const dlg = root.querySelector('.t5-dlg');
+    const fichas = root.querySelectorAll('[data-t5-ficha]');
+    const tip = document.getElementById('tooltip');
+
+    // Filtro por rol
+    const filtros = root.querySelectorAll('[data-t5-rol]');
+    const cards = root.querySelectorAll('.t5-card');
+    const vacio = root.querySelector('.t5-vacio');
+    filtros.forEach((b) => b.addEventListener('click', () => {
+      const rol = b.dataset.t5Rol;
+      filtros.forEach((x) => { const on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on); });
+      let n = 0;
+      cards.forEach((c) => { const ok = rol === 'todas' || c.dataset.roles.split(' ').includes(rol); c.hidden = !ok; if (ok) n++; });
+      if (vacio) vacio.hidden = n > 0;
+    }));
+
+    // Copiar /tar y /way (TomTom) al portapapeles
+    function copiar(b) {
+      const t = b.dataset.t5Copiar;
+      const ok = () => { b.classList.add('is-ok'); clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove('is-ok'), 1400); };
+      const viejo = () => {
+        const a = document.createElement('textarea');
+        a.value = t; a.style.position = 'fixed'; a.style.opacity = '0'; dlg.append(a); a.select();
+        try { document.execCommand('copy'); ok(); } catch (e) {}
+        a.remove();
+      };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(ok, viejo); else viejo();
+    }
+
+    // Ficha
+    function mostrar(id) {
+      fichas.forEach((f) => { f.hidden = f.dataset.t5Ficha !== id; });
+      dlg.scrollTop = 0;
+      if (window.gtag) gtag('event', 'mascota_ficha', { mascota: id });
+    }
+    function abrir(id) {
+      mostrar(id);
+      if (tip) dlg.append(tip); // el tooltip propio tiene que estar dentro del modal para verse encima
+      if (!dlg.open) dlg.showModal();
+    }
+    dlg.addEventListener('close', () => { if (tip) document.body.append(tip); });
+    root.querySelectorAll('[data-t5-abrir]').forEach((b) => b.addEventListener('click', () => abrir(b.dataset.t5Abrir)));
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg || e.target.closest('[data-t5-cerrar]')) return dlg.close();
+      const cp = e.target.closest('[data-t5-copiar]');
+      if (cp) return copiar(cp);
+      const ir = e.target.closest('[data-t5-ir]');
+      if (ir) mostrar(ir.dataset.t5Ir);
+      const pin = e.target.closest('[data-t5-coord]');
+      if (pin) pin.parentElement.querySelector('.t5-map__out').textContent = pin.dataset.t5Coord;
+    });
+    dlg.addEventListener('mouseover', (e) => {
+      const pin = e.target.closest('[data-t5-coord]');
+      if (pin) pin.parentElement.querySelector('.t5-map__out').textContent = pin.dataset.t5Coord;
+    });
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      const vis = [...fichas].find((f) => !f.hidden);
+      const b = vis && vis.querySelectorAll('[data-t5-ir]')[e.key === 'ArrowLeft' ? 0 : 1];
+      if (b) mostrar(b.dataset.t5Ir);
+    });
+  })();
+</script>

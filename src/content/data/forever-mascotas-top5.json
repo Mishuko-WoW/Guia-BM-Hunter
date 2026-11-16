@@ -1,0 +1,641 @@
+{
+  "_ayuda": "Top 5 de mascotas de la pestaña Mascotas de Forever (lo pinta MascotasTop5.astro). Nombres, nivel, zona y coordenadas: Wowhead Forever es-ES (tooltip npc/zone, 2026-11-16). Velocidad de ataque y habilidad que enseña al domesticarla: Petopia Forever (attackspeed.php y abilities.php, 2026-11-16). familia = id de forever-mascotas.json (icono y dieta). viene/ensenar = ids de habilidad de forever-mascotas.json. mapa = id de zona de Wowhead (imagen de zamimg) o null si no hay mapa. pines = puntos principales (x, y en % del mapa); puntos = todos los avistamientos de Wowhead (opcional). Respawn aproximado (no lo da Wowhead).",
+  "roles": [
+    {
+      "id": "leveo",
+      "texto": "Leveo"
+    },
+    {
+      "id": "mazmorras",
+      "texto": "Mazmorras"
+    },
+    {
+      "id": "pvp",
+      "texto": "PvP"
+    },
+    {
+      "id": "aoe",
+      "texto": "Tanqueo AoE"
+    }
+  ],
+  "mascotas": [
+    {
+      "puesto": 1,
+      "id": "diente-partido",
+      "npc": 2850,
+      "nombre": "Diente partido",
+      "titulo": "El rey",
+      "familia": "felino",
+      "nivel": "37",
+      "rareza": "Raro",
+      "zona": "Tierras Inhóspitas",
+      "mapa": 3,
+      "velocidad": "1.0",
+      "roles": [
+        "pvp",
+        "mazmorras",
+        "leveo"
+      ],
+      "rol": "La mascota más rápida del juego: Frenesí casi siempre activo.",
+      "pines": [
+        {
+          "x": 43.4,
+          "y": 37.2,
+          "etq": "Centro-oeste"
+        },
+        {
+          "x": 54,
+          "y": 15.8,
+          "etq": "Norte"
+        },
+        {
+          "x": 62.2,
+          "y": 31.6,
+          "etq": "Este"
+        }
+      ],
+      "puntos": [
+        [
+          25.8,
+          48.6
+        ],
+        [
+          28.2,
+          46.8
+        ],
+        [
+          34.4,
+          42
+        ],
+        [
+          38.6,
+          39.4
+        ],
+        [
+          40.4,
+          36.8
+        ],
+        [
+          40.4,
+          40.4
+        ],
+        [
+          41.8,
+          34.2
+        ],
+        [
+          42.2,
+          37.8
+        ],
+        [
+          43,
+          38.6
+        ],
+        [
+          43.4,
+          36.2
+        ],
+        [
+          43.6,
+          34.2
+        ],
+        [
+          44,
+          35.4
+        ],
+        [
+          44.2,
+          38.8
+        ],
+        [
+          44.4,
+          40.6
+        ],
+        [
+          44.8,
+          38.2
+        ],
+        [
+          45,
+          34.4
+        ],
+        [
+          45.2,
+          39.8
+        ],
+        [
+          45.6,
+          38
+        ],
+        [
+          46.2,
+          32.8
+        ],
+        [
+          46.8,
+          36.2
+        ],
+        [
+          47,
+          33.4
+        ],
+        [
+          48.4,
+          32
+        ],
+        [
+          49,
+          28.8
+        ],
+        [
+          49.4,
+          9.4
+        ],
+        [
+          49.4,
+          30.4
+        ],
+        [
+          50.4,
+          9.6
+        ],
+        [
+          50.8,
+          38.6
+        ],
+        [
+          51,
+          11.6
+        ],
+        [
+          51.6,
+          14
+        ],
+        [
+          52.2,
+          15
+        ],
+        [
+          52.8,
+          28.4
+        ],
+        [
+          53,
+          17.6
+        ],
+        [
+          53.4,
+          13.2
+        ],
+        [
+          53.4,
+          19
+        ],
+        [
+          54,
+          13.2
+        ],
+        [
+          54.2,
+          12
+        ],
+        [
+          54.8,
+          15.4
+        ],
+        [
+          54.8,
+          26.2
+        ],
+        [
+          55.2,
+          17.6
+        ],
+        [
+          55.4,
+          20.6
+        ],
+        [
+          58.2,
+          28.6
+        ],
+        [
+          59.2,
+          27.6
+        ],
+        [
+          60.2,
+          29.4
+        ],
+        [
+          60.8,
+          28.8
+        ],
+        [
+          61.2,
+          31.8
+        ],
+        [
+          61.4,
+          33.8
+        ],
+        [
+          61.8,
+          43
+        ],
+        [
+          62,
+          32.8
+        ],
+        [
+          62.4,
+          29
+        ],
+        [
+          62.6,
+          33.6
+        ],
+        [
+          63,
+          37.8
+        ],
+        [
+          63.6,
+          31.6
+        ],
+        [
+          64.2,
+          31.4
+        ],
+        [
+          66.2,
+          30
+        ],
+        [
+          66.8,
+          31.2
+        ]
+      ],
+      "respawn": "6-8 h (aprox.)",
+      "consejo": "Recorre la zona y no te quedes quieto: se mueve por **tres zonas** (centro-oeste, norte y este). Crea la macro `/tar Diente partido` y pulsa una y otra vez mientras vas de un punto a otro. Necesitas **nivel 37** para domesticarlo.",
+      "viene": [
+        "dash"
+      ],
+      "ensenar": [
+        "bite",
+        "claw",
+        "prowl",
+        "dash"
+      ],
+      "porque": "Pega **cada 1.0 s**: nadie más lo hace en el mundo abierto. Cada golpe es una ocasión de crítico y cada crítico activa [[Frenesí]] (+30% de velocidad de ataque 8 s), así que lo tiene **casi siempre encendido**. Con el +10% de daño del felino, es la mejor mascota de daño.",
+      "cuando": "En **PvP** es la mejor: sus golpes constantes retrasan los lanzamientos de los casters. Y vale para todo: leveo desde el 37, mazmorras y raid."
+    },
+    {
+      "puesto": 2,
+      "id": "el-rastrillo",
+      "npc": 5807,
+      "nombre": "El Rastrillo",
+      "titulo": "Leveo",
+      "familia": "felino",
+      "nivel": "10",
+      "rareza": "Raro",
+      "zona": "Mulgore",
+      "mapa": 215,
+      "velocidad": "1.2",
+      "roles": [
+        "leveo"
+      ],
+      "rol": "Felino rápido desde tu primera mascota, a nivel 10.",
+      "pines": [
+        {
+          "x": 48.4,
+          "y": 17,
+          "etq": ""
+        },
+        {
+          "x": 49.4,
+          "y": 15,
+          "etq": ""
+        },
+        {
+          "x": 49.9,
+          "y": 26.3,
+          "etq": ""
+        },
+        {
+          "x": 51.3,
+          "y": 26.7,
+          "etq": ""
+        },
+        {
+          "x": 51.8,
+          "y": 30.8,
+          "etq": ""
+        }
+      ],
+      "respawn": "1-2 h (aprox.)",
+      "consejo": "Búscalo por el **norte de Mulgore**, al este de Cima del Trueno, entre los puntos del mapa. Puedes domesticarlo **en cuanto aprendas** [[Domesticar bestia]] a nivel 10. Si eres de la Alianza puedes ir, pero es zona de la Horda.",
+      "viene": [],
+      "ensenar": [
+        "bite",
+        "claw",
+        "dash",
+        "prowl"
+      ],
+      "porque": "Felino (+10% de daño, el máximo de las familias) y **1.2 s** de velocidad ya a nivel 10. Más golpes por segundo = más críticos = [[Frenesí]] activo más a menudo en cuanto lo tengas.",
+      "cuando": "Para **subir de nivel** desde el principio. Enséñale [[Mordedura]] y [[Zarpa]] al rango más alto que pueda y [[Acechar]] cuando llegue a su nivel. Úsalo hasta que puedas ir a por Diente partido (nivel 37)."
+    },
+    {
+      "puesto": 3,
+      "id": "lupo-esclavizante",
+      "npc": 3862,
+      "nombre": "Lupo esclavizante",
+      "titulo": "Mazmorras",
+      "familia": "lobo",
+      "nivel": "18-19",
+      "rareza": "Élite",
+      "zona": "Castillo de Colmillo Oscuro",
+      "zonaNota": "Mazmorra (Bosque de Argénteos)",
+      "mapa": 209,
+      "velocidad": "1.2",
+      "roles": [
+        "mazmorras"
+      ],
+      "rol": "El lobo más rápido: Aullido furioso para todo el grupo.",
+      "pines": [],
+      "respawn": "Mazmorra: siempre está",
+      "consejo": "Está **dentro de la mazmorra** (Wowhead no da coordenadas): entra solo o en grupo a nivel 18-19 y domestícalo allí. Si falla o lo matáis, reinicia la mazmorra y vuelve a entrar.",
+      "viene": [],
+      "ensenar": [
+        "furioushowl",
+        "bite",
+        "dash"
+      ],
+      "porque": "Es el lobo con la velocidad más alta (**1.2 s**), así que mantiene [[Frenesí]] y además tiene [[Aullido furioso]]: más poder de ataque cuerpo a cuerpo para tu grupo cercano.",
+      "cuando": "En **mazmorras y raid** con grupos de cuerpo a cuerpo, donde el aullido suma daño a todos. Yendo solo, un felino pega más."
+    },
+    {
+      "puesto": 4,
+      "id": "escupetripas",
+      "npc": 8299,
+      "nombre": "Escupetripas",
+      "titulo": "Supervivencia",
+      "familia": "carronero",
+      "nivel": "52",
+      "rareza": "Raro",
+      "zona": "Las Tierras Devastadas",
+      "mapa": 4,
+      "velocidad": "1.2",
+      "roles": [
+        "aoe",
+        "mazmorras"
+      ],
+      "rol": "Rápido y con Chirrido desmoralizador: aguanta lo que le echen.",
+      "pines": [
+        {
+          "x": 59.4,
+          "y": 36,
+          "etq": "Norte"
+        },
+        {
+          "x": 59.4,
+          "y": 41.4,
+          "etq": "Centro"
+        },
+        {
+          "x": 59.4,
+          "y": 46.6,
+          "etq": "Sur"
+        }
+      ],
+      "puntos": [
+        [
+          54.8,
+          34.6
+        ],
+        [
+          54.8,
+          48
+        ],
+        [
+          57,
+          40
+        ],
+        [
+          57.2,
+          33
+        ],
+        [
+          57.4,
+          45.4
+        ],
+        [
+          57.6,
+          35.4
+        ],
+        [
+          57.8,
+          32.8
+        ],
+        [
+          58,
+          46
+        ],
+        [
+          58.2,
+          36.4
+        ],
+        [
+          58.2,
+          41
+        ],
+        [
+          58.2,
+          42.4
+        ],
+        [
+          58.6,
+          34.6
+        ],
+        [
+          58.8,
+          38
+        ],
+        [
+          58.8,
+          46.4
+        ],
+        [
+          59,
+          37
+        ],
+        [
+          59,
+          44.8
+        ],
+        [
+          59.4,
+          39.4
+        ],
+        [
+          59.4,
+          42.6
+        ],
+        [
+          59.4,
+          44.2
+        ],
+        [
+          59.6,
+          40
+        ],
+        [
+          59.6,
+          47.8
+        ],
+        [
+          59.8,
+          42.4
+        ],
+        [
+          60,
+          34.4
+        ],
+        [
+          60,
+          38.6
+        ],
+        [
+          60,
+          44
+        ],
+        [
+          60,
+          45.8
+        ],
+        [
+          60.2,
+          35
+        ],
+        [
+          60.2,
+          37.4
+        ],
+        [
+          60.4,
+          38.4
+        ],
+        [
+          60.4,
+          43
+        ],
+        [
+          60.6,
+          35.6
+        ],
+        [
+          60.6,
+          37.8
+        ],
+        [
+          60.6,
+          44.6
+        ],
+        [
+          60.8,
+          42
+        ],
+        [
+          61,
+          37.4
+        ],
+        [
+          61,
+          39
+        ],
+        [
+          61,
+          48.2
+        ],
+        [
+          61.4,
+          44.4
+        ],
+        [
+          61.6,
+          35.2
+        ],
+        [
+          61.6,
+          37.6
+        ],
+        [
+          61.8,
+          33.8
+        ],
+        [
+          61.8,
+          36.4
+        ],
+        [
+          62.4,
+          30.4
+        ]
+      ],
+      "respawn": "6-8 h (aprox.)",
+      "consejo": "Vuela de **norte a sur por el este** de Las Tierras Devastadas (entre 55 y 62 de X). Recorre esa franja con `/tar Escupetripas`.",
+      "viene": [
+        "dive"
+      ],
+      "ensenar": [
+        "demoralizingscreech",
+        "bite",
+        "claw",
+        "dive"
+      ],
+      "porque": "Pega a **1.2 s**, así que mantiene [[Frenesí]], y [[Chirrido desmoralizador]] baja el poder de ataque de todos los enemigos cercanos: tu mascota y el tanque reciben menos daño físico. Al domesticarlo te enseña [[Lanzada]] rango 3.",
+      "cuando": "Para **pulls de varios enemigos** y élites que pegan fuerte, y en mazmorras si no hay un guerrero con Rugido desmoralizador (no se acumulan)."
+    },
+    {
+      "puesto": 5,
+      "id": "melenaniebla",
+      "npc": 259388,
+      "nombre": "Melenaniebla",
+      "titulo": "Joya oculta",
+      "familia": "oso",
+      "nivel": "13",
+      "rareza": "Raro",
+      "exclusivo": true,
+      "zona": "Isla de Zephras",
+      "mapa": "/maps/isla-de-zephras.webp",
+      "velocidad": "1.6",
+      "roles": [
+        "aoe",
+        "leveo"
+      ],
+      "rol": "Oso rápido con Flagelo a nivel bajo: perfecto para leveo en área.",
+      "pines": [
+        {
+          "x": 60,
+          "y": 33.3,
+          "etq": "Bajo las Ruinas de Ban'Aethal",
+          "mx": 43.1,
+          "my": 39.5
+        }
+      ],
+      "respawn": "15 min - 1 h",
+      "consejo": "Aparece en **60.0, 33.3** de la Isla de Zephras, justo debajo de las Ruinas de Ban'Aethal (zona nueva de Forever, niveles 1-12). Ve con nivel 13 o más. Varias fuentes afirman que, si eliminas a **varios de los raros de la isla**, aparece más rápido.",
+      "viene": [
+        "swipe"
+      ],
+      "ensenar": [
+        "swipe",
+        "bite",
+        "claw",
+        "dash"
+      ],
+      "porque": "Pega a **1.6 s**, más rápido que la mayoría de osos, y al domesticarlo trae [[Flagelo]]: golpea a la vez a **hasta 3 enemigos cercanos**. Así mantiene la amenaza de varios a la vez y no se te escapan hacia ti.",
+      "cuando": "Para **levear en área** y hacer pulls de varios enemigos a niveles bajos. Solo existe en WoW Forever."
+    }
+  ]
+}

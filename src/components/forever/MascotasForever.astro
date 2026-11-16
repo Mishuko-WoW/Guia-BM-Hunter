@@ -8,11 +8,13 @@ import { getSpell, iconUrl } from '../../lib/spells';
 import { md } from '../../lib/markup';
 import { tabPath } from '../../lib/seo';
 import IndiceForever from './IndiceForever.astro';
+import MascotasTop5 from './MascotasTop5.astro';
 
 // Seguridad: todo [[hechizo]] de los textos debe existir en spells.json
 const faltan = [...JSON.stringify({ ...guia, _ayuda: "" }).matchAll(/\[\[([^\]|>]+)/g)].map((m) => m[1]).filter((n) => !getSpell(n));
 if (faltan.length) throw new Error(`forever-mascotas-guia.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
 const INDICE = [
+  { id: 'pf-top5', texto: 'Top 5 mascotas' },
   { id: 'pf-ensenar', texto: 'Cómo enseñar' },
   { id: 'pf-familias', texto: 'Familias' },
   { id: 'pf-domesticar', texto: 'Dónde domesticar' },
@@ -59,6 +61,8 @@ const tarjetas = [
   <IndiceForever items={INDICE} />
 
   <p class="lv-demo gn-aviso" set:html={md(guia.aviso)} />
+
+  <MascotasTop5 />
 
   <section class="lv-sec" id="pf-ensenar">
     <h3>Cómo enseñar una habilidad a tu mascota</h3>
