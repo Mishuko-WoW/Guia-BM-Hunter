@@ -1,6 +1,8 @@
 ---
 // Pestaña Mascotas (Forever): las 18 familias con su habilidad propia (exclusiva) y dónde domesticar cada
-// habilidad (comunes primero), con un selector Alianza/Horda. Rangos: el más bajo, uno intermedio y el más alto.
+// habilidad (comunes primero) en fichas: tarjetas pequeñas y una ficha por habilidad en un <dialog> (como el Top 5),
+// con selector Alianza/Horda y mapa de cada bestia. Rangos: el más bajo, uno intermedio y el más alto.
+// SEO: las fichas se pintan en el servidor (ocultas); solo el mapa se dibuja con JS (sus datos van en #pf-mapas).
 // Datos: src/content/data/forever-mascotas.json (generado con scripts/gen-forever-mascotas.mjs).
 import data from '../../content/data/forever-mascotas.json';
 import guia from '../../content/data/forever-mascotas-guia.json';
@@ -20,7 +22,7 @@ const INDICE = [
   { id: 'pf-domesticar', texto: 'Dónde domesticar' },
 ];
 
-type Bestia = { npc: number; nombre: string; nivel: string; zona: string; faccionZona: string; otraFaccion: boolean; url: string } | null;
+type Bestia = { npc: number; nombre: string; nivel: string; zona: string; faccionZona: string; otraFaccion: boolean; url: string; mapa?: number | null; zonaMapa?: string | null; puntos?: number[][]; pines?: number[][] } | null;
 type Doma = { rango: number; nivelMascota: number; pi: number; esMax: boolean; alianza: Bestia; horda: Bestia };
 type Hab = { id: string; nombre: string; icono: string; desc: string; rangos: number | null; rangoMaxConFuente: number | null; doma: Doma[] };
 
@@ -39,9 +41,24 @@ const INSTRUCTOR = [
 const ZONA_DE = { A: 'Zona de la Alianza', H: 'Zona de la Horda' } as Record<string, string>;
 
 const tarjetas = [
-  ...comunes.map((h) => ({ h, sub: `Común · ${quienAprende(h.id).length === familias.length ? 'todas las familias' : `${quienAprende(h.id).length} familias`}` })),
-  ...familias.map((f) => ({ h: H[f.propia], sub: `Solo ${f.nombre.toLowerCase()}`, propia: true })),
+  ...comunes.map((h) => ({ h, sub: `Común · ${quienAprende(h.id).length === familias.length ? 'todas las familias' : `${quienAprende(h.id).length} familias`}`, corto: quienAprende(h.id).length === familias.length ? 'Todas las familias' : `${quienAprende(h.id).length} familias`, propia: false })),
+  ...familias.map((f) => ({ h: H[f.propia], sub: `Solo ${f.nombre.toLowerCase()}`, corto: `Solo ${f.nombre.toLowerCase()}`, propia: true })),
 ];
+const GRUPOS = [
+  { titulo: 'Habilidades comunes', items: tarjetas.filter((t) => !t.propia), instructor: true },
+  { titulo: 'Habilidades propias de cada familia', items: tarjetas.filter((t) => t.propia), instructor: false },
+];
+const rangosTxt = (h: Hab) => (h.rangos ? `${h.rangos} ${h.rangos === 1 ? 'rango' : 'rangos'}` : 'Sin datos aún');
+
+// Mapas por NPC: los avistamientos van una sola vez en #pf-mapas (rejilla de 1 punto de mapa para pesar poco);
+// el botón «Ver en el mapa» solo lleva el id del NPC.
+const MAPAS: Record<number, { m: number; n: string; z: string; p: number[][]; q: number[][] }> = {};
+for (const { h } of tarjetas) for (const d of h.doma) for (const b of [d.alianza, d.horda]) {
+  if (!b?.mapa || MAPAS[b.npc]) continue;
+  const vistos = new Set<string>();
+  const p = (b.puntos ?? []).filter(([x, y]) => { const k = `${Math.round(x)},${Math.round(y)}`; return !vistos.has(k) && !!vistos.add(k); });
+  MAPAS[b.npc] = { m: b.mapa, n: b.nombre, z: b.zonaMapa || b.zona, p, q: b.pines ?? [] };
+}
 ---
 
 <div class="lv gn pf" id="pf" data-faccion="a">
@@ -123,71 +140,30 @@ const tarjetas = [
 
   </section>
 
-  <!-- ─── Dónde domesticar ─── -->
-  <section class="lv-sec" id="pf-domesticar">
+  <!-- ─── Dónde domesticar: tarjetas + ficha en <dialog> (estilos y comportamiento del Top 5) ─── -->
+  <section class="lv-sec pf-dom" id="pf-domesticar">
   <h3>Dónde domesticar cada habilidad</h3>
-  <div class="pf-taming-top">
-    <p>
-      Para cada habilidad te pongo la bestia que enseña el <b>rango más bajo</b>, uno <b>intermedio</b> y el
-      <b>más alto</b>. Pulsa su nombre para ver en Wowhead dónde está.
-    </p>
-    <div class="toggle-wrap combat-switch pf-faction" role="group" aria-label="Elegir facción">
-      <button type="button" class="toggle-btn active pf-faction__a" data-pf-faccion="a"><img src={iconUrl('inv_bannerpvp_02')} alt="" width="26" height="26" />Alianza</button>
-      <button type="button" class="toggle-btn pf-faction__h" data-pf-faccion="h"><img src={iconUrl('inv_bannerpvp_01')} alt="" width="26" height="26" />Horda</button>
-    </div>
-  </div>
+  <p class="t5-intro">
+    Pulsa una habilidad para ver qué bestia enseña el <b>rango más bajo</b>, uno <b>intermedio</b> y el
+    <b>más alto</b>, con su zona y su mapa. Dentro de la ficha eliges Alianza u Horda.
+  </p>
 
-  {tarjetas.map(({ h, sub, propia }, i) => (
+  {GRUPOS.map((g) => (
     <>
-      {i === 0 && <h4 class="pf-group">Habilidades comunes</h4>}
-      {i === comunes.length && <h4 class="pf-group">Habilidades propias de cada familia</h4>}
-      <section class="pf-ab" id={`pf-${h.id}`}>
-        <header class="pf-ab__head" data-name={h.nombre} data-type={sub} data-desc={h.desc}>
-          <img src={iconUrl(h.icono)} alt="" width="48" height="48" loading="lazy" />
-          <div>
-            <h5>{h.nombre}</h5>
-            <p class="pf-ab__sub">
-              {propia && <span class="pf-lock" aria-hidden="true"></span>}{sub}{h.rangos ? ` · ${h.rangos} ${h.rangos === 1 ? 'rango' : 'rangos'}` : ''}
-            </p>
-            <p class="pf-ab__desc">{h.desc}</p>
-          </div>
-        </header>
-
-        {h.doma.length ? (
-          <ol class="pf-steps">
-            {h.doma.map((d) => (
-              <li class="pf-step">
-                <div class="pf-step__rank">
-                  <b>Rango {d.rango}</b>
-                  {d.esMax && h.rangos! > 1 && <span class="pf-max">Máximo</span>}
-                  <small>Mascota nv. {d.nivelMascota} · {d.pi} PI</small>
-                </div>
-                {([['a', d.alianza], ['h', d.horda]] as const).map(([k, b]) => (
-                  <div class={`pf-beast pf-beast--${k}`}>
-                    {b ? (
-                      <>
-                        <a href={b.url} target="_blank" rel="noopener">{b.nombre}</a>
-                        <small>Nv. {b.nivel}</small>
-                        <small>{b.zona}</small>
-                        {b.otraFaccion && <span class="pf-warn">{ZONA_DE[b.faccionZona]}</span>}
-                      </>
-                    ) : <small>Sin bestia conocida</small>}
-                  </div>
-                ))}
-              </li>
-            ))}
-            {h.rangos && h.rangoMaxConFuente! < h.rangos && (
-              <li class="pf-step pf-step--unknown">
-                <div class="pf-step__rank"><b>Rango {h.rangoMaxConFuente! + 1}{h.rangos > h.rangoMaxConFuente! + 1 ? `–${h.rangos}` : ''}</b></div>
-                <small>Aún no se sabe qué bestia lo enseña</small>
-              </li>
-            )}
-          </ol>
-        ) : (
-          <p class="pf-ab__none">Todavía no se sabe qué bestias la enseñan.</p>
-        )}
-      </section>
-      {i === comunes.length - 1 && (
+      <h4 class="pf-group">{g.titulo}</h4>
+      <ul class="pf-grid">
+        {g.items.map(({ h, corto, propia }) => (
+          <li class={`pf-card${propia ? ' pf-card--propia' : ''}`} id={`pf-${h.id}`}>
+            <button type="button" class="t5-card__btn pf-card__btn" data-pf-abrir={h.id} aria-haspopup="dialog">
+              <img src={iconUrl(h.icono)} alt="" width="48" height="48" loading="lazy" />
+              <span class="pf-card__name">{h.nombre}</span>
+              <span class="pf-card__meta">{propia && <span class="pf-lock" aria-hidden="true"></span>}{corto}</span>
+              <span class="pf-card__rangos">{rangosTxt(h)}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      {g.instructor && (
         <div class="pf-trainer">
           <span class="pf-trainer__title">Y del instructor de mascotas, sin domesticar nada (todas las familias):</span>
           {INSTRUCTOR.map((t) => (
@@ -199,22 +175,203 @@ const tarjetas = [
       )}
     </>
   ))}
+
+  <dialog class="t5-dlg pf-dlg" aria-label="Dónde domesticar la habilidad">
+    {tarjetas.map(({ h, sub, propia }, i) => {
+      const prev = tarjetas[(i + tarjetas.length - 1) % tarjetas.length].h;
+      const next = tarjetas[(i + 1) % tarjetas.length].h;
+      return (
+        <article class={`t5-ficha pf-ficha${propia ? ' pf-ficha--propia' : ''}`} data-pf-ficha={h.id} hidden>
+          <header class="t5-ficha__head pf-ficha__head" data-name={h.nombre} data-type={sub} data-desc={h.desc}>
+            <img src={iconUrl(h.icono)} alt="" width="48" height="48" loading="lazy" />
+            <div>
+              <h4>{h.nombre}</h4>
+              <p>{propia && <span class="pf-lock" aria-hidden="true"></span>}{sub} · {rangosTxt(h)}</p>
+            </div>
+            <button type="button" class="t5-x" data-pf-cerrar aria-label="Cerrar ficha"></button>
+          </header>
+
+          <div class="pf-ficha__body">
+            <div class="pf-ficha__top">
+              <p class="pf-ficha__desc">{h.desc}</p>
+              <div class="toggle-wrap combat-switch pf-faction" role="group" aria-label="Elegir facción">
+                <button type="button" class="toggle-btn active pf-faction__a" data-pf-faccion="a"><img src={iconUrl('inv_bannerpvp_02')} alt="" width="26" height="26" />Alianza</button>
+                <button type="button" class="toggle-btn pf-faction__h" data-pf-faccion="h"><img src={iconUrl('inv_bannerpvp_01')} alt="" width="26" height="26" />Horda</button>
+              </div>
+            </div>
+
+            {h.doma.length ? (
+              <ol class="pf-steps">
+                {h.doma.map((d) => (
+                  <li class="pf-step">
+                    <div class="pf-step__rank">
+                      <b>Rango {d.rango}</b>
+                      {d.esMax && h.rangos! > 1 && <span class="pf-max">Máximo</span>}
+                      <small>Mascota nv. {d.nivelMascota} · {d.pi} PI</small>
+                    </div>
+                    {([['a', d.alianza], ['h', d.horda]] as const).map(([k, b]) => (
+                      <div class={`pf-beast pf-beast--${k}`}>
+                        {b ? (
+                          <>
+                            <a href={b.url} target="_blank" rel="noopener">{b.nombre}</a>
+                            <small>Nv. {b.nivel}</small>
+                            <small>{b.zona}</small>
+                            {b.otraFaccion && <span class="pf-warn">{ZONA_DE[b.faccionZona]}</span>}
+                            {b.mapa && <button type="button" class="pf-mapbtn" data-pf-npc={b.npc} aria-expanded="false">Ver en el mapa</button>}
+                          </>
+                        ) : <small>Sin bestia conocida</small>}
+                      </div>
+                    ))}
+                  </li>
+                ))}
+                {h.rangos && h.rangoMaxConFuente! < h.rangos && (
+                  <li class="pf-step pf-step--unknown">
+                    <div class="pf-step__rank"><b>Rango {h.rangoMaxConFuente! + 1}{h.rangos > h.rangoMaxConFuente! + 1 ? `–${h.rangos}` : ''}</b></div>
+                    <small>Aún no se sabe qué bestia lo enseña</small>
+                  </li>
+                )}
+              </ol>
+            ) : (
+              <p class="pf-ab__none">Todavía no se sabe qué bestias la enseñan.</p>
+            )}
+            <div class="pf-mapa" hidden></div>
+          </div>
+
+          <footer class="t5-ficha__nav">
+            <button type="button" class="t5-nav" data-pf-ir={prev.id}>← {prev.nombre}</button>
+            <button type="button" class="t5-nav" data-pf-ir={next.id}>{next.nombre} →</button>
+          </footer>
+        </article>
+      );
+    })}
+  </dialog>
+  <script type="application/json" id="pf-mapas" set:html={JSON.stringify(MAPAS)} />
   </section>
 </div>
 
 <script is:inline>
   (function () {
     const root = document.getElementById('pf');
-    if (!root) return;
+    const sec = document.getElementById('pf-domesticar');
+    if (!root || !sec) return;
+
+    // Facción: todos los selectores (uno por ficha) van a la vez; se recuerda en localStorage
     const btns = root.querySelectorAll('[data-pf-faccion]');
     function elegir(f) {
       root.dataset.faccion = f;
       btns.forEach((b) => b.classList.toggle('active', b.dataset.pfFaccion === f));
       try { localStorage.setItem('fv-faccion', f); } catch (e) {}
+      sec.querySelectorAll('.pf-mapa').forEach(cerrarMapa); // el mapa abierto era de la otra facción
     }
     btns.forEach((b) => b.addEventListener('click', () => elegir(b.dataset.pfFaccion)));
     let guardada = null;
     try { guardada = localStorage.getItem('fv-faccion'); } catch (e) {}
     if (guardada === 'a' || guardada === 'h') elegir(guardada);
+
+    const dlg = sec.querySelector('.pf-dlg');
+    const fichas = sec.querySelectorAll('[data-pf-ficha]');
+    const ids = new Set([...fichas].map((f) => f.dataset.pfFicha));
+    let MAPAS = {};
+    try { MAPAS = JSON.parse(document.getElementById('pf-mapas').textContent); } catch (e) {}
+    const tip = () => document.getElementById('tooltip');
+
+    // Mapa de zamimg con avistamientos (puntos) y sitios principales (pines, copian /way para TomTom)
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+    const c1 = (v) => v.toFixed(1);
+    function cerrarMapa(box) {
+      box.hidden = true; box.innerHTML = ''; delete box.dataset.npc;
+      const f = box.closest('[data-pf-ficha]');
+      if (f) f.querySelectorAll('.pf-mapbtn').forEach((b) => { b.setAttribute('aria-expanded', 'false'); b.textContent = 'Ver en el mapa'; });
+    }
+    function verMapa(btn) {
+      const box = btn.closest('[data-pf-ficha]').querySelector('.pf-mapa');
+      const id = btn.dataset.pfNpc;
+      const m = MAPAS[id];
+      const abierto = box.dataset.npc === id;
+      cerrarMapa(box);
+      if (abierto || !m) return;
+      const zona = m.z.includes(' / ') ? '' : m.z + ' '; // TomTom: sin zona usa la actual
+      const way = (q) => '/way ' + zona + c1(q[0]) + ' ' + c1(q[1]) + ' ' + m.n;
+      box.innerHTML =
+        '<figure class="t5-map"><figcaption><b>' + esc(m.n) + '</b> · ' + esc(m.z) + '</figcaption>' +
+        '<div class="t5-map__img"><img src="https://wow.zamimg.com/images/wow/classic/maps/eses/original/' + m.m + '.jpg" alt="Mapa de ' + esc(m.z) + '" width="1002" height="668" />' +
+        m.p.map((q) => '<span class="t5-dot" style="left:' + q[0] + '%;top:' + q[1] + '%" aria-hidden="true"></span>').join('') +
+        m.q.map((q) => '<button type="button" class="t5-pin" style="left:' + q[0] + '%;top:' + q[1] + '%" data-t5-coord="' + c1(q[0]) + ', ' + c1(q[1]) + '" aria-label="Punto: ' + c1(q[0]) + ', ' + c1(q[1]) + '"></button>').join('') +
+        '<output class="t5-map__out">Toca un punto · copia sus coordenadas abajo</output></div>' +
+        '<ul class="t5-coords">' + m.q.map((q) => '<li><button type="button" class="t5-copy" data-t5-copiar="' + esc(way(q)) + '" title="Copiar para TomTom">' + c1(q[0]) + ', ' + c1(q[1]) + '</button></li>').join('') + '</ul></figure>';
+      box.hidden = false; box.dataset.npc = id;
+      btn.setAttribute('aria-expanded', 'true'); btn.textContent = 'Ocultar mapa';
+      box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    // Copiar /way al portapapeles (igual que el Top 5)
+    function copiar(b) {
+      const t = b.dataset.t5Copiar;
+      const ok = () => { b.classList.add('is-ok'); clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove('is-ok'), 1400); };
+      const viejo = () => {
+        const a = document.createElement('textarea');
+        a.value = t; a.style.position = 'fixed'; a.style.opacity = '0'; dlg.append(a); a.select();
+        try { document.execCommand('copy'); ok(); } catch (e) {}
+        a.remove();
+      };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(ok, viejo); else viejo();
+    }
+
+    // Ficha: el ancla #pf-<id> sigue a la ficha abierta (para compartirla)
+    function mostrar(id) {
+      fichas.forEach((f) => { const on = f.dataset.pfFicha === id; f.hidden = !on; if (!on) cerrarMapa(f.querySelector('.pf-mapa')); });
+      dlg.scrollTop = 0;
+      try { history.replaceState(null, '', '#pf-' + id); } catch (e) {}
+      if (window.gtag) gtag('event', 'domesticar_ficha', { habilidad: id });
+    }
+    function abrir(id) {
+      mostrar(id);
+      const t = tip();
+      if (t) dlg.append(t); // el tooltip propio tiene que estar dentro del modal para verse encima
+      if (!dlg.open) dlg.showModal();
+    }
+    // Al cerrar (botón, fondo o Esc): devolver el tooltip y quitar el #pf-<id> de la URL. Se llama también a mano
+    // porque el evento close puede tardar (p. ej. con la pestaña en segundo plano).
+    function limpiar() {
+      const t = tip();
+      if (t && t.parentElement === dlg) document.body.append(t);
+      if (ids.has(decodeURIComponent(location.hash.slice(4)))) try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    }
+    const cerrar = () => { dlg.close(); limpiar(); };
+    dlg.addEventListener('close', limpiar);
+    sec.querySelectorAll('[data-pf-abrir]').forEach((b) => b.addEventListener('click', () => abrir(b.dataset.pfAbrir)));
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg || e.target.closest('[data-pf-cerrar]')) return cerrar();
+      const cp = e.target.closest('[data-t5-copiar]');
+      if (cp) return copiar(cp);
+      const mb = e.target.closest('[data-pf-npc]');
+      if (mb) return verMapa(mb);
+      const ir = e.target.closest('[data-pf-ir]');
+      if (ir) return mostrar(ir.dataset.pfIr);
+      const pin = e.target.closest('[data-t5-coord]');
+      if (pin) pin.parentElement.querySelector('.t5-map__out').textContent = pin.dataset.t5Coord;
+    });
+    dlg.addEventListener('mouseover', (e) => {
+      const pin = e.target.closest('[data-t5-coord]');
+      if (pin) pin.parentElement.querySelector('.t5-map__out').textContent = pin.dataset.t5Coord;
+    });
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      const vis = [...fichas].find((f) => !f.hidden);
+      const b = vis && vis.querySelectorAll('[data-pf-ir]')[e.key === 'ArrowLeft' ? 0 : 1];
+      if (b) mostrar(b.dataset.pfIr);
+    });
+
+    // Anclas #pf-<habilidad> (enlaces antiguos y los de las tarjetas de familia): abren su ficha
+    const idDe = (h) => (h && h.startsWith('#pf-') ? decodeURIComponent(h.slice(4)) : '');
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a[href^="#pf-"]');
+      if (!a || !ids.has(idDe(a.getAttribute('href')))) return;
+      e.preventDefault();
+      abrir(idDe(a.getAttribute('href')));
+    });
+    const desdeHash = () => { const id = idDe(location.hash); if (ids.has(id)) abrir(id); };
+    window.addEventListener('hashchange', desdeHash);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', desdeHash); else desdeHash();
   })();
 </script>

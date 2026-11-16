@@ -313,9 +313,44 @@
 .pf-excl { display: inline-flex; align-items: center; color: var(--brand-text); font: 700 12px/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; }
 .pf-diet { color: var(--text3); }
 
-/* Dónde domesticar */
-.pf-taming-top { display: grid; gap: 14px; justify-items: center; text-align: center; margin-bottom: 8px; }
-.pf-taming-top p { margin: 0; max-width: 720px; color: var(--text2); }
+/* Dónde domesticar: tarjetas pequeñas + ficha en <dialog> (reusa .t5-card__btn, .t5-dlg, .t5-ficha__*, .t5-map, .t5-copy) */
+.pf-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 10px; }
+.pf-card { scroll-margin-top: 90px; }
+.pf-card__btn { gap: 6px; padding: 14px 10px 12px; align-content: start; }
+.pf-card__btn img { width: 48px; height: 48px; border-radius: 6px; box-shadow: 0 0 0 1px var(--border2); }
+.pf-card__name { font: 700 18px/1.15 var(--font-display); letter-spacing: 0.03em; color: var(--text); }
+.pf-card__meta { display: inline-flex; align-items: center; font: 700 12.5px/1.2 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-text); }
+.pf-card__rangos { font-size: 14.5px; color: var(--text3); }
+.pf-card--propia .pf-card__btn { background: linear-gradient(180deg, color-mix(in srgb, var(--gold) 9%, var(--card)), var(--card) 60%); }
+.pf-card:target .pf-card__btn { box-shadow: inset 0 0 0 1px var(--brand); }
+.pf-dom .pf-trainer { margin-top: 12px; }
+.pf-dlg { width: min(900px, calc(100vw - 32px)); }
+.pf-ficha__head { cursor: help; }
+.pf-ficha__head img { width: 48px; height: 48px; flex-shrink: 0; border-radius: 6px; box-shadow: 0 0 0 1px var(--border2); }
+.pf-ficha__head p { display: flex; align-items: center; }
+.pf-ficha__head .pf-lock { color: var(--gold); }
+.pf-ficha__body { display: grid; gap: 14px; padding: 14px 18px; }
+.pf-ficha__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
+.pf-ficha__desc { flex: 1 1 320px; margin: 0; font-size: 16px; line-height: 1.5; color: var(--text2); }
+.pf-ficha .pf-steps { margin-top: 0; }
+.pf-mapbtn {
+  justify-self: start; margin-top: 6px; padding: 7px 12px; cursor: pointer; border: 0;
+  font: 700 13px/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--brand-text); background: var(--bg4); clip-path: var(--clip-btn); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 45%, transparent);
+}
+.pf-mapbtn:hover, .pf-mapbtn:focus-visible { color: var(--text); outline: none; box-shadow: inset 0 0 0 1px var(--brand); }
+.pf-mapbtn[aria-expanded="true"] { color: var(--brand-ink); background: var(--brand-fill); }
+.pf-mapa[hidden] { display: none; }
+.pf-mapa .t5-map__img { max-width: 680px; margin-inline: auto; }
+.pf-mapa figcaption, .pf-mapa .t5-coords { justify-content: center; text-align: center; }
+@media (max-width: 760px) {
+  .pf-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); }
+  .pf-ficha__body { padding: 14px; }
+  .pf-dlg .t5-x { width: 44px; height: 44px; }
+  .pf-dlg .t5-x::before, .pf-dlg .t5-x::after { top: 21px; left: 12px; right: 12px; }
+  .pf-dlg .t5-nav, .pf-mapbtn, .pf-dlg .t5-copy { min-height: 44px; }
+  .pf-mapbtn { font-size: 14px; }
+}
 .pf-faction .toggle-btn { min-width: 130px; }
 .pf-faction .toggle-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
 .pf-faction .toggle-btn img { width: 26px; height: 26px; border-radius: 4px; }
@@ -329,17 +364,6 @@
   margin: 26px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
   font: 700 15px/1 var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-text);
 }
-.pf-ab {
-  margin-bottom: 14px; padding: 18px 20px;
-  background: var(--card); clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border);
-  scroll-margin-top: 80px;
-}
-.pf-ab:target { box-shadow: inset 0 0 0 1px var(--brand); }
-.pf-ab__head { display: flex; align-items: flex-start; gap: 14px; cursor: help; }
-.pf-ab__head img { width: 48px; height: 48px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 0 0 1px var(--border2); }
-.pf-ab__head h5 { margin: 0; font: 700 20px/1.15 var(--font-display); letter-spacing: 0.03em; color: var(--text); }
-.pf-ab__sub { display: flex; align-items: center; margin: 4px 0 0; font: 700 12.5px/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-text); }
-.pf-ab__desc { margin: 8px 0 0; font-size: 16px; color: var(--text2); }
 
 /* Rangos como pasos */
 .pf-steps {
@@ -387,7 +411,6 @@
 @media (max-width: 600px) {
   .pf-rule { flex-direction: column; align-items: flex-start; gap: 14px; padding: 16px; }
   .pf-rule p { font-size: 16px; }
-  .pf-ab { padding: 14px; }
   .pf-steps { grid-template-columns: 1fr; }
 }
 

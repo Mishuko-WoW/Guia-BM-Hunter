@@ -5,6 +5,10 @@
 // Uso: node scripts/gen-forever-mascotas.mjs
 // - Rangos y bestias: Petopia Forever (wow-petopia.com/forever/abilities.php).
 // - Nombres de bestias y zonas en español: tooltips de Wowhead Forever (es-ES).
+// - Mapa de cada bestia: el mismo tooltip de Wowhead trae `map.zone` (id de mapa de zamimg) y `map.coords`
+//   (avistamientos). Se guardan como `mapa`, `puntos` (avistamientos, sin repetidos) y `pines` (hasta 3 sitios
+//   principales, para copiar con /way). Sin mapa (mazmorras, zonas sin imagen en zamimg) → `mapa: null`.
+// - Va despacio a propósito (una petición a Wowhead cada ~0,6 s, con caché por NPC y zona) para no agobiarles.
 // - Familias, nombres de habilidades en español y descripciones: comprobados en Wowhead Forever (es) para el
 //   vídeo 3 del proyecto TikTok (guion 2026-11-16_habilidad-familia.md). Ojo: la habilidad del murciélago
 //   (Explosión sónica) no está en Petopia, solo en Wowhead.
@@ -81,7 +85,7 @@ const ZONA_ID = {
   'Blackfathom Deeps (Dungeon)': 719, 'Blackrock Depths (Dungeon)': 1584, 'Blackrock Spire (Dungeon)': 1583,
   'Blasted Lands': 4, 'Burning Steppes': 46, Darkshore: 148, Desolace: 405, 'Dun Morogh': 1, Durotar: 14,
   Duskwood: 10, 'Dustwallow Marsh': 15, 'Eastern Plaguelands': 139, 'Elwynn Forest': 12, Felwood: 361,
-  Feralas: 357, 'Hillsbrad Foothills': 267, 'Loch Modan': 38, Mulgore: 215, 'Razorfen Kraul (Dungeon)': 491,
+  Feralas: 357, 'Hillsbrad Foothills': 267, 'Loch Modan': 38, Moonglade: 493, Mulgore: 215, 'Razorfen Kraul (Dungeon)': 491,
   'Redridge Mountains': 44, 'Scarlet Monastery (Dungeon)': 796, 'Searing Gorge': 51, Silithus: 1377,
   'Silverpine Forest': 130, 'Stonetalon Mountains': 406, 'Stormwind City': 1519, 'Stranglethorn Vale': 33,
   'Swamp of Sorrows': 8, Tanaris: 440, Teldrassil: 141, 'The Barrens': 17, 'The Hinterlands': 47,
@@ -122,13 +126,58 @@ for (const s of html.split(/<h3 class='guide_heading[^']*' id='/).slice(1)) {
 
 // ─── Wowhead (es): nombre de bestia y zona ───
 const cacheZona = {};
+const PAUSA = 600; // ms entre peticiones a Wowhead/zamimg
+const dormir = (ms) => new Promise((res) => setTimeout(res, ms));
 async function json(url) {
   for (let i = 0; i < 3; i++) {
+    await dormir(PAUSA * (i + 1));
     const r = await fetch(url, { headers: UA });
     if (r.ok) return r.json();
-    await new Promise((res) => setTimeout(res, 700));
   }
   return null;
+}
+const cacheNpc = {};
+const tooltipNpc = async (id) => (id in cacheNpc ? cacheNpc[id] : (cacheNpc[id] = await json(`https://nether.wowhead.com/forever/tooltip/npc/${id}?locale=6`)));
+// ¿Tiene zamimg imagen de ese mapa? (una comprobación por zona)
+const cacheMapa = {};
+async function hayMapa(zona) {
+  if (zona in cacheMapa) return cacheMapa[zona];
+  await dormir(PAUSA);
+  const r = await fetch(`https://wow.zamimg.com/images/wow/classic/maps/eses/original/${zona}.jpg`, { method: 'HEAD', headers: UA }).catch(() => null);
+  return (cacheMapa[zona] = !!r?.ok && /image/.test(r.headers.get('content-type') || ''));
+}
+// Avistamientos → puntos sin repetidos (rejilla de 0,5) y hasta 3 pines (centros de grupos, ajustados al avistamiento más cercano)
+const d2 = (a, b) => (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2;
+function pinesDe(puntos) {
+  if (puntos.length <= 3) return puntos;
+  const c = [puntos[0]];
+  while (c.length < 3) c.push(puntos.reduce((m, p) => (Math.min(...c.map((q) => d2(p, q))) > Math.min(...c.map((q) => d2(m, q))) ? p : m)));
+  let centros = c.map((p) => [...p]);
+  for (let it = 0; it < 15; it++) {
+    const g = centros.map(() => []);
+    for (const p of puntos) g[centros.reduce((k, q, i) => (d2(p, q) < d2(p, centros[k]) ? i : k), 0)].push(p);
+    centros = g.map((ps, i) => (ps.length ? [ps.reduce((s, p) => s + p[0], 0) / ps.length, ps.reduce((s, p) => s + p[1], 0) / ps.length] : centros[i]));
+  }
+  const pines = [];
+  for (const q of centros) {
+    const p = puntos.reduce((m, x) => (d2(x, q) < d2(m, q) ? x : m));
+    if (pines.every((y) => d2(y, p) > 36)) pines.push(p); // grupos a menos de 6 puntos de mapa = el mismo sitio
+  }
+  return pines;
+}
+async function mapaDe(t, mazmorra) {
+  const m = t?.map;
+  const coords = m?.coords && Object.values(m.coords)[0];
+  if (mazmorra || !m?.zone || !coords?.length || !(await hayMapa(m.zone))) return { mapa: null, zonaMapa: null, puntos: [], pines: [] };
+  const vistos = new Set();
+  const puntos = [];
+  for (const [x, y] of coords) {
+    const k = `${Math.round(x * 2)},${Math.round(y * 2)}`;
+    if (!vistos.has(k)) { vistos.add(k); puntos.push([x, y]); }
+  }
+  // Nombre del mapa (puede no ser la zona de Petopia: p. ej. Trabalomas en Petopia y el NPC en Alterac); lo usa /way
+  if (!(m.zone in cacheZona)) cacheZona[m.zone] = (await json(`https://nether.wowhead.com/forever/tooltip/zone/${m.zone}?locale=6`))?.name ?? null;
+  return { mapa: m.zone, zonaMapa: cacheZona[m.zone], puntos, pines: pinesDe(puntos) };
 }
 // Zona en español: cada zona de Petopia (puede ser "A; B") por su id de Wowhead; si no hay id, se deja tal cual
 async function zonaEs(zonaPetopia) {
@@ -144,15 +193,16 @@ async function zonaEs(zonaPetopia) {
 
 async function bestia(n, faccion) {
   if (!n) return null;
-  const t = await json(`https://nether.wowhead.com/forever/tooltip/npc/${n.id}?locale=6`);
+  const t = await tooltipNpc(n.id);
   return {
     npc: n.id,
-    nombre: t?.name || n.en,
+    nombre: (t?.name || n.en).replace(/^\[(.*)\]$/, '$1'), // [Nombre] = Wowhead aún no lo tiene en español
     nivel: n.nivel,
     zona: await zonaEs(n.zona),
     faccionZona: ZONA_FACCION[n.zona] ?? (esMazmorra(n.zona) ? 'M' : 'C'),
     otraFaccion: (ZONA_FACCION[n.zona] ?? faccion) !== faccion,
     url: `https://www.wowhead.com/forever/es/npc=${n.id}`,
+    ...(await mapaDe(t, esMazmorra(n.zona))),
   };
 }
 
@@ -196,6 +246,6 @@ const familias = FAMILIAS.map((f) => ({
 
 fs.writeFileSync(
   OUT,
-  JSON.stringify({ fuente: 'Petopia Forever + Wowhead Forever (es-ES), 2026-11-13', familias, comunes: COMUNES, habilidades }, null, 2) + '\n',
+  JSON.stringify({ fuente: `Petopia Forever + Wowhead Forever (es-ES), ${new Date().toISOString().slice(0, 10)}`, familias, comunes: COMUNES, habilidades }, null, 2) + '\n',
 );
 console.log('Escrito', OUT);
