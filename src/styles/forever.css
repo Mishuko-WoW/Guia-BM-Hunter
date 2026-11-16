@@ -1256,23 +1256,12 @@ pre.mf-code { align-self: start; margin: 0; padding: 12px 14px; overflow-x: auto
 .t5-rank { font: 800 30px/1 var(--font-display); color: var(--brand-text); }
 .t5-card .t5-rank { position: absolute; top: 12px; left: 14px; }
 .t5-card--1 .t5-rank, .t5-ficha--1 .t5-rank { color: var(--gold); }
-/* Retrato: cabeza ilustrada (public/pets/<id>.webp, fondo transparente) que asoma por encima del círculo.
-   La caja es más alta que el círculo y solo redondea abajo: el círculo recorta el busto y la cabeza sale por arriba.
-   ::after = mitad inferior del aro por delante del busto (efecto de atravesarlo). */
-.t5-port {
-  --s: 116px; --aro: color-mix(in srgb, var(--brand) 70%, transparent); --halo: color-mix(in srgb, var(--brand) 24%, var(--bg3));
-  position: relative; display: block; flex-shrink: 0; width: var(--s); height: calc(var(--s) * 1.28);
-  border-radius: 0 0 calc(var(--s) / 2) calc(var(--s) / 2); overflow: hidden;
-}
-.t5-port::before, .t5-port::after { content: ''; position: absolute; left: 0; bottom: 0; width: var(--s); height: var(--s); border-radius: 50%; }
-.t5-port::before { background: radial-gradient(circle at 50% 62%, var(--halo), var(--bg3) 72%); box-shadow: inset 0 0 0 2px var(--aro); }
-.t5-port::after { z-index: 2; box-shadow: inset 0 0 0 2px var(--aro); clip-path: inset(62% 0 0 0); }
-.t5-port img {
-  position: absolute; z-index: 1; left: 50%; bottom: 0; width: calc(var(--s) * 1.1); height: auto; transform: translateX(-50%);
-  filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.6)); transform-origin: 50% 100%; transition: transform 0.25s var(--ease);
-}
-.t5-card__btn:hover .t5-port img { transform: translateX(-50%) translateY(-3px) scale(1.05); }
-.t5-card--1 .t5-port, .t5-ficha--1 .t5-port { --aro: var(--gold); --halo: color-mix(in srgb, var(--gold) 28%, var(--bg3)); }
+/* Retrato: medallón ilustrado (public/pets/<id>.webp, 320 px, fondo transparente). La imagen ya trae el aro dorado
+   abajo y lo que sobresale (orejas, melena, plumas) arriba, así que aquí solo se da tamaño, sombra y el salto al pasar el ratón. */
+.t5-port { --s: 132px; display: block; flex-shrink: 0; width: var(--s); height: var(--s); }
+.t5-port img { display: block; width: 100%; height: 100%; filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.55)); transform-origin: 50% 100%; transition: transform 0.25s var(--ease), filter 0.25s var(--ease); }
+.t5-card__btn:hover .t5-port img { transform: translateY(-4px) scale(1.04); }
+.t5-card--1 .t5-port img, .t5-ficha--1 .t5-port img { filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.55)) drop-shadow(0 0 14px color-mix(in srgb, var(--gold) 40%, transparent)); }
 .t5-card__name { font: 700 22px/1.1 var(--font-display); letter-spacing: 0.03em; color: var(--text); }
 .t5-card__meta { font-size: 15px; color: var(--text3); }
 .t5-vel { padding: 5px 10px; font-size: 14px; color: var(--text2); background: var(--bg3); border-radius: 4px; box-shadow: inset 0 0 0 1px var(--border2); }
@@ -1316,7 +1305,7 @@ pre.mf-code { align-self: start; margin: 0; padding: 12px 14px; overflow-x: auto
 .t5-id__info { display: grid; gap: 8px; min-width: 0; }
 .t5-id__badges { display: flex; flex-wrap: wrap; gap: 6px; }
 .t5-id__acc { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
-.t5-port--big { --s: 80px; height: calc(var(--s) * 1.25); }
+.t5-port--big { --s: 100px; }
 
 /* Textos que se copian al pulsar (/tar y /way): pinta de comando del juego, con aviso «Copiado» */
 .t5-copy {
@@ -1416,7 +1405,7 @@ pre.mf-code { align-self: start; margin: 0; padding: 12px 14px; overflow-x: auto
   .t5-ficha__body { padding: 12px 18px; }
   .t5-ficha__head h4 { font-size: 23px; }
   .t5-ficha__head p { font-size: 13.5px; }
-  .t5-port--big { --s: 64px; }
+  .t5-port--big { --s: 80px; }
   .t5-id__info { gap: 6px; }
   .t5-caza p, .t5-why p:not(.t5-lbl), .t5-dieta { font-size: 14.5px; line-height: 1.45; margin-bottom: 6px; }
   .t5-speed__num b { font-size: 42px; }

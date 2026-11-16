@@ -16,9 +16,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
-## 2026-11-16 — Forever: retratos ilustrados del Top 5 de mascotas
-- Las miniaturas del modelo se sustituyen por cabezas ilustradas (hechas con Gemini por Mishuko, estilo WoW clásico): una hoja con las 5, recortada y sin fondo blanco con un script de relleno desde los bordes (más una mancha amarilla junto a la oreja de Diente partido), 320 px, en `public/pets/<id>.webp`.
-- Efecto «sale del círculo»: `.t5-port` es más alta que el círculo y solo redondea abajo (`overflow: hidden`), así el busto queda recortado por el círculo y la cabeza asoma por arriba; `::after` pinta la mitad inferior del aro por delante del busto. Aro verde (dorado en la #1). Tamaño con `--s` (116 px tarjeta, 80 px ficha, 64 px en pantallas bajas). Para que la ficha siga cabiendo, el mapa usa `calc((100dvh - 581px) * 1.5)` (comprobado 1024×768 y 1366×657).
+## 2026-11-16 — Forever: retratos en medallón del Top 5 de mascotas
+- Retratos = medallones ilustrados que pasó Mishuko (tira de 5 con aro dorado y fondo de tarjeta). Recortados con un script: dentro del aro se queda todo; fuera, solo lo que sobresale por arriba (orejas, melena, plumas) y está conectado con el aro, sin el fondo verde azulado. La tira venía achatada (aros elípticos ~132×126 px), así que se recorta como elipse y se estira para dejarla redonda. 320 px con transparencia en `public/pets/<id>.webp`.
+- `.t5-port` ya no dibuja círculo ni aro (vienen en la imagen): solo tamaño (`--s`: 132 px tarjeta, 100 px ficha, 80 px en pantallas bajas), sombra (con brillo dorado en la #1) y salto al pasar el ratón. Ficha comprobada sin scroll a 1024×768.
+- Antes se probaron cabezas sueltas de Gemini con círculo y aro hechos en CSS; Mishuko prefirió este estilo.
 
 ## 2026-11-16 — Forever: Top 5 mascotas (estilo Pokédex) en Mascotas
 - Sección `#pf-top5` al principio de `/forever/mascotas/` (primera del índice): 5 tarjetas (#1 → #5) con filtro por uso (Leveo, Mazmorras, PvP, Tanqueo AoE) y ficha en `<dialog>` con Anterior/Siguiente (también flechas del teclado): retrato (icono de familia), rareza y nivel, enlace al modelo 3D de Wowhead, mapa de la zona (zamimg classic es-ES) con todos los avistamientos en puntos y los principales como pines (pasar el ratón / tocar = coordenadas), reaparición y consejo, velocidad de ataque destacada (cifra grande, barra y golpes por minuto; sin salud/armadura/daño de familia, a petición de Mishuko), dieta, habilidad que enseña al domesticarla, qué enseñarle (sin repetir lo que ya trae), por qué es top y cuándo usarla. Evento GA4 `mascota_ficha`. El tooltip propio (`#tooltip`) se mueve dentro del modal mientras está abierto.
