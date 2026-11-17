@@ -35,6 +35,8 @@ const TEXTOS = {
       'Plan progresivo adaptado a ti',
     ],
     cierre: '¿Listo para topear aunque nuestra clase de pena?',
+    // Sin precios públicos: se consulta por Discord
+    precios: null,
   },
   forever: {
     contexto: 'Ahora aplico esa misma forma de trabajar a WoW Forever: la guía del Cazador de Bestias para Forever sigue el mismo método, basado en datos y probado en juego.',
@@ -64,6 +66,12 @@ const TEXTOS = {
       'Plan progresivo adaptado a ti',
     ],
     cierre: '¿Listo para llevar a tu Cazador al siguiente nivel?',
+    // Precios públicos (aprobados por Mishuko el 2026-11-17). USD aproximado para Latinoamérica.
+    precios: {
+      etiqueta: 'Precio de lanzamiento · 5 plazas al mes',
+      individual: { eur: '25 €', usd: '≈ 27 USD' },
+      pro: { eur: '79 €', periodo: '/mes', usd: '≈ 86 USD al mes' },
+    },
   },
 }[version];
 ---
@@ -153,13 +161,21 @@ const TEXTOS = {
         <article class="coach-tier">
           <h3>🎯 Sesión Individual</h3>
           <p class="tier-subtitle">Revisión profunda personalizada de tu personaje</p>
-          <p class="price cyan">Consulta el precio conmigo en Discord</p>
+          {TEXTOS.precios ? (
+            <>
+              <p class="price-launch">{TEXTOS.precios.etiqueta}</p>
+              <p class="price cyan">{TEXTOS.precios.individual.eur}</p>
+              <p class="price-usd">{TEXTOS.precios.individual.usd} · Latinoamérica</p>
+            </>
+          ) : (
+            <p class="price cyan">Consulta el precio conmigo en Discord</p>
+          )}
           <p style="font-size: 13px; color: var(--text2); margin-bottom: 1rem;">1 hora aprox · 1:1 privado</p>
           <ul class="coach-check-list">
             {TEXTOS.individual.map((t) => <li><span class="ok">✓</span> {t}</li>)}
           </ul>
           <p class="small-note">💡 <strong>Para ti si:</strong> quieres una revisión profunda y puntual</p>
-          <a href="https://discordapp.com/users/604762837092532233" target="_blank" rel="noopener noreferrer" class="coach-btn">Contactar</a>
+          <a href="https://discordapp.com/users/604762837092532233" target="_blank" rel="noopener noreferrer" class="coach-btn">{TEXTOS.precios ? 'Reservar por Discord' : 'Contactar'}</a>
         </article>
 
         <!-- 3. Coaching Pro -->
@@ -167,13 +183,21 @@ const TEXTOS = {
           <div class="tier-badge popular">⭐ POPULAR</div>
           <h3>⚡ Coaching Pro</h3>
           <p class="tier-subtitle">Seguimiento con mejora consistente</p>
-          <p class="price cyan">Consulta el precio conmigo en Discord</p>
+          {TEXTOS.precios ? (
+            <>
+              <p class="price-launch">{TEXTOS.precios.etiqueta}</p>
+              <p class="price cyan">{TEXTOS.precios.pro.eur}<span class="price-period">{TEXTOS.precios.pro.periodo}</span></p>
+              <p class="price-usd">{TEXTOS.precios.pro.usd} · Latinoamérica</p>
+            </>
+          ) : (
+            <p class="price cyan">Consulta el precio conmigo en Discord</p>
+          )}
           <p style="font-size: 13px; color: var(--text2); margin-bottom: 1rem;">4 semanas · 4 sesiones incluidas</p>
           <ul class="coach-check-list">
             {TEXTOS.pro.map((t) => <li><span class="ok">✓</span> {t}</li>)}
           </ul>
           <p class="small-note">🚀 <strong>Para ti si:</strong> buscas transformación real con seguimiento</p>
-          <a href="https://discordapp.com/users/604762837092532233" target="_blank" rel="noopener noreferrer" class="coach-btn primary">Reservar</a>
+          <a href="https://discordapp.com/users/604762837092532233" target="_blank" rel="noopener noreferrer" class="coach-btn primary">{TEXTOS.precios ? 'Reservar por Discord' : 'Reservar'}</a>
         </article>
 
       </div>
@@ -393,6 +417,22 @@ const TEXTOS = {
     background: color-mix(in srgb, var(--accent) 12%, transparent);
     border-color: color-mix(in srgb, var(--accent) 30%, transparent);
   }
+  /* Precios públicos (solo Forever) */
+  .price-launch {
+    align-self: flex-start;
+    margin: 0.4rem 0 0;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pl);
+    background: color-mix(in srgb, var(--pl) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--pl) 30%, transparent);
+  }
+  .price-period { font-size: 1rem; font-weight: 600; margin-left: 2px; }
+  .coach-card .price-usd { margin: 0 0 0.6rem; font-size: 13px; color: var(--text2); }
   .price.amber { 
     color: var(--pl); 
     background: color-mix(in srgb, var(--pl) 12%, transparent);

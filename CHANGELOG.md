@@ -16,6 +16,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-17 — Coaching de Forever con precios públicos
+- `SeccionCoaching.astro`: nuevo campo `precios` en `TEXTOS` (Midnight `null` = sigue «Consulta el precio conmigo en Discord»; Forever con precios). Forever enseña Sesión individual 25 € (≈ 27 USD) y Coaching Pro 79 €/mes (≈ 86 USD al mes), la etiqueta «Precio de lanzamiento · 5 plazas al mes» y los botones «Reservar por Discord». Estilos `.price-launch`, `.price-period`, `.price-usd`.
+- No se menciona la pestaña oculta `errores`: solo existe en Midnight.
+
 ## 2026-11-16 — Forever: «Dónde domesticar cada habilidad» en fichas con mapa
 - `#pf-domesticar` (`MascotasForever.astro`): las 23 tarjetas largas pasan a una cuadrícula de tarjetas pequeñas (icono, nombre, «Solo <familia>» con candado o «Todas las familias», nº de rangos) en «Habilidades comunes» y «Habilidades propias de cada familia». El bloque del instructor sigue igual, debajo de las comunes.
 - Al pulsar, ficha en `<dialog>` como la del Top 5 (reusa `.t5-dlg`, `.t5-ficha__head/__nav`, `.t5-x`, `.t5-map`, `.t5-copy`): descripción, selector Alianza/Horda (uno por ficha, todos sincronizados, recuerda `fv-faccion` en `localStorage`), los rangos con sus bestias como antes y Anterior/Siguiente (también flechas; Esc cierra). Evento GA4 `domesticar_ficha`.

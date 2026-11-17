@@ -1172,6 +1172,11 @@
 #tab-coaching .coach-btn.primary { color: var(--brand-ink); background: var(--brand-fill); box-shadow: none; }
 #tab-coaching .coach-btn.primary:hover { background: var(--brand-fill-hi); }
 #tab-coaching .price { font: 700 18px/1.3 var(--font-display); color: var(--gold); }
+/* Precios públicos (solo Forever): cifra grande, etiqueta de lanzamiento como las demás etiquetas */
+#tab-coaching .coach-card p.price { font: 700 34px/1.1 var(--font-display); color: var(--gold); align-self: flex-start; padding: 0.5rem 1.1rem; }
+#tab-coaching .price-period { font-size: 18px; color: var(--text2); }
+#tab-coaching .coach-card p.price-launch { border: 0; border-radius: 0; padding: 6px 10px; font: 700 12.5px/1.3 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: color-mix(in srgb, var(--gold) 14%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 50%, transparent); }
+#tab-coaching .coach-card p.price-usd { font-size: 15px; margin: 0 0 0.4rem; }
 #tab-coaching .coach-container > section + section, #tab-coaching .coach-container > div + section { margin-top: 44px; }
 
 
