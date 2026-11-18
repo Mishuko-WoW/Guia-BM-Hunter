@@ -69,8 +69,8 @@ const INDICE = [
   <p class="lv-demo gn-aviso" set:html={md(data.aviso)} />
 
   <section class="lv-sec" id="bf-equipo">
-    <h3>Equipo BiS por ranura</h3>
-    <p class="lv-lead">La mejor pieza para cada hueco de la ventana de personaje. Pulsa un objeto para abrirlo en Wowhead.</p>
+    <h3>Equipo BiS del Cazador de Bestias por ranura</h3>
+    <p class="lv-lead">La mejor pieza de nivel 60 para cada hueco de la ventana de personaje del Hunter BM, antes de raid (pre-raid) y en raid. Pulsa un objeto para abrirlo en Wowhead.</p>
     {fases.length > 1 && (
       <div class="toggle-wrap bf-fases" role="group" aria-label="Fase del equipo">
         {fases.map((f, i) => <button type="button" class:list={['toggle-btn', 'bf-fase', { active: i === 0 }]} data-bf-fase={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.boton}</button>)}

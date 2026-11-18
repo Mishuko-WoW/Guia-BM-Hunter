@@ -84,5 +84,23 @@
       "pregunta": "¿Cómo mantengo contenta a mi mascota?",
       "respuesta": "Dale de comer con **Alimentar mascota** antes de la banda o la mazmorra: una mascota contenta **hace más daño**. Si muere pierde felicidad y, con ella, daño."
     }
+  ],
+  "bis": [
+    {
+      "pregunta": "¿Cuál es el BiS pre-raid del Hunter BM en WoW Forever?",
+      "respuesta": "Una mezcla de **Peletería** (Yelmo de escamas de dragón negro, Armadura del Alba y guantes y leotardos de demosaurio), botín de **Stratholme, Scholomance y La Masacre** y el vendedor **Pix Xizzix** de la Vega de Tuercespina. Tienes la lista completa, ranura a ranura y con dónde se consigue cada pieza, en la ventana de personaje de esta página."
+    },
+    {
+      "pregunta": "¿Qué arma usa el Cazador de Bestias antes de raid en WoW Forever?",
+      "respuesta": "A distancia, el **Arco largo de cuero de águila** con **Flecha Plumaveloz** y el **Carcaj de Ribbly**. Cuerpo a cuerpo, la **Guja de legionita** (dos manos, de Herrería): con un arma de dos manos no llevas nada en la mano secundaria."
+    },
+    {
+      "pregunta": "¿Qué armadura puede llevar un Cazador en WoW Forever?",
+      "respuesta": "**Tela, cuero y malla**, nunca placas. En armas: hachas, espadas, armas de asta, bastones, dagas, armas de puño, arcos, armas de fuego, ballestas y arrojadizas; ni mazas, ni escudos, ni varitas."
+    },
+    {
+      "pregunta": "¿Hay ya BiS de raid del Hunter BM en WoW Forever?",
+      "respuesta": "Todavía no: **aún no hay raids abiertas** en WoW Forever. Mientras tanto, usa la lista **pre-raid**; la de raid la iré rellenando en cuanto se abran y haya datos confirmados."
+    }
   ]
 }

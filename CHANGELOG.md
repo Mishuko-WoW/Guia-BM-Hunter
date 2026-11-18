@@ -29,6 +29,11 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 ## 2026-11-18 — Título de la portada en Google
 - `seo.ts` (`PORTADA`): «Guía Hunter BM Forever y Midnight: Cazador de Bestias en español» (Forever delante, que es lo que más se busca ahora; mantiene «Cazador de Bestias»). Descripción con «Maestro de bestias» y lo concreto de cada versión (31/20/0, mascotas, leveling 1-60; talentos, rotación, BiS). Antes: 6.587 impresiones y 3,1 % de clics en 3 meses.
 
+## 2026-11-18 — BiS de Forever: SEO
+- `seo.ts`: título «BiS pre-raid Hunter BM WoW Forever: equipo del Cazador de Bestias» (antes sin «Cazador de Bestias» ni «pre-raid»), descripción con nivel 60, dónde se consigue, arma, munición y carcaj, y H1 «BiS pre-raid del Cazador de Bestias en WoW Forever». Solo esta pestaña.
+- `bis.md`: H2 con «pre-raid»; H3 «Equipo BiS del Cazador de Bestias por ranura» y entradilla con «Hunter BM» y «pre-raid».
+- `faq-forever.json`: 4 preguntas de `bis` (BiS pre-raid, arma, qué armadura puede llevar, BiS de raid) → bloque visible + `FAQPage`.
+
 ## 2026-11-18 — BiS de Forever: lista pre-raid y selector «BiS pre-raid / BiS de raid»
 - `forever-bis-equipo.json` pasa a `fases` (`preraid`, `raid`; cada una con `boton` y `ranuras`). `BisForever.astro` pinta una ventana de personaje por fase con selector arriba (`toggle-wrap`/`toggle-btn` de `marca.css`; script en línea, `#bf-raid` abre la de raid). Aviso «En construcción» (`construccion` de `forever-bis.json`) solo en la fase sin piezas.
 - Pre-raid rellena (elegida por Mishuko entre las 3 listas encontradas el 18-11: wowforeverbislist.com, MythicSim y wow.gg; Icy Veins da 403 y Wowhead aún no tiene; nadie tiene BiS de raid): la de wowforeverbislist (BM, Alianza, 18-11), 18 piezas (Guja de legionita a dos manos, sin mano secundaria). Objetos añadidos al catálogo con `gen-forever-catalogo.mjs`. Sin fuentes a la vista (norma de Forever).

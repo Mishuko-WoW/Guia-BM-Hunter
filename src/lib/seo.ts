@@ -94,9 +94,9 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'Rotación del Cazador de Bestias en WoW Forever',
     },
     bis: {
-      title: 'BiS Hunter BM WoW Forever: equipo y consumibles',
-      description: 'Equipo BiS y consumibles del Cazador de Bestias (Hunter BM) en WoW Forever por fase y ranura.',
-      h1sub: 'BiS y consumibles del Cazador de Bestias',
+      title: 'BiS pre-raid Hunter BM WoW Forever: equipo del Cazador de Bestias',
+      description: 'BiS pre-raid del Cazador de Bestias (Hunter BM) en WoW Forever pieza a pieza: el mejor equipo de nivel 60 y dónde se consigue, arma, munición, carcaj, consumibles y encantamientos.',
+      h1sub: 'BiS pre-raid del Cazador de Bestias en WoW Forever',
     },
     mascotas: {
       title: "Mejores mascotas Hunter WoW Forever: Top 5 y Ta'shkal",
