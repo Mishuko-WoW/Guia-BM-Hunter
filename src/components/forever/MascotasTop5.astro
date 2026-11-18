@@ -223,6 +223,7 @@ const aprender = (p: Pet) => p.ensenar.filter((id) => !p.viene.includes(id));
       fichas.forEach((f) => { f.hidden = f.dataset.t5Ficha !== id; });
       dlg.scrollTop = 0;
       if (window.gtag) gtag('event', 'mascota_ficha', { mascota: id });
+      if (window.mkApoyoFicha) mkApoyoFicha(root.querySelector('[data-t5-ficha="' + id + '"]'), 'ficha-top5');
     }
     function abrir(id) {
       mostrar(id);

@@ -119,7 +119,10 @@ const INDICE = [{ id: 'mf-crear', texto: 'Cómo crearlas' }, ...data.grupos.map(
         btn.classList.toggle('is-ok', ok);
         setTimeout(() => { lbl.textContent = 'Copiar'; btn.classList.remove('is-ok'); }, 1500);
       };
-      navigator.clipboard.writeText(code).then(() => fin('Copiada', true), () => fin('Error', false));
+      navigator.clipboard.writeText(code).then(() => {
+        fin('Copiada', true);
+        if (window.mkApoyo) mkApoyo(card, 'macro', '¿Te ha servido la macro?');
+      }, () => fin('Error', false));
       if (window.gtag) gtag('event', 'macro_copiar', { macro: card.querySelector('h4').textContent, idioma: idioma });
     }));
   })();

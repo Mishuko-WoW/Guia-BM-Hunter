@@ -1,0 +1,35 @@
+---
+// «Apoya la guía» (Ko-fi) en el momento de utilidad, sin pop-ups: una línea de texto que se queda dentro de la página.
+// - Al copiar una macro (MacrosForever) → mkApoyo(card, 'macro', …)
+// - Al abrir la 2.ª ficha de mascota (MascotasTop5 / MascotasForever) → mkApoyoFicha(ficha, lugar)
+// Como mucho una vez por visita (sessionStorage «mk-apoyo»). El final de Leveling lleva su línea fija (no cuenta).
+// Evento GA4 kofi_click con lugar = apoyo-<sitio>. Pedido por Mishuko el 18-11-2026: nada de «invítame a un café».
+// Estilos .mk-apoyo en marca.css (bloque «APOYA LA GUÍA»).
+---
+<script is:inline>
+  (function () {
+    var KOFI = 'https://ko-fi.com/mishuko';
+    var visto = function () { try { return sessionStorage.getItem('mk-apoyo') === '1'; } catch (e) { return false; } };
+    var marcar = function () { try { sessionStorage.setItem('mk-apoyo', '1'); } catch (e) {} };
+    // contenedor: dónde va la línea · lugar: etiqueta para GA4 · intro: frase antes del enlace · antes: nodo delante del que insertarla
+    window.mkApoyo = function (contenedor, lugar, intro, antes) {
+      if (!contenedor || visto()) return;
+      marcar();
+      var p = document.createElement('p');
+      p.className = 'mk-apoyo';
+      p.append((intro || 'Esta guía es gratis y la hago yo solo.') + ' ');
+      var a = document.createElement('a');
+      a.href = KOFI; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = 'Apoya la guía en Ko-fi';
+      a.addEventListener('click', function () { if (window.gtag) gtag('event', 'kofi_click', { lugar: 'apoyo-' + lugar }); });
+      p.append(a);
+      if (antes && antes.parentNode === contenedor) contenedor.insertBefore(p, antes); else contenedor.append(p);
+    };
+    // Fichas: a la segunda que se abre (ya ha mostrado interés), al pie de esa ficha
+    var fichas = 0;
+    window.mkApoyoFicha = function (ficha, lugar) {
+      if (++fichas !== 2 || !ficha) return;
+      window.mkApoyo(ficha, lugar, '¿Te está ayudando? Esta guía es gratis y la hago yo solo.', ficha.querySelector('.t5-ficha__nav'));
+    };
+  })();
+</script>

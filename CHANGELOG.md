@@ -17,6 +17,12 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-18 — «Apoya la guía» (Ko-fi) en el momento de utilidad
+- `ApoyoGuia.astro` (nuevo, en `PaginaForever`): define `window.mkApoyo(contenedor, lugar, intro, antes)` y `window.mkApoyoFicha(ficha, lugar)`. Inserta una línea de texto con enlace «Apoya la guía en Ko-fi» (sin pop-ups; Mishuko no quiere «invítame a un café»). Como mucho una vez por visita (`sessionStorage` `mk-apoyo`).
+- Dónde: al copiar una macro (`MacrosForever.astro`, en esa tarjeta), al abrir la **2.ª** ficha de mascota (`MascotasTop5.astro` y `MascotasForever.astro`, al pie de la ficha, antes de Anterior/Siguiente) y una línea fija al final de Leveling (`LevelingForever.astro`).
+- GA4: `kofi_click` con `lugar` = `apoyo-macro`, `apoyo-ficha-top5`, `apoyo-ficha-domesticar`, `apoyo-leveling`.
+- Estilos `.mk-apoyo` al final de `marca.css` (bloque «APOYA LA GUÍA»): 15 px, `--text2`, enlace en `--kofi-hi`; aparición suave sin `prefers-reduced-motion`.
+
 ## 2026-11-18 — Midnight en Google, tiempo por página en GA4, TikTok y RestedXP en Talentos
 - **Midnight**: título de `/midnight/bis/` «BiS Hunter BM Midnight Temporada 2: equipo y consumibles» y descripción con «Cazador de Bestias o Maestro de bestias» (`seo.ts`); la portada (`pages/index.astro`, bloque «Sobre la guía») enlaza a `/midnight/talentos/`, `/midnight/rotacion/` y `/midnight/bis/`. Motivo: «hunter bm bis» y similares, 234 impresiones y 0 clics.
 - **GA4, tiempo por página** (`MainLayout.astro`): `gtag('set', {page_location, page_title, content_group})` antes del `page_view`, para que todos los eventos (user_engagement, scroll, kofi_click…) usen la misma ruta limpia `/<versión>/<pestaña>`. Antes el tiempo de lectura caía en la URL real con barra final y GA4 daba 0-20 s por página. Probado: `gtag('config')` repetido NO lo arregla; `set` sí.

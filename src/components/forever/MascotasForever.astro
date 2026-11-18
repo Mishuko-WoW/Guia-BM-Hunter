@@ -327,6 +327,7 @@ for (const { h } of tarjetas) for (const d of h.doma) for (const b of [d.alianza
       dlg.scrollTop = 0;
       try { history.replaceState(null, '', '#pf-' + id); } catch (e) {}
       if (window.gtag) gtag('event', 'domesticar_ficha', { habilidad: id });
+      if (window.mkApoyoFicha) mkApoyoFicha([...fichas].find((f) => f.dataset.pfFicha === id), 'ficha-domesticar');
     }
     function abrir(id) {
       mostrar(id);

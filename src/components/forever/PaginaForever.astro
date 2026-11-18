@@ -4,6 +4,7 @@
 import { getCollection } from 'astro:content';
 import GuideForever from './GuideForever.astro';
 import ColoresForever from './ColoresForever.astro';
+import ApoyoGuia from './ApoyoGuia.astro';
 import MainLayout from '../../layouts/MainLayout.astro';
 import { SEO, guideJsonLd } from '../../lib/seo';
 import { TABS_FOREVER } from '../../lib/tabs';
@@ -34,6 +35,7 @@ const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replac
 >
   <GuideForever tab={tab} paginas={paginas} />
   <ColoresForever tab={tab} />
+  <ApoyoGuia />
   <script is:inline src={withBase('scripts/bm-guide.js')}></script>
   <script is:inline src={withBase('scripts/forever-talentos.js')}></script>
   <script is:inline>

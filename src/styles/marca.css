@@ -1077,3 +1077,14 @@ table.spec-table th:first-child, table.spec-table td:first-child { width: 100px;
 .txt-c--oro { color: var(--gold); }
 .txt-c--verde { color: var(--green); }
 .txt-c--rojo { color: var(--red); }
+
+/* ─── APOYA LA GUÍA (Ko-fi en el momento de utilidad, ApoyoGuia.astro): una línea discreta, nunca pop-up ─── */
+.mk-apoyo { margin: 12px 0 0; font-size: 15px; line-height: 1.5; color: var(--text2); }
+.mk-apoyo a { color: var(--kofi-hi); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.mk-apoyo a:hover { color: var(--kofi); }
+.mk-apoyo--fin { margin: 28px auto 8px; text-align: center; max-width: 60ch; }
+.t5-ficha .mk-apoyo { margin: 4px 18px 12px; }
+@media (prefers-reduced-motion: no-preference) {
+  .mk-apoyo:not(.mk-apoyo--fin) { animation: mk-apoyo-in .35s ease-out both; }
+  @keyframes mk-apoyo-in { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+}

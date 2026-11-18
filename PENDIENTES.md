@@ -13,7 +13,6 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 ## 2. Mejoras de la web (código, C)
 
 - [ ] ❓ *Mishuko pidió explicación (18-11)* · **Títulos y descripciones de `/forever/mascotas/` y la portada** (30 min) en `src/lib/seo.ts`. Mascotas: 1.432 impresiones y 3,7 % de clics; portada: 6.587 y 3,1 %. Talentos, con un título concreto («build 31/20/0»), saca un 10 %. Meter al principio «dónde domar», «Top 5», «Ta'shkal»; portada: «Guía Hunter BM» + «Forever y Midnight».
-- [ ] ❓ *Mishuko pidió explicación (18-11): no quiere pop-ups molestos* · **Ko-fi en el momento de utilidad** (1-2 h): tras «Copiar macro», tras abrir 3 fichas de mascota y al final de Leveling («¿Te he ahorrado oro? Invítame a un café»). Hoy: 1 clic de Ko-fi entre 821 personas.
 - [ ] ⏸ *De momento no (Mishuko, 18-11)* · **Ampliar Mascotas** (2-4 h): mejor mascota para PvE, bestias raras por zona, tiempos de reaparición (lo preguntan en los comentarios de TikTok).
 
 ## 3. SEO fuera de la web (M)
@@ -52,6 +51,7 @@ Aprobado por Mishuko el 18-11 y avisado a Codex en `EQUIPO.md`. Datos de TikTok 
 
 ## Hecho
 
+- [x] 2026-11-18 · «Apoya la guía» (Ko-fi) sin pop-ups: al copiar macro, en la 2.ª ficha de mascota y al final de Leveling; una vez por visita. Medir en GA4 `kofi_click` por `lugar` (apoyo-*) en la revisión del 2-12.
 - [x] 2026-11-18 · Midnight: título de BiS y enlaces desde la portada a Talentos, Rotación y BiS de Midnight.
 - [x] 2026-11-18 · GA4: tiempo por página arreglado con `gtag('set')` (comprobar en GA4 hacia el 20-11 que Páginas y pantallas ya da tiempos reales).
 - [x] 2026-11-18 · GA4: detección del navegador de la app de TikTok (`utm_campaign=navegador-app`).
