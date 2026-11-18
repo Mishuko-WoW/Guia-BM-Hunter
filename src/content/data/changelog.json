@@ -1,6 +1,13 @@
 [
   {
     "fecha": "2026-11-18",
+    "pestana": "mascotas",
+    "texto": "Nueva mascota en tier 0, Ta'shkal con enlace a video sobre como conseguirla en",
+    "enlace": "Mascotas",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-18",
     "pestana": "leveling",
     "texto": "Addon recomendado para subir de nivel (RestedXP) en",
     "enlace": "Leveling",
