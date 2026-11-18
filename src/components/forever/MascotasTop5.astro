@@ -7,6 +7,7 @@ import top from '../../content/data/forever-mascotas-top5.json';
 import data from '../../content/data/forever-mascotas.json';
 import { getSpell, iconUrl } from '../../lib/spells';
 import { md } from '../../lib/markup';
+import BotonTikTok from '../BotonTikTok.astro';
 
 type Pin = { x: number; y: number; etq: string; mx?: number; my?: number }; // mx/my: posición en la imagen si no coincide con las coordenadas (mapa recortado)
 type Pet = (typeof top.mascotas)[number] & { exclusivo?: boolean; zonaNota?: string; puntos?: number[][]; pines: Pin[]; mapa: number | string | null };
@@ -46,6 +47,11 @@ const aprender = (p: Pet) => p.ensenar.filter((id) => !p.viene.includes(id));
     Las cinco mejores mascotas que puedes domesticar en WoW Forever, con <b>dónde están</b>, <b>qué velocidad
     de ataque tienen</b> y <b>por qué</b>. Y fuera de concurso, el <b>#0</b>: Ta'shkal, el gato secreto recién
     descubierto en Monte Hyjal. Pulsa una para ver su ficha completa.
+  </p>
+  <p class="t5-video">
+    <span>¿Lo prefieres en vídeo?</span>
+    <BotonTikTok lugar="video-top5" compacto texto="Míralo en mi TikTok"
+      href="https://www.tiktok.com/@mishuko.wow/video/7708833787886488854" />
   </p>
 
   <div class="t5-filtros" role="group" aria-label="Filtrar por uso">

@@ -5,6 +5,7 @@ import Header from '../Header.astro';
 import TabBar from '../TabBar.astro';
 import SeccionForever from './SeccionForever.astro';
 import BotonKofi from '../BotonKofi.astro';
+import BotonTikTok from '../BotonTikTok.astro';
 import TalentosForever from './TalentosForever.astro';
 import MascotasForever from './MascotasForever.astro';
 import SeccionCoaching from '../SeccionCoaching.astro';
@@ -62,6 +63,9 @@ const visibles = TABS_FOREVER.filter((t) => t.id === tab || (tab === 'rotacion' 
         <a href="/">Inicio</a> · <a href="/midnight/">Guía Hunter BM Midnight</a>
       </nav>
     </div>
-    <BotonKofi lugar="footer-forever" />
+    <div class="mk-footer__redes">
+      <BotonTikTok lugar="footer-forever" />
+      <BotonKofi lugar="footer-forever" />
+    </div>
   </div>
 </footer>

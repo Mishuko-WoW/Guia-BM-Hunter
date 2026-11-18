@@ -12,7 +12,7 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 
 ## 2. Mejoras de la web (código, C)
 
-- [ ] ❓ *Mishuko pidió explicación (18-11)* · **Títulos y descripciones de `/forever/mascotas/` y la portada** (30 min) en `src/lib/seo.ts`. Mascotas: 1.432 impresiones y 3,7 % de clics; portada: 6.587 y 3,1 %. Talentos, con un título concreto («build 31/20/0»), saca un 10 %. Meter al principio «dónde domar», «Top 5», «Ta'shkal»; portada: «Guía Hunter BM» + «Forever y Midnight».
+- [ ] ❓ *Explicado (18-11): portada y Mascotas ya cambiados ese día; falta solo decidir si añadir «dónde domar» al título de Mascotas o esperar a medir el 2-12* · **Títulos y descripciones de `/forever/mascotas/` y la portada** (30 min) en `src/lib/seo.ts`. Mascotas: 1.432 impresiones y 3,7 % de clics; portada: 6.587 y 3,1 %. Talentos, con un título concreto («build 31/20/0»), saca un 10 %. Meter al principio «dónde domar», «Top 5», «Ta'shkal»; portada: «Guía Hunter BM» + «Forever y Midnight».
 - [ ] ⏸ *De momento no (Mishuko, 18-11)* · **Ampliar Mascotas** (2-4 h): mejor mascota para PvE, bestias raras por zona, tiempos de reaparición (lo preguntan en los comentarios de TikTok).
 
 - [ ] **BiS de Forever: pre-raid rellena (18-11); falta la de raid** cuando abran las raids (M, con el editor local, botón «Objetos BiS»). Ya en Google (sin `noindex`, 18-11). Pedir indexación de `/forever/bis/` en Search Console tras publicar.

@@ -478,9 +478,43 @@ a.mk-tab[hidden] { display: none; }
   .mk-kofi:active { transform: translateY(0); }
   .mk-kofi::after { animation: mk-rxp-brillo 7s var(--ease) 5.5s infinite; }
 }
-.mk-footer .mk-kofi { margin-left: auto; }
+/* Footer de las guías: TikTok + Ko-fi a la derecha */
+.mk-footer__redes { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 12px; }
 .pt-foot .pt-kofi { display: flex; width: max-content; margin: 16px auto 0; }
-@media (max-width: 900px) { .mk-footer .mk-kofi { margin-left: 0; } }
+@media (max-width: 900px) { .mk-footer__redes { margin-left: 0; justify-content: center; } }
+
+/* ─── TIKTOK ─── (BotonTikTok.astro, footer): mismo diseño que Ko-fi/RestedXP con los colores de TikTok */
+.mk-tt {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 9px;
+  min-height: 46px; padding: 0 20px 0 15px;
+  border-radius: 999px;
+  font: 800 17px/1 "Quicksand", "Nunito", "Segoe UI", system-ui, sans-serif; letter-spacing: 0.01em;
+  white-space: nowrap; color: var(--tt-text); text-decoration: none;
+  background:
+    linear-gradient(var(--tt-deep), var(--tt-deep)) padding-box,
+    linear-gradient(120deg, var(--tt-cyan), var(--tt-pink)) border-box;
+  border: 1.5px solid transparent;
+  box-shadow: 0 0 14px -4px color-mix(in srgb, var(--tt-pink) 60%, transparent);
+  transition: box-shadow .2s var(--ease), transform .2s var(--ease);
+}
+.mk-tt__logo { flex: none; transition: transform .3s var(--ease-spring); }
+.mk-tt::after { /* destello */
+  content: ""; position: absolute; inset: -2px auto -2px -40%; width: 30%; z-index: -1;
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--tt-cyan) 30%, transparent), transparent);
+  transform: skewX(-20deg); pointer-events: none; opacity: 0;
+}
+.mk-tt:hover, .mk-tt:focus-visible { box-shadow: 0 0 20px -3px color-mix(in srgb, var(--tt-cyan) 70%, transparent); }
+.mk-tt:hover .mk-tt__logo, .mk-tt:focus-visible .mk-tt__logo { transform: rotate(-10deg) scale(1.08); }
+.mk-tt:focus-visible { outline: 2px solid var(--tt-cyan); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .mk-tt:hover, .mk-tt:focus-visible { transform: translateY(-2px); }
+  .mk-tt:active { transform: translateY(0); }
+  .mk-tt::after { animation: mk-rxp-brillo 7s var(--ease) 4s infinite; }
+}
+.mk-tt--mini { min-height: 34px; padding: 0 14px 0 10px; gap: 7px; font-size: 14.5px; }
+.mk-tt--mini .mk-tt__logo { width: 18px; height: 18px; }
+@media (prefers-reduced-motion: reduce) { .mk-tt, .mk-tt__logo { transition: none; } .mk-tt:hover .mk-tt__logo { transform: none; } }
 /* Barra superior: versión pequeña junto al selector Midnight | Forever */
 .mk-realmbar__end { display: flex; align-items: center; gap: 10px; }
 .mk-kofi--mini { min-height: 34px; padding: 0 13px 0 10px; gap: 7px; font-size: 14.5px; }

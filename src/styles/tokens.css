@@ -29,6 +29,11 @@
   --kofi-deep:   #2a1108;   /* fondo oscuro del botón (estilo a juego con RestedXP) */
   --kofi-gold:   #ffb347;
   --kofi-text:   #eadfd4;   /* texto y taza: crema suave en vez de blanco puro */
+  /* TikTok: cian y rosa de su logo (BotonTikTok.astro) */
+  --tt-deep:     #0e0d14;
+  --tt-cyan:     #25f4ee;
+  --tt-pink:     #fe2c55;
+  --tt-text:     #e6e4ea;   /* texto y nota: suave, sin blanco puro */
   /* RestedXP: azul y cian de sus banners (BotonRestedXP.astro), iguales en todas las versiones */
   --rxp-deep:    #0a1838;
   --rxp:         #1f6fe0;

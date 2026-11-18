@@ -17,6 +17,11 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-18 — Botón «Sígueme en TikTok» en el footer
+- `BotonTikTok.astro` (nuevo): píldora oscura con borde degradado cian→rosa, logo de TikTok y destello, a juego con Ko-fi/RestedXP (bloque «TIKTOK» en `marca.css`, tokens `--tt-*`). Evento GA4 `tiktok_click` con `lugar` `footer-midnight|footer-forever`.
+- Footer de Midnight (`GuideContent.astro`) y Forever (`GuideForever.astro`): TikTok + Ko-fi juntos en `.mk-footer__redes`.
+- Mascotas de Forever (`MascotasTop5.astro`): «¿Lo prefieres en vídeo? Míralo en mi TikTok» bajo la intro del Top 5, con el botón en bajito (`compacto`, `.mk-tt--mini`; props `href`/`texto`) al vídeo del Top 5; `lugar` `video-top5`.
+
 ## 2026-11-18 — Ko-fi: texto y taza en crema suave
 - Token `--kofi-text` (#eadfd4) en `tokens.css` en vez de `#fff` para el texto (también al pasar el ratón) y la taza de todos los botones Ko-fi (`BotonKofi.astro`, `ApoyoGuia.astro`): el blanco puro cansaba la vista.
 
