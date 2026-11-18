@@ -98,13 +98,23 @@ const ogImage = new URL(og.og, Astro.site).href;
     const esPestana = /^[a-z-]+$/.test(hash) && document.querySelector('.mk-tab[data-tab="' + hash + '"]');
     const tab = (esPestana ? hash : '') || root.dataset.defaultTab || '';
     const pagePath = (realmBase + (tab ? '/' + tab : '')) || '/';
-    gtag('event', 'page_view', {
-      page_path: pagePath,
-      // location.search conserva las etiquetas utm_* (p. ej. /tiktok → ?utm_source=tiktok) para que GA4 sepa de dónde viene la visita
-      page_location: location.origin + pagePath + location.search,
+    // location.search conserva las etiquetas utm_* (p. ej. /tiktok → ?utm_source=tiktok) para que GA4 sepa de dónde viene la visita
+    let search = location.search;
+    // Navegador interno de la app de TikTok sin etiqueta (enlaces de vídeos, comentarios…): solo al aterrizar desde fuera
+    if (/musical_ly|BytedanceWebview|TikTok|trill_/i.test(navigator.userAgent) && !/[?&]utm_/.test(search)
+        && !document.referrer.startsWith(location.origin)) {
+      search += (search ? '&' : '?') + 'utm_source=tiktok&utm_medium=social&utm_campaign=navegador-app';
+    }
+    const datos = {
+      page_location: location.origin + pagePath + search,
       page_title: document.title + (tab ? ' - ' + tab : ''),
       content_group: root.dataset.realm,
-    });
+    };
+    // 'set' hace que TODOS los eventos siguientes (user_engagement, scroll, clics, kofi_click…) usen la misma ruta limpia
+    // que el page_view. Antes solo el page_view la llevaba y el tiempo de lectura caía en la URL real
+    // (/forever/mascotas/ ≠ /forever/mascotas), así que GA4 daba 0-20 s por página.
+    gtag('set', datos);
+    gtag('event', 'page_view', { page_path: pagePath, ...datos });
   }
 
   window.addEventListener('load', trackPageView);

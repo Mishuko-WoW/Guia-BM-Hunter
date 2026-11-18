@@ -55,7 +55,7 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 - Logos oficiales de Midnight y Forever (Blizzard Press Center, blizzard.gamespress.com) reducidos a WebP en `public/brand/realms/`. Colores de versión: `--realm-midnight` violeta, `--realm-forever` turquesa (`tokens.css`).
 - Forever ya es `disponible: true` (desde 2026-11-13). `estado` en `realms.ts` = texto de la tarjeta de portada; actualizarlo al completar pestañas (hoy: General, Talentos, Rotación y Mascotas).
 - Tema por versión: `MainLayout` pone `<html data-realm="portada|midnight|forever">`; el tema Forever solo redefine variables en `tokens.css` (`:root[data-realm="forever"]`).
-- Analytics (GA4 G-EJY55YHE6Q): `page_view` con ruta limpia `/<versión>/<pestaña>` (`/midnight/bis`, `/forever/mecanicas`, `/`) y `content_group` = versión; igual que antes de tener una página por pestaña. Al crear una página nueva pasar `realm` y `defaultTab` (= su pestaña) a `MainLayout`.
+- Analytics (GA4 G-EJY55YHE6Q): `page_view` con ruta limpia `/<versión>/<pestaña>` (`/midnight/bis`, `/forever/mecanicas`, `/`) y `content_group` = versión; igual que antes de tener una página por pestaña. Esa ruta se fija con `gtag('set')` para que todos los eventos la compartan; se conservan las `utm_*` de la URL, y el navegador de la app de TikTok sin etiqueta recibe `utm_source=tiktok&utm_campaign=navegador-app`. Enlace corto de la bio: `public/tiktok/index.html` (`/tiktok`). Al crear una página nueva pasar `realm` y `defaultTab` (= su pestaña) a `MainLayout`.
 
 ## Ahorro de uso (desde 2026-11-14, pedido por Mishuko)
 - **Revisa Mishuko, no Claude**: nada de capturas ni navegador para comprobar cómo se ve. Claude solo mira errores de consola o el HTML si hace falta (texto, no imágenes).

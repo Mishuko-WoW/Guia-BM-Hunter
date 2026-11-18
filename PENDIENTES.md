@@ -8,17 +8,12 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 
 ## 1. Urgente (esta semana, mientras dura el tirón de Forever)
 
-- [ ] **Enlace con etiqueta en la bio de TikTok** (M, 5 min, **solo desde la app del móvil**: TikTok web no deja editar el sitio web; Claude lo intentó el 18-11): Perfil → Editar perfil → Sitio web → **`guiahunterbm.com/tiktok`** (redirección corta creada el 18-11 en `public/tiktok/index.html`, lleva a `/forever/?utm_source=tiktok&utm_medium=social&utm_campaign=bio`). Sin esto, TikTok sale en GA4 como «directo» y no sabemos qué trae cada vídeo.
 - [ ] **Marcar `afiliado_click` como evento clave en GA4** (C o M, 2 min) cuando aparezca el primer clic: Administrar → Eventos → Eventos recientes → estrella. Esperado 19-20 nov. (18-11, 17:00: aún no aparecía.)
 
 ## 2. Mejoras de la web (código, C)
 
 - [ ] ❓ *Mishuko pidió explicación (18-11)* · **Títulos y descripciones de `/forever/mascotas/` y la portada** (30 min) en `src/lib/seo.ts`. Mascotas: 1.432 impresiones y 3,7 % de clics; portada: 6.587 y 3,1 %. Talentos, con un título concreto («build 31/20/0»), saca un 10 %. Meter al principio «dónde domar», «Top 5», «Ta'shkal»; portada: «Guía Hunter BM» + «Forever y Midnight».
-- [ ] ✅ *Aprobado (18-11)* · **Rescatar Midnight en Google** (1 h): título de `/midnight/bis/` con «BiS Hunter BM Midnight Temporada 2»; enlaces desde la portada a `/midnight/bis/` y `/midnight/talentos/`. «hunter bm bis» y similares: 234 impresiones y 0 clics; «cazador bestias midnight»: 152 y 0.
-- [ ] ✅ *Aprobado (18-11)* · **Arreglar el tiempo por página en GA4** (1 h): el `page_view` se manda con ruta sin barra (`/forever/mascotas`) y el tiempo cae en la URL real (`/forever/mascotas/`), así que el tiempo por página sale a 0-20 s. Enviar la misma ruta que la URL real (respetando `content_group` y la ruta `/<versión>/<pestaña>` en informes, o decidir con M cuál se usa).
 - [ ] ❓ *Mishuko pidió explicación (18-11): no quiere pop-ups molestos* · **Ko-fi en el momento de utilidad** (1-2 h): tras «Copiar macro», tras abrir 3 fichas de mascota y al final de Leveling («¿Te he ahorrado oro? Invítame a un café»). Hoy: 1 clic de Ko-fi entre 821 personas.
-- [ ] ✅ *Aprobado (18-11)* · **RestedXP también en Talentos de Forever** (30 min), junto a la build de leveling.
-- [ ] ✅ *Aprobado (18-11)* · **Detectar el navegador interno de TikTok** (1 h): leer el agente de usuario (BytedanceWebview / musical_ly / TikTok) y mandarlo a GA4 como parámetro, para medir TikTok aunque falte la etiqueta.
 - [ ] ⏸ *De momento no (Mishuko, 18-11)* · **Ampliar Mascotas** (2-4 h): mejor mascota para PvE, bestias raras por zona, tiempos de reaparición (lo preguntan en los comentarios de TikTok).
 
 ## 3. SEO fuera de la web (M)
@@ -57,6 +52,11 @@ Aprobado por Mishuko el 18-11 y avisado a Codex en `EQUIPO.md`. Datos de TikTok 
 
 ## Hecho
 
+- [x] 2026-11-18 · Midnight: título de BiS y enlaces desde la portada a Talentos, Rotación y BiS de Midnight.
+- [x] 2026-11-18 · GA4: tiempo por página arreglado con `gtag('set')` (comprobar en GA4 hacia el 20-11 que Páginas y pantallas ya da tiempos reales).
+- [x] 2026-11-18 · GA4: detección del navegador de la app de TikTok (`utm_campaign=navegador-app`).
+- [x] 2026-11-18 · RestedXP en Talentos de Forever (`lugar` talentos-banner / talentos-boton).
+- [x] 2026-11-18 · Enlace corto `guiahunterbm.com/tiktok` (commit b25fb78) y GA4 conserva las `utm_*`; Mishuko lo pone en la bio de TikTok tras publicar.
 - [x] 2026-11-18 · Search Console: revisadas una a una las 18 URL del sitemap. Ya estaban indexadas todas las de Forever y en Midnight `/`, `/midnight/`, talentos, bis, rotacion y mascotas (el informe de Páginas iba con retraso). Solicitada la indexación de las 4 que faltaban: `/midnight/estadisticas/`, `/midnight/macros/`, `/midnight/simulacion/`, `/midnight/coaching/`. Volver a mirar hacia el 25-11.
 - [x] 2026-11-18 · GA4: la colección «Search Console» (Consultas y Tráfico de búsqueda orgánica) salió publicada sola al vincular; ya muestra datos.
 - [x] 2026-11-18 · GA4: dimensiones de evento «Lugar del clic» (`lugar`) y «Tipo de afiliado» (`tipo`).

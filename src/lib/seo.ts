@@ -47,8 +47,8 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'Rotación y opener del Maestro de bestias',
     },
     bis: {
-      title: 'BiS Hunter BM Midnight S2: equipo y consumibles',
-      description: 'Equipo BiS del Cazador de Bestias (Hunter BM) en Midnight Temporada 2 por ranura, con encantamientos, gemas y consumibles.',
+      title: 'BiS Hunter BM Midnight Temporada 2: equipo y consumibles',
+      description: 'BiS del Hunter BM (Cazador de Bestias o Maestro de bestias) en Midnight Temporada 2: mejor equipo por ranura, encantamientos, gemas y consumibles.',
       h1sub: 'BiS y consumibles del Maestro de bestias',
     },
     mascotas: {

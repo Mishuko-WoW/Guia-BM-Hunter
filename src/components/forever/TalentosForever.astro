@@ -10,6 +10,7 @@ import { tabPath } from '../../lib/seo';
 import IndiceForever from './IndiceForever.astro';
 import CalculadoraTalentos from './CalculadoraTalentos.astro';
 import RangosEntrenables from './RangosEntrenables.astro';
+import RecomendacionRestedXP from './RecomendacionRestedXP.astro';
 
 // Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
 const citados = new Set<string>();
@@ -50,6 +51,8 @@ const INDICE = [
     <span><b>¿Estás subiendo de nivel?</b> El orden de talentos nivel a nivel está en la guía de leveling.</span>
     <span class="gn-banner__btn">Build de leveling →</span>
   </a>
+
+  <RecomendacionRestedXP seccion="talentos" />
 
   <IndiceForever items={INDICE} />
 

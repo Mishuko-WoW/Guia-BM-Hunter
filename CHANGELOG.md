@@ -17,6 +17,12 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-18 — Midnight en Google, tiempo por página en GA4, TikTok y RestedXP en Talentos
+- **Midnight**: título de `/midnight/bis/` «BiS Hunter BM Midnight Temporada 2: equipo y consumibles» y descripción con «Cazador de Bestias o Maestro de bestias» (`seo.ts`); la portada (`pages/index.astro`, bloque «Sobre la guía») enlaza a `/midnight/talentos/`, `/midnight/rotacion/` y `/midnight/bis/`. Motivo: «hunter bm bis» y similares, 234 impresiones y 0 clics.
+- **GA4, tiempo por página** (`MainLayout.astro`): `gtag('set', {page_location, page_title, content_group})` antes del `page_view`, para que todos los eventos (user_engagement, scroll, kofi_click…) usen la misma ruta limpia `/<versión>/<pestaña>`. Antes el tiempo de lectura caía en la URL real con barra final y GA4 daba 0-20 s por página. Probado: `gtag('config')` repetido NO lo arregla; `set` sí.
+- **GA4, navegador de la app de TikTok**: si el agente de usuario es de TikTok (`musical_ly|BytedanceWebview|TikTok|trill_`), no hay `utm_` y se llega desde fuera, se añade `utm_source=tiktok&utm_medium=social&utm_campaign=navegador-app` al `page_location`. Separa en GA4 la bio (`campaign=bio`) del resto de TikTok (`navegador-app`).
+- **RestedXP en Talentos de Forever**: `RecomendacionRestedXP.astro` admite `seccion="talentos"` (texto propio con el 10 % de descuento; `lugar` = `talentos-banner`/`talentos-boton`); en `TalentosForever.astro`, bajo el aviso «¿Estás subiendo de nivel?».
+
 ## 2026-11-18 — Enlace corto /tiktok y etiquetas utm en GA4
 - `public/tiktok/index.html`: redirección (meta refresh + `location.replace`) de `guiahunterbm.com/tiktok` a `/forever/?utm_source=tiktok&utm_medium=social&utm_campaign=bio`, para la bio de TikTok. `noindex` y fuera del sitemap (es un archivo de `public/`, no una página de Astro). Para cambiar el destino, editarlo ahí (dos sitios).
 - `MainLayout.astro`: `page_location` del `page_view` ahora añade `location.search`. Antes se mandaba solo la ruta limpia y GA4 perdía las etiquetas `utm_*` (cualquier campaña salía como «directo»).
