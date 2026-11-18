@@ -1,0 +1,261 @@
+{
+  "12651": {
+    "nombre": "Cuervo negro",
+    "calidad": 3,
+    "icono": "inv_weapon_crossbow_04",
+    "slot": "A distancia",
+    "tipo": "Ballesta",
+    "nivel": 54,
+    "ilvl": 59,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "distancia"
+    ],
+    "origen": "Cumbre de Roca Negra · Cazador de las Sombras Vosh'gajin"
+  },
+  "13211": {
+    "nombre": "Brazales garraja",
+    "calidad": 3,
+    "icono": "inv_bracer_07",
+    "slot": "Muñeca",
+    "tipo": "Malla",
+    "nivel": 55,
+    "ilvl": 60,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "munecas"
+    ],
+    "origen": "Cumbre de Roca Negra · Halycon"
+  },
+  "13213": {
+    "nombre": "Ojo de Telabrasada",
+    "calidad": 3,
+    "icono": "inv_misc_gem_pearl_01",
+    "slot": "Alhaja",
+    "tipo": "",
+    "nivel": 55,
+    "ilvl": 60,
+    "unico": true,
+    "clases": [],
+    "ranuras": [
+      "abalorio1",
+      "abalorio2"
+    ],
+    "origen": "Cumbre de Roca Negra · Madre Telabrasada"
+  },
+  "13392": {
+    "nombre": "Lacre de jefe de correos",
+    "calidad": 3,
+    "icono": "inv_jewelry_ring_23",
+    "slot": "Dedo",
+    "tipo": "",
+    "nivel": 56,
+    "ilvl": 61,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "anillo1",
+      "anillo2"
+    ],
+    "origen": "Stratholme · Jefe de correos Malown"
+  },
+  "13404": {
+    "nombre": "Máscara de los Penitentes",
+    "calidad": 3,
+    "icono": "inv_misc_bandana_01",
+    "slot": "Cabeza",
+    "tipo": "Cuero",
+    "nivel": 52,
+    "ilvl": 57,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "cabeza"
+    ],
+    "origen": "Stratholme · El Imperdonable"
+  },
+  "13967": {
+    "nombre": "Grebas Atracavientos",
+    "calidad": 3,
+    "icono": "inv_boots_plate_04",
+    "slot": "Pies",
+    "tipo": "Malla",
+    "nivel": 56,
+    "ilvl": 61,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "pies"
+    ],
+    "origen": "Scholomance · Kirtonos el Heraldo"
+  },
+  "15062": {
+    "nombre": "Leotardos de demosaurio",
+    "calidad": 3,
+    "icono": "inv_pants_wolf",
+    "slot": "Piernas",
+    "tipo": "Cuero",
+    "nivel": 55,
+    "ilvl": 60,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "piernas"
+    ],
+    "origen": "Peletería"
+  },
+  "15063": {
+    "nombre": "Guanteletes de demosaurio",
+    "calidad": 3,
+    "icono": "inv_gauntlets_26",
+    "slot": "Manos",
+    "tipo": "Cuero",
+    "nivel": 53,
+    "ilvl": 58,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "manos"
+    ],
+    "origen": "Peletería"
+  },
+  "18282": {
+    "nombre": "Rifle de tirador del Núcleo",
+    "calidad": 4,
+    "icono": "inv_weapon_rifle_05",
+    "slot": "A distancia",
+    "tipo": "Arma de fuego",
+    "nivel": 60,
+    "ilvl": 65,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "distancia"
+    ],
+    "origen": "Ingeniería"
+  },
+  "18314": {
+    "nombre": "Anillo de Astucia demoníaca",
+    "calidad": 3,
+    "icono": "inv_jewelry_ring_31",
+    "slot": "Dedo",
+    "tipo": "",
+    "nivel": 54,
+    "ilvl": 59,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "anillo1",
+      "anillo2"
+    ],
+    "origen": "La Masacre · Alzzin el Formaferal"
+  },
+  "18393": {
+    "nombre": "Brazal Tuercemadera",
+    "calidad": 3,
+    "icono": "inv_belt_34",
+    "slot": "Cintura",
+    "tipo": "Malla",
+    "nivel": 56,
+    "ilvl": 61,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "cintura"
+    ],
+    "origen": "La Masacre · Tendris Madeguerra"
+  },
+  "18511": {
+    "nombre": "Capa ondeante",
+    "calidad": 4,
+    "icono": "inv_misc_cape_20",
+    "slot": "Espalda",
+    "tipo": "",
+    "nivel": 57,
+    "ilvl": 62,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "espalda"
+    ],
+    "origen": "Peletería"
+  },
+  "249469": {
+    "nombre": "Corazón de la montaña congelado",
+    "calidad": 3,
+    "icono": "inv_misc_gem_sapphire_01",
+    "slot": "Alhaja",
+    "tipo": "",
+    "nivel": 50,
+    "ilvl": 55,
+    "unico": true,
+    "clases": [],
+    "ranuras": [
+      "abalorio1",
+      "abalorio2"
+    ],
+    "origen": "Encantamiento"
+  },
+  "252483": {
+    "nombre": "Armadura del Alba",
+    "calidad": 4,
+    "icono": "inv_chest_leather_08",
+    "slot": "Pecho",
+    "tipo": "Cuero",
+    "nivel": 56,
+    "ilvl": 61,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "pecho"
+    ],
+    "origen": "Peletería"
+  },
+  "275736": {
+    "nombre": "Cuerno de Ve'han",
+    "calidad": 3,
+    "icono": "inv_misc_horn_03",
+    "slot": "Cuello",
+    "tipo": "",
+    "nivel": null,
+    "ilvl": 61,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "cuello"
+    ],
+    "origen": "Misión «Work Well Done» · Monte Hyjal"
+  },
+  "277117": {
+    "nombre": "Savage Gladiator Shoulders",
+    "calidad": 3,
+    "icono": "inv_shoulder_02",
+    "slot": "Hombro",
+    "tipo": "Malla",
+    "nivel": 52,
+    "ilvl": 57,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "hombros"
+    ],
+    "origen": "Profundidades de Roca Negra · Grizzle"
+  },
+  "279910": {
+    "nombre": "Beastslayer's Trident",
+    "calidad": 3,
+    "icono": "inv_spear_04",
+    "slot": "Dos manos",
+    "tipo": "Arma de asta",
+    "nivel": null,
+    "ilvl": 62,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "principal"
+    ],
+    "origen": "Misión en The Shaper's Terrace (Alianza: «Mapping the Way Forward» · Horda: «The Dark Crystal»)"
+  }
+}

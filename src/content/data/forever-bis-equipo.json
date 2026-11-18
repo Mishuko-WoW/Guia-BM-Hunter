@@ -1,0 +1,24 @@
+{
+  "imagen": null,
+  "ranuras": {
+    "cabeza": null,
+    "cuello": null,
+    "hombros": null,
+    "espalda": null,
+    "pecho": null,
+    "munecas": null,
+    "manos": null,
+    "cintura": null,
+    "piernas": null,
+    "pies": null,
+    "anillo1": null,
+    "anillo2": null,
+    "abalorio1": null,
+    "abalorio2": null,
+    "principal": null,
+    "secundaria": null,
+    "distancia": null,
+    "municion": null,
+    "carcaj": null
+  }
+}

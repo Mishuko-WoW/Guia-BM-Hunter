@@ -1,12 +1,20 @@
 ---
-// Pestaña BiS y consumibles (Forever): cabecera con datos, aviso, pre-raid 60 en tarjetas por ranura,
-// arma a distancia por nivel (tabla), consumibles, encantamientos y «Sigue con la guía».
-// Mismo diseño que General/Leveling (clases lv-*/gn-*, bloque «BIS Y CONSUMIBLES» en forever.css).
-// Contenido: src/content/data/forever-bis.json (escrito a mano).
-// Nombres en español, calidad e icono: src/content/data/forever-objetos.json, GENERADO con
-// `node scripts/gen-forever-objetos.mjs` (volver a ejecutarlo al añadir objetos).
+// Pestaña BiS y consumibles (Forever): cabecera con datos, aviso, VENTANA DE PERSONAJE (emblema del Cazador
+// en el centro y las 19 ranuras alrededor), consumibles, encantamientos y «Sigue con la guía».
+// Estilos: bloque «BIS Y CONSUMIBLES» de forever.css (clases bf-*, más lv-*/gn-* de General/Leveling).
+// Datos:
+//   - Ranuras: src/lib/ranuras-forever.mjs (orden, qué acepta cada una).
+//   - Pieza elegida por ranura: src/content/data/forever-bis-equipo.json → la rellena el EDITOR LOCAL
+//     (botón «Objetos BiS» con `npm run dev`), solo con objetos de forever-bis-catalogo.json.
+//   - Catálogo (nombre, calidad, icono, ranura, tipo): forever-bis-catalogo.json, generado con
+//     `node scripts/gen-forever-catalogo.mjs` y ampliado por el editor local.
+//   - Resto (aviso «En construcción», consumibles, encantamientos): forever-bis.json (+ forever-objetos.json, generado
+//     con `node scripts/gen-forever-objetos.mjs`).
 import data from '../../content/data/forever-bis.json';
+import equipo from '../../content/data/forever-bis-equipo.json';
+import catalogo from '../../content/data/forever-bis-catalogo.json';
 import objetos from '../../content/data/forever-objetos.json';
+import { RANURAS } from '../../lib/ranuras-forever.mjs';
 import { md } from '../../lib/markup';
 import { iconUrl } from '../../lib/spells';
 import { tabPath } from '../../lib/seo';
@@ -14,6 +22,7 @@ import IndiceForever from './IndiceForever.astro';
 
 type Tipo = 'item' | 'spell';
 type Obj = { nombre: string; calidad: number; icono: string };
+type Pieza = Obj & { slot: string; tipo: string; nivel: number | null; ranuras: string[]; origen?: string };
 const info = (id: number, tipo: Tipo = 'item'): Obj => {
   const o = (objetos as Record<Tipo, Record<string, Obj>>)[tipo][id];
   if (!o) throw new Error(`forever-objetos.json: falta ${tipo} ${id}. Ejecuta node scripts/gen-forever-objetos.mjs`);
@@ -22,15 +31,31 @@ const info = (id: number, tipo: Tipo = 'item'): Obj => {
 const url = (id: number, tipo: Tipo = 'item') => `https://www.wowhead.com/forever/es/${tipo}=${id}`;
 const consumibles = data.consumibles.map((g) => ({ ...g, objetos: g.objetos.map((c) => ({ ...c, o: info(c.id) })) }));
 
+// ── Ventana de personaje ──
+type Elegida = { id: number; origen?: string } | null;
+const elegidas = equipo.ranuras as Record<string, Elegida>;
+const CAT = catalogo as Record<string, Pieza>;
+const ranuras = RANURAS.map((r) => {
+  const e = elegidas[r.id] ?? null;
+  const o = e ? CAT[e.id] : null;
+  if (e && !o) throw new Error(`forever-bis-equipo.json: el objeto ${e.id} (${r.id}) no está en forever-bis-catalogo.json`);
+  if (o && !o.ranuras.includes(r.id)) throw new Error(`forever-bis-equipo.json: «${o.nombre}» no va en la ranura ${r.id}`);
+  return { ...r, id_obj: e?.id, o, origen: e?.origen || '' };
+});
+const dosManos = ranuras.find((r) => r.id === 'principal')?.o?.slot === 'Dos manos';
+const usadas = ranuras.filter((r) => !(dosManos && r.id === 'secundaria'));
+const nElegidas = usadas.filter((r) => r.o).length;
+const lado = (l: string) => ranuras.filter((r) => r.lado === l);
+const imagen = (equipo as { imagen?: string | null }).imagen;
+
 const INDICE = [
-  { id: 'bf-preraid', texto: 'Pre-raid 60' },
-  { id: 'bf-armas', texto: 'Arma por nivel' },
+  { id: 'bf-equipo', texto: 'Equipo BiS' },
   { id: 'bf-consumibles', texto: 'Consumibles' },
   { id: 'bf-encant', texto: 'Encantamientos' },
 ];
 ---
 
-<div class="lv gn bf" id="bf">
+<div class="lv gn bf-pagina" id="bf">
   <div class="gn-hero">
     <p set:html={md(data.resumen)} />
     <ul class="gn-datos">
@@ -42,59 +67,75 @@ const INDICE = [
 
   <p class="lv-demo gn-aviso" set:html={md(data.aviso)} />
 
-  <section class="lv-sec" id="bf-preraid">
-    <h3>Equipo pre-raid de nivel 60</h3>
-    <p class="lv-lead">Lo mejor que puedes conseguir antes de entrar en raid: mazmorras de nivel 60, misiones y profesiones.</p>
-    <div class="bf-slots">
-      {data.preraid.map((p) => {
-        const o = info(p.id);
-        return (
-          <a class={`bf-slot-card q${o.calidad}`} href={url(p.id)} target="_blank" rel="noopener" data-wh-icon-added="true">
-            <img src={iconUrl(o.icono)} alt="" width="52" height="52" loading="lazy" />
-            <span>
-              <small>{p.ranura}</small>
-              <b>{o.nombre}</b>
-              <em>{p.origen}</em>
-            </span>
-          </a>
-        );
-      })}
-    </div>
-    {data.alternativas.map((a) => {
-      const o = info(a.id);
-      return (
-        <p class="gn-consejo">
-          <b>¿Sin Ingeniería?</b> Usa{' '}
-          <a class={`bf-obj q${o.calidad}`} href={url(a.id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="24" height="24" loading="lazy" />{o.nombre}</a>{' '}
-          ({a.origen}).
-        </p>
-      );
-    })}
-  </section>
+  <section class="lv-sec" id="bf-equipo">
+    <h3>Equipo BiS por ranura</h3>
+    <p class="lv-lead">La mejor pieza para cada hueco de la ventana de personaje. Pulsa un objeto para abrirlo en Wowhead.</p>
+    {data.construccion && (
+      <div class="box box-warn bf-obras">
+        <div class="box-title">En construcción</div>
+        <p set:html={md(data.construccion)} />
+      </div>
+    )}
 
-  <section class="lv-sec" id="bf-armas">
-    <h3>Arma a distancia para cada nivel</h3>
-    <p class="lv-lead">Es la mejora que más se nota mientras subes. Si la Alianza y la Horda tienen la misma, sale una sola.</p>
-    <div class="lv-table-wrap">
-      <table class="lv-table bf-table">
-        <thead><tr><th>Nivel</th><th>Alianza</th><th>Horda</th><th>Dónde se consigue</th></tr></thead>
-        <tbody>
-          {data.armas.map((a) => {
-            const link = (id: number) => {
-              const o = info(id);
-              return <a class={`bf-obj q${o.calidad}`} href={url(id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="28" height="28" loading="lazy" />{o.nombre}</a>;
-            };
+    <div class="bf-pj" data-elegidas={nElegidas}>
+      {['izq', 'der', 'armas'].map((l) => (
+        <ul class:list={['bf-col', `bf-col--${l}`]} aria-label={l === 'armas' ? 'Armas y munición' : l === 'izq' ? 'Armadura (1)' : 'Armadura (2) y accesorios'}>
+          {lado(l).map((r) => {
+            const bloqueada = dosManos && r.id === 'secundaria';
+            const Tag = r.o ? 'a' : 'div';
             return (
-              <tr>
-                <td><b>{a.nivel}</b></td>
-                {a.alianza === a.horda ? <td colspan="2">{link(a.alianza)}</td> : <><td>{link(a.alianza)}</td><td>{link(a.horda)}</td></>}
-                <td>{a.origen}</td>
-              </tr>
+              <li class:list={['bf-ranura', r.o ? `q${r.o.calidad}` : 'is-vacia', { 'is-bloqueada': bloqueada }]} data-bf-ranura={r.id}>
+                <Tag class="bf-ranura__in" {...(r.o ? { href: url(r.id_obj!), target: '_blank', rel: 'noopener', 'data-wh-icon-added': 'true' } : {})}>
+                  <span class="bf-ranura__icono">
+                    <img src={iconUrl(r.o ? r.o.icono : r.icono)} alt="" width="52" height="52" loading="lazy" />
+                  </span>
+                  <span class="bf-ranura__txt">
+                    <small>{r.label}</small>
+                    {r.o ? <b>{r.o.nombre}</b> : <b class="bf-ranura__vacio">{bloqueada ? 'Ocupada por el arma de dos manos' : 'Por decidir'}</b>}
+                    {r.o ? (r.origen && <em set:html={md(r.origen)} />) : (!bloqueada && r.nota && <em>{r.nota}</em>)}
+                  </span>
+                </Tag>
+              </li>
             );
           })}
-        </tbody>
-      </table>
+        </ul>
+      ))}
+
+      <figure class="bf-centro">
+        <div class:list={['bf-emblema', { 'has-imagen': imagen }]}>
+          {imagen
+            ? <img class="bf-emblema__img" src={imagen} alt="Cazadores de WoW Forever" loading="lazy" />
+            : <span class="bf-emblema__aro"><img src={iconUrl('classicon_hunter')} alt="Emblema del Cazador" width="128" height="128" loading="lazy" /></span>}
+        </div>
+        <figcaption>
+          <b>Cazador</b>
+          <span>Dominio de bestias</span>
+          <span class="bf-centro__cuenta"><strong>{nElegidas}</strong> de {usadas.length} piezas elegidas</span>
+        </figcaption>
+        <img class="bf-centro__logo" src="/brand/realms/forever-360.webp" alt="WoW Forever" width="180" height="146" loading="lazy" />
+      </figure>
     </div>
+
+    <details class="mk-fold bf-lista">
+      <summary>Ver el equipo en lista</summary>
+      <div class="lv-table-wrap">
+        <table class="lv-table bf-table">
+          <caption class="sr-only">Equipo BiS del Cazador de Bestias en WoW Forever por ranura</caption>
+          <thead><tr><th>Ranura</th><th>Objeto</th><th>Dónde se consigue</th></tr></thead>
+          <tbody>
+            {usadas.map((r) => (
+              <tr>
+                <td><b>{r.label}</b></td>
+                <td>{r.o
+                  ? <a class={`bf-obj q${r.o.calidad}`} href={url(r.id_obj!)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(r.o.icono)} alt="" width="28" height="28" loading="lazy" />{r.o.nombre}</a>
+                  : <span class="bf-pendiente">Por decidir</span>}</td>
+                <td set:html={r.o ? md(r.origen || '—') : '—'} />
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
   </section>
 
   <section class="lv-sec" id="bf-consumibles">
@@ -124,12 +165,12 @@ const INDICE = [
       {data.encantamientos.map((e) => {
         const tipo = e.tipo as Tipo;
         const o = info(e.id, tipo);
-        const pendiente = e.nota.includes('pendiente');
+        // De momento todos «Por confirmar» (Mishuko, 18-11-2026): sin datos de Forever a nivel 60
         return (
           <div class="gn-cambio">
             <img src={iconUrl(o.icono)} alt="" width="48" height="48" loading="lazy" />
             <div>
-              <h4>{e.ranura} <span class:list={['gn-tag', { 'is-new': !pendiente }]}>{pendiente ? 'Por confirmar' : 'Recomendado'}</span></h4>
+              <h4>{e.ranura} <span class="gn-tag">Por confirmar</span></h4>
               <p><a class={`bf-obj q${o.calidad}`} href={url(e.id, tipo)} target="_blank" rel="noopener" data-wh-icon-added="true">{o.nombre}</a></p>
               <p set:html={md(e.nota)} />
             </div>

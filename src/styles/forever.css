@@ -1235,22 +1235,108 @@ pre.mf-code { align-self: start; margin: 0; padding: 12px 14px; overflow-x: auto
 .q2 { --qc: var(--q-poco-comun); }
 .q3 { --qc: var(--q-raro); }
 .q4 { --qc: var(--q-epico); }
-.bf-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
-.bf-slot-card { display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: center; padding: 14px 16px; text-decoration: none; background: var(--card); clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border); border-left: 3px solid var(--qc); transition: box-shadow var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
-.bf-slot-card:hover { box-shadow: inset 0 0 0 1px var(--qc); transform: translateY(-2px); }
-.bf-slot-card img { width: 52px; height: 52px; border-radius: 6px; box-shadow: 0 0 0 2px color-mix(in srgb, var(--qc) 60%, transparent); }
-.bf-slot-card span { display: grid; gap: 3px; min-width: 0; }
-.bf-slot-card small { font: 700 12.5px/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
-.bf-slot-card b { font: 700 19px/1.2 var(--font-display); color: var(--qc); }
-.bf-slot-card em { font-style: normal; font-size: 15.5px; line-height: 1.4; color: var(--text2); }
-.bf .gn-cambio h4 .bf-obj { font: inherit; }
-.bf .gn-cambio p + p { margin-top: 4px; }
+.q5 { --qc: var(--q-legendario); }
+
+/* Ventana de personaje: armadura a los lados, emblema en el centro y armas debajo (como en el juego).
+   Escritorio ≥981 px: 3 columnas · tableta 561-980: emblema arriba y 2 columnas · móvil ≤560: una sola columna. */
+.bf-pj {
+  --bf-ico: 52px;
+  display: grid; gap: 14px 18px; align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px) minmax(0, 1fr);
+  grid-template-areas: "izq centro der" "armas armas armas";
+  padding: 18px; position: relative;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 38%, color-mix(in srgb, var(--brand) 14%, transparent), transparent 70%),
+    linear-gradient(180deg, var(--bg3), var(--card));
+  clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border2); border-top: 3px solid var(--gold);
+}
+.bf-col { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.bf-col--izq { grid-area: izq; }
+.bf-col--der { grid-area: der; }
+.bf-col--armas { grid-area: armas; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); padding-top: 14px; border-top: 1px solid var(--border2); }
+.bf-ranura { --qc: var(--border2); margin: 0; }
+.bf-ranura__in {
+  display: grid; grid-template-columns: var(--bf-ico) minmax(0, 1fr); gap: 12px; align-items: center; min-height: calc(var(--bf-ico) + 16px);
+  padding: 8px 12px 8px 8px; text-decoration: none; color: inherit;
+  background: color-mix(in srgb, var(--bg) 55%, transparent); box-shadow: inset 0 0 0 1px var(--border);
+  clip-path: var(--clip-card);
+  transition: box-shadow var(--t-fast) var(--ease), background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+a.bf-ranura__in:hover, a.bf-ranura__in:focus-visible { box-shadow: inset 0 0 0 1px var(--qc); background: color-mix(in srgb, var(--qc) 9%, var(--card)); transform: translateY(-1px); }
+.bf-ranura__icono { position: relative; width: var(--bf-ico); height: var(--bf-ico); }
+.bf-ranura__icono img { width: 100%; height: 100%; display: block; border-radius: 6px; box-shadow: 0 0 0 2px color-mix(in srgb, var(--qc) 75%, transparent), 0 0 14px color-mix(in srgb, var(--qc) 25%, transparent); }
+.bf-ranura__txt { display: grid; gap: 3px; min-width: 0; }
+.bf-ranura__txt small { font: 700 12.5px/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+.bf-ranura__txt b { font: 700 17.5px/1.2 var(--font-display); color: var(--qc); overflow-wrap: anywhere; }
+.bf-ranura__txt em { font-style: normal; font-size: 14.5px; line-height: 1.35; color: var(--text2); }
+.bf-ranura.is-vacia .bf-ranura__icono img { opacity: 0.55; filter: grayscale(0.4); box-shadow: 0 0 0 1px var(--border2); }
+.bf-ranura.is-vacia .bf-ranura__txt b { color: var(--text3); font-weight: 600; }
+.bf-ranura.is-vacia .bf-ranura__in { background: color-mix(in srgb, var(--bg) 35%, transparent); box-shadow: inset 0 0 0 1px var(--border), inset 0 0 0 1px color-mix(in srgb, var(--border2) 40%, transparent); }
+.bf-ranura.is-bloqueada { opacity: 0.6; }
+/* Columna derecha en escritorio: icono por fuera, como en la ventana del juego */
+@media (min-width: 981px) {
+  .bf-col--izq .bf-ranura__in { padding: 8px 12px 8px 8px; }
+  .bf-col--der .bf-ranura__in { grid-template-columns: minmax(0, 1fr) var(--bf-ico); padding: 8px 8px 8px 12px; text-align: right; }
+  .bf-col--der .bf-ranura__icono { order: 2; }
+}
+
+.bf-centro { grid-area: centro; margin: 0; display: grid; justify-items: center; align-content: center; gap: 14px; text-align: center; align-self: stretch; padding: 10px 0; }
+.bf-emblema { position: relative; width: min(100%, 240px); aspect-ratio: 1; display: grid; place-items: center; }
+.bf-emblema::before, .bf-emblema::after { content: ''; position: absolute; inset: 0; border-radius: 50%; pointer-events: none; }
+/* Aro exterior de runas (bronce) que gira despacio y halo turquesa */
+.bf-emblema::before {
+  background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--gold) 70%, transparent) 0 2deg, transparent 2deg 12deg);
+  -webkit-mask: radial-gradient(circle, transparent 64%, #000 65%, #000 69%, transparent 70%);
+          mask: radial-gradient(circle, transparent 64%, #000 65%, #000 69%, transparent 70%);
+  animation: bf-giro 60s linear infinite;
+}
+.bf-emblema::after { inset: 8%; box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 55%, transparent), 0 0 60px color-mix(in srgb, var(--brand) 35%, transparent), inset 0 0 40px color-mix(in srgb, var(--brand) 25%, transparent); }
+.bf-emblema__aro { position: relative; width: 58%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 3px var(--brand-deep), 0 0 0 6px color-mix(in srgb, var(--gold) 60%, transparent), 0 10px 30px #0009; }
+.bf-emblema__aro img { width: 100%; height: 100%; display: block; object-fit: cover; transform: scale(1.12); }
+.bf-emblema.has-imagen { aspect-ratio: 3 / 4; width: 100%; }
+.bf-emblema.has-imagen::before, .bf-emblema.has-imagen::after { display: none; }
+.bf-emblema__img { width: 100%; height: 100%; object-fit: cover; clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border2); }
+.bf-centro figcaption { display: grid; gap: 4px; }
+.bf-centro figcaption b { font: 800 28px/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); }
+.bf-centro figcaption span { font: 700 13px/1.2 var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-text); }
+.bf-centro figcaption .bf-centro__cuenta { margin-top: 6px; font: 600 14.5px/1.3 var(--font-body); letter-spacing: 0; text-transform: none; color: var(--text2); }
+.bf-centro__cuenta strong { color: var(--brand); font-size: 17px; }
+.bf-centro__logo { width: 180px; height: auto; }
+.bf-obras { margin: 0 0 16px; }
+.bf-obras p { margin: 4px 0 0; }
+@keyframes bf-giro { to { transform: rotate(360deg); } }
+
+.bf-lista { margin: 18px 0 0; }
+.bf-lista .lv-table-wrap { margin-top: 12px; }
+.bf-pendiente { color: var(--text3); }
+
+/* Tableta: emblema arriba, armadura en dos columnas y armas debajo */
+@media (max-width: 980px) {
+  .bf-pj { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "centro centro" "izq der" "armas armas"; }
+  .bf-centro { grid-template-columns: auto auto; justify-content: center; align-items: center; gap: 18px; text-align: left; padding: 0 0 6px; }
+  .bf-emblema { width: 150px; }
+  .bf-centro__logo { display: none; }
+  .bf-emblema.has-imagen { width: 160px; }
+}
+/* Móvil: una sola columna, icono un poco más pequeño */
+@media (max-width: 560px) {
+  .bf-pj { --bf-ico: 46px; grid-template-columns: 1fr; grid-template-areas: "centro" "izq" "der" "armas"; padding: 14px 12px; gap: 10px; }
+  .bf-col--armas { grid-template-columns: 1fr; padding-top: 10px; }
+  .bf-centro { gap: 14px; }
+  .bf-emblema { width: 112px; }
+  .bf-centro figcaption b { font-size: 23px; }
+  .bf-ranura__txt b { font-size: 16.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bf-emblema::before { animation: none; }
+  a.bf-ranura__in:hover { transform: none; }
+}
+.bf-pagina .gn-cambio h4 .bf-obj { font: inherit; }
+.bf-pagina .gn-cambio p + p { margin-top: 4px; }
 .bf-table td { font-size: 17px; }
 @media (max-width: 600px) {
-  .bf-slots { grid-template-columns: 1fr; }
   .bf-table th, .bf-table td { padding: 10px; }
 }
-@media (prefers-reduced-motion: reduce) { .bf-slot-card:hover { transform: none; } }
 
 /* ─── STATS (StatsForever.astro) ─── */
 .st-rank { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }

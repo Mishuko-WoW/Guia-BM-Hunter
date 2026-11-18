@@ -15,6 +15,9 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 - [ ] ❓ *Mishuko pidió explicación (18-11)* · **Títulos y descripciones de `/forever/mascotas/` y la portada** (30 min) en `src/lib/seo.ts`. Mascotas: 1.432 impresiones y 3,7 % de clics; portada: 6.587 y 3,1 %. Talentos, con un título concreto («build 31/20/0»), saca un 10 %. Meter al principio «dónde domar», «Top 5», «Ta'shkal»; portada: «Guía Hunter BM» + «Forever y Midnight».
 - [ ] ⏸ *De momento no (Mishuko, 18-11)* · **Ampliar Mascotas** (2-4 h): mejor mascota para PvE, bestias raras por zona, tiempos de reaparición (lo preguntan en los comentarios de TikTok).
 
+- [ ] **BiS de Forever: rellenarla** (M, con el editor local, botón «Objetos BiS») y luego (C) quitar `noindex: true` de `src/content/forever/paginas/bis.md`, entrada en `changelog.json` y `estado` en `realms.ts`.
+- [ ] **BiS de Forever: imagen central** (M pasa la imagen de los Hunters; C la pone en `imagen` de `forever-bis-equipo.json`). Hoy: emblema provisional.
+
 ## 3. SEO fuera de la web (M)
 
 - [ ] ⏰ *Recordárselo a Mishuko más adelante (18-11)* · **Primeros enlaces externos** (2-3 h repartidas): perfil de TikTok/YouTube/Twitch, Discord de hermandades, Reddit en español, comentarios útiles en Wowhead, página del add-on. Hoy hay **0 enlaces externos**; es lo que falta para pasar del puesto 6-7 al top 3.

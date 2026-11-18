@@ -20,6 +20,8 @@ const paginas = new Map((await getCollection('foreverPaginas')).map((p) => [p.da
 /** Pestañas con contenido aunque no tengan .md (componente propio) */
 const CON_COMPONENTE = new Set(['coaching']);
 const enPreparacion = !paginas.has(tab) && !CON_COMPONENTE.has(tab);
+/** `noindex: true` en el .md: la página se ve, pero aún no está lista para Google (p. ej. BiS sin objetos) */
+const sinIndexar = enPreparacion || paginas.get(tab)?.data.noindex === true;
 
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
@@ -30,8 +32,8 @@ const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replac
   defaultTab={tab}
   title={meta.title}
   description={meta.description}
-  noindex={enPreparacion}
-  jsonLd={enPreparacion ? [] : guideJsonLd('forever', tab, label, latestChangeDate(tab === 'mecanicas' ? undefined : tab, 'forever'), firstChangeDate(tab === 'mecanicas' ? undefined : tab, 'forever'))}
+  noindex={sinIndexar}
+  jsonLd={sinIndexar ? [] : guideJsonLd('forever', tab, label, latestChangeDate(tab === 'mecanicas' ? undefined : tab, 'forever'), firstChangeDate(tab === 'mecanicas' ? undefined : tab, 'forever'))}
 >
   <GuideForever tab={tab} paginas={paginas} />
   <ColoresForever tab={tab} />

@@ -7,7 +7,7 @@
     ['marca', 'var(--brand)'], ['ambar', 'var(--pl)'], ['violeta', 'var(--dr)'],
     ['oro', 'var(--gold)'], ['verde', 'var(--green)'], ['rojo', 'var(--red)'],
   ];
-  let modo = null; // null | 'texto' | 'color'
+  let modo = null; // null | 'texto' | 'color' | 'objeto' (solo en el BiS: elegir pieza por ranura)
   let marcado = null;
 
   const css = document.createElement('style');
@@ -22,6 +22,16 @@
     #ed-pan .sw{width:30px;min-height:30px!important;padding:0!important;border-radius:50%!important}
     #ed-pan small{color:#aaa;display:block}
     #ed-pan .err{color:#ff7b7b}
+    #ed-pan .ok{color:#9be37a}
+    #ed-pan input[type=search],#ed-pan input[type=text]{flex:1;min-width:0;min-height:32px;background:#0c0c0c;color:#eee;border:1px solid #444;padding:4px 8px;font:inherit}
+    .ed-obj-l{max-height:min(300px,40vh);overflow:auto;display:grid;gap:2px}
+    .ed-obj-l button{display:flex!important;align-items:center;gap:8px;width:100%;text-align:left}
+    .ed-obj-l button.sel{outline:2px solid #4fc4cf;background:#16303a}
+    .ed-obj-l img,.ed-obj-act img{width:30px;height:30px;border-radius:4px;flex:none}
+    .ed-obj-l small,.ed-obj-act small{display:inline!important;color:#999}
+    .ed-obj-act{display:flex;align-items:center;gap:8px;padding:6px;background:#0c0c0c;border:1px solid #333;border-radius:4px}
+    .ed-q1{color:#efe7da}.ed-q2{color:#1eff00}.ed-q3{color:#3d9bff}.ed-q4{color:#b968f5}.ed-q5{color:#ff8000}
+    .ed-hover-o{outline:2px dashed #d6a868!important;outline-offset:2px;cursor:pointer!important}
     .ed-hover{outline:2px dashed #c4d70b!important;outline-offset:2px;cursor:pointer!important}
     .ed-hover-c{outline:2px dashed #4fc4cf!important;outline-offset:3px;cursor:crosshair!important}
   `;
@@ -30,7 +40,7 @@
   const ui = document.createElement('div');
   ui.id = 'ed-ui';
   ui.innerHTML = `<div id="ed-pan" hidden></div>
-    <div id="ed-bar"><button data-m="texto">Editar texto</button><button data-m="color">Color de bloque</button><button data-p="1" title="Guarda todos los cambios en un commit y lanza publicar.bat">Publicar</button></div>`;
+    <div id="ed-bar"><button data-m="texto">Editar texto</button><button data-m="color">Color de bloque</button>${document.querySelector('[data-bf-ranura]') ? '<button data-m="objeto" title="Pulsa una ranura de la ventana de personaje para elegir su objeto">Objetos BiS</button>' : ''}<button data-p="1" title="Guarda todos los cambios en un commit y lanza publicar.bat">Publicar</button></div>`;
   document.body.append(ui);
   const pan = ui.querySelector('#ed-pan');
 
@@ -124,14 +134,14 @@
     return el ? `#${el.id}${partes.length ? ' > ' + partes.join(' > ') : ''}` : null;
   }
 
-  const objetivo = (t) => (modo === 'texto' ? bloqueTexto(t) : bloqueColor(t));
-  function quitarMarca() { marcado?.classList.remove('ed-hover', 'ed-hover-c'); marcado = null; }
+  const objetivo = (t) => (modo === 'texto' ? bloqueTexto(t) : modo === 'objeto' ? t.closest('[data-bf-ranura]') : bloqueColor(t));
+  function quitarMarca() { marcado?.classList.remove('ed-hover', 'ed-hover-c', 'ed-hover-o'); marcado = null; }
   document.addEventListener('mouseover', (e) => {
     if (!modo || ui.contains(e.target)) return;
     const el = objetivo(e.target);
     if (el === marcado) return;
     quitarMarca();
-    if (el) { marcado = el; el.classList.add(modo === 'texto' ? 'ed-hover' : 'ed-hover-c'); }
+    if (el) { marcado = el; el.classList.add({ texto: 'ed-hover', color: 'ed-hover-c', objeto: 'ed-hover-o' }[modo]); }
   }, true);
 
   // Seleccionar texto arrastrando y soltar fuera del cuadro no debe cerrar la ficha ni abrir otro texto
@@ -144,7 +154,7 @@
     if (!el) return;
     e.preventDefault();
     e.stopPropagation();
-    modo === 'texto' ? abrirTexto(el) : abrirColor(el);
+    ({ texto: abrirTexto, color: abrirColor, objeto: abrirRanura })[modo](el);
   }, true);
 
   // ── Texto ──
@@ -284,6 +294,96 @@
       // Esc cierra solo el editor, no la ficha
       if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); cerrar(); }
     });
+  }
+
+
+  // ── Objetos BiS: elegir la pieza de cada ranura (forever-bis-equipo.json) ──
+  // Lista = catálogo local filtrado a esa ranura (solo objetos que un Cazador puede llevar).
+  // Para añadir uno nuevo: pegar su ID o enlace de Wowhead Forever (el servidor lo lee y lo comprueba).
+  const sinTildes = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const detalle = (o) => [o.tipo || o.slot, o.nivel ? 'nv ' + o.nivel : '', o.ilvl ? 'ilvl ' + o.ilvl : '', o.unico ? 'único' : ''].filter(Boolean).join(' · ');
+  const filaObj = (o, extra = '') =>
+    `<img src="${esc(o.img || '')}" alt=""><span><span class="ed-q${o.calidad}">${esc(o.nombre)}</span> <small>${esc(detalle(o))}${extra}</small></span>`;
+  async function abrirRanura(el) {
+    const ranura = el.dataset.bfRanura;
+    const etiqueta = el.querySelector('small')?.textContent || ranura;
+    pan.hidden = false;
+    pan.innerHTML = '<small>Cargando el catálogo…</small>';
+    let r;
+    try { r = await api('catalogo', { ranura }); } catch (err) { pan.innerHTML = `<small class="err">${esc(err.message)}</small>`; return; }
+    let lista = r.lista;
+    const actual = r.equipo?.[ranura] || null;
+    let elegido = actual ? lista.find((o) => o.id === actual.id) || null : null;
+    pan.innerHTML = `
+      <small><b style="color:#d6a868">${esc(etiqueta)}</b> · solo salen objetos de esta ranura que puede llevar un Cazador (sin placas, mazas, escudos ni varitas)</small>
+      <div class="fila ed-obj-act"></div>
+      <div class="fila"><input type="search" placeholder="Buscar en el catálogo…"></div>
+      <div class="ed-obj-l"></div>
+      <div class="fila"><input type="text" class="ed-obj-id" placeholder="¿No está? Pega su enlace o ID de Wowhead Forever"><button data-a="n">Añadir</button></div>
+      <div class="fila"><input type="text" class="ed-obj-or" maxlength="300" placeholder="Dónde se consigue (ej.: Stratholme · El Imperdonable)"></div>
+      <div class="fila"><button data-a="g" class="on">Guardar</button><button data-a="v" title="Deja la ranura vacía («Por decidir»)">Vaciar ranura</button><button data-a="x">Cancelar (Esc)</button><span class="msg"></span></div>`;
+    const act = pan.querySelector('.ed-obj-act');
+    const q = pan.querySelector('input[type=search]');
+    const l = pan.querySelector('.ed-obj-l');
+    const inId = pan.querySelector('.ed-obj-id');
+    const inOr = pan.querySelector('.ed-obj-or');
+    const msg = pan.querySelector('.msg');
+    inOr.value = actual?.origen || '';
+    const pintarActual = () => {
+      act.innerHTML = elegido ? filaObj(elegido, ' · ID ' + elegido.id) : '<small>Ranura vacía: elige un objeto de la lista.</small>';
+    };
+    const pintar = () => {
+      const s = sinTildes(q.value.trim());
+      const vis = lista.filter((o) => !s || sinTildes(o.nombre).includes(s) || String(o.id) === s);
+      l.innerHTML = vis.slice(0, 80).map((o) => `<button data-id="${o.id}" class="${elegido?.id === o.id ? 'sel' : ''}">${filaObj(o)}</button>`).join('') ||
+        `<small>${lista.length ? 'Ninguno con ese nombre.' : 'Aún no hay objetos para esta ranura.'} Pega abajo su enlace o ID de Wowhead Forever.</small>`;
+    };
+    const elegir = (o) => {
+      elegido = o;
+      if (o.origen && (!inOr.value.trim() || inOr.dataset.auto === '1')) { inOr.value = o.origen; inOr.dataset.auto = '1'; }
+      pintarActual();
+      pintar();
+    };
+    inOr.addEventListener('input', () => (inOr.dataset.auto = ''));
+    l.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-id]');
+      if (b) elegir(lista.find((o) => o.id === Number(b.dataset.id)));
+    });
+    q.addEventListener('input', pintar);
+    const anadir = async () => {
+      if (!inId.value.trim()) return;
+      msg.textContent = 'Leyendo el objeto en Wowhead Forever…';
+      try {
+        const { objeto } = await api('objeto', { texto: inId.value.trim() });
+        inId.value = '';
+        if (!objeto.ranuras.includes(ranura)) {
+          msg.innerHTML = `<span class="err">«${esc(objeto.nombre)}» es de ${esc(objeto.slot)}: queda guardado en el catálogo, pero no va en esta ranura.</span>`;
+          return;
+        }
+        lista = [objeto, ...lista.filter((o) => o.id !== objeto.id)];
+        q.value = '';
+        elegir(objeto);
+        msg.innerHTML = '<span class="ok">Añadido al catálogo. Pulsa Guardar para ponerlo en la ranura.</span>';
+      } catch (err) { msg.innerHTML = `<span class="err">${esc(err.message)}</span>`; }
+    };
+    pan.querySelector('[data-a="n"]').onclick = anadir;
+    inId.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); anadir(); } });
+    const guardar = async (id) => {
+      msg.textContent = 'Guardando…';
+      try {
+        apuntar();
+        const res = await api('bis', { ranura, id, origen: inOr.value });
+        msg.innerHTML = `<span class="ok">${esc(res.aviso || 'Guardado.')} Recargando…</span>`;
+        recargar();
+      } catch (err) { msg.innerHTML = `<span class="err">${esc(err.message)}</span>`; }
+    };
+    pan.querySelector('[data-a="g"]').onclick = () => (elegido ? guardar(elegido.id) : (msg.innerHTML = '<span class="err">Elige primero un objeto.</span>'));
+    pan.querySelector('[data-a="v"]').onclick = () => guardar(null);
+    pan.querySelector('[data-a="x"]').onclick = cerrar;
+    pan.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); cerrar(); } });
+    pintarActual();
+    pintar();
+    q.focus();
   }
 
   // ── Publicar: build + commit de los cambios del editor + publicar.bat (ventana aparte) ──

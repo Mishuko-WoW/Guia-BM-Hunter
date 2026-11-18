@@ -131,6 +131,7 @@ const foreverPaginas = defineCollection({
   schema: z.object({
     tab: z.string(),
     titulo: z.string(),
+    noindex: z.boolean().optional(), // true = página visible pero fuera de Google y del sitemap (astro.config.mjs)
     intro: z.array(bloque).optional(), // bloques antes de los componentes de la pestaña (calculadora…)
     bloques: z.array(bloque),
   }),

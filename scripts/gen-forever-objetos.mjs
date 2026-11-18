@@ -15,8 +15,8 @@ const traducido = (n) => n && !/^\[.*\]$/.test(n);
 
 const items = new Set();
 const spells = new Set();
-for (const p of [...bis.preraid, ...bis.alternativas]) items.add(p.id);
-for (const a of bis.armas) items.add(a.alianza), items.add(a.horda);
+// Las piezas de la ventana de personaje salen de forever-bis-catalogo.json (gen-forever-catalogo.mjs), no de aquí
+for (const a of bis.armas ?? []) items.add(a.alianza), items.add(a.horda);
 for (const g of bis.consumibles) for (const o of g.objetos) items.add(o.id);
 for (const e of bis.encantamientos) (e.tipo === 'spell' ? spells : items).add(e.id);
 

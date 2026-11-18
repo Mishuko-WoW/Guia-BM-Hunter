@@ -66,6 +66,7 @@
   --q-poco-comun: #1eff00;
   --q-raro:       #3d9bff;
   --q-epico:      #b968f5;
+  --q-legendario: #ff8000;
 
   /* Monedas del juego (costes de entrenamiento): texto, brillo, cuerpo y sombra */
   --coin-gold:   #f5d06a; --coin-gold-hi:   #fff2b0; --coin-gold-mid:   #d9a520; --coin-gold-lo:   #8a6210;

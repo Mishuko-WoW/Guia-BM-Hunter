@@ -12,7 +12,11 @@ import editorLocal from './scripts/editor-local/integration.mjs';
 // - lastmod = fecha del último cambio de esa pestaña en src/content/data/changelog.json.
 const FOREVER_CON_COMPONENTE = ['coaching'];
 const foreverConContenido = new Set([
-  ...fs.readdirSync('./src/content/forever/paginas').filter((f) => f.endsWith('.md')).map((f) => f.slice(0, -3)),
+  ...fs.readdirSync('./src/content/forever/paginas')
+    .filter((f) => f.endsWith('.md'))
+    // `noindex: true` en el .md (página visible pero aún no lista, p. ej. BiS sin objetos) → fuera del sitemap
+    .filter((f) => !/^noindex:\s*true\s*$/m.test(fs.readFileSync(`./src/content/forever/paginas/${f}`, 'utf8')))
+    .map((f) => f.slice(0, -3)),
   ...FOREVER_CON_COMPONENTE,
 ]);
 const changelog = JSON.parse(fs.readFileSync('./src/content/data/changelog.json', 'utf8'));

@@ -9,12 +9,17 @@
 import fs from 'node:fs';
 import { spawn } from 'node:child_process';
 import yaml from 'js-yaml';
+import { RANURAS } from '../../src/lib/ranuras-forever.mjs';
+import { leerObjeto, idDeTexto } from './objeto-wowhead.mjs';
 
 const DATA = 'src/content/data';
 const PAGINAS = 'src/content/forever/paginas';
 const COLORES = `${DATA}/forever-colores.json`;
-// Generados por scripts (se sobrescriben al regenerar): no se editan aquí
-const NO_EDITABLES = new Set(['forever-talentos.json', 'forever-mascotas.json', 'forever-objetos.json', 'forever-colores.json']);
+// Generados por scripts (se sobrescriben al regenerar) o escritos por su propio endpoint: no se editan como texto
+const NO_EDITABLES = new Set(['forever-talentos.json', 'forever-mascotas.json', 'forever-objetos.json', 'forever-colores.json', 'forever-bis-catalogo.json']);
+// BiS de Forever: pieza elegida por ranura (/__editor/bis) y catálogo de objetos que se pueden elegir (/__editor/objeto)
+const EQUIPO = `${DATA}/forever-bis-equipo.json`;
+const CATALOGO = `${DATA}/forever-bis-catalogo.json`;
 export const COLORES_VALIDOS = ['marca', 'ambar', 'violeta', 'oro', 'verde', 'rojo'];
 export const SELECTOR_VALIDO = /^#[A-Za-z][\w-]*( > [a-z][a-z0-9]*:nth-of-type\(\d{1,3}\))*$/;
 
@@ -108,6 +113,65 @@ function guardarColor(tab, selector, color) {
   fs.writeFileSync(COLORES, JSON.stringify(datos, null, 2) + '\n');
 }
 
+// ─── BiS de Forever: catálogo y pieza por ranura ───
+const leerJson = (f, def) => (fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : def);
+const escribirJson = (f, d) => fs.writeFileSync(f, JSON.stringify(d, null, 2) + '\n');
+
+/** Catálogo como lista (con id), del ilvl más alto al más bajo */
+function catalogo() {
+  const c = leerJson(CATALOGO, {});
+  return Object.entries(c).map(([id, o]) => ({ id: Number(id), ...o })).sort((a, b) => (b.ilvl ?? 0) - (a.ilvl ?? 0) || a.nombre.localeCompare(b.nombre, 'es'));
+}
+
+/** Lee un objeto de Wowhead Forever, comprueba que un Cazador lo puede llevar y lo añade al catálogo */
+async function anadirObjeto(texto) {
+  const id = idDeTexto(texto);
+  if (!id) throw new Error('Escribe el número del objeto o pega su enlace de Wowhead Forever (…/item=13404/…)');
+  const o = await leerObjeto(id);
+  const c = leerJson(CATALOGO, {});
+  const { id: _, ...ficha } = o;
+  c[id] = { ...ficha, ...(c[id]?.origen ? { origen: c[id].origen } : {}) };
+  escribirJson(CATALOGO, Object.fromEntries(Object.entries(c).sort(([a], [b]) => a - b)));
+  return { id, ...c[id] };
+}
+
+/** Pone (o quita, con id null) la pieza de una ranura en forever-bis-equipo.json */
+function guardarPieza(ranura, id, origen) {
+  const r = RANURAS.find((x) => x.id === ranura);
+  if (!r) throw new Error('Ranura no válida');
+  const eq = leerJson(EQUIPO, { imagen: null, ranuras: {} });
+  eq.ranuras ??= {};
+  for (const x of RANURAS) if (!(x.id in eq.ranuras)) eq.ranuras[x.id] = null;
+  let aviso = '';
+  if (id == null) {
+    eq.ranuras[ranura] = null;
+  } else {
+    const o = leerJson(CATALOGO, {})[id];
+    if (!o) throw new Error('Ese objeto no está en el catálogo: añádelo primero con su ID o enlace');
+    if (!o.ranuras.includes(ranura)) throw new Error(`«${o.nombre}» es de ${o.slot}: no va en ${r.label}`);
+    const principal = eq.ranuras.principal && leerJson(CATALOGO, {})[eq.ranuras.principal.id];
+    if (ranura === 'secundaria' && principal?.slot === 'Dos manos') throw new Error('Con un arma de dos manos no se puede llevar nada en la mano secundaria: quita primero el arma de dos manos');
+    // Mismo objeto «Único» en las dos ranuras de anillo, abalorio o arma
+    const pareja = { anillo1: 'anillo2', anillo2: 'anillo1', abalorio1: 'abalorio2', abalorio2: 'abalorio1', principal: 'secundaria', secundaria: 'principal' }[ranura];
+    if (o.unico && pareja && eq.ranuras[pareja]?.id === id) throw new Error(`«${o.nombre}» es único: no se puede llevar dos veces`);
+    const texto = typeof origen === 'string' ? origen.trim().slice(0, 300) : '';
+    eq.ranuras[ranura] = { id, origen: texto };
+    if (ranura === 'principal' && o.slot === 'Dos manos' && eq.ranuras.secundaria) {
+      eq.ranuras.secundaria = null;
+      aviso = 'Es de dos manos: se ha vaciado la mano secundaria.';
+    }
+    // Lo escrito en «Dónde se consigue» queda como sugerencia en el catálogo para la próxima vez
+    if (texto) {
+      const c = leerJson(CATALOGO, {});
+      c[id].origen = texto;
+      escribirJson(CATALOGO, c);
+    }
+  }
+  eq.ranuras = Object.fromEntries(RANURAS.map((x) => [x.id, eq.ranuras[x.id] ?? null]));
+  escribirJson(EQUIPO, eq);
+  return aviso;
+}
+
 // ─── Publicar: (entrada opcional en changelog.json) → npm run build → commit SOLO de los archivos del editor
 //     → abre publicar.bat en su propia ventana (push + IndexNow; Mishuko ve el progreso y el «Listo»).
 const CHANGELOG = `${DATA}/changelog.json`;
@@ -125,7 +189,7 @@ async function publicar(server, tab, nota) {
   try {
     const hoy = new Date();
     const fecha = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`;
-    const ficheros = [...archivos(), COLORES];
+    const ficheros = [...archivos(), COLORES, CATALOGO];
     const changelogAntes = fs.readFileSync(CHANGELOG, 'utf8');
     if (typeof nota === 'string' && nota.trim()) {
       const { TABS_FOREVER } = await server.ssrLoadModule('/src/lib/tabs.ts');
@@ -210,6 +274,22 @@ export default function editorLocal() {
               return responder(200, { lista: lista.sort((a, b) => a.n.localeCompare(b.n, 'es')) });
             }
             if (req.url === '/publicar') return responder(200, { mensaje: await publicar(server, b.tab, b.nota) });
+            if (req.url === '/catalogo') {
+              const ranura = typeof b.ranura === 'string' ? b.ranura : '';
+              const { iconUrl } = await server.ssrLoadModule('/src/lib/spells.ts');
+              const lista = catalogo().filter((o) => !ranura || o.ranuras.includes(ranura)).map((o) => ({ ...o, img: iconUrl(o.icono) }));
+              return responder(200, { lista, equipo: leerJson(EQUIPO, { ranuras: {} }).ranuras });
+            }
+            if (req.url === '/objeto') {
+              const { iconUrl } = await server.ssrLoadModule('/src/lib/spells.ts');
+              const o = await anadirObjeto(String(b.texto ?? ''));
+              return responder(200, { objeto: { ...o, img: iconUrl(o.icono) } });
+            }
+            if (req.url === '/bis') {
+              const id = b.id == null ? null : Number(b.id);
+              if (id !== null && !Number.isInteger(id)) throw new Error('ID no válido');
+              return responder(200, { ok: true, aviso: guardarPieza(String(b.ranura ?? ''), id, b.origen) });
+            }
             if (req.url === '/color') { guardarColor(b.tab, b.selector, b.color ?? null); return responder(200, { ok: true }); }
             responder(404, { error: 'No existe' });
           } catch (e) {
