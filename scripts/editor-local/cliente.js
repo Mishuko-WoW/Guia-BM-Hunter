@@ -34,6 +34,14 @@
   document.body.append(ui);
   const pan = ui.querySelector('#ed-pan');
 
+  // Las fichas (<dialog> con showModal) tapan todo lo demás: los botones se mueven dentro del dialog abierto
+  const colocar = () => {
+    const destino = [...document.querySelectorAll('dialog[open]')].pop() || document.body;
+    if (ui.parentElement !== destino) destino.append(ui);
+  };
+  new MutationObserver(colocar).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['open'] });
+  const enGuia = (el) => el.closest('[id^="tab-"], dialog');
+
   const api = async (ruta, datos) => {
     const r = await fetch('/__editor/' + ruta, {
       method: 'POST',
@@ -60,12 +68,12 @@
   // Bloque de texto: el primer elemento no "inline" desde donde se pulsa
   function bloqueTexto(el) {
     while (el && el !== document.body && getComputedStyle(el).display.startsWith('inline')) el = el.parentElement;
-    return el && el !== document.body && el.closest('[id^="tab-"]') ? el : null;
+    return el && el !== document.body && enGuia(el) ? el : null;
   }
   // Bloque con aspecto de caja: borde, fondo, recorte o tabla
   function bloqueColor(el) {
     for (; el && el !== document.body; el = el.parentElement) {
-      if (!el.closest('[id^="tab-"]') || el.id?.startsWith('tab-')) return null;
+      if (!enGuia(el) || el.id?.startsWith('tab-') || el.tagName === 'DIALOG') return null;
       const cs = getComputedStyle(el);
       if (cs.display.startsWith('inline') && el.tagName !== 'TABLE') continue;
       const borde = parseFloat(cs.borderLeftWidth) > 0 && cs.borderLeftStyle !== 'none';
@@ -108,7 +116,7 @@
   // ── Texto ──
   async function abrirTexto(el) {
     const textos = [];
-    for (let x = el; x && textos.length < 4 && !x.id?.startsWith('tab-'); x = x.parentElement) {
+    for (let x = el; x && textos.length < 4 && !x.id?.startsWith('tab-') && x.tagName !== 'DIALOG'; x = x.parentElement) {
       const t = norm(x.textContent || '');
       if (t && !textos.includes(t)) textos.push(t);
     }
@@ -175,7 +183,8 @@
     pan.querySelector('[data-a="x"]').onclick = cerrar;
     ta.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && e.ctrlKey) { e.preventDefault(); guardar(); }
-      if (e.key === 'Escape') cerrar();
+      // Esc cierra solo el editor, no la ficha
+      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); cerrar(); }
     });
   }
 
