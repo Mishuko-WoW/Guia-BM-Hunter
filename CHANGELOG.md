@@ -22,6 +22,8 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
   - Color de palabra: nueva marca `[c=marca|ambar|violeta|oro|verde|rojo]texto[/c]` en `markup.ts` (clases `.txt-c--*` al final de `marca.css`).
   - Color de bloque: `src/content/data/forever-colores.json` (`{ tab: { selector: color } }`) → `ColoresForever.astro` (en `PaginaForever`) pinta borde izquierdo, títulos y `th` con la variable de la marca. Selectores validados con regex (`#id > tag:nth-of-type(n)…`), sin inyección. Si cambia la estructura de la página, un color puede dejar de aplicarse.
   - Fichas en `<dialog>` (mascotas, Top 5): `showModal()` las pone por encima de todo, así que los botones del editor se mueven dentro del dialog abierto (`MutationObserver` sobre `open`) y se pueden editar sus textos; Esc en el cuadro de texto no cierra la ficha.
+  - Enlaces: `[texto](https://…)` o `[texto](/ruta/)` en `markup.ts` (externos con `target="_blank" rel="noopener"`; solo http(s) o rutas internas) y las URL sueltas se vuelven clicables. Botón «Enlace» en el editor.
+  - Botón «Habilidad»: buscador (sin tildes) de `spells.json` con icono (`/__editor/hechizos`); inserta `[[Nombre]]` o `{{Nombre}}` (icono grande) y, si había texto seleccionado distinto, `[[Nombre>texto]]`.
 - **Leveling Forever**: `RecomendacionRestedXP.astro` (enlace de afiliado, `rel="sponsored"`, evento GA4 `afiliado_click`) al final de la sección de tramos; estilos `.lv-addon*` en `forever.css`.
 
 ## 2026-11-18 — Forever: Ta'shkal como #0 del Top 5 de mascotas

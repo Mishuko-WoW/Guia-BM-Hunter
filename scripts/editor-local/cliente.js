@@ -144,9 +144,16 @@
         <button data-f="b"><b>N</b></button><button data-f="i"><i>K</i></button>
         ${COLORES.map(([n, v]) => `<button class="sw" title="${n}" data-c="${n}" style="background:${v}"></button>`).join('')}
         <button data-f="q" title="Quita negrita, cursiva y color del trozo seleccionado">Quitar formato</button>
+        <button data-f="l" title="Convierte el trozo seleccionado en un enlace">Enlace</button>
+        <button data-f="h" title="Inserta una habilidad con su icono">Habilidad</button>
+      </div>
+      <div class="ed-hz" hidden>
+        <div class="fila"><input type="search" placeholder="Buscar habilidad…" style="flex:1;min-height:32px;background:#0c0c0c;color:#eee;border:1px solid #444;padding:4px 8px">
+        <label><input type="checkbox"> Icono grande</label></div>
+        <div class="ed-hz-l" style="max-height:180px;overflow:auto"></div>
       </div>
       <textarea spellcheck="true" lang="es"></textarea>
-      <small>Selecciona un trozo y pulsa un botón. <code>[[Hechizo]]</code> e iconos <code>{{…}}</code>: no tocar los corchetes.</small>
+      <small>Selecciona un trozo y pulsa un botón. Las habilidades se ven como <code>[[Nombre]]</code> y los enlaces como <code>[texto](dirección)</code>: no borres los corchetes.</small>
       <div class="fila"><button data-a="g" class="on">Guardar (Ctrl+Enter)</button><button data-a="x">Cancelar (Esc)</button><span class="msg"></span></div>`;
     const ta = pan.querySelector('textarea');
     ta.value = raw;
@@ -166,8 +173,64 @@
       ta.setSelectionRange(s, s + limpio.length);
       ta.focus();
     };
-    pan.querySelectorAll('[data-f]').forEach((b) => (b.onclick = () =>
-      b.dataset.f === 'b' ? envolver('**', '**') : b.dataset.f === 'i' ? envolver('*', '*') : quitar()));
+    // Reemplaza la selección (o inserta en el cursor)
+    const poner = (t) => {
+      const { selectionStart: s, selectionEnd: f, value: v } = ta;
+      ta.value = v.slice(0, s) + t + v.slice(f);
+      ta.setSelectionRange(s + t.length, s + t.length);
+      ta.focus();
+    };
+    const enlace = () => {
+      const { selectionStart: s, selectionEnd: f, value: v } = ta;
+      if (s === f) return alert('Primero selecciona el texto que será el enlace.');
+      let url = (prompt('Dirección del enlace (https://… o /forever/…):') || '').trim();
+      if (!url) return;
+      if (/^www\./.test(url)) url = 'https://' + url;
+      if (!/^(https?:\/\/|\/)[^\s()<>"]*$/.test(url)) return alert('Dirección no válida: tiene que empezar por https:// o por /');
+      poner(`[${v.slice(s, f).replace(/[\[\]]/g, '')}](${url})`);
+    };
+    const hz = pan.querySelector('.ed-hz');
+    const hzIn = hz.querySelector('input[type=search]');
+    const hzGrande = hz.querySelector('input[type=checkbox]');
+    const hzL = hz.querySelector('.ed-hz-l');
+    let hechizos = null;
+    const pintarHz = () => {
+      const q = hzIn.value.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+      const sin = (n) => n.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+      hzL.innerHTML = hechizos.filter((h) => sin(h.n).includes(q)).slice(0, 40).map((h) =>
+        `<button data-n="${esc(h.n)}" style="display:flex;align-items:center;gap:8px;width:100%;text-align:left;margin:2px 0">` +
+        (h.i ? `<img src="${esc(h.i)}" width="22" height="22" alt="">` : '<span style="width:22px"></span>') + `${esc(h.n)}</button>`).join('') ||
+        '<small>No hay ninguna con ese nombre. Si es nueva, pídele a Claude que la añada.</small>';
+    };
+    hzL.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-n]');
+      if (!b) return;
+      const n = b.dataset.n;
+      const { selectionStart: s, selectionEnd: f, value: v } = ta;
+      const sel = v.slice(s, f).trim();
+      const [a, z] = hzGrande.checked ? ['{{', '}}'] : ['[[', ']]'];
+      poner(`${a}${n}${sel && sel !== n ? '>' + sel.replace(/[\[\]{}|>]/g, '') : ''}${z}`);
+      hz.hidden = true;
+    });
+    hzIn.addEventListener('input', pintarHz);
+    hzIn.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); hz.hidden = true; ta.focus(); }
+      if (e.key === 'Enter') { e.preventDefault(); hzL.querySelector('[data-n]')?.click(); }
+    });
+    const habilidad = async () => {
+      if (!hz.hidden) { hz.hidden = true; return; }
+      hz.hidden = false;
+      if (!hechizos) {
+        hzL.innerHTML = '<small>Cargando…</small>';
+        try { hechizos = (await api('hechizos', {})).lista; } catch (err) { hzL.innerHTML = `<small class="err">${esc(err.message)}</small>`; return; }
+      }
+      hzIn.value = ta.value.slice(ta.selectionStart, ta.selectionEnd).trim();
+      pintarHz();
+      hzIn.focus();
+    };
+    pan.querySelectorAll('[data-f]').forEach((b) => (b.onclick = () => ({
+      b: () => envolver('**', '**'), i: () => envolver('*', '*'), q: quitar, l: enlace, h: habilidad,
+    })[b.dataset.f]()));
     pan.querySelectorAll('[data-c]').forEach((b) => (b.onclick = () => envolver(`[c=${b.dataset.c}]`, '[/c]')));
     const msg = pan.querySelector('.msg');
     const guardar = async () => {

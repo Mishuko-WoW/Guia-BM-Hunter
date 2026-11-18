@@ -152,6 +152,12 @@ export default function editorLocal() {
               for (const l of lista) guardar(l.file, l.ruta, l.antes, b.despues);
               return responder(200, { ok: true });
             }
+            if (req.url === '/hechizos') {
+              const { iconUrl } = await server.ssrLoadModule('/src/lib/spells.ts');
+              const spells = JSON.parse(fs.readFileSync(`${DATA}/spells.json`, 'utf8'));
+              const lista = Object.entries(spells).map(([n, s]) => ({ n, i: iconUrl(s.iconForever ?? s.icon) || '' }));
+              return responder(200, { lista: lista.sort((a, b) => a.n.localeCompare(b.n, 'es')) });
+            }
             if (req.url === '/color') { guardarColor(b.tab, b.selector, b.color ?? null); return responder(200, { ok: true }); }
             responder(404, { error: 'No existe' });
           } catch (e) {

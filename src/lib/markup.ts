@@ -6,6 +6,7 @@ import { getSpell, iconUrl } from './spells';
 //   [[Nombre|desc|tipo|clase]]    sobrescribe también tipo y clase (sp | pr | bf); campos vacíos = catálogo
 //   [[Nombre>Texto visible]]      muestra otro texto con el tooltip de Nombre
 //   **negrita**   *cursiva*   !!alerta en rojo!!
+//   [texto](https://enlace) o [texto](/forever/mascotas/); una URL suelta también se vuelve clicable
 //   [c=ambar]texto en color[/c]   colores: marca, ambar, violeta, oro, verde, rojo (clases .txt-c--* en marca.css)
 // Se permite HTML suelto para casos especiales.
 
@@ -47,10 +48,19 @@ function tile(raw: string): string {
   );
 }
 
+// [texto](https://…) o [texto](/forever/…) → enlace; externos en pestaña nueva. Solo http(s) o rutas internas.
+function link(label: string, url: string): string {
+  const fuera = /^https?:\/\//.test(url);
+  return `<a href="${attr(url)}"${fuera ? ' target="_blank" rel="noopener"' : ''}>${label}</a>`;
+}
+
 export function md(text = ''): string {
   return text
     .replace(/\{\{([^}]+)\}\}/g, (_, m) => tile(m))
     .replace(/\[\[([^\]]+)\]\]/g, (_, m) => mention(m))
+    .replace(/\[([^\[\]]+)\]\(((?:https?:\/\/|\/)[^\s()<>"]*)\)/g, (_, l, u) => link(l, u))
+    // URL suelta (tras espacio o al principio) → enlace clicable; sin la puntuación final
+    .replace(/(^|[\s(])(https?:\/\/[^\s<>"()]+?)([.,;:!?]*)(?=$|[\s)<])/g, (_, a, u, p) => `${a}${link(u, u)}${p}`)
     .replace(/!!(.+?)!!(?!!)/g, '<strong class="txt-alert">$1</strong>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/(^|[^*])\*([^*\s][^*]*?)\*(?!\*)/g, '$1<em>$2</em>')
