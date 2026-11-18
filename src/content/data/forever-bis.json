@@ -1,7 +1,7 @@
 {
-  "resumen": "El equipo que de momento rinde más para el **Cazador de Bestias** en Forever: la **ventana de personaje** con la mejor pieza para cada ranura (armaduras, armas cuerpo a cuerpo, arma a distancia y munición), los **consumibles** y los **encantamientos**. Pasa el ratón por cualquier objeto para ver sus estadísticas.",
+  "resumen": "El equipo que de momento rinde más para el **Cazador de Bestias** en Forever: la **ventana de personaje** con la mejor pieza para cada ranura antes de raid (pre-raid) y en raid (armaduras, armas cuerpo a cuerpo, arma a distancia y munición), los **consumibles** y los **encantamientos**. Pasa el ratón por cualquier objeto para ver sus estadísticas.",
   "aviso": "**Listas provisionales.** WoW Forever acaba de salir y todo está sujeto a cambios por parte de Blizzard. Las iré actualizando según se pruebe el equipo de alto nivel y se abran las raids.",
-  "construccion": "Aún no tenemos los datos concretos del equipo de nivel 60 en Forever (mazmorras, raids y simulaciones), así que **las ranuras están por decidir**. Las iré rellenando pieza a pieza en cuanto estén confirmadas.",
+  "construccion": "Aún no hay raids abiertas en WoW Forever, así que **el BiS de raid está por decidir**. Mientras tanto, usa la lista **pre-raid**. Lo iré rellenando pieza a pieza en cuanto se abran las raids y haya datos confirmados.",
   "consumibles": [
     {
       "titulo": "A nivel 60",

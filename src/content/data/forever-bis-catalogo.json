@@ -1,4 +1,18 @@
 {
+  "2662": {
+    "nombre": "Carcaj de Ribbly",
+    "calidad": 2,
+    "icono": "inv_misc_quiver_06",
+    "slot": "Carcaj de 16 casillas",
+    "tipo": "",
+    "nivel": 50,
+    "ilvl": 55,
+    "unico": true,
+    "clases": [],
+    "ranuras": [
+      "carcaj"
+    ]
+  },
   "12651": {
     "nombre": "Cuervo negro",
     "calidad": 3,
@@ -13,6 +27,20 @@
       "distancia"
     ],
     "origen": "Cumbre de Roca Negra · Cazador de las Sombras Vosh'gajin"
+  },
+  "13023": {
+    "nombre": "Arco largo de cuero de águila",
+    "calidad": 3,
+    "icono": "inv_weapon_bow_11",
+    "slot": "A distancia",
+    "tipo": "Arco",
+    "nivel": 58,
+    "ilvl": 63,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "distancia"
+    ]
   },
   "13211": {
     "nombre": "Brazales garraja",
@@ -45,6 +73,20 @@
     ],
     "origen": "Cumbre de Roca Negra · Madre Telabrasada"
   },
+  "13340": {
+    "nombre": "Manteo del Barón negro",
+    "calidad": 3,
+    "icono": "inv_misc_cape_20",
+    "slot": "Espalda",
+    "tipo": "",
+    "nivel": 58,
+    "ilvl": 63,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "espalda"
+    ]
+  },
   "13392": {
     "nombre": "Lacre de jefe de correos",
     "calidad": 3,
@@ -75,6 +117,21 @@
       "cabeza"
     ],
     "origen": "Stratholme · El Imperdonable"
+  },
+  "13965": {
+    "nombre": "Amplitud de Puño Negro",
+    "calidad": 3,
+    "icono": "inv_misc_armorkit_09",
+    "slot": "Alhaja",
+    "tipo": "",
+    "nivel": null,
+    "ilvl": 63,
+    "unico": true,
+    "clases": [],
+    "ranuras": [
+      "abalorio1",
+      "abalorio2"
+    ]
   },
   "13967": {
     "nombre": "Grebas Atracavientos",
@@ -121,6 +178,20 @@
     ],
     "origen": "Peletería"
   },
+  "15411": {
+    "nombre": "Marca de Fordring",
+    "calidad": 3,
+    "icono": "inv_jewelry_talisman_07",
+    "slot": "Cuello",
+    "tipo": "",
+    "nivel": null,
+    "ilvl": 63,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "cuello"
+    ]
+  },
   "18282": {
     "nombre": "Rifle de tirador del Núcleo",
     "calidad": 4,
@@ -135,6 +206,20 @@
       "distancia"
     ],
     "origen": "Ingeniería"
+  },
+  "18296": {
+    "nombre": "Sortijas de tirador",
+    "calidad": 3,
+    "icono": "inv_bracer_06",
+    "slot": "Muñeca",
+    "tipo": "Malla",
+    "nivel": 51,
+    "ilvl": 56,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "munecas"
+    ]
   },
   "18314": {
     "nombre": "Anillo de Astucia demoníaca",
@@ -182,6 +267,20 @@
     ],
     "origen": "Peletería"
   },
+  "18742": {
+    "nombre": "Guardahombros de la milicia de Stratholme",
+    "calidad": 3,
+    "icono": "inv_shoulder_14",
+    "slot": "Hombro",
+    "tipo": "Malla",
+    "nivel": 55,
+    "ilvl": 60,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "hombros"
+    ]
+  },
   "249469": {
     "nombre": "Corazón de la montaña congelado",
     "calidad": 3,
@@ -198,6 +297,20 @@
     ],
     "origen": "Encantamiento"
   },
+  "250619": {
+    "nombre": "Guja de legionita",
+    "calidad": 3,
+    "icono": "inv_spear_05",
+    "slot": "Dos manos",
+    "tipo": "Arma de asta",
+    "nivel": 58,
+    "ilvl": 63,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "principal"
+    ]
+  },
   "252483": {
     "nombre": "Armadura del Alba",
     "calidad": 4,
@@ -212,6 +325,80 @@
       "pecho"
     ],
     "origen": "Peletería"
+  },
+  "252605": {
+    "nombre": "Yelmo de escamas de dragón negro",
+    "calidad": 4,
+    "icono": "inv_helmet_09",
+    "slot": "Cabeza",
+    "tipo": "Malla",
+    "nivel": 56,
+    "ilvl": 61,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "cabeza"
+    ]
+  },
+  "260217": {
+    "nombre": "Eagle's Head Signet",
+    "calidad": 3,
+    "icono": "inv_jewelry_ring_zulgurub_01",
+    "slot": "Dedo",
+    "tipo": "",
+    "nivel": null,
+    "ilvl": 62,
+    "unico": true,
+    "clases": [],
+    "ranuras": [
+      "anillo1",
+      "anillo2"
+    ]
+  },
+  "272397": {
+    "nombre": "Cinturón de forestal",
+    "calidad": 4,
+    "icono": "inv_belt_25",
+    "slot": "Cintura",
+    "tipo": "Malla",
+    "nivel": 60,
+    "ilvl": 60,
+    "unico": false,
+    "clases": [
+      "Cazador"
+    ],
+    "ranuras": [
+      "cintura"
+    ]
+  },
+  "272408": {
+    "nombre": "Sello de degollador",
+    "calidad": 3,
+    "icono": "inv_jewelry_ring_01",
+    "slot": "Dedo",
+    "tipo": "",
+    "nivel": 60,
+    "ilvl": 65,
+    "unico": true,
+    "clases": [],
+    "ranuras": [
+      "anillo1",
+      "anillo2"
+    ]
+  },
+  "274387": {
+    "nombre": "Flecha Plumaveloz",
+    "calidad": 4,
+    "icono": "inv_ammo_arrow_06",
+    "slot": "Munición",
+    "tipo": "Flecha",
+    "nivel": 60,
+    "ilvl": 65,
+    "unico": false,
+    "clases": [],
+    "ranuras": [
+      "municion"
+    ]
   },
   "275736": {
     "nombre": "Cuerno de Ve'han",
@@ -257,5 +444,20 @@
       "principal"
     ],
     "origen": "Misión en The Shaper's Terrace (Alianza: «Mapping the Way Forward» · Horda: «The Dark Crystal»)"
+  },
+  "280065": {
+    "nombre": "Behemoth Bones",
+    "calidad": 3,
+    "icono": "inv_misc_bone_01",
+    "slot": "Alhaja",
+    "tipo": "",
+    "nivel": 56,
+    "ilvl": 61,
+    "unico": true,
+    "clases": [],
+    "ranuras": [
+      "abalorio1",
+      "abalorio2"
+    ]
   }
 }

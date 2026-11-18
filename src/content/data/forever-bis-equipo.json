@@ -1,24 +1,107 @@
 {
   "imagen": null,
-  "ranuras": {
-    "cabeza": null,
-    "cuello": null,
-    "hombros": null,
-    "espalda": null,
-    "pecho": null,
-    "munecas": null,
-    "manos": null,
-    "cintura": null,
-    "piernas": null,
-    "pies": null,
-    "anillo1": null,
-    "anillo2": null,
-    "abalorio1": null,
-    "abalorio2": null,
-    "principal": null,
-    "secundaria": null,
-    "distancia": null,
-    "municion": null,
-    "carcaj": null
+  "fases": {
+    "preraid": {
+      "boton": "BiS pre-raid",
+      "ranuras": {
+        "cabeza": {
+          "id": 252605,
+          "origen": "Peletería"
+        },
+        "cuello": {
+          "id": 15411,
+          "origen": "Misión «In Dreams» · Tierras de la Peste del Oeste"
+        },
+        "hombros": {
+          "id": 18742,
+          "origen": "Stratholme"
+        },
+        "espalda": {
+          "id": 13340,
+          "origen": "Stratholme · Barón Osahendido"
+        },
+        "pecho": {
+          "id": 252483,
+          "origen": "Peletería"
+        },
+        "munecas": {
+          "id": 18296,
+          "origen": "La Masacre"
+        },
+        "manos": {
+          "id": 15063,
+          "origen": "Peletería"
+        },
+        "cintura": {
+          "id": 272397,
+          "origen": "Vendedor · Pix Xizzix (Vega de Tuercespina)"
+        },
+        "piernas": {
+          "id": 15062,
+          "origen": "Peletería"
+        },
+        "pies": {
+          "id": 13967,
+          "origen": "Scholomance · Kirtonos el Heraldo"
+        },
+        "anillo1": {
+          "id": 260217,
+          "origen": "Misión «Blackmaw Reclamation» · Blackmaw Hold"
+        },
+        "anillo2": {
+          "id": 272408,
+          "origen": "Vendedor · Pix Xizzix (Vega de Tuercespina)"
+        },
+        "abalorio1": {
+          "id": 13965,
+          "origen": "Misión de Cumbre de Roca Negra"
+        },
+        "abalorio2": {
+          "id": 280065,
+          "origen": "Botín · Blackmaw Behemoth"
+        },
+        "principal": {
+          "id": 250619,
+          "origen": "Herrería"
+        },
+        "secundaria": null,
+        "distancia": {
+          "id": 13023,
+          "origen": "Botín del mundo"
+        },
+        "municion": {
+          "id": 274387,
+          "origen": "Ingeniería"
+        },
+        "carcaj": {
+          "id": 2662,
+          "origen": "Profundidades de Roca Negra · Ribbly"
+        }
+      }
+    },
+    "raid": {
+      "boton": "BiS de raid",
+      "ranuras": {
+        "cabeza": null,
+        "cuello": null,
+        "hombros": null,
+        "espalda": null,
+        "pecho": null,
+        "munecas": null,
+        "manos": null,
+        "cintura": null,
+        "piernas": null,
+        "pies": null,
+        "anillo1": null,
+        "anillo2": null,
+        "abalorio1": null,
+        "abalorio2": null,
+        "principal": null,
+        "secundaria": null,
+        "distancia": null,
+        "municion": null,
+        "carcaj": null
+      }
+    }
   }
 }

@@ -1,6 +1,13 @@
 [
   {
     "fecha": "2026-11-18",
+    "pestana": "bis",
+    "texto": "Nueva lista de equipo pre-raid en la ventana de personaje en",
+    "enlace": "BiS y Consumibles",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-18",
     "pestana": "mascotas",
     "texto": "Nueva mascota en tier 0, Ta'shkal con enlace a video sobre como conseguirla en",
     "enlace": "Mascotas",

@@ -135,11 +135,13 @@ async function anadirObjeto(texto) {
   return { id, ...c[id] };
 }
 
-/** Pone (o quita, con id null) la pieza de una ranura en forever-bis-equipo.json */
-function guardarPieza(ranura, id, origen) {
+/** Pone (o quita, con id null) la pieza de una ranura de una fase (preraid, raid…) en forever-bis-equipo.json */
+function guardarPieza(fase, ranura, id, origen) {
   const r = RANURAS.find((x) => x.id === ranura);
   if (!r) throw new Error('Ranura no válida');
-  const eq = leerJson(EQUIPO, { imagen: null, ranuras: {} });
+  const todo = leerJson(EQUIPO, { imagen: null, fases: {} });
+  if (!todo.fases?.[fase]) throw new Error('Fase no válida (pre-raid / raid)');
+  const eq = todo.fases[fase];
   eq.ranuras ??= {};
   for (const x of RANURAS) if (!(x.id in eq.ranuras)) eq.ranuras[x.id] = null;
   let aviso = '';
@@ -168,7 +170,7 @@ function guardarPieza(ranura, id, origen) {
     }
   }
   eq.ranuras = Object.fromEntries(RANURAS.map((x) => [x.id, eq.ranuras[x.id] ?? null]));
-  escribirJson(EQUIPO, eq);
+  escribirJson(EQUIPO, todo);
   return aviso;
 }
 
@@ -278,7 +280,8 @@ export default function editorLocal() {
               const ranura = typeof b.ranura === 'string' ? b.ranura : '';
               const { iconUrl } = await server.ssrLoadModule('/src/lib/spells.ts');
               const lista = catalogo().filter((o) => !ranura || o.ranuras.includes(ranura)).map((o) => ({ ...o, img: iconUrl(o.icono) }));
-              return responder(200, { lista, equipo: leerJson(EQUIPO, { ranuras: {} }).ranuras });
+              const fases = leerJson(EQUIPO, { fases: {} }).fases ?? {};
+              return responder(200, { lista, equipo: fases[String(b.fase ?? '')]?.ranuras ?? {} });
             }
             if (req.url === '/objeto') {
               const { iconUrl } = await server.ssrLoadModule('/src/lib/spells.ts');
@@ -288,7 +291,7 @@ export default function editorLocal() {
             if (req.url === '/bis') {
               const id = b.id == null ? null : Number(b.id);
               if (id !== null && !Number.isInteger(id)) throw new Error('ID no válido');
-              return responder(200, { ok: true, aviso: guardarPieza(String(b.ranura ?? ''), id, b.origen) });
+              return responder(200, { ok: true, aviso: guardarPieza(String(b.fase ?? ''), String(b.ranura ?? ''), id, b.origen) });
             }
             if (req.url === '/color') { guardarColor(b.tab, b.selector, b.color ?? null); return responder(200, { ok: true }); }
             responder(404, { error: 'No existe' });

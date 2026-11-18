@@ -306,16 +306,19 @@
     `<img src="${esc(o.img || '')}" alt=""><span><span class="ed-q${o.calidad}">${esc(o.nombre)}</span> <small>${esc(detalle(o))}${extra}</small></span>`;
   async function abrirRanura(el) {
     const ranura = el.dataset.bfRanura;
+    const panel = el.closest('[data-bf-fase-panel]');
+    const fase = panel?.dataset.bfFasePanel || 'preraid';
+    const nombreFase = document.querySelector(`[data-bf-fase="${fase}"]`)?.textContent || '';
     const etiqueta = el.querySelector('small')?.textContent || ranura;
     pan.hidden = false;
     pan.innerHTML = '<small>Cargando el catálogo…</small>';
     let r;
-    try { r = await api('catalogo', { ranura }); } catch (err) { pan.innerHTML = `<small class="err">${esc(err.message)}</small>`; return; }
+    try { r = await api('catalogo', { ranura, fase }); } catch (err) { pan.innerHTML = `<small class="err">${esc(err.message)}</small>`; return; }
     let lista = r.lista;
     const actual = r.equipo?.[ranura] || null;
     let elegido = actual ? lista.find((o) => o.id === actual.id) || null : null;
     pan.innerHTML = `
-      <small><b style="color:#d6a868">${esc(etiqueta)}</b> · solo salen objetos de esta ranura que puede llevar un Cazador (sin placas, mazas, escudos ni varitas)</small>
+      <small><b style="color:#d6a868">${esc(etiqueta)}</b>${nombreFase ? ' · ' + esc(nombreFase) : ''} · solo salen objetos de esta ranura que puede llevar un Cazador (sin placas, mazas, escudos ni varitas)</small>
       <div class="fila ed-obj-act"></div>
       <div class="fila"><input type="search" placeholder="Buscar en el catálogo…"></div>
       <div class="ed-obj-l"></div>
@@ -372,7 +375,7 @@
       msg.textContent = 'Guardando…';
       try {
         apuntar();
-        const res = await api('bis', { ranura, id, origen: inOr.value });
+        const res = await api('bis', { fase, ranura, id, origen: inOr.value });
         msg.innerHTML = `<span class="ok">${esc(res.aviso || 'Guardado.')} Recargando…</span>`;
         recargar();
       } catch (err) { msg.innerHTML = `<span class="err">${esc(err.message)}</span>`; }

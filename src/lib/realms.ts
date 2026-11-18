@@ -35,6 +35,6 @@ export const REALMS: Realm[] = [
     logo: '/brand/realms/forever.webp',
     etiqueta: 'Nuevo',
     disponible: true,
-    estado: 'General, talentos, stats, rotación, mascotas, macros y leveling 1-60 · se amplía cada día',
+    estado: 'General, talentos, stats, rotación, mascotas, BiS pre-raid, macros y leveling 1-60 · se amplía cada día',
   },
 ];

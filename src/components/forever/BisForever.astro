@@ -31,21 +31,22 @@ const info = (id: number, tipo: Tipo = 'item'): Obj => {
 const url = (id: number, tipo: Tipo = 'item') => `https://www.wowhead.com/forever/es/${tipo}=${id}`;
 const consumibles = data.consumibles.map((g) => ({ ...g, objetos: g.objetos.map((c) => ({ ...c, o: info(c.id) })) }));
 
-// ── Ventana de personaje ──
+// ── Ventana de personaje: una por fase (pre-raid, raid…), con selector arriba ──
 type Elegida = { id: number; origen?: string } | null;
-const elegidas = equipo.ranuras as Record<string, Elegida>;
+type Fase = { boton: string; ranuras: Record<string, Elegida> };
 const CAT = catalogo as Record<string, Pieza>;
-const ranuras = RANURAS.map((r) => {
-  const e = elegidas[r.id] ?? null;
-  const o = e ? CAT[e.id] : null;
-  if (e && !o) throw new Error(`forever-bis-equipo.json: el objeto ${e.id} (${r.id}) no está en forever-bis-catalogo.json`);
-  if (o && !o.ranuras.includes(r.id)) throw new Error(`forever-bis-equipo.json: «${o.nombre}» no va en la ranura ${r.id}`);
-  return { ...r, id_obj: e?.id, o, origen: e?.origen || '' };
+const fases = Object.entries((equipo as { fases: Record<string, Fase> }).fases).map(([id, f]) => {
+  const ranuras = RANURAS.map((r) => {
+    const e = f.ranuras[r.id] ?? null;
+    const o = e ? CAT[e.id] : null;
+    if (e && !o) throw new Error(`forever-bis-equipo.json (${id}): el objeto ${e.id} (${r.id}) no está en forever-bis-catalogo.json`);
+    if (o && !o.ranuras.includes(r.id)) throw new Error(`forever-bis-equipo.json (${id}): «${o.nombre}» no va en la ranura ${r.id}`);
+    return { ...r, id_obj: e?.id, o, origen: e?.origen || '' };
+  });
+  const dosManos = ranuras.find((r) => r.id === 'principal')?.o?.slot === 'Dos manos';
+  const usadas = ranuras.filter((r) => !(dosManos && r.id === 'secundaria'));
+  return { id, boton: f.boton, ranuras, dosManos, usadas, nElegidas: usadas.filter((r) => r.o).length };
 });
-const dosManos = ranuras.find((r) => r.id === 'principal')?.o?.slot === 'Dos manos';
-const usadas = ranuras.filter((r) => !(dosManos && r.id === 'secundaria'));
-const nElegidas = usadas.filter((r) => r.o).length;
-const lado = (l: string) => ranuras.filter((r) => r.lado === l);
 const imagen = (equipo as { imagen?: string | null }).imagen;
 
 const INDICE = [
@@ -70,72 +71,96 @@ const INDICE = [
   <section class="lv-sec" id="bf-equipo">
     <h3>Equipo BiS por ranura</h3>
     <p class="lv-lead">La mejor pieza para cada hueco de la ventana de personaje. Pulsa un objeto para abrirlo en Wowhead.</p>
-    {data.construccion && (
-      <div class="box box-warn bf-obras">
-        <div class="box-title">En construcción</div>
-        <p set:html={md(data.construccion)} />
+    {fases.length > 1 && (
+      <div class="toggle-wrap bf-fases" role="group" aria-label="Fase del equipo">
+        {fases.map((f, i) => <button type="button" class:list={['toggle-btn', 'bf-fase', { active: i === 0 }]} data-bf-fase={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.boton}</button>)}
       </div>
     )}
+    {fases.map((f, i) => (
+      <div class="bf-fase-panel" data-bf-fase-panel={f.id} hidden={i > 0}>
+        {f.nElegidas === 0 && data.construccion && (
+          <div class="box box-warn bf-obras">
+            <div class="box-title">En construcción</div>
+            <p set:html={md(data.construccion)} />
+          </div>
+        )}
+        <div class="bf-pj" data-elegidas={f.nElegidas}>
+          {['izq', 'der', 'armas'].map((l) => (
+            <ul class:list={['bf-col', `bf-col--${l}`]} aria-label={l === 'armas' ? 'Armas y munición' : l === 'izq' ? 'Armadura (1)' : 'Armadura (2) y accesorios'}>
+              {f.ranuras.filter((r) => r.lado === l).map((r) => {
+                const bloqueada = f.dosManos && r.id === 'secundaria';
+                const Tag = r.o ? 'a' : 'div';
+                return (
+                  <li class:list={['bf-ranura', r.o ? `q${r.o.calidad}` : 'is-vacia', { 'is-bloqueada': bloqueada }]} data-bf-ranura={r.id}>
+                    <Tag class="bf-ranura__in" {...(r.o ? { href: url(r.id_obj!), target: '_blank', rel: 'noopener', 'data-wh-icon-added': 'true' } : {})}>
+                      <span class="bf-ranura__icono">
+                        <img src={iconUrl(r.o ? r.o.icono : r.icono)} alt="" width="52" height="52" loading="lazy" />
+                      </span>
+                      <span class="bf-ranura__txt">
+                        <small>{r.label}</small>
+                        {r.o ? <b>{r.o.nombre}</b> : <b class="bf-ranura__vacio">{bloqueada ? 'Ocupada por el arma de dos manos' : 'Por decidir'}</b>}
+                        {r.o ? (r.origen && <em set:html={md(r.origen)} />) : (!bloqueada && r.nota && <em>{r.nota}</em>)}
+                      </span>
+                    </Tag>
+                  </li>
+                );
+              })}
+            </ul>
+          ))}
 
-    <div class="bf-pj" data-elegidas={nElegidas}>
-      {['izq', 'der', 'armas'].map((l) => (
-        <ul class:list={['bf-col', `bf-col--${l}`]} aria-label={l === 'armas' ? 'Armas y munición' : l === 'izq' ? 'Armadura (1)' : 'Armadura (2) y accesorios'}>
-          {lado(l).map((r) => {
-            const bloqueada = dosManos && r.id === 'secundaria';
-            const Tag = r.o ? 'a' : 'div';
-            return (
-              <li class:list={['bf-ranura', r.o ? `q${r.o.calidad}` : 'is-vacia', { 'is-bloqueada': bloqueada }]} data-bf-ranura={r.id}>
-                <Tag class="bf-ranura__in" {...(r.o ? { href: url(r.id_obj!), target: '_blank', rel: 'noopener', 'data-wh-icon-added': 'true' } : {})}>
-                  <span class="bf-ranura__icono">
-                    <img src={iconUrl(r.o ? r.o.icono : r.icono)} alt="" width="52" height="52" loading="lazy" />
-                  </span>
-                  <span class="bf-ranura__txt">
-                    <small>{r.label}</small>
-                    {r.o ? <b>{r.o.nombre}</b> : <b class="bf-ranura__vacio">{bloqueada ? 'Ocupada por el arma de dos manos' : 'Por decidir'}</b>}
-                    {r.o ? (r.origen && <em set:html={md(r.origen)} />) : (!bloqueada && r.nota && <em>{r.nota}</em>)}
-                  </span>
-                </Tag>
-              </li>
-            );
-          })}
-        </ul>
-      ))}
-
-      <figure class="bf-centro">
-        <div class:list={['bf-emblema', { 'has-imagen': imagen }]}>
-          {imagen
-            ? <img class="bf-emblema__img" src={imagen} alt="Cazadores de WoW Forever" loading="lazy" />
-            : <span class="bf-emblema__aro"><img src={iconUrl('classicon_hunter')} alt="Emblema del Cazador" width="128" height="128" loading="lazy" /></span>}
+          <figure class="bf-centro">
+            <div class:list={['bf-emblema', { 'has-imagen': imagen }]}>
+              {imagen
+                ? <img class="bf-emblema__img" src={imagen} alt="Cazadores de WoW Forever" loading="lazy" />
+                : <span class="bf-emblema__aro"><img src={iconUrl('classicon_hunter')} alt="Emblema del Cazador" width="128" height="128" loading="lazy" /></span>}
+            </div>
+            <figcaption>
+              <b>Cazador</b>
+              <span>Dominio de bestias</span>
+              <span class="bf-centro__cuenta"><strong>{f.nElegidas}</strong> de {f.usadas.length} piezas elegidas</span>
+            </figcaption>
+            <img class="bf-centro__logo" src="/brand/realms/forever-360.webp" alt="WoW Forever" width="180" height="146" loading="lazy" />
+          </figure>
         </div>
-        <figcaption>
-          <b>Cazador</b>
-          <span>Dominio de bestias</span>
-          <span class="bf-centro__cuenta"><strong>{nElegidas}</strong> de {usadas.length} piezas elegidas</span>
-        </figcaption>
-        <img class="bf-centro__logo" src="/brand/realms/forever-360.webp" alt="WoW Forever" width="180" height="146" loading="lazy" />
-      </figure>
-    </div>
 
-    <details class="mk-fold bf-lista">
-      <summary>Ver el equipo en lista</summary>
-      <div class="lv-table-wrap">
-        <table class="lv-table bf-table">
-          <caption class="sr-only">Equipo BiS del Cazador de Bestias en WoW Forever por ranura</caption>
-          <thead><tr><th>Ranura</th><th>Objeto</th><th>Dónde se consigue</th></tr></thead>
-          <tbody>
-            {usadas.map((r) => (
-              <tr>
-                <td><b>{r.label}</b></td>
-                <td>{r.o
-                  ? <a class={`bf-obj q${r.o.calidad}`} href={url(r.id_obj!)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(r.o.icono)} alt="" width="28" height="28" loading="lazy" />{r.o.nombre}</a>
-                  : <span class="bf-pendiente">Por decidir</span>}</td>
-                <td set:html={r.o ? md(r.origen || '—') : '—'} />
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <details class="mk-fold bf-lista">
+          <summary>Ver el equipo en lista</summary>
+          <div class="lv-table-wrap">
+            <table class="lv-table bf-table">
+              <caption class="sr-only">{`${f.boton} del Cazador de Bestias en WoW Forever por ranura`}</caption>
+              <thead><tr><th>Ranura</th><th>Objeto</th><th>Dónde se consigue</th></tr></thead>
+              <tbody>
+                {f.usadas.map((r) => (
+                  <tr>
+                    <td><b>{r.label}</b></td>
+                    <td>{r.o
+                      ? <a class={`bf-obj q${r.o.calidad}`} href={url(r.id_obj!)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(r.o.icono)} alt="" width="28" height="28" loading="lazy" />{r.o.nombre}</a>
+                      : <span class="bf-pendiente">Por decidir</span>}</td>
+                    <td set:html={r.o ? md(r.origen || '—') : '—'} />
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
       </div>
-    </details>
+    ))}
+    <script is:inline>
+      // Selector de fase (pre-raid / raid): muestra un panel y recuerda la elección en la URL (#bf-raid)
+      (() => {
+        const bs = document.querySelectorAll('[data-bf-fase]');
+        const ver = (id) => {
+          bs.forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.bfFase === id)); b.classList.toggle('active', b.dataset.bfFase === id); });
+          document.querySelectorAll('[data-bf-fase-panel]').forEach((p) => (p.hidden = p.dataset.bfFasePanel !== id));
+        };
+        bs.forEach((b) => b.addEventListener('click', () => {
+          ver(b.dataset.bfFase);
+          history.replaceState(null, '', b === bs[0] ? location.pathname + location.search : '#bf-' + b.dataset.bfFase);
+        }));
+        const h = location.hash.replace('#bf-', '');
+        if ([...bs].some((b) => b.dataset.bfFase === h)) ver(h);
+      })();
+    </script>
   </section>
 
   <section class="lv-sec" id="bf-consumibles">
