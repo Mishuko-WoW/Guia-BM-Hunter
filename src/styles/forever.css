@@ -1179,16 +1179,20 @@
 #tab-coaching .coach-card p.price-usd { font-size: 15px; margin: 0 0 0.4rem; }
 #tab-coaching .coach-container > section + section, #tab-coaching .coach-container > div + section { margin-top: 44px; }
 
-/* LEVELING: addon recomendado (afiliado RestedXP) — RecomendacionRestedXP.astro */
-.lv-addon { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 22px; padding: 18px 22px; background: var(--bg3); border: 1px solid var(--border2); border-left: 3px solid var(--brand); clip-path: var(--clip-card); }
-.lv-addon__body { flex: 1 1 420px; min-width: 0; }
-.lv-addon__body p { margin: 0 0 6px; }
-.lv-addon__kicker { font: 700 12px/1 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-text); }
-.lv-addon h4 { margin: 4px 0 8px; }
-.lv-addon__aviso { font-size: 13px; color: var(--text3); }
-.lv-addon__btn { display: inline-flex; align-items: center; padding: 11px 22px; clip-path: var(--clip-btn); background: var(--brand-fill); color: var(--bg); font: 700 14px/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
-.lv-addon__btn:hover, .lv-addon__btn:focus-visible { background: var(--brand-fill-hi); }
-@media (max-width: 640px) { .lv-addon__btn { width: 100%; justify-content: center; } }
+/* LEVELING: RestedXP arriba, tras los 4 hitos (afiliado) — RecomendacionRestedXP.astro. Colores --rxp* de tokens.css */
+.lv-rxp { margin-top: var(--lv-gap, 28px); padding: 14px; background: var(--rxp-deep); border: 1.5px solid color-mix(in srgb, var(--rxp-cyan) 45%, transparent); border-radius: 10px; box-shadow: 0 0 26px -10px color-mix(in srgb, var(--rxp-cyan) 60%, transparent); }
+.lv-rxp__img { display: block; border-radius: 6px; overflow: hidden; line-height: 0; }
+.lv-rxp__img img { width: 100%; height: auto; transition: transform .3s var(--ease), filter .3s var(--ease); }
+.lv-rxp__img:hover img, .lv-rxp__img:focus-visible img { filter: brightness(1.08); }
+.lv-rxp__body { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 12px; }
+.lv-rxp__body p { flex: 1 1 380px; margin: 0; color: var(--rxp-text); }
+.lv-rxp__body b { color: #fff; }
+.lv-rxp__btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 24px; border-radius: 999px; background: linear-gradient(120deg, var(--rxp-cyan), var(--rxp)); color: #fff; font: 800 15px/1 "Quicksand", "Nunito", "Segoe UI", system-ui, sans-serif; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 16px -6px var(--rxp-cyan); transition: box-shadow .2s var(--ease), transform .2s var(--ease); }
+.lv-rxp__btn:hover, .lv-rxp__btn:focus-visible { color: #fff; box-shadow: 0 6px 22px -4px var(--rxp-cyan); }
+.lv-rxp__btn:focus-visible { outline: 2px solid var(--rxp-cyan); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) { .lv-rxp__btn:hover, .lv-rxp__btn:focus-visible { transform: translateY(-1px); } }
+.lv-rxp__aviso { margin: 10px 0 0; font-size: 13.5px; color: var(--rxp-text2); }
+@media (max-width: 640px) { .lv-rxp { padding: 10px; } .lv-rxp__btn { width: 100%; } .lv-rxp__aviso { font-size: 14.5px; } }
 
 /* ─── MACROS (MacrosForever.astro) ─── */
 .mf-idioma { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: var(--lv-gap); padding: 16px 20px; background: var(--card); clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border); border-left: 3px solid var(--gold); }

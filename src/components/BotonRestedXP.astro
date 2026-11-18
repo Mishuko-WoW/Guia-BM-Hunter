@@ -1,0 +1,27 @@
+---
+// Botón de RestedXP (enlace de afiliado de Mishuko) en la barra superior, junto al de Ko-fi (RealmSwitch).
+// Diseño propio con los colores de RestedXP (azul/cian), distinto del resto de botones de la web.
+// Logo recortado de sus banners de afiliado: public/brand/restedxp-logo.webp.
+// Estilos: bloque "RESTEDXP" en marca.css (colores --rxp* en tokens.css). Evento GA4 «afiliado_click».
+// rel="sponsored" es obligatorio para Google en enlaces de afiliado.
+interface Props {
+  lugar: string;
+  class?: string;
+}
+const { lugar, class: extra } = Astro.props;
+---
+
+<a
+  class:list={['mk-rxp', extra]}
+  href="https://shop.restedxp.com/es-mx/ref/Mishuko/"
+  target="_blank"
+  rel="sponsored noopener"
+  aria-label="RestedXP: addon de rutas de leveling (enlace de afiliado)"
+  title="RestedXP: rutas de leveling dentro del juego · enlace de afiliado"
+  data-lugar={lugar}
+  onclick="window.gtag&&gtag('event','afiliado_click',{tipo:'restedxp',lugar:this.dataset.lugar})"
+>
+  <img class="mk-rxp__logo" src="/brand/restedxp-logo.webp" width="26" height="26" alt="" />
+  <span class="mk-rxp__txt">Rested<b>XP</b></span>
+  <span class="mk-rxp__tag">Leveling</span>
+</a>

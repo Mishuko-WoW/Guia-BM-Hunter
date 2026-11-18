@@ -16,6 +16,12 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-18 — Botón de RestedXP en la barra superior
+- `BotonRestedXP.astro` (enlace de afiliado, `rel="sponsored"`, GA4 `afiliado_click` con `lugar`) en `RealmSwitch.astro`, antes del Ko-fi: en Midnight y Forever.
+- Diseño propio: píldora azul noche con borde degradado cian→azul→violeta, logo de RestedXP (recortado con sharp de su banner de afiliado 728×90 → `public/brand/restedxp-logo.webp`, 64 px), «Rested**XP**» con XP en cian, etiqueta «Leveling» y un brillo que cruza cada 7 s (sin él con `prefers-reduced-motion`). Colores `--rxp*` en `tokens.css`; estilos en el bloque «RESTEDXP» de `marca.css`.
+- Móvil: sin etiqueta ≤900 px, más pequeño ≤600 px y solo el logo ≤400 px.
+- Leveling Forever: `RecomendacionRestedXP.astro` rehecho y subido arriba (tras los 4 hitos, antes de «Hoja de ruta»): banner oficial de afiliado 728×90 del dragón (`public/brand/rxp-rutas.webp`, reescalado x4 con Real-ESRGAN y guardado a 1456×180 para que no se vea pixelado; nombre y clase sin «banner» porque los bloqueadores de anuncios lo ocultaban), texto, botón «Ver RestedXP» y aviso de afiliado. GA4 `afiliado_click` con `lugar` `leveling-banner`/`leveling-boton`. Fuera el bloque antiguo (`.lv-addon*`) del final de Consejos; estilos nuevos `.lv-rxp*` en `forever.css`, colores `--rxp-text*` en `tokens.css`.
+
 ## 2026-11-18 — Editor local de Forever (fases 1 y 2) + RestedXP en Leveling
 - **Editor local** (`scripts/editor-local/`): solo con `npm run dev`. `integration.mjs` (integración de Astro): inyecta `cliente.js` solo si `command === 'dev'` y crea `/__editor/buscar|guardar|color` en `astro:server:setup` (no existen en el build ni en la web). Solo POST desde 127.0.0.1/::1 con Host/Origin localhost, `X-Editor-Local: 1` y JSON; solo escribe en `forever-*.json`, `faq-forever.json` y `src/content/forever/paginas/*.md` (fuera los generados: talentos, mascotas, objetos).
   - Texto: el navegador manda el texto del bloque pulsado (y de sus padres); el servidor renderiza cada cadena con `md()` (vía `ssrLoadModule`) y busca la que coincide. Guarda cambiando solo ese literal del archivo (respeta formato, CRLF y números como `5.0`); si el texto sale varias veces cambia la aparición de esa ruta y comprueba que nada más cambie. En `.md` valida el YAML antes de escribir (si se rompería, avisa). Si el mismo texto está en varias pestañas, solo se cambia en los archivos de la pestaña abierta.

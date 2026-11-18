@@ -26,6 +26,14 @@
   --kofi:        #ff6433;
   --kofi-hi:     #ff7a4f;
   --kofi-heart:  #ff3d3d;
+  /* RestedXP: azul y cian de sus banners (BotonRestedXP.astro), iguales en todas las versiones */
+  --rxp-deep:    #0a1838;
+  --rxp:         #1f6fe0;
+  --rxp-cyan:    #3fd8ff;
+  --rxp-cyan-hi: #8fe9ff;
+  --rxp-violet:  #7b5cff;
+  --rxp-text:    #e8eefc;
+  --rxp-text2:   #9fb0d4;
 
   /* Versiones (portada y selector) */
   --realm-midnight: #8f7bff;   /* violeta del logo de Midnight */

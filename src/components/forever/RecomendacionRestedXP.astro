@@ -1,26 +1,21 @@
 ---
-// Recomendación del addon RestedXP (enlace de afiliado de Mishuko) en Leveling de Forever.
-// rel="sponsored" es obligatorio para Google en enlaces de afiliado.
+// Recomendación de RestedXP (enlace de afiliado de Mishuko) arriba en Leveling de Forever, tras los 4 hitos.
+// Banner oficial de su programa de afiliados (728×90, el del dragón) reescalado x4 con Real-ESRGAN y guardado a 1456×180 → public/brand/rxp-rutas.webp.
+// rel="sponsored" es obligatorio para Google en enlaces de afiliado. Estilos .lv-rxp* en forever.css.
 const URL_AFILIADO = 'https://shop.restedxp.com/es-mx/ref/Mishuko/';
+const gtag = (donde: string) => `window.gtag&&gtag('event','afiliado_click',{tipo:'restedxp',lugar:'leveling-${donde}'})`;
 ---
 
-<div class="lv-addon">
-  <div class="lv-addon__body">
-    <p class="lv-addon__kicker">Addon recomendado</p>
-    <h4>RestedXP: rutas de leveling dentro del juego</h4>
+<aside class="lv-rxp" aria-label="Addon recomendado: RestedXP">
+  <a class="lv-rxp__img" href={URL_AFILIADO} target="_blank" rel="sponsored noopener" onclick={gtag('banner')}>
+    <img src="/brand/rxp-rutas.webp" width="364" height="45" alt="RestedXP: guías de leveling dentro del juego" />
+  </a>
+  <div class="lv-rxp__body">
     <p>
-      Si quieres subir sin pensar a dónde ir, RestedXP te marca en pantalla la ruta paso a paso: qué misiones coger,
-      en qué orden y por dónde moverte. Ahorra mucho tiempo de mapa y de dudas.
+      <b>¿Quieres subir aún más rápido?</b> Yo uso <b>RestedXP</b>: te marca la ruta paso a paso dentro del juego
+      (qué misiones coger, en qué orden y por dónde ir), así no pierdes tiempo mirando el mapa.
     </p>
-    <p class="lv-addon__aviso">
-      Enlace de afiliado: si lo compras desde aquí me llevo una pequeña comisión, sin que a ti te cueste más.
-    </p>
+    <a class="lv-rxp__btn" href={URL_AFILIADO} target="_blank" rel="sponsored noopener" onclick={gtag('boton')}>Ver RestedXP</a>
   </div>
-  <a
-    class="lv-addon__btn"
-    href={URL_AFILIADO}
-    target="_blank"
-    rel="sponsored noopener"
-    onclick="window.gtag&&gtag('event','afiliado_click',{tipo:'restedxp'})"
-  >Ver RestedXP</a>
-</div>
+  <p class="lv-rxp__aviso">Enlace de afiliado: si lo compras desde aquí me llevo una pequeña comisión y a ti no te cuesta más. Así apoyas la guía.</p>
+</aside>

@@ -2,6 +2,7 @@
 // Barra superior para cambiar entre Midnight y Forever (y volver a la portada)
 import { REALMS, type RealmId } from '../lib/realms';
 import BotonKofi from './BotonKofi.astro';
+import BotonRestedXP from './BotonRestedXP.astro';
 
 interface Props {
   actual: RealmId;
@@ -28,6 +29,7 @@ const { actual } = Astro.props;
         </a>
       ))}
     </nav>
+    <BotonRestedXP lugar={`cabecera-${actual}`} />
     <BotonKofi lugar={`cabecera-${actual}`} compacto />
     </div>
   </div>
