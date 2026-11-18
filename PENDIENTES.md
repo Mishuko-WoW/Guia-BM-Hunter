@@ -54,6 +54,7 @@ Aprobado por Mishuko el 18-11 y avisado a Codex en `EQUIPO.md`. Datos de TikTok 
 
 ## Hecho
 
+- [x] 2026-11-18 · Título y descripción de la portada en Google (`seo.ts`). Ver su CTR en la revisión del 2-12 (antes 3,1 %).
 - [x] 2026-11-18 · «Apoya la guía» (Ko-fi) sin pop-ups: al copiar macro, en la 2.ª ficha de mascota y al final de Leveling; una vez por visita. Medir en GA4 `kofi_click` por `lugar` (apoyo-*) en la revisión del 2-12.
 - [x] 2026-11-18 · Midnight: título de BiS y enlaces desde la portada a Talentos, Rotación y BiS de Midnight.
 - [x] 2026-11-18 · GA4: tiempo por página arreglado con `gtag('set')` (comprobar en GA4 hacia el 20-11 que Páginas y pantallas ya da tiempos reales).

@@ -12,6 +12,7 @@ import { md } from '../../lib/markup';
 import CalculadoraTalentos from './CalculadoraTalentos.astro';
 import IndiceForever from './IndiceForever.astro';
 import RecomendacionRestedXP from './RecomendacionRestedXP.astro';
+import BotonKofi from '../BotonKofi.astro';
 
 // Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
 const citados = new Set<string>();
@@ -515,8 +516,8 @@ const familia = (id: string) => {
   </section>
 
   <p class="mk-apoyo mk-apoyo--fin">
-    ¿Te he ahorrado oro y horas de leveling? Esta guía es gratis y la hago yo solo.
-    <a href="https://ko-fi.com/mishuko" target="_blank" rel="noopener" onclick="window.gtag&&gtag('event','kofi_click',{lugar:'apoyo-leveling'})">Apoya la guía en Ko-fi</a>
+    <span>¿Te he ahorrado oro y horas de leveling? Esta guía es gratis y la hago yo solo.</span>
+    <BotonKofi lugar="apoyo-leveling" class="mk-kofi--apoyo" texto="Apoya la guía" />
   </p>
 </div>
 

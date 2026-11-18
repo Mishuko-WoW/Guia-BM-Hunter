@@ -79,7 +79,8 @@ const INDICE = [{ id: 'mf-crear', texto: 'Cómo crearlas' }, ...data.grupos.map(
             </header>
             <p class="mf-card__desc" set:html={plano(m.desc)} />
             <pre class="mf-code" data-en={m.en} data-es={m.es}>{m.en}</pre>
-            {m.tip && <p class="mf-card__tip" set:html={plano(m.tip)} />}
+            {/* Pie = 4.ª fila de la rejilla: consejo y, al copiar, la línea de Ko-fi (sin fila propia se pisaban) */}
+            <div class="mf-card__pie">{m.tip && <p class="mf-card__tip" set:html={plano(m.tip)} />}</div>
           </article>
         ))}
       </div>
@@ -121,7 +122,7 @@ const INDICE = [{ id: 'mf-crear', texto: 'Cómo crearlas' }, ...data.grupos.map(
       };
       navigator.clipboard.writeText(code).then(() => {
         fin('Copiada', true);
-        if (window.mkApoyo) mkApoyo(card, 'macro', '¿Te ha servido la macro?');
+        if (window.mkApoyo) mkApoyo(card.querySelector('.mf-card__pie'), 'macro', '¿Te ha servido la macro?');
       }, () => fin('Error', false));
       if (window.gtag) gtag('event', 'macro_copiar', { macro: card.querySelector('h4').textContent, idioma: idioma });
     }));

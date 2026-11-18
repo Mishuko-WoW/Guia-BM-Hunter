@@ -122,8 +122,8 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
 };
 
 export const PORTADA: Meta = {
-  title: 'Guía Hunter BM y Cazador de Bestias: Midnight y WoW Forever',
-  description: 'Guías en español del Hunter BM (Cazador de Bestias) por Mishuko: Midnight Temporada 2 y WoW Forever. Talentos, rotación, mascotas, BiS y leveling.',
+  title: 'Guía Hunter BM Forever y Midnight: Cazador de Bestias en español',
+  description: 'Guía en español del Hunter BM (Cazador de Bestias o Maestro de bestias) por Mishuko: WoW Forever (talentos 31/20/0, mascotas y leveling 1-60) y Midnight Temporada 2 (talentos, rotación y BiS).',
   h1sub: '',
 };
 

@@ -28,6 +28,7 @@
   --kofi-heart:  #ff3d3d;
   --kofi-deep:   #2a1108;   /* fondo oscuro del botón (estilo a juego con RestedXP) */
   --kofi-gold:   #ffb347;
+  --kofi-text:   #eadfd4;   /* texto y taza: crema suave en vez de blanco puro */
   /* RestedXP: azul y cian de sus banners (BotonRestedXP.astro), iguales en todas las versiones */
   --rxp-deep:    #0a1838;
   --rxp:         #1f6fe0;

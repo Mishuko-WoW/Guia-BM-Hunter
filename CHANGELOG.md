@@ -17,6 +17,18 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-18 — Ko-fi: texto y taza en crema suave
+- Token `--kofi-text` (#eadfd4) en `tokens.css` en vez de `#fff` para el texto (también al pasar el ratón) y la taza de todos los botones Ko-fi (`BotonKofi.astro`, `ApoyoGuia.astro`): el blanco puro cansaba la vista.
+
+## 2026-11-18 — «Apoya la guía» con el botón de Ko-fi y una vez por página
+- `ApoyoGuia.astro`: el enlace de texto pasa a ser el botón `.mk-kofi` en bajito (`.mk-kofi--apoyo`, 34 px, en `marca.css`); final de Leveling igual con `BotonKofi`. Se muestra una vez por página y visita (`sessionStorage` `mk-apoyo:<ruta>`), no una sola vez en toda la web: antes, tras copiar una macro, las fichas de Mascotas ya no lo enseñaban.
+
+## 2026-11-18 — Macros de Forever: la línea de Ko-fi ya no pisa el consejo
+- `MacrosForever.astro`: el consejo va dentro de `.mf-card__pie` (4.ª fila de la rejilla `subgrid`) y `mkApoyo` añade la línea ahí. Antes era un 5.º hijo sin fila y se pintaba encima del consejo.
+
+## 2026-11-18 — Título de la portada en Google
+- `seo.ts` (`PORTADA`): «Guía Hunter BM Forever y Midnight: Cazador de Bestias en español» (Forever delante, que es lo que más se busca ahora; mantiene «Cazador de Bestias»). Descripción con «Maestro de bestias» y lo concreto de cada versión (31/20/0, mascotas, leveling 1-60; talentos, rotación, BiS). Antes: 6.587 impresiones y 3,1 % de clics en 3 meses.
+
 ## 2026-11-18 — BiS de Forever: ventana de personaje + «Objetos BiS» en el editor local (fases 3 y 4)
 - **Página `/forever/bis/`** (`src/content/forever/paginas/bis.md`, nuevo): visible, pero con `noindex: true` (campo nuevo del esquema `foreverPaginas`): `PaginaForever.astro` pone `noindex` y sin JSON-LD, y `astro.config.mjs` la deja fuera del sitemap. Quitarlo cuando tenga objetos (y entonces añadir la entrada en `changelog.json`).
 - **`BisForever.astro` rehecho**: ventana de personaje con el emblema del Cazador en el centro (aro de runas bronce que gira despacio, halo turquesa, «0 de 19 piezas elegidas», logo de Forever) y las 19 ranuras alrededor: 7 a la izquierda, 7 a la derecha (icono por fuera, como en el juego) y debajo armas (cuerpo a cuerpo, mano secundaria, a distancia, munición, carcaj/bolsa de munición). Ranura vacía = icono gris del juego (`inventoryslot_*` de zamimg) + «Por decidir». Con arma de dos manos, la mano secundaria sale «Ocupada por el arma de dos manos» y no cuenta. Debajo, «Ver el equipo en lista» (`<table>` plegada, para Google). Siguen arma a distancia por nivel, consumibles y encantamientos.

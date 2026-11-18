@@ -453,7 +453,7 @@ a.mk-tab[hidden] { display: none; }
   border-radius: 999px;
   font: 800 17px/1 "Quicksand", "Nunito", "Segoe UI", system-ui, sans-serif; letter-spacing: 0.01em;
   text-transform: none; white-space: nowrap;
-  color: #fff; text-decoration: none;
+  color: var(--kofi-text); text-decoration: none;
   background:
     linear-gradient(var(--kofi-deep), var(--kofi-deep)) padding-box,
     linear-gradient(120deg, var(--kofi-gold), var(--kofi) 50%, var(--kofi-heart)) border-box;
@@ -468,7 +468,7 @@ a.mk-tab[hidden] { display: none; }
   transform: skewX(-20deg); pointer-events: none; opacity: 0;
 }
 .mk-kofi:hover, .mk-kofi:focus-visible {
-  color: #fff;
+  color: var(--kofi-text);
   box-shadow: 0 0 20px -3px color-mix(in srgb, var(--kofi) 90%, transparent);
 }
 .mk-kofi:hover .mk-kofi__taza, .mk-kofi:focus-visible .mk-kofi__taza { transform: rotate(-10deg) scale(1.08); }
@@ -1079,10 +1079,12 @@ table.spec-table th:first-child, table.spec-table td:first-child { width: 100px;
 .txt-c--rojo { color: var(--red); }
 
 /* ─── APOYA LA GUÍA (Ko-fi en el momento de utilidad, ApoyoGuia.astro): una línea discreta, nunca pop-up ─── */
-.mk-apoyo { margin: 12px 0 0; font-size: 15px; line-height: 1.5; color: var(--text2); }
-.mk-apoyo a { color: var(--kofi-hi); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
-.mk-apoyo a:hover { color: var(--kofi); }
-.mk-apoyo--fin { margin: 28px auto 8px; text-align: center; max-width: 60ch; }
+.mk-apoyo { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 12px 0 0; font-size: 15px; line-height: 1.45; color: var(--text2); }
+/* Botón Ko-fi en bajito (mismo diseño que el de la cabecera) */
+.mk-kofi--apoyo { min-height: 34px; padding: 0 14px 0 10px; gap: 7px; font-size: 14.5px; }
+.mk-kofi--apoyo .mk-kofi__taza { width: 24px; height: 18px; }
+@media (prefers-reduced-motion: no-preference) { .mk-kofi--apoyo:hover, .mk-kofi--apoyo:focus-visible { transform: translateY(-1px); } }
+.mk-apoyo--fin { justify-content: center; margin: 28px auto 8px; text-align: center; max-width: 60ch; }
 .t5-ficha .mk-apoyo { margin: 4px 18px 12px; }
 @media (prefers-reduced-motion: no-preference) {
   .mk-apoyo:not(.mk-apoyo--fin) { animation: mk-apoyo-in .35s ease-out both; }

@@ -1212,6 +1212,7 @@
 .mf-card__desc { margin: 0; font-size: 17.5px; line-height: 1.55; color: var(--text2); }
 .mf-card__tip { margin: 0; padding-top: 10px; border-top: 1px solid var(--border); font-size: 16px; line-height: 1.5; color: var(--text3); }
 .mf-card__tip strong { color: var(--gold); }
+.mf-card__pie > .mk-apoyo:first-child { margin-top: 0; }
 pre.mf-code { align-self: start; margin: 0; padding: 12px 14px; overflow-x: auto; white-space: pre; font: 500 15px/1.6 var(--font-mono, ui-monospace, Consolas, monospace); color: var(--brand-text); background: var(--bg3); border-left: 3px solid var(--brand); border-radius: 4px; }
 .tc-tool.tc-shot.mf-copy { padding: 10px 16px 10px 13px; font-size: 14px; }
 .tc-tool.tc-shot.mf-copy.is-ok { background: var(--green); }
