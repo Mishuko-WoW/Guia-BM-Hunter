@@ -16,7 +16,7 @@ import MascotasTop5 from './MascotasTop5.astro';
 const faltan = [...JSON.stringify({ ...guia, _ayuda: "" }).matchAll(/\[\[([^\]|>]+)/g)].map((m) => m[1]).filter((n) => !getSpell(n));
 if (faltan.length) throw new Error(`forever-mascotas-guia.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
 const INDICE = [
-  { id: 'pf-top5', texto: 'Top 5 mascotas' },
+  { id: 'pf-top5', texto: "Top 5 mascotas y Ta'shkal" },
   { id: 'pf-ensenar', texto: 'Cómo enseñar' },
   { id: 'pf-familias', texto: 'Familias' },
   { id: 'pf-domesticar', texto: 'Dónde domesticar' },

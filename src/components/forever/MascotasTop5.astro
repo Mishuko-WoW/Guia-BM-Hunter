@@ -41,10 +41,11 @@ const aprender = (p: Pet) => p.ensenar.filter((id) => !p.viene.includes(id));
 ---
 
 <section class="lv-sec t5" id="pf-top5">
-  <h3>Las 5 mejores mascotas para Hunter BM en WoW Forever</h3>
+  <h3>Las 5 mejores mascotas para Hunter BM en WoW Forever (y Ta'shkal, el gato secreto)</h3>
   <p class="t5-intro">
     Las cinco mejores mascotas que puedes domesticar en WoW Forever, con <b>dónde están</b>, <b>qué velocidad
-    de ataque tienen</b> y <b>por qué</b>. Pulsa una para ver su ficha completa.
+    de ataque tienen</b> y <b>por qué</b>. Y fuera de concurso, el <b>#0</b>: Ta'shkal, el gato secreto recién
+    descubierto en Monte Hyjal. Pulsa una para ver su ficha completa.
   </p>
 
   <div class="t5-filtros" role="group" aria-label="Filtrar por uso">
@@ -95,7 +96,7 @@ const aprender = (p: Pet) => p.ensenar.filter((id) => !p.viene.includes(id));
                 <span class="t5-port t5-port--big"><img src={foto(p)} alt={p.nombre} width="300" height="300" loading="lazy" /></span>
                 <div class="t5-id__info">
                   <div class="t5-id__badges">
-                    <span class={`t5-badge t5-badge--${p.rareza === 'Élite' ? 'elite' : 'raro'}`}>{p.rareza}</span>
+                    <span class={`t5-badge t5-badge--${p.rareza === 'Élite' ? 'elite' : p.rareza === 'Secreto' ? 'secreto' : 'raro'}`}>{p.rareza}</span>
                     <span class="t5-badge">Nivel {p.nivel}</span>
                     {p.exclusivo && <span class="t5-badge t5-badge--new">Solo en Forever</span>}
                   </div>

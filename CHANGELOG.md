@@ -16,6 +16,15 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-18 — Forever: Ta'shkal como #0 del Top 5 de mascotas
+- Gato secreto descubierto el 16-11-2026 (hilo de Petopia t=27409; Icy Veins). Datos de Wowhead Forever es-ES: PNJ **268231**, «Escaped Experiment», nivel 58 (Normal), felino, **Ataque más rápido VII** (vel. 1.00), Monte Hyjal (zona 616; coords 26.4-26.6, 64.4-65.4). Habilidades del PNJ en Wowhead: Acechar y Pavor (`viene`). Se invoca en el farol «Lonely Lantern» con la **Figurilla de gato corrupta** (objeto 276909, charcas de sangre vil de Felblood Scar). Al domarlo pasa a llamarse «Felino».
+- `forever-mascotas-top5.json`: nueva entrada `puesto: 0` al principio (rareza «Secreto», `exclusivo`). Mapa: `classicplus/maps/eses/original/616.jpg` de zamimg (la ruta `classic` no tiene Hyjal; `mapa` admite URL).
+- Retrato `public/pets/tashkal.webp`: cabeza ilustrada que pasó Mishuko (ChatGPT, fondo blanco 1254 px). Fondo quitado con relleno desde los bordes (no toca colmillos ni ojos), recortada en medallón de 284 px sobre fondo vil, con aro verde vil y filo naranja (sharp). Modelo 3D de Wowhead: displayId 9230.
+- Trato especial del #0: rango y velocidad en verde de la marca, aura vil que late detrás del retrato (`t5-aura`, se quita con `prefers-reduced-motion`), ficha con brillo exterior y bloque de velocidad como el dorado de la #1 pero en verde. Roles: PvP, Mazmorras y Leveo.
+- Rejilla del Top 5: 3 columnas fijas desde 901 px (6 tarjetas = 3 y 3).
+- SEO: título «Mejores mascotas Hunter WoW Forever: Top 5 y Ta'shkal», descripción con «gato secreto de Hyjal» y 1,0 s, H3 e índice con Ta'shkal, 2 preguntas nuevas en `faq-forever.json` (cómo se consigue Ta'shkal, dónde está la Figurilla de gato corrupta) que salen en el bloque visible y en `FAQPage`. Enlace al TikTok: lo pone Mishuko.
+- `MascotasTop5.astro`: texto de intro con el #0 e insignia `t5-badge--secreto`. `forever.css`: estilos `.t5-card--0`/`.t5-ficha--0` (verde de la marca, etiqueta «Nuevo · Secreto»). `seo.ts`: `ItemList` numera por orden (`i + 1`) porque schema.org empieza en 1. `faq-forever.json`: mención de Ta'shkal en «mejor mascota».
+
 ## 2026-11-17 — Coaching de Forever con precios públicos
 - `SeccionCoaching.astro`: nuevo campo `precios` en `TEXTOS` (Midnight `null` = sigue «Consulta el precio conmigo en Discord»; Forever con precios). Forever enseña Sesión individual 25 € (≈ 27 USD) y Coaching Pro 79 €/mes (≈ 86 USD al mes), la etiqueta «Precio de lanzamiento · 5 plazas al mes» y los botones «Reservar por Discord». Estilos `.price-launch`, `.price-period`, `.price-usd`.
 - No se menciona la pestaña oculta `errores`: solo existe en Midnight.

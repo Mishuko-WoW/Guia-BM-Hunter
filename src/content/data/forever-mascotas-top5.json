@@ -20,6 +20,62 @@
   ],
   "mascotas": [
     {
+      "puesto": 0,
+      "id": "tashkal",
+      "npc": 268231,
+      "nombre": "Ta'shkal",
+      "titulo": "El gato secreto de Hyjal",
+      "familia": "felino",
+      "nivel": "58",
+      "rareza": "Secreto",
+      "exclusivo": true,
+      "zona": "Monte Hyjal",
+      "zonaNota": "aparece al usar el farol",
+      "mapa": "https://wow.zamimg.com/images/wow/classicplus/maps/eses/original/616.jpg",
+      "velocidad": "1.0",
+      "roles": [
+        "pvp",
+        "mazmorras",
+        "leveo"
+      ],
+      "rol": "Recién descubierto: tan rápido como Diente partido, sin esperas y con un aspecto que nadie más tiene.",
+      "pines": [
+        {
+          "x": 26.5,
+          "y": 65,
+          "etq": "Farol"
+        }
+      ],
+      "puntos": [
+        [
+          26.4,
+          65.2
+        ],
+        [
+          26.5,
+          65.4
+        ],
+        [
+          26.6,
+          64.4
+        ]
+      ],
+      "respawn": "No aparece solo: lo invocas tú con la figurilla",
+      "consejo": "Primero consigue la **Figurilla de gato corrupta**: está en las charcas verdes de sangre vil de **Felblood Scar** (Monte Hyjal), medio enterrada junto a unos cristales blancos y cuesta mucho verla. Es un objeto gris que se liga al recogerlo. Con ella en la bolsa, ve al **farol** de la ladera que hay encima de la cueva de Mourning's Rest y haz clic: aparece Ta'shkal. Llega con **nivel 58** (es su nivel). Al domesticarlo pierde el nombre y pasa a llamarse «Felino»: ponle tú el que quieras.",
+      "viene": [
+        "prowl",
+        "cower"
+      ],
+      "ensenar": [
+        "bite",
+        "claw",
+        "prowl",
+        "dash"
+      ],
+      "porque": "Pega **cada 1.0 s** gracias a su pasiva *Ataque más rápido VII*, igual que Diente partido: muchos golpes, muchos críticos y [[Frenesí]] casi siempre activo, con el +10% de daño del felino. Además es un **modelo único** (verde y naranja, «Escaped Experiment») descubierto en noviembre de 2026: no lo tiene casi nadie.",
+      "cuando": "Para todo: **leveo** del 58 al 60, **mazmorras**, raid y **PvP**, donde sus golpes constantes retrasan a los casters. Lo consigues en minutos, sin esperar horas a que salga, y con un modelo exclusivo."
+    },
+    {
       "puesto": 1,
       "id": "diente-partido",
       "npc": 2850,

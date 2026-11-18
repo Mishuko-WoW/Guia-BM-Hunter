@@ -99,8 +99,8 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'BiS y consumibles del Cazador de Bestias',
     },
     mascotas: {
-      title: 'Mejores mascotas Hunter WoW Forever: Top 5 pets del Cazador',
-      description: 'Las 5 mejores pets del Hunter BM en WoW Forever con mapa y coordenadas para domesticarlas, y las 18 familias de mascotas del Cazador con su habilidad.',
+      title: "Mejores mascotas Hunter WoW Forever: Top 5 y Ta'shkal",
+      description: "Top 5 pets del Hunter BM en WoW Forever y Ta'shkal, el gato secreto de Hyjal que ataca cada 1,0 s: cómo conseguirlo, mapa y coordenadas para domesticarlas, y las 18 familias del Cazador.",
       h1sub: 'Mejores mascotas del Cazador en WoW Forever',
     },
     macros: {
@@ -176,12 +176,12 @@ function top5JsonLd(url: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Las 5 mejores mascotas del Cazador (Hunter BM) en WoW Forever',
+    name: "Las mejores mascotas del Cazador (Hunter BM) en WoW Forever: Ta'shkal y el Top 5",
     itemListOrder: 'https://schema.org/ItemListOrderAscending',
     numberOfItems: lista.length,
-    itemListElement: lista.map((m) => ({
+    itemListElement: lista.map((m, i) => ({
       '@type': 'ListItem',
-      position: m.puesto,
+      position: i + 1, // el #0 (Ta'shkal) va primero; schema.org cuenta desde 1
       name: `${m.nombre} (${m.familia}, nivel ${m.nivel}, ${m.zona})`,
       description: plano(m.porque),
       image: `${SITE}/pets/${m.id}.webp`,

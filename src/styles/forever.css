@@ -1270,6 +1270,7 @@ pre.mf-code { align-self: start; margin: 0; padding: 12px 14px; overflow-x: auto
 .t5-filtro.is-on { color: var(--brand-ink); background: var(--brand-fill); }
 
 .t5-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+@media (min-width: 901px) { .t5-grid { grid-template-columns: repeat(3, 1fr); } } /* 6 mascotas (#0 + Top 5): 3 y 3 en escritorio */
 .t5-card[hidden], .t5-vacio[hidden], .t5-ficha[hidden] { display: none !important; }
 .t5-card__btn {
   position: relative; display: grid; justify-items: center; gap: 6px; width: 100%; height: 100%; padding: 18px 14px 14px;
@@ -1362,6 +1363,32 @@ pre.mf-code { align-self: start; margin: 0; padding: 12px 14px; overflow-x: auto
 .t5-badge--raro { color: var(--q-raro); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--q-raro) 55%, transparent); }
 .t5-badge--elite { color: var(--gold); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 55%, transparent); }
 .t5-badge--new { color: var(--green); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--green) 55%, transparent); }
+.t5-badge--secreto { color: var(--brand-text); box-shadow: inset 0 0 0 1px var(--brand); }
+
+/* #0 (Ta'shkal, gato secreto): fuera de concurso, verde vil de la marca en vez del dorado de la #1 */
+.t5-card--0 .t5-card__btn { background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 22%, var(--card)), var(--card) 65%); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 70%, transparent); }
+.t5-card--0 .t5-card__btn:hover { box-shadow: inset 0 0 0 2px var(--brand); }
+.t5-card--0 .t5-card__btn::after {
+  content: 'Nuevo · Secreto'; position: absolute; top: 14px; right: 12px; padding: 3px 7px;
+  font: 700 11px/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-ink); background: var(--brand-fill);
+}
+.t5-card--0 .t5-rank, .t5-ficha--0 .t5-rank { color: var(--brand); text-shadow: 0 0 14px color-mix(in srgb, var(--brand) 60%, transparent); }
+/* Aura vil que late alrededor del retrato (como el dorado de la #1, pero viva) */
+.t5-card--0 .t5-port, .t5-ficha--0 .t5-port { position: relative; }
+.t5-card--0 .t5-port::before, .t5-ficha--0 .t5-port::before {
+  content: ''; position: absolute; inset: -6%; z-index: 0; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand) 55%, transparent) 40%, transparent 70%);
+  filter: blur(10px); animation: t5-aura 2.6s ease-in-out infinite;
+}
+.t5-card--0 .t5-port img, .t5-ficha--0 .t5-port img { position: relative; z-index: 1; filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.55)) drop-shadow(0 0 16px color-mix(in srgb, var(--brand) 60%, transparent)); }
+@keyframes t5-aura { 0%, 100% { opacity: 0.55; transform: scale(0.96); } 50% { opacity: 1; transform: scale(1.06); } }
+.t5-card--0 .t5-vel b { color: var(--brand); }
+.t5-ficha--0 { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--brand) 75%, transparent), 0 0 40px color-mix(in srgb, var(--brand) 25%, transparent); }
+.t5-ficha--0 .t5-ficha__head { background: color-mix(in srgb, var(--brand) 14%, var(--bg2)); }
+.t5-ficha--0 .t5-speed { background: linear-gradient(120deg, color-mix(in srgb, var(--brand) 20%, var(--card)), var(--card) 75%); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 60%, transparent); }
+.t5-ficha--0 .t5-speed__num b { color: var(--brand); text-shadow: 0 0 22px color-mix(in srgb, var(--brand) 50%, transparent); }
+.t5-ficha--0 .t5-speed__bar i { background: linear-gradient(90deg, color-mix(in srgb, var(--brand) 55%, var(--bg)), var(--brand)); }
+@media (prefers-reduced-motion: reduce) { .t5-card--0 .t5-port::before, .t5-ficha--0 .t5-port::before { animation: none; } }
 .t5-3d { font: 700 13px/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-text); }
 
 .t5-map { margin: 0; }

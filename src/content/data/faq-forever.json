@@ -54,7 +54,15 @@
   "mascotas": [
     {
       "pregunta": "¿Cuál es la mejor mascota para el Hunter en WoW Forever?",
-      "respuesta": "**Diente partido**, un felino raro de nivel 37 en las Tierras Inhóspitas: ataca cada **1,0 s** (ninguna otra bestia del mundo abierto lo hace), así que tiene Frenesí casi siempre activo y es la mejor mascota de daño. Completan el Top 5 **El Rastrillo** (felino, nivel 10, Mulgore), **Lupo esclavizante** (lobo, Castillo de Colmillo Oscuro), **Escupetripas** (carroñero, Las Tierras Devastadas) y **Melenaniebla** (oso, Isla de Zephras)."
+      "respuesta": "**Diente partido**, un felino raro de nivel 37 en las Tierras Inhóspitas: ataca cada **1,0 s** (ninguna otra bestia del mundo abierto lo hace), así que tiene Frenesí casi siempre activo y es la mejor mascota de daño. Completan el Top 5 **El Rastrillo** (felino, nivel 10, Mulgore), **Lupo esclavizante** (lobo, Castillo de Colmillo Oscuro), **Escupetripas** (carroñero, Las Tierras Devastadas) y **Melenaniebla** (oso, Isla de Zephras). Y la novedad: **Ta'shkal**, un felino secreto de nivel 58 en Monte Hyjal que también ataca cada **1,0 s**; se invoca en un farol con la Figurilla de gato corrupta."
+    },
+    {
+      "pregunta": "¿Cómo se consigue Ta'shkal, el gato secreto de WoW Forever?",
+      "respuesta": "**Ta'shkal** («Escaped Experiment») es un felino de nivel 58 que no aparece solo: lo invocas tú. Consigue la **Figurilla de gato corrupta** en las charcas verdes de sangre vil de Felblood Scar (Monte Hyjal) y úsala en el **farol** que hay al sur de Mourning's Rest, hacia **26.5, 64.9**. Ataca cada **1,0 s** (Ataque más rápido VII), como Diente partido, y al domesticarlo su nombre pasa a «Felino»."
+    },
+    {
+      "pregunta": "¿Dónde está la Figurilla de gato corrupta en WoW Forever?",
+      "respuesta": "En las charcas verdes de sangre vil de **Felblood Scar**, en Monte Hyjal. Puede salir en cualquiera de ellas, medio enterrada en el limo junto a huesos y cristales blancos, así que cuesta verla. Es un objeto gris que se liga al recogerlo y se gasta al usar el farol que invoca a Ta'shkal."
     },
     {
       "pregunta": "¿Cuál es la mejor pet para subir de nivel con el cazador?",
