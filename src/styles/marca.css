@@ -526,7 +526,12 @@ a.mk-tab[hidden] { display: none; }
 @media (max-width: 400px) { .mk-rxp__txt { display: none; } .mk-rxp { padding: 0 4px; } }
 @media (prefers-reduced-motion: reduce) { .mk-rxp, .mk-rxp__logo { transition: none; } }
 /* Menú móvil: botón grande a todo lo ancho, debajo de Coaching y Cerrar */
-.mk-sheet__kofi { grid-column: 1 / -1; justify-content: center; min-height: 52px; }
+/* Fila de abajo dividida en dos: RestedXP | Ko-fi («Apóyame») */
+.mk-sheet__apoyo { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mk-sheet__kofi { justify-content: center; min-height: 52px; padding: 0 10px; font-size: 16px; }
+.mk-sheet__apoyo .mk-rxp { justify-content: center; min-height: 52px; padding: 0 10px; gap: 8px; font-size: 16px; }
+.mk-sheet__apoyo .mk-rxp__txt { display: inline; }
+.mk-sheet__apoyo .mk-rxp__logo { width: 30px; height: 30px; }
 @media (prefers-reduced-motion: reduce) {
   .mk-kofi, .mk-kofi__taza { transition: none; }
   .mk-kofi:hover, .mk-kofi:focus-visible,

@@ -8,8 +8,10 @@ interface Props {
   class?: string;
   /** Versión pequeña para la barra superior: «Apóyame» (en móvil solo la taza) */
   compacto?: boolean;
+  /** Texto propio (p. ej. «Apóyame» en el menú móvil, donde comparte fila con RestedXP) */
+  texto?: string;
 }
-const { lugar, class: extra, compacto = false } = Astro.props;
+const { lugar, class: extra, compacto = false, texto } = Astro.props;
 ---
 <a
   class:list={['mk-kofi', { 'mk-kofi--mini': compacto }, extra]}
@@ -25,5 +27,5 @@ const { lugar, class: extra, compacto = false } = Astro.props;
     <path d="M24 7.2h1.4a2.3 2.3 0 0 1 0 4.6H24z" fill="var(--kofi)" />
     <path d="M13 17.6l-4.3-4.2a2.6 2.6 0 0 1 3.7-3.7l.6.6.6-.6a2.6 2.6 0 0 1 3.7 3.7z" fill="var(--kofi-heart)" />
   </svg>
-  <span>{compacto ? 'Apóyame' : 'Invítame a un café'}</span>
+  <span>{texto ?? (compacto ? 'Apóyame' : 'Invítame a un café')}</span>
 </a>

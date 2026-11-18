@@ -20,6 +20,8 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 - `BotonRestedXP.astro` (enlace de afiliado, `rel="sponsored"`, GA4 `afiliado_click` con `lugar`) en `RealmSwitch.astro`, antes del Ko-fi: en Midnight y Forever.
 - Diseño propio: píldora azul noche con borde degradado cian→azul→violeta, logo de RestedXP (recortado con sharp de su banner de afiliado 728×90 → `public/brand/restedxp-logo.webp`, 64 px), «Rested**XP**» con XP en cian, etiqueta «Leveling» y un brillo que cruza cada 7 s (sin él con `prefers-reduced-motion`). Colores `--rxp*` en `tokens.css`; estilos en el bloque «RESTEDXP» de `marca.css`.
 - Móvil: sin etiqueta ≤900 px, más pequeño ≤600 px y solo el logo ≤400 px.
+- Menú móvil (`TabBar.astro`): la fila de abajo se divide en dos (`.mk-sheet__apoyo`): RestedXP (logo + nombre) | Ko-fi «Apóyame» (nueva prop `texto` en `BotonKofi.astro`).
+- Logo rehecho desde el banner reescalado x4 con Real-ESRGAN: 128 px (antes 64 px recortado del banner original).
 - Leveling Forever: `RecomendacionRestedXP.astro` rehecho y subido arriba (tras los 4 hitos, antes de «Hoja de ruta»): banner oficial de afiliado 728×90 del dragón (`public/brand/rxp-rutas.webp`, reescalado x4 con Real-ESRGAN y guardado a 1456×180 para que no se vea pixelado; nombre y clase sin «banner» porque los bloqueadores de anuncios lo ocultaban), texto, botón «Ver RestedXP» y aviso de afiliado. GA4 `afiliado_click` con `lugar` `leveling-banner`/`leveling-boton`. Fuera el bloque antiguo (`.lv-addon*`) del final de Consejos; estilos nuevos `.lv-rxp*` en `forever.css`, colores `--rxp-text*` en `tokens.css`.
 
 ## 2026-11-18 — Editor local de Forever (fases 1 y 2) + RestedXP en Leveling
