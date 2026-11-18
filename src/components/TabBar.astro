@@ -63,7 +63,7 @@ const icono = (id: string) => iconUrl(ICONO[id] ?? ICONO.mecanicas);
   <button type="button" class="mk-dock__menu" aria-expanded="false" aria-controls="mk-sheet" data-sheet-open>
     <span class="mk-burger" aria-hidden="true"><i></i><i></i><i></i></span>
     <span class="mk-dock__text">
-      <small>Secciones · {NOMBRE}</small>
+      <small>Menú · {NOMBRE}</small>
       <b>{actual}</b>
     </span>
     <svg class="mk-dock__chev" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 15l6-6 6 6" /></svg>
@@ -120,6 +120,17 @@ const icono = (id: string) => iconUrl(ICONO[id] ?? ICONO.mecanicas);
 </div>
 
 <script is:inline>
+  // Primera visita: la barra del menú brilla dos veces para que se vea que es un menú (una sola vez)
+  (() => {
+    const btn = document.querySelector('[data-sheet-open]');
+    if (!btn || !matchMedia('(max-width: 900px)').matches) return;
+    try {
+      if (localStorage.getItem('mk-menu-visto')) return;
+      localStorage.setItem('mk-menu-visto', '1');
+    } catch (e) { return; }
+    setTimeout(() => btn.classList.add('is-hint'), 1200);
+    btn.addEventListener('animationend', () => btn.classList.remove('is-hint'));
+  })();
   (() => {
     const sheet = document.querySelector('[data-sheet]');
     const panel = sheet && sheet.querySelector('[data-sheet-panel]');
