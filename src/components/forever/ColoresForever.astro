@@ -1,0 +1,21 @@
+---
+// Colores de bloque elegidos con el editor local (src/content/data/forever-colores.json, lo escribe
+// scripts/editor-local/integration.mjs). Solo colores de la marca; selectores validados (sin inyección).
+import colores from '../../content/data/forever-colores.json';
+
+interface Props { tab: string }
+const { tab } = Astro.props;
+const VAR: Record<string, string> = { marca: '--brand', ambar: '--pl', violeta: '--dr', oro: '--gold', verde: '--green', rojo: '--red' };
+const SEL = /^#[A-Za-z][\w-]*( > [a-z][a-z0-9]*:nth-of-type\(\d{1,3}\))*$/;
+const pares = Object.entries((colores as Record<string, Record<string, string>>)[tab] ?? {})
+  .filter(([s, c]) => SEL.test(s) && VAR[c]);
+const reglas = pares.map(([s, c]) => `${s}{--ed-c:var(${VAR[c]})}`).join('');
+const todos = pares.map(([s]) => s).join(',');
+const css = todos
+  ? reglas +
+    `:is(${todos}){border-left:3px solid var(--ed-c)!important}` +
+    `:is(${todos}) :is(h2,h3,h4,h5,.box-title,.card-header,.col-header,th){color:var(--ed-c)!important}` +
+    `:is(${todos}) th{background:color-mix(in srgb,var(--ed-c) 14%,transparent)!important}`
+  : '';
+---
+{css && <style is:inline set:html={css} />}

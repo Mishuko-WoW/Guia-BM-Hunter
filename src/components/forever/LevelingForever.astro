@@ -11,6 +11,7 @@ import { getSpell, foreverIcon, iconUrl } from '../../lib/spells';
 import { md } from '../../lib/markup';
 import CalculadoraTalentos from './CalculadoraTalentos.astro';
 import IndiceForever from './IndiceForever.astro';
+import RecomendacionRestedXP from './RecomendacionRestedXP.astro';
 
 // Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
 const citados = new Set<string>();
@@ -375,6 +376,7 @@ const familia = (id: string) => {
         </div>
       ))}
     </div>
+    <RecomendacionRestedXP />
   </section>
   <!-- MUNICIÓN -->
   <section class="lv-sec" id="lv-municion">

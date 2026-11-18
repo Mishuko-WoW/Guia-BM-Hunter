@@ -6,6 +6,7 @@ import { getSpell, iconUrl } from './spells';
 //   [[Nombre|desc|tipo|clase]]    sobrescribe también tipo y clase (sp | pr | bf); campos vacíos = catálogo
 //   [[Nombre>Texto visible]]      muestra otro texto con el tooltip de Nombre
 //   **negrita**   *cursiva*   !!alerta en rojo!!
+//   [c=ambar]texto en color[/c]   colores: marca, ambar, violeta, oro, verde, rojo (clases .txt-c--* en marca.css)
 // Se permite HTML suelto para casos especiales.
 
 const attr = (s: string) =>
@@ -52,7 +53,8 @@ export function md(text = ''): string {
     .replace(/\[\[([^\]]+)\]\]/g, (_, m) => mention(m))
     .replace(/!!(.+?)!!(?!!)/g, '<strong class="txt-alert">$1</strong>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/(^|[^*])\*([^*\s][^*]*?)\*(?!\*)/g, '$1<em>$2</em>');
+    .replace(/(^|[^*])\*([^*\s][^*]*?)\*(?!\*)/g, '$1<em>$2</em>')
+    .replace(/\[c=(marca|ambar|violeta|oro|verde|rojo)\]([\s\S]+?)\[\/c\]/g, '<span class="txt-c--$1">$2</span>');
 }
 
 // Nombres de hechizo usados en un texto (para validar contra el catálogo)

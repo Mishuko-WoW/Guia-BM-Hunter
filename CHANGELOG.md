@@ -16,6 +16,13 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-18 — Editor local de Forever (fases 1 y 2) + RestedXP en Leveling
+- **Editor local** (`scripts/editor-local/`): solo con `npm run dev`. `integration.mjs` (integración de Astro): inyecta `cliente.js` solo si `command === 'dev'` y crea `/__editor/buscar|guardar|color` en `astro:server:setup` (no existen en el build ni en la web). Solo POST desde 127.0.0.1/::1 con Host/Origin localhost, `X-Editor-Local: 1` y JSON; solo escribe en `forever-*.json`, `faq-forever.json` y `src/content/forever/paginas/*.md` (fuera los generados: talentos, mascotas, objetos).
+  - Texto: el navegador manda el texto del bloque pulsado (y de sus padres); el servidor renderiza cada cadena con `md()` (vía `ssrLoadModule`) y busca la que coincide. Guarda cambiando solo ese literal del archivo (respeta formato, CRLF y números como `5.0`); si el texto sale varias veces cambia la aparición de esa ruta y comprueba que nada más cambie. En `.md` valida el YAML antes de escribir (si se rompería, avisa). Si el mismo texto está en varias pestañas, solo se cambia en los archivos de la pestaña abierta.
+  - Color de palabra: nueva marca `[c=marca|ambar|violeta|oro|verde|rojo]texto[/c]` en `markup.ts` (clases `.txt-c--*` al final de `marca.css`).
+  - Color de bloque: `src/content/data/forever-colores.json` (`{ tab: { selector: color } }`) → `ColoresForever.astro` (en `PaginaForever`) pinta borde izquierdo, títulos y `th` con la variable de la marca. Selectores validados con regex (`#id > tag:nth-of-type(n)…`), sin inyección. Si cambia la estructura de la página, un color puede dejar de aplicarse.
+- **Leveling Forever**: `RecomendacionRestedXP.astro` (enlace de afiliado, `rel="sponsored"`, evento GA4 `afiliado_click`) al final de la sección de tramos; estilos `.lv-addon*` en `forever.css`.
+
 ## 2026-11-18 — Forever: Ta'shkal como #0 del Top 5 de mascotas
 - Gato secreto descubierto el 16-11-2026 (hilo de Petopia t=27409; Icy Veins). Datos de Wowhead Forever es-ES: PNJ **268231**, «Escaped Experiment», nivel 58 (Normal), felino, **Ataque más rápido VII** (vel. 1.00), Monte Hyjal (zona 616; coords 26.4-26.6, 64.4-65.4). Habilidades del PNJ en Wowhead: Acechar y Pavor (`viene`). Se invoca en el farol «Lonely Lantern» con la **Figurilla de gato corrupta** (objeto 276909, charcas de sangre vil de Felblood Scar). Al domarlo pasa a llamarse «Felino».
 - `forever-mascotas-top5.json`: nueva entrada `puesto: 0` al principio (rareza «Secreto», `exclusivo`). Mapa: `classicplus/maps/eses/original/616.jpg` de zamimg (la ruta `classic` no tiene Hyjal; `mapa` admite URL).

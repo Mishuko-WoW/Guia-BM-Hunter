@@ -996,3 +996,11 @@ table.spec-table th:first-child, table.spec-table td:first-child { width: 100px;
   .content-area .rt-tl__label small,
   .content-area .rt-tl__note { font-size: 12px; }
 }
+
+/* ─── COLOR DE PALABRA ([c=ambar]texto[/c] en markup.ts; lo pone el editor local) ─── */
+.txt-c--marca { color: var(--brand-text); }
+.txt-c--ambar { color: var(--pl); }
+.txt-c--violeta { color: var(--dr); }
+.txt-c--oro { color: var(--gold); }
+.txt-c--verde { color: var(--green); }
+.txt-c--rojo { color: var(--red); }

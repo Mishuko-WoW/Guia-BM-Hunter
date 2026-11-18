@@ -1,6 +1,13 @@
 [
   {
     "fecha": "2026-11-18",
+    "pestana": "leveling",
+    "texto": "Addon recomendado para subir de nivel (RestedXP) en",
+    "enlace": "Leveling",
+    "version": "forever"
+  },
+  {
+    "fecha": "2026-11-18",
     "pestana": "mascotas",
     "texto": "Nuevo #0 del Top 5: Ta'shkal, el gato secreto de Hyjal, en",
     "enlace": "Mascotas",

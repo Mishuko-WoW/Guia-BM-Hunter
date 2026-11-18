@@ -3,6 +3,7 @@
 // Pestañas sin contenido todavía ("en preparación") → noindex y fuera del sitemap (astro.config.mjs).
 import { getCollection } from 'astro:content';
 import GuideForever from './GuideForever.astro';
+import ColoresForever from './ColoresForever.astro';
 import MainLayout from '../../layouts/MainLayout.astro';
 import { SEO, guideJsonLd } from '../../lib/seo';
 import { TABS_FOREVER } from '../../lib/tabs';
@@ -32,6 +33,7 @@ const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replac
   jsonLd={enPreparacion ? [] : guideJsonLd('forever', tab, label, latestChangeDate(tab === 'mecanicas' ? undefined : tab, 'forever'), firstChangeDate(tab === 'mecanicas' ? undefined : tab, 'forever'))}
 >
   <GuideForever tab={tab} paginas={paginas} />
+  <ColoresForever tab={tab} />
   <script is:inline src={withBase('scripts/bm-guide.js')}></script>
   <script is:inline src={withBase('scripts/forever-talentos.js')}></script>
   <script is:inline>

@@ -1,0 +1,26 @@
+---
+// Recomendación del addon RestedXP (enlace de afiliado de Mishuko) en Leveling de Forever.
+// rel="sponsored" es obligatorio para Google en enlaces de afiliado.
+const URL_AFILIADO = 'https://shop.restedxp.com/es-mx/ref/Mishuko/';
+---
+
+<div class="lv-addon">
+  <div class="lv-addon__body">
+    <p class="lv-addon__kicker">Addon recomendado</p>
+    <h4>RestedXP: rutas de leveling dentro del juego</h4>
+    <p>
+      Si quieres subir sin pensar a dónde ir, RestedXP te marca en pantalla la ruta paso a paso: qué misiones coger,
+      en qué orden y por dónde moverte. Ahorra mucho tiempo de mapa y de dudas.
+    </p>
+    <p class="lv-addon__aviso">
+      Enlace de afiliado: si lo compras desde aquí me llevo una pequeña comisión, sin que a ti te cueste más.
+    </p>
+  </div>
+  <a
+    class="lv-addon__btn"
+    href={URL_AFILIADO}
+    target="_blank"
+    rel="sponsored noopener"
+    onclick="window.gtag&&gtag('event','afiliado_click',{tipo:'restedxp'})"
+  >Ver RestedXP</a>
+</div>

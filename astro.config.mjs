@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
+// Editor visual de Forever: solo existe con `npm run dev` (localhost), nunca en la web publicada
+import editorLocal from './scripts/editor-local/integration.mjs';
 
 // ─── Sitemap ───
 // - Fuera las pestañas de Forever que aún no tienen contenido (llevan noindex): solo entran las que
@@ -37,6 +39,7 @@ export default defineConfig({
 	},
 
   integrations: [
+    editorLocal(),
     sitemap({
       filter: (url) => {
         const [realm, tab] = partes(url);
