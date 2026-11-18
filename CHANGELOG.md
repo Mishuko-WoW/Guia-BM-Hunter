@@ -20,6 +20,7 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 - `BotonRestedXP.astro` (enlace de afiliado, `rel="sponsored"`, GA4 `afiliado_click` con `lugar`) en `RealmSwitch.astro`, antes del Ko-fi: en Midnight y Forever.
 - Diseño propio: píldora azul noche con borde degradado cian→azul→violeta, logo de RestedXP (recortado con sharp de su banner de afiliado 728×90 → `public/brand/restedxp-logo.webp`, 64 px), «Rested**XP**» con XP en cian, etiqueta «Leveling» y un brillo que cruza cada 7 s (sin él con `prefers-reduced-motion`). Colores `--rxp*` en `tokens.css`; estilos en el bloque «RESTEDXP» de `marca.css`.
 - Móvil: sin etiqueta ≤900 px, más pequeño ≤600 px y solo el logo ≤400 px.
+- Etiqueta del botón de la barra superior: «10% de descuento» en vez de «Leveling» (confirmado por Mishuko).
 - Menú móvil (`TabBar.astro`): la fila de abajo se divide en dos (`.mk-sheet__apoyo`): RestedXP (logo + nombre) | Ko-fi «Apóyame» (nueva prop `texto` en `BotonKofi.astro`).
 - Barra del menú móvil más visible: «Menú · <versión>» en vez de «Secciones · …» (en `text2`), fondo con un 9 % del color de marca y borde al 70 %. Primera visita: dos destellos a los 1,2 s (`.is-hint`, guardado en `localStorage` `mk-menu-visto`; sin animación con `prefers-reduced-motion`).
 - Logo rehecho desde el banner reescalado x4 con Real-ESRGAN: 128 px (antes 64 px recortado del banner original).
