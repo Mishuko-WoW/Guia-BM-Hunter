@@ -7,6 +7,7 @@
 //     y la cabecera X-Editor-Local (otra web abierta en el navegador no puede llamarlos);
 //   - solo escriben en una lista fija de archivos de contenido de Forever.
 import fs from 'node:fs';
+import { spawn } from 'node:child_process';
 import yaml from 'js-yaml';
 
 const DATA = 'src/content/data';
@@ -107,6 +108,56 @@ function guardarColor(tab, selector, color) {
   fs.writeFileSync(COLORES, JSON.stringify(datos, null, 2) + '\n');
 }
 
+// ─── Publicar: (entrada opcional en changelog.json) → npm run build → commit SOLO de los archivos del editor
+//     → abre publicar.bat en su propia ventana (push + IndexNow; Mishuko ve el progreso y el «Listo»).
+const CHANGELOG = `${DATA}/changelog.json`;
+let publicando = false;
+const correr = (cmd, args) => new Promise((ok) => {
+  const p = spawn(cmd, args, { shell: true, cwd: process.cwd() });
+  let out = '';
+  p.stdout.on('data', (d) => (out += d));
+  p.stderr.on('data', (d) => (out += d));
+  p.on('close', (code) => ok({ code, out: out.replace(/\x1b\[[0-9;]*m/g, '') }));
+});
+async function publicar(server, tab, nota) {
+  if (publicando) throw new Error('Ya se está publicando');
+  publicando = true;
+  try {
+    const hoy = new Date();
+    const fecha = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`;
+    const ficheros = [...archivos(), COLORES];
+    const changelogAntes = fs.readFileSync(CHANGELOG, 'utf8');
+    if (typeof nota === 'string' && nota.trim()) {
+      const { TABS_FOREVER } = await server.ssrLoadModule('/src/lib/tabs.ts');
+      const t = TABS_FOREVER.find((x) => x.id === tab);
+      if (!t) throw new Error('Pestaña no válida para la lista de cambios');
+      const entrada = { fecha, pestana: tab, texto: `${nota.trim().slice(0, 200)} en`, enlace: t.label.replace(/\s+1-60$/, ''), version: 'forever' };
+      const txt = fs.readFileSync(CHANGELOG, 'utf8');
+      const nl = txt.includes('\r\n') ? '\r\n' : '\n';
+      const bloque = JSON.stringify(entrada, null, 2).split('\n').map((l) => '  ' + l).join(nl);
+      fs.writeFileSync(CHANGELOG, txt.replace(/^\[\s*\r?\n/, `[${nl}${bloque},${nl}`));
+      JSON.parse(fs.readFileSync(CHANGELOG, 'utf8')); // comprobación
+      ficheros.push(CHANGELOG);
+    }
+    const build = await correr('npm', ['run', 'build']);
+    if (build.code !== 0) fs.writeFileSync(CHANGELOG, changelogAntes); // sin publicar, sin entrada a medias
+    if (build.code !== 0) throw new Error('La web tiene un error y NO se ha publicado. Pásale esto a Claude:\n\n' + build.out.split('\n').slice(-25).join('\n'));
+    const estado = await correr('git', ['status', '--porcelain', '--', ...ficheros]);
+    const cambiados = estado.out.split('\n').map((l) => l.slice(3).trim()).filter(Boolean);
+    let hecho = 'No había cambios nuevos del editor';
+    if (cambiados.length) {
+      await correr('git', ['add', '--', ...cambiados]);
+      const c = await correr('git', ['commit', '-m', `"Editor local: cambios de contenido de Forever (${fecha})"`, '--', ...cambiados]);
+      if (c.code !== 0) throw new Error('No se pudo hacer el commit:\n' + c.out);
+      hecho = `Commit hecho (${cambiados.length} archivo${cambiados.length > 1 ? 's' : ''})`;
+    }
+    spawn('cmd', ['/c', 'start', '"Publicar"', 'publicar.bat'], { shell: true, cwd: process.cwd(), detached: true, stdio: 'ignore' }).unref();
+    return `${hecho}. Se ha abierto la ventana de publicar.bat: espera a que diga «Listo» y mira el tic verde en GitHub.`;
+  } finally {
+    publicando = false;
+  }
+}
+
 const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/;
 function permitido(req) {
   const ip = req.socket.remoteAddress ?? '';
@@ -158,6 +209,7 @@ export default function editorLocal() {
               const lista = Object.entries(spells).map(([n, s]) => ({ n, i: iconUrl(s.iconForever ?? s.icon) || '' }));
               return responder(200, { lista: lista.sort((a, b) => a.n.localeCompare(b.n, 'es')) });
             }
+            if (req.url === '/publicar') return responder(200, { mensaje: await publicar(server, b.tab, b.nota) });
             if (req.url === '/color') { guardarColor(b.tab, b.selector, b.color ?? null); return responder(200, { ok: true }); }
             responder(404, { error: 'No existe' });
           } catch (e) {

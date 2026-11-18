@@ -30,7 +30,7 @@
   const ui = document.createElement('div');
   ui.id = 'ed-ui';
   ui.innerHTML = `<div id="ed-pan" hidden></div>
-    <div id="ed-bar"><button data-m="texto">Editar texto</button><button data-m="color">Color de bloque</button></div>`;
+    <div id="ed-bar"><button data-m="texto">Editar texto</button><button data-m="color">Color de bloque</button><button data-p="1" title="Guarda todos los cambios en un commit y lanza publicar.bat">Publicar</button></div>`;
   document.body.append(ui);
   const pan = ui.querySelector('#ed-pan');
 
@@ -56,9 +56,39 @@
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const cerrar = () => { pan.hidden = true; pan.innerHTML = ''; };
 
+  // Al guardar, la página se recarga: se apunta qué ficha estaba abierta para volver a abrirla
+  // Se apunta ANTES de guardar: el servidor de desarrollo puede recargar la página él solo al cambiar el archivo
+  function apuntar() {
+    try {
+      const dlg = [...document.querySelectorAll('dialog[open]')].pop();
+      const ficha = dlg && [...dlg.querySelectorAll('*')].find((f) => !f.hidden && Object.keys(f.dataset).some((k) => /Ficha$/.test(k)));
+      const k = ficha && Object.keys(ficha.dataset).find((x) => /Ficha$/.test(x));
+      sessionStorage.setItem('ed-volver', JSON.stringify({
+        ruta: location.pathname, y: scrollY,
+        ficha: k ? { k: k.replace(/Ficha$/, 'Abrir'), v: ficha.dataset[k], s: dlg.scrollTop } : null,
+      }));
+    } catch { /* sin sessionStorage: solo recarga */ }
+  }
+  const recargar = () => setTimeout(() => location.reload(), 300);
+  addEventListener('load', () => setTimeout(() => {
+    let d = null;
+    try { d = JSON.parse(sessionStorage.getItem('ed-volver')); sessionStorage.removeItem('ed-volver'); } catch {}
+    if (!d || d.ruta !== location.pathname) return;
+    scrollTo(0, d.y);
+    if (!d.ficha) return;
+    const attr = 'data-' + d.ficha.k.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
+    const btn = [...document.querySelectorAll(`[${attr}]`)].find((b) => b.getAttribute(attr) === d.ficha.v);
+    if (!btn) return;
+    btn.click();
+    const dlg = [...document.querySelectorAll('dialog[open]')].pop();
+    if (dlg) dlg.scrollTop = d.ficha.s;
+    scrollTo(0, d.y);
+  }, 250));
+
   ui.querySelector('#ed-bar').addEventListener('click', (e) => {
     const b = e.target.closest('button');
     if (!b) return;
+    if (b.dataset.p) return publicar();
     modo = modo === b.dataset.m ? null : b.dataset.m;
     ui.querySelectorAll('#ed-bar button').forEach((x) => x.classList.toggle('on', x.dataset.m === modo));
     quitarMarca();
@@ -104,7 +134,11 @@
     if (el) { marcado = el; el.classList.add(modo === 'texto' ? 'ed-hover' : 'ed-hover-c'); }
   }, true);
 
+  // Seleccionar texto arrastrando y soltar fuera del cuadro no debe cerrar la ficha ni abrir otro texto
+  let pulsadoEnUi = false;
+  document.addEventListener('mousedown', (e) => { pulsadoEnUi = ui.contains(e.target); }, true);
   document.addEventListener('click', (e) => {
+    if (pulsadoEnUi && !ui.contains(e.target)) { e.preventDefault(); e.stopPropagation(); pulsadoEnUi = false; return; }
     if (!modo || ui.contains(e.target)) return;
     const el = objetivo(e.target);
     if (!el) return;
@@ -237,9 +271,10 @@
       if (ta.value === raw) return cerrar();
       msg.textContent = 'Guardando…';
       try {
+        apuntar();
         await api('guardar', { despues: ta.value, lugares: iguales.map((c) => ({ file: c.file, ruta: c.ruta, antes: c.raw })) });
         msg.textContent = 'Guardado. Recargando…';
-        setTimeout(() => location.reload(), 400);
+        recargar();
       } catch (err) { msg.innerHTML = `<span class="err">${esc(err.message)}</span>`; }
     };
     pan.querySelector('[data-a="g"]').onclick = guardar;
@@ -249,6 +284,25 @@
       // Esc cierra solo el editor, no la ficha
       if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); cerrar(); }
     });
+  }
+
+  // ── Publicar: build + commit de los cambios del editor + publicar.bat (ventana aparte) ──
+  async function publicar() {
+    modo = null;
+    ui.querySelectorAll('#ed-bar button').forEach((x) => x.classList.remove('on'));
+    quitarMarca();
+    if (!confirm('Se comprobará la web, se guardarán todos los cambios en un commit y se abrirá publicar.bat para subirla. ¿Seguir?')) return;
+    const nota = prompt('¿Qué ha cambiado para el visitante? Sale en la lista de cambios de la web, en esta pestaña.\nEj.: «Nuevo enlace al vídeo de Ta\'shkal»\n(Déjalo vacío para no añadir nada.)', '');
+    if (nota === null) return;
+    pan.hidden = false;
+    pan.innerHTML = '<small>Comprobando la web (build)… puede tardar unos 20 segundos.</small>';
+    try {
+      const r = await api('publicar', { tab: document.documentElement.dataset.defaultTab, nota: nota.trim() });
+      pan.innerHTML = `<small>${esc(r.mensaje)}</small><div class="fila"><button data-a="x">Cerrar</button></div>`;
+    } catch (err) {
+      pan.innerHTML = `<small class="err" style="white-space:pre-wrap">${esc(err.message)}</small><div class="fila"><button data-a="x">Cerrar</button></div>`;
+    }
+    pan.querySelector('[data-a="x"]').onclick = cerrar;
   }
 
   // ── Color de bloque ──
@@ -264,9 +318,10 @@
     pan.querySelectorAll('[data-c]').forEach((b) => (b.onclick = async () => {
       msg.textContent = 'Guardando…';
       try {
+        apuntar();
         await api('color', { tab: document.documentElement.dataset.defaultTab, selector: sel, color: b.dataset.c || null });
         msg.textContent = 'Guardado. Recargando…';
-        setTimeout(() => location.reload(), 400);
+        recargar();
       } catch (err) { msg.innerHTML = `<span class="err">${esc(err.message)}</span>`; }
     }));
   }

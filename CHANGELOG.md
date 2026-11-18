@@ -24,6 +24,8 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
   - Fichas en `<dialog>` (mascotas, Top 5): `showModal()` las pone por encima de todo, así que los botones del editor se mueven dentro del dialog abierto (`MutationObserver` sobre `open`) y se pueden editar sus textos; Esc en el cuadro de texto no cierra la ficha.
   - Enlaces: `[texto](https://…)` o `[texto](/ruta/)` en `markup.ts` (externos con `target="_blank" rel="noopener"`; solo http(s) o rutas internas) y las URL sueltas se vuelven clicables. Botón «Enlace» en el editor.
   - Botón «Habilidad»: buscador (sin tildes) de `spells.json` con icono (`/__editor/hechizos`); inserta `[[Nombre]]` o `{{Nombre}}` (icono grande) y, si había texto seleccionado distinto, `[[Nombre>texto]]`.
+  - Arrastrar para seleccionar y soltar fuera del cuadro ya no cierra la ficha (se anula ese clic). Al guardar se apunta en `sessionStorage` (`ed-volver`) la ficha abierta (`data-*-ficha` visible → pulsa su `data-*-abrir`), su scroll y el de la página, y se vuelve a abrir tras recargar.
+  - Botón «Publicar»: `/__editor/publicar` → entrada opcional en `changelog.json` (texto del visitante + « en [pestaña]», `version: forever`) → `npm run build` (si falla, deshace la entrada y no publica) → `git commit` **solo** de los archivos del editor → abre `publicar.bat` en otra ventana. Esos commits («Editor local: cambios de contenido…») no llevan entrada en este historial.
 - **Leveling Forever**: `RecomendacionRestedXP.astro` (enlace de afiliado, `rel="sponsored"`, evento GA4 `afiliado_click`) al final de la sección de tramos; estilos `.lv-addon*` en `forever.css`.
 
 ## 2026-11-18 — Forever: Ta'shkal como #0 del Top 5 de mascotas
