@@ -100,7 +100,8 @@ const ogImage = new URL(og.og, Astro.site).href;
     const pagePath = (realmBase + (tab ? '/' + tab : '')) || '/';
     gtag('event', 'page_view', {
       page_path: pagePath,
-      page_location: location.origin + pagePath,
+      // location.search conserva las etiquetas utm_* (p. ej. /tiktok → ?utm_source=tiktok) para que GA4 sepa de dónde viene la visita
+      page_location: location.origin + pagePath + location.search,
       page_title: document.title + (tab ? ' - ' + tab : ''),
       content_group: root.dataset.realm,
     });

@@ -10,11 +10,17 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 ---
 
 ## ▶ PRÓXIMO TRABAJO
+- **Ver `PENDIENTES.md`** (lista maestra tras el análisis del 18-11-2026: GA4, SEO, Ko-fi/RestedXP, normas de vídeo).
 - **Antes de publicar el bloque Leveling/General/Talentos/Mascotas (sin commit aún):** Mishuko revisa en local y pasa los datos de bolsas de munición (origen) y la lista de armas por tramo (quitar «En construcción»).
 - Forever BiS: decidir cuándo publicarla (crear `bis.md`); revisar Stats y BiS cuando haya datos de nivel 60 (raids, simulaciones) y volver a ejecutar `node scripts/gen-forever-objetos.mjs` al añadir objetos.
-- Search Console: pedir indexación de `/forever/leveling/`, `/forever/rotacion/`, `/forever/mascotas/` (cambió), `/forever/coaching/`, `/midnight/bis/`, `/midnight/rotacion/` (límite diario).
+- Search Console: hecho el 18-11 (las de esa lista ya estaban indexadas; pedidas `/midnight/estadisticas/`, `/macros/`, `/simulacion/`, `/coaching/`).
 
 ---
+
+## 2026-11-18 — Enlace corto /tiktok y etiquetas utm en GA4
+- `public/tiktok/index.html`: redirección (meta refresh + `location.replace`) de `guiahunterbm.com/tiktok` a `/forever/?utm_source=tiktok&utm_medium=social&utm_campaign=bio`, para la bio de TikTok. `noindex` y fuera del sitemap (es un archivo de `public/`, no una página de Astro). Para cambiar el destino, editarlo ahí (dos sitios).
+- `MainLayout.astro`: `page_location` del `page_view` ahora añade `location.search`. Antes se mandaba solo la ruta limpia y GA4 perdía las etiquetas `utm_*` (cualquier campaña salía como «directo»).
+- `PENDIENTES.md` (nuevo): lista viva de tareas tras el análisis del 18-11 (`informes/analisis-2026-11-18.pdf`); enlazado desde `CLAUDE.md`.
 
 ## 2026-11-18 — Botón de RestedXP en la barra superior
 - `BotonRestedXP.astro` (enlace de afiliado, `rel="sponsored"`, GA4 `afiliado_click` con `lugar`) en `RealmSwitch.astro`, antes del Ko-fi: en Midnight y Forever.

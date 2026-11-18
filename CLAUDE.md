@@ -4,6 +4,8 @@ Guía en español de Beast Mastery Hunter: WoW Midnight S2 y WoW Forever. Autor:
 
 **Al empezar cada sesión, leer `CHANGELOG.md`** (historial técnico de la web) y añadir en él una entrada por cada cambio antes del commit. Es distinto de `changelog.json` (lista para visitantes).
 
+**Leer también `PENDIENTES.md`**: lista viva de tareas, mejoras y normas de vídeo (análisis del 18-11-2026). Marcar `[x]` lo que se termine y añadir lo nuevo que surja.
+
 ## Stack y comandos
 - Astro 6, sitio estático. **Una página por pestaña** (desde 2026-11-14, por SEO): `/midnight/` = General, `/midnight/<tab>/` el resto; igual en `/forever/`. Node ≥ 22.
 
