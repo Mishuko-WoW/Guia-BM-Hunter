@@ -442,35 +442,48 @@ a.mk-tab[hidden] { display: none; }
 .mk-footer__links a { color: var(--text2); text-decoration: none; box-shadow: inset 0 -1px 0 var(--border2); }
 .mk-footer__links a:hover { color: var(--text); box-shadow: inset 0 -1px 0 var(--brand); }
 
-/* ─── APOYO KO-FI ─── (BotonKofi.astro: footer de las guías y portada)
-   Copia el botón oficial de Ko-fi para que se reconozca de un vistazo: píldora naranja,
-   taza blanca con corazón, texto blanco en negrita y sin mayúsculas. Colores en tokens.css (--kofi*). */
+/* ─── APOYO KO-FI ─── (BotonKofi.astro: barra superior, menú móvil, footer de las guías, portada y Coaching)
+   Mismo estilo que el de RestedXP pero en los colores de Ko-fi: píldora oscura con borde degradado
+   naranja→rojo→dorado, brillo exterior, taza blanca con corazón y un destello que lo cruza de vez en cuando
+   (a destiempo del de RestedXP). Colores en tokens.css (--kofi*). */
 .mk-kofi {
+  position: relative; isolation: isolate; overflow: hidden;
   display: inline-flex; align-items: center; gap: 10px;
   min-height: 46px; padding: 0 22px 0 16px;
-  border-radius: 14px;
-  font: 700 17px/1 "Quicksand", "Nunito", "Segoe UI", system-ui, sans-serif; letter-spacing: 0;
+  border-radius: 999px;
+  font: 800 17px/1 "Quicksand", "Nunito", "Segoe UI", system-ui, sans-serif; letter-spacing: 0.01em;
   text-transform: none; white-space: nowrap;
   color: #fff; text-decoration: none;
-  background: var(--kofi);
-  box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--kofi) 60%, transparent);
-  transition: background .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease);
+  background:
+    linear-gradient(var(--kofi-deep), var(--kofi-deep)) padding-box,
+    linear-gradient(120deg, var(--kofi-gold), var(--kofi) 50%, var(--kofi-heart)) border-box;
+  border: 1.5px solid transparent;
+  box-shadow: 0 0 14px -4px color-mix(in srgb, var(--kofi) 70%, transparent);
+  transition: box-shadow .2s var(--ease), transform .2s var(--ease);
 }
-.mk-kofi__taza { flex: none; transition: transform .3s var(--ease-spring); }
+.mk-kofi__taza { flex: none; filter: drop-shadow(0 0 4px color-mix(in srgb, var(--kofi) 70%, transparent)); transition: transform .3s var(--ease-spring); }
+.mk-kofi::after { /* destello */
+  content: ""; position: absolute; inset: -2px auto -2px -40%; width: 30%; z-index: -1;
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--kofi) 38%, transparent), transparent);
+  transform: skewX(-20deg); pointer-events: none; opacity: 0;
+}
 .mk-kofi:hover, .mk-kofi:focus-visible {
-  background: var(--kofi-hi); color: #fff;
-  box-shadow: 0 8px 22px -6px color-mix(in srgb, var(--kofi) 75%, transparent);
-  transform: translateY(-2px);
+  color: #fff;
+  box-shadow: 0 0 20px -3px color-mix(in srgb, var(--kofi) 90%, transparent);
 }
 .mk-kofi:hover .mk-kofi__taza, .mk-kofi:focus-visible .mk-kofi__taza { transform: rotate(-10deg) scale(1.08); }
-.mk-kofi:active { transform: translateY(0); }
-.mk-kofi:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.mk-kofi:focus-visible { outline: 2px solid var(--kofi); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .mk-kofi:hover, .mk-kofi:focus-visible { transform: translateY(-2px); }
+  .mk-kofi:active { transform: translateY(0); }
+  .mk-kofi::after { animation: mk-rxp-brillo 7s var(--ease) 5.5s infinite; }
+}
 .mk-footer .mk-kofi { margin-left: auto; }
 .pt-foot .pt-kofi { display: flex; width: max-content; margin: 16px auto 0; }
 @media (max-width: 900px) { .mk-footer .mk-kofi { margin-left: 0; } }
 /* Barra superior: versión pequeña junto al selector Midnight | Forever */
 .mk-realmbar__end { display: flex; align-items: center; gap: 10px; }
-.mk-kofi--mini { min-height: 34px; padding: 0 13px 0 10px; gap: 7px; border-radius: 10px; font-size: 14.5px; }
+.mk-kofi--mini { min-height: 34px; padding: 0 13px 0 10px; gap: 7px; font-size: 14.5px; }
 .mk-kofi--mini .mk-kofi__taza { width: 24px; height: 18px; }
 @media (prefers-reduced-motion: no-preference) { .mk-kofi--mini:hover, .mk-kofi--mini:focus-visible { transform: translateY(-1px); } }
 @media (max-width: 600px) {
