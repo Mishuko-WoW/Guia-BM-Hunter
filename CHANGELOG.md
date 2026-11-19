@@ -17,6 +17,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-19 — Stats de Forever: «Cómo llegar al 8 % de golpe»
+- Tabla nueva en `StatsForever.astro` (`#st-golpe`, en el índice) con las piezas del BiS pre-raid que dan golpe y el total (9 %). Datos en `golpe` de `forever-estadisticas.json` (solo `id` + `%`, leídos de los tooltips de Wowhead Forever el 19-11); nombre, icono, ranura y origen salen del catálogo y de la lista pre-raid (el build falla si una pieza deja de estar en ella). Reutiliza `lv-table` y `bf-obj`, con la variante `lv-table--objetos` (`forever.css`): primera columna a la izquierda (en Leveling va centrada porque es el nivel) y la de % centrada.
+- Pregunta frecuente «¿Cuánto golpe necesita un Cazador?» en `faq-forever.json` y frase en el «En resumen» de Stats.
+
 ## 2026-11-19 — GEO: «En resumen», /llms.txt y preguntas de Macros (Forever)
 - **«En resumen»** (respuesta directa de 2-3 frases bajo el H2 de cada pestaña, para que Google y las IA la citen): textos en `src/content/data/resumen.json` (por versión y pestaña) → `src/components/EnResumen.astro` (caja `box-tip`). Puesto en `SeccionForever.astro` (todas las de Forever) y en `Seccion{Mecanicas,Talentos,Stats,Rotacion,BiS,Mascotas,Macros}.astro` de Midnight.
 - **`/llms.txt`** generado en el build (`src/pages/llms.txt.ts`): título y descripción de `seo.ts` + el «En resumen» de cada página indexable (mismo criterio que el sitemap) y enlaces del autor.

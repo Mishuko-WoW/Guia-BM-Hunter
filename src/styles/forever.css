@@ -980,6 +980,9 @@
 .lv-table tbody tr:nth-child(even) { background: color-mix(in srgb, var(--text) 3.5%, transparent); }
 .lv-table tbody tr:hover { background: color-mix(in srgb, var(--gold) 8%, transparent); }
 .lv-table td:first-child { width: 1%; white-space: nowrap; text-align: center; }
+/* Tablas de objetos (Stats → golpe): la primera columna es el objeto, alineado a la izquierda como el resto */
+.lv-table--objetos td:first-child { width: auto; text-align: left; }
+.lv-table--objetos td:nth-child(3), .lv-table--objetos th:nth-child(3) { text-align: center; }
 .lv-table td b { display: inline-grid; place-items: center; min-width: 38px; padding: 5px 8px; font: 800 17px/1 var(--font-display); color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); border-radius: 4px; }
 
 /* Mascotas */

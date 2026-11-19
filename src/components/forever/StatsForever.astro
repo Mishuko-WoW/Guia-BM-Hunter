@@ -7,6 +7,9 @@ import { getSpell, iconUrl } from '../../lib/spells';
 import { md } from '../../lib/markup';
 import { tabPath } from '../../lib/seo';
 import IndiceForever from './IndiceForever.astro';
+import catalogo from '../../content/data/forever-bis-catalogo.json';
+import equipo from '../../content/data/forever-bis-equipo.json';
+import { RANURAS } from '../../lib/ranuras-forever.mjs';
 
 // Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
 const faltan = [...JSON.stringify(data).matchAll(/\[\[([^\]|>]+)/g)].map((m) => m[1].trim()).filter((n) => !getSpell(n));
@@ -14,9 +17,20 @@ if (faltan.length) throw new Error(`forever-estadisticas.json: hechizos que no e
 
 const INDICE = [
   { id: 'st-prioridad', texto: 'Prioridad' },
+  { id: 'st-golpe', texto: 'Llegar al 8 % de golpe' },
   { id: 'st-fases', texto: 'Leveling y nivel 60' },
   { id: 'st-notas', texto: 'Mascota y melé' },
 ];
+// Golpe del BiS pre-raid: nombre/icono del catálogo y ranura/origen de la lista pre-raid (si una pieza deja de estar, el build falla)
+type Obj = { nombre: string; calidad: number; icono: string };
+const preraid = equipo.fases.preraid.ranuras as Record<string, { id: number; origen: string } | null>;
+const golpe = data.golpe.piezas.map((x) => {
+  const o = (catalogo as Record<string, Obj>)[x.id];
+  const r = Object.entries(preraid).find(([, v]) => v?.id === x.id);
+  if (!o || !r) throw new Error(`forever-estadisticas.json (golpe): el objeto ${x.id} no está en la lista pre-raid`);
+  return { ...x, o, ranura: RANURAS.find((z) => z.id === r[0])?.label ?? r[0], origen: r[1]!.origen };
+});
+const golpeTotal = golpe.reduce((t, x) => t + x.golpe, 0);
 ---
 
 <div class="lv gn st">
@@ -46,6 +60,28 @@ const INDICE = [
         </li>
       ))}
     </ol>
+  </section>
+
+  <section class="lv-sec" id="st-golpe">
+    <h3>Cómo llegar al 8 % de golpe</h3>
+    <p class="lv-lead" set:html={md(data.golpe.intro)} />
+    <div class="lv-table-wrap">
+      <table class="lv-table lv-table--objetos">
+        <thead><tr><th>Pieza</th><th>Ranura</th><th>Golpe</th><th>Dónde</th></tr></thead>
+        <tbody>
+          {golpe.map((x) => (
+            <tr>
+              <td><a class={`bf-obj q${x.o.calidad}`} href={`https://www.wowhead.com/forever/es/item=${x.id}`} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(x.o.icono)} alt="" width="28" height="28" loading="lazy" />{x.o.nombre}</a></td>
+              <td>{x.ranura}</td>
+              <td><b>{x.golpe} %</b></td>
+              <td>{x.origen}</td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot><tr><th colspan="2">Total con el pre-raid completo</th><th>{golpeTotal} %</th><th>Tope contra jefes: 8 %</th></tr></tfoot>
+      </table>
+    </div>
+    <p class="lv-lead" set:html={md(data.golpe.nota)} />
   </section>
 
   <section class="lv-sec" id="st-fases">

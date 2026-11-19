@@ -2,6 +2,13 @@
   {
     "fecha": "2026-11-19",
     "version": "forever",
+    "pestana": "estadisticas",
+    "texto": "Cómo llegar al 8 % de golpe en",
+    "enlace": "Stats"
+  },
+  {
+    "fecha": "2026-11-19",
+    "version": "forever",
     "pestana": "macros",
     "texto": "Preguntas frecuentes en",
     "enlace": "Macros"

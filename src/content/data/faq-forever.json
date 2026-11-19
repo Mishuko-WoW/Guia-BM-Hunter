@@ -33,6 +33,10 @@
   ],
   "estadisticas": [
     {
+      "pregunta": "¿Cuánto golpe necesita un Cazador en WoW Forever?",
+      "respuesta": "Un **8 %** contra jefes de raid. Con la lista **pre-raid completa** de esta guía llegas al **9 %**: las piezas de **demosaurio** de Peletería dan un 2 % cada una, y Armadura del Alba, Grebas Atracavientos, Sortijas de tirador, Sello de degollador y Guja de legionita, un 1 %. Pasado el tope, cambia golpe por agilidad."
+    },
+    {
       "pregunta": "¿Cuál es la prioridad de estadísticas del Hunter BM en WoW Forever?",
       "respuesta": "**Daño del arma a distancia > Golpe (hasta el tope) > Agilidad > Crítico > Poder de ataque > Intelecto, aguante y espíritu**. La fuerza no te sirve."
     },
