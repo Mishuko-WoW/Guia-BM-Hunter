@@ -4,6 +4,7 @@
 // Orden: título → `intro` (bloques) → contenido del slot (componentes, p. ej. calculadora) → `bloques` → "Última revisión" (sin fuentes: la guía se presenta como de Mishuko).
 import Bloques from '../Bloques.astro';
 import Faq from '../Faq.astro';
+import EnResumen from '../EnResumen.astro';
 import TablaForever from './TablaForever.astro';
 import { getSectionReviewDate } from '../../lib/sectionDates';
 import type { CollectionEntry } from 'astro:content';
@@ -25,6 +26,7 @@ const reviewDate = pagina
   {pagina ? (
     <>
       <h2>{pagina.data.titulo}</h2>
+      <EnResumen realm="forever" tab={tab} />
       {pagina.data.intro && <Bloques bloques={pagina.data.intro} />}
       <slot />
       <TablaForever tab={tab} />

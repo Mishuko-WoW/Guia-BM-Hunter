@@ -193,7 +193,7 @@ function top5JsonLd(url: string) {
 // ─── Preguntas frecuentes ───
 // Textos en src/content/data/faq-<versión>.json. Se muestran al final de su pestaña con <Faq realm tab>
 // y, aquí, como FAQPage (Google exige que las preguntas también se vean en la página).
-// Leveling de Forever tiene su propio bloque de preguntas (LevelingForever.astro), por eso no está aquí.
+// Leveling de Forever tiene su propio bloque de preguntas y su FAQPage (forever-leveling.json → LevelingForever.astro), por eso no está aquí.
 export type FaqItem = { pregunta: string; respuesta: string };
 export const FAQ: Record<GuideRealm, Record<string, FaqItem[]>> = {
   midnight: faqMidnight as Record<string, FaqItem[]>,

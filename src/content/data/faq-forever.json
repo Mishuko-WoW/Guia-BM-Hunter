@@ -102,5 +102,27 @@
       "pregunta": "¿Hay ya BiS de raid del Hunter BM en WoW Forever?",
       "respuesta": "Todavía no: **aún no hay raids abiertas** en WoW Forever. Mientras tanto, usa la lista **pre-raid**; la de raid la iré rellenando en cuanto se abran y haya datos confirmados."
     }
+  ],
+  "macros": [
+    {
+      "pregunta": "¿Qué macros necesita un Cazador en WoW Forever?",
+      "respuesta": "Las cuatro esenciales: **Tiro automático que no se corta**, **ataque de mascota con el ratón** (mouseover), **Marca del cazador + mascota** y **Tiro Arcano + mascota**. Con ellas abres el combate con un botón, mueves a la mascota sin cambiar de objetivo y no pierdes nunca [[Tiro automático]]."
+    },
+    {
+      "pregunta": "¿Cómo hago que Tiro automático no se apague al pulsarlo otra vez?",
+      "respuesta": "Pon un **!** delante del nombre en la macro (/cast !Tiro automático). Así, pulsarla otra vez no lo apaga y puedes machacar la tecla al cambiar de objetivo sin dejar de disparar. La macro de la guía además coge al enemigo más cercano si no tienes objetivo."
+    },
+    {
+      "pregunta": "¿Por qué no me funciona una macro del Cazador?",
+      "respuesta": "Casi siempre es el **idioma**: los nombres de las habilidades tienen que estar en el idioma de tu juego y con sus tildes (en inglés, *Auto Shot*; en español, *Tiro automático*). En la pestaña Macros eliges inglés o español y todas las macros cambian solas."
+    },
+    {
+      "pregunta": "¿Cómo junto Ira de bestias y Fuego rápido en una sola tecla?",
+      "respuesta": "Con la macro **Ira de bestias + Fuego rápido**: manda a la mascota a tu objetivo y lanza [[Ira de bestias]] y [[Fuego rápido]] a la vez. Así no se te olvida ninguno de los dos en la ventana de daño."
+    },
+    {
+      "pregunta": "¿Cómo curo, revivo y llamo a la mascota con un solo botón?",
+      "respuesta": "Con la macro **Mascota todo en uno**: si la mascota está viva la cura con [[Sanar mascota]], si está muerta la revive con [[Revivir mascota]] y si no la tienes fuera la llama con [[Llamar a mascota]]."
+    }
   ]
 }

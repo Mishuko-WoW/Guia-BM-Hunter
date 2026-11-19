@@ -1,4 +1,5 @@
 ---
+import EnResumen from './EnResumen.astro';
 import { getSectionReviewDate } from '../lib/sectionDates';
 import ReviewSourceBox from './ReviewSourceBox.astro';
 import Faq from './Faq.astro';
@@ -30,6 +31,7 @@ const contenido = (header: string) => header.split('—').slice(1).join('—').t
 
 <div id="tab-talentos" class="tab-panel">
   <h2>Mejor build Hunter BM: Pack Leader y Dark Ranger</h2>
+  <EnResumen tab="talentos" />
 
   <div class="box box-info">
     <div class="box-title">Cómo importar</div>

@@ -1,0 +1,21 @@
+---
+// «En resumen»: la respuesta directa de la pestaña, justo debajo de su título (buscadores y respuestas de IA
+// citan este párrafo). Textos en src/content/data/resumen.json; los mismos salen en /llms.txt.
+import resumen from '../content/data/resumen.json';
+import type { GuideRealm } from '../lib/tabs';
+import { md } from '../lib/markup';
+
+interface Props {
+  realm?: GuideRealm;
+  tab: string;
+}
+const { realm = 'midnight', tab } = Astro.props;
+const texto = (resumen[realm] as Record<string, string>)[tab];
+---
+
+{texto && (
+  <div class="box box-tip mk-resumen">
+    <div class="box-title">En resumen</div>
+    <p set:html={md(texto)} />
+  </div>
+)}

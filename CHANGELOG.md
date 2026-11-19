@@ -17,6 +17,11 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-19 — GEO: «En resumen», /llms.txt y preguntas de Macros (Forever)
+- **«En resumen»** (respuesta directa de 2-3 frases bajo el H2 de cada pestaña, para que Google y las IA la citen): textos en `src/content/data/resumen.json` (por versión y pestaña) → `src/components/EnResumen.astro` (caja `box-tip`). Puesto en `SeccionForever.astro` (todas las de Forever) y en `Seccion{Mecanicas,Talentos,Stats,Rotacion,BiS,Mascotas,Macros}.astro` de Midnight.
+- **`/llms.txt`** generado en el build (`src/pages/llms.txt.ts`): título y descripción de `seo.ts` + el «En resumen» de cada página indexable (mismo criterio que el sitemap) y enlaces del autor.
+- **Preguntas frecuentes de Macros de Forever** (5) en `faq-forever.json` → bloque visible + `FAQPage` automáticos. Leveling ya tenía las suyas (`forever-leveling.json`).
+
 ## 2026-11-18 — Botón «Sígueme en TikTok» en el footer
 - `BotonTikTok.astro` (nuevo): píldora oscura con borde degradado cian→rosa, logo de TikTok y destello, a juego con Ko-fi/RestedXP (bloque «TIKTOK» en `marca.css`, tokens `--tt-*`). Evento GA4 `tiktok_click` con `lugar` `footer-midnight|footer-forever`.
 - Footer de Midnight (`GuideContent.astro`) y Forever (`GuideForever.astro`): TikTok + Ko-fi juntos en `.mk-footer__redes`.

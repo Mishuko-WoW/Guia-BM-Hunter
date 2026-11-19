@@ -1,4 +1,5 @@
 ---
+import EnResumen from './EnResumen.astro';
 import { getSectionReviewDate } from '../lib/sectionDates';
 import ReviewSourceBox from './ReviewSourceBox.astro';
 
@@ -218,6 +219,7 @@ import Faq from './Faq.astro';
 
 <div class="tab-panel" id="tab-bis">
   <h2>BiS y estadísticas del Hunter BM: equipo y consumibles</h2>
+  <EnResumen tab="bis" />
 
   <h3>Equipo BIS Completo optimizado para contenido de raid</h3>
   <ReviewSourceBox reviewDate={reviewDate}>

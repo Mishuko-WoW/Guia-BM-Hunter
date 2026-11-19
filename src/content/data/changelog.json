@@ -1,5 +1,12 @@
 [
   {
+    "fecha": "2026-11-19",
+    "version": "forever",
+    "pestana": "macros",
+    "texto": "Preguntas frecuentes en",
+    "enlace": "Macros"
+  },
+  {
     "fecha": "2026-11-18",
     "pestana": "bis",
     "texto": "Nueva lista de equipo pre-raid en la ventana de personaje en",
