@@ -40,14 +40,22 @@ const ROMANO = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
             <div class="mz-orla"></div>
             <p class="mz-capitular" set:html={md(m.resumen)} />
 
-            <figure class="mz-lamina">
-              <div style="position:relative">
-                <img src={m.mapa} alt={`Mapa de ${m.nombre}`} width="1024" height="683" loading="lazy" />
-                {m.jefes.filter((j) => j.x || j.y).map((j) => (
-                  <button type="button" class:list={['mz-pin', `mz-pin--${j.lado}`]} style={`left:${j.x}%;top:${j.y}%`} data-mz-ver={j.n} title={j.nombre} aria-label={`${j.n}. ${j.nombre}`}>{j.n}</button>
-                ))}
+            <figure class="mz-lamina" data-mz-mapa>
+              <div class="mz-zoom">
+                <div class="mz-zoom__lienzo">
+                  <img src={m.mapa} alt={`Mapa de ${m.nombre}`} width="1024" height="683" loading="lazy" draggable="false" />
+                  {m.jefes.filter((j) => j.x || j.y).map((j) => (
+                    <button type="button" class:list={['mz-pin', `mz-pin--${j.lado}`]} style={`left:${j.x}%;top:${j.y}%`} data-mz-ver={j.n} title={j.nombre} aria-label={`${j.n}. ${j.nombre}`}>{j.n}</button>
+                  ))}
+                </div>
+                <div class="mz-zoom__ctrl" role="group" aria-label="Zoom del mapa">
+                  <button type="button" data-mz-zoom="in" aria-label="Acercar">+</button>
+                  <button type="button" data-mz-zoom="out" aria-label="Alejar">−</button>
+                  <button type="button" data-mz-zoom="reset" aria-label="Ver el mapa entero">⟲</button>
+                  <button type="button" data-mz-zoom="full" aria-label="Pantalla completa">⛶</button>
+                </div>
               </div>
-              <figcaption>Lámina {ROMANO[ci] ?? ci + 1}. {m.nombre}: posición aproximada de los jefes.</figcaption>
+              <figcaption>Lámina {ROMANO[ci] ?? ci + 1}. {m.nombre}: posición aproximada de los jefes. <span class="mz-zoom__ayuda">Rueda o pellizca para hacer zoom y arrastra para moverte.</span></figcaption>
             </figure>
             <p>{m.lados.map((l) => <span class={`mz-ley mz-ley--${l.id}`}><i></i>{l.nombre}</span>)}</p>
 
@@ -109,6 +117,19 @@ const ROMANO = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
                 </div>
               </article>
             ))}
+            <!-- Índice de jefes por lado (también sirve para saltar) -->
+            <div class="mz-indice">
+              {m.lados.map((l) => (
+                <div>
+                  <p class={`mz-indice__t mz-jefe--${l.id}`}>{l.nombre}</p>
+                  <ol>
+                    {m.jefes.filter((j) => j.lado === l.id).map((j) => (
+                      <li><button type="button" class={`mz-jefe--${j.lado}`} data-mz-ver={j.n}><span>{j.n}</span>{j.nombre}{j.botin.some((id) => m.bis.includes(id)) && <em> · BiS</em>}</button></li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -163,7 +184,94 @@ const ROMANO = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
           if (desplazar && window.innerWidth <= 900) f.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       };
-      libro.querySelectorAll('[data-mz-ver]').forEach((b) => b.addEventListener('click', () => ver(b.dataset.mzVer, b.classList.contains('mz-pin'))));
+      libro.querySelectorAll('[data-mz-ver]').forEach((b) => b.addEventListener('click', (e) => {
+        if (b.classList.contains('mz-pin') && libro.dataset.mzArrastre === '1') { e.preventDefault(); return; }
+        ver(b.dataset.mzVer, b.classList.contains('mz-pin'));
+      }));
+
+      // ── Mapa: zoom (rueda, pellizco, botones), arrastrar y pantalla completa ──
+      const fig = libro.querySelector('[data-mz-mapa]');
+      if (fig) {
+        const caja = fig.querySelector('.mz-zoom');
+        const lienzo = fig.querySelector('.mz-zoom__lienzo');
+        let s = 1, x = 0, y = 0;
+        const MAX = 5;
+        // El lienzo ocupa siempre toda la caja (transform-origin 0 0): el desplazamiento va de (caja - caja*s) a 0
+        const limitar = () => {
+          const w = caja.clientWidth, h = caja.clientHeight;
+          x = Math.min(0, Math.max(w - w * s, x));
+          y = Math.min(0, Math.max(h - h * s, y));
+        };
+        const pintar = () => {
+          limitar();
+          lienzo.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
+          caja.style.setProperty('--mz-s', s);
+          caja.classList.toggle('is-zoom', s > 1.01);
+        };
+        // Zoom manteniendo fijo el punto (px, py) de la caja
+        const zoom = (f, px, py) => {
+          const ns = Math.min(MAX, Math.max(1, s * f));
+          const cx = px ?? caja.clientWidth / 2, cy = py ?? caja.clientHeight / 2;
+          x = cx - ((cx - x) * ns) / s;
+          y = cy - ((cy - y) * ns) / s;
+          s = ns;
+          pintar();
+        };
+        caja.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          const r = caja.getBoundingClientRect();
+          zoom(e.deltaY < 0 ? 1.2 : 1 / 1.2, e.clientX - r.left, e.clientY - r.top);
+        }, { passive: false });
+        const ptr = new Map();
+        let ini = null;
+        caja.addEventListener('pointerdown', (e) => {
+          if (e.target.closest('.mz-zoom__ctrl')) return;
+          ptr.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          caja.setPointerCapture(e.pointerId);
+          ini = { x, y, px: e.clientX, py: e.clientY, d: null, movido: false };
+          libro.dataset.mzArrastre = '0';
+        });
+        caja.addEventListener('pointermove', (e) => {
+          if (!ptr.has(e.pointerId) || !ini) return;
+          ptr.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          const ps = [...ptr.values()];
+          if (ps.length === 2) {
+            const d = Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y);
+            const r = caja.getBoundingClientRect();
+            if (ini.d) zoom(d / ini.d, (ps[0].x + ps[1].x) / 2 - r.left, (ps[0].y + ps[1].y) / 2 - r.top);
+            ini.d = d;
+            ini.movido = true;
+          } else if (s > 1) {
+            const dx = e.clientX - ini.px, dy = e.clientY - ini.py;
+            if (Math.abs(dx) + Math.abs(dy) > 5) ini.movido = true;
+            x = ini.x + dx; y = ini.y + dy;
+            pintar();
+          }
+          if (ini.movido) libro.dataset.mzArrastre = '1';
+        });
+        const soltar = (e) => {
+          ptr.delete(e.pointerId);
+          if (ptr.size === 0) setTimeout(() => (libro.dataset.mzArrastre = '0'), 0);
+          if (ptr.size < 2 && ini) ini.d = null;
+          if (ptr.size === 1 && ini) { const p = [...ptr.values()][0]; ini.x = x; ini.y = y; ini.px = p.x; ini.py = p.y; }
+        };
+        caja.addEventListener('pointerup', soltar);
+        caja.addEventListener('pointercancel', soltar);
+        fig.querySelectorAll('[data-mz-zoom]').forEach((b) => b.addEventListener('click', () => {
+          const a = b.dataset.mzZoom;
+          if (a === 'in') zoom(1.4);
+          else if (a === 'out') zoom(1 / 1.4);
+          else if (a === 'reset') { s = 1; x = 0; y = 0; pintar(); }
+          else if (a === 'full') {
+            if (document.fullscreenElement) document.exitFullscreen();
+            else if (fig.requestFullscreen && !fig.classList.contains('is-grande')) fig.requestFullscreen().catch(() => { fig.classList.add('is-grande'); s = 1; x = 0; y = 0; requestAnimationFrame(pintar); });
+            else { fig.classList.toggle('is-grande'); s = 1; x = 0; y = 0; requestAnimationFrame(pintar); }
+          }
+        }));
+        document.addEventListener('fullscreenchange', () => { s = 1; x = 0; y = 0; requestAnimationFrame(pintar); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && fig.classList.contains('is-grande')) { fig.classList.remove('is-grande'); s = 1; x = 0; y = 0; pintar(); } });
+        window.addEventListener('resize', pintar);
+      }
       libro.querySelectorAll('[data-mz-paso]').forEach((b) => b.addEventListener('click', () => {
         const i = fichas.findIndex((f) => f.classList.contains('is-on'));
         const sig = fichas[(i + Number(b.dataset.mzPaso) + fichas.length) % fichas.length];

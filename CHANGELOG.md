@@ -17,6 +17,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Mazmorras: mapa con zoom y pantalla completa, sin capitulares
+- Mapa (`MazmorrasForever.astro`): zoom con rueda, pellizco y botones (+, −, ver entero, hasta x5), arrastrar para moverse y botón de pantalla completa (Fullscreen API; si el navegador no deja, vista ampliada fija que se cierra con el mismo botón o Esc). Los números de los jefes no crecen con el zoom y siguen siendo clicables (un arrastre no cuenta como clic).
+- Fuera la letra capitular (`::first-letter`). Índice de jefes por lado al pie de la página derecha (marca los que sueltan BiS) para saltar de uno a otro.
+
 ## 2026-11-20 — Mazmorras de Forever como libro (dossier)
 - `MazmorrasForever.astro` rehecha como libro abierto: tapa de cuero con filete dorado, dos páginas de pergamino con lomo. Izquierda = capítulo (capitular, lámina con el mapa y los jefes, ficha de datos, sello con el BiS); derecha = un jefe cada vez (estrategia y botín) con marcapáginas numerados en el canto, pines del mapa clicables y «Anterior/Siguiente». Debajo, apéndice (botín de enemigos normales) y notas al margen. `#mz-<mazmorra>-<n>` abre ese jefe. En móvil, una página debajo de otra.
 - Letra Cinzel + EB Garamond (Google Fonts, solo en esta página). Colores del pergamino en `tokens.css` (bloque «LIBRO DE MAZMORRAS»); estilos en el bloque «MAZMORRAS» de `forever.css`.
