@@ -17,6 +17,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Consumibles de Forever con la «mochila» de Midnight
+- `src/components/MochilaConsumibles.astro` (nuevo): la mochila de consumibles por grupos sale de `BisMidnight.astro` y la usan los dos BiS; estilos movidos al bloque «MOCHILA DE CONSUMIBLES» de `marca.css`.
+- `forever-bis.json`: consumibles en tres grupos con icono (Elixir y pergamino, Comida, Pociones), `etiqueta` opcional (Recomendado en el Elixir de la mangosta) y `consumiblesIntro`; `nota` = para qué sirve. `BisForever.astro` los pinta con el componente; el consejo de munición se queda debajo.
+
 ## 2026-11-20 — BiS de Midnight: consumibles rediseñados; anclas en Midnight
 - Consumibles y gemas juntos en una «mochila» (`bm-mochila` en `BisMidnight.astro`): una tarjeta por grupo (Frascos, Pociones, Arma y runa, Comida, Gemas) con su icono, y cada objeto con icono grande, nombre, para qué sirve (`uso` en `midnight-bis.json`) y su etiqueta (Recomendado en verde marca). Antes eran tarjetas `gn-cambio` sueltas, solo con el nombre.
 - `bm-guide.js`: al abrir una página de Midnight con un ancla interna (`/midnight/bis/#bm-consumibles`) no se veía el panel (en Midnight no llega con `active` desde el HTML); ahora se activa el de la página.

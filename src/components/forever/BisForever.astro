@@ -19,6 +19,7 @@ import { md } from '../../lib/markup';
 import { iconUrl } from '../../lib/spells';
 import { tabPath } from '../../lib/seo';
 import IndiceForever from './IndiceForever.astro';
+import MochilaConsumibles from '../MochilaConsumibles.astro';
 
 type Tipo = 'item' | 'spell';
 type Obj = { nombre: string; calidad: number; icono: string };
@@ -29,7 +30,8 @@ const info = (id: number, tipo: Tipo = 'item'): Obj => {
   return o;
 };
 const url = (id: number, tipo: Tipo = 'item') => `https://www.wowhead.com/forever/es/${tipo}=${id}`;
-const consumibles = data.consumibles.map((g) => ({ ...g, objetos: g.objetos.map((c) => ({ ...c, o: info(c.id) })) }));
+// Consumibles en la «mochila» compartida con Midnight (MochilaConsumibles.astro): `nota` = para qué sirve
+const consumibles = data.consumibles.map((g) => ({ ...g, objetos: g.objetos.map((c: { id: number; nota: string; etiqueta?: string }) => { const o = info(c.id); return { nombre: o.nombre, url: url(c.id), icono: o.icono, uso: c.nota, etiqueta: c.etiqueta }; }) }));
 
 // ── Ventana de personaje: una por fase (pre-raid, raid…), con selector arriba ──
 type Elegida = { id: number; origen?: string } | null;
@@ -165,22 +167,8 @@ const INDICE = [
 
   <section class="lv-sec" id="bf-consumibles">
     <h3>Consumibles</h3>
-    {consumibles.map((g) => (
-      <>
-        <h4 class="lv-h4">{g.titulo}</h4>
-        <div class="gn-cambios">
-          {g.objetos.map((c) => (
-            <div class="gn-cambio">
-              <img src={iconUrl(c.o.icono)} alt="" width="48" height="48" loading="lazy" />
-              <div>
-                <h4><a class={`bf-obj q${c.o.calidad}`} href={url(c.id)} target="_blank" rel="noopener" data-wh-icon-added="true">{c.o.nombre}</a></h4>
-                <p set:html={md(c.nota)} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </>
-    ))}
+    <p class="lv-lead" set:html={md(data.consumiblesIntro)} />
+    <MochilaConsumibles grupos={consumibles} />
     <p class="gn-consejo" set:html={md(data.extra)} />
   </section>
 

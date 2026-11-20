@@ -1,0 +1,35 @@
+---
+// «Mochila» de consumibles (BiS de Midnight y de Forever): una tarjeta por grupo (frascos, pociones, comida…)
+// y en cada objeto icono grande, nombre, para qué sirve (`uso`, mini-formato) y etiqueta opcional
+// («Recomendado» sale resaltada). Estilos: bloque «MOCHILA DE CONSUMIBLES» en marca.css.
+import { md } from '../lib/markup';
+import { iconUrl } from '../lib/spells';
+
+export type Consumible = { nombre: string; url: string; icono: string; uso?: string; etiqueta?: string };
+export type GrupoConsumibles = { titulo: string; icono: string; objetos: Consumible[]; nota?: string; id?: string };
+interface Props { grupos: GrupoConsumibles[] }
+const { grupos } = Astro.props;
+---
+
+<div class="bm-mochila">
+  {grupos.map((g) => (
+    <div class="bm-grupo" id={g.id}>
+      <h4 class="bm-grupo__t"><img src={iconUrl(g.icono)} alt="" width="28" height="28" loading="lazy" />{g.titulo}</h4>
+      <ul class="bm-grupo__lista">
+        {g.objetos.map((c) => (
+          <li>
+            <a class="bm-cons" href={c.url} target="_blank" rel="noopener" data-wh-icon-added="true">
+              <img src={iconUrl(c.icono)} alt="" width="46" height="46" loading="lazy" />
+              <span class="bm-cons__txt">
+                <b>{c.nombre}</b>
+                {c.uso && <small set:html={md(c.uso)} />}
+                {c.etiqueta && <span class:list={['bm-cons__tag', { 'is-top': c.etiqueta === 'Recomendado' }]}>{c.etiqueta}</span>}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      {g.nota && <p class="bm-grupo__nota" set:html={md(g.nota)} />}
+    </div>
+  ))}
+</div>

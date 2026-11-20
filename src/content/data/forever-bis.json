@@ -4,20 +4,34 @@
   "construccion": "Aún no hay raids abiertas en WoW Forever, así que **el BiS de raid está por decidir**. Mientras tanto, usa la lista **pre-raid**. Lo iré rellenando pieza a pieza en cuanto se abran las raids y haya datos confirmados.",
   "consumibles": [
     {
-      "titulo": "A nivel 60",
+      "titulo": "Elixir y pergamino",
+      "icono": "inv_potion_32",
       "objetos": [
         {
           "id": 13452,
-          "nota": "+25 agilidad y +2 % de crítico. El elixir principal."
-        },
-        {
-          "id": 13928,
-          "nota": "Comida: +1 % de crítico."
+          "nota": "+25 agilidad y +2 % de crítico. El elixir principal.",
+          "etiqueta": "Recomendado"
         },
         {
           "id": 10309,
           "nota": "Más agilidad; se acumula con el elixir."
-        },
+        }
+      ]
+    },
+    {
+      "titulo": "Comida",
+      "icono": "inv_misc_fish_13",
+      "objetos": [
+        {
+          "id": 13928,
+          "nota": "Comida: +1 % de crítico."
+        }
+      ]
+    },
+    {
+      "titulo": "Pociones",
+      "icono": "inv_potion_76",
+      "objetos": [
         {
           "id": 13444,
           "nota": "Para recuperar maná en combates largos."
@@ -87,5 +101,6 @@
       "titulo": "Rotación",
       "texto": "Qué pulsar y en qué orden."
     }
-  ]
+  ],
+  "consumiblesIntro": "Lo que tienes que llevar en las bolsas a nivel 60. La etiqueta indica cuál usar primero."
 }
