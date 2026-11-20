@@ -1,0 +1,92 @@
+---
+// Pestaña Mascotas (Midnight) con el mismo diseño que las de Forever (clases lv-*/gn-* de forever.css).
+// Contenido: src/content/data/midnight-mascotas.json.
+import data from '../../content/data/midnight-mascotas.json';
+import { getSpell, iconUrl } from '../../lib/spells';
+import { md, mentionedSpells } from '../../lib/markup';
+import IndiceForever from '../forever/IndiceForever.astro';
+
+const faltan = [...new Set(mentionedSpells(JSON.stringify({ ...data, _ayuda: '' })))].filter((n) => !getSpell(n));
+if (faltan.length) throw new Error(`midnight-mascotas.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
+
+const INDICE = [
+  { id: 'mm-aqir', texto: 'Aqir en raid y M+' },
+  { id: 'mm-specs', texto: 'Especializaciones' },
+  { id: 'mm-especiales', texto: 'Situaciones de M+' },
+  { id: 'mm-pterro', texto: 'Pterrordáctilo' },
+];
+---
+
+<div class="lv gn">
+  <div class="gn-hero">
+    <p set:html={md(data.resumen)} />
+    <ul class="gn-datos">
+      {data.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
+    </ul>
+  </div>
+
+  <div class="box box-tip gn-esencial">
+    <div class="box-title">Lo esencial en 30 segundos</div>
+    <ol>{data.esencial.map((t) => <li set:html={md(t)} />)}</ol>
+  </div>
+
+  <IndiceForever items={INDICE} />
+
+  <section class="lv-sec" id="mm-aqir">
+    <h3>Mejor mascota para el Maestro de bestias: Aqir</h3>
+    <div class="gn-pros">
+      {data.modos.map((m) => (
+        <div class="gn-col" style={`--c: var(--${m.color})`}>
+          <h4>{m.titulo}</h4>
+          <ul class="lv-claves">{m.filas.map((t) => <li set:html={md(t)} />)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="mm-specs">
+    <h3>Las tres especializaciones de mascota</h3>
+    <div class="lv-table-wrap">
+      <table class="lv-table lv-table--objetos">
+        <caption class="sr-only">Especializaciones de mascota del Hunter BM: pasiva y habilidad activa</caption>
+        <thead><tr><th scope="col">Especialización</th><th scope="col">Pasiva</th><th scope="col">Activa</th></tr></thead>
+        <tbody>
+          {data.specs.map((s) => (
+            <tr><th scope="row">{s.spec}</th><td>{s.pasivo}</td><td set:html={md(s.activo)} /></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="lv-sec" id="mm-especiales">
+    <h3>Situaciones especiales en M+</h3>
+    <div class="lv-grid">
+      {data.especiales.map((m) => (
+        <div class="lv-card gn-mec">
+          <h4><img src={iconUrl(m.icono)} alt="" width="36" height="36" loading="lazy" />{m.titulo}</h4>
+          <ul class="lv-claves">{m.filas.map((f) => <li set:html={md(f)} />)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="mm-pterro">
+    <h3>Pterrordáctilo: utilidad de movimiento</h3>
+    <p class="lv-lead" set:html={md(data.pterro.intro)} />
+    <div class="lv-grid">
+      {data.pterro.macros.map((m) => (
+        <div class="lv-card">
+          <h4>{m.titulo}</h4>
+          <p set:html={md(m.texto)} />
+          <pre class="macro-code">{m.codigo}</pre>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="box box-warn">
+    <div class="box-title">Qué llevar siempre en el establo</div>
+    <span set:html={md(data.llevar)} />
+  </div>
+</div>

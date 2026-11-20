@@ -17,6 +17,9 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Midnight con el diseño de Forever (3): Mascotas
+- Mascotas de Midnight en `midnight-mascotas.json` → `guide/MascotasMidnight.astro` (resumen con datos, «Lo esencial», índice, Aqir en raid/M+ en columnas ámbar/violeta, tabla de especializaciones `lv-table`, situaciones de M+ en tarjetas, macros del Pterrordáctilo). Fuera emojis y colores a mano.
+
 ## 2026-11-20 — Midnight con el diseño de Forever (2): Stats
 - Stats de Midnight en `midnight-estadisticas.json` → `guide/StatsMidnight.astro` (resumen con datos, índice, prioridad ST y AoE en tarjetas numeradas `st-rank`, tabla de qué aporta cada secundaria, tabla de rendimientos decrecientes). Fuera emojis y barras a mano. `spells.json`: Ansia de sangre.
 

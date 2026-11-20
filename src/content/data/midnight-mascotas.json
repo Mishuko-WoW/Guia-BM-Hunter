@@ -1,0 +1,67 @@
+{
+  "_ayuda": "Pestaña Mascotas de Midnight (MascotasMidnight.astro). Mismo diseño que General/Stats de Forever.",
+  "resumen": "La mejor mascota del Hunter BM en Midnight es el **Aqir**: su pasiva exótica [Zancudo de las dunas](https://www.wowhead.com/es/spell=280151/zancudo-de-las-dunas) le da un **+30 % de velocidad de movimiento** permanente. Desde el parche 11.1 la especialización se cambia libremente en el Establo, así que lo ideal es tener **una Aqir de cada especialización**.",
+  "datos": [
+    { "valor": "Aqir", "texto": "Mejor familia para raid y M+" },
+    { "valor": "+30 %", "texto": "Velocidad de movimiento (Zancudo de las dunas)" },
+    { "valor": "3", "texto": "Aqirs en el establo, una por especialización" },
+    { "valor": "−25 %", "texto": "Curación enemiga con Heridas letales" }
+  ],
+  "esencial": [
+    "**Raid:** Aqir de **Tenacidad**. Ten otra de Ferocidad por si nadie más lleva Ansia de sangre o Heroísmo.",
+    "**M+:** si eres el Heroísmo del grupo, Aqir de **Ferocidad**; si no, **Tenacidad**.",
+    "!!Desactiva el lanzamiento automático de Laceración de tendones!!: ralentiza a los enemigos que el tanque quiere agrupar.",
+    "Lleva en el establo una mascota con reducción de curación, otra con reducción de daño y un Pterrordáctilo."
+  ],
+  "modos": [
+    {
+      "titulo": "Raid: Aqir de Tenacidad",
+      "color": "pl",
+      "filas": [
+        "Los [Aqir](https://www.wowhead.com/es/pet=41/aqir) persiguen mejor a los jefes que se teletransportan o se mueven: un pequeño aumento de daño constante.",
+        "**Tenacidad** es la especialización por defecto en raid por sus beneficios defensivos.",
+        "Ten preparada también una de **Ferocidad** por si en la raid no hay otro Ansia de sangre o Heroísmo."
+      ]
+    },
+    {
+      "titulo": "M+: Aqir de Ferocidad o Tenacidad",
+      "color": "dr",
+      "filas": [
+        "Si eres el **Ansia de sangre / Heroísmo** del grupo, usa **Ferocidad**: su habilidad *Furia primigenia* es el Heroísmo.",
+        "Si otro del grupo ya lo tiene, usa **Tenacidad** por los beneficios defensivos.",
+        "Igual que en raid: desactiva el lanzamiento automático de *Laceración de tendones*."
+      ]
+    }
+  ],
+  "specs": [
+    { "spec": "Ferocidad", "pasivo": "4 % de robo de vida para ti y tu mascota", "activo": "**Furia primigenia**: Ansia de sangre / Heroísmo (+30 % de celeridad 40 s)" },
+    { "spec": "Tenacidad", "pasivo": "+5 % de vida máxima para ti y tu mascota", "activo": "**Fortaleza del oso**: +3 % de reducción de daño **pasiva**" },
+    { "spec": "Astucia", "pasivo": "+4 % de velocidad de movimiento para ti y tu mascota", "activo": "**Llamada del amo**: quita los efectos de movimiento de ti o de un aliado y da inmunidad 4 s (CD 45 s)" }
+  ],
+  "especiales": [
+    {
+      "titulo": "Reducción de curación enemiga",
+      "icono": "ability_criticalstrike",
+      "filas": [
+        "Si nadie del grupo reduce la curación, lleva una mascota que lo haga. Muchas tienen habilidades con otro nombre que acaban siendo [Heridas letales](https://www.wowhead.com/es/spell=115804/heridas-letales): −25 % de curación recibida casi permanente (CD 6 s).",
+        "**Familias:** Ave carroñera, Devilsaurio, Cuernodirecto, Hidra, Hiena, Lagarto, Raptor, Devastador, Riverbeast, Roedor, Escórpido, Avispa y Látigo."
+      ]
+    },
+    {
+      "titulo": "Reducción de daño para tankbusters",
+      "icono": "ability_hunter_beasttraining",
+      "filas": [
+        "Las mascotas de Tenacidad con *Reducción de daño* pueden provocar a los enemigos para absorber golpes duros y aliviar al tanque: 50 % de reducción de daño con CD de 1 minuto.",
+        "**Familias:** Escarabajo, Jabalí, Carapid, Can del Núcleo, Mecánico, Escalahide, Bestia de Pizarra y Tortuga."
+      ]
+    }
+  ],
+  "pterro": {
+    "intro": "El [Pterrordáctilo](https://www.wowhead.com/es/pet=160/cuellipluma) y la familia Cuellipluma tienen [Corriente ascendente](https://www.wowhead.com/es/spell=160007/corriente-ascendente): caída lenta que además alarga la distancia de tu Separación. Útil en encuentros con mucho movimiento vertical. Con estas dos macros lo usas sin que se quede activo entre Separaciones:",
+    "macros": [
+      { "titulo": "Separación + Corriente ascendente", "texto": "Sustituye tu botón de Separación por esta macro para activar la caída lenta al usarlo.", "codigo": "/use Separación\n/use Corriente ascendente" },
+      { "titulo": "Desactivar Corriente ascendente", "texto": "Añade esta línea a otras habilidades que uses a menudo para quitar la caída lenta entre Separaciones. Consejo: ponla en tu macro de Matar o Cólera de las bestias.", "codigo": "/cancelaura Corriente ascendente" }
+    ]
+  },
+  "llevar": "Idealmente deberías tener en el establo: **3 Aqirs** (una de cada especialización), **1 mascota con reducción de curación** para M+, **1 con reducción de daño** para tankbusters y **1 Pterrordáctilo** para movilidad. No hace falta cambiar en cada pull: es para estar preparado cuando el grupo lo necesite."
+}
