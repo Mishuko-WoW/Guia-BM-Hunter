@@ -3,10 +3,16 @@
 // cabecera con 4 datos, índice, «Cómo crear una macro» en 4 pasos, selector de idioma del cliente (inglés/español)
 // y una sección por grupo con tarjetas (icono, código y botón «Copiar»).
 // Contenido: src/content/data/forever-macros.json (textos con mini-formato [[Hechizo]] y `código`).
-import data from '../../content/data/forever-macros.json';
+import fvData from '../../content/data/forever-macros.json';
 import { getSpell, foreverIcon, iconUrl } from '../../lib/spells';
 import { md } from '../../lib/markup';
 import IndiceForever from './IndiceForever.astro';
+
+// También la usa Midnight (realm="midnight", data = midnight-macros.json, solo `es`: sin selector de idioma).
+interface Props { data?: any; realm?: 'forever' | 'midnight' }
+const { data = fvData, realm = 'forever' } = Astro.props;
+const icono = (n: string) => (realm === 'forever' ? foreverIcon(n) : iconUrl(getSpell(n)?.icon));
+const bilingue = data.grupos.every((g: any) => g.macros.every((m: any) => m.en));
 
 // Seguridad: todo hechizo citado debe existir en spells.json (si no, el build falla)
 const faltan = new Set<string>();
@@ -17,7 +23,7 @@ for (const g of data.grupos) {
   revisar(g.intro);
   for (const m of g.macros) { revisar(m.desc); revisar(m.tip); if (!getSpell(m.hechizo)) faltan.add(m.hechizo); }
 }
-if (faltan.size) throw new Error(`forever-macros.json: hechizos que no están en spells.json: ${[...faltan].join(', ')}`);
+if (faltan.size) throw new Error(`${realm}-macros.json: hechizos que no están en spells.json: ${[...faltan].join(', ')}`);
 
 const texto = (t = '') => md(t).replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
 // Descripciones de las tarjetas sin tooltips: [[Hechizo]] / [[Hechizo>Texto]] → texto en negrita
@@ -52,10 +58,10 @@ const INDICE = [{ id: 'mf-crear', texto: 'Cómo crearlas' }, ...data.grupos.map(
 
     <div class="mf-idioma">
       <p set:html={texto(data.aviso)} />
-      <div class="toggle-wrap combat-switch" role="group" aria-label="Idioma de tu juego">
+      {bilingue && <div class="toggle-wrap combat-switch" role="group" aria-label="Idioma de tu juego">
         <button type="button" class="toggle-btn active" data-mf-idioma="en" aria-pressed="true">Inglés</button>
         <button type="button" class="toggle-btn" data-mf-idioma="es" aria-pressed="false">Español</button>
-      </div>
+      </div>}
     </div>
   </section>
 
@@ -67,7 +73,7 @@ const INDICE = [{ id: 'mf-crear', texto: 'Cómo crearlas' }, ...data.grupos.map(
         {g.macros.map((m) => (
           <article class="mf-card">
             <header class="mf-card__head">
-              <img src={foreverIcon(m.hechizo)} alt="" width="48" height="48" loading="lazy" {...tip(m.hechizo)} />
+              <img src={icono(m.hechizo)} alt="" width="48" height="48" loading="lazy" {...tip(m.hechizo)} />
               <div class="mf-card__title">
                 <h4>{m.titulo}</h4>
                 <span class:list={['gn-tag', { 'is-new': m.tipo === '' }]}>{m.cat}</span>
@@ -78,7 +84,7 @@ const INDICE = [{ id: 'mf-crear', texto: 'Cómo crearlas' }, ...data.grupos.map(
               </button></span>
             </header>
             <p class="mf-card__desc" set:html={plano(m.desc)} />
-            <pre class="mf-code" data-en={m.en} data-es={m.es}>{m.en}</pre>
+            <pre class="mf-code" data-en={m.en ?? m.es} data-es={m.es}>{m.en ?? m.es}</pre>
             {/* Pie = 4.ª fila de la rejilla: consejo y, al copiar, la línea de Ko-fi (sin fila propia se pisaban) */}
             <div class="mf-card__pie">{m.tip && <p class="mf-card__tip" set:html={plano(m.tip)} />}</div>
           </article>

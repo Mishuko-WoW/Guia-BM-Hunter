@@ -6,7 +6,7 @@
     "desc": "Potencia el siguiente Matar."
   },
   "Aullido de la manada": {
-    "icon": "",
+    "icon": "inv_ability_packleaderhunter_vicioushunt",
     "badge": "bf",
     "type": "Buff Pack Leader",
     "desc": ""
@@ -18,7 +18,7 @@
     "desc": "Pre-castear 2 segundos antes del pull."
   },
   "Colmillo de cobra": {
-    "icon": "",
+    "icon": "inv_chest_mail_raidhunterulatek_d_01",
     "badge": "sp",
     "type": "Buff de tier set",
     "desc": "Cada Pisotón otorga una carga y potencia el daño de disparo de cobra"
@@ -91,7 +91,7 @@
     "desc": "Cleave principal de mascota."
   },
   "¡Estampida!": {
-    "icon": "",
+    "icon": "ability_hunter_bestialdiscipline",
     "badge": "pr",
     "type": "Proc Pack Leader",
     "desc": "Línea de animales. Sin ajuste de altura."
@@ -769,7 +769,7 @@
     "desc": "Llama a tu mascota. Con ella activa, ordénale atacar a tu objetivo antes de empezar a disparar."
   },
   "Pisotón": {
-    "icon": "ability_hunter_bestialdiscipline",
+    "icon": "",
     "badge": "sp",
     "type": "Talento",
     "desc": "Tu mascota pisotea el suelo e inflige daño físico en área a los enemigos cercanos."
@@ -785,5 +785,23 @@
     "badge": "pr",
     "type": "Efecto de grupo",
     "desc": "Efecto porcentual: no le afectan los rendimientos decrecientes del rating."
+  },
+  "Contradisparo": {
+    "icon": "inv_ammo_arrow_03",
+    "badge": "sp",
+    "type": "Interrupción",
+    "desc": "Interrumpe el lanzamiento de hechizos del objetivo."
+  },
+  "Disparo vinculante": {
+    "icon": "spell_shaman_bindelemental",
+    "badge": "sp",
+    "type": "Control",
+    "desc": "Ata a los enemigos de la zona y los enraiza si se alejan."
+  },
+  "Mascota en pasivo": {
+    "icon": "ability_hunter_beasttraining",
+    "badge": "sp",
+    "type": "Orden de mascota",
+    "desc": "Pone a la mascota en pasivo y la hace seguirte."
   }
 }

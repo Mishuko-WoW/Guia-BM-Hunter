@@ -1,0 +1,54 @@
+{
+  "_ayuda": "Macros de Midnight (mismo componente que Forever: forever/MacrosForever.astro con realm=midnight). Solo `es` (cliente en español): sin selector de idioma. Campos de cada macro como en forever-macros.json.",
+  "resumen": "Una macro junta **varias acciones en una sola tecla**. En el Hunter BM la clave es poner **/petattack** delante de [[Matar]], [[Disparo con púas]] y [[Cólera de las bestias]]: así tu mascota siempre carga a tu objetivo antes del disparo. Todas están listas para copiar.",
+  "datos": [
+    { "valor": "11", "texto": "Macros listas para copiar" },
+    { "valor": "3", "texto": "Grupos: rotación, utilidad y control" },
+    { "valor": "/petattack", "texto": "La línea que no puede faltar" },
+    { "valor": "1 clic", "texto": "Para copiarla y pegarla en el juego" }
+  ],
+  "pasos": [
+    { "icono": "inv_misc_note_01", "titulo": "Abre el menú", "texto": "Escribe `/macro` en el chat o entra en Menú principal → **Macros**." },
+    { "icono": "inv_misc_questionmark", "titulo": "Crea una nueva", "texto": "Pulsa **Nueva**, elige macro general o de personaje y ponle nombre e icono." },
+    { "icono": "inv_scroll_03", "titulo": "Pega el código", "texto": "Pulsa **Copiar** en la macro que quieras y pégala en el cuadro de texto." },
+    { "icono": "ability_hunter_killcommand", "titulo": "Llévala a la barra", "texto": "Arrastra el icono de la macro a tu barra de acción, en lugar de la habilidad." }
+  ],
+  "aviso": "**Cliente en español:** los nombres de las habilidades deben escribirse exactamente como salen en el tooltip del juego, **con tildes y caracteres especiales**. Si una macro no funciona, comprueba que el nombre es idéntico.",
+  "grupos": [
+    {
+      "id": "mm-rotacion",
+      "indice": "Rotación",
+      "titulo": "Macros de rotación",
+      "intro": "",
+      "macros": [
+        { "titulo": "Cólera de las bestias + Poción", "cat": "CD principal", "tipo": "", "hechizo": "Cólera de las bestias", "desc": "Lanza la poción de combate junto al CD principal. La línea `/petattack` hace que la mascota cargue antes, para que [[Escabechina]] se aplique bien.", "tip": "**Nota:** si prefieres controlar la poción a mano, quita la línea `/use`.", "es": "#showtooltip Cólera de las bestias\n/petattack\n/use Potencial de luz\n/cast Cólera de las bestias" },
+        { "titulo": "Matar + Ataque de mascota", "cat": "Esencial", "tipo": "", "hechizo": "Matar", "desc": "Tu mascota carga al objetivo antes de cada [[Matar]]. Esencial para que [[Escabechina]] se aplique en cada ventana y para llevarla al nuevo objetivo al cambiar.", "tip": "**Consejo:** usa esta macro en todos tus Matar.", "es": "#showtooltip Matar\n/petattack\n/cast Matar" },
+        { "titulo": "Disparo con púas + Ataque de mascota", "cat": "Esencial", "tipo": "", "hechizo": "Disparo con púas", "desc": "Al cambiar de objetivo, la mascota carga hacia él al momento, lista para cuando uses [[Cólera de las bestias]].", "tip": "**Consejo:** sobre todo en los 3 s antes de Cólera de las bestias, para que la mascota ya esté en posición.", "es": "#showtooltip Disparo con púas\n/petattack\n/cast Disparo con púas" },
+        { "titulo": "Paliza salvaje + Ataque de mascota", "cat": "AoE", "tipo": "aoe", "hechizo": "Paliza salvaje", "desc": "En los packs de M+, la mascota ya está en el centro del grupo antes de [[Paliza salvaje]]: más golpes de [[Tajo de la bestia]].", "tip": "**AoE:** coloca la mascota en el centro del pack antes de la ventana de CD.", "es": "#showtooltip Paliza salvaje\n/petattack\n/cast Paliza salvaje" }
+      ]
+    },
+    {
+      "id": "mm-utilidad",
+      "indice": "Utilidad",
+      "titulo": "Macros de utilidad",
+      "intro": "",
+      "macros": [
+        { "titulo": "Redirección al tanque (por foco)", "cat": "Utilidad", "tipo": "util", "hechizo": "Redirección", "desc": "Pasa la amenaza de tu mascota al tanque sin cambiar de objetivo. Pon al tanque como foco con `/focus` una vez antes del pull.", "tip": "**Preparación:** selecciona al tanque → escribe `/focus` → la macro siempre lanzará Redirección sobre él.", "es": "#showtooltip Redirección\n/cast [@focus,help,nodead] Redirección;\n      [@mouseover,help,nodead] Redirección;\n      Redirección" },
+        { "titulo": "Marca del cazador (mouseover)", "cat": "Utilidad", "tipo": "util", "hechizo": "Marca del cazador", "desc": "Pone [[Marca del cazador]] en el enemigo que tienes bajo el ratón sin cambiar de objetivo. Ideal antes del pull.", "tip": "**Antes del pull:** pasa el ratón por el objetivo prioritario sin hacer clic.", "es": "#showtooltip Marca del cazador\n/cast [@mouseover,harm,nodead] Marca del cazador;\n      [@target,harm,nodead] Marca del cazador" },
+        { "titulo": "Reposición de emergencia de mascota", "cat": "Utilidad", "tipo": "util", "hechizo": "Mascota en pasivo", "desc": "Si la mascota se atasca o pierde al objetivo, la pone en pasivo y la hace seguirte. Después usa tu macro de Matar o Disparo con púas para que vuelva a cargar.", "tip": "**Flujo:** esta macro → la mascota vuelve a tu lado → macro de Matar.", "es": "/petpassive\n/petfollow" },
+        { "titulo": "Cólera de las bestias + Abalorio", "cat": "CD principal", "tipo": "", "hechizo": "Cólera de las bestias", "desc": "Activa el abalorio junto a [[Cólera de las bestias]]. Útil para abalorios de estadística con uso. **No sirve para la Caja de puzles**: esa, siempre a mano.", "tip": "**Ranuras:** `13` = primer abalorio · `14` = segundo.", "es": "#showtooltip Cólera de las bestias\n/petattack\n/use 13\n/cast Cólera de las bestias" }
+      ]
+    },
+    {
+      "id": "mm-control",
+      "indice": "Control",
+      "titulo": "Macros de control",
+      "intro": "",
+      "macros": [
+        { "titulo": "Contradisparo por foco", "cat": "Control", "tipo": "util", "hechizo": "Contradisparo", "desc": "Interrumpe al objetivo de foco sin cambiar de objetivo. Para raid o M+, cuando hay que cortar a un objetivo secundario mientras dañas al principal.", "tip": "**Preparación:** selecciona al que quieres interrumpir → `/focus`.", "es": "#showtooltip Contradisparo\n/cast [@focus,harm,nodead] Contradisparo;\n      [@target,harm,nodead] Contradisparo" },
+        { "titulo": "Contradisparo por mouseover", "cat": "Control", "tipo": "util", "hechizo": "Contradisparo", "desc": "Interrumpe al enemigo que tienes bajo el ratón. Más rápido que el de foco: útil en M+, donde los objetivos a cortar cambian todo el rato.", "tip": "**Prioridad:** primero el del ratón, si no hay el foco y si no tu objetivo.", "es": "#showtooltip Contradisparo\n/cast [@mouseover,harm,nodead] Contradisparo;\n      [@focus,harm,nodead] Contradisparo;\n      [@target,harm,nodead] Contradisparo" },
+        { "titulo": "Disparo vinculante por mouseover", "cat": "Control", "tipo": "util", "hechizo": "Disparo vinculante", "desc": "Lanza [[Disparo vinculante]] sobre el enemigo bajo el ratón sin cambiar de objetivo. Imprescindible en M+ para enraizar adds sin cortar tu rotación.", "tip": "**Consejo:** pasa el ratón por el add y pulsa: tu objetivo principal no cambia.", "es": "#showtooltip Disparo vinculante\n/cast [@mouseover,harm,nodead] Disparo vinculante;\n      [@target,harm,nodead] Disparo vinculante" }
+      ]
+    }
+  ]
+}

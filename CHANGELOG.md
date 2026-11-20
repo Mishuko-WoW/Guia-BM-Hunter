@@ -17,6 +17,11 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Midnight con el diseño de Forever (4): Macros; iconos; Stats como antes
+- Macros de Midnight en `midnight-macros.json` con el mismo componente que Forever (`forever/MacrosForever.astro`, nuevas props `data` y `realm`; sin selector de idioma cuando las macros solo tienen `es`): pasos para crearlas, índice, tarjetas con icono y botón «Copiar».
+- `spells.json`: iconos de Colmillo de cobra (tier 4 S2), ¡Estampida! y Aullido de la manada (salían sin icono en General); Contradisparo, Disparo vinculante y «Mascota en pasivo».
+- Stats de Midnight vuelve a su diseño anterior (lo prefiere Mishuko); se borran `StatsMidnight.astro` y `midnight-estadisticas.json`.
+
 ## 2026-11-20 — Midnight con el diseño de Forever (3): Mascotas
 - Mascotas de Midnight en `midnight-mascotas.json` → `guide/MascotasMidnight.astro` (resumen con datos, «Lo esencial», índice, Aqir en raid/M+ en columnas ámbar/violeta, tabla de especializaciones `lv-table`, situaciones de M+ en tarjetas, macros del Pterrordáctilo). Fuera emojis y colores a mano.
 
