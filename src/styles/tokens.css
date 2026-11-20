@@ -148,3 +148,20 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ─── LIBRO DE MAZMORRAS (página /forever/mazmorras/): pergamino, tinta y cuero ─── */
+:root {
+  --libro-papel: #efe2c4;
+  --libro-papel2: #dcc79c;
+  --libro-tinta: #2e1f12;
+  --libro-tinta2: #6b5236;
+  --libro-linea: rgba(80, 55, 30, 0.28);
+  --libro-sombra: rgba(60, 35, 10, 0.55);
+  --libro-cuero: #3a2416;
+  --libro-oro: #c9a45a;
+  --libro-rojo: #8c2a1c;
+  --libro-violeta: #5a3a86;
+  --libro-enlace: #7a3b12;
+  --libro-raro: #1f4f9a;
+  --libro-epico: #6b2a9a;
+}

@@ -17,6 +17,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Mazmorras de Forever como libro (dossier)
+- `MazmorrasForever.astro` rehecha como libro abierto: tapa de cuero con filete dorado, dos páginas de pergamino con lomo. Izquierda = capítulo (capitular, lámina con el mapa y los jefes, ficha de datos, sello con el BiS); derecha = un jefe cada vez (estrategia y botín) con marcapáginas numerados en el canto, pines del mapa clicables y «Anterior/Siguiente». Debajo, apéndice (botín de enemigos normales) y notas al margen. `#mz-<mazmorra>-<n>` abre ese jefe. En móvil, una página debajo de otra.
+- Letra Cinzel + EB Garamond (Google Fonts, solo en esta página). Colores del pergamino en `tokens.css` (bloque «LIBRO DE MAZMORRAS»); estilos en el bloque «MAZMORRAS» de `forever.css`.
+
 ## 2026-11-20 — Página oculta de mazmorras de Forever: Stratholme
 - `/forever/mazmorras/` (`src/pages/forever/mazmorras.astro`): **oculta** (sin botón en las pestañas, `noindex`, fuera del sitemap porque no tiene `.md`). Para publicarla: pestaña en `TABS_FOREVER`, SEO en `seo.ts` y un `.md` en `src/content/forever/paginas/`.
 - `MazmorrasForever.astro` + `forever-mazmorras.json`: estilo Diario de mazmorras. Mapa oficial de Wowhead (`classicplus/maps/eses/original/2017.jpg`) con los jefes numerados encima (oro = lado vivo, violeta = no-muerto; `x`/`y` en % y aproximados), fichas por lado con estrategia y botín para cazador, BiS pre-raid resaltado (Manteo del Barón negro, Guardahombros de la milicia del Inquisidor Carmesí), botín de enemigos normales y consejos. Estilos: bloque «MAZMORRAS» de `forever.css`.

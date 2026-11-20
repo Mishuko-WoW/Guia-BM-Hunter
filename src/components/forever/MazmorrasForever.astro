@@ -1,14 +1,15 @@
 ---
-// Página OCULTA de mazmorras de nivel 60 (Forever), estilo Diario de mazmorras: mapa oficial con los jefes
-// numerados encima (pulsar → su ficha), fichas por lado con estrategia y botín para cazador (BiS resaltado).
+// Página OCULTA de mazmorras de nivel 60 (Forever) como un LIBRO abierto (dossier tipo Diario de mazmorras):
+// página izquierda = capítulo de la mazmorra (resumen, lámina con el mapa oficial y los jefes numerados, ficha, BiS);
+// página derecha = un jefe cada vez (estrategia y botín para cazador), con marcapáginas en el canto y «anterior/siguiente».
+// Debajo, apéndice con botín de enemigos normales y notas. Sin JS se ven todas las fichas seguidas.
 // Datos: src/content/data/forever-mazmorras.json; nombres e iconos del botín en forever-objetos.json
-// (node scripts/gen-forever-objetos.mjs). Estilos: bloque «MAZMORRAS» de forever.css.
+// (node scripts/gen-forever-objetos.mjs). Estilos: bloque «MAZMORRAS» de forever.css y colores «LIBRO DE MAZMORRAS» de tokens.css.
 import data from '../../content/data/forever-mazmorras.json';
 import objetos from '../../content/data/forever-objetos.json';
 import { md } from '../../lib/markup';
 import { iconUrl } from '../../lib/spells';
 import { tabPath } from '../../lib/seo';
-import IndiceForever from './IndiceForever.astro';
 
 type Obj = { nombre: string; calidad: number; icono: string };
 const OBJ = (objetos as { item: Record<string, Obj> }).item;
@@ -18,100 +19,158 @@ const obj = (id: number) => {
   return o;
 };
 const url = (id: number) => `https://www.wowhead.com/forever/es/item=${id}`;
-const TIPO: Record<string, string> = { jefe: 'Jefe', raro: 'Raro', invocado: 'Invocado' };
-const INDICE = data.mazmorras.map((m) => ({ id: `mz-${m.id}`, texto: m.nombre }));
+const TIPO: Record<string, string> = { jefe: 'Jefe', raro: 'Jefe raro', invocado: 'Jefe invocado' };
+const ROMANO = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
 ---
 
-<div class="lv gn mz">
-  <div class="gn-hero">
-    <p>Las mazmorras de nivel 60 que importan al <strong>Hunter BM</strong>: mapa con los jefes, cómo pelear cada uno y qué suelta para ti. Lo que está en nuestra <a href={tabPath('forever', 'bis')}>lista BiS pre-raid</a> sale resaltado.</p>
-  </div>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" />
 
-  {INDICE.length > 1 && <IndiceForever items={INDICE} />}
+<div class="mz" id="mz">
+  <p class="mz-intro lv-lead">El dossier de las mazmorras de nivel 60 que importan al <strong>Hunter BM</strong>: mapa con los jefes, cómo pelear cada uno y qué suelta para ti. Lo que está en nuestra <a href={tabPath('forever', 'bis')}>lista BiS pre-raid</a> va marcado.</p>
 
-  {data.mazmorras.map((m) => (
-    <section class="lv-sec mz-mazmorra" id={`mz-${m.id}`}>
-      <h3>{m.nombre} <small class="mz-zona">{m.zona}</small></h3>
-      <ul class="gn-datos mz-datos">
-        {m.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
-      </ul>
-      <p class="lv-lead" set:html={md(m.resumen)} />
+  {data.mazmorras.map((m, ci) => {
+    const lado = (id: string) => m.lados.find((l) => l.id === id)?.nombre ?? id;
+    return (
+      <section class="mz-libro" id={`mz-${m.id}`} data-mz-libro>
+        <div class="mz-libro__abierto">
+          <!-- Página izquierda: el capítulo -->
+          <div class="mz-pag mz-pag--izq">
+            <p class="mz-cap">Capítulo {ROMANO[ci] ?? ci + 1} · {m.zona}</p>
+            <h3>{m.nombre}</h3>
+            <div class="mz-orla"></div>
+            <p class="mz-capitular" set:html={md(m.resumen)} />
 
-      {m.bis.length > 0 && (
-        <div class="mz-bis">
-          <b>De aquí sale tu BiS pre-raid:</b>
-          {m.bis.map((id) => {
-            const o = obj(id);
-            return <a class={`bf-obj q${o.calidad}`} href={url(id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="28" height="28" loading="lazy" />{o.nombre}</a>;
-          })}
-        </div>
-      )}
+            <figure class="mz-lamina">
+              <div style="position:relative">
+                <img src={m.mapa} alt={`Mapa de ${m.nombre}`} width="1024" height="683" loading="lazy" />
+                {m.jefes.filter((j) => j.x || j.y).map((j) => (
+                  <button type="button" class:list={['mz-pin', `mz-pin--${j.lado}`]} style={`left:${j.x}%;top:${j.y}%`} data-mz-ver={j.n} title={j.nombre} aria-label={`${j.n}. ${j.nombre}`}>{j.n}</button>
+                ))}
+              </div>
+              <figcaption>Lámina {ROMANO[ci] ?? ci + 1}. {m.nombre}: posición aproximada de los jefes.</figcaption>
+            </figure>
+            <p>{m.lados.map((l) => <span class={`mz-ley mz-ley--${l.id}`}><i></i>{l.nombre}</span>)}</p>
 
-      <!-- Mapa oficial con los jefes encima (x/y en % de la imagen) -->
-      <figure class="mz-mapa">
-        <img src={m.mapa} alt={`Mapa de ${m.nombre}`} width="1024" height="683" loading="lazy" />
-        {m.jefes.filter((j) => j.x || j.y).map((j) => (
-          <a class:list={['mz-pin', `mz-pin--${j.lado}`, `is-${j.tipo}`]} href={`#mz-${m.id}-${j.n}`} style={`left:${j.x}%;top:${j.y}%`} title={j.nombre}>{j.n}</a>
-        ))}
-        <figcaption>
-          {m.lados.map((l) => <span class={`mz-ley mz-ley--${l.id}`}><i></i>{l.nombre}</span>)}
-          <span class="mz-ley mz-ley--nota">Posiciones aproximadas</span>
-        </figcaption>
-      </figure>
+            <dl class="mz-ficha">
+              {m.datos.map((d) => <div><dt>{d.texto}</dt><dd>{d.valor}</dd></div>)}
+            </dl>
 
-      {m.lados.map((l) => (
-        <div class="mz-lado">
-          <h4 class={`mz-lado__t mz-lado__t--${l.id}`}>{l.nombre}</h4>
-          <p class="mz-lado__txt">{l.texto}</p>
-          <div class="mz-jefes">
-            {m.jefes.filter((j) => j.lado === l.id).map((j) => (
-              <article class:list={['mz-jefe', `mz-jefe--${l.id}`]} id={`mz-${m.id}-${j.n}`}>
-                <header>
+            {m.bis.length > 0 && (
+              <div class="mz-sello">
+                <b>Tu BiS pre-raid sale de aquí</b>
+                <ul class="mz-botin">
+                  {m.bis.map((id) => {
+                    const o = obj(id);
+                    return <li><a class={`q${o.calidad}`} href={url(id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="26" height="26" loading="lazy" />{o.nombre}</a></li>;
+                  })}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          <!-- Página derecha: un jefe cada vez -->
+          <div class="mz-pag mz-pag--der">
+            <nav class="mz-marcas" aria-label="Jefes">
+              {m.jefes.map((j) => (
+                <button type="button" class:list={['mz-marca', `mz-jefe--${j.lado}`]} data-mz-ver={j.n} title={j.nombre}>{j.n}</button>
+              ))}
+            </nav>
+            {m.jefes.map((j, i) => (
+              <article class:list={['mz-jefe', `mz-jefe--${j.lado}`, { 'is-on': i === 0 }]} id={`mz-${m.id}-${j.n}`} data-mz-jefe={j.n}>
+                <div class="mz-jefe__cab">
                   <span class="mz-jefe__n">{j.n}</span>
-                  <h5>{j.nombre}</h5>
-                  {j.tipo !== 'jefe' && <span class="gn-tag">{TIPO[j.tipo]}</span>}
-                </header>
-                <p set:html={md(j.estrategia)} />
-                {j.botin.length > 0 && (
+                  <div>
+                    <h4>{j.nombre}</h4>
+                    <p class="mz-jefe__meta">{TIPO[j.tipo]} · {lado(j.lado)}</p>
+                  </div>
+                </div>
+                <div class="mz-orla"></div>
+                <h5>Estrategia</h5>
+                <p class="mz-capitular" set:html={md(j.estrategia)} />
+                <h5>Botín para el cazador</h5>
+                {j.botin.length > 0 ? (
                   <ul class="mz-botin">
                     {j.botin.map((id) => {
                       const o = obj(id);
                       const esBis = m.bis.includes(id);
                       return (
                         <li class:list={{ 'is-bis': esBis }}>
-                          <a class={`bf-obj q${o.calidad}`} href={url(id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="28" height="28" loading="lazy" />{o.nombre}</a>
+                          <a class={`q${o.calidad}`} href={url(id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="30" height="30" loading="lazy" />{o.nombre}</a>
                           {esBis && <span class="mz-bis-tag">BiS</span>}
                         </li>
                       );
                     })}
                   </ul>
-                )}
+                ) : <p class="mz-nada">Nada para el cazador: se mata de paso.</p>}
+                <div class="mz-paginar">
+                  <button type="button" data-mz-paso="-1">← Anterior</button>
+                  <span>Página {i + 1} de {m.jefes.length}</span>
+                  <button type="button" data-mz-paso="1">Siguiente →</button>
+                </div>
               </article>
             ))}
           </div>
         </div>
-      ))}
 
-      {m.trash.length > 0 && (
-        <div class="mz-trash">
-          <h4>Botín de enemigos normales</h4>
-          {m.trash.map((t) => {
-            const o = obj(t.id);
-            return (
-              <p>
-                <a class={`bf-obj q${o.calidad}`} href={url(t.id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="28" height="28" loading="lazy" />{o.nombre}</a>
-                {m.bis.includes(t.id) && <span class="mz-bis-tag">BiS</span>}
-                <span class="mz-trash__src"> · {t.fuente}. {t.nota}</span>
-              </p>
-            );
-          })}
+        <!-- Apéndice -->
+        <div class="mz-apendice">
+          <div class="mz-pag">
+            <p class="mz-cap">Apéndice</p>
+            <h4>Botín de enemigos normales</h4>
+            <div class="mz-orla"></div>
+            {m.trash.map((t) => {
+              const o = obj(t.id);
+              return (
+                <>
+                  <ul class="mz-botin">
+                    <li class:list={{ 'is-bis': m.bis.includes(t.id) }}>
+                      <a class={`q${o.calidad}`} href={url(t.id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="30" height="30" loading="lazy" />{o.nombre}</a>
+                      {m.bis.includes(t.id) && <span class="mz-bis-tag">BiS</span>}
+                    </li>
+                  </ul>
+                  <p><em>{t.fuente}.</em> {t.nota}</p>
+                </>
+              );
+            })}
+            {m.lados.map((l) => <p><strong>{l.nombre}.</strong> {l.texto}</p>)}
+          </div>
+          <div class="mz-pag">
+            <p class="mz-cap">Notas al margen</p>
+            <h4>Consejos de Mishuko</h4>
+            <div class="mz-orla"></div>
+            <ul>{m.consejos.map((c) => <li set:html={md(c)} />)}</ul>
+          </div>
         </div>
-      )}
-
-      <div class="box box-tip">
-        <div class="box-title">Consejos</div>
-        <ul class="lv-claves">{m.consejos.map((c) => <li set:html={md(c)} />)}</ul>
-      </div>
-    </section>
-  ))}
+      </section>
+    );
+  })}
 </div>
+
+<script is:inline>
+  // Libro: una ficha de jefe cada vez en la página derecha. Pines del mapa, marcapáginas y «anterior/siguiente».
+  (() => {
+    const raiz = document.getElementById('mz');
+    if (!raiz) return;
+    raiz.classList.add('js-mz');
+    raiz.querySelectorAll('[data-mz-libro]').forEach((libro) => {
+      const fichas = [...libro.querySelectorAll('[data-mz-jefe]')];
+      const ver = (n, desplazar) => {
+        fichas.forEach((f) => f.classList.toggle('is-on', f.dataset.mzJefe === String(n)));
+        libro.querySelectorAll('[data-mz-ver]').forEach((b) => b.classList.toggle('is-on', b.dataset.mzVer === String(n)));
+        const f = fichas.find((x) => x.dataset.mzJefe === String(n));
+        if (f && desplazar !== null) {
+          history.replaceState(null, '', '#' + f.id);
+          if (desplazar && window.innerWidth <= 900) f.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+      libro.querySelectorAll('[data-mz-ver]').forEach((b) => b.addEventListener('click', () => ver(b.dataset.mzVer, b.classList.contains('mz-pin'))));
+      libro.querySelectorAll('[data-mz-paso]').forEach((b) => b.addEventListener('click', () => {
+        const i = fichas.findIndex((f) => f.classList.contains('is-on'));
+        const sig = fichas[(i + Number(b.dataset.mzPaso) + fichas.length) % fichas.length];
+        ver(sig.dataset.mzJefe, false);
+      }));
+      const h = fichas.find((f) => '#' + f.id === location.hash);
+      ver(h ? h.dataset.mzJefe : fichas[0].dataset.mzJefe, null);
+    });
+  })();
+</script>
