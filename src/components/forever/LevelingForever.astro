@@ -105,6 +105,9 @@ const INDICE = [
   { id: 'lv-armas', texto: 'Armas (en construcción)' },
 ];
 const fmt = (n: number) => String(n).replace('.', ',');
+// RestedXP dentro de cada tramo (donde mira quien busca su nivel); misma URL que RecomendacionRestedXP.astro. GA4 lugar leveling-tramo
+const URL_RXP = 'https://shop.restedxp.com/es-mx/ref/Mishuko/';
+const gtagRxp = `window.gtag&&gtag('event','afiliado_click',{tipo:'restedxp',lugar:'leveling-tramo'})`;
 
 // Mascotas
 const FAM = new Map(mascotasData.familias.map((f) => [f.id, f]));
@@ -165,6 +168,9 @@ const familia = (id: string) => {
                 <span class="tr-cost">{monedas(sumar(insTramo)).map(([v, u]) => <span class={`tr-coin tr-coin--${u}`}>{v}</span>)}</span>
               </a>
             )}
+            <a class="lv-panel__rxp" href={URL_RXP} target="_blank" rel="sponsored noopener" onclick={gtagRxp}>
+              Misiones de estos niveles en orden, dentro del juego: <b>RestedXP</b> <span class="lv-muted">(10 % de descuento con mi enlace)</span>
+            </a>
           </header>
 
           <div class="lv-grid">

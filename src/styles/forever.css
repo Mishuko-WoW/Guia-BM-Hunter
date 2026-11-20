@@ -954,6 +954,10 @@
 .lv-panel__ins:hover { color: var(--text); }
 .lv-panel__ins b { color: var(--green); }
 .lv-panel__ins .tr-cost { margin: 0; }
+/* RestedXP en cada tramo (afiliado, lugar leveling-tramo); colores --rxp* de tokens.css */
+.lv-panel__rxp { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; width: fit-content; margin-top: 10px; padding: 8px 14px; min-height: 44px; font-size: 17px; color: var(--text2); text-decoration: none; background: color-mix(in srgb, var(--rxp-cyan) 10%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--rxp-cyan) 45%, transparent); border-radius: 6px; }
+.lv-panel__rxp:hover, .lv-panel__rxp:focus-visible { color: var(--text); }
+.lv-panel__rxp b { color: var(--rxp-cyan); }
 @media (max-width: 760px) {
   .lv-ins-sum { grid-template-columns: 1fr; }
   .lv-ins-level { grid-template-columns: 1fr; }

@@ -17,6 +17,9 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — RestedXP en cada tramo de Leveling
+- `LevelingForever.astro`: enlace de afiliado en la cabecera de cada tramo de la hoja de ruta (donde mira quien escribe su nivel), «Misiones de estos niveles en orden…: RestedXP (10 % de descuento)», `rel="sponsored"`, GA4 `afiliado_click` con `lugar` `leveling-tramo`. Estilo `.lv-panel__rxp` en `forever.css`. El banner de arriba (`RecomendacionRestedXP.astro`) ya dice también el 10 % de descuento en Leveling. Motivo: 0 clics desde Leveling del 18 al 20-11 con 341 vistas.
+
 ## 2026-11-20 — Auditoría SEO de las páginas indexables
 - **Títulos y descripciones** (`seo.ts`): Mascotas de Forever «Top 5 mascotas Hunter WoW Forever: Ta'shkal y dónde domarlas» (antes «Mejores mascotas…: Top 5 y Ta'shkal», 3,7 % de CTR) y descripción a 152 caracteres; BiS de Forever a 54/148 (antes 65/180); «Cazador de Bestias» en los títulos de Rotación, Mascotas y Coaching de Midnight y Coaching de Forever; descripciones más concretas (sacadas de la página) en Mascotas, Macros y Simulación de Midnight; Talentos de Forever y General de Midnight recortadas a ≤156. Portada sin tocar (se mide el 2-12).
 - **«Sigue con la guía»** en todas las pestañas que no lo tenían: `SigueGuia.astro` (nuevo) + `relacionadas.json` (pestañas relacionadas por versión, con su ruta de `tabPath`; `realm` opcional para enlazar a la otra versión). En Midnight: todas menos Coaching; en Forever: Talentos, Rotación, Mascotas, Macros y Leveling (General, Stats y BiS ya tenían el suyo). Enlaces entre versiones: General de Midnight → `/forever/`, Mascotas de Midnight → `/forever/mascotas/` y General de Forever → `/midnight/` (`realm` en `forever-general.json`). Estilos `.gn-next` movidos de `forever.css` a `marca.css` (bloque «SIGUE CON LA GUÍA») para las dos versiones. `ICONO` de `TabBar.astro` pasa a `ICONO_TAB` en `tabs.ts`.
