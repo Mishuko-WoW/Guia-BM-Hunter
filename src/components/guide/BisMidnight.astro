@@ -13,8 +13,7 @@ const piezas = ranuras.filter((r) => r.nombre);
 const ETIQUETA: Record<string, string> = { tier: 'Tier', craft: 'Fabricado', raid: 'Banda', mplus: 'Míticas+' };
 const INDICE = [
   { id: 'bm-equipo', texto: 'Equipo BiS' },
-  { id: 'bm-consumibles', texto: 'Consumibles' },
-  { id: 'bm-gemas', texto: 'Gemas' },
+  { id: 'bm-consumibles', texto: 'Consumibles y gemas' },
   { id: 'bm-abalorios', texto: 'Abalorios' },
   { id: 'bm-mejoras', texto: 'Cómo mejorar' },
 ];
@@ -90,33 +89,27 @@ const INDICE = [
   </section>
 
   <section class="lv-sec" id="bm-consumibles">
-    <h3>Consumibles</h3>
-    {data.consumibles.map((g) => (
-      <>
-        <h4 class="lv-h4">{g.titulo}</h4>
-        <div class="gn-cambios">
-          {g.objetos.map((c) => (
-            <div class="gn-cambio">
-              <img src={iconUrl(c.icono)} alt="" width="48" height="48" loading="lazy" />
-              <div>
-                <h4><a class="bf-obj q3" href={c.url} target="_blank" rel="noopener" data-wh-icon-added="true">{c.nombre}</a> {c.etiqueta && <span class:list={['gn-tag', { 'is-new': c.etiqueta === 'Recomendado' }]}>{c.etiqueta}</span>}</h4>
-                {c.nota && <p set:html={md(c.nota)} />}
-              </div>
-            </div>
-          ))}
-        </div>
-      </>
-    ))}
-  </section>
-
-  <section class="lv-sec" id="bm-gemas">
-    <h3>Gemas</h3>
-    <p class="lv-lead" set:html={md(data.gemas.nota)} />
-    <div class="gn-cambios">
-      {data.gemas.objetos.map((c) => (
-        <div class="gn-cambio">
-          <img src={iconUrl(c.icono)} alt="" width="48" height="48" loading="lazy" />
-          <div><h4><a class="bf-obj q4" href={c.url} target="_blank" rel="noopener" data-wh-icon-added="true">{c.nombre}</a></h4></div>
+    <h3>Consumibles y gemas</h3>
+    <p class="lv-lead" set:html={md(data.consumiblesIntro)} />
+    <div class="bm-mochila">
+      {[...data.consumibles, { titulo: 'Gemas', icono: data.gemas.icono, objetos: data.gemas.objetos, nota: data.gemas.nota, id: 'bm-gemas' }].map((g: any) => (
+        <div class="bm-grupo" id={g.id}>
+          <h4 class="bm-grupo__t"><img src={iconUrl(g.icono)} alt="" width="28" height="28" loading="lazy" />{g.titulo}</h4>
+          <ul class="bm-grupo__lista">
+            {g.objetos.map((c: any) => (
+              <li>
+                <a class="bm-cons" href={c.url} target="_blank" rel="noopener" data-wh-icon-added="true">
+                  <img src={iconUrl(c.icono)} alt="" width="46" height="46" loading="lazy" />
+                  <span class="bm-cons__txt">
+                    <b>{c.nombre}</b>
+                    {c.uso && <small>{c.uso}</small>}
+                    {c.etiqueta && <span class:list={['bm-cons__tag', { 'is-top': c.etiqueta === 'Recomendado' }]}>{c.etiqueta}</span>}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          {g.nota && <p class="bm-grupo__nota" set:html={md(g.nota)} />}
         </div>
       ))}
     </div>
@@ -180,6 +173,21 @@ const INDICE = [
 
 <style>
   .bm-enc { color: var(--text3); }
+  /* Consumibles y gemas: «mochila» por grupos */
+  .bm-mochila { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .bm-grupo { padding: 16px; background: var(--card); clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border); border-top: 3px solid var(--gold); display: flex; flex-direction: column; gap: 12px; }
+  .bm-grupo__t { display: flex; align-items: center; gap: 10px; margin: 0 !important; font: 700 19px/1 var(--font-display) !important; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gold) !important; }
+  .bm-grupo__t img { border-radius: 4px; }
+  .bm-grupo__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .bm-cons { display: grid; grid-template-columns: 46px minmax(0, 1fr); align-items: center; gap: 12px; padding: 8px 10px 8px 8px; background: color-mix(in srgb, var(--bg) 45%, transparent); box-shadow: inset 0 0 0 1px var(--border); text-decoration: none; color: var(--text); transition: box-shadow 0.15s ease, background 0.15s ease; }
+  .bm-cons:hover { background: var(--bg3); box-shadow: inset 0 0 0 1px var(--gold); }
+  .bm-cons img { border-radius: 4px; box-shadow: 0 0 0 1px var(--border2); }
+  .bm-cons__txt { display: grid; gap: 3px; min-width: 0; }
+  .bm-cons__txt b { font-weight: 700; line-height: 1.25; color: var(--text); }
+  .bm-cons__txt small { color: var(--text3); line-height: 1.3; }
+  .bm-cons__tag { justify-self: start; margin-top: 3px; padding: 4px 8px; font: 700 12.5px/1 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text2); box-shadow: inset 0 0 0 1px var(--border2); white-space: nowrap; }
+  .bm-cons__tag.is-top { color: var(--bg); background: var(--brand); box-shadow: none; }
+  .bm-grupo__nota { margin: 0; color: var(--text3); }
   .bm-tiers td:first-child { width: 90px; text-align: center; }
   .bm-tier { display: inline-grid; place-items: center; width: 44px; height: 44px; font: 700 22px/1 var(--font-display); color: var(--bg); background: var(--c, var(--text3)); clip-path: var(--clip-btn); }
   .bm-tier--s { --c: var(--gold); }

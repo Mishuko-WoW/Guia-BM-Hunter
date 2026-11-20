@@ -269,16 +269,17 @@
           "url": "https://www.wowhead.com/es/item=241322/frasco-de-los-magistri",
           "icono": "inv_12_profession_alchemy_flask_sindoreipotion_black",
           "etiqueta": "Recomendado",
-          "nota": ""
+          "uso": "Frasco principal"
         },
         {
           "nombre": "Frasco del Sol Devastado",
           "url": "https://www.wowhead.com/es/spell=1230878/frasco-del-sol-devastado",
           "icono": "inv_12_profession_alchemy_flask_sindoreipotion_red--",
           "etiqueta": "Según tu simulación",
-          "nota": ""
+          "uso": "Alternativa si tu simulación lo prefiere"
         }
-      ]
+      ],
+      "icono": "inv_12_profession_alchemy_flask_sindoreipotion_black"
     },
     {
       "titulo": "Pociones",
@@ -288,42 +289,44 @@
           "url": "https://www.wowhead.com/es/item=241288/poci%C3%B3n-de-temeridad",
           "icono": "inv_12_profession_alchemy_voidpotion_red",
           "etiqueta": "Recomendado",
-          "nota": ""
+          "uso": "Poción de daño: con Cólera de las bestias"
         },
         {
           "nombre": "Potencial de Luz",
           "url": "https://www.wowhead.com/es/item=241308/potencial-de-luz",
           "icono": "inv_12_profession_alchemy_lightpotion_yellow",
           "etiqueta": "Aceptable",
-          "nota": ""
+          "uso": "Poción de daño alternativa"
         },
         {
           "nombre": "Poción de Sanación Concentrada de Lunargenta",
           "url": "https://www.wowhead.com/es/item=271883/poci%C3%B3n-de-sanaci%C3%B3n-concentrada-de-lunargenta",
           "icono": "inv_12_profession_alchemy_lightpotion_purple",
           "etiqueta": "",
-          "nota": ""
+          "uso": "Curación de emergencia"
         }
-      ]
+      ],
+      "icono": "inv_12_profession_alchemy_voidpotion_red"
     },
     {
-      "titulo": "Aceite y runa",
+      "titulo": "Arma y runa",
       "objetos": [
         {
           "nombre": "Aceite de Fénix Thalassiano",
           "url": "https://www.wowhead.com/es/item=243733/aceite-de-f%C3%A9nix-thalassiano",
           "icono": "inv_12_profession_enchanting_manaoil_red",
           "etiqueta": "",
-          "nota": ""
+          "uso": "Aceite para el arma"
         },
         {
           "nombre": "Runa de Aumento Tocada por el Vacío",
           "url": "https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo",
           "icono": "inv_10_enchanting_crystal_color2",
           "etiqueta": "",
-          "nota": ""
+          "uso": "Runa de aumento"
         }
-      ]
+      ],
+      "icono": "inv_12_profession_enchanting_manaoil_red"
     },
     {
       "titulo": "Comida",
@@ -333,16 +336,17 @@
           "url": "https://www.wowhead.com/es/item=255846/celebraci%C3%B3n-de-harandar",
           "icono": "inv_misc_1h_soup_b_01_misc_1h_soup_b_01",
           "etiqueta": "",
-          "nota": ""
+          "uso": "Festín para todo el grupo"
         },
         {
           "nombre": "Asado Real copioso",
           "url": "https://www.wowhead.com/es/item=242747/asado-real-copioso",
           "icono": "inv_cooking_100_roastduck",
           "etiqueta": "",
-          "nota": ""
+          "uso": "Comida personal"
         }
-      ]
+      ],
+      "icono": "inv_cooking_100_roastduck"
     }
   ],
   "gemas": {
@@ -353,16 +357,17 @@
         "url": "https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable",
         "icono": "inv_12_profession_jewelcrafting_epic_gem_cut_green",
         "etiqueta": "",
-        "nota": ""
+        "uso": "Gema épica"
       },
       {
         "nombre": "Amatista Mortal Impecable",
         "url": "https://www.wowhead.com/es/item=240898/amatista-mortal-impecable",
         "icono": "inv_12_profession_jewelcrafting_rare_gem_cut_fire_purple",
         "etiqueta": "MONEDA Y BOTÍN",
-        "nota": ""
+        "uso": "Resto de huecos"
       }
-    ]
+    ],
+    "icono": "inv_12_profession_jewelcrafting_epic_gem_cut_green"
   },
   "abalorios": {
     "nota": "Rankings orientativos basados en simulaciones de alto nivel. [Simúlate siempre en Raidbots](https://www.raidbots.com/simbot) antes de decidir. Si nunca has simulado, mira la [sección de Coaching](/midnight/coaching/).",
@@ -532,5 +537,6 @@
       "etiqueta": "",
       "texto": "Simula siempre a tu personaje en **Raidbots**. Cada personaje tiene estadísticas únicas y las recomendaciones generales no sustituyen simular tu equipo."
     }
-  ]
+  ],
+  "consumiblesIntro": "Lo que tienes que llevar en las bolsas antes de cada banda o Mítica+. Las etiquetas indican cuál usar primero."
 }

@@ -17,6 +17,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — BiS de Midnight: consumibles rediseñados; anclas en Midnight
+- Consumibles y gemas juntos en una «mochila» (`bm-mochila` en `BisMidnight.astro`): una tarjeta por grupo (Frascos, Pociones, Arma y runa, Comida, Gemas) con su icono, y cada objeto con icono grande, nombre, para qué sirve (`uso` en `midnight-bis.json`) y su etiqueta (Recomendado en verde marca). Antes eran tarjetas `gn-cambio` sueltas, solo con el nombre.
+- `bm-guide.js`: al abrir una página de Midnight con un ancla interna (`/midnight/bis/#bm-consumibles`) no se veía el panel (en Midnight no llega con `active` desde el HTML); ahora se activa el de la página.
+
 ## 2026-11-20 — BiS de Midnight: ranuras rotas por Wowhead
 - `PaginaMidnight.astro`: en BiS, `renameLinks: false` (como en Forever). Con `true`, power.js cambiaba el interior de cada ranura (icono, ranura, origen) por el nombre del objeto y la ventana de personaje se deshacía. El resto de pestañas sigue igual. Quitado de `SeccionBiS.astro` el `tooltips.js` duplicado.
 

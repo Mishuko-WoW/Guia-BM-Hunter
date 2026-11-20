@@ -56,7 +56,12 @@
         if (url) { location.replace(url + '#opener'); return; }
       }
       // Anclas dentro de la página (#pf-claw…): no tocar las pestañas
-      if (hashTab && !validTabIds.has(normalizedTab) && document.getElementById(hashTab)) return;
+      // (pero el panel de la página tiene que verse: en Midnight no viene con «active» desde el HTML)
+      if (hashTab && !validTabIds.has(normalizedTab) && document.getElementById(hashTab)) {
+        const panel = document.getElementById('tab-' + PAGE_TAB);
+        if (panel && !document.querySelector('.tab-panel.active')) panel.classList.add('active');
+        return;
+      }
 
       const tabId = validTabIds.has(normalizedTab) && hasPanel(normalizedTab) ? normalizedTab : PAGE_TAB;
       const btn = document.querySelector(`.mk-tab[data-tab="${tabId}"]`)
