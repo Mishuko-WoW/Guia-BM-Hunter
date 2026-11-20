@@ -17,6 +17,11 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Midnight con el diseño de Forever (1): General
+- Pestaña General de Midnight pasada al formato de Forever: datos en `src/content/data/midnight-general.json` → `src/components/guide/GeneralMidnight.astro` (clases `lv-*`/`gn-*`: resumen con datos, «Lo esencial», banner a Rotación, índice, secciones Season 2, Enfoque, héroes, cooldown y procs, vídeo). `SeccionMecanicas.astro` queda como en `SeccionForever` (+ «Última revisión por Mishuko»). Sin HTML ni colores a mano.
+- `forever.css` se carga también en Midnight (`GuideContent.astro`) y el bloque «texto más grande» de `marca.css` vale para las dos versiones.
+- `spells.json`: Pisotón y Escabechina.
+
 ## 2026-11-20 — GA4: page_view al cargar el HTML (sesiones «(sin definir)»)
 - `MainLayout.astro`: `trackPageView` pasa de `load` a `DOMContentLoaded` (o al momento si el HTML ya está listo). `load` espera a todas las imágenes y scripts externos; en móvil y en el navegador de TikTok la visita podía mandar `user_engagement`/`scroll` sin `page_view`, y GA4 lo cuenta como sesión «(sin definir)» con 0 % de interacción (62 del 18 al 20-11, antes 1). Hipótesis sin confirmar: comprobar el 2-12 si bajan; si no, mirar en GA4 país y dispositivo de esas sesiones (pueden ser robots).
 

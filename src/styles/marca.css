@@ -732,18 +732,18 @@ a.mk-tab[hidden] { display: none; }
 .blk-table td:has(> .spell-tile:only-child) { width: 120px; text-align: center; vertical-align: middle; }
 
 /* ─── FOREVER: texto más grande y legible ─── */
-:root[data-realm="forever"] .content-area .box { font-size: 17.5px; }
-:root[data-realm="forever"] .content-area .data-row { font-size: 18px; }
-:root[data-realm="forever"] .content-area .col-row { font-size: 17.5px; }
-:root[data-realm="forever"] .content-area .prio-item { font-size: 18px; }
-:root[data-realm="forever"] .content-area .blk-table { font-size: 17px; }
-:root[data-realm="forever"] .content-area .blk-table td { line-height: 1.6; }
+:root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .box { font-size: 17.5px; }
+:root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .data-row { font-size: 18px; }
+:root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .col-row { font-size: 17.5px; }
+:root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .prio-item { font-size: 18px; }
+:root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .blk-table { font-size: 17px; }
+:root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .blk-table td { line-height: 1.6; }
 @media (max-width: 600px) {
-  :root[data-realm="forever"] .content-area .box,
-  :root[data-realm="forever"] .content-area .data-row,
-  :root[data-realm="forever"] .content-area .col-row,
-  :root[data-realm="forever"] .content-area .prio-item,
-  :root[data-realm="forever"] .content-area .blk-table { font-size: 16.5px; }
+  :root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .box,
+  :root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .data-row,
+  :root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .col-row,
+  :root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .prio-item,
+  :root:is([data-realm="forever"], [data-realm="midnight"]) .content-area .blk-table { font-size: 16.5px; }
   .spell-tile { width: 76px; }
   .spell-tile img { width: 44px; height: 44px; }
   .spell-tile__name { font-size: 12.5px; }

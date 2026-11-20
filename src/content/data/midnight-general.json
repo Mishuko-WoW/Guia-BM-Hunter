@@ -1,0 +1,78 @@
+{
+  "_ayuda": "Pestaña General de Midnight (GeneralMidnight.astro). Mismo diseño que General de Forever. [[Hechizo]] debe existir en spells.json.",
+  "resumen": "El Hunter BM (Cazador de Bestias) es un especialista en daño a distancia cuyo daño sale de sus **mascotas y disparos**. Aquí tienes las mecánicas básicas en PvE para la **Season 2 (Parche 12.1)**: rotación, enfoque, mascotas, el nuevo **Tier Set S2** y las diferencias entre **Pack Leader** y **Dark Ranger**.",
+  "datos": [
+    { "valor": "12.1", "texto": "Season 2 de Midnight" },
+    { "valor": "2", "texto": "Talentos de héroe: Pack Leader y Dark Ranger" },
+    { "valor": "+20 %", "texto": "Daño con Cólera de las bestias (15 s)" },
+    { "valor": "+3 %", "texto": "Daño recibido con Marca del cazador" }
+  ],
+  "esencial": [
+    "Tu botón clave es [[Cólera de las bestias]]: toda la rotación gira en torno a él.",
+    "No malgastes Enfoque durante Cólera ni te quedes seco entre ventanas.",
+    "Usa [[Matar]] en cuanto tengas [[Aliado de la naturaleza]] o [[Aullido de la manada]].",
+    "En AoE, mantén siempre [[Tajo de la bestia]] con [[Paliza salvaje]].",
+    "Pon [[Marca del cazador]] al objetivo prioritario: dura todo el combate."
+  ],
+  "video": {
+    "titulo": "¿Prefieres verlo en vídeo?",
+    "texto": "Kills de raid en YouTube y clips rápidos con trucos en TikTok.",
+    "youtube": "https://www.youtube.com/@Mishuko-wow",
+    "tiktok": "https://www.tiktok.com/@mishuko.wow"
+  },
+  "cambios": {
+    "intro": "El Cazador de Bestias se mantiene prácticamente igual en la Season 2. Se ha **reducido su daño de burst**, pero a cambio se ha **aumentado su daño sostenido base**. [[Tajo de la bestia]] es mucho más permisivo (dura más y pega más) y, gracias al Tier Set S2, [[Disparo de cobra]] pasa a ser un botón mucho más fuerte, incluso en AoE.",
+    "lista": [
+      { "hechizo": "Disparo con púas", "nombre": "Tier Set (2 piezas)", "etiqueta": "Nuevo", "texto": "[[Disparo con púas]] hace que tus mascotas lancen 1 [[Pisotón]] adicional al 50 % de efectividad." },
+      { "hechizo": "Colmillo de cobra", "nombre": "Tier Set (4 piezas)", "etiqueta": "Nuevo", "texto": "Cada [[Pisotón]] acumula 1 carga de [[Colmillo de cobra]] (hasta 4)." },
+      { "hechizo": "Disparo de cobra", "nombre": "Impacto en la rotación", "etiqueta": "Clave", "texto": "En un objetivo, gasta las cargas con [[Disparo de cobra]] al llegar a 3-4. En AoE, úsalo solo con cargas **y** [[Tajo de la bestia]] activo." }
+    ]
+  },
+  "recurso": {
+    "titulo": "Recurso principal: Enfoque",
+    "filas": [
+      "**Enfoque** se regenera solo y la **Celeridad** acelera su regeneración.",
+      "El objetivo es no malgastarlo durante [[Cólera de las bestias]] ni quedarte seco entre ventanas.",
+      "[[Disparo con púas]] genera enfoque y [[Disparo de cobra]] lo consume."
+    ]
+  },
+  "heroes": [
+    {
+      "id": "pl",
+      "nombre": "Pack Leader",
+      "icono": "https://assets.rpglogs.com/img/warcraft/talents/hero/43_full.png",
+      "filas": [
+        "La rotación pivota sobre [[Aliado de la naturaleza]]: potencia mucho el siguiente [[Matar]].",
+        "[[¡Estampida!]] sale con el primer [[Matar]] tras [[Cólera de las bestias]]. !!Sin ajuste de altura!!: falla si no estás al mismo nivel que los enemigos.",
+        "La mayor parte del daño sale de tus mascotas: gestionarlas bien y orientar ¡Estampida! es crítico."
+      ]
+    },
+    {
+      "id": "dr",
+      "nombre": "Dark Ranger",
+      "icono": "https://wow.zamimg.com/images/wow/TextureAtlas/live/talents-heroclass-hunter-darkranger.webp",
+      "filas": [
+        "La rotación pivota sobre [[Fuego devastador]], que se obtiene durante [[Cólera de las bestias]]. En su ventana, prioriza [[Flecha negra]].",
+        "[[Flecha negra]] es tu habilidad principal: aplica daño en el tiempo, [[Tajo de la bestia]] en builds AoE y activa [[Aliado de la naturaleza]] para potenciar [[Matar]].",
+        "Durante Cólera, la habilidad se sustituye por [[Flecha lastimera]]: el único casteo del Hunter BM. Úsala cuando no tengas nada más o Cólera esté a punto de acabar."
+      ]
+    }
+  ],
+  "cooldown": {
+    "hechizo": "Cólera de las bestias",
+    "filas": [
+      { "hechizo": "Escabechina", "texto": "Aplica [[Escabechina]] al objetivo que ataque tu mascota. **Si la mascota no ataca nada, no hay sangrado.**" },
+      { "hechizo": "Cólera de las bestias", "texto": "Tus mascotas y tú infligís un **20 % más de daño durante 15 segundos**." },
+      { "hechizo": "¡Estampida!", "texto": "**En Pack Leader:** el siguiente [[Matar]] tras [[Cólera de las bestias]] activa [[¡Estampida!]]." },
+      { "hechizo": "Flecha lastimera", "texto": "**En Dark Ranger:** durante [[Cólera de las bestias]] se habilita [[Flecha lastimera]] para cerrar la ventana de daño." }
+    ]
+  },
+  "procs": [
+    { "titulo": "Aullido de la manada", "icono": "inv_ability_packleaderhunter_vicioushunt", "filas": ["Invoca una bestia de la manada. Usa [[Matar]] en cuanto esté activo."] },
+    { "titulo": "Aliado de la naturaleza", "icono": "ability_hunter_goforthethroat", "filas": ["Potencia mucho el siguiente [[Matar]]. Prioriza siempre que esté activo."] },
+    { "titulo": "Fuego devastador", "icono": "spell_shadow_painspike", "filas": ["**En Dark Ranger** define tu ventana de daño: durante ella prioriza [[Flecha negra]]."] },
+    { "titulo": "Colmillo de cobra", "icono": "inv_chest_mail_raidhunterulatek_d_01", "filas": ["Efecto del Tier Set S2: se acumula con cada [[Pisotón]] de [[Disparo con púas]].", "En Pack Leader gasta las cargas con [[Disparo de cobra]] a las 3; en Dark Ranger, a las 4."] },
+    { "titulo": "Tajo de la bestia", "icono": "ability_hunter_sickem", "filas": ["**En builds AoE** es prioritario mantenerlo con [[Paliza salvaje]] y, según talentos, [[Flecha negra]]."] },
+    { "titulo": "Marca del cazador", "icono": "ability_hunter_markedfordeath", "filas": ["Desde Midnight aumenta un 3 % el daño que recibe el objetivo durante **todo el combate**. Imprescindible en el objetivo prioritario."] }
+  ]
+}

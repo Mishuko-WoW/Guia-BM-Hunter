@@ -767,5 +767,17 @@
     "badge": "sp",
     "type": "Habilidad de mascota",
     "desc": "Llama a tu mascota. Con ella activa, ordénale atacar a tu objetivo antes de empezar a disparar."
+  },
+  "Pisotón": {
+    "icon": "ability_hunter_bestialdiscipline",
+    "badge": "sp",
+    "type": "Talento",
+    "desc": "Tu mascota pisotea el suelo e inflige daño físico en área a los enemigos cercanos."
+  },
+  "Escabechina": {
+    "icon": "ability_druid_primaltenacity",
+    "badge": "bf",
+    "type": "Debuff de sangrado",
+    "desc": "Aplicado por Cólera de las bestias: tus mascotas desangran al objetivo durante 12 s. Solo si la mascota está atacando."
   }
 }

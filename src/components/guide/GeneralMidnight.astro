@@ -1,0 +1,124 @@
+---
+// Pestaña General (Midnight) con el mismo diseño que General de Forever (clases lv-*/gn-* de forever.css).
+// Contenido: src/content/data/midnight-general.json. Todo [[hechizo]] debe existir en spells.json.
+import data from '../../content/data/midnight-general.json';
+import { getSpell, iconUrl } from '../../lib/spells';
+import { md, mentionedSpells } from '../../lib/markup';
+import { tabPath } from '../../lib/seo';
+import IndiceForever from '../forever/IndiceForever.astro';
+import BotonTikTok from '../BotonTikTok.astro';
+
+const faltan = [...new Set(mentionedSpells(JSON.stringify({ ...data, _ayuda: '' })))].filter((n) => !getSpell(n));
+if (faltan.length) throw new Error(`midnight-general.json: hechizos que no están en spells.json: ${faltan.join(', ')}`);
+
+const tip = (nombre: string) => {
+  const s = getSpell(nombre);
+  return { 'data-name': nombre, 'data-type': s?.type ?? '', 'data-desc': s?.desc ?? '' };
+};
+const ico = (nombre: string) => iconUrl(getSpell(nombre)?.icon || undefined);
+const INDICE = [
+  { id: 'gm-cambios', texto: 'Season 2' },
+  { id: 'gm-recurso', texto: 'Enfoque' },
+  { id: 'gm-heroes', texto: 'Pack Leader y Dark Ranger' },
+  { id: 'gm-cooldown', texto: 'Cooldown principal' },
+  { id: 'gm-procs', texto: 'Procs clave' },
+];
+---
+
+<div class="lv gn">
+  <div class="gn-hero">
+    <p set:html={md(data.resumen)} />
+    <ul class="gn-datos">
+      {data.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
+    </ul>
+  </div>
+
+  <div class="box box-tip gn-esencial">
+    <div class="box-title">Lo esencial en 30 segundos</div>
+    <ol>{data.esencial.map((t) => <li set:html={md(t)} />)}</ol>
+  </div>
+
+  <a class="gn-banner" href={tabPath('midnight', 'rotacion')}>
+    <img src={iconUrl('ability_hunter_killcommand')} alt="" width="40" height="40" />
+    <span><b>¿Quieres ir directo al daño?</b> Prioridades en un objetivo y en AoE, y el opener paso a paso.</span>
+    <span class="gn-banner__btn">Ver la rotación →</span>
+  </a>
+
+  <IndiceForever items={INDICE} />
+
+  <section class="lv-sec" id="gm-cambios">
+    <h3>Cambios de la clase en la Season 2 (Parche 12.1)</h3>
+    <p class="lv-lead" set:html={md(data.cambios.intro)} />
+    <div class="gn-cambios">
+      {data.cambios.lista.map((c) => (
+        <div class="gn-cambio">
+          <img src={ico(c.hechizo)} alt="" width="48" height="48" loading="lazy" {...tip(c.hechizo)} />
+          <div>
+            <h4>{c.nombre} <span class:list={['gn-tag', { 'is-new': c.etiqueta === 'Nuevo' }]}>{c.etiqueta}</span></h4>
+            <p set:html={md(c.texto)} />
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="gm-recurso">
+    <h3>{data.recurso.titulo}</h3>
+    <div class="lv-card gn-mec">
+      <h4><img src={iconUrl('ability_hunter_focusfire')} alt="" width="36" height="36" loading="lazy" />Enfoque</h4>
+      <ul class="lv-claves">{data.recurso.filas.map((f) => <li set:html={md(f)} />)}</ul>
+    </div>
+  </section>
+
+  <section class="lv-sec" id="gm-heroes">
+    <h3>Talentos de héroe: Pack Leader y Dark Ranger</h3>
+    <div class="gn-pros">
+      {data.heroes.map((h) => (
+        <div class="gn-col" style={`--c: var(--${h.id})`}>
+          <h4><img src={h.icono} alt="" width="32" height="32" loading="lazy" class="gm-hero-ico" />{h.nombre}</h4>
+          <ul class="lv-claves">{h.filas.map((t) => <li set:html={md(t)} />)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="gm-cooldown">
+    <h3>Cooldown principal: {data.cooldown.hechizo}</h3>
+    <div class="gn-cambios">
+      {data.cooldown.filas.map((f) => (
+        <div class="gn-cambio">
+          <img src={ico(f.hechizo)} alt="" width="48" height="48" loading="lazy" {...tip(f.hechizo)} />
+          <div><p set:html={md(f.texto)} /></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="gm-procs">
+    <h3>Procs clave</h3>
+    <div class="lv-grid">
+      {data.procs.map((m) => (
+        <div class="lv-card gn-mec">
+          <h4><img src={iconUrl(m.icono)} alt="" width="36" height="36" loading="lazy" />{m.titulo}</h4>
+          <ul class="lv-claves">{m.filas.map((f) => <li set:html={md(f)} />)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="gm-video">
+    <p><b>{data.video.titulo}</b> {data.video.texto}</p>
+    <div class="gm-video__btns">
+      <a class="gn-banner__btn" href={data.video.youtube} target="_blank" rel="noopener">YouTube →</a>
+      <BotonTikTok lugar="general-midnight" href={data.video.tiktok} compacto />
+    </div>
+  </div>
+</div>
+
+<style>
+  .gm-hero-ico { border-radius: 50%; vertical-align: middle; margin-right: 10px; }
+  .gm-video { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin: 28px 0 8px; padding: 18px 20px; background: var(--card); clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border); }
+  .gm-video p { margin: 0; }
+  .gm-video__btns { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .gm-video__btns .gn-banner__btn { text-decoration: none; }
+</style>
