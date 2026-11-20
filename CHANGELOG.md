@@ -17,6 +17,11 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Página oculta de mazmorras de Forever: Stratholme
+- `/forever/mazmorras/` (`src/pages/forever/mazmorras.astro`): **oculta** (sin botón en las pestañas, `noindex`, fuera del sitemap porque no tiene `.md`). Para publicarla: pestaña en `TABS_FOREVER`, SEO en `seo.ts` y un `.md` en `src/content/forever/paginas/`.
+- `MazmorrasForever.astro` + `forever-mazmorras.json`: estilo Diario de mazmorras. Mapa oficial de Wowhead (`classicplus/maps/eses/original/2017.jpg`) con los jefes numerados encima (oro = lado vivo, violeta = no-muerto; `x`/`y` en % y aproximados), fichas por lado con estrategia y botín para cazador, BiS pre-raid resaltado (Manteo del Barón negro, Guardahombros de la milicia del Inquisidor Carmesí), botín de enemigos normales y consejos. Estilos: bloque «MAZMORRAS» de `forever.css`.
+- Jefes y botín sacados de Wowhead Forever es (20-11-2026); estrategias escritas para que las revise Mishuko. `gen-forever-objetos.mjs` también baja el botín de `forever-mazmorras.json` (nombre es, calidad, icono).
+
 ## 2026-11-20 — Consumibles de Forever con la «mochila» de Midnight
 - `src/components/MochilaConsumibles.astro` (nuevo): la mochila de consumibles por grupos sale de `BisMidnight.astro` y la usan los dos BiS; estilos movidos al bloque «MOCHILA DE CONSUMIBLES» de `marca.css`.
 - `forever-bis.json`: consumibles en tres grupos con icono (Elixir y pergamino, Comida, Pociones), `etiqueta` opcional (Recomendado en el Elixir de la mangosta) y `consumiblesIntro`; `nota` = para qué sirve. `BisForever.astro` los pinta con el componente; el consejo de munición se queda debajo.

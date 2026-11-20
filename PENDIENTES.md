@@ -12,6 +12,7 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 
 ## 2. Mejoras de la web (código, C)
 
+- [ ] **Mazmorras de nivel 60 de Forever** (página oculta `/forever/mazmorras/`, empezada el 20-11): Stratholme hecha (M revisa estrategias, duración y posición de los jefes en el mapa). Faltan: Scholomance, La Masacre, Profundidades de Roca Negra y Cumbre de Roca Negra. Decidir si se publica.
 - [ ] **Midnight con el diseño de Forever** (C, pedido por Mishuko el 20-11): cada pestaña a JSON + componente con clases `lv-*`/`gn-*` (como `guide/GeneralMidnight.astro`). Hechas: General, Mascotas, Macros, BiS (Stats se queda con su diseño de antes, decisión de Mishuko 20-11). Faltan: Talentos, Rotación/Opener, Simulación y Coaching. Mishuko revisa en local antes de publicar.
 - [ ] **Propuestas de la auditoría SEO del 20-11** (C, decide M): ver detalle en CHANGELOG.md (2026-11-20).
   - Portada: título de 64 caracteres y descripción de 192 (Google corta hacia 60/155). Tras medir el 2-12, pasar a «Guía Hunter BM Forever y Midnight: Cazador de Bestias» (53) y una descripción ≤155.

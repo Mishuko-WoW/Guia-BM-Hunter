@@ -1,5 +1,5 @@
 // Genera src/content/data/forever-objetos.json: nombre en español, calidad e icono de cada objeto/hechizo
-// que aparece en src/content/data/forever-bis.json (lo usa BisForever.astro).
+// que aparece en src/content/data/forever-bis.json (lo usa BisForever.astro) y en forever-mazmorras.json.
 // Uso: node scripts/gen-forever-objetos.mjs   (volver a ejecutarlo al añadir objetos a forever-bis.json)
 // Nombre: Wowhead Forever es-ES → si no está traducido (sale entre [corchetes]), Wowhead Classic es-ES → nombre inglés.
 import fs from 'node:fs';
@@ -19,6 +19,12 @@ const spells = new Set();
 for (const a of bis.armas ?? []) items.add(a.alianza), items.add(a.horda);
 for (const g of bis.consumibles) for (const o of g.objetos) items.add(o.id);
 for (const e of bis.encantamientos) (e.tipo === 'spell' ? spells : items).add(e.id);
+// Botín de la página de mazmorras (forever-mazmorras.json)
+const mazmorras = JSON.parse(fs.readFileSync('src/content/data/forever-mazmorras.json', 'utf8'));
+for (const m of mazmorras.mazmorras) {
+  for (const j of m.jefes) for (const id of j.botin) items.add(id);
+  for (const x of m.trash ?? []) items.add(x.id);
+}
 
 const out = { item: {}, spell: {} };
 for (const id of [...items].sort((a, b) => a - b)) {

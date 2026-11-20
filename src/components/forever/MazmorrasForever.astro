@@ -1,0 +1,117 @@
+---
+// Página OCULTA de mazmorras de nivel 60 (Forever), estilo Diario de mazmorras: mapa oficial con los jefes
+// numerados encima (pulsar → su ficha), fichas por lado con estrategia y botín para cazador (BiS resaltado).
+// Datos: src/content/data/forever-mazmorras.json; nombres e iconos del botín en forever-objetos.json
+// (node scripts/gen-forever-objetos.mjs). Estilos: bloque «MAZMORRAS» de forever.css.
+import data from '../../content/data/forever-mazmorras.json';
+import objetos from '../../content/data/forever-objetos.json';
+import { md } from '../../lib/markup';
+import { iconUrl } from '../../lib/spells';
+import { tabPath } from '../../lib/seo';
+import IndiceForever from './IndiceForever.astro';
+
+type Obj = { nombre: string; calidad: number; icono: string };
+const OBJ = (objetos as { item: Record<string, Obj> }).item;
+const obj = (id: number) => {
+  const o = OBJ[id];
+  if (!o) throw new Error(`forever-mazmorras.json: falta el objeto ${id} en forever-objetos.json. Ejecuta node scripts/gen-forever-objetos.mjs`);
+  return o;
+};
+const url = (id: number) => `https://www.wowhead.com/forever/es/item=${id}`;
+const TIPO: Record<string, string> = { jefe: 'Jefe', raro: 'Raro', invocado: 'Invocado' };
+const INDICE = data.mazmorras.map((m) => ({ id: `mz-${m.id}`, texto: m.nombre }));
+---
+
+<div class="lv gn mz">
+  <div class="gn-hero">
+    <p>Las mazmorras de nivel 60 que importan al <strong>Hunter BM</strong>: mapa con los jefes, cómo pelear cada uno y qué suelta para ti. Lo que está en nuestra <a href={tabPath('forever', 'bis')}>lista BiS pre-raid</a> sale resaltado.</p>
+  </div>
+
+  {INDICE.length > 1 && <IndiceForever items={INDICE} />}
+
+  {data.mazmorras.map((m) => (
+    <section class="lv-sec mz-mazmorra" id={`mz-${m.id}`}>
+      <h3>{m.nombre} <small class="mz-zona">{m.zona}</small></h3>
+      <ul class="gn-datos mz-datos">
+        {m.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
+      </ul>
+      <p class="lv-lead" set:html={md(m.resumen)} />
+
+      {m.bis.length > 0 && (
+        <div class="mz-bis">
+          <b>De aquí sale tu BiS pre-raid:</b>
+          {m.bis.map((id) => {
+            const o = obj(id);
+            return <a class={`bf-obj q${o.calidad}`} href={url(id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="28" height="28" loading="lazy" />{o.nombre}</a>;
+          })}
+        </div>
+      )}
+
+      <!-- Mapa oficial con los jefes encima (x/y en % de la imagen) -->
+      <figure class="mz-mapa">
+        <img src={m.mapa} alt={`Mapa de ${m.nombre}`} width="1024" height="683" loading="lazy" />
+        {m.jefes.filter((j) => j.x || j.y).map((j) => (
+          <a class:list={['mz-pin', `mz-pin--${j.lado}`, `is-${j.tipo}`]} href={`#mz-${m.id}-${j.n}`} style={`left:${j.x}%;top:${j.y}%`} title={j.nombre}>{j.n}</a>
+        ))}
+        <figcaption>
+          {m.lados.map((l) => <span class={`mz-ley mz-ley--${l.id}`}><i></i>{l.nombre}</span>)}
+          <span class="mz-ley mz-ley--nota">Posiciones aproximadas</span>
+        </figcaption>
+      </figure>
+
+      {m.lados.map((l) => (
+        <div class="mz-lado">
+          <h4 class={`mz-lado__t mz-lado__t--${l.id}`}>{l.nombre}</h4>
+          <p class="mz-lado__txt">{l.texto}</p>
+          <div class="mz-jefes">
+            {m.jefes.filter((j) => j.lado === l.id).map((j) => (
+              <article class:list={['mz-jefe', `mz-jefe--${l.id}`]} id={`mz-${m.id}-${j.n}`}>
+                <header>
+                  <span class="mz-jefe__n">{j.n}</span>
+                  <h5>{j.nombre}</h5>
+                  {j.tipo !== 'jefe' && <span class="gn-tag">{TIPO[j.tipo]}</span>}
+                </header>
+                <p set:html={md(j.estrategia)} />
+                {j.botin.length > 0 && (
+                  <ul class="mz-botin">
+                    {j.botin.map((id) => {
+                      const o = obj(id);
+                      const esBis = m.bis.includes(id);
+                      return (
+                        <li class:list={{ 'is-bis': esBis }}>
+                          <a class={`bf-obj q${o.calidad}`} href={url(id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="28" height="28" loading="lazy" />{o.nombre}</a>
+                          {esBis && <span class="mz-bis-tag">BiS</span>}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      {m.trash.length > 0 && (
+        <div class="mz-trash">
+          <h4>Botín de enemigos normales</h4>
+          {m.trash.map((t) => {
+            const o = obj(t.id);
+            return (
+              <p>
+                <a class={`bf-obj q${o.calidad}`} href={url(t.id)} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(o.icono)} alt="" width="28" height="28" loading="lazy" />{o.nombre}</a>
+                {m.bis.includes(t.id) && <span class="mz-bis-tag">BiS</span>}
+                <span class="mz-trash__src"> · {t.fuente}. {t.nota}</span>
+              </p>
+            );
+          })}
+        </div>
+      )}
+
+      <div class="box box-tip">
+        <div class="box-title">Consejos</div>
+        <ul class="lv-claves">{m.consejos.map((c) => <li set:html={md(c)} />)}</ul>
+      </div>
+    </section>
+  ))}
+</div>

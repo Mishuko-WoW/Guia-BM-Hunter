@@ -1,0 +1,34 @@
+---
+// /forever/mazmorras/ — página OCULTA (sin botón en las pestañas, noindex y fuera del sitemap: no tiene .md
+// en src/content/forever/paginas/). Para publicarla: añadir la pestaña a TABS_FOREVER, su SEO y un .md.
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import TabBar from '../../components/TabBar.astro';
+import MazmorrasForever from '../../components/forever/MazmorrasForever.astro';
+import '../../styles/forever.css';
+
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replace(/^\//, '')}`;
+---
+
+<MainLayout
+  realm="forever"
+  defaultTab="mazmorras"
+  title="Mazmorras de nivel 60 para Hunter BM — WoW Forever"
+  description="Mazmorras de nivel 60 de WoW Forever para el Cazador de Bestias: mapa, jefes, estrategias y botín."
+  noindex={true}
+>
+  <Header realm="forever" subtitulo="Mazmorras de nivel 60" />
+  <TabBar realm="forever" activa="" />
+  <div class="content-area">
+    <div id="tab-mazmorras" class="tab-panel active">
+      <h2>Mazmorras de nivel 60 del Hunter BM</h2>
+      <MazmorrasForever />
+    </div>
+  </div>
+  <script is:inline src={withBase('scripts/bm-guide.js')}></script>
+  <script is:inline>
+    window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: false };
+  </script>
+  <script is:inline src="https://wow.zamimg.com/widgets/power.js"></script>
+</MainLayout>

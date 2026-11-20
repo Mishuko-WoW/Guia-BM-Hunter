@@ -1,0 +1,50 @@
+{
+  "_ayuda": "Página OCULTA /forever/mazmorras/ (noindex, sin botón, fuera del sitemap). Una entrada por mazmorra. Jefes: n (número en el mapa), lado, x/y = posición en % sobre la imagen del mapa (aproximada, ajustar a ojo), tipo: jefe | raro | invocado. botin: ids de Wowhead Forever (bis: true = está en nuestra lista BiS). Nombres y botín sacados de Wowhead Forever es (20-11-2026); estrategias para que las revise Mishuko.",
+  "mazmorras": [
+    {
+      "id": "stratholme",
+      "nombre": "Stratholme",
+      "zona": "Tierras de la Peste del Este",
+      "mapa": "https://wow.zamimg.com/images/wow/classicplus/maps/eses/original/2017.jpg",
+      "datos": [
+        { "valor": "58-60", "texto": "Nivel recomendado (jefes 57-62)" },
+        { "valor": "2", "texto": "Lados: vivo (Cruzada Escarlata) y no-muerto (Barón)" },
+        { "valor": "5", "texto": "Jugadores" },
+        { "valor": "45-60 min", "texto": "Por lado, aproximado" }
+      ],
+      "resumen": "La ciudad caída de Lordaeron. Se divide en dos mazmorras con entradas distintas: el **lado vivo** (puerta principal), con la Cruzada Escarlata y **Balnazzar** al final, y el **lado no-muerto** (puerta de servicio), con los tres zigurats y el **Barón Osahendido**. Para el Hunter BM es parada obligatoria: de aquí salen **2 piezas de nuestra lista pre-raid**.",
+      "lados": [
+        { "id": "vivo", "nombre": "Lado vivo", "texto": "Entrada por la puerta principal. Plaza del Rey, Hilera del Mercado, Plaza de los Cruzados y el Bastión Escarlata." },
+        { "id": "muerto", "nombre": "Lado no-muerto", "texto": "Entrada por la puerta de servicio. Plaza de los Ancianos, los tres zigurats y el matadero del Barón." }
+      ],
+      "jefes": [
+        { "n": 1, "nombre": "Skul", "lado": "vivo", "tipo": "raro", "x": 46, "y": 69, "estrategia": "Raro: no sale siempre. Patrulla por la Plaza del Rey; si lo ves, merece la pena por sus guantes.", "botin": [13395] },
+        { "n": 2, "nombre": "Escupezones Foreste", "lado": "vivo", "tipo": "raro", "x": 60, "y": 54, "estrategia": "Raro de la Hilera del Mercado. Pelea sencilla: que el tanque lo aparte de los grupos cercanos.", "botin": [13383] },
+        { "n": 3, "nombre": "El imperdonable", "lado": "vivo", "tipo": "jefe", "x": 57, "y": 50, "estrategia": "Llega acompañado de fantasmas. Limpiad primero a los acompañantes con daño en área y luego centraos en él.", "botin": [13404] },
+        { "n": 4, "nombre": "Timmy el Cruel", "lado": "vivo", "tipo": "jefe", "x": 36, "y": 54, "estrategia": "Aparece al limpiar a todos los no-muertos de la Plaza de los Cruzados. Pega muy fuerte en melé: tu mascota no debe tanquearlo, déjaselo al tanque.", "botin": [13402] },
+        { "n": 5, "nombre": "Ezra Grimm", "lado": "vivo", "tipo": "jefe", "x": 52, "y": 72, "estrategia": "Jefe de la Plaza del Rey. Por confirmar en Forever: su botín es nuevo respecto al Classic original.", "botin": [276396] },
+        { "n": 6, "nombre": "Malor el Entusiasta", "lado": "vivo", "tipo": "jefe", "x": 31, "y": 56, "estrategia": "Primer jefe del Bastión Escarlata. Sin botín de cazador: se mata de paso.", "botin": [] },
+        { "n": 7, "nombre": "Cañonero Jefe Willey", "lado": "vivo", "tipo": "jefe", "x": 27, "y": 66, "estrategia": "Invoca fusileros escarlata durante el combate. Que alguien los controle o los mate rápido; el resto, a Willey. Suelta un **arma de fuego** muy buena para subir.", "botin": [13380, 18721, 13382] },
+        { "n": 8, "nombre": "Archivista Galford", "lado": "vivo", "tipo": "jefe", "x": 21, "y": 65, "estrategia": "Lanza Nova de fuego a su alrededor: quédate a distancia máxima. Al terminar, quema los archivos si tienes la misión.", "botin": [13387] },
+        { "n": 9, "nombre": "Balnazzar", "lado": "vivo", "tipo": "jefe", "x": 25, "y": 78, "estrategia": "Empiezas contra el **Gran Cruzado Dathrohan**; al bajarle la vida se transforma en Balnazzar. Usa control mental y miedo: separaos para que no alcance a varios a la vez.", "botin": [13359] },
+        { "n": 10, "nombre": "Jefe de correos Gassol", "lado": "vivo", "tipo": "invocado", "x": 0, "y": 0, "estrategia": "Se invoca abriendo los buzones de la ciudad con la llave del cartero. Botín de malla y anillo útiles.", "botin": [13392] },
+        { "n": 11, "nombre": "Magistrado Barthilas", "lado": "muerto", "tipo": "jefe", "x": 37, "y": 34, "estrategia": "Si os ve, huye hacia el matadero del Barón y lo encontraréis allí después. Matarlo antes ahorra tiempo.", "botin": [18726] },
+        { "n": 12, "nombre": "Pidrespina", "lado": "muerto", "tipo": "raro", "x": 35, "y": 39, "estrategia": "Gárgola rara de la Plaza de los Ancianos. Si aparece, su capa es buena.", "botin": [13397] },
+        { "n": 13, "nombre": "Baronesa Anastari", "lado": "muerto", "tipo": "jefe", "x": 66, "y": 14, "estrategia": "Primer zigurat. Posee a un jugador y lanza un lamento que silencia: no os agrupéis y matadla rápido. Suelta un **arco** y un collar para cazador.", "botin": [18729, 18728, 13538] },
+        { "n": 14, "nombre": "Nerub'enkan", "lado": "muerto", "tipo": "jefe", "x": 55, "y": 37, "estrategia": "Envuelve en telarañas e invoca escarabajos: mátalos con daño en área. Suelta las **Botas de acechabestias** (conjunto de cazador) y una **ballesta**.", "botin": [16675, 18738, 13532] },
+        { "n": 15, "nombre": "Maleki el Pálido", "lado": "muerto", "tipo": "jefe", "x": 71, "y": 36, "estrategia": "Mago de escarcha: encierra en hielo y drena maná. Quédate a distancia y usa Picadura de víbora si te molesta el maná.", "botin": [284587, 13528] },
+        { "n": 16, "nombre": "Ramstein el Empachador", "lado": "muerto", "tipo": "jefe", "x": 50, "y": 20, "estrategia": "Pisotea y noquea a quien tenga delante. Al morir llega una oleada de guardias negros: tened listo el daño en área.", "botin": [18723, 13373] },
+        { "n": 17, "nombre": "Barón Osahendido", "lado": "muerto", "tipo": "jefe", "x": 44, "y": 17, "estrategia": "Levanta esqueletos durante todo el combate: daño en área sobre ellos y el resto al Barón. Su **Manteo del Barón negro** es nuestra capa pre-raid.", "botin": [13340, 16678, 22410, 13345] }
+      ],
+      "trash": [
+        { "id": 18742, "fuente": "Inquisidor Carmesí (lado vivo, enemigo normal)", "nota": "No es de jefe: sale de los Inquisidores del Bastión Escarlata. Si te falta, limpia bien esa zona." }
+      ],
+      "bis": [13340, 18742],
+      "consejos": [
+        "Haz los dos lados en días distintos si vas justo de tiempo: cada uno es una mazmorra completa.",
+        "En el lado no-muerto, la puerta del matadero solo se abre al matar a los tres jefes de los zigurats.",
+        "Lleva munición de sobra: entre los dos lados gastas mucha."
+      ]
+    }
+  ]
+}
