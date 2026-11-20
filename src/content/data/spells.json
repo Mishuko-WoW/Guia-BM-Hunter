@@ -779,5 +779,11 @@
     "badge": "bf",
     "type": "Debuff de sangrado",
     "desc": "Aplicado por Cólera de las bestias: tus mascotas desangran al objetivo durante 12 s. Solo si la mascota está atacando."
+  },
+  "Ansia de sangre": {
+    "icon": "spell_nature_bloodlust",
+    "badge": "pr",
+    "type": "Efecto de grupo",
+    "desc": "Efecto porcentual: no le afectan los rendimientos decrecientes del rating."
   }
 }

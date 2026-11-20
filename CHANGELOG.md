@@ -17,6 +17,9 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Midnight con el diseño de Forever (2): Stats
+- Stats de Midnight en `midnight-estadisticas.json` → `guide/StatsMidnight.astro` (resumen con datos, índice, prioridad ST y AoE en tarjetas numeradas `st-rank`, tabla de qué aporta cada secundaria, tabla de rendimientos decrecientes). Fuera emojis y barras a mano. `spells.json`: Ansia de sangre.
+
 ## 2026-11-20 — Midnight con el diseño de Forever (1): General
 - Pestaña General de Midnight pasada al formato de Forever: datos en `src/content/data/midnight-general.json` → `src/components/guide/GeneralMidnight.astro` (clases `lv-*`/`gn-*`: resumen con datos, «Lo esencial», banner a Rotación, índice, secciones Season 2, Enfoque, héroes, cooldown y procs, vídeo). `SeccionMecanicas.astro` queda como en `SeccionForever` (+ «Última revisión por Mishuko»). Sin HTML ni colores a mano.
 - `forever.css` se carga también en Midnight (`GuideContent.astro`) y el bloque «texto más grande» de `marca.css` vale para las dos versiones.

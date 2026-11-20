@@ -12,6 +12,7 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 
 ## 2. Mejoras de la web (código, C)
 
+- [ ] **Midnight con el diseño de Forever** (C, pedido por Mishuko el 20-11): cada pestaña a JSON + componente con clases `lv-*`/`gn-*` (como `guide/GeneralMidnight.astro`). Hechas: General, Stats. Faltan: Mascotas, Macros, Talentos, Rotación/Opener, BiS (pasar `SeccionBiS.astro` a datos), Simulación y Coaching. Mishuko revisa en local antes de publicar.
 - [ ] **Propuestas de la auditoría SEO del 20-11** (C, decide M): ver detalle en CHANGELOG.md (2026-11-20).
   - Portada: título de 64 caracteres y descripción de 192 (Google corta hacia 60/155). Tras medir el 2-12, pasar a «Guía Hunter BM Forever y Midnight: Cazador de Bestias» (53) y una descripción ≤155.
   - «Cazador de Bestias» no cabe en el título sin perder lo concreto en Talentos, Stats, BiS, Macros y Simulación de Midnight ni en Talentos, Stats, Rotación y Macros de Forever (Talentos de Forever saca un 10 % así). Se deja; revisar el CTR de cada una el 2-12.
