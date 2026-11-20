@@ -84,8 +84,8 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'Talentos del Cazador de Bestias en WoW Forever',
     },
     estadisticas: {
-      title: 'Stats Hunter BM WoW Forever: prioridad de estadísticas',
-      description: 'Prioridad de estadísticas del Cazador de Bestias (Hunter BM) en WoW Forever: golpe, agilidad, crítico y poder de ataque.',
+      title: 'Stats Hunter BM WoW Forever: golpe al 8 % y prioridad',
+      description: 'Prioridad de estadísticas del Cazador de Bestias (Hunter BM) en WoW Forever: daño de arma, golpe al 8 % con el pre-raid, agilidad y crítico.',
       h1sub: 'Estadísticas del Cazador de Bestias en WoW Forever',
     },
     rotacion: {
@@ -109,8 +109,8 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'Macros del Cazador en WoW Forever',
     },
     leveling: {
-      title: 'Guía leveling Hunter WoW Forever 1-60: Cazador de Bestias',
-      description: 'Cómo subir el Cazador del 1 al 60 en WoW Forever: talentos por nivel, mejor munición y flechas, dónde conseguir carcaj y bolsa de munición y mejores pets.',
+      title: 'Leveling Hunter WoW Forever 1-60 rápido: ruta y talentos',
+      description: 'Sube tu Cazador de Bestias del 1 al 60 rápido en WoW Forever: ruta por niveles, talentos, qué comprar en el instructor, munición, carcaj y mejores pets.',
       h1sub: 'Leveling 1-60 del Cazador en WoW Forever',
     },
     coaching: {

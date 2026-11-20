@@ -17,6 +17,9 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Títulos de Leveling y Stats de Forever
+- `seo.ts`: Leveling «Leveling Hunter WoW Forever 1-60 rápido: ruta y talentos» (56; antes «Guía leveling… : Cazador de Bestias», 3,2 % de CTR con 498 impresiones) y descripción con «Cazador de Bestias», ruta e instructor (152). Stats «Stats Hunter BM WoW Forever: golpe al 8 % y prioridad» (53; antes 1,8 % con 114) y descripción con daño de arma y golpe con el pre-raid (140). Medir el CTR el 2-12.
+
 ## 2026-11-20 — RestedXP en cada tramo de Leveling
 - `LevelingForever.astro`: enlace de afiliado en la cabecera de cada tramo de la hoja de ruta (donde mira quien escribe su nivel), «Misiones de estos niveles en orden…: RestedXP (10 % de descuento)», `rel="sponsored"`, GA4 `afiliado_click` con `lugar` `leveling-tramo`. Estilo `.lv-panel__rxp` en `forever.css`. El banner de arriba (`RecomendacionRestedXP.astro`) ya dice también el 10 % de descuento en Leveling. Motivo: 0 clics desde Leveling del 18 al 20-11 con 341 vistas.
 

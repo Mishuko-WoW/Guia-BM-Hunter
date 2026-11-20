@@ -9,7 +9,6 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 ## 1. Urgente (esta semana, mientras dura el tirón de Forever)
 
 - [ ] **62 sesiones «(sin definir)» con 0 % de interacción en GA4 desde el 18-11** (C, 30 min): antes solo había 1. Comprobar si las causa el `gtag('set')` de `MainLayout.astro` (sesiones sin `session_start`/fuente).
-- [ ] **Títulos de Leveling y Estadísticas de Forever** (C, 20 min): CTR 3,2 % (498 impresiones) y 1,8 % (114) en Search Console del 18-19-11. Título concreto, como en Talentos.
 
 ## 2. Mejoras de la web (código, C)
 
@@ -61,6 +60,7 @@ Aprobado por Mishuko el 18-11 y avisado a Codex en `EQUIPO.md`. Datos de TikTok 
 ## Hecho
 
 - [x] 2026-11-20 · RestedXP en cada tramo de Leveling de Forever (`lugar` leveling-tramo) y «10 % de descuento» en el banner. Medir clics por `lugar` el 2-12.
+- [x] 2026-11-20 · Títulos y descripciones de Leveling («1-60 rápido: ruta y talentos») y Stats («golpe al 8 %») de Forever. Medir su CTR el 2-12.
 - [x] 2026-11-20 · GA4: `afiliado_click` marcado como evento clave (3 clics del 18 al 20-11, todos desde `cabecera-forever`).
 - [x] 2026-11-20 · Análisis intermedio (`informes/analisis-2026-11-20.md`, datos en `informes/datos-2026-11-20/`).
 - [x] 2026-11-20 · Comprobado en GA4 que el tiempo por página ya da valores reales (Mascotas: 1 min 19 s; antes 5 s).
