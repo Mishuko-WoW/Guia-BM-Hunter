@@ -1,10 +1,18 @@
-﻿<div id="tab-simulacion" class="tab-panel">
+---
+import EnResumen from './EnResumen.astro';
+import Faq from './Faq.astro';
+import SigueGuia from './SigueGuia.astro';
+---
+
+<div id="tab-simulacion" class="tab-panel">
   <main class="container">
 
     <header class="header">
       <h2 class="mk-h-intro" style="font-size:26px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:0.5rem">Aprende a simular a tu personaje con Raidbots</h2>
       <p style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">Sabrás usar cada herramienta para tomar decisiones basadas en datos, no en sensaciones.</p>
     </header>
+
+    <EnResumen tab="simulacion" />
 
     <div class="hero-img">
       <img src="https://i.imgur.com/oJNtkAL.png" alt="Raidbots - herramienta central para simular al Hunter BM" />
@@ -25,35 +33,35 @@
           <button type="button" class="feature-box feature-link" onclick="document.getElementById('simulacion-quick-sim')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
             <div class="icon">⚡</div>
             <div>
-              <h4>Quick Sim</h4>
+              <span class="fb-t">Quick Sim</span>
               <p>Referencia rápida del DPS actual.</p>
             </div>
           </button>
           <button type="button" class="feature-box feature-link" onclick="document.getElementById('simulacion-top-gear')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
             <div class="icon">🏆</div>
             <div>
-              <h4>Top Gear</h4>
+              <span class="fb-t">Top Gear</span>
               <p>Encuentra la mejor combinación de equipo posible.</p>
             </div>
           </button>
           <button type="button" class="feature-box feature-link" onclick="document.getElementById('simulacion-droptimizer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
             <div class="icon">🎲</div>
             <div>
-              <h4>Droptimizer</h4>
+              <span class="fb-t">Droptimizer</span>
               <p>Analiza qué drops te mejoran.</p>
             </div>
           </button>
           <button type="button" class="feature-box feature-link" onclick="document.getElementById('simulacion-stat-weights')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
             <div class="icon">📊</div>
             <div>
-              <h4>Stat Weights</h4>
+              <span class="fb-t">Stat Weights</span>
               <p>Consulta valores con contexto.</p>
             </div>
           </button>
           <button type="button" class="feature-box feature-link feature-box-wide" onclick="document.getElementById('simulacion-weekly-vault')?.scrollIntoView({ behavior: 'smooth', block: 'start' });">
             <div class="icon">🗝️</div>
             <div>
-              <h4>Gran Cámara</h4>
+              <span class="fb-t">Gran Cámara</span>
               <p>Simula antes de elegir recompensa.</p>
             </div>
           </button>
@@ -480,6 +488,9 @@
       <a href="https://raidbots.com" target="_blank" rel="noopener noreferrer" class="btn-primary">Abrir Raidbots ↗</a>
     </section>
 
+    <SigueGuia tab="simulacion" />
+    <Faq tab="simulacion" titulo="simulación" />
+
   </main>
 
   <div id="simLightbox" class="sim-lightbox" aria-hidden="true">
@@ -621,7 +632,7 @@
   .feature-box { background: var(--bg-base); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem; transition: all 0.2s ease; display: flex; align-items: flex-start; gap: 12px; }
   .feature-box:hover { border-color: var(--accent-gold); background: var(--bg-surface-hover); }
   .feature-box .icon { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-gold-dim); border: 1px solid color-mix(in srgb, var(--pl) 30%, transparent); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-  .feature-box h4 { font-size: 14px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .feature-box .fb-t { display: block; font-size: 14px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.05em; }
   .feature-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.4; }
 
   .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }

@@ -1,0 +1,73 @@
+{
+  "_ayuda": "«Sigue con la guía» al final de cada pestaña (SigueGuia.astro): enlaces a las pestañas relacionadas con su ruta real (tabPath). `realm` opcional = enlace a la otra versión. El título y el icono salen de la pestaña (tabs.ts). Forever General, Stats y BiS tienen su propio bloque (forever-general.json, forever-estadisticas.json, forever-bis.json).",
+  "midnight": {
+    "mecanicas": [
+      { "tab": "talentos", "texto": "Las builds de Pack Leader y Dark Ranger para raid y M+, con su string." },
+      { "tab": "rotacion", "texto": "Prioridades a un objetivo y en AoE, y el opener paso a paso." },
+      { "tab": "bis", "texto": "La mejor pieza por ranura, encantamientos, gemas y consumibles." },
+      { "tab": "mecanicas", "realm": "forever", "titulo": "Guía de WoW Forever", "texto": "¿Juegas Forever? Build 31/20/0, las mejores mascotas y leveling 1-60." }
+    ],
+    "talentos": [
+      { "tab": "rotacion", "texto": "Cómo se juega cada build: prioridades y opener." },
+      { "tab": "estadisticas", "texto": "Qué estadísticas subir primero en tu equipo." },
+      { "tab": "simulacion", "texto": "Comprueba con Raidbots qué rinde más en tu personaje." }
+    ],
+    "estadisticas": [
+      { "tab": "bis", "texto": "La mejor pieza por ranura, encantamientos y gemas." },
+      { "tab": "simulacion", "texto": "Tus valores exactos con Raidbots y Top Gear." },
+      { "tab": "talentos", "texto": "Las builds de raid y M+." }
+    ],
+    "rotacion": [
+      { "tab": "talentos", "texto": "La build que corresponde a cada rotación." },
+      { "tab": "macros", "texto": "Macros con /petattack para Matar, Disparo con púas y Cólera de las bestias." },
+      { "tab": "mascotas", "texto": "Qué mascota y qué especialización llevar." }
+    ],
+    "bis": [
+      { "tab": "estadisticas", "texto": "Qué estadísticas buscar en cada pieza." },
+      { "tab": "simulacion", "texto": "Top Gear para elegir la mejor combinación de equipo." },
+      { "tab": "talentos", "texto": "Las builds de raid y M+." }
+    ],
+    "mascotas": [
+      { "tab": "macros", "texto": "Macros para que tu mascota cargue siempre a tu objetivo." },
+      { "tab": "rotacion", "texto": "Prioridades a un objetivo y en AoE." },
+      { "tab": "mascotas", "realm": "forever", "titulo": "Mascotas de WoW Forever", "texto": "¿Juegas Forever? El Top 5 de mascotas, Ta'shkal y dónde domesticarlas." }
+    ],
+    "macros": [
+      { "tab": "rotacion", "texto": "Cuándo pulsar cada habilidad." },
+      { "tab": "mascotas", "texto": "Qué mascota y qué especialización llevar." },
+      { "tab": "talentos", "texto": "Las builds de raid y M+." }
+    ],
+    "simulacion": [
+      { "tab": "bis", "texto": "La mejor pieza por ranura como punto de partida." },
+      { "tab": "estadisticas", "texto": "La prioridad general de estadísticas." },
+      { "tab": "coaching", "texto": "Revisión de tus logs y plan de mejora con Mishuko." }
+    ]
+  },
+  "forever": {
+    "talentos": [
+      { "tab": "rotacion", "texto": "Qué pulsar y en qué orden con la build 31/20/0." },
+      { "tab": "leveling", "texto": "Talentos, instructor, mascotas y munición nivel a nivel." },
+      { "tab": "mascotas", "texto": "Las 5 mejores pets, familias y dónde domesticar." }
+    ],
+    "rotacion": [
+      { "tab": "talentos", "texto": "La build 31/20/0 y el árbol para copiar." },
+      { "tab": "macros", "texto": "Tiro automático que no se corta y la mascota con una tecla." },
+      { "tab": "estadisticas", "texto": "Golpe, agilidad y crítico: qué buscar primero." }
+    ],
+    "mascotas": [
+      { "tab": "leveling", "texto": "Qué pet usar en cada tramo: jabalí del 10 al 30 y felino del 30 al 60." },
+      { "tab": "macros", "texto": "Ataque de mascota con el ratón y curar, revivir o llamarla con un botón." },
+      { "tab": "rotacion", "texto": "Mascota al ataque e Ira de bestias a reutilización." }
+    ],
+    "macros": [
+      { "tab": "rotacion", "texto": "Prioridades a un objetivo y en área." },
+      { "tab": "mascotas", "texto": "Las 5 mejores pets, familias y dónde domesticar." },
+      { "tab": "talentos", "texto": "La build 31/20/0 y el árbol para copiar." }
+    ],
+    "leveling": [
+      { "tab": "talentos", "texto": "La build 31/20/0 completa para el nivel 60." },
+      { "tab": "mascotas", "texto": "El Top 5 de mascotas, Ta'shkal y dónde domesticarlas." },
+      { "tab": "bis", "texto": "El equipo pre-raid para cuando llegues al 60." }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+---
+// «Sigue con la guía»: enlaces a las pestañas relacionadas (enlazado interno para Google y para el visitante).
+// Datos en src/content/data/relacionadas.json; pestaña sin lista = no sale nada.
+// Mismo diseño que el bloque de Forever General/Stats/BiS (clases gn-next, en marca.css).
+import relacionadas from '../content/data/relacionadas.json';
+import { TABS, ICONO_TAB, type GuideRealm } from '../lib/tabs';
+import { tabPath } from '../lib/seo';
+import { iconUrl } from '../lib/spells';
+
+interface Props {
+  realm?: GuideRealm;
+  tab: string;
+}
+type Item = { tab: string; texto: string; realm?: GuideRealm; titulo?: string };
+const { realm = 'midnight', tab } = Astro.props;
+const items = ((relacionadas[realm] as Record<string, Item[]>)[tab] ?? []).map((it) => {
+  const r = it.realm ?? realm;
+  return {
+    href: tabPath(r, it.tab),
+    titulo: it.titulo ?? TABS[r].find((t) => t.id === it.tab)?.label ?? it.tab,
+    icono: iconUrl(ICONO_TAB[it.tab] ?? ICONO_TAB.mecanicas),
+    texto: it.texto,
+  };
+});
+---
+
+{items.length > 0 && (
+  <section class:list={['mk-sigue', { 'lv-sec': realm === 'forever' }]} aria-labelledby={`sigue-${tab}`}>
+    <h3 id={`sigue-${tab}`}>Sigue con la guía</h3>
+    <div class="gn-next">
+      {items.map((n) => (
+        <a class="gn-next__item" href={n.href}>
+          <img src={n.icono} alt="" width="44" height="44" loading="lazy" />
+          <span><b>{n.titulo}</b>{n.texto}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

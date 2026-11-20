@@ -4,7 +4,7 @@
 // · Escritorio: barra de pestañas fija arriba (.mk-tabs).
 // · Móvil (≤900px): barra inferior al alcance del pulgar (.mk-dock) que abre un panel desde abajo
 //   (.mk-sheet) con botones grandes, cambio de versión y Coaching. Estilos en marca.css (MENÚ MÓVIL).
-import { TABS, type GuideRealm } from '../lib/tabs';
+import { TABS, ICONO_TAB as ICONO, type GuideRealm } from '../lib/tabs';
 import { tabPath } from '../lib/seo';
 import { REALMS } from '../lib/realms';
 import { iconUrl } from '../lib/spells';
@@ -25,19 +25,6 @@ const cta = visibles.find((t) => t.cta);
 const actual = visibles.find((t) => t.id === marcada)?.label ?? 'General';
 const NOMBRE = { midnight: 'Midnight', forever: 'WoW Forever' }[realm];
 
-// Icono del juego por pestaña (iconos de Wowhead que ya usa la guía)
-const ICONO: Record<string, string> = {
-  mecanicas: 'inv_scroll_03',
-  leveling: 'inv_misc_map_01',
-  talentos: 'ability_hunter_bestialdiscipline',
-  estadisticas: 'spell_holy_blessingofagility',
-  rotacion: 'ability_hunter_aimedshot',
-  bis: 'inv_chest_leather_08',
-  mascotas: 'ability_hunter_beasttaming',
-  macros: 'inv_misc_note_01',
-  simulacion: 'inv_misc_enggizmos_18',
-  coaching: 'ability_hunter_eagleeye',
-};
 const icono = (id: string) => iconUrl(ICONO[id] ?? ICONO.mecanicas);
 ---
 

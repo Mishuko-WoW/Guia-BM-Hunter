@@ -66,5 +66,41 @@
       "pregunta": "¿Qué especialización de mascota uso en raid y en M+?",
       "respuesta": "En **raid**, **Tenacidad** por sus beneficios defensivos (ten una de Ferocidad por si nadie más lleva Bloodlust/Heroísmo). En **M+**, **Ferocidad** si eres el Bloodlust/Heroísmo del grupo; si no, Tenacidad. En ambos casos desactiva el auto-cast de Laceración de tendones."
     }
+  ],
+  "macros": [
+    {
+      "pregunta": "¿Por qué poner /petattack en las macros del Hunter BM?",
+      "respuesta": "Para que tu mascota cargue a tu objetivo **antes** de [[Matar]], [[Disparo con púas]] o [[Cólera de las bestias]]. Así el sangrado de Escabechina se aplica en cada ventana y, al cambiar de objetivo, la mascota se va directa al nuevo."
+    },
+    {
+      "pregunta": "¿Por qué no me funciona una macro en el cliente español de WoW?",
+      "respuesta": "Casi siempre es el nombre: tiene que estar escrito **exactamente** como sale en el tooltip del juego, **con tildes y caracteres especiales**. Si no coincide letra por letra, la macro no lanza nada."
+    },
+    {
+      "pregunta": "¿Cómo interrumpo con Contradisparo sin cambiar de objetivo?",
+      "respuesta": "Con una macro de **foco** o de **mouseover**. La de mouseover prueba primero el objetivo bajo el ratón, después tu foco y, si no hay ninguno, tu objetivo actual: sigues dañando al principal mientras cortas al otro."
+    },
+    {
+      "pregunta": "¿Cómo se crea una macro en WoW?",
+      "respuesta": "Abre el menú principal → **Macros** o escribe **/macro** en el chat. Crea una macro general o de personaje, elige un icono, pega el código y arrastra el icono a tu barra de acción."
+    }
+  ],
+  "simulacion": [
+    {
+      "pregunta": "¿Cómo simulo mi Hunter BM en Raidbots?",
+      "respuesta": "Instala el addon **SimulationCraft**, escribe **/simc** en el chat del juego y copia el texto que genera. En Raidbots elige **Quick Sim** (o Top Gear), pega el texto y comprueba que tu personaje sale bien cargado antes de lanzar la simulación."
+    },
+    {
+      "pregunta": "¿Qué es Top Gear de Raidbots?",
+      "respuesta": "La herramienta más importante de Raidbots: compara **varias piezas de equipo a la vez** y encuentra sola la mejor combinación, teniendo en cuenta bonificaciones de conjunto, gemas, encantamientos y la sinergia entre estadísticas."
+    },
+    {
+      "pregunta": "¿Sirven los Stat Weights para elegir equipo?",
+      "respuesta": "Con cuidado: **cambian según tu equipo**, tu build y tus abalorios, y los de otro jugador no sirven para ti. Para decisiones de equipo importantes usa **Top Gear**, que es mucho más fiable."
+    },
+    {
+      "pregunta": "¿Necesito Raidbots Premium?",
+      "respuesta": "No. La cuenta **gratuita** tiene todas las herramientas principales y es suficiente para un uso normal. Premium simula más rápido y con menos cola: se nota si simulas varias veces al día."
+    }
   ]
 }

@@ -8,11 +8,17 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 
 ## 1. Urgente (esta semana, mientras dura el tirón de Forever)
 
-- [ ] **Marcar `afiliado_click` como evento clave en GA4** (C o M, 2 min) cuando aparezca el primer clic: Administrar → Eventos → Eventos recientes → estrella. Esperado 19-20 nov. (18-11, 17:00: aún no aparecía.)
+- [ ] **RestedXP en Leveling más visible** (C, 30 min): 0 clics desde Leveling y Talentos del 18 al 20-11 (Leveling: 341 vistas, 1 min 18 s); los 3 clics son del botón de la cabecera. Subir el bloque al principio o junto a la primera tabla. Ver `informes/analisis-2026-11-20.md`.
+- [ ] **62 sesiones «(sin definir)» con 0 % de interacción en GA4 desde el 18-11** (C, 30 min): antes solo había 1. Comprobar si las causa el `gtag('set')` de `MainLayout.astro` (sesiones sin `session_start`/fuente).
+- [ ] **Títulos de Leveling y Estadísticas de Forever** (C, 20 min): CTR 3,2 % (498 impresiones) y 1,8 % (114) en Search Console del 18-19-11. Título concreto, como en Talentos.
 
 ## 2. Mejoras de la web (código, C)
 
-- [ ] ❓ *Explicado (18-11): portada y Mascotas ya cambiados ese día; falta solo decidir si añadir «dónde domar» al título de Mascotas o esperar a medir el 2-12* · **Títulos y descripciones de `/forever/mascotas/` y la portada** (30 min) en `src/lib/seo.ts`. Mascotas: 1.432 impresiones y 3,7 % de clics; portada: 6.587 y 3,1 %. Talentos, con un título concreto («build 31/20/0»), saca un 10 %. Meter al principio «dónde domar», «Top 5», «Ta'shkal»; portada: «Guía Hunter BM» + «Forever y Midnight».
+- [ ] **Propuestas de la auditoría SEO del 20-11** (C, decide M): ver detalle en CHANGELOG.md (2026-11-20).
+  - Portada: título de 64 caracteres y descripción de 192 (Google corta hacia 60/155). Tras medir el 2-12, pasar a «Guía Hunter BM Forever y Midnight: Cazador de Bestias» (53) y una descripción ≤155.
+  - «Cazador de Bestias» no cabe en el título sin perder lo concreto en Talentos, Stats, BiS, Macros y Simulación de Midnight ni en Talentos, Stats, Rotación y Macros de Forever (Talentos de Forever saca un 10 % así). Se deja; revisar el CTR de cada una el 2-12.
+  - Coaching (las dos versiones) sin «En resumen» ni preguntas frecuentes: es página de venta; añadirlas solo si Mishuko quiere (precio, cómo se reserva, qué incluye).
+  - Simulación de Midnight lleva el único `<main>` de la web y solo envuelve su panel: mejor un `<main>` en `MainLayout` para todas las páginas y quitar ese.
 - [ ] ⏸ *De momento no (Mishuko, 18-11)* · **Ampliar Mascotas** (2-4 h): mejor mascota para PvE, bestias raras por zona, tiempos de reaparición (lo preguntan en los comentarios de TikTok).
 
 - [ ] **BiS de Forever: pre-raid rellena (18-11); falta la de raid** cuando abran las raids (M, con el editor local, botón «Objetos BiS»). Ya en Google (sin `noindex`, 18-11). Pedir indexación de `/forever/bis/` en Search Console tras publicar.
@@ -46,7 +52,8 @@ Aprobado por Mishuko el 18-11 y avisado a Codex en `EQUIPO.md`. Datos de TikTok 
 
 ## 5. Revisar más adelante
 
-- [ ] Repetir el análisis hacia el **2-12-2026** (dos semanas) para medir: tráfico de TikTok con la etiqueta, clics de RestedXP por `lugar`, Ko-fi tras los cambios, posición en Google.
+- [ ] Repetir el análisis hacia el **2-12-2026** (dos semanas) para medir: tráfico de TikTok con la etiqueta, clics de RestedXP por `lugar`, Ko-fi tras los cambios, posición en Google. Intermedio del 20-11 hecho: `informes/analisis-2026-11-20.md`. El 2-12, comparar también el CTR de Mascotas con el título nuevo (18-19-11: 6,7 % con +37 % de impresiones) y Talentos (−27 % de impresiones, misma posición).
+- [ ] `tiktok_click` (botón del footer) y `utm_campaign=navegador-app`: 0 del 18 al 20-11. Si el 2-12 siguen a 0, revisar si funcionan. La etiqueta `bio` sí funciona (15 sesiones, 2 min 37 s de media).
 - [ ] Core Web Vitals: hoy «sin datos suficientes»; mirar cuando haya más tráfico.
 - [ ] Robots en GA4 (≈40 usuarios de China y ≈30 de EE. UU./Reino Unido sin interacción): no hace falta filtrar por ahora.
 
@@ -54,6 +61,12 @@ Aprobado por Mishuko el 18-11 y avisado a Codex en `EQUIPO.md`. Datos de TikTok 
 
 ## Hecho
 
+- [x] 2026-11-20 · GA4: `afiliado_click` marcado como evento clave (3 clics del 18 al 20-11, todos desde `cabecera-forever`).
+- [x] 2026-11-20 · Análisis intermedio (`informes/analisis-2026-11-20.md`, datos en `informes/datos-2026-11-20/`).
+- [x] 2026-11-20 · Comprobado en GA4 que el tiempo por página ya da valores reales (Mascotas: 1 min 19 s; antes 5 s).
+- [x] 2026-11-20 · Search Console: ya indexadas `/forever/bis/`, `/midnight/estadisticas/`, `/midnight/macros/`, `/midnight/simulacion/` y `/midnight/coaching/` (no hace falta mirar el 25-11).
+
+- [x] 2026-11-20 · Auditoría SEO de las 19 páginas del sitemap: título de Mascotas de Forever con «Top 5» y «dónde domarlas» (medir CTR el 2-12, antes 3,7 %), títulos y descripciones recortados, «Sigue con la guía» en todas las pestañas (enlaces internos y entre versiones), resumen y preguntas en Simulación y Macros de Midnight, pregunta duplicada fuera en Stats de Forever, encabezados corregidos.
 - [x] 2026-11-18 · Título y descripción de la portada en Google (`seo.ts`). Ver su CTR en la revisión del 2-12 (antes 3,1 %).
 - [x] 2026-11-18 · «Apoya la guía» (Ko-fi) sin pop-ups: al copiar macro, en la 2.ª ficha de mascota y al final de Leveling; una vez por visita. Medir en GA4 `kofi_click` por `lugar` (apoyo-*) en la revisión del 2-12.
 - [x] 2026-11-18 · Midnight: título de BiS y enlaces desde la portada a Talentos, Rotación y BiS de Midnight.

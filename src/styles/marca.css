@@ -815,6 +815,15 @@ table.spec-table th:first-child, table.spec-table td:first-child { width: 100px;
 .mk-faq__item[open] > summary::after { content: '−'; }
 .mk-faq__item > p { margin: 0; padding: 0 16px 15px; font-size: 15.5px; color: var(--text2); }
 .mk-faq__item strong { color: var(--text); }
+/* ─── SIGUE CON LA GUÍA (SigueGuia.astro y Forever General/Stats/BiS): enlaces a pestañas relacionadas ─── */
+.mk-sigue { margin-top: 40px; }
+.gn-next { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.gn-next__item { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: center; padding: 14px; text-decoration: none; background: var(--card); clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border); transition: box-shadow var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
+.gn-next__item:hover { box-shadow: inset 0 0 0 1px var(--brand); transform: translateY(-2px); }
+.gn-next__item img { width: 44px; height: 44px; border-radius: 6px; }
+.gn-next__item span { display: grid; gap: 3px; font-size: 16px; line-height: 1.4; color: var(--text2); }
+.gn-next__item b { font: 700 19px/1.2 var(--font-display); color: var(--text); }
+@media (prefers-reduced-motion: reduce) { .gn-next__item:hover { transform: none; } }
 
 
 /* Texto solo para lectores de pantalla y buscadores */

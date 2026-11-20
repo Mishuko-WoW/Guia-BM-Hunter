@@ -28,7 +28,7 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
   midnight: {
     mecanicas: {
       title: 'Guía Hunter BM Midnight S2 — Cazador de Bestias | Mishuko',
-      description: 'Guía del Hunter BM (Maestro de bestias o Cazador de Bestias) en WoW Midnight Temporada 2: talentos, rotación, opener, stats y BiS de Pack Leader y Dark Ranger.',
+      description: 'Guía del Hunter BM (Maestro de bestias o Cazador de Bestias) en Midnight Temporada 2: talentos, rotación, opener, stats y BiS de Pack Leader y Dark Ranger.',
       h1sub: 'Maestro de bestias · Talentos, rotación y BiS',
     },
     talentos: {
@@ -42,7 +42,7 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'Estadísticas del Maestro de bestias en Midnight',
     },
     rotacion: {
-      title: 'Rotación y opener Hunter BM Midnight S2',
+      title: 'Rotación y opener Hunter BM Midnight S2: Cazador de Bestias',
       description: 'Rotación del Cazador de Bestias en Midnight Temporada 2 para un objetivo y AoE, y opener paso a paso con Pack Leader y Dark Ranger.',
       h1sub: 'Rotación y opener del Maestro de bestias',
     },
@@ -52,22 +52,22 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'BiS y consumibles del Maestro de bestias',
     },
     mascotas: {
-      title: 'Mascotas Hunter BM Midnight: cuáles usar y para qué',
-      description: 'Qué mascotas llevar como Cazador de Bestias (Hunter BM) en Midnight Temporada 2 y para qué situación.',
+      title: 'Mejores mascotas Hunter BM Midnight: Cazador de Bestias',
+      description: 'Mejores mascotas del Hunter BM (Cazador de Bestias) en Midnight Temporada 2: por qué la exótica Aqir, y Tenacidad en raid o Ferocidad en M+.',
       h1sub: 'Mascotas del Maestro de bestias en Midnight',
     },
     macros: {
       title: 'Macros Hunter BM Midnight: las imprescindibles',
-      description: 'Macros útiles para el Hunter BM (Cazador de Bestias) en Midnight Temporada 2, listas para copiar y pegar.',
+      description: 'Macros del Hunter BM (Cazador de Bestias) en Midnight Temporada 2 para copiar: /petattack con Matar y Cólera de las bestias, y Contradisparo por foco.',
       h1sub: 'Macros del Maestro de bestias en Midnight',
     },
     simulacion: {
       title: 'Simular Hunter BM Midnight: Raidbots y Top Gear',
-      description: 'Cómo simular tu Cazador de Bestias (Hunter BM) en Midnight con Raidbots y Top Gear para elegir el mejor equipo.',
+      description: 'Cómo simular tu Cazador de Bestias (Hunter BM) en Midnight con Raidbots paso a paso: Quick Sim, Top Gear, Droptimizer, Stat Weights y la Gran Cámara.',
       h1sub: 'Simulación del Maestro de bestias',
     },
     coaching: {
-      title: 'Coaching Hunter BM Midnight con Mishuko',
+      title: 'Coaching Hunter BM Midnight: Cazador de Bestias con Mishuko',
       description: 'Coaching personalizado de Hunter BM (Cazador de Bestias) en Midnight con Mishuko: revisión de logs, rotación, talentos y plan de mejora.',
       h1sub: 'Coaching de Maestro de bestias',
     },
@@ -80,7 +80,7 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
     },
     talentos: {
       title: 'Mejores talentos Hunter BM WoW Forever: build 31/20/0',
-      description: 'Los mejores talentos del Cazador de Bestias en WoW Forever: build 31/20/0 para raid y mazmorras, orden de talentos para subir del 10 al 60 y coste de cada rango.',
+      description: 'Los mejores talentos del Cazador de Bestias en WoW Forever: build 31/20/0 para raid y mazmorras, orden del 10 al 60 y coste de cada rango.',
       h1sub: 'Talentos del Cazador de Bestias en WoW Forever',
     },
     estadisticas: {
@@ -94,13 +94,13 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'Rotación del Cazador de Bestias en WoW Forever',
     },
     bis: {
-      title: 'BiS pre-raid Hunter BM WoW Forever: equipo del Cazador de Bestias',
-      description: 'BiS pre-raid del Cazador de Bestias (Hunter BM) en WoW Forever pieza a pieza: el mejor equipo de nivel 60 y dónde se consigue, arma, munición, carcaj, consumibles y encantamientos.',
+      title: 'BiS pre-raid Hunter BM WoW Forever: Cazador de Bestias',
+      description: 'BiS pre-raid del Cazador de Bestias (Hunter BM) en WoW Forever: mejor equipo de nivel 60, dónde se consigue, munición, consumibles y encantamientos.',
       h1sub: 'BiS pre-raid del Cazador de Bestias en WoW Forever',
     },
     mascotas: {
-      title: "Mejores mascotas Hunter WoW Forever: Top 5 y Ta'shkal",
-      description: "Top 5 pets del Hunter BM en WoW Forever y Ta'shkal, el gato secreto de Hyjal que ataca cada 1,0 s: cómo conseguirlo, mapa y coordenadas para domesticarlas, y las 18 familias del Cazador.",
+      title: "Top 5 mascotas Hunter WoW Forever: Ta'shkal y dónde domarlas",
+      description: "Top 5 pets del Hunter BM en WoW Forever y Ta'shkal, el gato secreto de Hyjal: dónde domesticarlas con mapa y coordenadas, y las 18 familias del Cazador.",
       h1sub: 'Mejores mascotas del Cazador en WoW Forever',
     },
     macros: {
@@ -114,7 +114,7 @@ export const SEO: Record<GuideRealm, Record<string, Meta>> = {
       h1sub: 'Leveling 1-60 del Cazador en WoW Forever',
     },
     coaching: {
-      title: 'Coaching Hunter WoW Forever con Mishuko',
+      title: 'Coaching Hunter WoW Forever: Cazador de Bestias con Mishuko',
       description: 'Coaching personalizado de Cazador de Bestias en WoW Forever con Mishuko: rotación, mascota, talentos y plan de mejora.',
       h1sub: 'Coaching de Cazador en WoW Forever',
     },

@@ -1,4 +1,5 @@
 ---
+import SigueGuia from './SigueGuia.astro';
 import EnResumen from './EnResumen.astro';
 import { getSectionReviewDate } from '../lib/sectionDates';
 import ReviewSourceBox from './ReviewSourceBox.astro';
@@ -171,5 +172,6 @@ const contenido = (header: string) => header.split('—').slice(1).join('—').t
     <div id="boss-panels" style="margin-top: 20px;"></div>
   </div>
   -->
+  <SigueGuia tab="talentos" />
   <Faq tab="talentos" titulo="builds de talentos" />
 </div>

@@ -98,7 +98,7 @@ const INDICE = [
     <div class="lv-grid">
       {data.mecanicas.map((m) => (
         <div class="lv-card gn-mec">
-          <h5><img src={iconUrl(m.icono)} alt="" width="36" height="36" loading="lazy" />{m.titulo}</h5>
+          <h4><img src={iconUrl(m.icono)} alt="" width="36" height="36" loading="lazy" />{m.titulo}</h4>
           <ul class="lv-claves">{m.filas.map((f) => <li set:html={md(f)} />)}</ul>
         </div>
       ))}
@@ -127,7 +127,7 @@ const INDICE = [
     <h3>Sigue con la guía</h3>
     <div class="gn-next">
       {data.siguiente.map((n) => (
-        <a class="gn-next__item" href={tabPath('forever', n.tab)}>
+        <a class="gn-next__item" href={tabPath(n.realm ?? 'forever', n.tab)}>
           <img src={iconUrl(n.icono)} alt="" width="44" height="44" loading="lazy" />
           <span><b>{n.titulo}</b>{n.texto}</span>
         </a>

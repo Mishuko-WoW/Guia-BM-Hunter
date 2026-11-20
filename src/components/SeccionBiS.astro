@@ -1,4 +1,5 @@
 ---
+import SigueGuia from './SigueGuia.astro';
 import EnResumen from './EnResumen.astro';
 import { getSectionReviewDate } from '../lib/sectionDates';
 import ReviewSourceBox from './ReviewSourceBox.astro';
@@ -908,7 +909,7 @@ import Faq from './Faq.astro';
       <p class="bis-guide-text">
         Mejora tus piezas mediante Blasones como el 
         <a href="https://www.wowhead.com/es/currency=3446/blas%C3%B3n-de-bruma-de-mito" target="_blank" class="bis-item-link">
-          <img src="https://wow.zamimg.com/images/wow/icons/large/inv_121_crest_myth.jpg" class="bis-sidebar-icon" style="width:22px; height:22px; vertical-align:middle; display:inline-block; border-radius:3px;" /> 
+          <img src="https://wow.zamimg.com/images/wow/icons/large/inv_121_crest_myth.jpg" class="bis-sidebar-icon" alt="" style="width:22px; height:22px; vertical-align:middle; display:inline-block; border-radius:3px;" /> 
           Blasón de bruma de mito
         </a>. Piensa en <strong>mejorar casillas, no objetos individuales</strong> (al mejorar una casilla, el resto de piezas obtenidas para dicho hueco no gastarán Blasones adicionales hasta ese nivel).
       </p>
@@ -951,6 +952,7 @@ import Faq from './Faq.astro';
     </div>
   </div>
 
+  <SigueGuia tab="bis" />
   <Faq tab="bis" titulo="BiS y trinkets" />
 </div>
 <!-- CSS COMPLETO GLOBAL - Estilos decorativos -->

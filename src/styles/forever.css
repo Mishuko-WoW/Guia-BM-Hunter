@@ -879,7 +879,7 @@
 .lv-panel__head p { margin: 0; font-size: 20.5px; line-height: 1.6; color: var(--text2); max-width: 75ch; }
 .lv-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--lv-gap); }
 .lv-card { padding: 18px 18px 16px; background: var(--card); clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border); border-top: 3px solid var(--c, var(--brand)); }
-.lv-card h5 { margin: 0 0 12px !important; font: 700 15px/1 var(--font-display) !important; letter-spacing: 0.14em; text-transform: uppercase !important; color: var(--c, var(--brand-text)) !important; }
+.lv-card h5, .gn-mec h4 { margin: 0 0 12px !important; font: 700 15px/1 var(--font-display) !important; letter-spacing: 0.14em; text-transform: uppercase !important; color: var(--c, var(--brand-text)) !important; }
 .lv-card p { margin: 0; font-size: 20px; line-height: 1.6; color: var(--text2); }
 .lv-card--talentos { --c: var(--brand-text); }
 .lv-card--municion { --c: var(--gold); }
@@ -1106,8 +1106,8 @@
 .gn-col h4 { margin: 0 0 14px !important; font: 700 21px/1 var(--font-display) !important; color: var(--c) !important; }
 .gn-col .lv-claves li::before { background: var(--c); }
 
-.gn-mec h5 { display: flex; align-items: center; gap: 12px; font-size: 16px !important; }
-.gn-mec h5 img { width: 36px; height: 36px; border-radius: 6px; }
+.gn-mec h4 { display: flex; align-items: center; gap: 12px; font-size: 16px !important; }
+.gn-mec h4 img { width: 36px; height: 36px; border-radius: 6px; }
 
 .gn-razas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
 .gn-raza { padding: 16px 18px; background: var(--card); clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border); }
@@ -1120,18 +1120,12 @@
 .gn-fac--h { --c: var(--horda); }
 .gn-fac--x { --c: var(--text2); }
 .gn-consejo { margin: 16px 0 0; padding: 14px 18px; font-size: 18px; line-height: 1.6; color: var(--text2); background: color-mix(in srgb, var(--green) 8%, var(--card)); box-shadow: inset 3px 0 0 var(--green); border-radius: 6px; }
+/* .gn-next («Sigue con la guía») está en marca.css: lo usan las dos versiones */
 
-.gn-next { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-.gn-next__item { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: center; padding: 14px; text-decoration: none; background: var(--card); clip-path: var(--clip-card); box-shadow: inset 0 0 0 1px var(--border); transition: box-shadow var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
-.gn-next__item:hover { box-shadow: inset 0 0 0 1px var(--brand); transform: translateY(-2px); }
-.gn-next__item img { width: 44px; height: 44px; border-radius: 6px; }
-.gn-next__item span { display: grid; gap: 3px; font-size: 16px; line-height: 1.4; color: var(--text2); }
-.gn-next__item b { font: 700 19px/1.2 var(--font-display); color: var(--text); }
 @media (max-width: 760px) {
   .gn-pros { grid-template-columns: 1fr; }
   .gn-cambios { grid-template-columns: 1fr; }
 }
-@media (prefers-reduced-motion: reduce) { .gn-next__item:hover { transform: none; } }
 
 /* ─── TALENTOS (TalentosForever.astro; usa lv-* y gn-*) ─── */
 .tf-col--brand { --c: var(--brand-text); }

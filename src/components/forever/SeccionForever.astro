@@ -1,4 +1,5 @@
 ---
+import SigueGuia from '../SigueGuia.astro';
 // Una pestaña de la guía Forever. El contenido sale de src/content/forever/paginas/<tab>.md
 // (formato de bloques, ver CLAUDE.md). Si la página aún no existe, muestra "en preparación".
 // Orden: título → `intro` (bloques) → contenido del slot (componentes, p. ej. calculadora) → `bloques` → "Última revisión" (sin fuentes: la guía se presenta como de Mishuko).
@@ -31,6 +32,7 @@ const reviewDate = pagina
       <slot />
       <TablaForever tab={tab} />
       <Bloques bloques={pagina.data.bloques} />
+      <SigueGuia realm="forever" tab={tab} />
       <Faq realm="forever" tab={tab} titulo={label} />
       <p class="fv-review">Última revisión por <strong>Mishuko</strong> el <strong>{reviewDate}</strong>.</p>
     </>

@@ -1,5 +1,17 @@
 [
   {
+    "fecha": "2026-11-20",
+    "pestana": "simulacion",
+    "texto": "Resumen y preguntas frecuentes en",
+    "enlace": "Simulación"
+  },
+  {
+    "fecha": "2026-11-20",
+    "pestana": "macros",
+    "texto": "Preguntas frecuentes en",
+    "enlace": "Macros"
+  },
+  {
     "fecha": "2026-11-19",
     "version": "forever",
     "pestana": "estadisticas",

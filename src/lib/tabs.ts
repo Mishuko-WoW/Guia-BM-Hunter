@@ -29,3 +29,17 @@ export const TABS_FOREVER: Tab[] = [
 
 export const TABS = { midnight: TABS_MIDNIGHT, forever: TABS_FOREVER } as const;
 export type GuideRealm = keyof typeof TABS;
+
+/** Icono del juego por pestaña (barra de pestañas y «Sigue con la guía») */
+export const ICONO_TAB: Record<string, string> = {
+  mecanicas: 'inv_scroll_03',
+  leveling: 'inv_misc_map_01',
+  talentos: 'ability_hunter_bestialdiscipline',
+  estadisticas: 'spell_holy_blessingofagility',
+  rotacion: 'ability_hunter_aimedshot',
+  bis: 'inv_chest_leather_08',
+  mascotas: 'ability_hunter_beasttaming',
+  macros: 'inv_misc_note_01',
+  simulacion: 'inv_misc_enggizmos_18',
+  coaching: 'ability_hunter_eagleeye',
+};
