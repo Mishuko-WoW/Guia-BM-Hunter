@@ -1,0 +1,199 @@
+---
+// Pestaña BiS y consumibles (Midnight) con el diseño del BiS de Forever: ventana de personaje (emblema en el centro,
+// ranuras alrededor), lista en tabla, consumibles, gemas, ranking de abalorios y guía de mejoras.
+// Estilos: bloque «BIS Y CONSUMIBLES» de forever.css (clases bf-*, lv-*, gn-*). Datos: src/content/data/midnight-bis.json.
+import data from '../../content/data/midnight-bis.json';
+import { md } from '../../lib/markup';
+import { iconUrl } from '../../lib/spells';
+import IndiceForever from '../forever/IndiceForever.astro';
+
+type Ranura = (typeof data.ranuras)[number] & { nota?: string; objIcono?: string; encantamiento?: { nombre: string; url: string }; catalizar?: { texto: string; href: string } };
+const ranuras = data.ranuras as Ranura[];
+const piezas = ranuras.filter((r) => r.nombre);
+const ETIQUETA: Record<string, string> = { tier: 'Tier', craft: 'Fabricado', raid: 'Banda', mplus: 'Míticas+' };
+const INDICE = [
+  { id: 'bm-equipo', texto: 'Equipo BiS' },
+  { id: 'bm-consumibles', texto: 'Consumibles' },
+  { id: 'bm-gemas', texto: 'Gemas' },
+  { id: 'bm-abalorios', texto: 'Abalorios' },
+  { id: 'bm-mejoras', texto: 'Cómo mejorar' },
+];
+---
+
+<div class="lv gn bf-pagina" id="bf">
+  <div class="gn-hero">
+    <p set:html={md(data.resumen)} />
+    <ul class="gn-datos">
+      {data.datos.map((d) => <li><b>{d.valor}</b><span>{d.texto}</span></li>)}
+    </ul>
+  </div>
+
+  <IndiceForever items={INDICE} />
+
+  {data.notas.map((n) => <p class="lv-demo gn-aviso" set:html={md(n)} />)}
+
+  <section class="lv-sec" id="bm-equipo">
+    <h3>Equipo BiS del Cazador de Bestias por ranura</h3>
+    <p class="lv-lead">La mejor pieza de la Season 2 para cada hueco de la ventana de personaje, con su encantamiento. Pulsa un objeto para abrirlo en Wowhead.</p>
+    <div class="bf-pj">
+      {['izq', 'der', 'armas'].map((l) => (
+        <ul class:list={['bf-col', `bf-col--${l}`]} aria-label={l === 'armas' ? 'Arma' : l === 'izq' ? 'Armadura (1)' : 'Armadura (2) y accesorios'}>
+          {ranuras.filter((r) => r.lado === l).map((r) => (
+            <li class:list={['bf-ranura', r.nombre ? 'q4' : 'is-vacia']} data-bf-ranura={r.id}>
+              <a class="bf-ranura__in" href={r.url} target="_blank" rel="noopener" data-wh-icon-added="true" data-disable-wowhead-tooltip={r.nombre ? undefined : 'true'}>
+                <span class="bf-ranura__icono">
+                  <img src={iconUrl(r.objIcono ?? r.icono)} alt="" width="52" height="52" loading="lazy" />
+                </span>
+                <span class="bf-ranura__txt">
+                  <small>{r.label}{r.tipo && ETIQUETA[r.tipo] && <> · {ETIQUETA[r.tipo]}</>}</small>
+                  {r.nombre ? <b>{r.nombre}</b> : <b class="bf-ranura__vacio">{r.nota}</b>}
+                  {r.nombre && <em>{r.origen}</em>}
+                  {r.encantamiento && <em class="bm-enc">Encantamiento: {r.encantamiento.nombre}</em>}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ))}
+      <figure class="bf-centro">
+        <div class="bf-emblema">
+          <span class="bf-emblema__aro"><img src={iconUrl('classicon_hunter')} alt="Emblema del Cazador" width="128" height="128" loading="lazy" /></span>
+        </div>
+        <figcaption>
+          <b>Cazador</b>
+          <span>Maestro de bestias</span>
+          <span class="bf-centro__cuenta"><strong>{piezas.length}</strong> piezas BiS · Season 2</span>
+        </figcaption>
+        <img class="bf-centro__logo" src="/brand/realms/midnight.webp" alt="WoW Midnight" width="180" height="90" loading="lazy" />
+      </figure>
+    </div>
+
+    <details class="mk-fold bf-lista">
+      <summary>Ver la lista BiS del Hunter BM en tabla</summary>
+      <div class="lv-table-wrap">
+        <table class="lv-table bf-table">
+          <caption class="sr-only">BiS Hunter BM (Maestro de bestias) — Midnight Temporada 2</caption>
+          <thead><tr><th>Ranura</th><th>Objeto BiS</th><th>Cómo conseguirlo</th><th>Encantamiento</th></tr></thead>
+          <tbody>
+            {piezas.map((r) => (
+              <tr>
+                <td><b>{r.label}</b></td>
+                <td><a class="bf-obj q4" href={r.url} target="_blank" rel="noopener" data-wh-icon-added="true"><img src={iconUrl(r.objIcono)} alt="" width="28" height="28" loading="lazy" />{r.nombre}</a></td>
+                <td>{r.catalizar ? <>Tier (Catalizador): <a href={r.catalizar.href} target="_blank" rel="noopener" data-wh-icon-added="true">pieza de {r.catalizar.texto}</a></> : r.origen}</td>
+                <td>{r.encantamiento ? <a href={r.encantamiento.url} target="_blank" rel="noopener" data-wh-icon-added="true">{r.encantamiento.nombre}</a> : '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <section class="lv-sec" id="bm-consumibles">
+    <h3>Consumibles</h3>
+    {data.consumibles.map((g) => (
+      <>
+        <h4 class="lv-h4">{g.titulo}</h4>
+        <div class="gn-cambios">
+          {g.objetos.map((c) => (
+            <div class="gn-cambio">
+              <img src={iconUrl(c.icono)} alt="" width="48" height="48" loading="lazy" />
+              <div>
+                <h4><a class="bf-obj q3" href={c.url} target="_blank" rel="noopener" data-wh-icon-added="true">{c.nombre}</a> {c.etiqueta && <span class:list={['gn-tag', { 'is-new': c.etiqueta === 'Recomendado' }]}>{c.etiqueta}</span>}</h4>
+                {c.nota && <p set:html={md(c.nota)} />}
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
+    ))}
+  </section>
+
+  <section class="lv-sec" id="bm-gemas">
+    <h3>Gemas</h3>
+    <p class="lv-lead" set:html={md(data.gemas.nota)} />
+    <div class="gn-cambios">
+      {data.gemas.objetos.map((c) => (
+        <div class="gn-cambio">
+          <img src={iconUrl(c.icono)} alt="" width="48" height="48" loading="lazy" />
+          <div><h4><a class="bf-obj q4" href={c.url} target="_blank" rel="noopener" data-wh-icon-added="true">{c.nombre}</a></h4></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="lv-sec" id="bm-abalorios">
+    <h3>Mejores abalorios del Hunter BM</h3>
+    <div class="lv-table-wrap">
+      <table class="lv-table bm-tiers">
+        <caption class="sr-only">Ranking de abalorios del Hunter BM en Midnight Temporada 2</caption>
+        <thead><tr><th>Ranking</th><th>Abalorios</th></tr></thead>
+        <tbody>
+          {data.abalorios.tiers.map((t) => (
+            <tr>
+              <td><b class={`bm-tier bm-tier--${t.tier.toLowerCase()}`}>{t.tier}</b></td>
+              <td>
+                <ul class="bm-tier__lista">
+                  {t.items.map((i) => (
+                    <li><a href={i.url} target="_blank" rel="noopener">{i.nombre}</a>{i.uso && <span class="gn-tag">Uso activo</span>}</li>
+                  ))}
+                </ul>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div class="box box-tip">
+      <div class="box-title">Simula siempre</div>
+      <span set:html={md(data.abalorios.nota)} />
+    </div>
+  </section>
+
+  <section class="lv-sec" id="bm-mejoras">
+    <h3>Cómo mejorar tu equipo</h3>
+    {data.mejoras.map((m) => (
+      <div class="lv-card bm-mejora" id={m.id}>
+        <h4>
+          <img src={iconUrl(m.icono)} alt="" width="36" height="36" loading="lazy" />{m.titulo}
+          {m.etiqueta && <span class="gn-tag">{m.etiqueta}</span>}
+        </h4>
+        <p set:html={md(m.texto)} />
+        {m.aviso && <div class="box box-warn"><span set:html={md(m.aviso)} /></div>}
+        {m.prioridad && (
+          <>
+            <h5 class="bm-sub">{m.prioridadTitulo}</h5>
+            <ol class="bm-prio">{m.prioridad.map((p) => <li set:html={md(p)} />)}</ol>
+          </>
+        )}
+        {m.flujo && (
+          <>
+            <h5 class="bm-sub">{m.flujoTitulo}</h5>
+            <ol class="bm-flujo">{m.flujo.map((f) => <li>{f}</li>)}</ol>
+          </>
+        )}
+        {m.nota && <p class="bm-nota" set:html={md(m.nota)} />}
+      </div>
+    ))}
+  </section>
+</div>
+
+<style>
+  .bm-enc { color: var(--text3); }
+  .bm-tiers td:first-child { width: 90px; text-align: center; }
+  .bm-tier { display: inline-grid; place-items: center; width: 44px; height: 44px; font: 700 22px/1 var(--font-display); color: var(--bg); background: var(--c, var(--text3)); clip-path: var(--clip-btn); }
+  .bm-tier--s { --c: var(--gold); }
+  .bm-tier--a { --c: var(--brand); }
+  .bm-tier--b { --c: var(--dr); }
+  .bm-tier--c { --c: var(--text2); }
+  .bm-tier__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .bm-tier__lista li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .bm-mejora { margin-bottom: 18px; }
+  .bm-mejora h4 .gn-tag { margin-left: 8px; }
+  .bm-sub { margin: 16px 0 8px; font: 700 15px/1.2 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+  .bm-prio { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+  .bm-flujo { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; counter-reset: paso; }
+  .bm-flujo li { counter-increment: paso; padding: 8px 12px; background: var(--bg3); box-shadow: inset 0 0 0 1px var(--border); clip-path: var(--clip-btn); }
+  .bm-flujo li::before { content: counter(paso) '. '; color: var(--gold); font-weight: 700; }
+  .bm-nota { margin: 12px 0 0; color: var(--text3); }
+</style>

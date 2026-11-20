@@ -17,6 +17,10 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — Midnight con el diseño de Forever (5): BiS y consumibles
+- `SeccionBiS.astro` (1.746 líneas de HTML y CSS a mano) pasa a datos: `src/content/data/midnight-bis.json` (sacado del HTML con un script: 15 piezas + camisa y tabardo con sus enlaces de Wowhead y bonus, catalizador, encantamientos, 9 consumibles, 2 gemas, ranking S-D de abalorios y la guía de núcleos, fabricados y blasones) → `guide/BisMidnight.astro` con la ventana de personaje del BiS de Forever (`bf-*`), tabla desplegable con origen y encantamiento, consumibles y gemas en tarjetas `gn-cambio`, abalorios en `lv-table` y mejoras en `lv-card`.
+- Fuera: el contador «Progreso BiS» con casillas (el código de `bm-guide.js` ya comprobaba si existe), la caja de fuentes y los estilos propios de la página.
+
 ## 2026-11-20 — Midnight con el diseño de Forever (4): Macros; iconos; Stats como antes
 - Macros de Midnight en `midnight-macros.json` con el mismo componente que Forever (`forever/MacrosForever.astro`, nuevas props `data` y `realm`; sin selector de idioma cuando las macros solo tienen `es`): pasos para crearlas, índice, tarjetas con icono y botón «Copiar».
 - `spells.json`: iconos de Colmillo de cobra (tier 4 S2), ¡Estampida! y Aullido de la manada (salían sin icono en General); Contradisparo, Disparo vinculante y «Mascota en pasivo».

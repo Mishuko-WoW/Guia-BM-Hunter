@@ -1,0 +1,536 @@
+{
+  "_ayuda": "BiS de Midnight (guide/BisMidnight.astro), mismo diseño que el BiS de Forever. Ranuras: orden = ventana de personaje (izq, der, armas). tipo: tier|mplus|raid|craft. Enlaces de Wowhead con sus bonus.",
+  "resumen": "El mejor equipo del **Hunter BM (Cazador de Bestias)** para la **Season 2 de Midnight (parche 12.1)**, por ranura, con sus encantamientos, consumibles, gemas y el ranking de abalorios. Tiene en cuenta todas las fuentes del juego: banda y Míticas+.",
+  "datos": [
+    {
+      "valor": "12.1",
+      "texto": "Season 2 de Midnight"
+    },
+    {
+      "valor": "5",
+      "texto": "Piezas de tier por el Catalizador"
+    },
+    {
+      "valor": "2",
+      "texto": "Piezas fabricadas (Peletería)"
+    },
+    {
+      "valor": "1",
+      "texto": "Núcleo por tirada extra (antes 2 en banda)"
+    }
+  ],
+  "notas": [
+    "**Novedad del Catalizador:** desde esta temporada, al transformar un objeto en el Catalizador **conserva sus estadísticas secundarias** (Crítico, Celeridad, Maestría, Versatilidad) en lugar de cambiarlas por las del conjunto de tier.",
+    "!!Importante!!: esta lista no sustituye simular a tu personaje. Según tu equipo y lo que te salga en la Gran Cámara, tu BiS real puede cambiar en alguna ranura."
+  ],
+  "ranuras": [
+    {
+      "id": "cabeza",
+      "label": "Cabeza",
+      "lado": "izq",
+      "icono": "inventoryslot_head",
+      "nombre": "Colmillos supurantes de víbora merodeadora",
+      "url": "https://www.wowhead.com/es/item=271492/colmillos-supurantes-de-v%C3%ADbora-merodeadora?bonus=12854&class=3&original-item=251220&spec=253&spellModifier=137015",
+      "objIcono": "inv_helm_mail_raidhunterulatek_d_01",
+      "tipo": "tier",
+      "origen": "Tier (Catalizador) · Nek'zali",
+      "catalizar": {
+        "texto": "Nek'zali",
+        "href": "https://www.wowhead.com/es/item=251220/corona-marcada-por-el-vac%C3%ADo?bonus=13440:12806"
+      },
+      "encantamiento": {
+        "nombre": "Runa de evasión potenciada",
+        "url": "https://www.wowhead.com/es/item=244007/encantar-yelmo-runa-de-evasion-potenciada"
+      }
+    },
+    {
+      "id": "cuello",
+      "label": "Cuello",
+      "lado": "izq",
+      "icono": "inventoryslot_neck",
+      "nombre": "Relicario de azote aqir",
+      "url": "https://www.wowhead.com/es/item=268265/relicario-de-azote-aqir?bonus=13708:13335:13668:12854",
+      "objIcono": "inv_121_jewelry_neck03_green",
+      "tipo": "mplus",
+      "origen": "Ula'tek"
+    },
+    {
+      "id": "hombros",
+      "label": "Hombros",
+      "lado": "izq",
+      "icono": "inventoryslot_shoulder",
+      "nombre": "Mandíbulas de la víbora merodeadora",
+      "url": "https://www.wowhead.com/es/item=271490/mand%C3%ADbulas-de-la-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=268231&spec=253&spellModifier=137015:137015",
+      "objIcono": "inv_shoulder_mail_raidhunterulatek_d_01",
+      "tipo": "tier",
+      "origen": "Tier (Catalizador) · Bufas de reptaalmas",
+      "catalizar": {
+        "texto": "Bufas de reptaalmas",
+        "href": "https://www.wowhead.com/es/item=268231/bufas-de-reptaalmas?bonus=13335:12854"
+      },
+      "encantamiento": {
+        "nombre": "Gracia de Amirdrassil",
+        "url": "https://www.wowhead.com/es/item=243990/encantar-hombros-gracia-de-amirdrassil"
+      }
+    },
+    {
+      "id": "espalda",
+      "label": "Espalda",
+      "lado": "izq",
+      "icono": "inventoryslot_chest",
+      "nombre": "Mantón Vudú sedoso",
+      "url": "https://www.wowhead.com/es/item=268253/mant%C3%B3n-vud%C3%BA-sedoso?bonus=13848",
+      "objIcono": "inv_cape_leather_raidrogueulatek_d_01",
+      "tipo": "mplus",
+      "origen": "Zul'jan"
+    },
+    {
+      "id": "pecho",
+      "label": "Pecho",
+      "lado": "izq",
+      "icono": "inventoryslot_chest",
+      "nombre": "Placa dérmica de víbora merodeadora",
+      "url": "https://www.wowhead.com/es/item=271495/placa-d%C3%A9rmica-de-v%C3%ADbora-merodeadora?bonus=13335:12854&class=3&original-item=271876&spec=253&spellModifier=137015:137015",
+      "objIcono": "inv_chest_mail_raidhunterulatek_d_01",
+      "tipo": "tier",
+      "origen": "Tier (Catalizador) · Ula'tek",
+      "catalizar": {
+        "texto": "Ula'tek",
+        "href": "https://www.wowhead.com/es/item=271876/loriga-de-colminferno-despierto?bonus=13335:13708:12854"
+      },
+      "encantamiento": {
+        "nombre": "Marca del alma-mundo",
+        "url": "https://www.wowhead.com/es/item=243977/encantar-torso-marca-del-alma-mundo"
+      }
+    },
+    {
+      "id": "camisa",
+      "label": "Camisa",
+      "lado": "izq",
+      "icono": "inventoryslot_shirt",
+      "nombre": null,
+      "url": "https://www.wowhead.com/es/items/armor/shirts",
+      "nota": "Estética: usa la que más te guste"
+    },
+    {
+      "id": "tabardo",
+      "label": "Tabardo",
+      "lado": "izq",
+      "icono": "inventoryslot_tabard",
+      "nombre": null,
+      "url": "https://www.wowhead.com/es/items/armor/tabards",
+      "nota": "Utilidad: usa el que quieras"
+    },
+    {
+      "id": "munecas",
+      "label": "Muñecas",
+      "lado": "izq",
+      "icono": "inventoryslot_wrists",
+      "nombre": "Brazales de Placas de Errante",
+      "url": "https://www.wowhead.com/es/item=244584/brazales-de-placas-de-errante?bonus=13751:12497:13836:12384:8791:8960:1808",
+      "objIcono": "inv_bracer_mail_questbloodelf_b_01",
+      "tipo": "craft",
+      "origen": "Fabricado (Peletería)"
+    },
+    {
+      "id": "manos",
+      "label": "Manos",
+      "lado": "der",
+      "icono": "inventoryslot_hands",
+      "nombre": "Perforapellejos de víbora merodeadora",
+      "url": "https://www.wowhead.com/es/item=271493/perforapellejos-de-v%C3%ADbora-merodeadora?bonus=13335:12854:14049&original-item=281238",
+      "objIcono": "inv_glove_mail_raidhunterulatek_d_01",
+      "tipo": "tier",
+      "origen": "Tier (Catalizador) · Kith'ix",
+      "catalizar": {
+        "texto": "Kith'ix",
+        "href": "https://www.wowhead.com/es/item=281238/guanteletes-de-comandante-aberrante?bonus=13335:12854:14049"
+      }
+    },
+    {
+      "id": "cintura",
+      "label": "Cintura",
+      "lado": "der",
+      "icono": "inventoryslot_waist",
+      "nombre": "Cinturón de trofeos de errante",
+      "url": "https://www.wowhead.com/es/item=244581/cintur%C3%B3n-de-trofeos-de-errante?bonus=13751:12497:13836:12384:8791:8960:1808",
+      "objIcono": "inv_belt_mail_questbloodelf_b_01",
+      "tipo": "craft",
+      "origen": "Fabricado (Peletería)"
+    },
+    {
+      "id": "piernas",
+      "label": "Piernas",
+      "lado": "der",
+      "icono": "inventoryslot_legs",
+      "nombre": "Perneras en espiral de víbora merodeadora",
+      "url": "https://www.wowhead.com/es/item=271491/perneras-en-espiral-de-v%C3%ADbora-merodeadora?bonus=12854:13335&class=3&original-item=268237&spec=253&spellModifier=137015:137015:137015",
+      "objIcono": "inv_pant_mail_raidhunterulatek_d_01",
+      "tipo": "tier",
+      "origen": "Tier (Catalizador) · Zul'jan",
+      "catalizar": {
+        "texto": "Zul'jan",
+        "href": "https://www.wowhead.com/es/item=268237/quijotes-de-la-uni%C3%B3n-involutada?bonus=13335:12854"
+      },
+      "encantamiento": {
+        "nombre": "Refuerzo para armadura de cazador del bosque",
+        "url": "https://www.wowhead.com/es/item=244640/refuerzo-para-armadura-de-cazador-del-bosque"
+      }
+    },
+    {
+      "id": "pies",
+      "label": "Pies",
+      "lado": "der",
+      "icono": "inventoryslot_feet",
+      "nombre": "Botas de escamas feroces",
+      "url": "https://www.wowhead.com/es/item=268233/botas-de-escamas-feroces?bonus=12854",
+      "objIcono": "inv_boot_mail_raidhunterulatek_d_01",
+      "tipo": "mplus",
+      "origen": "Sszorak",
+      "encantamiento": {
+        "nombre": "Destreza de lince",
+        "url": "https://www.wowhead.com/es/item=243952/encantar-botas-destreza-de-lince"
+      }
+    },
+    {
+      "id": "anillo1",
+      "label": "Anillo 1",
+      "lado": "der",
+      "icono": "inventoryslot_finger",
+      "nombre": "Sortija del evocaenjambres",
+      "url": "https://www.wowhead.com/es/item=281029/sortija-del-evocaenjambres?bonus=13335:12854",
+      "objIcono": "8268560",
+      "tipo": "raid",
+      "origen": "Kith'ix (banda)",
+      "encantamiento": {
+        "nombre": "Ojos del águila",
+        "url": "https://www.wowhead.com/es/item=243957/encantar-anillo-ojos-del-%C3%A1guila"
+      }
+    },
+    {
+      "id": "anillo2",
+      "label": "Anillo 2",
+      "lado": "der",
+      "icono": "inventoryslot_finger",
+      "nombre": "Sortija de alquimista vil",
+      "url": "https://www.wowhead.com/es/item=268249/sortija-de-alquimista-vil?bonus=12854",
+      "objIcono": "inv_121_jewelry_ring01_purple",
+      "tipo": "mplus",
+      "origen": "Vashnik",
+      "encantamiento": {
+        "nombre": "Ojos del águila",
+        "url": "https://www.wowhead.com/es/item=243957/encantar-anillo-ojos-del-%C3%A1guila"
+      }
+    },
+    {
+      "id": "abalorio1",
+      "label": "Abalorio 1",
+      "lado": "der",
+      "icono": "inventoryslot_trinket",
+      "nombre": "Núcleo hirviente de guardián",
+      "url": "https://www.wowhead.com/es/item=270165/n%C3%BAcleo-hirviente-de-guardi%C3%A1n?bonus=13848",
+      "objIcono": "8268563",
+      "tipo": "mplus",
+      "origen": "Kith'ix"
+    },
+    {
+      "id": "abalorio2",
+      "label": "Abalorio 2",
+      "lado": "der",
+      "icono": "inventoryslot_trinket",
+      "nombre": "Corazón voraz de Ulatek",
+      "url": "https://www.wowhead.com/es/item=270175/coraz%C3%B3n-voraz-de-ulatek?bonus=13848",
+      "objIcono": "inv_121_trinket_raid_ulatek_heart",
+      "tipo": "mplus",
+      "origen": "Ula'tek"
+    },
+    {
+      "id": "arma",
+      "label": "A distancia",
+      "lado": "armas",
+      "icono": "inventoryslot_ranged",
+      "nombre": "Gran Arco de Reposo Cáustico",
+      "url": "https://www.wowhead.com/es/item=268207/gran-arco-de-reposo-c%C3%A1ustico?bonus=13848:13708",
+      "objIcono": "inv_bow_1h_ulatek_d_01",
+      "tipo": "mplus",
+      "origen": "Ula'tek",
+      "encantamiento": {
+        "nombre": "Ritual del hash'ey",
+        "url": "https://www.wowhead.com/es/item=273072/encantar-arma-ritual-del-hashey"
+      }
+    }
+  ],
+  "consumibles": [
+    {
+      "titulo": "Frascos",
+      "objetos": [
+        {
+          "nombre": "Frasco de los Magistri",
+          "url": "https://www.wowhead.com/es/item=241322/frasco-de-los-magistri",
+          "icono": "inv_12_profession_alchemy_flask_sindoreipotion_black",
+          "etiqueta": "Recomendado",
+          "nota": ""
+        },
+        {
+          "nombre": "Frasco del Sol Devastado",
+          "url": "https://www.wowhead.com/es/spell=1230878/frasco-del-sol-devastado",
+          "icono": "inv_12_profession_alchemy_flask_sindoreipotion_red--",
+          "etiqueta": "Según tu simulación",
+          "nota": ""
+        }
+      ]
+    },
+    {
+      "titulo": "Pociones",
+      "objetos": [
+        {
+          "nombre": "Poción de Temeridad",
+          "url": "https://www.wowhead.com/es/item=241288/poci%C3%B3n-de-temeridad",
+          "icono": "inv_12_profession_alchemy_voidpotion_red",
+          "etiqueta": "Recomendado",
+          "nota": ""
+        },
+        {
+          "nombre": "Potencial de Luz",
+          "url": "https://www.wowhead.com/es/item=241308/potencial-de-luz",
+          "icono": "inv_12_profession_alchemy_lightpotion_yellow",
+          "etiqueta": "Aceptable",
+          "nota": ""
+        },
+        {
+          "nombre": "Poción de Sanación Concentrada de Lunargenta",
+          "url": "https://www.wowhead.com/es/item=271883/poci%C3%B3n-de-sanaci%C3%B3n-concentrada-de-lunargenta",
+          "icono": "inv_12_profession_alchemy_lightpotion_purple",
+          "etiqueta": "",
+          "nota": ""
+        }
+      ]
+    },
+    {
+      "titulo": "Aceite y runa",
+      "objetos": [
+        {
+          "nombre": "Aceite de Fénix Thalassiano",
+          "url": "https://www.wowhead.com/es/item=243733/aceite-de-f%C3%A9nix-thalassiano",
+          "icono": "inv_12_profession_enchanting_manaoil_red",
+          "etiqueta": "",
+          "nota": ""
+        },
+        {
+          "nombre": "Runa de Aumento Tocada por el Vacío",
+          "url": "https://www.wowhead.com/es/item=259085/runa-de-aumento-tocada-por-el-vac%C3%ADo",
+          "icono": "inv_10_enchanting_crystal_color2",
+          "etiqueta": "",
+          "nota": ""
+        }
+      ]
+    },
+    {
+      "titulo": "Comida",
+      "objetos": [
+        {
+          "nombre": "Celebración de Harandar",
+          "url": "https://www.wowhead.com/es/item=255846/celebraci%C3%B3n-de-harandar",
+          "icono": "inv_misc_1h_soup_b_01_misc_1h_soup_b_01",
+          "etiqueta": "",
+          "nota": ""
+        },
+        {
+          "nombre": "Asado Real copioso",
+          "url": "https://www.wowhead.com/es/item=242747/asado-real-copioso",
+          "icono": "inv_cooking_100_roastduck",
+          "etiqueta": "",
+          "nota": ""
+        }
+      ]
+    }
+  ],
+  "gemas": {
+    "nota": "**Importante simular:** el reparto de gemas depende de tus estadísticas.",
+    "objetos": [
+      {
+        "nombre": "Diamante de Canción Eterna Indescifrable",
+        "url": "https://www.wowhead.com/es/item=240983/diamante-de-canci%C3%B3n-eterna-indescifrable",
+        "icono": "inv_12_profession_jewelcrafting_epic_gem_cut_green",
+        "etiqueta": "",
+        "nota": ""
+      },
+      {
+        "nombre": "Amatista Mortal Impecable",
+        "url": "https://www.wowhead.com/es/item=240898/amatista-mortal-impecable",
+        "icono": "inv_12_profession_jewelcrafting_rare_gem_cut_fire_purple",
+        "etiqueta": "MONEDA Y BOTÍN",
+        "nota": ""
+      }
+    ]
+  },
+  "abalorios": {
+    "nota": "Rankings orientativos basados en simulaciones de alto nivel. [Simúlate siempre en Raidbots](https://www.raidbots.com/simbot) antes de decidir. Si nunca has simulado, mira la [sección de Coaching](/midnight/coaching/).",
+    "tiers": [
+      {
+        "tier": "S",
+        "items": [
+          {
+            "nombre": "Corazón voraz de Ula'tek",
+            "url": "https://www.wowhead.com/es/item=270175/coraz%C3%B3n-voraz-de-ulatek?bonus=13335:12854",
+            "uso": true
+          },
+          {
+            "nombre": "Tentáculo de horror retorcido",
+            "url": "https://www.wowhead.com/es/item=281215/tent%C3%A1culo-de-horror-retorcido?bonus=13335:12856",
+            "uso": false
+          }
+        ]
+      },
+      {
+        "tier": "A",
+        "items": [
+          {
+            "nombre": "Plumaje dorado lustroso",
+            "url": "https://www.wowhead.com/es/item=159617/plumaje-dorado-lustroso?bonus=9024",
+            "uso": true
+          },
+          {
+            "nombre": "Técnica de guillotina de Zul'jin",
+            "url": "https://www.wowhead.com/es/item=270173/t%C3%A9cnica-de-guillotina-de-zuljin?bonus=13335:12854",
+            "uso": false
+          },
+          {
+            "nombre": "Núcleo hirviente de guardián",
+            "url": "https://www.wowhead.com/es/item=270165/n%C3%BAcleo-hirviente-de-guardi%C3%A1n?bonus=13335:12854",
+            "uso": false
+          },
+          {
+            "nombre": "Fuente de ira venenosa",
+            "url": "https://www.wowhead.com/es/item=270168/fuente-de-ira-venenosa?bonus=13335:12854",
+            "uso": true
+          },
+          {
+            "nombre": "Vial abyecto de veneno volátil",
+            "url": "https://www.wowhead.com/es/item=273796/vial-abyecto-de-veneno-vol%C3%A1til?bonus=13440:12854",
+            "uso": true
+          },
+          {
+            "nombre": "Núcleo de aguja de luz",
+            "url": "https://www.wowhead.com/es/item=250214/n%C3%BAcleo-de-aguja-de-luz?bonus=13440:12806",
+            "uso": false
+          },
+          {
+            "nombre": "Bolsa sin fondo de Gebbo",
+            "url": "https://www.wowhead.com/es/item=270164/bolsa-sin-fondo-de-gebbo?bonus=13335:12854",
+            "uso": false
+          }
+        ]
+      },
+      {
+        "tier": "B",
+        "items": [
+          {
+            "nombre": "Mandato de ejecución del Vacío",
+            "url": "https://www.wowhead.com/es/item=250225/mandato-de-ejecuci%C3%B3n-del-vac%C3%ADo?bonus=13440:12806",
+            "uso": true
+          },
+          {
+            "nombre": "Estandarte de guerra Amani ajado",
+            "url": "https://www.wowhead.com/es/item=273797/estandarte-de-guerra-amani-ajado?bonus=13440:12854",
+            "uso": true
+          },
+          {
+            "nombre": "Frasco de corredor de fletes",
+            "url": "https://www.wowhead.com/es/item=250215/frasco-de-corredor-de-fletes?bonus=13440:12806",
+            "uso": true
+          },
+          {
+            "nombre": "Piedrabramido resonante",
+            "url": "https://www.wowhead.com/es/item=250228/piedrabramido-resonante?bonus=13440:12806",
+            "uso": false
+          }
+        ]
+      },
+      {
+        "tier": "C",
+        "items": [
+          {
+            "nombre": "Rencor sanguino de Vashnik",
+            "url": "https://www.wowhead.com/es/item=270166/rencor-sanguino-de-vashnik?bonus=13335:12854",
+            "uso": false
+          },
+          {
+            "nombre": "Electromental diminuto en un tarro",
+            "url": "https://www.wowhead.com/es/item=158374/electromental-diminuto-en-un-tarro",
+            "uso": false
+          },
+          {
+            "nombre": "Pimpollo del albarraíz",
+            "url": "https://www.wowhead.com/es/item=250259/pimpollo-del-albarra%C3%ADz?bonus=13440:12806",
+            "uso": false
+          }
+        ]
+      },
+      {
+        "tier": "D",
+        "items": [
+          {
+            "nombre": "Caparazón de vástago rubí",
+            "url": "https://www.wowhead.com/es/item=193757/caparaz%C3%B3n-de-v%C3%A1stago-rub%C3%AD?bonus=657:10358:5871:7981",
+            "uso": false
+          }
+        ]
+      }
+    ]
+  },
+  "mejoras": [
+    {
+      "id": "bm-nucleos",
+      "titulo": "Núcleos del Vacío nebulosos (tiradas extra)",
+      "icono": "inv_1205_voidforge_fluctuatingvoidcores_green",
+      "etiqueta": "Moneda y botín",
+      "texto": "El [Núcleo de Vacío nebuloso](https://www.wowhead.com/es/currency=3418/n%C3%BAcleo-de-vac%C3%ADo-nebuloso) es una moneda que permite hacer una **tirada de bonificación** en ciertas mazmorras y jefes. Usarlo te **garantiza un botín** y tiene protección contra duplicados.",
+      "aviso": "**Cambio en la Temporada 2:** todas las tiradas extra gastan solo **1 moneda**, tanto en Míticas+ como en banda (antes, en banda eran 2).",
+      "prioridadTitulo": "Prioridad de tiradas extra (Cazador de Bestias)",
+      "prioridad": [
+        "**Ula'tek** → [Gran Arco de Reposo Cáustico](https://www.wowhead.com/es/item=268207/gran-arco-de-reposo-c%C3%A1ustico?bonus=13335:13848), [Relicario de azote aqir](https://www.wowhead.com/es/item=268265/relicario-de-azote-aqir?bonus=13335:13708:13848), [Corazón voraz de Ula'tek](https://www.wowhead.com/es/item=270175/coraz%C3%B3n-voraz-de-ulatek?bonus=13335:13848) y [Loriga de Colminferno despierto](https://www.wowhead.com/es/item=271876/loriga-de-colminferno-despierto?bonus=13335:13846:13848)",
+        "**Kith'ix** → [Tentáculo de horror retorcido](https://www.wowhead.com/es/item=281215/tent%C3%A1culo-de-horror-retorcido?bonus=13335:12856), [Perforapellejos de víbora merodeadora](https://www.wowhead.com/es/item=271493/perforapellejos-de-v%C3%ADbora-merodeadora?bonus=13335:12854:14049&original-item=281238) y [Sortija del evocaenjambres](https://www.wowhead.com/es/item=281029/sortija-del-evocaenjambres?bonus=13335:12854)",
+        "Resto de objetos de la lista BiS"
+      ]
+    },
+    {
+      "id": "bm-fabricados",
+      "titulo": "Mejores objetos fabricados",
+      "icono": "ui_profession_jewelcrafting",
+      "etiqueta": "Fabricación",
+      "texto": "Puedes equipar hasta **2 adornos**. Fabrica [Brazales de placas de errante](https://www.wowhead.com/es/item=244584/brazales-de-placas-de-errante?bonus=13335:13848) y [Cinturón de trofeos de errante](https://www.wowhead.com/es/item=244581/cintur%C3%B3n-de-trofeos-de-errante?bonus=13335:13848), los dos con [Forro de tejido arcano](https://www.wowhead.com/es/item=240167/forro-de-tejido-arcano?bonus=13335:13848) y [Misiva thalassiana del incomparable](https://www.wowhead.com/es/item=245789/misiva-thalassiana-del-incomparable?bonus=13335:13848) (Crítico / Maestría).",
+      "flujoTitulo": "Prioridad de ranuras para fabricar",
+      "flujo": [
+        "Arma",
+        "Cuello / Anillos",
+        "Resto de ranuras",
+        "Capa / Muñecas"
+      ]
+    },
+    {
+      "id": "bm-blasones",
+      "titulo": "Mejora con blasones",
+      "icono": "inv_121_crest_myth",
+      "etiqueta": "Recurso limitado",
+      "texto": "Mejora tus piezas con blasones como el [Blasón de bruma de mito](https://www.wowhead.com/es/currency=3446/blas%C3%B3n-de-bruma-de-mito). Piensa en **mejorar ranuras, no objetos**: al mejorar una ranura, las demás piezas que consigas para ese hueco no gastan blasones hasta ese nivel.",
+      "flujoTitulo": "Prioridad de mejora con blasones",
+      "flujo": [
+        "Arma",
+        "Abalorios",
+        "Cabeza / Pecho / Piernas",
+        "Hombros / Guantes / Cinturón / Botas",
+        "Anillos / Cuello",
+        "Capa / Muñecas"
+      ],
+      "nota": "*Algunos objetos especiales con escalados superiores pueden cambiar un poco este orden.*"
+    },
+    {
+      "id": "bm-evaluar",
+      "titulo": "Evaluación de mejoras",
+      "icono": "inv_misc_spyglass_03",
+      "etiqueta": "",
+      "texto": "Simula siempre a tu personaje en **Raidbots**. Cada personaje tiene estadísticas únicas y las recomendaciones generales no sustituyen simular tu equipo."
+    }
+  ]
+}
