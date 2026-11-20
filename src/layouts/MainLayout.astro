@@ -117,7 +117,11 @@ const ogImage = new URL(og.og, Astro.site).href;
     gtag('event', 'page_view', { page_path: pagePath, ...datos });
   }
 
-  window.addEventListener('load', trackPageView);
+  // page_view en cuanto el HTML está listo (DOMContentLoaded), no en 'load': 'load' espera a todas las imágenes y scripts
+  // externos (Wowhead…) y en móvil/navegador de TikTok la visita podía mandar antes user_engagement o scroll sin page_view,
+  // que GA4 cuenta como sesión con fuente «(sin definir)» y 0 % de interacción (62 sesiones del 18 al 20-11).
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', trackPageView);
+  else trackPageView();
   window.addEventListener('hashchange', trackPageView);
 </script>
   </head>

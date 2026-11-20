@@ -8,7 +8,7 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 
 ## 1. Urgente (esta semana, mientras dura el tirón de Forever)
 
-- [ ] **62 sesiones «(sin definir)» con 0 % de interacción en GA4 desde el 18-11** (C, 30 min): antes solo había 1. Comprobar si las causa el `gtag('set')` de `MainLayout.astro` (sesiones sin `session_start`/fuente).
+- [ ] **62 sesiones «(sin definir)» con 0 % de interacción en GA4 desde el 18-11** (C, 30 min): antes solo había 1. Comprobar si las causa el `gtag('set')` de `MainLayout.astro` (sesiones sin `session_start`/fuente). **20-11:** el `page_view` ya sale al cargar el HTML (`DOMContentLoaded`) y no en `load`; comprobar el 2-12 si bajan y, si no, mirar país y dispositivo de esas sesiones en GA4 (pueden ser robots).
 
 ## 2. Mejoras de la web (código, C)
 

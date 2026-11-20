@@ -17,6 +17,9 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — GA4: page_view al cargar el HTML (sesiones «(sin definir)»)
+- `MainLayout.astro`: `trackPageView` pasa de `load` a `DOMContentLoaded` (o al momento si el HTML ya está listo). `load` espera a todas las imágenes y scripts externos; en móvil y en el navegador de TikTok la visita podía mandar `user_engagement`/`scroll` sin `page_view`, y GA4 lo cuenta como sesión «(sin definir)» con 0 % de interacción (62 del 18 al 20-11, antes 1). Hipótesis sin confirmar: comprobar el 2-12 si bajan; si no, mirar en GA4 país y dispositivo de esas sesiones (pueden ser robots).
+
 ## 2026-11-20 — Títulos de Leveling y Stats de Forever
 - `seo.ts`: Leveling «Leveling Hunter WoW Forever 1-60 rápido: ruta y talentos» (56; antes «Guía leveling… : Cazador de Bestias», 3,2 % de CTR con 498 impresiones) y descripción con «Cazador de Bestias», ruta e instructor (152). Stats «Stats Hunter BM WoW Forever: golpe al 8 % y prioridad» (53; antes 1,8 % con 114) y descripción con daño de arma y golpe con el pre-raid (140). Medir el CTR el 2-12.
 
