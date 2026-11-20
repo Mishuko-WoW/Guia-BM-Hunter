@@ -55,8 +55,9 @@ const withBase = (path: string) => `${baseUrl.replace(/\/?$/, '/')}${path.replac
     window.BM_BOSS_DATA = bossData;
   </script>
   <script is:inline src={withBase('scripts/bm-guide.js')}></script>
-  <script is:inline>
-    window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+  {/* En BiS, renameLinks: false (como en Forever): si no, Wowhead cambia el interior de cada ranura por el nombre del objeto */}
+  <script is:inline define:vars={{ renombrar: tab !== 'bis' }}>
+    window.whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: renombrar };
   </script>
   <script is:inline src="https://wow.zamimg.com/widgets/power.js"></script>
 </MainLayout>

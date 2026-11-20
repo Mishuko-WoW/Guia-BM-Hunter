@@ -17,6 +17,9 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-20 — BiS de Midnight: ranuras rotas por Wowhead
+- `PaginaMidnight.astro`: en BiS, `renameLinks: false` (como en Forever). Con `true`, power.js cambiaba el interior de cada ranura (icono, ranura, origen) por el nombre del objeto y la ventana de personaje se deshacía. El resto de pestañas sigue igual. Quitado de `SeccionBiS.astro` el `tooltips.js` duplicado.
+
 ## 2026-11-20 — Midnight con el diseño de Forever (5): BiS y consumibles
 - `SeccionBiS.astro` (1.746 líneas de HTML y CSS a mano) pasa a datos: `src/content/data/midnight-bis.json` (sacado del HTML con un script: 15 piezas + camisa y tabardo con sus enlaces de Wowhead y bonus, catalizador, encantamientos, 9 consumibles, 2 gemas, ranking S-D de abalorios y la guía de núcleos, fabricados y blasones) → `guide/BisMidnight.astro` con la ventana de personaje del BiS de Forever (`bf-*`), tabla desplegable con origen y encantamiento, consumibles y gemas en tarjetas `gn-cambio`, abalorios en `lv-table` y mejoras en `lv-card`.
 - Fuera: el contador «Progreso BiS» con casillas (el código de `bm-guide.js` ya comprobaba si existe), la caja de fuentes y los estilos propios de la página.

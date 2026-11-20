@@ -9,9 +9,6 @@ import { getSectionReviewDate } from '../lib/sectionDates';
 const reviewDate = getSectionReviewDate('bis', ['src/content/data/midnight-bis.json']);
 ---
 
-<script is:inline>
-  window.whTooltips = { colorLinks: false, iconizeLinks: true, renameLinks: false };
-</script>
 
 <div class="tab-panel" id="tab-bis">
   <h2>BiS y estadísticas del Hunter BM: equipo y consumibles</h2>
@@ -21,5 +18,3 @@ const reviewDate = getSectionReviewDate('bis', ['src/content/data/midnight-bis.j
   <Faq tab="bis" titulo="BiS y trinkets" />
   {reviewDate && <p class="fv-review">Última revisión por <strong>Mishuko</strong> el <strong>{reviewDate}</strong>.</p>}
 </div>
-
-<script is:inline src="https://wow.zamimg.com/js/tooltips.js"></script>
