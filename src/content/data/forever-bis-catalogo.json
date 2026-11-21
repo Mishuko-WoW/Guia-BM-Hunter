@@ -281,6 +281,36 @@
       "hombros"
     ]
   },
+  "19325": {
+    "nombre": "Sortija de Don Julio",
+    "calidad": 4,
+    "icono": "inv_jewelry_ring_35",
+    "slot": "Dedo",
+    "tipo": "",
+    "nivel": 55,
+    "ilvl": 60,
+    "unico": true,
+    "clases": [],
+    "ranuras": [
+      "anillo1",
+      "anillo2"
+    ]
+  },
+  "22321": {
+    "nombre": "Corazón de Vermisthalak",
+    "calidad": 3,
+    "icono": "inv_misc_gem_bloodstone_01",
+    "slot": "Alhaja",
+    "tipo": "",
+    "nivel": 56,
+    "ilvl": 61,
+    "unico": true,
+    "clases": [],
+    "ranuras": [
+      "abalorio1",
+      "abalorio2"
+    ]
+  },
   "249469": {
     "nombre": "Corazón de la montaña congelado",
     "calidad": 3,

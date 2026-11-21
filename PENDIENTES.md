@@ -24,6 +24,13 @@ Quién: **M** = Mishuko · **C** = Claude (web) · **X** = Codex (vídeos).
 - [ ] **BiS de Forever: pre-raid rellena (18-11); falta la de raid** cuando abran las raids (M, con el editor local, botón «Objetos BiS»). Ya en Google (sin `noindex`, 18-11). Pedir indexación de `/forever/bis/` en Search Console tras publicar.
 - [ ] **BiS de Forever: imagen central** (M pasa la imagen de los Hunters; C la pone en `imagen` de `forever-bis-equipo.json`). Hoy: emblema provisional.
 
+## 2b. Vigilancia de cambios de Forever (desde 21-11-2026)
+
+- Solo Forever (Midnight no se toca por ahora, decisión de Mishuko 21-11). Los hotfixes atrasados del 10-11 no se ponen.
+- Aviso diario a Discord a las 3:15: `Desktop\Proyecto Guia BM\icy_veins.py` (tarea «Icy Veins Monitor»). Mira los hotfixes de Forever de Blizzard, y BiS pre-raid y talentos de wowforeverbislist, mythicsim, conquestcapped y foreverwow.gg. Registro en `vigilante.log`; prueba sin enviar: `python icy_veins.py --prueba`.
+- Regla para el BiS: cambiar solo si la mayoría de guías apunta claramente a otro objeto; si no se ponen de acuerdo, se deja.
+- [ ] Hombros pre-raid: 4 de 5 guías ponen los de reputación de facción (Charreteras de Theramore / de Lanza Negra) y nosotros los de la milicia de Stratholme. La ventana de BiS no distingue facción: decidir si se añade o se deja.
+
 ## 3. SEO fuera de la web (M)
 
 - [ ] ⏰ *Recordárselo a Mishuko más adelante (18-11)* · **Primeros enlaces externos** (2-3 h repartidas): perfil de TikTok/YouTube/Twitch, Discord de hermandades, Reddit en español, comentarios útiles en Wowhead, página del add-on. Hoy hay **0 enlaces externos**; es lo que falta para pasar del puesto 6-7 al top 3.
@@ -60,6 +67,8 @@ Aprobado por Mishuko el 18-11 y avisado a Codex en `EQUIPO.md`. Datos de TikTok 
 ---
 
 ## Hecho
+
+- [x] 2026-11-21 · Forever: talentos de Puntería como las guías (3/3 Picaduras mejoradas, 2/5 Disparo Arcano mejorado) y BiS pre-raid con Sortija de Don Julio y Corazón de Vermisthalak (golpe pre-raid: 10 %). Vigilante diario arreglado.
 
 - [x] 2026-11-20 · RestedXP en cada tramo de Leveling de Forever (`lugar` leveling-tramo) y «10 % de descuento» en el banner. Medir clics por `lugar` el 2-12.
 - [x] 2026-11-20 · Títulos y descripciones de Leveling («1-60 rápido: ruta y talentos») y Stats («golpe al 8 %») de Forever. Medir su CTR el 2-12.

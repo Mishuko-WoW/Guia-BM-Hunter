@@ -17,6 +17,11 @@ Es distinto de `src/content/data/changelog.json`, que es la lista de cambios par
 
 ---
 
+## 2026-11-21 — Forever: talentos y BiS pre-raid revisados con las guías
+- `forever-builds.json`: Puntería 3/3 Picaduras mejoradas y 2/5 Disparo Arcano mejorado (antes 2/3 y 3/5), igual que wowforeverbislist; mythicsim pone Matanza rápida 2/2 en lugar de Arcano mejorado. Texto de la alternativa en `forever-talentos-guia.json` ajustado.
+- `forever-bis-equipo.json` (pre-raid): anillo 1 Sortija de Don Julio (19325) en vez de Eagle's Head Signet, abalorio 2 Corazón de Vermisthalak (22321) en vez de Behemoth Bones (mayoría de guías). Catálogo y `forever-objetos.json` regenerados. Golpe pre-raid 9 % → 10 % en Stats, FAQ y resumen.
+- Fuera del repo: `Desktop\Proyecto Guia BM\icy_veins.py` reescrito (Icy Veins bloqueaba con Cloudflare y el script se colgaba en `input()`): hotfixes de Forever de Blizzard + BiS y talentos de 4 guías → Discord; estado en `vigilante_estado.json`, registro en `vigilante.log`.
+
 ## 2026-11-20 — Mazmorras: mapa con zoom y pantalla completa, sin capitulares
 - Mapa (`MazmorrasForever.astro`): zoom con rueda, pellizco y botones (+, −, ver entero, hasta x5), arrastrar para moverse y botón de pantalla completa (Fullscreen API; si el navegador no deja, vista ampliada fija que se cierra con el mismo botón o Esc). Los números de los jefes no crecen con el zoom y siguen siendo clicables (un arrastre no cuenta como clic).
 - Fuera la letra capitular (`::first-letter`). Índice de jefes por lado al pie de la página derecha (marca los que sueltan BiS) para saltar de uno a otro.

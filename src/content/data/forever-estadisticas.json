@@ -47,14 +47,14 @@
   ],
   "golpe": {
     "_ayuda": "Piezas del BiS pre-raid que dan golpe (id del catálogo + % del tooltip de Wowhead Forever, revisado el 19-11-2026). Nombre, icono y origen salen solos de forever-bis-catalogo.json y forever-bis-equipo.json.",
-    "intro": "Con la **lista pre-raid completa llegas al 9 %** de golpe, uno por encima del tope: no necesitas buscar más. Si aún te faltan piezas, empieza por las dos de **demosaurio** (Peletería), que dan un 2 % cada una.",
+    "intro": "Con la **lista pre-raid completa llegas al 10 %** de golpe, dos por encima del tope: no necesitas buscar más. Si aún te faltan piezas, empieza por las dos de **demosaurio** (Peletería), que dan un 2 % cada una.",
     "piezas": [
       { "id": 15062, "golpe": 2 },
       { "id": 15063, "golpe": 2 },
       { "id": 252483, "golpe": 1 },
       { "id": 13967, "golpe": 1 },
       { "id": 18296, "golpe": 1 },
-      { "id": 272408, "golpe": 1 },
+      { "id": 272408, "golpe": 1 }, { "id": 19325, "golpe": 1 },
       { "id": 250619, "golpe": 1 }
     ],
     "nota": "Las **Sortijas de tirador** solo suben el golpe a distancia, pero es justo el que usas. El golpe del arma cuerpo a cuerpo también cuenta para tus disparos."
